@@ -1,0 +1,23 @@
+Package: Y2025.TransMicro2
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R: 
+    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
+Description: What the package does (one paragraph).
+License: CC0
+ByteCompile: true
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Imports: 
+    data.table,
+    dplyr,
+    here,
+    lme4,
+    phyloseq,
+    phyloseq.extended,
+    readxl,
+    textshape
+Depends: 
+    ggplot2

@@ -1,0 +1,251 @@
+---
+title: "Rarefy data, Sido's version"
+author: "Marie Lapègue, Nicolas Rode, Sido Dunis-Quarré"
+date: "`r format(Sys.Date(), '%d-%B-%Y')`"
+format:
+  html:
+    toc: true
+    toc-location: left
+    number-sections: true
+    embed-resources: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+devtools::load_all()
+
+library(dplyr)
+library(phyloseq)
+```
+
+# 0. Intro
+```{r}
+# Phyloseq objects :
+#  - OTU table = taxa in rows (OTU), samples in columns (matrix of numbers => abundance data)
+#  - sample table = samples in rows, description variables in columns from metadata (data frame object)
+#  - taxonomy table = taxa in rows (OTU), taxonomic ranks in columns 
+```
+# 1. Import Data
+```{r}
+# Import 16S Abundance table
+atc_16S <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "sido", "TransMicro1&2", "1_PrepareData", "16S_TM1&2_abundance.tsv"), sep="\t",header=TRUE) 
+dim(atc_16S) # 54 580 instead on 54 581 like Marie
+
+# Delete Controls and Undetermined
+atc_16S_nocontrol <- atc_16S %>% 
+  dplyr::select(!(dplyr::contains("CT_") | 
+                  dplyr::contains("NC_") |
+                  dplyr::starts_with("Undetermined")))
+dim(atc_16S_nocontrol) # 54 275
+# Deletion of 16S- prefixes in sample names
+colnames(atc_16S_nocontrol) <- gsub("16S_", "", colnames(atc_16S_nocontrol))
+
+
+# Import ITS Abundance table
+atc_ITS <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "sido", "TransMicro1&2", "1_PrepareData", "ITS_TM1&2_abundance.tsv"), sep="\t",header=TRUE)
+dim(atc_ITS) # 265 683
+
+# Delete Controls and Undetermined
+atc_ITS_nocontrol <- atc_ITS %>% 
+  dplyr::select(!(dplyr::contains("CT_") | 
+                  dplyr::contains("NC_") |
+                  dplyr::starts_with("Undetermined")))
+dim(atc_ITS_nocontrol) # 265 275
+# Deletion of ITS- prefixes in sample names
+colnames(atc_ITS_nocontrol) <- gsub("ITS_", "", colnames(atc_ITS_nocontrol))
+
+
+# Import 16S and ITS taxonomy tables
+taxo_16S <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "sido", "TransMicro1&2", "1_PrepareData", "16S_TM1&2_taxonomy.tsv"),sep="\t",header=TRUE)
+
+taxo_ITS <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "sido", "TransMicro1&2", "1_PrepareData", "ITS_TM1&2_taxonomy.tsv"),sep="\t",header=TRUE)
+
+
+# Import Metadata table
+metadata <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "sido", "TransMicro1&2", "1_PrepareData", "TransMicro1&2_metadata.tsv"),sep="\t",header=TRUE)
+```
+# 2. Create a phyloseq object
+```{r}
+# Abundance tables
+otu_16S <- atc_16S_nocontrol %>% 
+  textshape::column_to_rownames("observation_name") %>% 
+  dplyr::mutate(seed_sequence = NULL)
+
+otu_ITS <- atc_ITS_nocontrol %>% 
+  textshape::column_to_rownames("observation_name") %>% 
+  dplyr::mutate(seed_sequence = NULL) 
+
+# Taxonomy tables
+tax_16S <- taxo_16S %>% 
+  textshape::column_to_rownames("observation_name")
+tax_16S <- as.matrix(tax_16S)
+
+tax_ITS <- taxo_ITS %>% 
+  textshape::column_to_rownames("observation_name")
+tax_ITS <- as.matrix(tax_ITS)
+
+# Metadata
+mtd <- metadata %>%
+  dplyr::mutate(ID_pool_rowname = ID_pool) %>%
+   textshape::column_to_rownames("ID_pool_rowname")
+
+# f -> F 
+mtd <- mtd %>%
+  dplyr::mutate(Sample_Category = ifelse(Sample_Category == "All_stages_focal_Sites", "All_stages_Focal_Sites", Sample_Category))
+
+write.table(mtd, file=file.path(here::here(), "data", "derived_data", "sido", "TransMicro1&2", "2_RarefyData", "TM1&2_metadata.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+
+#Transform into phyloseq compatible objects
+# setnames(S_otu_16S, old = names(S_otu_16S), new = gsub("-", "_", names(S_otu_16S)))
+# setnames(S_otu_ITS, old = names(S_otu_ITS), new = gsub("-", "_", names(S_otu_ITS)))
+
+OTU_16S <- phyloseq::otu_table(otu_16S, taxa_are_rows = T)
+TAX_16S <- phyloseq::tax_table(as.matrix(tax_16S))
+
+OTU_ITS <- phyloseq::otu_table(otu_ITS, taxa_are_rows = T)
+TAX_ITS <- phyloseq::tax_table(as.matrix(tax_ITS))
+
+MTD <- phyloseq::sample_data(as.data.frame(mtd))
+
+
+# Build a phyloseq objects
+ps_16S <- phyloseq::phyloseq(OTU_16S, TAX_16S, MTD)
+ps_ITS <- phyloseq::phyloseq(OTU_ITS, TAX_ITS, MTD)
+
+# Extract OTU abundance data from phyloseq objects
+table_OTU_16S <- phyloseq::otu_table(ps_16S)
+table_OTU_16S[rowSums(phyloseq::otu_table(ps_16S)) == 0, ]
+names(phyloseq::sample_sums(ps_16S)[ phyloseq::sample_sums(ps_16S) == 0]) # OTUs with no counts in any 16S samples
+
+table_OTU_ITS <- phyloseq::otu_table(ps_ITS)
+table_OTU_ITS[rowSums(phyloseq::otu_table(ps_ITS)) == 0, ]
+names(phyloseq::sample_sums(ps_ITS)[ phyloseq::sample_sums(ps_ITS) == 0]) # OTUs with no counts in any ITS samples
+
+# Remove Wolbachia's OTU
+## Correspond to Cluster 6
+#View(as.data.frame(tax_table(S_ps_16S)))
+#View(as.data.frame(otu_table(S_ps_16S)))
+
+## Relative abundance of Wolbachia accross the abundance of all the OTUs 
+sum(as.data.frame(otu_table(ps_16S))["Cluster_6", ]) / sum(as.data.frame(otu_table(ps_16S))) # = 11.91% 
+
+## Remove
+ps_16S <- prune_taxa(taxa_names(ps_16S) != "Cluster_6", ps_16S)
+
+
+# Distribution of the number of reads across samples
+sample_sums(ps_16S) #for each sample
+sum(sample_sums(ps_16S)) #total
+min(sample_sums(ps_16S)) #min
+max(sample_sums(ps_16S)) #max
+mean(sample_sums(ps_16S)) # mean 13872.81 (Marie = 13349.64)
+
+sample_sums(ps_ITS) #for each sample
+sum(sample_sums(ps_ITS)) #total
+min(sample_sums(ps_ITS)) #min
+max(sample_sums(ps_ITS)) #max
+mean(sample_sums(ps_ITS))
+
+# Identify samples with a sum of abundances equal to zero
+zero_abundance_samples_16S <- names(sample_sums(ps_16S)[ sample_sums(ps_16S) == 0])
+zero_abundance_samples_ITS <- names(sample_sums(ps_ITS)[ sample_sums(ps_ITS) == 0])
+
+# Remove samples with a sum of abundances equal to zero from the phyloseq object
+ps_16S_filtered <- subset_samples(ps_16S, !(sample_names(ps_16S) %in% zero_abundance_samples_16S))
+ps_ITS_filtered <- subset_samples(ps_ITS, !(sample_names(ps_ITS) %in% zero_abundance_samples_ITS))
+```
+# 3. Rarefaction curve
+```{r}
+Rarefactioncurve_16S <- Make_rarefaction_curve(phylo_object = ps_16S_filtered, x_intersection_line = 3000, variable = "SampleType", number_columns = 17 , color_variable = "SampleType", title ="16S Rarefaction Curves", maxdepth=10000) # curves plotted for seq depth up to 10.000 reads per sample (17 types of samples)
+Rarefactioncurve_16S
+
+title_plot <- "16S_TM1&2_Rarefactioncurve.png"
+  cowplot::save_plot(file =here::here("plots", "sido", title_plot), Rarefactioncurve_16S, base_height = 35/cm(1), base_width = 60/cm(1), dpi = 1200)
+
+Rarefactioncurve_ITS <- Make_rarefaction_curve(phylo_object = ps_ITS_filtered, x_intersection_line = 5000, variable = "SampleType", number_columns = 17 , color_variable = "SampleType", title ="ITS Rarefaction Curves", maxdepth=10000)
+Rarefactioncurve_ITS
+ 
+title_plot <- "ITS_TM1&2_Rarefactioncurve.png"
+  cowplot::save_plot(file =here::here("plots", "sido", title_plot), Rarefactioncurve_ITS, base_height = 35/cm(1),base_width = 60/cm(1), dpi = 1200)
+```
+
+# 4. Rarefy data
+```{r}
+# Rarefy samples by discarding samples with fewer than 3.000 reads
+set.seed(1)                                         # CHECKER COURBES ET MODIF VALEUR SI BESOIN
+ps_rare_16S <- rarefy_even_depth(ps_16S, sample.size = 3000)# 100 otus removed
+sample_sums(ps_rare_16S)[1:100]
+
+set.seed(1)                                         # CHECKER COURBES ET MODIF VALEUR SI BESOIN
+ps_rare_ITS <- rarefy_even_depth(ps_ITS, sample.size = 5000)# 62 otus removed
+sample_sums(ps_rare_ITS)[1:100]
+
+# Export
+saveRDS(ps_rare_16S, file=file.path(here::here(), "data", "derived_data", "sido", "TransMicro1&2", "2_RarefyData", "16S_TM1&2_ps_rare.rds"))
+saveRDS(ps_rare_ITS, file=file.path(here::here(), "data", "derived_data", "sido", "TransMicro1&2", "2_RarefyData", "ITS_TM1&2_ps_rare.rds"))
+
+
+write.table(otu_table(ps_rare_16S), file=file.path(here::here(), "data", "derived_data", "sido", "TransMicro1&2", "2_RarefyData", "16S_TM1&2_otu_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+
+write.table(tax_table(S_ps_rare_16S), file=file.path(here::here(), "data", "derived_data", "sido","TransMicro1&2", "2_RarefyData", "16S_TM1&2_tax_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+
+write.table(otu_table(S_ps_rare_ITS), file=file.path(here::here(), "data", "derived_data", "sido","TransMicro1&2", "2_RarefyData", "ITS_TM1&2_otu_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+
+write.table(tax_table(S_ps_rare_ITS), file=file.path(here::here(), "data", "derived_data", "sido","TransMicro1&2", "2_RarefyData", "ITS_TM1&2_tax_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+```
+
+# 5. Select data
+```{r}
+# Filter samples by abundance (>0) and by type (fruits and suzu at all stages from "Focal_Sites")
+S_ps_16S_rare_FocalSites_All <- subset_samples(S_ps_rare_16S, grepl("Focal_Sites", Sample_Category)) # not only Sample_Category == "All_stages_focal_Sites"
+S_ps_16S_rare_FocalSites_All <- prune_taxa(taxa_sums(S_ps_16S_rare_FocalSites_All)>0, S_ps_16S_rare_FocalSites_All)
+
+S_ps_ITS_rare_FocalSites_All <- subset_samples(S_ps_rare_ITS, grepl("Focal_Sites", Sample_Category))
+S_ps_ITS_rare_FocalSites_All <- prune_taxa(taxa_sums(S_ps_ITS_rare_FocalSites_All)>0, S_ps_ITS_rare_FocalSites_All)
+
+#
+S_ps_16S_rare_Larvae <- subset_samples(S_ps_rare_16S, SampleType %in% c("G0_Adults_Fruits_2days", "G0_Adults_Medium_2days", "G1_Larvae_Fruits", "G1_Larvae_Nat_Inf_Fruits_5_6days"," G1_Larvae_Medium_5_6days")) 
+#S_ps_16S_rare_Larvae <- subset_samples(S_ps_rare_16S, grepl("Larvae", Sample_Category))
+S_ps_16S_rare_Larvae <- prune_taxa(taxa_sums(S_ps_16S_rare_Larvae)>0, S_ps_16S_rare_Larvae)
+
+S_ps_ITS_rare_Larvae <- subset_samples(S_ps_rare_ITS, SampleType ==  c("G1_Larvae_Fruits","G1_Larvae_Medium_5_6days", "G0_Adults_Fruits_2days", "G0_Adults_Medium_2days"))
+S_ps_ITS_rare_Larvae <- prune_taxa(taxa_sums(S_ps_ITS_rare_Larvae)>0, S_ps_ITS_rare_Larvae)
+
+# Fruits 
+S_ps_16S_rare_Fruits <- subset_samples(S_ps_rare_16S, SampleType %in% c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days"))
+S_ps_16S_rare_Fruits <- prune_taxa(taxa_sums(S_ps_16S_rare_Fruits)>0,S_ps_16S_rare_Fruits)
+
+S_ps_ITS_rare_Fruits <- subset_samples(S_ps_rare_ITS, SampleType %in% c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days"))
+S_ps_ITS_rare_Fruits <- prune_taxa(taxa_sums(S_ps_ITS_rare_Fruits)>0,S_ps_ITS_rare_Fruits) 
+
+# Fruits 0 days
+S_ps_16S_rare_Fruits_0days <- subset_samples(S_ps_rare_16S, SampleType == "Fruits_0days")
+S_ps_16S_rare_Fruits_0days <- prune_taxa(taxa_sums(S_ps_16S_rare_Fruits_0days)>0,S_ps_16S_rare_Fruits_0days)
+
+S_ps_ITS_rare_Fruits_0days <- subset_samples(S_ps_rare_ITS, SampleType =="Fruits_0days")
+S_ps_ITS_rare_Fruits_0days <- prune_taxa(taxa_sums(S_ps_ITS_rare_Fruits_0days)>0,S_ps_ITS_rare_Fruits_0days)
+
+# Main expe : transmission
+S_ps_16S_rare_expe <- subset_samples(S_ps_16S_rare_FocalSites_All, SampleType %in% c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days" ))
+S_ps_16S_rare_expe <- prune_taxa(taxa_sums(S_ps_16S_rare_expe)>0, S_ps_16S_rare_expe)
+
+S_ps_ITS_rare_expe <- subset_samples(S_ps_ITS_rare_FocalSites_All, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
+S_ps_ITS_rare_expe <- prune_taxa(taxa_sums(S_ps_ITS_rare_expe)>0, S_ps_ITS_rare_expe)
+
+#
+S_ps_16S_rare_G1 <- subset_samples(S_ps_rare_16S, SampleType %in% c("G1_Adults_Fruits", "G1_Larvae_Fruits", "G1_Pupae_Fruits"))
+S_ps_16S_rare_G1 <- prune_taxa(taxa_sums(S_ps_16S_rare_G1)>0, S_ps_16S_rare_G1)
+
+S_ps_ITS_rare_G1 <- subset_samples(S_ps_rare_ITS, SampleType ==  c("G1_Adults_Fruits", "G1_Larvae_Fruits", "G1_Pupae_Fruits"))
+S_ps_ITS_rare_G1 <- prune_taxa(taxa_sums(S_ps_ITS_rare_G1)>0, S_ps_ITS_rare_G1)
+
+# Only natural infested samples (fruits inf/unInf, larvae, pupae, G1 adults)
+S_ps_16S_rare_Inf <- subset_samples(S_ps_rare_16S, SampleType %in% c("Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "G1_Larvae_Nat_Inf_Fruits_5_6days", "G1_Pupae_Nat_Inf_Fruit_5_6days", "G1_Adults_Nat_Inf_Fruit_5_6days"))
+S_ps_16S_rare_Inf <- prune_taxa(taxa_sums(S_ps_16S_rare_Inf)>0, S_ps_16S_rare_Inf)
+
+S_ps_ITS_rare_Inf <- subset_samples(S_ps_rare_ITS, SampleType %in%  c("Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "G1_Larvae_Nat_Inf_Fruits_5_6days", "G1_Pupae_Nat_Inf_Fruit_5_6days", "G1_Adults_Nat_Inf_Fruit_5_6days"))
+S_ps_ITS_rare_Inf <- prune_taxa(taxa_sums(S_ps_ITS_rare_Inf)>0, S_ps_ITS_rare_Inf)
+```

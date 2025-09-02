@@ -1,0 +1,603 @@
+---
+title: "Prepare data, Sido's version"
+author: "Marie Lapègue, Nicolas Rode, Sido Dunis-Quarré"
+date: "`r format(Sys.Date(), '%d-%B-%Y')`"
+format:
+  html:
+    toc: true
+    toc-location: left
+    number-sections: true
+    embed-resources: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+devtools::load_all()
+
+library(dplyr)
+```
+# 0. Distinguish run 1 from run 2
+```{r}
+# # 16S
+# folder <- file.path(here::here(), "data", "raw_data","TransMicro1&2_16S")
+# 
+# # List .fastq.gz files
+# files <- list.files(folder, pattern = "\\.fastq\\.gz$", full.names = TRUE)
+# 
+# # Loop over files
+# for (f in files) {
+#   # Get modification year
+#   mod_year <- format(file.info(f)$mtime, "%Y")
+#   
+#   # Extract file name only
+#   fname <- basename(f)
+#   
+#   # Split by "-"
+#   parts <- strsplit(fname, "-")[[1]]
+#   
+#   if (length(parts) >= 4) {
+#     # Decide suffix
+#     suffix <- ifelse(mod_year == "2024", "rn1",
+#                      ifelse(mod_year == "2025", "rn2", NA))
+#     
+#     if (!is.na(suffix)) {
+#       # Insert suffix after 3rd element
+#       parts <- append(parts, suffix, after = 3)
+#       
+#       # Rebuild new filename
+#       new_fname <- paste(parts, collapse = "-")
+#       new_path <- file.path(dirname(f), new_fname)
+#       
+#       # Rename
+#       file.rename(f, new_path)
+#       cat("Renamed:", fname, "→", new_fname, "\n")}}}
+# 
+# # ITS
+# folder2 <- file.path(here::here(), "data", "raw_data","TransMicro1&2_ITS")
+# 
+# # List .fastq.gz files
+# files2 <- list.files(folder2, pattern = "\\.fastq\\.gz$", full.names = TRUE)
+# 
+# # Loop over files
+# for (f in files2) {
+#   # Get modification year
+#   mod_year <- format(file.info(f)$mtime, "%Y")
+#   
+#   # Extract file name only
+#   fname <- basename(f)
+#   
+#   # Split by "-"
+#   parts <- strsplit(fname, "-")[[1]]
+#   
+#   if (length(parts) >= 4) {
+#     # Decide suffix
+#     suffix <- ifelse(mod_year == "2024", "rn1",
+#                      ifelse(mod_year == "2025", "rn2", NA))
+#     
+#     if (!is.na(suffix)) {
+#       # Insert suffix after 3rd element
+#       parts <- append(parts, suffix, after = 3)
+#       
+#       # Rebuild new filename
+#       new_fname <- paste(parts, collapse = "-")
+#       new_path <- file.path(dirname(f), new_fname)
+#       
+#       # Rename
+#       file.rename(f, new_path)
+#       cat("Renamed:", fname, "→", new_fname, "\n")}}}
+```
+
+# 1. Metadata Table
+```{r}
+mt <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "MetadataforAnalyses_TransMicro12.csv"), sep=";",header=TRUE)
+
+mt <- mt %>% 
+  dplyr::mutate(ID_pool = dplyr::case_when(Run == 1 ~ paste0(ID_pool, "_rn1"), Run == 2 ~ paste0(ID_pool, "_rn2"), TRUE ~ ID_pool))
+  
+# Export
+write.table(mt, file=file.path(here::here(), "data", "derived_data", "sido", "TransMicro1&2", "1_PrepareData", "TransMicro1&2_metadata.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+
+## Precision of the nb of samples
+mt_samples <- mt %>%
+  dplyr::group_by(FrozenLifeStage, SampleType, N, Substrate, Pop, FruitSite, FruitSiteTypeVariety, DevFruit) %>%
+  dplyr::summarise(SampleCount = dplyr::n(), .groups = "drop")
+
+write.csv(mt_samples, file = file.path(here::here(), "data", "derived_data", "sido", "TransMicro1&2", "1_PrepareData", "TM1&2_metadata_samples_data.csv"), row.names = FALSE, quote = FALSE)
+```
+
+# 2. Bacterial community
+## 2.1. Abundance table
+
+### Import & Clean Multi-Affiliation Table
+```{r}
+ma_16S <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "16S_TM1&2-[FROGS_BIOM_to_TSV__multi-affiliations.tsv].tsv"),sep="\t",header=TRUE)
+dim(ma_16S)# 169 409 lignes
+
+# Clean taxonomy of multi-affiliation table 
+taxo_16S_Multiaffiliation <- Define_multiaffiliation(multiaffiliation_table = ma_16S, thresh = 0.5) # filter the tax names with freq inf to 0,5 (within cluster) and assign a tax name (if 1 valid name) or multi/unknown (if multiple valid names)
+```
+
+### Import & Clean Abundance Table
+```{r}
+ab_16S <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "16S_TM1&2-[FROGS_BIOM_to_TSV__abundance.tsv].tsv"),sep="\t",header=TRUE)
+data.table::setnames(ab_16S, old = names(ab_16S), new = gsub("-", "_", names(ab_16S)))
+dim(ab_16S)
+
+# Clean taxonomy
+ab_16S <- Clean_ab_table(abundance_table = ab_16S, remove_col = NULL) # "Replacing the following species names by 'unknown species' " "Alphaproteobacteria bacterium" "Gammaproteobacteria bacterium" "Kineococcus-like bacterium"    "low G+C"                       "Kineococcus-like bacterium"   "Kineococcus-like bacterium" 
+
+#Expected 7 pieces. Missing pieces filled with `NA` in 393 rows 
+```
+
+### Abundance table with multi-affiliation and chimeras removed
+```{r}
+# New version of ab_16s : taxonomy with multi-affiliation and chimeras removed
+at_16S <- Combine_ab_multi_affi_tables_remove_chim(multi_affi_table = taxo_16S_Multiaffiliation, name = "TransMicro1&2_16S", abundance_table = ab_16S) # 2068 bimeras/6496 sequences, proportion = 0.32
+
+dim(at_16S) # 4428 clusters
+
+# Replaces the taxonomy not found with the taxonomy found manually in BLAST
+at_16S_no <- subset(at_16S, grepl("no;NA;NA;NA;NA;NA;NA", blast_taxonomy))# blast_taxonomy = "no;NA;NA;NA;NA;NA;NA" 
+at_16S_no$observation_name # 360 clusters
+
+C8 <- at_16S[at_16S$observation_name == "Cluster_8", "seed_sequence"]
+C8
+C12 <- at_16S[at_16S$observation_name == "Cluster_12", "seed_sequence"]
+C12
+
+at_16S[at_16S$observation_name == "Cluster_53356", "seed_sequence"]
+
+# blast_taxonomy : no;NA;NA;NA;NA;NA;NA : add the taxonomy obtained by BLAST with NCBI (see 16S_TransMicro_Cluster_Blast.xlsx)
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_8")] <- "Fungi;Mucoromycota;Mucoromycetes;Mucorales;Mucoraceae;Rhizopus;Rhizopus oryzae"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_12")] <- "Bacteria;Bacillota;Clostridia;Peptostreptococcales;Anaerovoracaceae;Lentihominibacter;Lentihominibacter hominis"
+
+
+# Split taxonomy
+at_16S <- at_16S %>% 
+  tidyr::separate(col=blast_taxonomy, into=c("Kingdom","Phylum", "Class", "Order", "Family", "Genus", "Species"), sep=";", remove=FALSE)
+```
+
+### Compute coverage depth for each type of sample
+```{r}
+# Subset dataset (filter controls) and transpose it to have sample on rows
+at_16S
+abundance_table_16S <- at_16S %>%
+  dplyr::select(matches("16S_MS|Kingdom|observation_name")) %>% 
+  dplyr::rename_with( ~ gsub("16S_", "", .x, fixed = TRUE))%>%
+    tidyr::pivot_longer(!c(observation_name, Kingdom), names_to="ID_pool", values_to = "cov_depth")
+abundance_table_16S
+
+# Rename samples without replicate "A" and "B"
+abundance_table_16S <- abundance_table_16S %>%
+  dplyr::mutate(ID_pool=gsub("_A|_B", "", ID_pool))
+
+# Add corresponding samples' info from metadata
+abundance_table_16S <- abundance_table_16S  %>%
+  dplyr::left_join(mt[, c("ID_pool", "FrozenLifeStage", "SampleType", "Infestation")], by= "ID_pool")
+
+# Compute coverage depth for each sample type
+sample.size_16S <- abundance_table_16S %>%
+  dplyr::group_by(SampleType, Infestation, Kingdom) %>%
+  dplyr::summarise(n = dplyr::n_distinct(ID_pool), cov_depth=sum(cov_depth))%>%
+  dplyr::mutate(prop_cov_depth = round(cov_depth/sum(cov_depth), 2))
+sample.size_16S
+
+# Export
+write.table(sample.size_16S, file=file.path(here::here(), "data", "derived_data", "sido", "TransMicro1&2", "1_PrepareData", "16S_TM1&2_Coverage_depth_per_Sample_Type.csv"), sep=";", row.names=FALSE, col.names=TRUE, quote=FALSE)
+
+########
+# STOP #
+########
+
+
+#Plot
+# Create a stacked bar plot of kingdom proportions by SampleType
+prop_16S <- ggplot(sample.size_16S, aes(x = SampleType, y = prop_cov_depth, fill = Kingdom)) + 
+  geom_bar(stat = "identity", position = "stack") + 
+  labs(
+    title = "Proportions of Kingdoms by Sample Type - 16S",
+    x = "Sample Type",
+    y = "Proportion of coverage depth"
+  ) + 
+  scale_fill_manual(values = c("Bacteria" = "blue3", "Fungi" = "green", "Plantae_Chl" = "green3", "Plantae_Mit" = "green4", "Unknown" = "grey")) +  # Example colors, adjust for your kingdoms
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.title = element_blank(),
+    legend.position = "bottom"  )
+prop_16S
+
+title_plot <- "16S_TM1&2_CovDepth_Proportions.png"
+ cowplot::save_plot(file =here::here("plots", "sido", title_plot),
+                 prop_16S, base_height = 20/cm(1),
+                base_width = 25/cm(1), dpi = 1200)
+```
+
+### Delete clusters with Multi-affiliation, Plantae, Fungi and Unknown in Kingdom taxonomic rank
+```{r}
+dim(at_16S)
+# blast_taxonomy : Unknown in Kingdom rank
+at_16S_Unknown <- at_16S[at_16S$Kingdom == "Unknown",]
+at_16S_Unknown$observation_name # 1 cluster : "Cluster_26"
+
+# blast_taxonomy : Multi-affiliation in Kingdom rank
+at_16S_Multiaffiliation <- at_16S[at_16S$Kingdom == "Multi-affiliation",]
+at_16S_Multiaffiliation$observation_name # no cluster
+
+# blast_taxonomy : Fungi in Kingdom rank
+at_16S_Fungi <-  at_16S[at_16S$Kingdom == "Fungi",]
+at_16S_Fungi$observation_name # 3 clusters : "Cluster_8", "Cluster_116", "Cluster_207"
+
+# blast_taxonomy : Plantae in Kingdom rank
+at_16S_Plantae <-  at_16S[at_16S$Kingdom =="Plantae_Chl" |	at_16S$Kingdom =="Plantae_Mit",]
+at_16S_Plantae$observation_name # 8 clusters : "Cluster_1", "Cluster_4", "Cluster_5", "Cluster_83", "Cluster_94", "Cluster_96", "Cluster_105", "Cluster_185"
+
+# Delete these clusters
+at_16S <- at_16S  %>%
+  dplyr::slice(which(is.na(match(Kingdom, c("Plantae_Chl", "Plantae_Mit", "Fungi", "Multi-affiliation", "Unknown")))))
+
+dim(at_16S) #54 clusters
+```
+
+### Replace "Multi-affiliation", "unidentified", "unknown species", "unknown genus", "unknown family", "unknown" by "Unknown" in the taxonomy
+```{r}
+replace_names <- c("Multi-affiliation", "unidentified", "unknown species", "unknown genus", "unknown family", "unknown")
+
+at_16S <- at_16S %>%
+  dplyr::mutate(Kingdom = ifelse(Kingdom %in% replace_names, "Unknown", Kingdom),
+         Phylum = ifelse(Phylum %in% replace_names, "Unknown", Phylum),
+         Class = ifelse(Class %in% replace_names, "Unknown", Class),
+         Order = ifelse(Order %in% replace_names, "Unknown", Order),
+         Family = ifelse(Family %in% replace_names, "Unknown", Family),
+         Genus = ifelse(Genus %in% replace_names, "Unknown", Genus),
+         Species = ifelse(Species %in% replace_names, "Unknown", Species))
+
+# Create a Genus_2 column with the Genus and row number
+at_16S$Genus2 <- paste0(at_16S$Genus, rownames(at_16S))
+```
+
+### Filter abundance table
+```{r}
+# Select columns
+at_16S <- at_16S %>%
+  dplyr::select(dplyr::starts_with("observation_name")|dplyr::starts_with("observation_sum")|dplyr::starts_with("seed_sequence")|dplyr::starts_with("Kingdom")|dplyr::starts_with("Phylum")|dplyr::starts_with("Class")|dplyr::starts_with("Order")|dplyr::starts_with("Family")|dplyr::starts_with("Genus")|dplyr::starts_with("Species")|dplyr::starts_with("16S_")|dplyr::starts_with("ITS_")|dplyr::starts_with("NC_")|dplyr::starts_with("Undetermined"))
+
+# Controls data in a separate table
+at_16S_Controls <- at_16S %>%
+  dplyr::select(dplyr::starts_with("observation_name")|dplyr::starts_with("observation_sum")|dplyr::starts_with("seed_sequence")|dplyr::starts_with("Kingdom")|dplyr::starts_with("Phylum")|dplyr::starts_with("Class")|dplyr::starts_with("Order")|dplyr::starts_with("Family")|dplyr::starts_with("Genus")|dplyr::starts_with("Species")|dplyr::contains("CT_")|dplyr::contains("NC_")|dplyr::starts_with("Genus2"))
+
+dim(at_16S_Controls) #54 clusters
+```
+
+### TCC : Filter abundances based on negative controls
+```{r}
+at_16S_Controls_Negatives <- at_16S_Controls %>% 
+  dplyr::select(contains("Genus2") |contains("_EXT_")|contains("_PCR_") | contains("NC_")| contains("INDEX_"))
+dim(at_16S_Controls_Negatives) #54 clusters
+
+# Transform in long format to find the maximum coverage depth of each OTUs across all negative controls (Sort final dataset to sort OTUs in the right order)
+at_16S_Controls_Negatives <- at_16S_Controls_Negatives %>% 
+ tidyr::pivot_longer(!Genus2, names_to = c("Barcode")) %>%
+  dplyr::group_by(Genus2) %>%
+  dplyr::slice(which.max(value)) %>%
+  dplyr::arrange(factor(Genus2, levels = at_16S$Genus2))  %>%
+  print(n = 50)
+
+#Check the taxa that contaminated the control (sorting the more present at the top of the list)
+at_16S_Controls_Negatives <- at_16S_Controls_Negatives %>% 
+  dplyr::arrange(desc(value))
+
+at_16S_Tccfiltered <- at_16S %>%
+  dplyr::mutate(dplyr::across(-contains("_EXT") & -contains("_PCR") & -contains("NC_") & -contains("INDEX") &
+    (ends_with("_A")|ends_with("_B")|contains("MOCK")|contains("Undetermined")),
+    ~Filter_contaminant(., at_16S_Controls_Negatives$value)))
+dim(at_16S_Tccfiltered)
+```
+
+### TFA : Filter abundances based on number of sequences on the flow cell
+```{r}
+Rfa <- 0.0001
+
+at_16S_TccTfafiltered <- at_16S %>%
+  dplyr::mutate(dplyr::across(-contains("_EXT") & -contains("_PCR") & -contains("NC_") & -contains("INDEX") &
+    (ends_with("_A")|ends_with("_B")|contains("MOCK")|contains("Undetermined")),
+    ~Filter_contaminant(., at_16S_Tccfiltered$observation_sum*Rfa)))
+dim(at_16S_TccTfafiltered)
+```
+
+### Merge PCR replicas
+```{r}
+# Remove some columns
+data_16S <- at_16S_TccTfafiltered %>%
+  dplyr::select(!(dplyr::starts_with("observation_sum")|dplyr::starts_with("Kingdom")|dplyr::starts_with("Phylum")|dplyr::starts_with("Class")|dplyr::starts_with("Order")|dplyr::starts_with("Family")|dplyr::starts_with("Genus")|dplyr::starts_with("Genus2")|dplyr::starts_with("Species")))
+
+# Transform from wide to long format
+data_16S <- data_16S %>%
+  tidyr::pivot_longer(cols = -c(observation_name, seed_sequence), names_to = "Barcode", values_to = "count")
+  #tidyr::pivot_longer(!observation_name, names_to = "Barcode", values_to = "count") #table with OTUs (Clusters) in rows and pool of samples they are in + its amount in columns
+
+# Apply the function Remove_last_two_chars in the abundance table (remove -A or -B distinction)
+data_16S$Samples <- sapply(data_16S$Barcode, Remove_last_two_chars)
+
+# Compute sum across the replicates
+data_16S <- data_16S %>% 
+  dplyr::group_by(observation_name, seed_sequence, Samples) %>% 
+  dplyr::summarise(SumCount = ifelse(sum(count == 0)>=1, 0, round(sum(count)))) %>% 
+  dplyr::ungroup()
+
+# Transform from long to wide format (matrix)
+data_16S <- data_16S %>% 
+  tidyr::pivot_wider(names_from = Samples, values_from = SumCount)
+
+# Export
+write.table(data_16S, file=file.path(here::here(), "data", "derived_data", "sido", "TransMicro1&2", "1_PrepareData", "TM1&2_16S_abundance.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+```
+## 2.2. Taxonomy Table
+```{r}
+tt_16S <- at_16S_TccTfafiltered %>%
+  dplyr::select(observation_name, Kingdom, Phylum, Class, Order, Family, Genus, Species)
+
+table(S_tt_16S$Species) # check taxonomy
+
+# Export
+write.table(tt_16S, file=file.path(here::here(), "data", "derived_data", "sido", "TransMicro1&2", "1_PrepareData", "TM1&2_16S_taxonomy.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+```
+
+# 3. Fungal community
+## 3.1. Abundance table
+### Import & Clean Abundance Table
+```{r}
+ab_ITS <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "ITS_TM1&2-[FROGS_BIOM_to_TSV__abundance.tsv].tsv"),sep="\t",header=TRUE)
+dim(ab_ITS)
+
+# Clean taxonomy of abundance table
+ab_ITS <- Clean_ab_table(abundance_table = ab_ITS, remove_col = NULL) #Expected 7 pieces. Missing pieces filled with `NA` in 340 rows
+dim(ab_ITS)
+```
+
+### Import & Clean Multi-Affiliation Table
+```{r}
+ma_ITS <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "ITS_TM1&2-[FROGS_BIOM_to_TSV__multi-affiliations.tsv].tsv"),sep="\t",header=TRUE)
+dim(ma_ITS)
+
+# Clean taxonomy of multi-affiliation table
+taxo_ITS_Multiaffiliation <- Define_multiaffiliation(multiaffiliation_table = ma_ITS, thresh = 0.5)
+
+dim(taxo_ITS_Multiaffiliation)
+```
+
+### Abundance Table : taxonomy with multi-affiliation and a new abundance file without chimeras
+```{r}
+at_ITS <- Combine_ab_multi_affi_tables_remove_chim(multi_affi_table = taxo_ITS_Multiaffiliation, name = "TransMicro_ITS", abundance_table = ab_ITS) # 510 bimeras/2024 sequences, proportion = 0.25
+dim(at_ITS) # 1514 clusters
+
+## Replaces the taxonomy not found with the taxonomy but found manually in BLAST
+at_ITS_no <- subset(at_ITS, grepl("no;NA;NA;NA;NA;NA;NA", blast_taxonomy))
+at_ITS_no$observation_name
+hist(sapply(at_ITS_no$seed_sequence, nchar))
+sum(sapply(at_ITS_no$seed_sequence, nchar)>100)
+sum(sapply(at_ITS_no$seed_sequence, nchar)<=100)
+hist(log10(at_ITS_no$observation_sum[sapply(at_ITS_no$seed_sequence, nchar)>100]))
+hist(log10(at_ITS$observation_sum))
+at_ITS_no$seed_sequence[sapply(at_ITS_no$seed_sequence, nchar)<100]
+at_ITS_no$seed_sequence[sapply(at_ITS_no$seed_sequence, nchar)>400]
+at_ITS_no$seed_sequence[sapply(at_ITS_no$seed_sequence, nchar)>245 &sapply(at_ITS_no$seed_sequence, nchar)<254]
+# 261 clusters :
+# "Cluster_18"  "Cluster_41"  "Cluster_47"  "Cluster_50"  "Cluster_52"  "Cluster_58"  "Cluster_63"  ....
+
+
+# blast_taxonomy : no;NA;NA;NA;NA;NA;NA : add the taxonomy obtained by BLAST with NCBI (see ITS_TransMicro_Cluster_Blast.xlsx)
+at_ITS[at_ITS$observation_name == "Cluster_18", "seed_sequence"]
+at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_18")] <- "Fungi;Ascomycota;Pichiomycetes;Serinales;Metschnikowiaceae;Metschnikowia;Metschnikowia pulcherrima"
+
+at_ITS[at_ITS$observation_name == "Cluster_41", "seed_sequence"]
+at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_41")] <- "Fungi;Ascomycota;Pichiomycetes;Serinales;Metschnikowiaceae;Metschnikowia;Metschnikowia pulcherrima"
+
+
+
+# Split taxonomy
+at_ITS[98, "blast_taxonomy"] <- gsub(";;", ";", at_ITS[98, "blast_taxonomy"])
+
+at_ITS <- at_ITS %>% 
+  tidyr::separate(col=blast_taxonomy, into=c("Kingdom","Phylum", "Class", "Order", "Family", "Genus", "Species"), sep=";", remove=FALSE)
+
+dim(at_ITS)
+
+# Rename numeric columns : delete characters after the first _ then replance "-" by "_"
+colnames(at_ITS)[12:982] <- gsub("_.*", "", colnames(at_ITS)[12:982])
+data.table::setnames(at_ITS, old = names(at_ITS), new = gsub("-", "_", names(at_ITS)))
+```
+
+### Compute coverage depth for each type of sample
+```{r}
+# Subset dataset (filter controls) and transpose it to have sample on rows
+abundance_table_ITS <- at_ITS %>%
+  dplyr::select(matches("ITS_MS|Kingdom|observation_name")) %>% 
+  dplyr::rename_with( ~ gsub("ITS_", "", .x, fixed = TRUE))%>%
+    tidyr::pivot_longer(!c(observation_name, Kingdom), names_to="ID_pool", values_to = "cov_depth")
+
+# Rename samples without replicate "A" and "B"
+abundance_table_ITS <- abundance_table_ITS %>%
+  dplyr::mutate(ID_pool=gsub("_A|_B", "", ID_pool))
+
+# Add corresponding samples' info from metadata
+abundance_table_ITS <- abundance_table_ITS  %>%
+  dplyr::left_join(mt[, c("ID_pool", "FrozenLifeStage", "SampleType", "Infestation")], by= "ID_pool")
+
+abundance_table_ITS$cov_depth <- as.integer(abundance_table_ITS$cov_depth)
+
+# Compute coverage depth for each sample type
+sample.size_ITS <- abundance_table_ITS %>%
+  dplyr::group_by(SampleType, Infestation, Kingdom) %>%
+  dplyr::summarise(n = dplyr::n_distinct(ID_pool), cov_depth=sum(cov_depth))%>%
+  dplyr::mutate(prop_cov_depth = round(cov_depth/sum(cov_depth), 2))
+
+# Export
+write.table(sample.size_ITS, file=file.path(here::here(), "data", "derived_data", "sido", "TransMicro1&2", "1_PrepareData", "ITS_TM1&2_Coverage_depth_per_Sample_Type.csv"), sep=";", row.names=FALSE, col.names=TRUE, quote=FALSE)
+
+#Plot
+# Create a stacked bar plot of kingdom proportions by SampleType
+ITS_prop <- ggplot(sample.size_ITS, aes(x = SampleType, y = prop_cov_depth, fill = Kingdom)) + 
+  geom_bar(stat = "identity", position = "stack") + 
+  labs(
+    title = "Proportions of Kingdoms by Sample Type - ITS",
+    x = "Sample Type",
+    y = "Proportion of coverage depth"
+  ) + 
+  scale_fill_manual(values = c("Fungi" = "green3", "Plantae" = "green4", "Chromista" = "green", "Unknown" = "grey")) +  # Example colors, adjust for your kingdoms
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.title = element_blank(),
+    legend.position = "bottom"  )
+
+title_plot <- "ITS_TM1&2_CovDepth_Proportions.png"
+ cowplot::save_plot(file =here::here("plots","sido", title_plot),
+                 ITS_prop, base_height = 20/cm(1),
+                base_width = 25/cm(1), dpi = 1200)
+```
+
+### Delete clusters with Multi-affiliation, Plantae, Bacteria and Unknown in taxonomic rank Kingdom
+```{r}
+dim(at_ITS)
+# blast_taxonomy : Unknown in Kingdom rank
+at_ITS_Unknown <- at_ITS[at_ITS$Kingdom == "Unknown",]
+at_ITS_Unknown$observation_name # 3 clusters : "Cluster_61"  "Cluster_279" "Cluster_292"
+
+# blast_taxonomy : Multi-affiliation in Kingdom rank
+at_ITS_Multiaffiliation <- at_ITS[at_ITS$Kingdom == "Multi-affiliation",]
+at_ITS_Multiaffiliation$observation_name # no cluster
+
+# blast_taxonomy : Bacteria in Kingdom rank
+at_ITS_Bacteria <-  at_ITS[at_ITS$Kingdom == "Bacteria",]
+at_ITS_Bacteria$observation_name # no cluster
+
+# blast_taxonomy : Plantae in Kingdom rank
+at_ITS_Plantae <-  at_ITS[at_ITS$Kingdom =="Plantae_Chl" | at_ITS$Kingdom =="Plantae" |	at_ITS$Kingdom =="Plantae_Mit",]
+at_ITS_Plantae$observation_name # 1 cluster : "Cluster_298"
+
+# Delete these clusters
+at_ITS <- at_ITS  %>%
+  dplyr::slice(which(is.na(match(Kingdom, c("Plantae", "Plantae_Chl", "Plantae_Mit", "Bacteria", "Multi-affiliation", "Unknown")))))
+
+dim(at_ITS)
+```
+
+### Replace "Multi-affiliation", "unidentified", "unknown species", "unknown genus", "unknown family", "unknown" by "Unknown" in the taxonomy
+```{r}
+at_ITS <- at_ITS %>%
+  dplyr::mutate(Kingdom = ifelse(Kingdom %in% replace_names, "Unknown", Kingdom),
+         Phylum = ifelse(Phylum %in% replace_names, "Unknown", Phylum),
+         Class = ifelse(Class %in% replace_names, "Unknown", Class),
+         Order = ifelse(Order %in% replace_names, "Unknown", Order),
+         Family = ifelse(Family %in% replace_names, "Unknown", Family),
+         Genus = ifelse(Genus %in% replace_names, "Unknown", Genus),
+         Species = ifelse(Species %in% replace_names, "Unknown", Species))
+
+# Create a Genus_2 column with the Genus and row number
+at_ITS$Genus2 <- paste0(at_ITS$Genus, rownames(at_ITS))
+```
+### Filter abundance table
+```{r}
+# Select columns
+at_ITS <- at_ITS %>%
+  dplyr::select(dplyr::starts_with("observation_name")|dplyr::starts_with("observation_sum")|dplyr::starts_with("seed_sequence")|dplyr::starts_with("Kingdom")|dplyr::starts_with("Phylum")|dplyr::starts_with("Class")|dplyr::starts_with("Order")|dplyr::starts_with("Family")|dplyr::starts_with("Genus")|dplyr::starts_with("Species")|dplyr::starts_with("ITS_")|dplyr::starts_with("16S_")|dplyr::starts_with("NC_")|dplyr::starts_with("Undetermined"))
+
+# Controls
+at_ITS_Controls <- at_ITS %>%
+  dplyr::select(dplyr::starts_with("observation_name")|dplyr::starts_with("observation_sum")|dplyr::starts_with("seed_sequence")|dplyr::starts_with("Kingdom")|dplyr::starts_with("Phylum")|dplyr::starts_with("Class")|dplyr::starts_with("Order")|dplyr::starts_with("Family")|dplyr::starts_with("Genus")|dplyr::starts_with("Species")|dplyr::contains("CT_")|dplyr::contains("NC_")|dplyr::starts_with("Genus2"))
+
+dim(at_ITS_Controls)
+```
+
+### TCC : Filter abundances based on negative controls
+```{r}
+at_ITS_Controls_Negatives <- at_ITS_Controls %>% 
+  dplyr::select(contains("Genus2") |contains("_EXT_")|contains("_PCR_") | contains("NC_")| contains("INDEX_"))
+dim(at_ITS_Controls_Negatives)
+
+# Transform in long format to find the maximum coverage depth of each OTUs across all negative controls (Sort final dataset so that OTUs are in the right order)
+at_ITS_Controls_Negatives <- at_ITS_Controls_Negatives %>% 
+ tidyr::pivot_longer(!Genus2, names_to = c("Barcode")) %>%
+  dplyr::group_by(Genus2) %>%
+  dplyr::slice(which.max(value)) %>%
+  dplyr::arrange(factor(Genus2, levels = at_ITS$Genus2))  %>%
+  print(n = 30)
+## Check the taxa that contaminated the control
+dplyr::arrange(at_ITS_Controls_Negatives, desc(value))
+
+at_ITS_Tccfiltered <- at_ITS %>%
+  dplyr::mutate(dplyr::across(
+    -contains("_EXT") & -contains("_PCR") & -contains("NC_") & -contains("INDEX") &
+    (ends_with("_A")|ends_with("_B")|contains("MOCK")|contains("Undetermined")),
+    ~Filter_contaminant(., at_ITS_Controls_Negatives$value)))
+```
+
+### TFA : Filter abundances based on number of sequences on the flow cell
+```{r}
+Rfa <- 0.0001
+
+at_ITS_TccTfafiltered <- at_ITS %>%
+  dplyr::mutate(dplyr::across(
+    -contains("_EXT") & -contains("_PCR") & -contains("NC_") & -contains("INDEX") &
+    (ends_with("_A")|ends_with("_B")|contains("MOCK")|contains("Undetermined")),
+    ~Filter_contaminant(., at_ITS_Tccfiltered$observation_sum*Rfa)))
+```
+
+### Merge PCR replicas
+```{r}
+# Remove some columns
+data_ITS <- at_ITS_TccTfafiltered %>%
+  dplyr::select(!(dplyr::starts_with("observation_sum")|dplyr::starts_with("Kingdom")|dplyr::starts_with("Phylum")|dplyr::starts_with("Class")|dplyr::starts_with("Order")|dplyr::starts_with("Family")|dplyr::starts_with("Genus")|dplyr::starts_with("Genus2")|dplyr::starts_with("Species")))
+
+# Transform from wide to long format
+data_ITS <- data_ITS %>%
+  tidyr::pivot_longer(cols = -c(observation_name, seed_sequence), names_to = "Barcode", values_to = "count")
+ # tidyr::pivot_longer(!observation_name, names_to = "Barcode", values_to = "count")
+
+# Apply the function Remove_last_two_chars in the abundance table (_A or _B)
+data_ITS$Samples <- sapply(data_ITS$Barcode, Remove_last_two_chars)
+
+# Compute sum across the replicates
+data_ITS <- data_ITS %>% 
+  dplyr::group_by(observation_name, seed_sequence, Samples) %>% 
+  dplyr::summarise(SumCount = ifelse(sum(count == 0)>=1, 0, round(sum(count)))) %>% 
+  dplyr::ungroup()
+
+# Transform from long to wide format
+data_ITS <- data_ITS %>% 
+  tidyr::pivot_wider(names_from = Samples, values_from = SumCount)
+
+# Export
+write.table(data_ITS, file=file.path(here::here(), "data", "derived_data", "sido","TransMicro1&2", "1_PrepareData", "ITS_TM1&2_abundance.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+```
+# 3.2. Taxonomy Table
+```{r}
+tt_ITS <- at_ITS_TccTfafiltered %>%
+  dplyr::select(observation_name, Kingdom, Phylum, Class, Order, Family, Genus, Species)
+
+# check taxonomy
+table(tt_ITS$Species)
+
+# clean taxo (MAYBE USELESS AFTER NEW RUN THROUGH FROGS)
+tt_clean_ITS <- tt_ITS %>%
+  dplyr::mutate(Order = if_else(Family == "Metschnikowiaceae", "Serinales", Order),
+                Class = if_else(Family == "Metschnikowiaceae", "Pichiomycetes", Class),
+                
+                Order = if_else(Family == "Pichiaceae", "Pichiales", Order),
+                Class = if_else(Family == "Pichiaceae", "Pichiomycetes", Class),
+                
+                Order = if_else(Family == "Dipodascaceae", "Dipodascales", Order),
+                Class = if_else(Family == "Dipodascaceae", "Dipodascomycetes", Class),
+                
+                Order = if_else(Family == "Saccharomycopsidaceae", "Ascoideales", Order),
+                Class = if_else(Family == "Saccharomycopsidaceae", "Saccharomycetes", Class)
+                )
+
+# Export
+write.table(tt_clean_ITS, file=file.path(here::here(), "data", "derived_data", "sido", "TransMicro1&2", "1_PrepareData", "ITS_TM1&2_taxonomy.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+```
