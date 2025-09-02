@@ -339,7 +339,7 @@ data_16S <- data_16S %>%
   tidyr::pivot_wider(names_from = Samples, values_from = SumCount)
 
 # Export
-write.table(data_16S, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "TM1&2_16S_abundance.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+write.table(data_16S, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "16S_TM1&2_abundance.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 ```
 
 ## 2.2. Taxonomy Table
@@ -350,7 +350,7 @@ tt_16S <- at_16S_TccTfafiltered %>%
 table(tt_16S$Species) # check taxonomy
 
 # Export
-write.table(tt_16S, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "TM1&2_16S_taxonomy.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+write.table(tt_16S, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "16S_TM1&2_taxonomy.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 ```
 
 # 3. Fungal community
