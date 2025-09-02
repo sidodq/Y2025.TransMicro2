@@ -186,7 +186,7 @@ Rarefactioncurve_ITS <- Make_rarefaction_curve(phylo_object = ps_ITS_filtered, x
 Rarefactioncurve_ITS
  
 title_plot <- "ITS_TM1&2_Rarefactioncurve.png"
-  cowplot::save_plot(file =here::here("plots", "sido", title_plot), Rarefactioncurve_ITS, base_height = 35/cm(1),base_width = 60/cm(1), dpi = 1200)
+  cowplot::save_plot(file =here::here("plots", "2_RarefyData", title_plot), Rarefactioncurve_ITS, base_height = 35/cm(1),base_width = 60/cm(1), dpi = 1200)
 ```
 
 # 4. Rarefy data
@@ -194,11 +194,11 @@ title_plot <- "ITS_TM1&2_Rarefactioncurve.png"
 ```{r}
 # Rarefy samples by discarding samples with fewer than 3.000 reads
 set.seed(1)                                         
-ps_rare_16S <- rarefy_even_depth(ps_16S, sample.size = 3000) # 201 samples + 3208 otus removed
+ps_rare_16S <- rarefy_even_depth(ps_16S, sample.size = 3000) # 201 samples + 3213 otus removed
 sample_sums(ps_rare_16S)[1:100]
 
 set.seed(1)                                         
-ps_rare_ITS <- rarefy_even_depth(ps_ITS, sample.size = 5000) # 89 samples + 750 otus removed
+ps_rare_ITS <- rarefy_even_depth(ps_ITS, sample.size = 5000) # 89 samples + 742 otus removed
 sample_sums(ps_rare_ITS)[1:100]
 
 # Export

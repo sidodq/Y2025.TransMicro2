@@ -1,0 +1,327 @@
+---
+title: "Communities Composition"
+author: "Sido Dunis-Quarré"
+date: "`r format(Sys.Date(), '%d-%B-%Y')`"
+format:
+  html:
+    toc: true
+    toc-location: left
+    number-sections: true
+    embed-resources: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+library(lme4)
+library(phyloseq)
+library(phyloseq.extended)
+library(ggh4x)
+library("ggplot2")
+library(patchwork)
+
+devtools::load_all()
+```
+
+## Histogram of composition (Family or Genus)
+
+### All data
+
+```{r}
+S_ps_rare_16S <- readRDS(file=file.path(here::here(), "data", "derived_data", "sido", "2_RarefyData", "S_ps_rare_16S.rds"))
+S_ps_rare_ITS <- readRDS(file=file.path(here::here(), "data", "derived_data", "sido", "2_RarefyData", "S_ps_rare_ITS.rds"))
+
+# Make data fit for plot
+B = phyloseq::psmelt(S_ps_rare_16S) # Possible to focus on a reduced dataset ex. B = subset_taxa(S_ps_rare_16S, Genus == "Chlamydiae")
+
+nrow(B)
+ncol(B)
+colnames(B)
+head(rownames(B))
+
+B$LifeStage <- factor(B$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter", "na"))
+B$FruitType <- factor(B$FruitType, levels = c("BL", "CH", "ST", "na"))
+
+L = phyloseq::psmelt(S_ps_rare_ITS)
+nrow(L)
+ncol(L)
+colnames(L)
+head(rownames(L))
+
+L$LifeStage <- factor(L$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter", "na"))
+L$FruitType <- factor(L$FruitType, levels = c("BL", "CH", "ST", "na"))
+
+```
+
+```{r}
+
+p_B_LifeStage_family <- Make_composition_bar_plot(B, "LifeStage", "Family", "stack") + ggtitle("16S")
+p_L_LifeStage_family <- Make_composition_bar_plot(L, "LifeStage", "Family", "stack") + ggtitle("ITS")
+
+p_B_LifeStage_family / p_L_LifeStage_family
+
+# Plots with Genus 
+p_B_LifeStage_genus <- Make_composition_bar_plot(B, "LifeStage", "Genus", "stack") + ggtitle("16S")
+
+p_L_LifeStage_genus <- Make_composition_bar_plot(L, "LifeStage", "Genus", "stack") + ggtitle("ITS")
+
+p_B_LifeStage_genus / p_L_LifeStage_genus
+```
+
+### Fruit Type
+
+```{r}
+# Plots with Family
+p_B_FruitType_family <- Make_composition_bar_plot(B, "FruitType", "Family", "stack") + ggtitle("16S")
+p_L_FruitType_family <- Make_composition_bar_plot(L, "FruitType", "Family", "stack") + ggtitle("ITS")
+
+p_B_FruitType_family / p_L_FruitType_family
+
+# Plots with Genus 
+p_B_FruitType_genus <- Make_composition_bar_plot(B, "FruitType", "Genus", "stack") + ggtitle("16S")
+
+p_L_FruitType_genus <- Make_composition_bar_plot(L, "FruitType", "Genus", "stack") + ggtitle("ITS")
+
+p_B_FruitType_genus / p_L_FruitType_genus
+```
+
+### Pop
+
+```{r}
+# Plots with Family
+p_B_Pop_family <- Make_composition_bar_plot(B, "Pop", "Family", "stack") + ggtitle("16S")
+p_L_Pop_family <- Make_composition_bar_plot(L, "Pop", "Family", "stack") + ggtitle("ITS")
+
+p_B_Pop_family / p_L_Pop_family
+
+# Plots with Genus 
+p_B_Pop_genus <- Make_composition_bar_plot(B, "Pop", "Genus", "stack") + ggtitle("16S")
+p_L_Pop_genus <- Make_composition_bar_plot(L, "Pop", "Genus", "stack") + ggtitle("ITS")
+
+p_B_Pop_genus / p_L_Pop_genus
+```
+
+## Prevalence in function of Relative Abundance
+
+### All data
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+```{r}
+library(tidyverse)
+library(ggrepel)
+
+# Family level : all data
+allData_16S <- Make_prevalence_abundance_plot(phyloseq_object=S_ps_rare_16S, taxonomic_rank="Family", color_set= color_16S, title_plot="Prevalence vs Relative Abundance of Bacterial families", TaxaNb = 20, relative = FALSE, factors = c("LifeStage", "FruitType", "Pop"))
+
+dev.new()
+allData_ITS <- Make_prevalence_abundance_plot(S_ps_rare_ITS, "Family", color_set= color_ITS, "Prevalence vs Relative Abundance of Fungal families", TaxaNb = 20, relative = FALSE, factors = c("LifeStage", "FruitType", "Pop"))
+
+factors <- c("LifeStage", "FruitType", "Pop")
+
+relPrev_16S <- Make_prevalence_abundance_plot(S_ps_rare_16S, taxonomic_rank="Family", color_set= color_16S, title_plot="Prevalence vs Abundance of Bacterial families per tested factors", TaxaNb = 20, relative = TRUE, c("LifeStage", "FruitType", "Pop")) 
+
+relPrev_ITS <- Make_prevalence_abundance_plot(S_ps_rare_ITS, taxonomic_rank="Family", color_set= color_ITS, title_plot="Prevalence vs Abundance of Fungal families per tested factors", TaxaNb = 20, relative = TRUE, c("LifeStage", "FruitType", "Pop")) 
+
+
+
+# Genus level : all data
+allData_Genus_16S <- Make_prevalence_abundance_plot(S_ps_rare_16S, "Genus", "Prevalence vs Relative Abundance of Bacterial genus")
+print(allData_Genus_16S)
+
+allData_Genus_ITS <- Make_prevalence_abundance_plot(S_ps_rare_ITS, "Genus", "Prevalence vs Relative Abundance of Fungal genus")
+print(allData_Genus_ITS)
+```
+
+### Life Stage
+
+```{r}
+library(tidyverse)
+
+# Subset data
+S_ps_16S_rare_Mother <- Subset_physeq(S_ps_rare_16S, LifeStage ==  "Mother")
+S_ps_16S_rare_Larva <- Subset_physeq(S_ps_rare_16S, LifeStage ==  "Larva")
+S_ps_16S_rare_Pupa <- Subset_physeq(S_ps_rare_16S, LifeStage ==  "Pupa")
+S_ps_16S_rare_PupalCase <- Subset_physeq(S_ps_rare_16S, LifeStage ==  "PupalCase")
+S_ps_16S_rare_Daughter <- Subset_physeq(S_ps_rare_16S, LifeStage ==  "Daughter")
+
+S_ps_ITS_rare_Mother <- Subset_physeq(S_ps_rare_ITS, LifeStage ==  "Mother")
+S_ps_ITS_rare_Larva <- Subset_physeq(S_ps_rare_ITS, LifeStage ==  "Larva")
+S_ps_ITS_rare_Pupa <- Subset_physeq(S_ps_rare_ITS, LifeStage ==  "Pupa")
+S_ps_ITS_rare_PupalCase <- Subset_physeq(S_ps_rare_ITS, LifeStage ==  "PupalCase")
+S_ps_ITS_rare_Daughter <- Subset_physeq(S_ps_rare_ITS, LifeStage ==  "Daughter")
+
+
+# Mother
+Mother_Family_16S <- Make_prevalence_abundance_plot(S_ps_16S_rare_Mother, "Family", color_set= color_16S, "Prevalence vs Relative Abundance of Bacterial families in Mother samples")
+
+Mother_Family_ITS <- Make_prevalence_abundance_plot(S_ps_ITS_rare_Mother, "Family", "Prevalence vs Relative Abundance of Fungal families in Mother samples")
+
+Mother_Genus_16S <- Make_prevalence_abundance_plot(S_ps_16S_rare_Mother, "Genus", "Prevalence vs Relative Abundance of Bacterial genus in Mother samples")
+print(Mother_Genus_16S)
+
+Mother_Genus_ITS <- Make_prevalence_abundance_plot(S_ps_ITS_rare_Mother, "Genus", "Prevalence vs Relative Abundance of Fungal genus in Mother samples")
+print(Mother_Genus_ITS)
+
+
+# Larva
+Larva_Genus_16S <- Make_prevalence_abundance_plot(S_ps_16S_rare_Larva, "Genus", "Prevalence vs Relative Abundance of Bacterial genus in Larva samples")
+print(Larva_Genus_16S)
+
+Larva_Genus_ITS <- Make_prevalence_abundance_plot(S_ps_ITS_rare_Larva, "Genus", "Prevalence vs Relative Abundance of Fungal genus in Larva samples")
+print(Larva_Genus_ITS)
+
+# Pupa
+Pupa_Genus_16S <- Make_prevalence_abundance_plot(S_ps_16S_rare_Pupa, "Genus", "Prevalence vs Relative Abundance of Bacterial genus in Pupa samples")
+print(Pupa_Genus_16S)
+
+Pupa_Genus_ITS <- Make_prevalence_abundance_plot(S_ps_ITS_rare_Pupa, "Genus", "Prevalence vs Relative Abundance of Fungal genus in Pupa samples")
+print(Pupa_Genus_ITS)
+
+# PupalCase
+PupalCase_Genus_16S <- Make_prevalence_abundance_plot(S_ps_16S_rare_PupalCase, "Genus", "Prevalence vs Relative Abundance of Bacterial genus in PupalCase samples")
+print(PupalCase_Genus_16S)
+
+PupalCase_Genus_ITS <- Make_prevalence_abundance_plot(S_ps_ITS_rare_PupalCase, "Genus", "Prevalence vs Relative Abundance of Fungal genus in PupalCase samples")
+print(PupalCase_Genus_ITS)
+
+# Daughter
+Daughter_Genus_16S <- Make_prevalence_abundance_plot(S_ps_16S_rare_Daughter, "Genus", "Prevalence vs Relative Abundance of Bacterial genus in Daughter samples")
+print(Daughter_Genus_16S)
+
+Daughter_Genus_ITS <- Make_prevalence_abundance_plot(S_ps_ITS_rare_Daughter, "Genus", "Prevalence vs Relative Abundance of Fungal genus in Daughter samples")
+print(Daughter_Genus_ITS)
+```
+
+### Fruit Type
+
+```{r}
+# Subset data
+S_ps_16S_rare_BL <- Subset_physeq(S_ps_rare_16S, FruitType ==  "BL")
+S_ps_16S_rare_CH <- Subset_physeq(S_ps_rare_16S, FruitType ==  "CH")
+S_ps_16S_rare_ST <- Subset_physeq(S_ps_rare_16S, FruitType ==  "ST")
+
+S_ps_ITS_rare_BL <- Subset_physeq(S_ps_rare_ITS, FruitType ==  "BL")
+S_ps_ITS_rare_CH <- Subset_physeq(S_ps_rare_ITS, FruitType ==  "CH")
+S_ps_ITS_rare_ST <- Subset_physeq(S_ps_rare_ITS, FruitType ==  "ST")
+
+# BL
+BL_Genus_16S <- Make_prevalence_abundance_plot(S_ps_16S_rare_BL, "Genus", "Prevalence vs Relative Abundance of Bacterial genus in BL samples")
+BL_Genus_ITS <- Make_prevalence_abundance_plot(S_ps_ITS_rare_BL, "Genus", "Prevalence vs Relative Abundance of Fungal genus in BL samples")
+
+# CH
+CH_Genus_16S <- Make_prevalence_abundance_plot(S_ps_16S_rare_CH, "Genus", "Prevalence vs Relative Abundance of Bacterial genus in CH samples")
+CH_Genus_ITS <- Make_prevalence_abundance_plot(S_ps_ITS_rare_CH, "Genus", "Prevalence vs Relative Abundance of Fungal genus in CH samples")
+
+# ST
+ST_Genus_16S <- Make_prevalence_abundance_plot(S_ps_16S_rare_ST, "Genus", "Prevalence vs Relative Abundance of Bacterial genus in ST samples")
+ST_Genus_ITS <- Make_prevalence_abundance_plot(S_ps_ITS_rare_ST, "Genus", "Prevalence vs Relative Abundance of Fungal genus in ST samples")
+```
+
+### Pop
+
+```{r}
+# Subset data
+S_ps_16S_rare_CEC <- Subset_physeq(S_ps_rare_16S, Pop ==  "CEC")
+S_ps_16S_rare_FRA <- Subset_physeq(S_ps_rare_16S, Pop ==  "FRA")
+
+S_ps_ITS_rare_CEC <- Subset_physeq(S_ps_rare_ITS, Pop ==  "CEC")
+S_ps_ITS_rare_FRA <- Subset_physeq(S_ps_rare_ITS, Pop ==  "FRA")
+
+# CEC
+CEC_Genus_16S <- Make_prevalence_abundance_plot(S_ps_16S_rare_CEC, "Genus", "Prevalence vs Relative Abundance of Bacterial genus in CEC samples")
+CEC_Genus_ITS <- Make_prevalence_abundance_plot(S_ps_ITS_rare_CEC, "Genus", "Prevalence vs Relative Abundance of Fungal genus in CEC samples")
+
+# FRA
+FRA_Genus_16S <- Make_prevalence_abundance_plot(S_ps_16S_rare_FRA, "Genus", "Prevalence vs Relative Abundance of Bacterial genus in FRA samples")
+FRA_Genus_ITS <- Make_prevalence_abundance_plot(S_ps_ITS_rare_FRA, "Genus", "Prevalence vs Relative Abundance of Fungal genus in FRA samples")
+```
+
+```{r DRAFT}
+# IMPORT DATA
+
+# # 16S & ITS rarefied data
+# tax_table_16S <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "sido", "2_RarefyData", "tax_table_ps_rare_16S.tsv"), sep="\t", header = TRUE)
+# otu_table_16S <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "sido", "2_RarefyData", "otu_table_ps_rare_16S.tsv"), sep="\t", header = TRUE)
+# 
+# otu_table_ITS <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "sido", "2_RarefyData", "otu_table_ps_rare_ITS.tsv"), sep="\t", header = TRUE)
+# tax_table_ITS <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "sido", "2_RarefyData", "tax_table_ps_rare_ITS.tsv"), sep="\t", header = TRUE)
+# 
+# 
+# # Phyloseq objects
+# library(phyloseq)
+# physq_16S <- phyloseq::phyloseq(otu_table_16S, tax_table_16S, metadata)
+# physq_ITS <- phyloseq::phyloseq(otu_table_ITS, tax_table_ITS, metadata)
+
+#PLOTS
+
+# p_B_family = ggplot(B, aes(x=LifeStage, y=Abundance, fill=Family))
+# p_B_family = p_B_family + geom_bar(color="black", stat="identity", position="fill") # position = "stack" for absolute abundance number
+# print(p_B_family)
+# 
+# p_L_family = ggplot(L, aes(x=LifeStage, y=Abundance, fill=Family))
+# p_L_family = p_L_family + geom_bar(color="black", stat="identity", position ="fill")
+# print(p_L_family)
+# 
+# p_B_genus = ggplot(B, aes(x=LifeStage, y=Abundance, fill=Genus))
+# p_B_genus = p_B_genus + geom_bar(color="black", stat="identity", position="fill")
+# print(p_B_genus)
+# 
+# p_L_genus = ggplot(L, aes(x=LifeStage, y=Abundance, fill=Genus))
+# p_L_genus = p_L_genus + geom_bar(color="black", stat="identity", position="fill")
+# print(p_L_genus)
+
+
+# PREVALENCE PLOT
+
+# # Agglomerate to Family level (i.e. ASV from same family are summed per sample)
+# B_family <- tax_glom(S_ps_rare_16S, taxrank = "Family")
+# 
+# # Transform counts to relative abundance
+# B_family_rel <- transform_sample_counts(B_family, function(x) x / sum(x))
+# 
+# # Extract abundance and taxonomy
+# otu_mat <- otu_table(B_family_rel)
+# if (taxa_are_rows(B_family_rel)) {
+#   otu_mat <- t(otu_mat)
+# }
+# taxa_df <- as.data.frame(tax_table(B_family_rel))
+# 
+# # Compute relative abundance (mean across all samples)
+# rel_abundance <- colMeans(otu_mat)
+# 
+# # Compute prevalence (proportion of samples where abundance > 0)
+# print(nrow(otu_mat))
+# prevalence <- colSums(otu_mat > 0) / nrow(otu_mat)
+# 
+# # Combine into a data frame for plotting
+# plot_df <- data.frame(
+#   Family = taxa_df[colnames(otu_mat), "Family"],
+#   RelativeAbundance = rel_abundance,
+#   Prevalence = prevalence
+# )
+# 
+# # Plot
+# ggplot(plot_df, aes(x = RelativeAbundance, y = Prevalence, label = Family)) +
+#   geom_point(color = "blue", size = 3) +
+#   geom_text_repel(max.overlaps = 15) +  # optional: needs ggrepel package
+#   scale_x_log10() +  # log scale for abundance helps visualization
+#   theme_minimal() +
+#   labs(
+#     x = "Mean relative Abundance (log10 scale)",
+#     y = "Prevalence (proportion of samples)",
+#     title = "Prevalence vs Relative Abundance of Bacterial families"
+#   )
+
+# SUBSET FUNCTION
+#
+#Subset_physeq <- function(phyloseq_object, condition_expr) {
+#   condition_expr <- rlang::enquo(condition_expr)
+# subset_physeq_obj <- subset_samples(phyloseq_object, !!condition_expr)
+#   subset_physeq_obj <- prune_taxa(taxa_sums(subset_physeq_obj)>0, subset_physeq_obj)
+#  return(subset_physeq_obj) }
+
+```

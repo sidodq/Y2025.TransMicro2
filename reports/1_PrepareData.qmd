@@ -166,6 +166,10 @@ at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_170")] <- "Plant
 at_16S[at_16S$observation_name == "Cluster_182", "seed_sequence"]
 at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_182")] <- "Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit"
 
+# Delete them
+at_16S <- at_16S %>%
+  dplyr::filter(!"blast_taxonomy" == "no;NA;NA;NA;NA;NA;NA" )
+
 # Split taxonomy
 at_16S <- at_16S %>% 
   tidyr::separate(col=blast_taxonomy, into=c("Kingdom","Phylum", "Class", "Order", "Family", "Genus", "Species"), sep=";", remove=FALSE)
@@ -407,6 +411,10 @@ at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_47")] <- "Fungi;
 
 at_ITS[at_ITS$observation_name == "Cluster_50", "seed_sequence"]
 at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_50")] <- "Fungi;Ascomycota;Pichiomycetes;Serinales;Metschnikowiaceae;Metschnikowia;Unknown"
+
+# Delete them
+at_ITS <- at_ITS %>%
+  dplyr::filter(!"blast_taxonomy" == "no;NA;NA;NA;NA;NA;NA" )
 
 # Split taxonomy
 at_ITS[98, "blast_taxonomy"] <- gsub(";;", ";", at_ITS[98, "blast_taxonomy"])
