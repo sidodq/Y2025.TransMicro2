@@ -30,24 +30,16 @@ library(dplyr)
 # files <- list.files(folder, pattern = "\\.fastq\\.gz$", full.names = TRUE)
 # 
 # # Loop over files
-# for (f in files) {
-#   # Get modification year
-#   mod_year <- format(file.info(f)$mtime, "%Y")
+# for (f in files) {mod_year <- format(file.info(f)$mtime, "%Y") # Get modification year
 #   
-#   # Extract file name only
-#   fname <- basename(f)
+#   fname <- basename(f) # Extract file name only
 #   
-#   # Split by "-"
-#   parts <- strsplit(fname, "-")[[1]]
+#   parts <- strsplit(fname, "-")[[1]] # Split by "-"
 #   
-#   if (length(parts) >= 4) {
+#   if (length(parts) >= 4) {suffix <- ifelse(mod_year == "2024", "rn1",i felse(mod_year == "2025", "rn2", NA))
 #     # Decide suffix
-#     suffix <- ifelse(mod_year == "2024", "rn1",
-#                      ifelse(mod_year == "2025", "rn2", NA))
 #     
-#     if (!is.na(suffix)) {
-#       # Insert suffix after 3rd element
-#       parts <- append(parts, suffix, after = 3)
+#     if (!is.na(suffix)) {parts <- append(parts, suffix, after = 3) # Insert suffix after 3rd element
 #       
 #       # Rebuild new filename
 #       new_fname <- paste(parts, collapse = "-")
@@ -64,24 +56,16 @@ library(dplyr)
 # files2 <- list.files(folder2, pattern = "\\.fastq\\.gz$", full.names = TRUE)
 # 
 # # Loop over files
-# for (f in files2) {
-#   # Get modification year
-#   mod_year <- format(file.info(f)$mtime, "%Y")
+# for (f in files2) {mod_year <- format(file.info(f)$mtime, "%Y") # Get modification year
 #   
-#   # Extract file name only
-#   fname <- basename(f)
+#   fname <- basename(f) # Extract file name only
 #   
-#   # Split by "-"
-#   parts <- strsplit(fname, "-")[[1]]
+#   parts <- strsplit(fname, "-")[[1]] # Split by "-"
 #   
-#   if (length(parts) >= 4) {
+#   if (length(parts) >= 4) {suffix <- ifelse(mod_year == "2024", "rn1",ifelse(mod_year == "2025", "rn2", NA))
 #     # Decide suffix
-#     suffix <- ifelse(mod_year == "2024", "rn1",
-#                      ifelse(mod_year == "2025", "rn2", NA))
 #     
-#     if (!is.na(suffix)) {
-#       # Insert suffix after 3rd element
-#       parts <- append(parts, suffix, after = 3)
+#     if (!is.na(suffix)) {parts <- append(parts, suffix, after = 3) # Insert suffix after 3rd element
 #       
 #       # Rebuild new filename
 #       new_fname <- paste(parts, collapse = "-")
