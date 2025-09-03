@@ -210,9 +210,14 @@ write.table(otu_table(ps_rare_16S), file=file.path(here::here(), "data", "derive
 
 write.table(tax_table(ps_rare_16S), file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM1&2_tax_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
+write.table(sample_data(ps_rare_16S), file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM1&2_sampleData_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+
+
 write.table(otu_table(ps_rare_ITS), file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM1&2_otu_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 write.table(tax_table(ps_rare_ITS), file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM1&2_tax_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+
+write.table(sam_data(ps_rare_ITS), file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM1&2_sampleData_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 ```
 
 # 5. Select data
