@@ -30,31 +30,6 @@ library(microbiome)
 library(microbiomeutilities)
 devtools::load_all()
 ```
-
-# Load data
-
-```{r}
-ps_rare_16S <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM1&2_ps_rare.rds"))
-ps_rare_ITS <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM1&2_ps_rare.rds"))
-
-# Make data fit for plot
-B = phyloseq::psmelt(ps_rare_16S) 
-# Possible to focus on a reduced dataset ex. B = subset_taxa(S_ps_rare_16S, Genus == "Chlamydiae")
-
-B$LifeStage <- factor(B$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter", "na"))
-B$FruitType <- factor(B$FruitType, levels = c("BL", "CH", "ST", "na"))
-
-write.table(x=B, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_melt.csv"), row.names=FALSE, quote=FALSE, sep=";")
-
-
-L = phyloseq::psmelt(ps_rare_ITS)
-
-L$LifeStage <- factor(L$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter", "na"))
-L$FruitType <- factor(L$FruitType, levels = c("BL", "CH", "ST", "na"))
-
-write.table(x=L, file=file.path(here::here(),"data", "derived_data", "3_CommunityComposition", "ITS_melt.csv"), row.names=FALSE, quote=FALSE, sep=";")
-```
-
 # Color Sets
 
 ```{r}
@@ -143,6 +118,30 @@ color_prev_B <- c(
 )
 ```
 
+# Load data
+
+```{r}
+ps_rare_16S <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM1&2_ps_rare.rds"))
+ps_rare_ITS <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM1&2_ps_rare.rds"))
+
+# Make data fit for plot
+B = phyloseq::psmelt(ps_rare_16S) 
+# Possible to focus on a reduced dataset ex. B = subset_taxa(S_ps_rare_16S, Genus == "Chlamydiae")
+
+B$LifeStage <- factor(B$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter", "na"))
+B$FruitType <- factor(B$FruitType, levels = c("BL", "CH", "ST", "na"))
+
+write.table(x=B, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_melt.csv"), row.names=FALSE, quote=FALSE, sep=";")
+
+
+L = phyloseq::psmelt(ps_rare_ITS)
+
+L$LifeStage <- factor(L$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter", "na"))
+L$FruitType <- factor(L$FruitType, levels = c("BL", "CH", "ST", "na"))
+
+write.table(x=L, file=file.path(here::here(),"data", "derived_data", "3_CommunityComposition", "ITS_melt.csv"), row.names=FALSE, quote=FALSE, sep=";")
+```
+
 # I. Composition (abundance)
 
 ## 1. Plot
@@ -160,11 +159,10 @@ plot_16S_Family_StageFruit$data$LifeStage <- factor(plot_16S_Family_StageFruit$d
 ggsave(filename = "B_Abundance_Stage & Fruit.jpg", plot = plot_16S_Family_StageFruit, path = file.path(here::here(), "plots", "3_Communitycomposition"), width = 29.7, height = 21, units = "cm")
 
 
-
 # ITS (Family)
 ps_rare_ITS_Family_StageFruit <- Subset_physeq(ps_rare_ITS, LifeStage !="na")
 
-plot_ITS_Family_StageFruit <- Make_composition_bar_plot_2(ps_rare_ITS_Family_StageFruit, "Fungi", "Family", 25, ~LifeStage+FruitType, color_ITS)
+plot_ITS_Family_StageFruit <- Make_composition_bar_plot_2(ps_rare_ITS_Family_StageFruit, "Fungi", "Family", 20, ~LifeStage+FruitType, color_ITS)
 
 plot_ITS_Family_StageFruit$data$LifeStage <- factor(plot_ITS_Family_StageFruit$data$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter")) # reorder life stages 
 
@@ -185,7 +183,7 @@ ggsave(filename = "B_Abundance_Fruit & Variety.jpg", plot = plot_16S_Family_Frui
 # ITS (Family)
 ps_rare_ITS_Family_FruitType <- Subset_physeq(ps_rare_ITS, FruitType !="na"&FruitVariety !="na")
 
-plot_ITS_Family_FruitType <- Make_composition_bar_plot_2(ps_rare_ITS_Family_FruitType, "Fungi", "Family", 15, ~FruitType+FruitVariety, color_ITS)
+plot_ITS_Family_FruitType <- Make_composition_bar_plot_2(ps_rare_ITS_Family_FruitType, "Fungi", "Family", 20, ~FruitType+FruitVariety, color_ITS)
 
 ggsave(filename = "L_Abundance_Fruit & Variety.jpg", plot = plot_ITS_Family_FruitType, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 ```
@@ -194,58 +192,58 @@ ggsave(filename = "L_Abundance_Fruit & Variety.jpg", plot = plot_ITS_Family_Frui
 
 ```{r}
 # 16S (Family)
-S_ps_rare_16S_Family_FruitTypeSite <- Subset_physeq(S_ps_rare_16S, FruitType !="na"&FruitSite !="na")
+ps_rare_16S_Family_FruitTypeSite <- Subset_physeq(ps_rare_16S, FruitType !="na"&FruitSite !="na")
 
-plot_16S_Family_FruitTypeSite <- Make_composition_bar_plot_2(S_ps_rare_16S_Family_FruitTypeSite, "Bacteria", "Family", 25, ~FruitType+FruitSite, color_16S)
+plot_16S_Family_FruitTypeSite <- Make_composition_bar_plot_2(ps_rare_16S_Family_FruitTypeSite, "Bacteria", "Family", 25, ~FruitType+FruitSite, color_16S)
 
-ggsave(filename = "B_Abundance_Fruit & Site.jpg", plot = plot_16S_Family_FruitTypeSite, path = file.path(here::here(), "plots", "sido", "Community_composition"), width = 29.7, height = 21, units = "cm")
+ggsave(filename = "B_Abundance_Fruit & Site.jpg", plot = plot_16S_Family_FruitTypeSite, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 
 
 # ITS (Family)
-S_ps_rare_ITS_Family_FruitTypeSite <- Subset_physeq(S_ps_rare_ITS, FruitType !="na"&FruitSite !="na")
+ps_rare_ITS_Family_FruitTypeSite <- Subset_physeq(ps_rare_ITS, FruitType !="na"&FruitSite !="na")
 
-plot_ITS_Family_FruitTypeSite <- Make_composition_bar_plot_2(S_ps_rare_ITS_Family_FruitTypeSite, "Fungi", "Family", 15, ~FruitType+FruitSite, color_ITS)
+plot_ITS_Family_FruitTypeSite <- Make_composition_bar_plot_2(ps_rare_ITS_Family_FruitTypeSite, "Fungi", "Family", 20, ~FruitType+FruitSite, color_ITS)
 
-ggsave(filename = "Y_Abundance_Fruit & Site.jpg", plot = plot_ITS_Family_FruitTypeSite, path = file.path(here::here(), "plots", "sido", "Community_composition"), width = 29.7, height = 21, units = "cm")
+ggsave(filename = "Y_Abundance_Fruit & Site.jpg", plot = plot_ITS_Family_FruitTypeSite, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 ```
 
 ### by FruitType + FruitSite + FruitVariety
 
 ```{r}
-# 16S (Family)
-S_ps_rare_16S_Family_FruitTypeSiteVariety <- Subset_physeq(S_ps_rare_16S, FruitType !="na"&FruitSite !="na"&FruitVariety !="na")
-
-plot_16S_Family_FruitTypeSiteVariety <- Make_composition_bar_plot_2(S_ps_rare_16S_Family_FruitTypeSiteVariety, "Bacteria", "Family", 25, ~FruitType+FruitSite+FruitVariety, color_16S)
-
-ggsave(filename = "B_Abundance_FruitTypeSiteVariety.jpg", plot = plot_16S_Family_FruitTypeSiteVariety, path = file.path(here::here(), "plots", "sido", "Community_composition"), width = 29.7, height = 21, units = "cm")
-
-
-# ITS (Family)
-S_ps_rare_ITS_Family_FruitTypeSiteVariety <- Subset_physeq(S_ps_rare_ITS, FruitType !="na"&FruitSite !="na"&FruitVariety !="na")
-
-plot_ITS_Family_FruitTypeSiteVariety <- Make_composition_bar_plot_2(S_ps_rare_ITS_Family_FruitTypeSiteVariety, "Fungi", "Family", 15, ~FruitType+FruitSite+FruitVariety, color_ITS)
-
-ggsave(filename = "Y_Abundance_FruitTypeSiteVariety.jpg", plot = plot_ITS_Family_FruitTypeSiteVariety, path = file.path(here::here(), "plots", "sido", "Community_composition"), width = 29.7, height = 21, units = "cm")
+# # 16S (Family)
+# ps_rare_16S_Family_FruitTypeSiteVariety <- Subset_physeq(ps_rare_16S, FruitType !="na"&FruitSite !="na"&FruitVariety !="na")
+# 
+# plot_16S_Family_FruitTypeSiteVariety <- Make_composition_bar_plot_2(ps_rare_16S_Family_FruitTypeSiteVariety, "Bacteria", "Family", 25, ~FruitType+FruitSite+FruitVariety, color_16S)
+# 
+# ggsave(filename = "B_Abundance_FruitTypeSiteVariety.jpg", plot = plot_16S_Family_FruitTypeSiteVariety, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
+# 
+# 
+# # ITS (Family)
+# ps_rare_ITS_Family_FruitTypeSiteVariety <- Subset_physeq(ps_rare_ITS, FruitType !="na"&FruitSite !="na"&FruitVariety !="na")
+# 
+# plot_ITS_Family_FruitTypeSiteVariety <- Make_composition_bar_plot_2(ps_rare_ITS_Family_FruitTypeSiteVariety, "Fungi", "Family", 15, ~FruitType+FruitSite+FruitVariety, color_ITS)
+# 
+# ggsave(filename = "Y_Abundance_FruitTypeSiteVariety.jpg", plot = plot_ITS_Family_FruitTypeSiteVariety, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 ```
 
 ### by Pop + LifeStage
 
 ```{r}
 # Plots 16S with Family
-S_ps_rare_16S_Family_Pop <- Subset_physeq(S_ps_rare_16S, Pop !="na"&LifeStage != "na")
+ps_rare_16S_Family_Pop <- Subset_physeq(ps_rare_16S, Pop !="na"&LifeStage != "na")
 
-plot_16S_Family_Pop <- Make_composition_bar_plot_2(S_ps_rare_16S_Family_Pop, "Bacteria", "Family", 25, ~Pop+LifeStage, color_16S)
+plot_16S_Family_Pop <- Make_composition_bar_plot_2(ps_rare_16S_Family_Pop, "Bacteria", "Family", 25, ~Pop+LifeStage, color_16S)
 plot_16S_Family_Pop$data$LifeStage <- factor(plot_16S_Family_Pop$data$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter"))
 
-ggsave(filename = "B_Abundance_Pop & Stage.jpg", plot = plot_16S_Family_Pop, path = file.path(here::here(), "plots", "sido", "Community_composition"), width = 29.7, height = 21, units = "cm")
+ggsave(filename = "B_Abundance_Pop & Stage.jpg", plot = plot_16S_Family_Pop, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 
 # Plots ITS with Family
-S_ps_rare_ITS_Family_Pop <- Subset_physeq(S_ps_rare_ITS, Pop !="na"&LifeStage != "na")
+ps_rare_ITS_Family_Pop <- Subset_physeq(ps_rare_ITS, Pop !="na"&LifeStage != "na")
 
-plot_ITS_Family_Pop <- Make_composition_bar_plot_2(S_ps_rare_ITS_Family_Pop, "Fungi", "Family", 15, ~Pop+LifeStage, color_ITS)
+plot_ITS_Family_Pop <- Make_composition_bar_plot_2(ps_rare_ITS_Family_Pop, "Fungi", "Family", 20, ~Pop+LifeStage, color_ITS)
 plot_ITS_Family_Pop$data$LifeStage <- factor(plot_ITS_Family_Pop$data$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter"))
 
-ggsave(filename = "L_Abundance_Pop & Stage.jpg", plot = plot_ITS_Family_Pop, path = file.path(here::here(), "plots", "sido", "Community_composition"), width = 29.7, height = 21, units = "cm")
+ggsave(filename = "L_Abundance_Pop & Stage.jpg", plot = plot_ITS_Family_Pop, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 ```
 
 ### by SampleType (shrinked)
