@@ -163,7 +163,8 @@ sum(otu_df[wolbachia_rows, ], na.rm = TRUE) / sum(otu_df, na.rm = TRUE) *100 # P
 ps_16S <- prune_taxa(!(taxa_names(ps_16S) %in% wolbachia_rows), ps_16S)
 
 
-# Remove contamination
+# Remove Lentihominibacter hominis cluster
+ps_16S <- prune_taxa(taxa_names(ps_16S) != "Cluster_12", ps_16S)
 
 
 # Distribution of the number of reads across samples
@@ -191,12 +192,13 @@ ps_ITS_filtered <- subset_samples(ps_ITS, !(sample_names(ps_ITS) %in% zero_abund
 # 3. Rarefaction curve
 
 ```{r}
-Rarefactioncurve_16S <- Make_rarefaction_curve(phylo_object = ps_16S_filtered, x_intersection_line = 3000, variable = "SampleType", number_columns = 17 , color_variable = "SampleType", title ="16S Rarefaction Curves", maxdepth=10000) # curves plotted for seq depth up to 10.000 reads per sample (17 types of samples)
+Rarefactioncurve_16S <- Make_rarefaction_curve2(phylo_object = ps_16S_filtered, x_intersection_line = 3000, color_variable = "SampleType", title ="16S Rarefaction Curves", maxdepth=10000) # curves plotted for seq depth up to 10.000 reads per sample (17 types of samples)
 Rarefactioncurve_16S
 
 title_plot <- "16S_TM1&2_Rarefactioncurve.png"
   cowplot::save_plot(file =here::here("plots", "2_RarefyData", title_plot), Rarefactioncurve_16S, base_height = 35/cm(1), base_width = 60/cm(1), dpi = 1200)
 
+  
 Rarefactioncurve_ITS <- Make_rarefaction_curve(phylo_object = ps_ITS_filtered, x_intersection_line = 5000, variable = "SampleType", number_columns = 18 , color_variable = "SampleType", title ="ITS Rarefaction Curves", maxdepth=10000)
 Rarefactioncurve_ITS
  
