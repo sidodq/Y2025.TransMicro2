@@ -321,8 +321,20 @@ data_16S <- data_16S %>%
   dplyr::group_by(observation_name, seed_sequence, Samples) %>% 
   dplyr::summarise(SumCount = ifelse(sum(count == 0)>=1, 0, round(sum(count)))) %>% 
   dplyr::ungroup()
+```
 
-# Transform from long to wide format (matrix)
+### Merge run 1&2 replicas
+```{r}
+# Apply the function Remove_last_two_chars in the abundance table (_rn1 or _rn2)
+data_16S$Samples <- sapply(data_16S$Samples, Remove_last_two_chars_run)
+
+# Compute sum across the replicates
+data_16S <- data_16S %>% 
+  dplyr::group_by(observation_name, seed_sequence, Samples) %>% 
+  dplyr::summarise(SumCount = ifelse(sum(SumCount == 0)>=1, 0, round(sum(SumCount)))) %>% 
+  dplyr::ungroup()
+
+# Transform from long to wide format
 data_16S <- data_16S %>% 
   tidyr::pivot_wider(names_from = Samples, values_from = SumCount)
 
@@ -335,7 +347,7 @@ write.table(data_16S, file=file.path(here::here(), "data", "derived_data", "1_Pr
 tt_16S <- at_16S_TccTfafiltered %>%
   dplyr::select(observation_name, Kingdom, Phylum, Class, Order, Family, Genus, Species)
 
-table(tt_16S$Species) # check taxonomy
+# check taxonomy with : table(tt_16S$Species) 
 
 # Export
 write.table(tt_16S, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "16S_TM1&2_taxonomy.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
@@ -570,6 +582,18 @@ data_ITS$Samples <- sapply(data_ITS$Barcode, Remove_last_two_chars)
 data_ITS <- data_ITS %>% 
   dplyr::group_by(observation_name, seed_sequence, Samples) %>% 
   dplyr::summarise(SumCount = ifelse(sum(count == 0)>=1, 0, round(sum(count)))) %>% 
+  dplyr::ungroup()
+```
+
+### Merge run 1&2 replicas
+```{r}
+# Apply the function Remove_last_two_chars in the abundance table (_rn1 or _rn2)
+data_ITS$Samples <- sapply(data_ITS$Samples, Remove_last_two_chars_run)
+
+# Compute sum across the replicates
+data_ITS <- data_ITS %>% 
+  dplyr::group_by(observation_name, seed_sequence, Samples) %>% 
+  dplyr::summarise(SumCount = ifelse(sum(SumCount == 0)>=1, 0, round(sum(SumCount)))) %>% 
   dplyr::ungroup()
 
 # Transform from long to wide format

@@ -16,6 +16,5 @@
 
 #' @export
 Remove_last_two_chars <- function(text) {
-  new_text <- gsub("_(A|B)$", "", text)
-  return(new_text)
+  gsub("_(A|B)$", "", text)
 }
