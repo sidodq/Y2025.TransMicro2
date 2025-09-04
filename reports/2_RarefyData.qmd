@@ -71,13 +71,25 @@ taxo_ITS <- data.table::fread(file=file.path(here::here(), "data", "derived_data
 # Import Metadata table
 metadata <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "TransMicro1&2_metadata.tsv"),sep="\t",header=TRUE)
 
+
 # Distinction between "CT_INDEX_3_rn2" samples
 metadata <- metadata %>% 
-  mutate(
+  dplyr::mutate(
     ID_pool = case_when(
-      ID_pool == "CT_INDEX_3_rn2" & Marker == "16S" ~ "CT_INDEX_3_rn2_16S",
-      ID_pool == "CT_INDEX_3_rn2" & Marker == "ITS" ~ "CT_INDEX_3_rn2_ITS",
+      ID_pool == "CT_INDEX_3" & Marker == "16S" ~ "CT_INDEX_3_16S",
+      ID_pool == "CT_INDEX_3" & Marker == "ITS" ~ "CT_INDEX_3_ITS",
       TRUE ~ ID_pool))
+
+
+# Remove run 1&2 distinction 
+metadata <- metadata %>% 
+  dplyr::mutate(ID_pool = sapply(ID_pool, Remove_last_two_chars_run)) %>% 
+  dplyr::select(-Marker, -Run) %>%
+  dplyr::group_by(ID_pool) %>%
+  dplyr::summarise(dplyr::across(
+    .cols = everything(),
+    .fns = ~ ifelse(length(unique(.x)) == 1, unique(.x), paste(unique(.x), collapse = ";"))
+  ), .groups = "drop")
 
 ```
 
@@ -111,7 +123,7 @@ mtd <- metadata %>%
 mtd <- mtd %>%
   dplyr::mutate(Sample_Category = ifelse(Sample_Category == "All_stages_focal_Sites", "All_stages_Focal_Sites", Sample_Category))
 
-write.table(mtd, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "TM1&2_metadata.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+write.table(mtd, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "TM1&2_reduced_metadata.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 #Transform into phyloseq compatible objects
 OTU_16S <- phyloseq::otu_table(otu_16S, taxa_are_rows = T)
@@ -136,7 +148,7 @@ table_OTU_ITS <- phyloseq::otu_table(ps_ITS)
 table_OTU_ITS[rowSums(phyloseq::otu_table(ps_ITS)) == 0, ]
 names(phyloseq::sample_sums(ps_ITS)[ phyloseq::sample_sums(ps_ITS) == 0]) # OTUs with no counts in any ITS samples
 
-# Remove Wolbachia's OTU
+# Remove Wolbachia
 ## List of Wolbachia clusters
 TAX_16S_df <- as.data.frame(TAX_16S)
 wolbachia_rows <- rownames(TAX_16S_df[!is.na(TAX_16S_df$Genus) & TAX_16S_df$Genus == "Wolbachia", ])
@@ -149,6 +161,9 @@ sum(otu_df[wolbachia_rows, ], na.rm = TRUE) / sum(otu_df, na.rm = TRUE) *100 # P
 
 ## Remove
 ps_16S <- prune_taxa(!(taxa_names(ps_16S) %in% wolbachia_rows), ps_16S)
+
+
+# Remove contamination
 
 
 # Distribution of the number of reads across samples
