@@ -105,7 +105,6 @@ Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschn
 Fungi	Basidiomycota	Microbotryomycetes	Leucosporidiales	Leucosporidiaceae	Leucosporidium	Leucosporidium creatinivorum
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
 Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora simulans
-Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia nakasei
 Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Piskurozymaceae	Solicoccozyma	Solicoccozyma terrea
 Fungi	Basidiomycota	Agaricomycetes	Hymenochaetales	Schizoporaceae	Hyphodontia	Hyphodontia pallidula
 Fungi	Basidiomycota	Tremellomycetes	Tremellales	Rhynchogastremaceae	Papiliotrema	Papiliotrema perniciosa
@@ -118,7 +117,6 @@ Fungi	Ascomycota	Eurotiomycetes	Chaetothyriales	Herpotrichiellaceae	Unknown	Unkn
 Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
 Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Saccharomycetaceae	Saccharomyces	Saccharomyces cerevisiae
 Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Chaetosphaeronema	Chaetosphaeronema achilleae
-Fungi	Ascomycota	Sordariomycetes	Hypocreales	Cylindriaceae	Cylindrium	Cylindrium elongatum
 Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Teratosphaeriaceae	Xenoteratosphaeria	Xenoteratosphaeria jonkershoekensis
 Fungi	Basidiomycota	Agaricostilbomycetes	Agaricostilbales	Kondoaceae	Kondoa	Kondoa aeria
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
@@ -146,7 +144,6 @@ Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Fungi	Basidiomycota	Tremellomycetes	Tremellales	Unknown	Unknown	Unknown
 Fungi	Ascomycota	Sordariomycetes	Hypocreales	Cordycipitaceae	Beauveria	Beauveria bassiana
 Fungi	Basidiomycota	Pucciniomycetes	Pucciniales	Coleosporiaceae	Coleosporium	Coleosporium inulae
-Fungi	Ascomycota	Dothideomycetes	Pleosporales	Acrocalymmaceae	Acrocalymma	Acrocalymma pterocarpi
 Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora albobadia
 Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Stemphylium	Stemphylium globuliferum
 Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Hannaella	Hannaella zeae
@@ -197,6 +194,7 @@ Fungi	Ascomycota	Leotiomycetes	Helotiales	Lachnaceae	Lachnum	Unknown
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
 Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Unknown	Unknown
 Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia terricola
+Fungi	Ascomycota	Dipodascomycetes	Dipodascales	Dipodascaceae	Unknown	Unknown
 Fungi	Ascomycota	Dipodascomycetes	Dipodascales	Dipodascaceae	Unknown	Unknown
 Fungi	Basidiomycota	Tremellomycetes	Tremellales	Phaeotremellaceae	Gelidatrema	Gelidatrema spencermartinsiae
 Fungi	Ascomycota	Sordariomycetes	Diaporthales	Diaporthaceae	Diaporthe	Unknown
@@ -249,6 +247,7 @@ Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Unknown
 Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Unknown
 Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Debaryomycetaceae	Kurtzmaniella	Unknown
+Fungi	Mucoromycota	Mucoromycetes	Mucorales	Mucoraceae	Mucor	Mucor circinelloides
 Fungi	Basidiomycota	Exobasidiomycetes	Microstromatales	Unknown	Unknown	Unknown
 Fungi	Ascomycota	Eurotiomycetes	Phaeomoniellales	Celotheliaceae	Minutiella	Unknown
 Fungi	Mucoromycota	Mucoromycetes	Mucorales	Rhizopodaceae	Rhizopus	Rhizopus arrhizus
@@ -277,7 +276,6 @@ Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
 Fungi	Ascomycota	Dothideomycetes	Pleosporales	Didymosphaeriaceae	Montagnula	Montagnula scabiosae
 Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma tephrensis
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
-Fungi	Ascomycota	Sordariomycetes	Glomerellales	Glomerellaceae	Colletotrichum	Colletotrichum coccodes
 Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Fungi	Ascomycota	Sordariomycetes	Diaporthales	Unknown	Unknown	Unknown
 Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora simulans
@@ -361,6 +359,7 @@ Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Sporidiobolaceae	Rhodotor
 Fungi	Basidiomycota	Cystobasidiomycetes	Unknown	Symmetrosporaceae	Unknown	Unknown
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia rubicola
 Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Rachicladosporium	Rachicladosporium cboliae
+Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Curvularia	Curvularia portulacae
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
 Fungi	Ascomycota	Dothideomycetes	Pleosporales	Dothidotthiaceae	Unknown	Unknown
 Fungi	Basidiomycota	Tremellomycetes	Cystofilobasidiales	Mrakiaceae	Itersonilia	Itersonilia pannonica
@@ -369,8 +368,8 @@ Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Stemphylium	Unknown
 Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Bipolaris	Bipolaris eleusines
 Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
 Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia eucalypti
+Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium madriti
 Fungi	Basidiomycota	Agaricomycetes	Hymenochaetales	Schizoporaceae	Hyphodontia	Hyphodontia tropica
-Fungi	Basidiomycota	Pucciniomycetes	Helicobasidiales	Helicobasidiaceae	Helicobasidium	Helicobasidium purpureum
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
 Fungi	Ascomycota	Dothideomycetes	Kirschsteiniotheliales	Kirschsteiniotheliaceae	Kirschsteiniothelia	Kirschsteiniothelia aethiops
 Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Podosphaera	Unknown
@@ -454,7 +453,6 @@ Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
 Fungi	Basidiomycota	Agaricomycetes	Polyporales	Polyporaceae	Coriolopsis	Coriolopsis gallica
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
 Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Parastagonospora	Parastagonospora nodorum
-Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium italicum
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
 Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
 Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Bipolaris	Bipolaris sorokiniana
@@ -532,7 +530,6 @@ Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschn
 Fungi	Ascomycota	Taphrinomycetes	Taphrinales	Taphrinaceae	Taphrina	Taphrina deformans
 Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Trichomonascaceae	Starmerella	Starmerella magnoliae
 Fungi	Basidiomycota	Cystobasidiomycetes	Unknown	Symmetrosporaceae	Unknown	Unknown
-Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Unknown
 Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia kluyveri
 Fungi	Ascomycota	Dothideomycetes	Pleosporales	Didymellaceae	Neoascochyta	Neoascochyta tardicrescens
 Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora meridionalis
@@ -567,7 +564,6 @@ Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
 Fungi	Ascomycota	Taphrinomycetes	Taphrinales	Taphrinaceae	Taphrina	Taphrina kruchii
 Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Dematiopleospora	Dematiopleospora salsolae
-Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Neosetophoma	Unknown
 Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma foliicola
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
 Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Alternaria armoraciae
@@ -584,7 +580,6 @@ Fungi	Ascomycota	Dothideomycetes	Capnodiales	Unknown	Unknown	Unknown
 Fungi	Ascomycota	Taphrinomycetes	Taphrinales	Taphrinaceae	Taphrina	Unknown
 Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Sporidiobolaceae	Rhodosporidiobolus	Rhodosporidiobolus colostri
 Fungi	Basidiomycota	Tremellomycetes	Tremellales	Rhynchogastremaceae	Papiliotrema	Unknown
-Fungi	Basidiomycota	Cystobasidiomycetes	Buckleyzymales	Buckleyzymaceae	Buckleyzyma	Buckleyzyma salicina
 Fungi	Basidiomycota	Agaricomycetes	Polyporales	Irpicaceae	Byssomerulius	Byssomerulius corium
 Fungi	Ascomycota	Dothideomycetes	Unknown	Unknown	Unknown	Unknown
 Fungi	Mucoromycota	Mucoromycetes	Mucorales	Mucoraceae	Mucor	Unknown

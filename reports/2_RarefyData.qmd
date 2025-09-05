@@ -119,10 +119,6 @@ mtd <- metadata %>%
   dplyr::mutate(ID_pool_rowname = ID_pool) %>%
    textshape::column_to_rownames("ID_pool_rowname")
 
-# f -> F 
-mtd <- mtd %>%
-  dplyr::mutate(Sample_Category = ifelse(Sample_Category == "All_stages_focal_Sites", "All_stages_Focal_Sites", Sample_Category))
-
 write.table(mtd, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "TM1&2_reduced_metadata.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 #Transform into phyloseq compatible objects
@@ -192,7 +188,7 @@ ps_ITS_filtered <- subset_samples(ps_ITS, !(sample_names(ps_ITS) %in% zero_abund
 # 3. Rarefaction curve
 
 ```{r}
-Rarefactioncurve_16S <- Make_rarefaction_curve2(phylo_object = ps_16S_filtered, x_intersection_line = 3000, color_variable = "SampleType", title ="16S Rarefaction Curves", maxdepth=10000) # curves plotted for seq depth up to 10.000 reads per sample (17 types of samples)
+Rarefactioncurve_16S <- Make_rarefaction_curve2(phylo_object = ps_16S_filtered, x_intersection_line = 3000, plot_variable = "SampleType", color_variable = "SampleType", maxdepth=10000, logy=TRUE) # curves plotted for seq depth up to 10.000 reads per sample (17 types of samples)
 Rarefactioncurve_16S
 
 title_plot <- "16S_TM1&2_Rarefactioncurve.png"
@@ -211,11 +207,11 @@ title_plot <- "ITS_TM1&2_Rarefactioncurve.png"
 ```{r}
 # Rarefy samples by discarding samples with fewer than 3.000 reads
 set.seed(1)                                         
-ps_rare_16S <- rarefy_even_depth(ps_16S, sample.size = 3000) # 201 samples + 3213 otus removed
+ps_rare_16S <- rarefy_even_depth(ps_16S, sample.size = 3000) # 105 samples + 3167 otus removed
 sample_sums(ps_rare_16S)[1:100]
 
 set.seed(1)                                         
-ps_rare_ITS <- rarefy_even_depth(ps_ITS, sample.size = 5000) # 89 samples + 742 otus removed
+ps_rare_ITS <- rarefy_even_depth(ps_ITS, sample.size = 5000) # 42 samples + 6080 otus removed
 sample_sums(ps_rare_ITS)[1:100]
 
 # Export
@@ -227,14 +223,11 @@ write.table(otu_table(ps_rare_16S), file=file.path(here::here(), "data", "derive
 
 write.table(tax_table(ps_rare_16S), file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM1&2_tax_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
-write.table(sample_data(ps_rare_16S), file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM1&2_sampleData_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 
 write.table(otu_table(ps_rare_ITS), file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM1&2_otu_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 write.table(tax_table(ps_rare_ITS), file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM1&2_tax_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
-
-write.table(sam_data(ps_rare_ITS), file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM1&2_sampleData_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 ```
 
 # 5. Select data

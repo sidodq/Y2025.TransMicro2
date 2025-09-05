@@ -83,7 +83,15 @@ mt <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "Metada
 
 mt <- mt %>% 
   dplyr::mutate(ID_pool = dplyr::case_when(Run == 1 ~ paste0(ID_pool, "_rn1"), Run == 2 ~ paste0(ID_pool, "_rn2"), TRUE ~ ID_pool))
-  
+
+mt <- mt %>%
+  dplyr::mutate(LifeStage = ifelse(ID_pool == "MS_066_rn2", "na", LifeStage),
+    Transmission = ifelse(ID_pool == "MS_066_rn2", "Fruits_5_6days", Transmission))
+
+# f -> F 
+mt <- mt %>%
+  dplyr::mutate(Sample_Category = ifelse(Sample_Category == "All_stages_focal_Sites", "All_stages_Focal_Sites", Sample_Category))
+
 # Export
 write.table(mt, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "TransMicro1&2_metadata.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
