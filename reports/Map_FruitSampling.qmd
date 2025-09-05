@@ -26,13 +26,13 @@ france <- ne_countries(scale = "medium", country = "France", returnclass = "sf")
 
 # 📍 Données des sites, avec points Los Masos légèrement décalés
 sites <- data.frame(
-  ville = c("Finestret", "Varetz", "Los Masos", "Ille-sur-Têt", "Thurins"),
-  fruit = c("CH", "BL", "CH & ST", "ST", "all"),
-  lat = c(42.6233, 45.1378, 42.6256, 42.6667, 45.4057), 
-  lon = c(2.5833, 1.5000, 2.5225, 2.6167, 4.3829))
+  ville = c("Finestret", "Varetz", "Los Masos", "Ille-sur-Têt", "Thurins", "Millas"),
+  fruit = c("CH", "BL", "CH and ST", "ST", "all", "ST"),
+  lat = c(42.6233, 45.1378, 42.6256, 42.6667, 45.4057, 42.68290233641148), 
+  lon = c(2.5833, 1.5000, 2.5225, 2.6167, 4.3829, 2.704289550429724))
 
 # 🎨 Couleurs personnalisées
-fruit_colors <- c("BL" = "purple4", "CH" = "red3", "ST" = "coral3", "CH & ST" = "darkred", "all" = "black")
+fruit_colors <- c("BL" = "purple4", "CH" = "red3", "ST" = "darkred", "CH and ST" = "coral3", "all" = "black")
 
 # 🧭 Conversion en objet spatial
 sites_sf <- st_as_sf(sites, coords = c("lon", "lat"), crs = 4326)
