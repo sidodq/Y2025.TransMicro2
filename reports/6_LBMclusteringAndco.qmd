@@ -464,96 +464,12 @@ Alluvial_ITS_ML2_Site_sample <- ggplot(data = dataalluvial_ML2_ITS_sample,
   theme(axis.text.x = element_text(size = 12, color = "black", face = "bold"))
 ```
 
-## 4. CCA with membership LBM
+## 4. CCA 16S
 
-### 4.1 Functions Ravigné et al. 2022
-
-```{r}
-only.F.alt2 <- function(memberships, var1, var2) {
-  n <- length(memberships)
-  
-  modules <-
-    lme4::dummy(as.factor(memberships), levelsToKeep = levels(as.factor(memberships)))
-  
-  one.1 <- vegan::cca(modules ~ var1, na.action = na.omit)
-  one.2 <- vegan::cca(modules ~ var2, na.action = na.omit)
-  two.1 <- vegan::cca(modules ~ var1 + var2, na.action = na.omit)
-  one.1.alone <-
-    vegan::cca(modules ~ var1 + Condition(var2), na.action = na.omit)
-  one.2.alone <-
-    vegan::cca(modules ~ Condition(var1) + var2, na.action = na.omit)
-  
-  xxx <-
-    list(
-      one.1,
-      one.2,
-      two.1,
-      one.1.alone,
-      one.2.alone)
-  
-  sapply(1:5, function(x)
-    F.computation(xxx[[x]], n))
-}
-
-analysis.function.alt2 <- function(incid,memb_obs, var1, var2, configs = NULL){#industrial processing of CCA, two permutations
-  n <- dim(incid)[1]
-  modules <- lme4::dummy(as.factor(memb_obs), levelsToKeep = levels(as.factor(memb_obs)))
-  
-  one.1 <- vegan::cca(modules ~ var1, na.action=na.omit)
-  one.2 <- vegan::cca(modules ~ var2, na.action=na.omit)
-  two.1 <- vegan::cca(modules ~ var1 + var2, na.action=na.omit)
-  one.1.alone <- vegan::cca(modules ~ var1 + Condition(var2), na.action=na.omit)
-  one.2.alone <- vegan::cca(modules ~ Condition(var1) + var2, na.action=na.omit)
-  
-  xxx <- list(one.1,one.2,two.1,one.1.alone,one.2.alone)
-  
-  chi2 <- sapply(1:5, function(x) chi2.computation(xxx[[x]]))
-  Forms <- sapply(1:5, function(x) extractTerms(xxx[[x]]))
-  F <- sapply(1:5, function(x) F.computation(xxx[[x]],n))
-  P <- sapply(1:5, function(x) anova(xxx[[x]],permutations = permute::how(nperm=NPERM-1))$P[1])
-  
-  if(is.null(configs)) {
-    results<-data.frame("Formulas"=Forms,"chi2"=chi2,"F"=F,"P"=P)
-    } else {
-    depth <- dim(configs)[2]
-    all.F <- sapply(1:depth,function(x)
-    only.F.alt2(as.vector(configs[,x]),var1,var2))
-    #only.F.alt2(as.vector(configs[,x])[[1]],var1,var2))
-    all.ecdf <- apply(all.F,1,ecdf)
-    P2 <- sapply(1:5,function(x) 1-((all.ecdf[[x]])(F[x])))
-    results <- data.frame("Formulas"=Forms,"chi2"=chi2,"F"=F,"P"=P,"P2"=P2)
-  }
-  results
-}
-
-chi2.computation<-function(ccaobj){
-ccaobj$CCA$tot.chi
-}
-
-extractTerms<-function(model){
-paste0(formula(model$terms))[3]
-}
-
-F.computation<-function(ccaobj,size){
-	if(is.null(ccaobj)){
-		0
-	}
-	else{
-		ccaobj$CCA$tot.chi*(size-ccaobj$CA$rank-nulltozero(ccaobj$pCCA$rank))/(ccaobj$CA$tot.chi*ccaobj$CCA$qrank)
-	}
-}
-
-nulltozero<-function(x){
-	if(is.null(x)){
-		x<-0
-	}
-	x
-}
-```
-
-### 4.2 Null model
+### 4.1 Null model
 
 ```{r}
+
 NPERM <- 10
 
 sim_list = list()
@@ -571,14 +487,12 @@ sim_list = list()
       LBM_sim <-as.matrix(FB_sim) %>%
     sbm::estimateBipartiteSBM(model = 'bernoulli',
                          estimOptions = list(plot = T))
-       memb_spl_sim <- LBM_sim$memberships$row
+       memb_spl_sim <- LBM_sim$memberships$row ## Extract membership of the samples 
     })
 ```
 
-### 4.3 CCA 16S
-
+### 4.2 CCA
 #### All samples
-
 ```{r}
 # Factors
 FruitType_vect_16S <- as.factor(mtd_16S$FruitType[match(rownames(FB_16S), mtd_16S$Sample)])
@@ -590,7 +504,7 @@ LifeStage_vect_16S <- as.factor(mtd_16S$LifeStage[match(rownames(FB_16S), mtd_16
 
 #Pop_vect_ITS <- as.factor(mtd_ITS$Pop[match(rownames(FB_ITS), mtd_ITS$x_name)])
 
-## Create a matrix with samples as rows and group asigned by the latent block model as column
+## Create a matrix with samples as rows and group assigned by the latent block model as column
 dummyMod_16S <- lme4::dummy(as.factor(memb_spl_obs_16S), levelsToKeep = levels(as.factor(memb_spl_obs_16S)))
 
 ## Creates dataframe with the two variables of interest
@@ -601,7 +515,7 @@ cca_data_16S <- data.frame("FruitType" = as.factor(FruitType_vect_16S),
 varp_16S <- vegan::varpart(dummyMod_16S, cca_data_16S$FruitType, cca_data_16S$LifeStage, chisquare = T)
 varp_16S$part
 
-#CCA with line randomization
+#CCA with row randomization
 wholenetwork_cca_results_NULL_16S <- analysis.function.alt2(incid=as.data.frame(FB_16S), memb_obs=memb_spl_obs_16S, var1=cca_data_16S$FruitType, var2=cca_data_16S$LifeStage, configs = NULL)
 
 #CCA with full randomization
@@ -634,8 +548,32 @@ wholenetwork_cca_results_CONFIGS_16S_LS <- analysis.function.alt2(incid=as.data.
 
 ```
 
-### 4.4 CCA ITS
+## 4. CCA ITS
+### 4.1 Null model
+```{r}
 
+NPERM <- 10
+
+sim_list = list()
+  
+#for each rarefied matrix
+  sim_mat <- BF_ITS
+  #produce NPERM simulated graphs
+  netBin.config <-
+    simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
+
+  LBM.config <-
+    sapply(1:NPERM, function(i) {
+      BF_sim <- netBin.config[, , i]
+      FB_sim <- t(BF_sim)
+      LBM_sim <-as.matrix(FB_sim) %>%
+    sbm::estimateBipartiteSBM(model = 'bernoulli',
+                         estimOptions = list(plot = T))
+       memb_spl_sim <- LBM_sim$memberships$row ## Extract membership of the samples 
+    })
+```
+
+### CCA
 #### All samples
 
 ```{r}
