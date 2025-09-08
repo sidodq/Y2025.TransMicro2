@@ -42,6 +42,9 @@ color_FruitSite <- c("na" ="grey", "FIN" = "skyblue", "IST" = "blue2" ,  "LOM" =
 color_LifeStage <- c("na" ="grey",  "Mother" = "darkolivegreen4", "Larva"= "darkolivegreen2", "Pupa" = "darkorange2", "PupalCase"="#8B4500", "Daughter" ="goldenrod2")
 
 color_Pop <- c("na" = "grey", "CEC"="#C1FFC1", "FRA" = "seagreen3" )
+
+color_Expe <- c("na" ="grey","Fruits_0days" = "red3", "G0_Adults_0days"="darkolivegreen", "G0_Adults_Fruits_2days" = "darkolivegreen3", "Artific_Inf_Fruits_5_6days" = "red4", "G1_Larvae_Fruits"= "green3", "G1_Pupae_Fruits" = "darkorange2", "G1_PupalCase_Fruits"="#8B4500", "G1_Adults_Fruits" ="goldenrod2")
+
 ```
 
 # Load data
@@ -462,6 +465,74 @@ title_plot <- "NMDS_16S_LifeStage_FruitType.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot),
                  NMDS_J_16S_LifeStage_Ellipses, base_height = 20/cm(1),
                 base_width = 20/cm(1), dpi = 1200)
+
+ 
+#######
+# ITS #
+#######
+ 
+# Filter data
+ps_ITS_rare_LifeStage <- Subset_physeq(ps_rare_ITS, LifeStage !="na")
+
+ordi_nmds_J_ITS_LifeStage <- phyloseq::ordinate(ps_ITS_rare_LifeStage, method ="NMDS", distance ="jaccard")
+
+# reorder LifeStage
+desired_order <- c("Mother","Larva","Pupa", "PupalCase","Daughter")  
+sample_data(ps_ITS_rare_LifeStage)$LifeStage <- factor(sample_data(ps_ITS_rare_LifeStage)$LifeStage, levels = desired_order)
+
+# plot with ellipses
+NMDS_J_ITS_LifeStage_Ellipses <- phyloseq::plot_ordination(physeq = ps_ITS_rare_LifeStage, ordination = ordi_nmds_J_ITS_LifeStage) + 
+  theme_bw() + 
+  geom_point(aes(fill = LifeStage, shape = FruitType), size = 4) + 
+  scale_shape_manual(values = c(BL = 21, CH = 22, ST = 24)) +
+  scale_fill_manual(values = color_LifeStage) + 
+  stat_ellipse(aes(fill = LifeStage, color = LifeStage), geom = "polygon", alpha = 0.10, level = 0.95) + 
+  scale_color_manual(values = color_LifeStage) +
+  guides(
+    fill = guide_legend(override.aes = list(shape = 21, linetype = NULL, size = 5), title = "Life Stage", ncol = 1),
+    shape = guide_legend(title = "Fruit Type"),
+    color = "none")
+
+title_plot <- "NMDS_ITS_LifeStage_FruitType.png"
+ cowplot::save_plot(file =here::here("plots", "4_diversities", title_plot),
+                 NMDS_J_ITS_LifeStage_Ellipses, base_height = 20/cm(1),
+                base_width = 20/cm(1), dpi = 1200)
+```
+
+### LifeStage + Fruit (transmission)
+
+```{r}
+#######
+# 16S #
+#######
+# Filter data
+ps_16S_rare_expe <- Subset_physeq(ps_rare_16S, Sample_Category == "All_stages_Focal_Sites")
+
+ps_16S_rare_expe <- Subset_physeq(ps_16S_rare_expe, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
+
+ordi_nmds_J_16S_expe <- phyloseq::ordinate(ps_16S_rare_expe, method ="NMDS", distance ="jaccard")
+
+# reorder Sample Type
+desired_order <- c("Fruits_0days", "G0_Adults_0days","G0_Adults_Fruits_2days","G1_Larvae_Fruits","Artific_Inf_Fruits_5_6days", "G1_Pupae_Fruits", "G1_PupalCase_Fruits","G1_Adults_Fruits")  
+sample_data(ps_16S_rare_expe)$SampleType <- factor(sample_data(ps_16S_rare_expe)$SampleType, levels = desired_order)
+
+# plot with ellipses
+NMDS_J_16S_expe_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_expe, ordination = ordi_nmds_J_16S_expe) + 
+  theme_bw() + 
+  #ggtitle("NMDS_J_16S_FocalSites_All") + 
+  geom_point(aes(fill = SampleType, shape = FruitType), size = 4) + 
+  scale_shape_manual(values = c(BL = 21, CH = 22, ST = 24, na = 23)) +
+  scale_fill_manual(values = color_Expe) + 
+  stat_ellipse(aes(fill = SampleType, color = SampleType), geom = "polygon", alpha = 0.10, level = 0.95) + 
+  scale_color_manual(values = color_Expe) +
+  guides(
+    fill = guide_legend(override.aes = list(shape = 21, linetype = NULL, size = 5), title = "Sample Type", ncol = 1),
+    shape = guide_legend(title = "Fruit Type"), 
+    #size = guide_legend(title = "Population"),
+    color = "none")
+
+title_plot <- "NMDS_16S_Expe_FruitType.png"
+ cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot), NMDS_J_16S_expe_Ellipses, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
 
  
 #######
