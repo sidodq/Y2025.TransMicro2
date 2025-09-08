@@ -448,7 +448,7 @@ NMDS_J_16S_LifeStage_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_
   theme_bw() + 
   #ggtitle("NMDS_J_16S_FocalSites_All") + 
   geom_point(aes(fill = LifeStage, shape = FruitType), size = 4) + 
-  scale_shape_manual(values = c(BL = 21, CH = 22, ST = 23)) +
+  scale_shape_manual(values = c(BL = 21, CH = 22, ST = 24)) +
   scale_fill_manual(values = color_LifeStage) + 
   stat_ellipse(aes(fill = LifeStage, color = LifeStage), geom = "polygon", alpha = 0.10, level = 0.95) + 
   scale_color_manual(values = color_LifeStage) +
@@ -481,7 +481,7 @@ sample_data(ps_ITS_rare_LifeStage)$LifeStage <- factor(sample_data(ps_ITS_rare_L
 NMDS_J_ITS_LifeStage_Ellipses <- phyloseq::plot_ordination(physeq = ps_ITS_rare_LifeStage, ordination = ordi_nmds_J_ITS_LifeStage) + 
   theme_bw() + 
   geom_point(aes(fill = LifeStage, shape = FruitType), size = 4) + 
-  scale_shape_manual(values = c(BL = 21, CH = 22, ST = 23)) +
+  scale_shape_manual(values = c(BL = 21, CH = 22, ST = 24)) +
   scale_fill_manual(values = color_LifeStage) + 
   stat_ellipse(aes(fill = LifeStage, color = LifeStage), geom = "polygon", alpha = 0.10, level = 0.95) + 
   scale_color_manual(values = color_LifeStage) +
@@ -517,7 +517,7 @@ NMDS_J_16S_LifeStage_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_
   theme_bw() + 
   #ggtitle("NMDS_J_16S_FocalSites_All") + 
   geom_point(aes(fill = LifeStage, shape = FruitType), size = 4) + 
-  scale_shape_manual(values = c(BL = 21, CH = 22, ST = 23)) +
+  scale_shape_manual(values = c(BL = 21, CH = 22, ST = 24)) +
   scale_fill_manual(values = color_LifeStage) + 
   stat_ellipse(aes(fill = LifeStage, color = LifeStage), geom = "polygon", alpha = 0.10, level = 0.95) + 
   scale_color_manual(values = color_LifeStage) +
@@ -550,7 +550,7 @@ sample_data(ps_ITS_rare_LifeStage)$LifeStage <- factor(sample_data(ps_ITS_rare_L
 NMDS_J_ITS_LifeStage_Ellipses <- phyloseq::plot_ordination(physeq = ps_ITS_rare_LifeStage, ordination = ordi_nmds_J_ITS_LifeStage) + 
   theme_bw() + 
   geom_point(aes(fill = LifeStage, shape = FruitType), size = 4) + 
-  scale_shape_manual(values = c(BL = 21, CH = 22, ST = 23)) +
+  scale_shape_manual(values = c(BL = 21, CH = 22, ST = 24)) +
   scale_fill_manual(values = color_LifeStage) + 
   stat_ellipse(aes(fill = LifeStage, color = LifeStage), geom = "polygon", alpha = 0.10, level = 0.95) + 
   scale_color_manual(values = color_LifeStage) +
