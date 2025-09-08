@@ -210,20 +210,20 @@ ggsave(filename = "Y_Abundance_Fruit & Site.jpg", plot = plot_ITS_Family_FruitTy
 ### by FruitType + FruitSite + FruitVariety
 
 ```{r}
-# # 16S (Family)
-# ps_rare_16S_Family_FruitTypeSiteVariety <- Subset_physeq(ps_rare_16S, FruitType !="na"&FruitSite !="na"&FruitVariety !="na")
-# 
-# plot_16S_Family_FruitTypeSiteVariety <- Make_composition_bar_plot_2(ps_rare_16S_Family_FruitTypeSiteVariety, "Bacteria", "Family", 25, ~FruitType+FruitSite+FruitVariety, color_16S)
-# 
-# ggsave(filename = "B_Abundance_FruitTypeSiteVariety.jpg", plot = plot_16S_Family_FruitTypeSiteVariety, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
-# 
-# 
-# # ITS (Family)
-# ps_rare_ITS_Family_FruitTypeSiteVariety <- Subset_physeq(ps_rare_ITS, FruitType !="na"&FruitSite !="na"&FruitVariety !="na")
-# 
-# plot_ITS_Family_FruitTypeSiteVariety <- Make_composition_bar_plot_2(ps_rare_ITS_Family_FruitTypeSiteVariety, "Fungi", "Family", 15, ~FruitType+FruitSite+FruitVariety, color_ITS)
-# 
-# ggsave(filename = "Y_Abundance_FruitTypeSiteVariety.jpg", plot = plot_ITS_Family_FruitTypeSiteVariety, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
+# 16S (Family)
+ps_rare_16S_Family_FruitTypeSiteVariety <- Subset_physeq(ps_rare_16S, FruitType !="na"&FruitSite !="na"&FruitVariety !="na")
+
+plot_16S_Family_FruitTypeSiteVariety <- Make_composition_bar_plot_2(ps_rare_16S_Family_FruitTypeSiteVariety, "Bacteria", "Family", 25, ~FruitType+FruitSite+FruitVariety, color_16S)
+
+ggsave(filename = "B_Abundance_FruitTypeSiteVariety.jpg", plot = plot_16S_Family_FruitTypeSiteVariety, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
+
+
+# ITS (Family)
+ps_rare_ITS_Family_FruitTypeSiteVariety <- Subset_physeq(ps_rare_ITS, FruitType !="na"&FruitSite !="na"&FruitVariety !="na")
+
+plot_ITS_Family_FruitTypeSiteVariety <- Make_composition_bar_plot_2(ps_rare_ITS_Family_FruitTypeSiteVariety, "Fungi", "Family", 15, ~FruitType+FruitSite+FruitVariety, color_ITS)
+
+ggsave(filename = "Y_Abundance_FruitTypeSiteVariety.jpg", plot = plot_ITS_Family_FruitTypeSiteVariety, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 ```
 
 ### by Pop + LifeStage
