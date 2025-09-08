@@ -166,7 +166,7 @@ FB_ITS_LS <- t(BF_ITS_LS)
 ```
 
 # 2. LBM clustering / Heatmap
-
+### 16S
 ```{r}
 ########
 # 16S #
@@ -210,7 +210,10 @@ LBM_16S_LifeStage_LS <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S_LS, BF_m
 
 title_plot <- "LBM_LifeStage_LS_16S.jpg"
  cowplot::save_plot(file =here::here("plots", "5_LBM&co", title_plot), LBM_16S_LifeStage_LS, base_height = 40/cm(1), base_width = 40/cm(1), dpi = 1200)
+```
  
+### ITS
+```{r}
 ########
 # ITS #
 ########
@@ -288,7 +291,7 @@ title_plot <- "LBM_LifeStage_LS_ITS.jpg"
 
 ```{r, eval=FALSE}
 
-## Extract rows and columns for the alluvial plot
+## Extract rows (samples) and columns (OTUs) for the alluvial plot
 memb_spl_obs_16S <- LBM_bernoulli_16S$memberships$row
 memb_otu_obs_16S <- LBM_bernoulli_16S$memberships$col
 
@@ -304,7 +307,7 @@ dataalluvial_16S_fruits <- as.data.frame(table(
 #      sample_data(S_ps_rare_16S_bin)$FruitSite))
 
 # change column names
-colnames(dataalluvial_16S_fruits) = c("FruitType", "Gut_bacteria",  "FruitSite", "SampleSize")
+#colnames(dataalluvial_16S_fruits) = c("FruitType", "Gut_bacteria",  "FruitSite", "SampleSize")
 colnames(dataalluvial_16S_fruits) = c("FruitType", "Cluster_sample", "SampleSize")
 
 # plot for fruits
@@ -328,14 +331,15 @@ Alluvial_16S_Fruits <- dataalluvial_16S_fruits |>
 ### Fruit type and life stage
 
 ```{r}
-## Extract rows and columns for the alluvial plot
+## Extract rows (samples) and columns (OTUs) for the alluvial plot
 memb_spl_obs_16S <- LBM_bernoulli_16S$memberships$row
 memb_otu_obs_16S <- LBM_bernoulli_16S$memberships$col
 
-# data for alluvial plot (SampleSize = Number of samples associated with each line)
+## Data for alluvial plot : Compute SampleSize, the number of samples for each FruitType, Lifestage and OTU membership
+
 dataalluvial_16S_fruits_lifestage <- as.data.frame(table(
-      sample_data(S_ps_rare_16S_bin)$FruitType,
-      memb_spl_obs_16S, sample_data(S_ps_rare_16S_bin)$LifeStage))
+      sample_data(ps_rare_16S_bin)$FruitType,
+      memb_spl_obs_16S, sample_data(ps_rare_16S_bin)$LifeStage))
 
 # change column names
 colnames(dataalluvial_16S_fruits_lifestage) = c("FruitType", "Gut_bacteria",  "LifeStage", "SampleSize")
@@ -357,7 +361,40 @@ Alluvial_16S_Fruits_LifeStage <- dataalluvial_16S_fruits_lifestage |>
   theme(axis.text.x = element_text(size = 12, color = "black", face = "bold"))
 
 ```
+## ITS
+### Fruit type and life stage
 
+```{r}
+## Extract rows (samples) and columns (OTUs) for the alluvial plot
+memb_spl_obs_ITS <- LBM_bernoulli_ITS$memberships$row
+memb_otu_obs_ITS <- LBM_bernoulli_ITS$memberships$col
+
+## Data for alluvial plot : Compute SampleSize, the number of samples for each FruitType, Lifestage and OTU membership
+dataalluvial_ITS_fruits_lifestage <- as.data.frame(table(
+      sample_data(ps_rare_ITS_bin)$FruitType,
+      memb_spl_obs_ITS, sample_data(ps_rare_ITS_bin)$LifeStage))
+
+# change column names
+colnames(dataalluvial_ITS_fruits_lifestage) = c("FruitType", "Gut_fungi",  "LifeStage", "SampleSize")
+
+# plot for fruits
+Alluvial_ITS_Fruits_LifeStage <- dataalluvial_ITS_fruits_lifestage |>
+  ggplot(aes(axis1 = FruitType,
+             axis2 = Gut_fungi,
+             axis3 = LifeStage,
+             y = SampleSize)) +
+  ggalluvial::geom_alluvium(aes(fill = FruitType), alpha = 0.6) +
+  ggalluvial::geom_stratum(width = 0.4) +
+  geom_text(stat = "stratum",
+            aes(label = after_stat(stratum))) +
+  scale_x_discrete(limits = c("FruitType", "Gut fungi", "Life stage"), expand = c(.2, .05)) +
+  scale_fill_manual(values = c("BL" = "purple4", "CH" = "red4","na" = "grey",  "ST" = "red2"),guide = "none") +
+  ggtitle("ITS_Fruits_LifeStages") +
+  theme_minimal()+
+  theme(axis.text.x = element_text(size = 12, color = "black", face = "bold"))
+Alluvial_ITS_Fruits_LifeStage
+
+```
 ## Old stuff
 
 ```{r, eval=FALSE}
