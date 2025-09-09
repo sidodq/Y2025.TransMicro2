@@ -33,71 +33,96 @@ devtools::load_all()
 # Color Sets
 
 ```{r}
+# Get abundance collapsed at Family level
+ps_family <- tax_glom(ps_rare_16S, taxrank = "Family")
+
+# Transform to relative abundances (optional, depending on what you mean by "more abundant")
+ps_family_rel <- transform_sample_counts(ps_family, function(x) x / sum(x))
+
+# Convert to long data.frame
+df_family <- psmelt(ps_family_rel)
+
+# Summarize abundance across all samples
+top_families <- df_family %>%
+  group_by(Family) %>%
+  summarise(TotalAbundance = sum(Abundance, na.rm = TRUE)) %>%
+  arrange(desc(TotalAbundance)) %>%
+  slice_head(n = 30)
+
+top_families
+
+
+
 # using " unique(tax_table(ps_rare_ITS)[, "Family"])" 
 color_ITS <- c(
-  "Pichiaceae" ="#c49c94",
+  "Pichiaceae" ="#FF69B4",
   "Metschnikowiaceae" = "#FFC0CB",
-  "Aspergillaceae"  = "#40E0D0",
-  "Bulleribasidiaceae" = "#008000",
-  "Unknown" = "#FF69B4",
-  "Trichosporonaceae" ="#FF4600",   
-  "Dipodascaceae"="#B22222",      
-  "Taphrinaceae" = "#4682B4",  
-  "Sclerotiniaceae"="#800080",      
+  "Unknown" = "#c49c94",
   "Saccharomycodaceae" = "#F4A460", 
-  "Wallemiaceae"=  "#008B8B",   
-  "Pleosporaceae" = "#000080",       
-  "Cladosporiaceae" = "#A0522D",   
+  "Saccotheciaceae" = "#00FFFF",
+  "Cladosporiaceae" = "#A0522D",
+  "Dipodascaceae"="#B22222",
+  "Aspergillaceae"  = "#40E0D0",
+  "Phaffomycetaceae"= "#008080",
+  "Mucoraceae"  = "#FF00FF", 
+  "Pleosporaceae" = "#000080",
+  "Filobasidiaceae" = "#6B8E23",
+  "Erysiphaceae" = "#FFFF00",
+  "Trichosporonaceae" ="#FF4600",
+  "Bulleribasidiaceae" = "#008000",
+  "Taphrinaceae" = "#4682B4",  
+  "Saccharomycopsidaceae" = "#00FF7F",
+  "Mycosphaerellaceae" = "#c206bf",
   "Malasseziaceae" = "#808000",
-  "Vuilleminiaceae" = "#806000", 
+  "Dothideaceae" = "#E6E6FA",  
+  "Sclerotiniaceae"="#800080",    
+  "Vuilleminiaceae" = "#806000",
   "Sporidiobolaceae" =  "#D2691E",
   "Phaeotremellaceae" =  "#7FFFD4",
-  "Mucoraceae"  = "#FF00FF", 
+  "Cryptococcaceae"= "#FFD700",
   "Cystofilobasidiaceae" = "#800000",
   "Rhizopodaceae"  = "#4169E1",
-  "Filobasidiaceae" = "#6B8E23",
-  "Peronosporaceae" = "#FF1493",
-  "Neophaeothecaceae" = "#00FA9A",  
-  "Bulleraceae" = "#008053",
-  "Peniophoraceae"   = "#FF4500",
-  "Mycosphaerellaceae" = "#c206bf",
-  "Saccharomycopsidaceae" = "#00FF7F",
-  "Didymellaceae" = "#b3b304",
-  "Stereaceae" = "#808080",
-  "Bartaliniaceae" = "#ba4e4e",
-  "Phaffomycetaceae"= "#008080",
-  "Physalacriaceae" = "#FF6961",
-  "Aureobasidiaceae"= "#98FB98",
-  "Debaryomycetaceae"  = "#0000FF",
-  "Erysiphaceae" = "#FFFF00",
-  "Polyporaceae" = "#FFD700",
-  "Mrakiaceae" = "#FFA500",   
-  "Symmetrosporaceae" = "#00FFFF",
-  "Tremellaceae" = "#B03060",  
-  "Saccharomycetaceae" = "#CC3333",
-  "Phanerochaetaceae"  = "#4B0082",
-  "Gnomoniaceae"  = "#E6E6FA",  
-  "Entomophthoraceae"= "#FFF900",
-  "Schizoporaceae" = "#C0C0C0",     
-  "Dothioraceae" = "#50C878")
+  "Hydnaceae " ="#b3b304",
+  "Wallemiaceae"=  "#008B8B",   
+  "Trichomonascaceae" ="#008053",
+  "Other" = "grey70")
+  
+
+  
 
 # use "unique(tax_table(S_ps_rare_16S)[, "Family"])" to get the names
 color_16S <- c(
   "Acetobacteraceae" = "#17becf",
   "Erwiniaceae" = "#aec7e8",  
-  "Aeromonadaceae" = "#9467bd",
-  "Anaerovoracaceae" = "#2ca02c",
   "Lactobacillaceae" = "#32CD32", 
+  "Unknown" = "#4B0082",
+  "Enterobacteriaceae"= "#f7b6d2",
+  "Moraxellaceae"  = "#0000FF",
   "Oxalobacteraceae" = "#98df8a", 
   "Pseudomonadaceae" = "#ff9896", 
-  "Unknown" = "#4B0082",
-  "Planococcaceae" = "#8c564b", 
-  "Enterobacteriaceae"= "#f7b6d2",
   "Rhodanobacteraceae"= "#ffbb78",
+  "Yersiniaceae" = "#FF6961",
   "Morganellaceae"= "#e377c2",
-  "Moraxellaceae" = "#7f7f7f",
   "Bacillaceae" = "#bcbd22",
-  "Sphingomonadaceae"="#c5b0d5")
+  "Corynebacteriaceae" = "#ba4e4e",
+  "Sphingomonadaceae"="#c5b0d5",
+  "Lysobacteraceae" = "#4169E1",
+  "Flavobacteriaceae "= "#FFF900",
+  "Burkholderiaceae" = "#B03060", 
+  "Planococcaceae" = "#8c564b", 
+  "Thermaceae " =  "#CC3333",
+  "Chitinophagaceae" ="#98FB98",
+  "Hymenobacteraceae" =  "#9467bd",
+  "Beijerinckiaceae " = "#50C878",
+  "Sphingobacteriaceae"= "#FFA500",
+  "Streptococcaceae" = "#FF1493",
+  "Prevotellaceae" = "#00FA9A",  
+  "Paracoccaceae" = "#FF4500",
+  "Pasteurellaceae" = "#98F5FF",
+  "Micrococcaceae" = "cyan4",
+  "Myxococcaceae" = "#1E90FF",
+  "Propionibacteriaceae "="#BFEFFF",
+  "Other" = "grey70")
 
 color_prev_B <- c(
    "Acetobacteraceae" = "#17becf",  
@@ -111,7 +136,7 @@ color_prev_B <- c(
    "Enterobacteriaceae"= "#f7b6d2",
    "Rhodanobacteraceae" = "#ffbb78",
    "Morganellaceae"  = "#e377c2",
-   "Moraxellaceae"  = "#7f7f7f",
+   "Moraxellaceae"  = "#0000FF",
    "Bacillaceae"  = "#bcbd22",
    "Pseudomonadaceae"  = "#ff9896", 
    "Sphingomonadaceae"="#c5b0d5"
@@ -157,7 +182,7 @@ ps_rare_ITS_FruitsOnly <- Subset_physeq(ps_rare_ITS, SampleType %in% c("Artific_
 #### SampleType + FruitType
 ```{r}
 # 16S (Family)
-plot_16S_SampleTypeFruitType <- Make_composition_bar_plot_2(ps_rare_16S_FruitsOnly, "Bacteria", "Family", 25, ~SampleType + FruitType, color_16S)
+plot_16S_SampleTypeFruitType <- Make_composition_bar_plot_2(ps_rare_16S_FruitsOnly, "Bacteria", "Family", 15, ~SampleType + FruitType, color_16S)
 
 ggsave(filename = "B_Abundance_Sample_Type_Fruit_Type.jpg", plot = plot_16S_SampleTypeFruitType, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 

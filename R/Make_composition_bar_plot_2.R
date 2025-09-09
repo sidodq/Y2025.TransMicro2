@@ -12,11 +12,27 @@
 #' @param color_set the set of colors to use ex. color_16S
 #'
 #'
-#' @return
-#' The bar plot with in x the group of samples tested and in y the abundance of taxa families/genus.
-#'
 #' @export
 Make_composition_bar_plot_2 <- function(phyloseq_object_filtered, kingdom, taxonomic_level, TaxaNb, nested_modality, color_set) {
+
+  # Melt phyloseq object into tidy data
+  df <- phyloseq::psmelt(phyloseq_object_filtered)
+
+  # Filter to kingdom of interest
+  df <- df[df$Kingdom == kingdom, ]
+
+  # Collapse all "Unknown*" into a single "Unknown"
+  df[[taxonomic_level]] <- ifelse(grepl("^Unknown(_[0-9]+)?$", df[[taxonomic_level]]),
+                                  "Unknown",
+                                  as.character(df[[taxonomic_level]]))
+
+  # Keep only the top N taxa, the rest → "Other"
+  top_taxa <- names(sort(tapply(df$Abundance, df[[taxonomic_level]], sum), decreasing = TRUE))[1:TaxaNb]
+  df[[taxonomic_level]] <- ifelse(df[[taxonomic_level]] %in% top_taxa, df[[taxonomic_level]], "Other")
+
+  # Force legend order: all taxa, then Unknown, then Other
+  taxa_levels <- c(setdiff(unique(df[[taxonomic_level]]), c("Unknown", "Other")), "Unknown", "Other")
+  df[[taxonomic_level]] <- factor(df[[taxonomic_level]], levels = taxa_levels)
 
 plot <- phyloseq.extended::plot_composition(
   phyloseq_object_filtered,
