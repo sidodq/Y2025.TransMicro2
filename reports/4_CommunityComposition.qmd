@@ -154,6 +154,20 @@ ps_rare_16S_FruitsOnly <- Subset_physeq(ps_rare_16S, SampleType %in% c("Artific_
 ps_rare_ITS_FruitsOnly <- Subset_physeq(ps_rare_ITS, SampleType %in% c("Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days", "Nat_Uninf_Fruits_5_6days"))
 ```
 
+#### SampleType + FruitType
+```{r}
+# 16S (Family)
+plot_16S_SampleTypeFruitType <- Make_composition_bar_plot_2(ps_rare_16S_FruitsOnly, "Bacteria", "Family", 25, ~SampleType + FruitType, color_16S)
+
+ggsave(filename = "B_Abundance_Sample_Type_Fruit_Type.jpg", plot = plot_16S_SampleTypeFruitType, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
+
+
+# ITS (Family)
+plot_ITS_SampleTypeFruitType <- Make_composition_bar_plot_2(ps_rare_ITS_FruitsOnly, "Fungi", "Family", 15, ~SampleType + FruitType, color_ITS)
+
+ggsave(filename = "Y_Abundance_Sample_Type_Fruit_Type.jpg", plot = plot_ITS_SampleTypeFruitType, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
+```
+
 #### FruitType + Variety
 ```{r}
 # 16S (Family)
