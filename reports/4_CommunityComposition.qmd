@@ -28,13 +28,14 @@ library(rlang)
 library(eulerr)
 library(microbiome)
 library(microbiomeutilities)
+library(plotly)
 devtools::load_all()
 ```
 # Color Sets
 
 ```{r}
 # Get abundance collapsed at Family level
-ps_family <- tax_glom(ps_rare_16S, taxrank = "Family")
+ps_family <- tax_glom(ps_rare_16S_FruitsOnly, taxrank = "Family")
 
 # Transform to relative abundances (optional, depending on what you mean by "more abundant")
 ps_family_rel <- transform_sample_counts(ps_family, function(x) x / sum(x))
@@ -139,8 +140,7 @@ color_prev_B <- c(
    "Moraxellaceae"  = "#0000FF",
    "Bacillaceae"  = "#bcbd22",
    "Pseudomonadaceae"  = "#ff9896", 
-   "Sphingomonadaceae"="#c5b0d5"
-)
+   "Sphingomonadaceae"="#c5b0d5")
 ```
 
 # Load data
@@ -175,6 +175,24 @@ write.table(x=L, file=file.path(here::here(),"data", "derived_data", "3_Communit
 ```{r}
 # subset data
 ps_rare_16S_FruitsOnly <- Subset_physeq(ps_rare_16S, SampleType %in% c("Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days", "Nat_Uninf_Fruits_5_6days"))
+
+# Extract taxonomy table as a data frame
+tax <- as.data.frame(tax_table(ps_rare_16S_FruitsOnly))
+
+# Extract OTU names
+otu_names <- rownames(tax)
+
+# Add suffix with cluster number if Family == "Unknown"
+tax$Family <- ifelse(
+  tax$Family == "Unknown",
+  paste0("Unknown_", sub("Cluster_", "", otu_names)),
+  as.character(tax$Family)
+)
+
+# Put it back into the phyloseq object
+tax_table(ps_rare_16S_FruitsOnly) <- as.matrix(tax)
+
+
 
 ps_rare_ITS_FruitsOnly <- Subset_physeq(ps_rare_ITS, SampleType %in% c("Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days", "Nat_Uninf_Fruits_5_6days"))
 ```

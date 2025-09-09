@@ -501,20 +501,16 @@ ps_rare_ITS_Indiv <- Subset_physeq(ps_rare_ITS, LifeStage !="na" & Sample_Catego
 ``` 
 
 ```{r}
-#### 16S
-# Filter data
-ps_16S_rare_LifeStage <- Subset_physeq(ps_rare_16S, LifeStage !="na")
-
-ordi_nmds_J_16S_LifeStage <- phyloseq::ordinate(ps_16S_rare_LifeStage, method ="NMDS", distance ="jaccard") # stress = 0.1585201
+## 16S
+ordi_nmds_J_16S_LifeStage <- phyloseq::ordinate(ps_rare_16S_Indiv, method ="NMDS", distance ="jaccard") # stress = 0.1461515
 
 # reorder LifeStage
-desired_order <- c("Mother","Larva","Pupa", "PupalCase","Daughter")  
-sample_data(ps_16S_rare_LifeStage)$LifeStage <- factor(sample_data(ps_16S_rare_LifeStage)$LifeStage, levels = desired_order)
+desired_order <- c("Mother","Larva","Pupa","PupalCase","Daughter")  
+sample_data(ps_rare_16S_Indiv)$LifeStage <- factor(sample_data(ps_rare_16S_Indiv)$LifeStage, levels = desired_order)
 
 # plot with ellipses
-NMDS_J_16S_LifeStage_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_LifeStage, ordination = ordi_nmds_J_16S_LifeStage) + 
+NMDS_J_16S_LifeStage_Ellipses <- phyloseq::plot_ordination(physeq = ps_rare_16S_Indiv, ordination = ordi_nmds_J_16S_LifeStage) + 
   theme_bw() + 
-  #ggtitle("NMDS_J_16S_FocalSites_All") + 
   geom_point(aes(fill = LifeStage, shape = FruitType), size = 4) + 
   scale_shape_manual(values = c(BL = 21, CH = 22, ST = 24)) +
   scale_fill_manual(values = color_LifeStage) + 
@@ -522,8 +518,7 @@ NMDS_J_16S_LifeStage_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_
   scale_color_manual(values = color_LifeStage) +
   guides(
     fill = guide_legend(override.aes = list(shape = 21, linetype = NULL, size = 5), title = "Life Stage", ncol = 1),
-    shape = guide_legend(title = "Fruit Type"), 
-    #size = guide_legend(title = "Population"),
+    shape = guide_legend(title = "Fruit Type"),
     color = "none")
 
 title_plot <- "NMDS_16S_LifeStage_FruitType.png"
@@ -532,19 +527,16 @@ title_plot <- "NMDS_16S_LifeStage_FruitType.png"
                 base_width = 20/cm(1), dpi = 1200)
 ```
 
-#### ITS
 ```{r} 
-# Filter data
-ps_ITS_rare_LifeStage <- Subset_physeq(ps_rare_ITS, LifeStage !="na")
-
-ordi_nmds_J_ITS_LifeStage <- phyloseq::ordinate(ps_ITS_rare_LifeStage, method ="NMDS", distance ="jaccard") # stress = 0.1775545
+## ITS
+ordi_nmds_J_ITS_LifeStage <- phyloseq::ordinate(ps_rare_ITS_Indiv, method ="NMDS", distance ="jaccard") # stress = 0.163664
 
 # reorder LifeStage
 desired_order <- c("Mother","Larva","Pupa", "PupalCase","Daughter")  
-sample_data(ps_ITS_rare_LifeStage)$LifeStage <- factor(sample_data(ps_ITS_rare_LifeStage)$LifeStage, levels = desired_order)
+sample_data(ps_rare_ITS_Indiv)$LifeStage <- factor(sample_data(ps_rare_ITS_Indiv)$LifeStage, levels = desired_order)
 
 # plot with ellipses
-NMDS_J_ITS_LifeStage_Ellipses <- phyloseq::plot_ordination(physeq = ps_ITS_rare_LifeStage, ordination = ordi_nmds_J_ITS_LifeStage) + 
+NMDS_J_ITS_LifeStage_Ellipses <- phyloseq::plot_ordination(physeq = ps_rare_ITS_Indiv, ordination = ordi_nmds_J_ITS_LifeStage) + 
   theme_bw() + 
   geom_point(aes(fill = LifeStage, shape = FruitType), size = 4) + 
   scale_shape_manual(values = c(BL = 21, CH = 22, ST = 24)) +

@@ -21,37 +21,51 @@ Make_composition_bar_plot_2 <- function(phyloseq_object_filtered, kingdom, taxon
   # Filter to kingdom of interest
   df <- df[df$Kingdom == kingdom, ]
 
-  # Collapse all "Unknown*" into a single "Unknown"
-  df[[taxonomic_level]] <- ifelse(grepl("^Unknown(_[0-9]+)?$", df[[taxonomic_level]]),
-                                  "Unknown",
-                                  as.character(df[[taxonomic_level]]))
-
-  # Keep only the top N taxa, the rest → "Other"
+  # Keep only the top N taxa (others -> "Other")
   top_taxa <- names(sort(tapply(df$Abundance, df[[taxonomic_level]], sum), decreasing = TRUE))[1:TaxaNb]
   df[[taxonomic_level]] <- ifelse(df[[taxonomic_level]] %in% top_taxa, df[[taxonomic_level]], "Other")
 
-  # Force legend order: all taxa, then Unknown, then Other
-  taxa_levels <- c(setdiff(unique(df[[taxonomic_level]]), c("Unknown", "Other")), "Unknown", "Other")
-  df[[taxonomic_level]] <- factor(df[[taxonomic_level]], levels = taxa_levels)
+  # Build plot
+  plot <- ggplot2::ggplot(df, ggplot2::aes(x = Sample, y = Abundance, fill = .data[[taxonomic_level]])) +
+    ggplot2::geom_bar(stat = "identity", position = "stack") +
+    ggh4x::facet_nested(nested_modality, scales = "free_x", space = "fixed") +
+    ggplot2::scale_fill_manual(values = color_set) +
+    ggplot2::labs(x = "Samples", y = "Relative abundance", title = "") +
+    ggplot2::guides(fill = ggplot2::guide_legend(ncol = 1)) +
+    ggplot2::theme(
+      strip.text.x = ggplot2::element_text(size = 13, face = "bold"),
+      axis.text.x = ggplot2::element_text(size = 8),
+      axis.text.y = ggplot2::element_text(size = 12),
+      axis.title.x = ggplot2::element_text(size = 13),
+      axis.title.y = ggplot2::element_text(size = 13),
+      legend.text = ggplot2::element_text(size = 11),
+      legend.title = ggplot2::element_text(size = 13))
 
-plot <- phyloseq.extended::plot_composition(
-  phyloseq_object_filtered,
-  "Kingdom", kingdom,
-  taxonomic_level,
-  numberOfTaxa = TaxaNb,
-  fill = taxonomic_level
-) +
-  ggh4x::facet_nested(nested_modality, scales = "free_x", space = "fixed") +
-  ggplot2::scale_fill_manual(values = color_set) +
-  ggplot2::labs(x = "Samples", y = "Relative abundance", title = "") +
-  ggplot2::guides(fill = ggplot2::guide_legend(ncol = 1)) +
-  ggplot2::theme(
-    strip.text.x = ggplot2::element_text(size = 13, face = "bold"),
-    axis.text.x = ggplot2::element_text(size = 8),
-    axis.text.y = ggplot2::element_text(size = 12),
-    axis.title.x = ggplot2::element_text(size = 13),
-    axis.title.y = ggplot2::element_text(size = 13),
-    legend.text = ggplot2::element_text(size = 11),
-    legend.title = ggplot2::element_text(size = 13))
-plot(plot)
+  return(plot)
 }
+
+
+#' #' @export
+#' Make_composition_bar_plot_2 <- function(phyloseq_object_filtered, kingdom, taxonomic_level, TaxaNb, nested_modality, color_set) {
+#'
+#' plot <- phyloseq.extended::plot_composition(
+#'   phyloseq_object_filtered,
+#'   "Kingdom", kingdom,
+#'   taxonomic_level,
+#'   numberOfTaxa = TaxaNb,
+#'   fill = taxonomic_level
+#' ) +
+#'   ggh4x::facet_nested(nested_modality, scales = "free_x", space = "fixed") +
+#'   ggplot2::scale_fill_manual(values = color_set) +
+#'   ggplot2::labs(x = "Samples", y = "Relative abundance", title = "") +
+#'   ggplot2::guides(fill = ggplot2::guide_legend(ncol = 1)) +
+#'   ggplot2::theme(
+#'     strip.text.x = ggplot2::element_text(size = 13, face = "bold"),
+#'     axis.text.x = ggplot2::element_text(size = 8),
+#'     axis.text.y = ggplot2::element_text(size = 12),
+#'     axis.title.x = ggplot2::element_text(size = 13),
+#'     axis.title.y = ggplot2::element_text(size = 13),
+#'     legend.text = ggplot2::element_text(size = 11),
+#'     legend.title = ggplot2::element_text(size = 13))
+#' plot(plot)
+#' }
