@@ -81,6 +81,8 @@ metadata <- metadata %>%
       ID_pool == "CT_INDEX_3" & Marker == "ITS" ~ "CT_INDEX_3_ITS",
       TRUE ~ ID_pool))
 
+length(unique((metadata$ID_pool)[ metadata$Marker != "ITS"])) #nb of 16S samples = 428
+length(unique((metadata$ID_pool)[ metadata$Marker != "16S"])) #nb of ITS samples = 362
 
 # Remove run 1&2 distinction 
 metadata <- metadata %>% 
@@ -92,6 +94,7 @@ metadata <- metadata %>%
     .fns = ~ ifelse(length(unique(.x)) == 1, unique(.x), paste(unique(.x), collapse = ";"))
   ), .groups = "drop")
 
+length(unique(metadata$ID_pool)) #nb of tot samples = 456
 ```
 
 # 2. Create a phyloseq object
@@ -138,12 +141,12 @@ ps_ITS <- phyloseq::phyloseq(OTU_ITS, TAX_ITS, MTD)
 
 # Extract OTU abundance data from phyloseq objects
 table_OTU_16S <- phyloseq::otu_table(ps_16S)
-table_OTU_16S[rowSums(phyloseq::otu_table(ps_16S)) == 0, ]
-names(phyloseq::sample_sums(ps_16S)[ phyloseq::sample_sums(ps_16S) == 0]) # OTUs with no counts in any 16S samples
+table_OTU_16S[rowSums(phyloseq::otu_table(ps_16S)) == 0, ] # OTUs with no counts in any 16S samples
+names(phyloseq::sample_sums(ps_16S)[ phyloseq::sample_sums(ps_16S) == 0]) #samples with no reads
 
 table_OTU_ITS <- phyloseq::otu_table(ps_ITS)
-table_OTU_ITS[rowSums(phyloseq::otu_table(ps_ITS)) == 0, ]
-names(phyloseq::sample_sums(ps_ITS)[ phyloseq::sample_sums(ps_ITS) == 0]) # OTUs with no counts in any ITS samples
+table_OTU_ITS[rowSums(phyloseq::otu_table(ps_ITS)) == 0, ] # OTUs with no counts in any ITS samples
+names(phyloseq::sample_sums(ps_ITS)[ phyloseq::sample_sums(ps_ITS) == 0]) #samples with no reads
 
 # Remove Wolbachia
 ## List of Wolbachia clusters
@@ -178,8 +181,8 @@ max(sample_sums(ps_ITS)) #max
 mean(sample_sums(ps_ITS)) # mean = 9913.682
 
 # Identify samples with a sum of abundances equal to zero
-zero_abundance_samples_16S <- names(sample_sums(ps_16S)[ sample_sums(ps_16S) == 0])
-zero_abundance_samples_ITS <- names(sample_sums(ps_ITS)[ sample_sums(ps_ITS) == 0])
+zero_abundance_samples_16S <- names(sample_sums(ps_16S)[ sample_sums(ps_16S) == 0]) # 33 samples
+zero_abundance_samples_ITS <- names(sample_sums(ps_ITS)[ sample_sums(ps_ITS) == 0]) # 7 samples
 
 # Remove samples with a sum of abundances equal to zero from the phyloseq object
 ps_16S_filtered <- subset_samples(ps_16S, !(sample_names(ps_16S) %in% zero_abundance_samples_16S))
@@ -187,20 +190,65 @@ ps_ITS_filtered <- subset_samples(ps_ITS, !(sample_names(ps_ITS) %in% zero_abund
 ```
 
 # 3. Rarefaction curve
-
+## All samples
 ```{r}
-Rarefactioncurve_16S <- Make_rarefaction_curve2(phylo_object = ps_16S_filtered, x_intersection_line = 3000, plot_variable = "SampleType", color_variable = "SampleType", maxdepth=10000, logy=TRUE) # curves plotted for seq depth up to 10.000 reads per sample (17 types of samples)
-Rarefactioncurve_16S
+Rarefactioncurve_16S <- phyloseq.extended::ggrare(ps_16S_filtered, step = 100, se = FALSE, color = "SampleType", label = "ID_pool") +
+  geom_vline(xintercept = 3000, linetype = "dashed") +
+  xlim(0, 10000) +  ylim(0, 150) +  theme_bw()
+
+# Make_rarefaction_curve2(phylo_object = ps_16S_filtered, x_intersection_line = 3000, plot_variable = "SampleType", color_variable = "SampleType", maxdepth=10000, logy=TRUE) # curves plotted for seq depth up to 10.000 reads per sample (17 types of samples)
 
 title_plot <- "16S_TM1&2_Rarefactioncurve.png"
   cowplot::save_plot(file =here::here("plots", "2_RarefyData", title_plot), Rarefactioncurve_16S, base_height = 35/cm(1), base_width = 60/cm(1), dpi = 1200)
 
-  
-Rarefactioncurve_ITS <- Make_rarefaction_curve(phylo_object = ps_ITS_filtered, x_intersection_line = 5000, variable = "SampleType", number_columns = 18 , color_variable = "SampleType", title ="ITS Rarefaction Curves", maxdepth=10000)
-Rarefactioncurve_ITS
- 
+
+    
+Rarefactioncurve_ITS <- phyloseq.extended::ggrare(ps_ITS_filtered, step = 100, se = FALSE, color = "SampleType", label = "ID_pool") +
+  geom_vline(xintercept = 5000, linetype = "dashed") +  xlim(0, 10000) +  theme_bw()
+
+# Make_rarefaction_curve(phylo_object = ps_ITS_filtered, x_intersection_line = 5000, variable = "SampleType", number_columns = 18 , color_variable = "SampleType", title ="ITS Rarefaction Curves", maxdepth=10000)
+
 title_plot <- "ITS_TM1&2_Rarefactioncurve.png"
   cowplot::save_plot(file =here::here("plots", "2_RarefyData", title_plot), Rarefactioncurve_ITS, base_height = 35/cm(1),base_width = 60/cm(1), dpi = 1200)
+  
+# make a combined plot
+RarefactionCurves <- ggpubr::ggarrange(Rarefactioncurve_16S, Rarefactioncurve_ITS,
+                    labels = c("A. 16S", "B. ITS"), ncol = 2, nrow = 1, widths = c(1.4, 1.4), legend = "bottom", common.legend = TRUE)
+
+title_plot <- "RarefactionCurves_AllSamples.png"
+ cowplot::save_plot(file =here::here("plots", "2_RarefyData", title_plot), RarefactionCurves, base_height = 30/cm(1), base_width = 60/cm(1), dpi = 1200)  
+```
+
+## Expe samples
+```{r}
+# Filter data
+ps_16S_filt_expe <- Subset_physeq(ps_16S_filtered, Sample_Category == "All_stages_Focal_Sites")
+
+ps_16S_filt_expe <- Subset_physeq(ps_16S_filt_expe, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Fruits_0days"))
+
+Rarefactioncurve_16S_expe <- phyloseq.extended::ggrare(ps_16S_filt_expe, step = 100, se = FALSE, color = "SampleType", label = "ID_pool") +
+  geom_vline(xintercept = 3000, linetype = "dashed") +  xlim(0, 10000) +  ylim(0, 40) +  theme_bw()
+
+title_plot <- "16S_Expe_TM1&2_Rarefactioncurve.png"
+  cowplot::save_plot(file =here::here("plots", "2_RarefyData", title_plot), Rarefactioncurve_16S_expe, base_height = 35/cm(1), base_width = 60/cm(1), dpi = 1200)
+
+
+ps_ITS_filt_expe <- Subset_physeq(ps_ITS_filtered, Sample_Category == "All_stages_Focal_Sites")
+
+ps_ITS_filt_expe <- Subset_physeq(ps_ITS_filt_expe, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Fruits_0days"))
+
+Rarefactioncurve_ITS_expe <- phyloseq.extended::ggrare(ps_ITS_filt_expe, step = 100, se = FALSE, color = "SampleType", label = "ID_pool") +
+  geom_vline(xintercept = 5000, linetype = "dashed") +  xlim(0, 10000) +  ylim(0, 125) + theme_bw()
+
+title_plot <- "ITS_Expe_TM1&2_Rarefactioncurve.png"
+  cowplot::save_plot(file =here::here("plots", "2_RarefyData", title_plot), Rarefactioncurve_ITS_expe, base_height = 35/cm(1),base_width = 60/cm(1), dpi = 1200)
+  
+# make a combined plot
+RarefactionCurves_Expe <- ggpubr::ggarrange(Rarefactioncurve_16S_expe, Rarefactioncurve_ITS_expe,
+                    labels = c("A. 16S", "B. ITS"), ncol = 2, nrow = 1, widths = c(1.4, 1.4), legend = "bottom", common.legend = TRUE)
+
+title_plot <- "RarefactionCurves_Expe.png"
+ cowplot::save_plot(file =here::here("plots", "2_RarefyData", title_plot), RarefactionCurves_Expe, base_height = 30/cm(1), base_width = 60/cm(1), dpi = 1200)    
 ```
 
 # 4. Rarefy data
@@ -212,7 +260,7 @@ ps_rare_16S <- rarefy_even_depth(ps_16S, sample.size = 3000) # 105 samples + 316
 sample_sums(ps_rare_16S)[1:100]
 
 set.seed(1)                                         
-ps_rare_ITS <- rarefy_even_depth(ps_ITS, sample.size = 5000) # 42 samples + 6080 otus removed
+ps_rare_ITS <- rarefy_even_depth(ps_ITS, sample.size = 5000) # 42 samples + 608 otus removed
 sample_sums(ps_rare_ITS)[1:100]
 
 # Export

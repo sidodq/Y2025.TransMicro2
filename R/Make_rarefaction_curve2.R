@@ -16,7 +16,7 @@ Make_rarefaction_curve2 <- function(phylo_object, x_intersection_line, plot_vari
   rarefaction_curve <- phyloseq.extended::ggrare(
     physeq = phylo_object,
     step = 50,
-    label = plot_variable,
+    label = "ID_pool",
     color = color_variable,
     parallel = TRUE,
     se = FALSE
