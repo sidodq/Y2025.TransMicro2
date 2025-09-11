@@ -429,7 +429,7 @@ title_plot <- "AlphaDiv_FruitType+LifeStage_combined.png"
                  FTvar_combined, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
 ```
 
-# II. Beta diversity
+'ordinate'# II. Beta diversity
 
 ## 1. Qualitative (Jaccard index)
 
@@ -554,7 +554,7 @@ title_plot <- "NMDS_ITS_LifeStage_FruitType.png"
                 base_width = 20/cm(1), dpi = 1200)
 ```
 
-### LifeStage + Aunt & Fruits
+### c. Individuals + Aunt & Fruits
 #### 16S
 ```{r}
 # Filter data
