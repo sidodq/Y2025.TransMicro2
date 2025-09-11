@@ -429,7 +429,7 @@ title_plot <- "AlphaDiv_FruitType+LifeStage_combined.png"
                  FTvar_combined, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
 ```
 
-'ordinate'# II. Beta diversity
+# II. Beta diversity
 
 ## 1. Qualitative (Jaccard index)
 
