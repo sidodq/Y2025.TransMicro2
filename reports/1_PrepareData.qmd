@@ -416,6 +416,13 @@ at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_47")] <- "Fungi;
 at_ITS[at_ITS$observation_name == "Cluster_50", "seed_sequence"]
 at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_50")] <- "Fungi;Ascomycota;Pichiomycetes;Serinales;Metschnikowiaceae;Metschnikowia;Unknown"
 
+# blast_taxonomy of big clusters with unknown after Kingdom 
+at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_4")] <- "Fungi;Ascomycota;Leotiomycetes;Helotiales;Sclerotiniaceae;Unknown;Unknown"
+
+at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_5")] <- "Fungi;Ascomycota;Dothideomycetes;Cladosporiales;Cladosporiaceae;Cladosporium;Unknown"
+
+at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_6")] <- "Fungi;Ascomycota;Leotiomycetes;Helotiales;Sclerotiniaceae;Unknown;Unknown"
+
 # Delete them
 at_ITS <- at_ITS %>%
   dplyr::filter(blast_taxonomy != "no;NA;NA;NA;NA;NA;NA" )

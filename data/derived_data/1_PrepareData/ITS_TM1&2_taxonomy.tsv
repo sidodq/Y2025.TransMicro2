@@ -2,9 +2,9 @@ observation_name	Kingdom	Phylum	Class	Order	Family	Genus	Species
 Cluster_1	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia kluyveri
 Cluster_2	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia kluyveri
 Cluster_3	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia terricola
-Cluster_4	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_5	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_6	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_4	Fungi	Ascomycota	Leotiomycetes	Helotiales	Sclerotiniaceae	Unknown	Unknown
+Cluster_5	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Unknown
+Cluster_6	Fungi	Ascomycota	Leotiomycetes	Helotiales	Sclerotiniaceae	Unknown	Unknown
 Cluster_7	Fungi	Ascomycota	Dothideomycetes	Dothideales	Saccotheciaceae	Aureobasidium	Aureobasidium pullulans
 Cluster_8	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
 Cluster_9	Fungi	Ascomycota	Dipodascomycetes	Dipodascales	Dipodascaceae	Unknown	Unknown
