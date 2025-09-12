@@ -34,27 +34,20 @@ devtools::load_all()
 # Color Sets
 
 ```{r}
-# Get abundance collapsed at Family level
-ps_family <- tax_glom(ps_rare_16S_FruitsOnly, taxrank = "Family")
+# # Get abundance collapsed at Family level
+# ps_family <- tax_glom(ps_rare_16S_FruitsOnly, taxrank = "Family")
+# # Transform to relative abundances (optional, depending on what you mean by "more abundant")
+# ps_family_rel <- transform_sample_counts(ps_family, function(x) x / sum(x))
+# # Convert to long data.frame
+# df_family <- psmelt(ps_family_rel)
+# # Summarize abundance across all samples
+# top_families <- df_family %>%
+#   group_by(Family) %>%
+#   summarise(TotalAbundance = sum(Abundance, na.rm = TRUE)) %>%
+#   arrange(desc(TotalAbundance)) %>%
+#   slice_head(n = 30)
 
-# Transform to relative abundances (optional, depending on what you mean by "more abundant")
-ps_family_rel <- transform_sample_counts(ps_family, function(x) x / sum(x))
-
-# Convert to long data.frame
-df_family <- psmelt(ps_family_rel)
-
-# Summarize abundance across all samples
-top_families <- df_family %>%
-  group_by(Family) %>%
-  summarise(TotalAbundance = sum(Abundance, na.rm = TRUE)) %>%
-  arrange(desc(TotalAbundance)) %>%
-  slice_head(n = 30)
-
-top_families
-
-
-
-# using " unique(tax_table(ps_rare_ITS)[, "Family"])" 
+# using the code above 
 color_ITS <- c(
   "Pichiaceae" ="#FF69B4",
   "Metschnikowiaceae" = "#FFC0CB",
@@ -86,17 +79,21 @@ color_ITS <- c(
   "Hydnaceae " ="#b3b304",
   "Wallemiaceae"=  "#008B8B",   
   "Trichomonascaceae" ="#008053",
-  "Other" = "grey70")
+  "Other" = "grey60",
+  "Unknown_4" = "grey70",
+  "Unknown_5" = "grey75",
+  "Unknown_62" = "grey80",
+  "Unknown_55" = "grey85"
+  
+  )
   
 
-  
 
 # use "unique(tax_table(S_ps_rare_16S)[, "Family"])" to get the names
 color_16S <- c(
   "Acetobacteraceae" = "#17becf",
   "Erwiniaceae" = "#aec7e8",  
   "Lactobacillaceae" = "#32CD32", 
-  "Unknown" = "#4B0082",
   "Enterobacteriaceae"= "#f7b6d2",
   "Moraxellaceae"  = "#0000FF",
   "Oxalobacteraceae" = "#98df8a", 
@@ -108,13 +105,13 @@ color_16S <- c(
   "Corynebacteriaceae" = "#ba4e4e",
   "Sphingomonadaceae"="#c5b0d5",
   "Lysobacteraceae" = "#4169E1",
-  "Flavobacteriaceae "= "#FFF900",
+  "Flavobacteriaceae"= "#FFF900",
   "Burkholderiaceae" = "#B03060", 
   "Planococcaceae" = "#8c564b", 
-  "Thermaceae " =  "#CC3333",
+  "Thermaceae" =  "#CC3333",
   "Chitinophagaceae" ="#98FB98",
   "Hymenobacteraceae" =  "#9467bd",
-  "Beijerinckiaceae " = "#50C878",
+  "Beijerinckiaceae" = "#50C878",
   "Sphingobacteriaceae"= "#FFA500",
   "Streptococcaceae" = "#FF1493",
   "Prevotellaceae" = "#00FA9A",  
@@ -123,7 +120,9 @@ color_16S <- c(
   "Micrococcaceae" = "cyan4",
   "Myxococcaceae" = "#1E90FF",
   "Propionibacteriaceae "="#BFEFFF",
-  "Other" = "grey70")
+  "Comamonadaceae" = "#7AC5CD",
+  "Other" = "grey70",
+  "Unknown_16" = "grey80")
 
 color_prev_B <- c(
    "Acetobacteraceae" = "#17becf",  
@@ -167,6 +166,31 @@ L$FruitType <- factor(L$FruitType, levels = c("BL", "CH", "ST", "na"))
 write.table(x=L, file=file.path(here::here(),"data", "derived_data", "3_CommunityComposition", "ITS_melt.csv"), row.names=FALSE, quote=FALSE, sep=";")
 ```
 
+``` {r}
+# Distinguish "Unknown" families by numeroting them with their corresponding cluster number
+
+tax <- as.data.frame(tax_table(ps_rare_16S)) # Extract taxonomy table as a data frame
+otu_names <- rownames(tax) # Extract OTU names
+
+tax$Family <- ifelse(
+  tax$Family == "Unknown",
+  paste0("Unknown_", sub("Cluster_", "", otu_names)), # Add suffix with cluster number if Family == "Unknown"
+  as.character(tax$Family))
+
+tax_table(ps_rare_16S) <- as.matrix(tax) # Put it back into the phyloseq object
+
+
+tax <- as.data.frame(tax_table(ps_rare_ITS)) # Extract taxonomy table as a data frame
+otu_names <- rownames(tax) # Extract OTU names
+
+tax$Family <- ifelse(
+  tax$Family == "Unknown",
+  paste0("Unknown_", sub("Cluster_", "", otu_names)), # Add suffix with cluster number if Family == "Unknown"
+  as.character(tax$Family))
+
+tax_table(ps_rare_ITS) <- as.matrix(tax) # Put it back into the phyloseq object
+```
+
 # I. Composition (abundance)
 
 ## 1. Bar plots
@@ -175,24 +199,6 @@ write.table(x=L, file=file.path(here::here(),"data", "derived_data", "3_Communit
 ```{r}
 # subset data
 ps_rare_16S_FruitsOnly <- Subset_physeq(ps_rare_16S, SampleType %in% c("Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days", "Nat_Uninf_Fruits_5_6days"))
-
-# Extract taxonomy table as a data frame
-tax <- as.data.frame(tax_table(ps_rare_16S_FruitsOnly))
-
-# Extract OTU names
-otu_names <- rownames(tax)
-
-# Add suffix with cluster number if Family == "Unknown"
-tax$Family <- ifelse(
-  tax$Family == "Unknown",
-  paste0("Unknown_", sub("Cluster_", "", otu_names)),
-  as.character(tax$Family)
-)
-
-# Put it back into the phyloseq object
-tax_table(ps_rare_16S_FruitsOnly) <- as.matrix(tax)
-
-
 
 ps_rare_ITS_FruitsOnly <- Subset_physeq(ps_rare_ITS, SampleType %in% c("Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days", "Nat_Uninf_Fruits_5_6days"))
 ```
@@ -214,7 +220,7 @@ ggsave(filename = "Y_Abundance_Sample_Type_Fruit_Type.jpg", plot = plot_ITS_Samp
 #### FruitType + Variety
 ```{r}
 # 16S (Family)
-plot_16S_FruitTypeVariety <- Make_composition_bar_plot_2(ps_rare_16S_FruitsOnly, "Bacteria", "Family", 25, ~FruitType+FruitVariety, color_16S)
+plot_16S_FruitTypeVariety <- Make_composition_bar_plot_2(ps_rare_16S_FruitsOnly, "Bacteria", "Family", 15, ~FruitType+FruitVariety, color_16S)
 
 ggsave(filename = "B_Abundance_Fruit_Type_Variety.jpg", plot = plot_16S_FruitTypeVariety, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 
@@ -228,13 +234,13 @@ ggsave(filename = "Y_Abundance_Fruit_Type_Variety.jpg", plot = plot_ITS_FruitTyp
 #### FruitType + Site
 ```{r}
 # 16S (Family)
-plot_16S_Family_FruitTypeSite <- Make_composition_bar_plot_2(ps_rare_16S_FruitsOnly, "Bacteria", "Family", 25, ~FruitType+FruitSite, color_16S)
+plot_16S_Family_FruitTypeSite <- Make_composition_bar_plot_2(ps_rare_16S_FruitsOnly, "Bacteria", "Family", 15, ~FruitType+FruitSite, color_16S)
 
 ggsave(filename = "B_Abundance_Fruit_Type_Site.jpg", plot = plot_16S_Family_FruitTypeSite, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 
 
 # ITS (Family)
-plot_ITS_Family_FruitTypeSite <- Make_composition_bar_plot_2(ps_rare_ITS_FruitsOnly, "Fungi", "Family", 20, ~FruitType+FruitSite, color_ITS)
+plot_ITS_Family_FruitTypeSite <- Make_composition_bar_plot_2(ps_rare_ITS_FruitsOnly, "Fungi", "Family", 15, ~FruitType+FruitSite, color_ITS)
 
 ggsave(filename = "Y_Abundance_Fruit_Type_Site.jpg", plot = plot_ITS_Family_FruitTypeSite, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 ```
@@ -242,7 +248,7 @@ ggsave(filename = "Y_Abundance_Fruit_Type_Site.jpg", plot = plot_ITS_Family_Frui
 #### FruitType + Site + Variety
 ```{r}
 # 16S (Family)
-plot_16S_Family_FruitTypeSiteVariety <- Make_composition_bar_plot_2(ps_rare_16S_FruitsOnly, "Bacteria", "Family", 25, ~FruitType+FruitSite+FruitVariety, color_16S)
+plot_16S_Family_FruitTypeSiteVariety <- Make_composition_bar_plot_2(ps_rare_16S_FruitsOnly, "Bacteria", "Family", 20, ~FruitType+FruitSite+FruitVariety, color_16S)
 
 ggsave(filename = "B_Abundance_Fruit_Type_Site_Variety.jpg", plot = plot_16S_Family_FruitTypeSiteVariety, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 
@@ -266,7 +272,7 @@ ps_rare_ITS_Indiv <- Subset_physeq(ps_rare_ITS, LifeStage !="na" & Sample_Catego
 #### LifeStage + FruitType
 ```{r}
 # 16S (Family)
-plot_16S_Family_StageFruit <- Make_composition_bar_plot_2(ps_rare_16S_Indiv, "Bacteria", "Family", 25, ~LifeStage+FruitType, color_16S)
+plot_16S_Family_StageFruit <- Make_composition_bar_plot_2(ps_rare_16S_Indiv, "Bacteria", "Family", 15, ~LifeStage+FruitType, color_16S)
 
 plot_16S_Family_StageFruit$data$LifeStage <- factor(plot_16S_Family_StageFruit$data$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter")) # reorder life stages 
 
@@ -281,6 +287,23 @@ plot_ITS_Family_StageFruit$data$LifeStage <- factor(plot_ITS_Family_StageFruit$d
 ggsave(filename = "Y_Abundance_LifeStage_FruitType.jpg", plot = plot_ITS_Family_StageFruit, path = file.path(here::here(), "plots", "3_Communitycomposition"), width = 29.7, height = 21, units = "cm")
 ```
 
+#### LifeStage + FruitType + FruitSite
+```{r}
+# 16S (Family)
+plot_16S_StageFruitSite <- Make_composition_bar_plot_2(ps_rare_16S_Indiv, "Bacteria", "Family", 15, ~LifeStage+FruitType+FruitSite, color_16S)
+
+plot_16S_StageFruitSite$data$LifeStage <- factor(plot_16S_StageFruitSite$data$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter")) # reorder life stages 
+
+ggsave(filename = "B_Abundance_LifeStage_FruitType_FruitSite.jpg", plot = plot_16S_StageFruitSite, path = file.path(here::here(), "plots", "3_Communitycomposition"), width = 29.7, height = 21, units = "cm")
+
+
+# ITS (Family)
+plot_ITS_StageFruitSite <- Make_composition_bar_plot_2(ps_rare_ITS_Indiv, "Fungi", "Family", 20, ~LifeStage+FruitType+FruitSite, color_ITS)
+
+plot_ITS_StageFruitSite$data$LifeStage <- factor(plot_ITS_StageFruitSite$data$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter")) # reorder life stages 
+
+ggsave(filename = "Y_Abundance_LifeStage_FruitType_FruitSite.jpg", plot = plot_ITS_StageFruitSite, path = file.path(here::here(), "plots", "3_Communitycomposition"), width = 29.7, height = 21, units = "cm")
+```
 
 #### Pop + LifeStage
 ```{r}

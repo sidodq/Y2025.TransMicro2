@@ -389,7 +389,7 @@ Fungi	Ascomycota	Leotiomycetes	Helotiales	Helotiaceae	Scytalidium	Scytalidium li
 Fungi	Ascomycota	Eurotiomycetes	Phaeomoniellales	Celotheliaceae	Minutiella	Minutiella pruni-avium
 Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium brevicompactum
 Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Sporidiobolaceae	Sporobolomyces	Unknown
-Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Fungi	Ascomycota	Leotiomycetes	Helotiales	Sclerotiniaceae	Unknown	Unknown
 Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Phaffomycetaceae	Wickerhamomyces	Wickerhamomyces pijperi
 Fungi	Ascomycota	Sordariomycetes	Diaporthales	Gnomoniaceae	Gnomoniopsis	Gnomoniopsis fructicola
 Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia hydrangeae-macrophyllae
@@ -438,7 +438,7 @@ Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Filobasidiaceae	Naganishia	Na
 Fungi	Basidiomycota	Exobasidiomycetes	Microstromatales	Microstromataceae	Microstroma	Microstroma bacarum
 Fungi	Basidiomycota	Agaricomycetes	Hymenochaetales	Schizoporaceae	Xylodon	Xylodon flaviporus
 Fungi	Basidiomycota	Agaricomycetes	Polyporales	Ganodermataceae	Ganoderma	Ganoderma adspersum
-Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Unknown
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia gruessii
 Fungi	Ascomycota	Leotiomycetes	Leotiales	Tympanidaceae	Collophorina	Collophorina badensis
@@ -484,7 +484,7 @@ Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschn
 Fungi	Ascomycota	Leotiomycetes	Helotiales	Ploettnerulaceae	Cadophora	Unknown
 Fungi	Ascomycota	Leotiomycetes	Thelebolales	Pseudeurotiaceae	Unknown	Unknown
 Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Fungi	Ascomycota	Leotiomycetes	Helotiales	Sclerotiniaceae	Unknown	Unknown
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia reukaufii
 Fungi	Ascomycota	Sordariomycetes	Hypocreales	Unknown	Unknown	Unknown

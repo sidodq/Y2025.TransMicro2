@@ -190,7 +190,7 @@ ps_ITS_filtered <- subset_samples(ps_ITS, !(sample_names(ps_ITS) %in% zero_abund
 ```
 
 # 3. Rarefaction curve
-## All samples
+## a. All samples
 ```{r}
 Rarefactioncurve_16S <- phyloseq.extended::ggrare(ps_16S_filtered, step = 100, se = FALSE, color = "SampleType", label = "ID_pool") +
   geom_vline(xintercept = 3000, linetype = "dashed") +
@@ -219,7 +219,7 @@ title_plot <- "RarefactionCurves_AllSamples.png"
  cowplot::save_plot(file =here::here("plots", "2_RarefyData", title_plot), RarefactionCurves, base_height = 30/cm(1), base_width = 60/cm(1), dpi = 1200)  
 ```
 
-## Expe samples
+## b. Expe samples
 ```{r}
 # Filter data
 ps_16S_filt_expe <- Subset_physeq(ps_16S_filtered, Sample_Category == "All_stages_Focal_Sites")
