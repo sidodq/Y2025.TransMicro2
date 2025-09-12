@@ -62,7 +62,6 @@ metadata <- data.table::fread(file=file.path(here::here(), "data", "derived_data
 # I. Alpha diversity
 
 ## 1. Index calculation
-
 ```{r}
 # 16S
 AlphaDiv_16S <- estimate_richness(ps_rare_16S)
@@ -83,146 +82,87 @@ metadata_AlphaDiv_ITS <- metadata_AlphaDiv_ITS %>%
 df_AlphaDiv_ITS <- data.frame(phyloseq::sample_data(AlphaDiv_ITS))
 ```
 
-## 2. Plots - 1 factor
-
-### a. Function
+## 2. Fruits
 
 ```{r}
-# BoxPlot 1 index + 1 group
-plot_AlphaDiv_index <- function(df, group, group_labels, index, color_set) {
-    df <- df |> 
-    dplyr::filter((.data[[group]]) !="na") |> 
-    dplyr::mutate(
-      !!group := factor(.data[[group]], levels = group_labels))
-  
-  ggplot(df, aes(x = .data[[group]], y = .data[[index]], fill = .data[[group]])) +
-    geom_boxplot(outlier.shape = NA, position = position_dodge(1)) +
-    geom_jitter(size = 1.5, shape = 21, position = position_jitter(0.1), alpha = 0.9, color = "black") +
-    scale_fill_manual(values = color_set, labels = group_labels) +
-    labs(x = group, y = paste(index)) +
-    theme_classic() +
-    theme(
-      axis.text.x = element_text(color = "Black", size = 14, angle = 90),
-      axis.text.y = element_text(color = "Black", size = 14),
-      axis.title.x = element_text(color = "Black", size = 14, face = "bold"),
-      axis.title.y = element_text(color = "Black", size = 14, face = "bold"),
-      legend.title = element_text(color = "Black", size = 14, face = "bold"),
-      legend.text = element_text(color = "Black", size = 14),
-      legend.position = "right")
-  # +
-  #   # 👇 Add significance stars + required a new parameter "method"
-  #   stat_compare_means(comparisons = combn(group_labels, 2, simplify = FALSE), method = method,  label = "p.signif", tip.length = 0.01, size = 5)
-}
+# subset data
+metadata_AlphaDiv_16S_FruitsOnly <- filter(metadata_AlphaDiv_16S, SampleType %in% c("Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days", "Nat_Uninf_Fruits_5_6days"))
+
+df_AlphaDiv_16S_FruitsOnly <- data.frame(metadata_AlphaDiv_16S_FruitsOnly)
+
+
+metadata_AlphaDiv_ITS_FruitsOnly <- filter(metadata_AlphaDiv_16S, SampleType %in% c("Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days", "Nat_Uninf_Fruits_5_6days"))
+
+df_AlphaDiv_ITS_FruitsOnly <- data.frame(metadata_AlphaDiv_16S_FruitsOnly)
 ```
 
-### b. All samples
-
 ```{r}
-sample_types <- c("G0_Adults_0days","Fruits_0days","G0_Adults_Fruits_2days","Artific_Inf_Fruits_5_6days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_PupalCase_Fruits", "G1_Adults_Fruits", "Nat_Inf_Fruits_5_6days", "G1_Larvae_Nat_Inf_Fruits_5_6days", "G1_Pupae_Nat_Inf_Fruit_5_6days", "G1_Adults_Nat_Inf_Fruit_5_6days", "Nat_Uninf_Fruits_5_6days")
-
 ## Bacterial Alpha div
-# data
-metadata_AlphaDiv_16S_SampleType <- filter(metadata_AlphaDiv_16S, SampleType !="na"& SampleType !="Medium_5_6days"& SampleType !="G1_Larvae_Medium_5_6days"& SampleType !="CT"& SampleType !="G0_Adults_Medium_2days"&SampleType !="")
+Sha_Fruit_16S <- plot_AlphaDiv_index(metadata_AlphaDiv_16S_FruitsOnly, "FruitType",  c("BL","CH","ST"), "Shannon" ,color_FruitType) 
 
-df_AlphaDiv_16S_SampleType <- data.frame(metadata_AlphaDiv_16S_SampleType)
+ObsRich_Fruit_16S <- plot_AlphaDiv_index(metadata_AlphaDiv_16S_FruitsOnly, "FruitType",  c("BL","CH","ST"), "ObservedRichness" ,color_FruitType)
 
-# index calculation
-Sha_SampleType_16S <- plot_AlphaDiv_index(df_AlphaDiv_16S_SampleType, "SampleType",  sample_types, "Shannon" ,color_SampleType) 
+Chao1_Fruit_16S <- plot_AlphaDiv_index(metadata_AlphaDiv_16S_FruitsOnly, "FruitType",  c("BL","CH","ST"), "Chao1",color_FruitType)
 
-ObsRich_SampleType_16S <- plot_AlphaDiv_index(df_AlphaDiv_16S_SampleType, "SampleType",  sample_types, "ObservedRichness" ,color_SampleType)
-
-Chao1_SampleType_16S <- plot_AlphaDiv_index(df_AlphaDiv_16S_SampleType, "SampleType",  sample_types, "Chao1" ,color_SampleType)
-
-invSimp_SampleType_16S <- plot_AlphaDiv_index(df_AlphaDiv_16S_SampleType, "SampleType",  sample_types, "InvSimpson" ,color_SampleType)
+invSimp_Fruit_16S <- plot_AlphaDiv_index(metadata_AlphaDiv_16S_FruitsOnly, "FruitType",  c("BL","CH","ST"), "InvSimpson",color_FruitType)
 
 
 ## Fungal Alpha div
-# data
-metadata_AlphaDiv_ITS_SampleType <- filter(metadata_AlphaDiv_ITS, SampleType !="na"& SampleType !="Medium_5_6days"& SampleType !="G1_Larvae_Medium_5_6days"& SampleType !="CT"& SampleType !="G0_Adults_Medium_2days"&SampleType !="")
+Sha_F_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS_FruitsOnly, "FruitType", c("BL","CH","ST"), "Shannon",color_FruitType)
 
-df_AlphaDiv_ITS_SampleType <- data.frame(metadata_AlphaDiv_ITS_SampleType)
+ObsRich_F_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS_FruitsOnly, "FruitType", c("BL","CH","ST"), "ObservedRichness",color_FruitType)
 
-# index calculation
-Sha_SampleType_ITS <- plot_AlphaDiv_index(df_AlphaDiv_ITS_SampleType, "SampleType",  sample_types, "Shannon" ,color_SampleType) 
+Chao1_F_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS_FruitsOnly, "FruitType", c("BL","CH","ST"), "Chao1",color_FruitType)
 
-ObsRich_SampleType_ITS <- plot_AlphaDiv_index(df_AlphaDiv_ITS_SampleType, "SampleType",  sample_types, "ObservedRichness" ,color_SampleType)
+invSimp_F_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS_FruitsOnly, "FruitType", c("BL","CH","ST"), "InvSimpson",color_FruitType)
 
-Chao1_SampleType_ITS <- plot_AlphaDiv_index(df_AlphaDiv_ITS_SampleType, "SampleType",  sample_types, "Chao1" ,color_SampleType)
-
-invSimp_SampleType_ITS <- plot_AlphaDiv_index(df_AlphaDiv_ITS_SampleType, "SampleType",  sample_types, "InvSimpson" ,color_SampleType)
 
 ## Figure : combine 16S and ITS plots
-# Text labels
-label_A <- wrap_elements(full = grid::textGrob("A. BACTERIA", gp = grid::gpar(fontsize = 14, fontface = "bold"), x = 0, hjust = 0))
-label_B <- wrap_elements(full = grid::textGrob("B. FUNGI", gp = grid::gpar(fontsize = 14, fontface = "bold"), x = 0, hjust = 0))
-
-# Suppress x-axis elements in row1
-ST_16S <- (ObsRich_SampleType_16S + Chao1_SampleType_16S + Sha_SampleType_16S + invSimp_SampleType_16S) +
+F_16S <- (ObsRich_Fruit_16S + Chao1_Fruit_16S + Sha_Fruit_16S + invSimp_Fruit_16S) +
   plot_layout(ncol = 4, guides = "collect") & theme(axis.text.x = element_blank(),axis.title.x = element_blank())
 
-# row2 keeps x-axis text and title
-ST_ITS <- (ObsRich_SampleType_ITS + Chao1_SampleType_ITS + Sha_SampleType_ITS + invSimp_SampleType_ITS) +
-  plot_layout(ncol = 4, guides = "collect", axes = "collect_x", axis_titles = "collect_x") & theme( axis.text.x = element_text(color = "Black", size = 14, angle = 90, vjust = 0.5, hjust = 1))
+F_ITS <- (ObsRich_F_ITS + Chao1_F_ITS + Sha_F_ITS + invSimp_F_ITS) +
+  plot_layout(ncol = 4, guides = "collect", axes = "collect_x", axis_titles = "collect_x")
 
 # Final plot
-combined <- (label_A / ST_16S / label_B / ST_ITS) +
-  plot_layout(ncol = 1, heights = c(0.05, 1, 0.05, 1)) & theme(legend.position = "none")
+F_combined <- (label_A / F_16S / label_B / F_ITS) + plot_layout(ncol = 1, heights = c(0.05, 1, 0.05, 1)) & theme(legend.position = "none")
 
-title_plot <- "AlphaDiversity_SampleType_combined.png"
- cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot),
-                 combined, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
+title_plot <- "AlphaDiv_Fruits_FruitType.png"
+ cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot), F_combined, base_height = 21/cm(1),base_width = 29.7/cm(1), dpi = 1200)
 ```
 
-### c. Life Stage
+## 3. Individuals
+
+```{r}
+# subset data
+metadata_AlphaDiv_16S_Indiv <- filter(metadata_AlphaDiv_16S, LifeStage !="na" & Sample_Category == "All_stages_Focal_Sites")
+df_AlphaDiv_16S_Indiv <- data.frame(metadata_AlphaDiv_16S_Indiv)
+
+metadata_AlphaDiv_ITS_Indiv <- filter(metadata_AlphaDiv_ITS, LifeStage !="na" & Sample_Category == "All_stages_Focal_Sites")
+df_AlphaDiv_ITS_Indiv <- data.frame(metadata_AlphaDiv_16S_Indiv)
+```
 
 ```{r}
 ## Bacterial Alpha div
-# Shannon
-Sha_LifeStage_16S <- plot_AlphaDiv_index(metadata_AlphaDiv_16S, "LifeStage",  c("Mother" , "Larva","Pupa","PupalCase", "Daughter"), "Shannon" ,color_LifeStage) 
-title_plot <- "Shannon_LifeStage_16S.png"
-#  cowplot::save_plot(file =here::here("plots", "sido", "Diversities", title_plot),
-#                  Sha_LifeStage_16S, base_height = 20/cm(1),
-#                 base_width = 35/cm(1), dpi = 1200)
- 
-# Sha_LifeStageFruitType_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S, "LifeStage", c("Daughter" , "Larva","Mother" ,"na","Pupa","PupalCase"), "Shannon" ,color_LifeStage, FruitType)
+Sha_LifeStage_16S <- plot_AlphaDiv_index(metadata_AlphaDiv_16S_Indiv, "LifeStage",  c("Mother" , "Larva","Pupa","PupalCase", "Daughter"), "Shannon" ,color_LifeStage) 
 
-# Observed Richness
-ObsRich_LifeStage_16S <- plot_AlphaDiv_index(metadata_AlphaDiv_16S, "LifeStage", c("Mother" , "Larva","Pupa","PupalCase", "Daughter"), "ObservedRichness" ,color_LifeStage)
-title_plot <- "ObsRich_LifeStage_16S.png"
+ObsRich_LifeStage_16S <- plot_AlphaDiv_index(metadata_AlphaDiv_16S_Indiv, "LifeStage", c("Mother" , "Larva","Pupa","PupalCase", "Daughter"), "ObservedRichness" ,color_LifeStage)
 
-# Chao1
-Chao1_LifeStage_16S <- plot_AlphaDiv_index(metadata_AlphaDiv_16S, "LifeStage", c("Mother" , "Larva","Pupa","PupalCase", "Daughter"), "Chao1" ,color_LifeStage)
-title_plot <- "Chao1_LifeStage_16S.png"
+Chao1_LifeStage_16S <- plot_AlphaDiv_index(metadata_AlphaDiv_16S_Indiv, "LifeStage", c("Mother" , "Larva","Pupa","PupalCase", "Daughter"), "Chao1" ,color_LifeStage)
 
-# inv Simpson
-invSimp_LifeStage_16S <- plot_AlphaDiv_index(metadata_AlphaDiv_16S, "LifeStage", c("Mother","Larva","Pupa","PupalCase","Daughter"), "InvSimpson" ,color_LifeStage)
-title_plot <- "InvSimp_LifeStage_16S.png"
-
+invSimp_LifeStage_16S <- plot_AlphaDiv_index(metadata_AlphaDiv_16S_Indiv, "LifeStage", c("Mother","Larva","Pupa","PupalCase","Daughter"), "InvSimpson" , color_LifeStage)
 
 ## Fungal Alpha div
-# Shannon
-Sha_LifeStage_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS, "LifeStage", c("Mother" , "Larva","Pupa","PupalCase", "Daughter"), "Shannon" ,color_LifeStage)
+Sha_LifeStage_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS_Indiv, "LifeStage", c("Mother" , "Larva","Pupa","PupalCase", "Daughter"), "Shannon" ,color_LifeStage)
 
-title_plot <- "Shannon_LifeStage_ITS.png"
- cowplot::save_plot(file =here::here("plots", "sido", "Diversities", title_plot),
-                 Sha_LifeStage_ITS, base_height = 20/cm(1),base_width = 35/cm(1), dpi = 1200)
- 
-# Observed Richness
-ObsRich_LifeStage_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS, "LifeStage", c("Mother" , "Larva","Pupa","PupalCase", "Daughter"), "ObservedRichness" ,color_LifeStage)
-title_plot <- "ObsRich_LifeStage_ITS.png"
+ObsRich_LifeStage_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS_Indiv, "LifeStage", c("Mother" , "Larva","Pupa","PupalCase", "Daughter"), "ObservedRichness" ,color_LifeStage)
 
-# Chao1
-Chao1_LifeStage_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS, "LifeStage", c("Mother" , "Larva","Pupa","PupalCase", "Daughter"), "Chao1" ,color_LifeStage)
-title_plot <- "Chao1_LifeStage_ITS.png"
+Chao1_LifeStage_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS_Indiv, "LifeStage", c("Mother" , "Larva","Pupa","PupalCase", "Daughter"), "Chao1" ,color_LifeStage)
  
-# inv Simpson
-invSimp_LifeStage_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS, "LifeStage", c("Mother","Larva","Pupa","PupalCase","Daughter"), "InvSimpson" ,color_LifeStage)
-title_plot <- "InvSimp_LifeStage_ITS.png"
+invSimp_LifeStage_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS_Indiv, "LifeStage", c("Mother","Larva","Pupa","PupalCase","Daughter"), "InvSimpson" ,color_LifeStage)
 
 
 ## Figure : combine 16S and ITS plots
-# Same ext labels
-# Suppress x-axis elements in row1
 row1 <- (ObsRich_LifeStage_16S + Chao1_LifeStage_16S + Sha_LifeStage_16S + invSimp_LifeStage_16S) +
   plot_layout(ncol = 4, guides = "collect") & theme(axis.text.x = element_blank(),axis.title.x = element_blank())
 
@@ -234,200 +174,122 @@ row2 <- (ObsRich_LifeStage_ITS + Chao1_LifeStage_ITS + Sha_LifeStage_ITS + invSi
 combined <- (label_A / row1 / label_B / row2) +
   plot_layout(ncol = 1, heights = c(0.05, 1, 0.05, 1)) & theme(legend.position = "none")
 
-title_plot <- "AlphaDiversity_LifeStage_combined.png"
+title_plot <- "AlphaDiv_Indiv_LifeStage.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot),
                  combined, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
 ```
 
-### d. Fruit Type
+<!-- ## 4. Plots - 2 factors -->
 
-```{r}
-## Bacterial Alpha div
-Sha_FruitType_16S <- plot_AlphaDiv_index(metadata_AlphaDiv_16S, "FruitType",  c("BL","CH","ST"), "Shannon" ,color_FruitType) 
+<!-- ### a. Function -->
 
-ObsRich_FruitType_16S <- plot_AlphaDiv_index(metadata_AlphaDiv_16S, "FruitType",  c("BL","CH","ST"), "ObservedRichness" ,color_FruitType)
+<!-- ```{r} -->
+<!-- # BoxPlot 1 index & 2 factors -->
+<!-- plot_AlphaDiv_index_groups <- function(df, group, group_labels, index, color_set, facet_factor) { -->
+<!--   df <- df |>  -->
+<!--     dplyr::filter((.data[[group]]) !="na") |>  -->
+<!--     dplyr::filter((.data[[facet_factor]]) !="na") |> -->
+<!--     dplyr::mutate(!!group := factor(.data[[group]], levels = group_labels)) -->
 
-Chao1_FT_16S <- plot_AlphaDiv_index(metadata_AlphaDiv_16S, "FruitType",  c("BL","CH","ST"), "Chao1",color_FruitType)
+<!--   ggplot(df, aes(x = .data[[group]], y = .data[[index]] , fill = .data[[group]]))+ -->
+<!--       geom_boxplot(outlier.shape = NA, position=position_dodge(1)) + -->
+<!--       theme_classic() + -->
+<!--       labs(x=group, y = paste(index)) + -->
+<!--       theme(axis.text.x = element_blank(), axis.text.y = element_text(face=, color="Black", size=14, angle=0), legend.position = "right") + -->
+<!--       theme(axis.title.x = element_blank(), -->
+<!--             axis.title.y = element_text(color="Black", size=14, face="bold"), -->
+<!--             legend.title = element_text(color = "Black", size = 14, face="bold"), -->
+<!--             legend.text = element_text(color = "Black", size = 14)) + -->
+<!--       scale_fill_manual(values =  color_set, labels = group_labels)+ -->
+<!--       geom_jitter(size = 1.5, shape = 21, position = position_jitter(0.1), alpha = 0.9, color = "black") + ggh4x::facet_nested(as.formula(paste("~", group, "+", facet_factor)), scales = "free_x", space = "free_x") -->
 
-invSimp_FT_16S <- plot_AlphaDiv_index(metadata_AlphaDiv_16S, "FruitType",  c("BL","CH","ST"), "InvSimpson",color_FruitType)
+<!-- } -->
+<!-- ``` -->
 
+<!-- ### b. Fruit Type + Variety -->
 
-## Fungal Alpha div
-Sha_FT_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS, "FruitType", c("BL","CH","ST"), "Shannon",color_FruitType)
+<!-- ```{r} -->
+<!-- ## 16S -->
+<!-- Sha_FTVar_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S, "FruitType",  c("BL","CH","ST"), "Shannon" ,color_FruitType, "FruitVariety")  -->
 
-ObsRich_FT_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS, "FruitType", c("BL","CH","ST"), "ObservedRichness",color_FruitType)
+<!-- ObsRich_FTVar_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S, "FruitType",  c("BL" , "CH","ST"), "ObservedRichness" ,color_FruitType, "FruitVariety") -->
 
-Chao1_FT_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS, "FruitType", c("BL","CH","ST"), "Chao1",color_FruitType)
+<!-- Chao1_FTVar_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S, "FruitType",  c("BL" , "CH","ST"), "Chao1" ,color_FruitType, "FruitVariety") -->
 
-invSimp_FT_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS, "FruitType", c("BL","CH","ST"), "InvSimpson",color_FruitType)
-
-
-## Figure : combine 16S and ITS plots
-FT_16S <- (ObsRich_FruitType_16S + Chao1_FT_16S + Sha_FruitType_16S + invSimp_FT_16S) +
-  plot_layout(ncol = 4, guides = "collect") & theme(axis.text.x = element_blank(),axis.title.x = element_blank())
-
-FT_ITS <- (ObsRich_FT_ITS + Chao1_FT_ITS + Sha_FT_ITS + invSimp_FT_ITS) +
-  plot_layout(ncol = 4, guides = "collect", axes = "collect_x", axis_titles = "collect_x")
-
-# Final plot
-FT_combined <- (label_A / FT_16S / label_B / FT_ITS) +# Same text labels
-  plot_layout(ncol = 1, heights = c(0.05, 1, 0.05, 1)) & theme(legend.position = "none")
-
-title_plot <- "AlphaDiversity_FruitType_combined.png"
- cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot),
-                 FT_combined, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
-```
-
-### e. Pop
-
-```{r}
-## Bacterial Alpha div
-Sha_Pop_16S <- plot_AlphaDiv_index(metadata_AlphaDiv_16S, "Pop",c("CEC","FRA"), "Shannon",color_Pop) 
-
-ObsRich_Pop_16S <- plot_AlphaDiv_index(metadata_AlphaDiv_16S, "Pop",c("CEC","FRA"), "ObservedRichness" ,color_Pop)
-
-Chao1_Pop_16S <- plot_AlphaDiv_index(metadata_AlphaDiv_16S, "Pop",  c("CEC","FRA"), "Chao1" ,color_Pop)
-
-invSimp_Pop_16S <- plot_AlphaDiv_index(metadata_AlphaDiv_16S, "Pop",  c("CEC", "FRA"), "InvSimpson" ,color_Pop)
+<!-- invSimp_FTVar_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S, "FruitType",  c("BL" , "CH","ST"), "InvSimpson" ,color_FruitType, "FruitVariety") -->
 
 
-## Fungal Alpha div
-Sha_Pop_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS, "Pop",  c("CEC", "FRA"), "Shannon" ,color_Pop)
+<!-- ## ITS -->
+<!-- Sha_FTVar_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS, "FruitType",  c("BL","CH","ST"), "Shannon" ,color_FruitType, "FruitVariety")  -->
 
-ObsRich_Pop_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS, "Pop",  c("CEC", "FRA"), "ObservedRichness" ,color_Pop)
+<!-- ObsRich_FTVar_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS, "FruitType",  c("BL" , "CH","ST"), "ObservedRichness" ,color_FruitType, "FruitVariety") -->
 
-Chao1_Pop_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS, "Pop",  c("CEC", "FRA"), "Chao1" ,color_Pop)
+<!-- Chao1_FTVar_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS, "FruitType",  c("BL" , "CH","ST"), "Chao1" ,color_FruitType, "FruitVariety") -->
 
-invSimp_Pop_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS, "Pop",  c("CEC", "FRA"), "InvSimpson" ,color_Pop)
-
-
-## Figure : combine 16S and ITS plots
-Pop_16S <- (ObsRich_Pop_16S + Chao1_Pop_16S + Sha_Pop_16S + invSimp_Pop_16S) +
-  plot_layout(ncol = 4, guides = "collect") & theme(axis.text.x = element_blank(),axis.title.x = element_blank())
-
-Pop_ITS <- (ObsRich_Pop_ITS + Chao1_Pop_ITS + Sha_Pop_ITS + invSimp_Pop_ITS) +
-  plot_layout(ncol = 4, guides = "collect", axes = "collect_x", axis_titles = "collect_x")
-
-# Final plot
-Pop_combined <- (label_A / Pop_16S / label_B / Pop_ITS) +# Same text labels
-  plot_layout(ncol = 1, heights = c(0.05, 1, 0.05, 1)) & theme(legend.position = "none")
-
-title_plot <- "AlphaDiversity_Pop_combined.png"
- cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot),
-                 Pop_combined, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
-```
-
-## 3. Plots - 2 factors
-
-### a. Function
-
-```{r}
-# BoxPlot 1 index & 2 factors
-plot_AlphaDiv_index_groups <- function(df, group, group_labels, index, color_set, facet_factor) {
-  df <- df |> 
-    dplyr::filter((.data[[group]]) !="na") |> 
-    dplyr::filter((.data[[facet_factor]]) !="na") |>
-    dplyr::mutate(!!group := factor(.data[[group]], levels = group_labels))
-  
-  ggplot(df, aes(x = .data[[group]], y = .data[[index]] , fill = .data[[group]]))+
-      geom_boxplot(outlier.shape = NA, position=position_dodge(1)) +
-      theme_classic() +
-      labs(x=group, y = paste(index)) +
-      theme(axis.text.x = element_blank(), axis.text.y = element_text(face=, color="Black", size=14, angle=0), legend.position = "right") +
-      theme(axis.title.x = element_blank(),
-            axis.title.y = element_text(color="Black", size=14, face="bold"),
-            legend.title = element_text(color = "Black", size = 14, face="bold"),
-            legend.text = element_text(color = "Black", size = 14)) +
-      scale_fill_manual(values =  color_set, labels = group_labels)+
-      geom_jitter(size = 1.5, shape = 21, position = position_jitter(0.1), alpha = 0.9, color = "black") + ggh4x::facet_nested(as.formula(paste("~", group, "+", facet_factor)), scales = "free_x", space = "free_x")
-
-}
-```
-
-### b. Fruit Type + Variety
-
-```{r}
-## 16S
-Sha_FTVar_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S, "FruitType",  c("BL","CH","ST"), "Shannon" ,color_FruitType, "FruitVariety") 
-
-ObsRich_FTVar_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S, "FruitType",  c("BL" , "CH","ST"), "ObservedRichness" ,color_FruitType, "FruitVariety")
-
-Chao1_FTVar_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S, "FruitType",  c("BL" , "CH","ST"), "Chao1" ,color_FruitType, "FruitVariety")
-
-invSimp_FTVar_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S, "FruitType",  c("BL" , "CH","ST"), "InvSimpson" ,color_FruitType, "FruitVariety")
+<!-- invSimp_FTVar_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS, "FruitType",  c("BL" , "CH","ST"), "InvSimpson" ,color_FruitType, "FruitVariety") -->
 
 
-## ITS
-Sha_FTVar_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS, "FruitType",  c("BL","CH","ST"), "Shannon" ,color_FruitType, "FruitVariety") 
+<!-- ## Figure : combine 16S and ITS plots -->
+<!-- FTvar_16S <- (ObsRich_FTVar_16S + Chao1_FTVar_16S + Sha_FTVar_16S + invSimp_FTVar_16S) + -->
+<!--   plot_layout(ncol = 4, guides = "collect") & theme(axis.text.x = element_blank(),axis.title.x = element_blank()) -->
 
-ObsRich_FTVar_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS, "FruitType",  c("BL" , "CH","ST"), "ObservedRichness" ,color_FruitType, "FruitVariety")
+<!-- FTvar_ITS <- (ObsRich_FTVar_ITS + Chao1_FTVar_ITS + Sha_FTVar_ITS + invSimp_FTVar_ITS) + -->
+<!--   plot_layout(ncol = 4, guides = "collect", axes = "collect_x", axis_titles = "collect_x") -->
 
-Chao1_FTVar_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS, "FruitType",  c("BL" , "CH","ST"), "Chao1" ,color_FruitType, "FruitVariety")
+<!-- # Final plot -->
+<!-- FTvar_combined <- (label_A / FTvar_16S / label_B / FTvar_ITS) +# Same text labels -->
+<!--   plot_layout(ncol = 1, heights = c(0.05, 1, 0.05, 1)) & theme(legend.position = "none") -->
 
-invSimp_FTVar_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS, "FruitType",  c("BL" , "CH","ST"), "InvSimpson" ,color_FruitType, "FruitVariety")
+<!-- title_plot <- "AlphaDiv_FruitType+Variety_combined.png" -->
+<!--  cowplot::save_plot(file =here::here("plots", "sido", "Diversities", title_plot), -->
+<!--                  FTvar_combined, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200) -->
+<!-- ``` -->
 
+<!-- ### c. Fruit Type + LifeStage -->
 
-## Figure : combine 16S and ITS plots
-FTvar_16S <- (ObsRich_FTVar_16S + Chao1_FTVar_16S + Sha_FTVar_16S + invSimp_FTVar_16S) +
-  plot_layout(ncol = 4, guides = "collect") & theme(axis.text.x = element_blank(),axis.title.x = element_blank())
+<!-- ```{r} -->
+<!-- ## 16S -->
+<!-- Sha_FTLS_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S, "FruitType",  c("BL","CH","ST"), "Shannon" ,color_FruitType, "LifeStage")  -->
+<!-- Sha_FTLS_16S$data$LifeStage <- factor(Sha_FTLS_16S$data$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter")) # reorder life stages  -->
 
-FTvar_ITS <- (ObsRich_FTVar_ITS + Chao1_FTVar_ITS + Sha_FTVar_ITS + invSimp_FTVar_ITS) +
-  plot_layout(ncol = 4, guides = "collect", axes = "collect_x", axis_titles = "collect_x")
+<!-- ObsRich_FTLS_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S, "FruitType",  c("BL" , "CH","ST"), "ObservedRichness" ,color_FruitType, "LifeStage") -->
+<!-- ObsRich_FTLS_16S$data$LifeStage <- factor(ObsRich_FTLS_16S$data$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter")) # reorder life stages  -->
 
-# Final plot
-FTvar_combined <- (label_A / FTvar_16S / label_B / FTvar_ITS) +# Same text labels
-  plot_layout(ncol = 1, heights = c(0.05, 1, 0.05, 1)) & theme(legend.position = "none")
+<!-- Chao1_FTLS_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S, "FruitType",  c("BL" , "CH","ST"), "Chao1" ,color_FruitType, "LifeStage") -->
+<!-- Chao1_FTLS_16S$data$LifeStage <- factor(Chao1_FTLS_16S$data$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter")) # reorder life stages  -->
 
-title_plot <- "AlphaDiv_FruitType+Variety_combined.png"
- cowplot::save_plot(file =here::here("plots", "sido", "Diversities", title_plot),
-                 FTvar_combined, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
-```
-
-### c. Fruit Type + LifeStage
-
-```{r}
-## 16S
-Sha_FTLS_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S, "FruitType",  c("BL","CH","ST"), "Shannon" ,color_FruitType, "LifeStage") 
-Sha_FTLS_16S$data$LifeStage <- factor(Sha_FTLS_16S$data$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter")) # reorder life stages 
-
-ObsRich_FTLS_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S, "FruitType",  c("BL" , "CH","ST"), "ObservedRichness" ,color_FruitType, "LifeStage")
-ObsRich_FTLS_16S$data$LifeStage <- factor(ObsRich_FTLS_16S$data$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter")) # reorder life stages 
-
-Chao1_FTLS_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S, "FruitType",  c("BL" , "CH","ST"), "Chao1" ,color_FruitType, "LifeStage")
-Chao1_FTLS_16S$data$LifeStage <- factor(Chao1_FTLS_16S$data$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter")) # reorder life stages 
-
-invSimp_FTLS_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S, "FruitType",  c("BL" , "CH","ST"), "InvSimpson" ,color_FruitType, "LifeStage")
-invSimp_FTLS_16S$data$LifeStage <- factor(invSimp_FTLS_16S$data$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter")) # reorder life stages 
+<!-- invSimp_FTLS_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S, "FruitType",  c("BL" , "CH","ST"), "InvSimpson" ,color_FruitType, "LifeStage") -->
+<!-- invSimp_FTLS_16S$data$LifeStage <- factor(invSimp_FTLS_16S$data$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter")) # reorder life stages  -->
 
 
-## ITS
-Sha_FTLS_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS, "FruitType",  c("BL","CH","ST"), "Shannon" ,color_FruitType, "LifeStage") 
-Sha_FTLS_ITS$data$LifeStage <- factor(Sha_FTLS_ITS$data$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter")) # reorder life stages 
+<!-- ## ITS -->
+<!-- Sha_FTLS_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS, "FruitType",  c("BL","CH","ST"), "Shannon" ,color_FruitType, "LifeStage")  -->
+<!-- Sha_FTLS_ITS$data$LifeStage <- factor(Sha_FTLS_ITS$data$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter")) # reorder life stages  -->
 
-ObsRich_FTLS_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS, "FruitType",  c("BL" , "CH","ST"), "ObservedRichness" ,color_FruitType, "LifeStage")
-ObsRich_FTLS_ITS$data$LifeStage <- factor(ObsRich_FTLS_ITS$data$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter")) # reorder life stages 
+<!-- ObsRich_FTLS_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS, "FruitType",  c("BL" , "CH","ST"), "ObservedRichness" ,color_FruitType, "LifeStage") -->
+<!-- ObsRich_FTLS_ITS$data$LifeStage <- factor(ObsRich_FTLS_ITS$data$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter")) # reorder life stages  -->
 
-Chao1_FTLS_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS, "FruitType",  c("BL" , "CH","ST"), "Chao1" ,color_FruitType, "LifeStage")
-Chao1_FTLS_ITS$data$LifeStage <- factor(Chao1_FTLS_ITS$data$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter")) # reorder life stages 
+<!-- Chao1_FTLS_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS, "FruitType",  c("BL" , "CH","ST"), "Chao1" ,color_FruitType, "LifeStage") -->
+<!-- Chao1_FTLS_ITS$data$LifeStage <- factor(Chao1_FTLS_ITS$data$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter")) # reorder life stages  -->
 
-invSimp_FTLS_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS, "FruitType",  c("BL" , "CH","ST"), "InvSimpson" ,color_FruitType, "LifeStage")
-invSimp_FTLS_ITS$data$LifeStage <- factor(invSimp_FTLS_ITS$data$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter")) # reorder life stages 
+<!-- invSimp_FTLS_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS, "FruitType",  c("BL" , "CH","ST"), "InvSimpson" ,color_FruitType, "LifeStage") -->
+<!-- invSimp_FTLS_ITS$data$LifeStage <- factor(invSimp_FTLS_ITS$data$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter")) # reorder life stages  -->
 
-## Figure : combine 16S and ITS plots
-FTLS_16S <- (ObsRich_FTLS_16S + Chao1_FTLS_16S + Sha_FTLS_16S + invSimp_FTLS_16S) +
-  plot_layout(ncol = 4, guides = "collect") & theme(axis.text.x = element_blank(),axis.title.x = element_blank())
+<!-- ## Figure : combine 16S and ITS plots -->
+<!-- FTLS_16S <- (ObsRich_FTLS_16S + Chao1_FTLS_16S + Sha_FTLS_16S + invSimp_FTLS_16S) + -->
+<!--   plot_layout(ncol = 4, guides = "collect") & theme(axis.text.x = element_blank(),axis.title.x = element_blank()) -->
 
-FTLS_ITS <- (ObsRich_FTLS_ITS + Chao1_FTLS_ITS + Sha_FTLS_ITS + invSimp_FTLS_ITS) +
-  plot_layout(ncol = 4, guides = "collect", axes = "collect_x", axis_titles = "collect_x")
+<!-- FTLS_ITS <- (ObsRich_FTLS_ITS + Chao1_FTLS_ITS + Sha_FTLS_ITS + invSimp_FTLS_ITS) + -->
+<!--   plot_layout(ncol = 4, guides = "collect", axes = "collect_x", axis_titles = "collect_x") -->
 
-# Final plot
-FTLS_combined <- (label_A / FTLS_16S / label_B / FTLS_ITS) +# Same text labels
-  plot_layout(ncol = 1, heights = c(0.05, 1, 0.05, 1)) & theme(legend.position = "none")
+<!-- # Final plot -->
+<!-- FTLS_combined <- (label_A / FTLS_16S / label_B / FTLS_ITS) +# Same text labels -->
+<!--   plot_layout(ncol = 1, heights = c(0.05, 1, 0.05, 1)) & theme(legend.position = "none") -->
 
-title_plot <- "AlphaDiv_FruitType+LifeStage_combined.png"
- cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot),
-                 FTvar_combined, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
-```
+<!-- title_plot <- "AlphaDiv_FruitType+LifeStage_combined.png" -->
+<!--  cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot), -->
+<!--                  FTvar_combined, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200) -->
+<!-- ``` -->
 
 # II. Beta diversity
 
@@ -443,9 +305,9 @@ ps_rare_ITS_FruitsOnly <- Subset_physeq(ps_rare_ITS, SampleType %in% c("Artific_
 
 ```{r}
 ##16S
-ordi_nmds_J_16S_Fruits <- phyloseq::ordinate(ps_rare_16S_FruitsOnly, method ="NMDS", distance ="jaccard")
+ordi_nmds_J_16S_Fruits <- phyloseq::ordinate(ps_rare_16S_FruitsOnly, method ="NMDS", distance ="jaccard") # stress =8.305247e-05
 
-# NMDS with ellipses
+# NMDS by FruitVariety
 NMDS_J_16S_Fruits_Ellipses <- phyloseq::plot_ordination(physeq = ps_rare_16S_FruitsOnly, ordination = ordi_nmds_J_16S_Fruits) + 
   theme_bw() + 
   geom_point(aes(fill = FruitVariety, shape = FruitType), size = 4) + 
@@ -458,8 +320,7 @@ NMDS_J_16S_Fruits_Ellipses <- phyloseq::plot_ordination(physeq = ps_rare_16S_Fru
     shape = guide_legend(title = "Fruit Type"),
     color = "none")
 
-# reorder life stages
-NMDS_J_16S_Fruits_Ellipses$data$FruitVariety <- factor(NMDS_J_16S_Fruits_Ellipses$data$FruitVariety, levels = c("CDP", "HED", "STA", "SUM" , "SWE" , "CIF", "CIR", "DRE", "INF", "MDB", "LOC", "UNK")) 
+NMDS_J_16S_Fruits_Ellipses$data$FruitVariety <- factor(NMDS_J_16S_Fruits_Ellipses$data$FruitVariety, levels = c("CDP", "HED", "STA", "SUM" , "SWE" , "CIF", "CIR", "DRE", "INF", "MDB", "LOC", "UNK")) # reorder 
 
 title_plot <- "NMDS_16S_FruitType_FruitVariety.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot),
@@ -483,8 +344,7 @@ NMDS_J_ITS_Fruits_Ellipses <- phyloseq::plot_ordination(physeq = ps_rare_ITS_Fru
     shape = guide_legend(title = "Fruit Type"),
     color = "none")
 
-# reorder life stages
-NMDS_J_ITS_Fruits_Ellipses$data$FruitVariety <- factor(NMDS_J_ITS_Fruits_Ellipses$data$FruitVariety, levels = c("CDP", "HED", "STA", "SUM" , "SWE" , "CIF", "CIR", "DRE", "INF", "MDB", "LOC", "UNK")) 
+NMDS_J_ITS_Fruits_Ellipses$data$FruitVariety <- factor(NMDS_J_ITS_Fruits_Ellipses$data$FruitVariety, levels = c("CDP", "HED", "STA", "SUM" , "SWE" , "CIF", "CIR", "DRE", "INF", "MDB", "LOC", "UNK")) # reorder 
 
 title_plot <- "NMDS_ITS_FruitType_FruitVariety.png"
  cowplot::save_plot(file =here::here("plots", "4_diversities", title_plot),
@@ -555,14 +415,12 @@ title_plot <- "NMDS_ITS_LifeStage_FruitType.png"
 ```
 
 ### c. Individuals + Aunt & Fruits
-#### 16S
+
 ```{r}
 # Filter data
 ps_16S_rare_expe <- Subset_physeq(ps_rare_16S, Sample_Category == "All_stages_Focal_Sites")
 
 ps_16S_rare_expe <- Subset_physeq(ps_16S_rare_expe, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
-
-ordi_nmds_J_16S_expe <- phyloseq::ordinate(ps_16S_rare_expe, method ="NMDS", distance ="jaccard") # stress = 0.1554185
 
 # rename + reorder Sample Type
 sample_data(ps_16S_rare_expe)$SampleType <- factor(sample_data(ps_16S_rare_expe)$SampleType)
@@ -580,6 +438,31 @@ sample_data(ps_16S_rare_expe)$SampleType <- sample_data(ps_16S_rare_expe)$Sample
 desired_order <- c("Fruits_0days", "Aunts", "Mothers", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters")  
 sample_data(ps_16S_rare_expe)$SampleType <- factor(sample_data(ps_16S_rare_expe)$SampleType, levels = desired_order)
 
+
+# Filter data
+ps_ITS_rare_expe <- Subset_physeq(ps_rare_ITS, Sample_Category == "All_stages_Focal_Sites")
+
+ps_ITS_rare_expe <- Subset_physeq(ps_ITS_rare_expe, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
+
+# rename + reorder Sample Type
+sample_data(ps_ITS_rare_expe)$SampleType <- factor(sample_data(ps_ITS_rare_expe)$SampleType)
+
+sample_data(ps_ITS_rare_expe)$SampleType <- sample_data(ps_ITS_rare_expe)$SampleType %>%
+  forcats::fct_recode(
+    Aunts = "G0_Adults_0days",
+    Mothers = "G0_Adults_Fruits_2days",
+    Larvae = "G1_Larvae_Fruits",
+    Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
+    Pupae = "G1_Pupae_Fruits",
+    PupalCases = "G1_PupalCase_Fruits",
+    Daughters = "G1_Adults_Fruits")
+
+desired_order <- c("Fruits_0days", "Aunts", "Mothers", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters")  
+sample_data(ps_ITS_rare_expe)$SampleType <- factor(sample_data(ps_ITS_rare_expe)$SampleType, levels = desired_order)
+```
+
+``` {r} 
+ordi_nmds_J_16S_expe <- phyloseq::ordinate(ps_16S_rare_expe, method ="NMDS", distance ="jaccard") # stress = 0.1554185
 # plot with ellipses
 NMDS_J_16S_expe_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_expe, ordination = ordi_nmds_J_16S_expe) + 
   theme_bw() + 
@@ -591,7 +474,6 @@ NMDS_J_16S_expe_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_expe,
   guides(
     fill = guide_legend(override.aes = list(shape = 21, linetype = NULL, size = 5), title = "Sample Type", ncol = 1),
     shape = guide_legend(title = "Fruit Type"), 
-    #size = guide_legend(title = "Population"),
     color = "none")
 
 title_plot <- "NMDS_16S_Expe_FruitType.png"
@@ -614,31 +496,10 @@ title_plot <- "NMDS_16S_Expe_SampleType_EllipseByFruit.png"
  cowplot::save_plot(file =here::here("plots", "4_diversities", title_plot),
                  NMDS_J_16S_SampleType_EllipsesByFruit, base_height = 20/cm(1),
                 base_width = 20/cm(1), dpi = 1200)
-```
-#### ITS
-``` {r} 
-# Filter data
-ps_ITS_rare_expe <- Subset_physeq(ps_rare_ITS, Sample_Category == "All_stages_Focal_Sites")
+ 
 
-ps_ITS_rare_expe <- Subset_physeq(ps_ITS_rare_expe, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
 
 ordi_nmds_J_ITS_expe <- phyloseq::ordinate(ps_ITS_rare_expe, method ="NMDS", distance ="jaccard") # stress = 0.1803797
-
-# rename + reorder Sample Type
-sample_data(ps_ITS_rare_expe)$SampleType <- factor(sample_data(ps_ITS_rare_expe)$SampleType)
-
-sample_data(ps_ITS_rare_expe)$SampleType <- sample_data(ps_ITS_rare_expe)$SampleType %>%
-  forcats::fct_recode(
-    Aunts = "G0_Adults_0days",
-    Mothers = "G0_Adults_Fruits_2days",
-    Larvae = "G1_Larvae_Fruits",
-    Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
-    Pupae = "G1_Pupae_Fruits",
-    PupalCases = "G1_PupalCase_Fruits",
-    Daughters = "G1_Adults_Fruits")
-
-desired_order <- c("Fruits_0days", "Aunts", "Mothers", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters")  
-sample_data(ps_ITS_rare_expe)$SampleType <- factor(sample_data(ps_ITS_rare_expe)$SampleType, levels = desired_order)
 
 # plot with ellipses
 NMDS_J_ITS_SampleType_Ellipses <- phyloseq::plot_ordination(physeq = ps_ITS_rare_expe, ordination = ordi_nmds_J_ITS_expe) + 
