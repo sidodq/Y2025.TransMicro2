@@ -540,8 +540,8 @@ title_plot <- "NMDS_ITS_Expe_SampleType_EllipseByFruit.png"
 
 
 
-## 2. Quantitative (B.-C. index)
+<!-- ## 2. Quantitative (B.-C. index) -->
 
-## 3. Phylogeny correction
-### Unifrac
-### Weighted unifrac
+<!-- ## 3. Phylogeny correction -->
+<!-- ### Unifrac -->
+<!-- ### Weighted unifrac -->
