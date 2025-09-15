@@ -34,8 +34,12 @@ color_SampleType <- hue_pal()(17)
 # using " unique(S_metadata$FruitType)" 
 color_FruitType <- c("BL" = "purple4", "CH" = "red4","na" = "grey",  "ST" = "red2")
 
+color_FruitSite <- c("THU" = "coral2","FIN"="skyblue","LOM"="skyblue4","IST"="blue2","MIL"="deepskyblue","VAR"="dodgerblue")
+
 # using cold colors for batch 1 sites, warm for batch 2
-color_FruitSite <- c("na" ="grey", "FIN" = "skyblue", "IST" = "blue2" ,  "LOM" = "skyblue4", "MIL" = "deepskyblue", "VAR" = "dodgerblue", "THU" = "coral2")
+color_FruitSite1 <- c("na" ="grey", "FIN" = "skyblue", "IST" = "blue2" ,  "LOM" = "skyblue4", "MIL" = "deepskyblue", "VAR" = "dodgerblue", "THU" = "coral2")
+
+color_FruitVariety <- c("CDP" = "indianred", "HED" ="indianred1", "SUM" = "indianred4", "STA"="#CD2626", "SWE" = "firebrick1", "CIF" = "gold", "CIR" = "gold2", "DRE" = "lightgoldenrod1", "INF" = "yellow2", "MDB" = "yellow", "UNK" = "skyblue", "LOC"= "deepskyblue")
 
 color_LifeStage <- c("na" ="grey",  "Mother" = "darkolivegreen4", "Larva"= "darkolivegreen2", "Pupa" = "darkorange2", "PupalCase"="#8B4500", "Daughter" ="goldenrod2")
 
@@ -43,7 +47,6 @@ color_Pop <- c("na" = "grey", "CEC"="#C1FFC1", "FRA" = "seagreen3" )
 ```
 
 # Load data
-
 ```{r}
 ps_rare_16S <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM1&2_ps_rare.rds"))
 ps_rare_ITS <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM1&2_ps_rare.rds"))
@@ -51,67 +54,47 @@ ps_rare_ITS <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_R
 metadata <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "TM1&2_metadata.tsv"),sep="\t",header=TRUE)
 ```
 
-# 1. Prepare data
-
+# 1.Fruits 
+## Prepare data
 ```{r}
 ########
 # 16S #
 ########
-ps_rare_16S_bin = phyloseq::transform_sample_counts(ps_rare_16S, function(x) 1*(x>0)) # counts -> presence/absence (binary table)
+ps_rare_16S_FruitsOnly <- Subset_physeq(ps_rare_16S, SampleType %in% c("Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days", "Nat_Uninf_Fruits_5_6days")) # subset data
+
+ps_rare_16S_FruitsOnly_bin = phyloseq::transform_sample_counts(ps_rare_16S_FruitsOnly, function(x) 1*(x>0)) # counts -> presence/absence (binary table)
 
 ## Extract metadata
-mtd_16S <- data.frame(phyloseq::sample_data(ps_rare_16S_bin))
-mtd_16S <- mtd_16S %>%
+mtd_FruitsOnly_16S <- data.frame(phyloseq::sample_data(ps_rare_16S_FruitsOnly_bin))
+mtd_FruitsOnly_16S <- mtd_FruitsOnly_16S %>%
   dplyr::rename(Sample = ID_pool)
 
 ## Extract taxonomy table
-df_taxo_16S = as.data.frame(tax_table(ps_rare_16S_bin)) #taxonomy table into dataframe
-df_taxo_16S$tax_ID = rownames(df_taxo_16S)
+df_taxo_FruitsOnly_16S = as.data.frame(tax_table(ps_rare_16S_FruitsOnly_bin)) #taxonomy table into dataframe
+df_taxo_FruitsOnly_16S$tax_ID = rownames(df_taxo_FruitsOnly_16S)
 
 ## Extract table with presence/absence
-df_reads_16S = as.data.frame(otu_table(ps_rare_16S_bin)) #abundance table (binary) into a dataframe
-df_reads_16S$tax_ID = rownames(df_reads_16S)
+df_reads_FruitsOnly_16S = as.data.frame(otu_table(ps_rare_16S_FruitsOnly_bin)) #abundance table (binary) into a dataframe
+df_reads_FruitsOnly_16S$tax_ID = rownames(df_reads_FruitsOnly_16S)
 ## Merge table with presence/absence and taxonomy
-df_wide_16S = dplyr::left_join(df_taxo_16S, df_reads_16S, by = "tax_ID") #merge the two (suppr "Species" column)
-df_wide_16S$Species <- NULL
+df_wide_FruitsOnly_16S = dplyr::left_join(df_taxo_FruitsOnly_16S, df_reads_FruitsOnly_16S, by = "tax_ID") #merge the two (suppr "Species" column)
+df_wide_FruitsOnly_16S$Species <- NULL
 
 ## Remove taxonomy other than Genus
-BF_16S <- df_wide_16S[, c(6,8:dim(df_wide_16S)[2])] #subset + genus as row names + sample names as column names + transposematrix
-BF_16S$Genus <- make.unique(BF_16S$Genus, sep = "_")
-rownames(BF_16S) <- BF_16S$Genus 
-BF_16S$Genus <- NULL
+BF_FruitsOnly_16S <- df_wide_FruitsOnly_16S[, c(6,8:dim(df_wide_FruitsOnly_16S)[2])] #subset + genus as row names + sample names as column names + transposematrix
+BF_FruitsOnly_16S$Genus <- make.unique(BF_FruitsOnly_16S$Genus, sep = "_")
+rownames(BF_FruitsOnly_16S) <- BF_FruitsOnly_16S$Genus 
+BF_FruitsOnly_16S$Genus <- NULL
 #colnames(BF_16S) <- mtd_16S$Sample[match(colnames(BF_16S), mtd_16S$Sample)]
 ## Transpose matrix
-FB_16S <- t(BF_16S)
+FB_FruitsOnly_16S <- t(BF_FruitsOnly_16S)
 
-# Preview
-sbm::plotMyMatrix(FB_16S, dimLabels = c('taxon', 'sample') ,
-  plotOptions = list(rowNames = TRUE, colNames = TRUE,  legend = TRUE,  legend.position = 'right'))
+# # Preview
+# sbm::plotMyMatrix(FB_16S, dimLabels = c('taxon', 'sample') ,
+#   plotOptions = list(rowNames = TRUE, colNames = TRUE,  legend = TRUE,  legend.position = 'right'))
+```
 
-
-## Only Life Stage samples
-ps_16S_rare_LS <- Subset_physeq(ps_rare_16S, LifeStage !="na")
-ps_rare_16S_LS_bin = phyloseq::transform_sample_counts(ps_16S_rare_LS, function(x) 1*(x>0)) 
-
-mtd_16S_LS <- data.frame(phyloseq::sample_data(ps_rare_16S_LS_bin))
-mtd_16S_LS <- mtd_16S_LS %>%
-  dplyr::rename(Sample = ID_pool)
-
-df_taxo_16S_LS = as.data.frame(tax_table(ps_rare_16S_LS_bin)) #taxonomy table into dataframe
-df_taxo_16S_LS$tax_ID = rownames(df_taxo_16S_LS)
-
-df_reads_16S_LS = as.data.frame(otu_table(ps_rare_16S_LS_bin)) #abundance table (binary) into a dataframe
-df_reads_16S_LS$tax_ID = rownames(df_reads_16S_LS)
-
-df_wide_16S_LS = dplyr::left_join(df_taxo_16S_LS, df_reads_16S_LS, by = "tax_ID") #merge the two (suppr "Species" column)
-df_wide_16S_LS$Species <- NULL
-
-BF_16S_LS <- df_wide_16S_LS[, c(6,8:dim(df_wide_16S_LS)[2])]
-BF_16S_LS$Genus <- make.unique(BF_16S_LS$Genus, sep = "_")
-rownames(BF_16S_LS) <- BF_16S_LS$Genus 
-BF_16S_LS$Genus <- NULL
-FB_16S_LS <- t(BF_16S_LS)
-
+```{r}
 ########
 # ITS #
 ########
@@ -138,40 +121,78 @@ BF_ITS$Genus <- NULL
 FB_ITS <- t(BF_ITS)
 
 # Preview
-sbm::plotMyMatrix(FB_ITS, dimLabels = c('taxon', 'sample') ,
-  plotOptions = list( rowNames = TRUE,  colNames = TRUE,  legend = TRUE,  legend.position = 'right'))
-
-## Only Life Stage samples
-ps_ITS_rare_LS <- Subset_physeq(ps_rare_ITS, LifeStage !="na")
-ps_rare_ITS_LS_bin = phyloseq::transform_sample_counts(ps_ITS_rare_LS, function(x) 1*(x>0)) 
-
-mtd_ITS_LS <- data.frame(phyloseq::sample_data(ps_rare_ITS_LS_bin))
-mtd_ITS_LS <- mtd_ITS_LS %>%
-  dplyr::rename(Sample = ID_pool)
-
-df_taxo_ITS_LS = as.data.frame(tax_table(ps_rare_ITS_LS_bin)) #taxonomy table into dataframe
-df_taxo_ITS_LS$tax_ID = rownames(df_taxo_ITS_LS)
-
-df_reads_ITS_LS = as.data.frame(otu_table(ps_rare_ITS_LS_bin)) #abundance table (binary) into a dataframe
-df_reads_ITS_LS$tax_ID = rownames(df_reads_ITS_LS)
-
-df_wide_ITS_LS = dplyr::left_join(df_taxo_ITS_LS, df_reads_ITS_LS, by = "tax_ID") #merge the two (suppr "Species" column)
-df_wide_ITS_LS$Species <- NULL
-
-BF_ITS_LS <- df_wide_ITS_LS[, c(6,8:dim(df_wide_ITS_LS)[2])]
-BF_ITS_LS$Genus <- make.unique(BF_ITS_LS$Genus, sep = "_")
-rownames(BF_ITS_LS) <- BF_ITS_LS$Genus 
-BF_ITS_LS$Genus <- NULL
-FB_ITS_LS <- t(BF_ITS_LS)
+# sbm::plotMyMatrix(FB_ITS, dimLabels = c('taxon', 'sample') ,
+#   plotOptions = list( rowNames = TRUE,  colNames = TRUE,  legend = TRUE,  legend.position = 'right'))
 ```
 
-# 2. LBM clustering / Heatmap
-### 16S
+## LBM clustering / Heatmap
 ```{r}
 ########
 # 16S #
 ########
+LBM_bernoulli_FruitsOnly_16S <-  as.matrix(FB_FruitsOnly_16S) %>%
+    sbm::estimateBipartiteSBM(model = 'bernoulli')
 
+memb_spl_obs_FruitsOnly_16S <- LBM_bernoulli_FruitsOnly_16S$memberships$row
+memb_otu_obs_FruitsOnly_16S <- LBM_bernoulli_FruitsOnly_16S$memberships$col
+
+LBM_bernoulli_FruitsOnly_16S$storedModels %>% dplyr::arrange(ICL)
+
+LBM_FruitsOnly_16S_FruitType <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_FruitsOnly_16S, BF_mat = BF_FruitsOnly_16S, mtd = mtd_FruitsOnly_16S, variable_name = "FruitType", modality_string = c("BL", "CH", "ST"), color_string = c("purple4", "red4","red2"))
+
+LBM_16S_FruitSite <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_FruitsOnly_16S, BF_mat = BF_FruitsOnly_16S, mtd = mtd_FruitsOnly_16S, variable_name = "FruitSite", modality_string = c("THU","FIN","LOM","IST","MIL","VAR"), color_string = c("skyblue","blue2","skyblue4","deepskyblue","coral2","dodgerblue"))
+
+LBM_16S_FruitVariety <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_FruitsOnly_16S, BF_mat = BF_FruitsOnly_16S, mtd = mtd_FruitsOnly_16S, variable_name = "FruitVariety", modality_string = c("na", "CDP","HED","SUM","STA","SWE", "CIF","CIR","DRE","INF", "MDB", "UNK","LOC"), color_string = c("indianred", "gold","gold2", "lightgoldenrod1","indianred1","yellow2","deepskyblue","yellow","#CD2626","indianred4","firebrick1","skyblue"))     
+
+```
+
+```{r}
+########
+# ITS #
+########
+```
+
+## Alluvial plot
+```{r, eval=FALSE}
+
+# 16S
+
+## Extract rows (samples) and columns (OTUs) for the alluvial plot
+memb_spl_obs_FruitsOnly_16S <- LBM_bernoulli_FruitsOnly_16S$memberships$row
+memb_otu_obs_FruitsOnly_16S <- LBM_bernoulli_FruitsOnly_16S$memberships$col
+
+# Cluster_Sample
+dataalluvial_16S_FO_FruitTYpe <- as.data.frame(table(sample_data(ps_rare_16S_FruitsOnly_bin)$FruitType,memb_spl_obs_FruitsOnly_16S)) # data for alluvial plot (Freq = Number of samples associated with each line)
+
+colnames(dataalluvial_16S_FO_FruitTYpe) = c("FruitType", "Cluster_sample", "SampleSize") # change column names
+
+# plot for fruits
+Alluvial_16S_FO_FruitType <- dataalluvial_16S_FO_FruitTYpe |>
+  ggplot(aes(axis1 = FruitType,
+             axis2 = Cluster_sample,
+             y = SampleSize)) +
+  scale_x_discrete(limits = c("FruitType", "Bacteria"), expand = c(.2, .05)) +
+  ggalluvial::geom_alluvium(aes(fill = FruitType), alpha = 0.6) +
+  ggalluvial::geom_stratum() +
+  geom_text(stat = "stratum",
+            aes(label = after_stat(stratum))) +
+  scale_fill_manual(values = c("BL"="purple4","CH"="red4","ST"="red2"),
+                    guide = "none") + ggtitle("16S_Fruits") 
+
+title_plot <- "AlluvialPlot_FruitsOnly_FruitTYpe_16S.jpg"
+ cowplot::save_plot(file=here::here("plots", "5_LBM&co", title_plot), Alluvial_16S_FO_FruitType, base_height = 30/cm(1), base_width = 40/cm(1), dpi = 1200)
+```
+
+```{r}
+# ITS
+
+```
+
+
+```{r}
+########
+# 16S #
+########
 LBM_bernoulli_16S <-  as.matrix(FB_16S) %>%
     sbm::estimateBipartiteSBM(model = 'bernoulli')
 
@@ -184,11 +205,15 @@ LBM_16S_FruitType <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S, BF_mat = B
 
 LBM_16S_FruitSite <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S, BF_mat = BF_16S, mtd = mtd_16S, color_variable = "FruitSite", variable_name = "FruitSite", modality_string = c("na", "FIN", "IST",  "LOM", "MIL", "VAR", "THU"), color_string = c("grey", "skyblue", "blue2" ,"skyblue4", "deepskyblue", "dodgerblue", "coral2"))
 
+LBM_16S_FruitVariety <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S, BF_mat = BF_16S, mtd = mtd_16S, color_variable = "FruitVariety", variable_name = "FruitVariety", modality_string = c("na", "CDP","HED","SUM","STA","SWE", "CIF","CIR","DRE","INF", "MDB", "UNK","LOC"), color_string = c("grey", "indianred","indianred1","indianred4","#CD2626","firebrick1","gold","gold2", "lightgoldenrod1", "yellow2","yellow","skyblue","deepskyblue"))
+
 LBM_16S_LifeStage <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S, BF_mat = BF_16S, mtd = mtd_16S, color_variable = "LifeStage", variable_name = "LifeStage", modality_string = c("na",  "Mother", "Larva", "Pupa", "Daughter", "PupalCase"), color_string = c("grey","darkolivegreen4", "darkolivegreen2", "darkorange2", "goldenrod2" ,"#8B4500"))
 
 LBM_16S_Pop <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S, BF_mat = BF_16S, mtd = mtd_16S, color_variable = "Pop", variable_name = "Pop", modality_string = c("na", "CEC", "FRA"), color_string = c("grey", "#C1FFC1", "seagreen3"))
+```
 
 
+```{r}
 # only LS samples
 LBM_bernoulli_16S_LS <-  as.matrix(FB_16S_LS) %>%
     sbm::estimateBipartiteSBM(model = 'bernoulli')
@@ -283,7 +308,7 @@ title_plot <- "LBM_LifeStage_LS_ITS.jpg"
                 base_width = 50/cm(1), dpi = 1200)
 ```
 
-# 3. Alluvial plot
+# Alluvial plot
 
 ## 16S
 
@@ -621,3 +646,57 @@ wholenetwork_cca_results_NULL_ITS_LS <- analysis.function.alt2(incid=as.data.fra
 wholenetwork_cca_results_CONFIGS_ITS_LS <- analysis.function.alt2(incid=as.data.frame(FB_ITS_LS), memb_obs=memb_spl_obs_ITS_LS, var1=cca_data_ITS_LS$FruitType, var2=cca_data_ITS_LS$LifeStage, configs = LBM.config)
 
 ```
+
+
+# 2. Individuals
+## Prepare data
+```{r}
+## Only Life Stage samples
+ps_16S_rare_LS <- Subset_physeq(ps_rare_16S, LifeStage !="na")
+ps_rare_16S_LS_bin = phyloseq::transform_sample_counts(ps_16S_rare_LS, function(x) 1*(x>0)) 
+
+mtd_16S_LS <- data.frame(phyloseq::sample_data(ps_rare_16S_LS_bin))
+mtd_16S_LS <- mtd_16S_LS %>%
+  dplyr::rename(Sample = ID_pool)
+
+df_taxo_16S_LS = as.data.frame(tax_table(ps_rare_16S_LS_bin)) #taxonomy table into dataframe
+df_taxo_16S_LS$tax_ID = rownames(df_taxo_16S_LS)
+
+df_reads_16S_LS = as.data.frame(otu_table(ps_rare_16S_LS_bin)) #abundance table (binary) into a dataframe
+df_reads_16S_LS$tax_ID = rownames(df_reads_16S_LS)
+
+df_wide_16S_LS = dplyr::left_join(df_taxo_16S_LS, df_reads_16S_LS, by = "tax_ID") #merge the two (suppr "Species" column)
+df_wide_16S_LS$Species <- NULL
+
+BF_16S_LS <- df_wide_16S_LS[, c(6,8:dim(df_wide_16S_LS)[2])]
+BF_16S_LS$Genus <- make.unique(BF_16S_LS$Genus, sep = "_")
+rownames(BF_16S_LS) <- BF_16S_LS$Genus 
+BF_16S_LS$Genus <- NULL
+FB_16S_LS <- t(BF_16S_LS)
+```
+
+```{r}
+## Only Life Stage samples
+ps_ITS_rare_LS <- Subset_physeq(ps_rare_ITS, LifeStage !="na")
+ps_rare_ITS_LS_bin = phyloseq::transform_sample_counts(ps_ITS_rare_LS, function(x) 1*(x>0)) 
+
+mtd_ITS_LS <- data.frame(phyloseq::sample_data(ps_rare_ITS_LS_bin))
+mtd_ITS_LS <- mtd_ITS_LS %>%
+  dplyr::rename(Sample = ID_pool)
+
+df_taxo_ITS_LS = as.data.frame(tax_table(ps_rare_ITS_LS_bin)) #taxonomy table into dataframe
+df_taxo_ITS_LS$tax_ID = rownames(df_taxo_ITS_LS)
+
+df_reads_ITS_LS = as.data.frame(otu_table(ps_rare_ITS_LS_bin)) #abundance table (binary) into a dataframe
+df_reads_ITS_LS$tax_ID = rownames(df_reads_ITS_LS)
+
+df_wide_ITS_LS = dplyr::left_join(df_taxo_ITS_LS, df_reads_ITS_LS, by = "tax_ID") #merge the two (suppr "Species" column)
+df_wide_ITS_LS$Species <- NULL
+
+BF_ITS_LS <- df_wide_ITS_LS[, c(6,8:dim(df_wide_ITS_LS)[2])]
+BF_ITS_LS$Genus <- make.unique(BF_ITS_LS$Genus, sep = "_")
+rownames(BF_ITS_LS) <- BF_ITS_LS$Genus 
+BF_ITS_LS$Genus <- NULL
+FB_ITS_LS <- t(BF_ITS_LS)
+```
+# 3. Indiv + Aunts + HostFruit

@@ -2,7 +2,7 @@
 #'
 #' @param SBMobject BipartiteSBM object
 #' @param BF_mat binary matrix
-#' @param variable the variable included in the SBM object
+#' @param mtd the corresponding metadata (samples info)
 #' @param varibale_name name of the variable for colouring the squares
 #' @param modality_string modalities of the variable to colour the squares displayed in the legend
 #' @param color_string character string with colours for each mode of the variable
@@ -14,11 +14,11 @@
 #' It's a "ggplot" class object.
 #'
 #' @examples
-#' LBM_16S_MPC3_Fruit <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_MPC3_16S, BF_mat = BF_MPC3_16S, color_variable = "Fruit", varibale_name = "Fruit", modality_string = c("Blackberry", "Cherry", "Strawberry"), color_string = Color_Fruit)
+#' LBM_16S_MPC3_Fruit <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_MPC3_16S, BF_mat = BF_MPC3_16S, varibale_name = "Fruit", modality_string = c("Blackberry", "Cherry", "Strawberry"), color_string = Color_Fruit)
 
 #'
 #' @export
-Order_Matrix_Plot <- function(SBMobject, BF_mat, mtd, color_variable, modality_string, variable_name, color_string) {
+Order_Matrix_Plot <- function(SBMobject, BF_mat, mtd, modality_string, variable_name, color_string) {
   ## Use presence/absence table with OTU as rows and samples as columns
   df = as.data.frame(BF_mat)
   df$taxon = rownames(df)
@@ -60,11 +60,14 @@ Order_Matrix_Plot <- function(SBMobject, BF_mat, mtd, color_variable, modality_s
   correct_sample_order <- unique(df_long$Sample)
 
   ## Convert column of interest as factor
-  df_long[[color_variable]] <- factor(df_long[[color_variable]])
+  df_long[[variable_name]] <- factor(df_long[[variable_name]])
 
   ## Ass color to each level of the factor of interest
-  df_long$color_bin <- factor(ifelse(df_long$PresenceAbsence==0, 0, paste(df_long$PresenceAbsence, df_long[[color_variable]], sep = "_")))
-  levels(df_long$color_bin) <- c("", modality_string)
+  df_long$color_bin <- factor(ifelse(df_long$PresenceAbsence==0, 0, paste(df_long$PresenceAbsence, df_long[[variable_name]], sep = "_")))
+  # levels(df_long$color_bin) <- c("", modality_string)
+  df_long$color_bin <- ifelse(df_long$color_bin == "0", "", sub("^..", "", df_long$color_bin))
+  df_long$color_bin <- factor(df_long$color_bin)
+
   heatmap_color_bin <- c("white", color_string)
 
   df_long$PresenceAbsence <- as.factor(df_long$PresenceAbsence)
@@ -88,7 +91,7 @@ Order_Matrix_Plot <- function(SBMobject, BF_mat, mtd, color_variable, modality_s
       axis.text.y = element_text()
     ) +
     scale_fill_manual(values = heatmap_color_bin) +
-    scale_y_discrete(name = "OTU", limits = correct_taxon_order) +
+    scale_y_discrete(name = "ASV", limits = correct_taxon_order) +
     scale_x_discrete(name = "Sample", limits = correct_sample_order) +
     geom_vline(
       xintercept = 0.5 + cumsum(table(SBMobject$memberships$row))[-length(table(SBMobject$memberships$row))],
