@@ -188,6 +188,482 @@ title_plot <- "AlluvialPlot_FruitsOnly_FruitTYpe_16S.jpg"
 
 ```
 
+## CCA
+```{r}
+### Null model
+
+NPERM <- 100
+
+sim_list = list()
+  
+#for each rarefied matrix
+  sim_mat <- BF_FruitsOnly_16S
+  #produce NPERM simulated graphs
+  netBin.config <-
+    simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
+
+  LBM.config <-
+    sapply(1:NPERM, function(i) {
+      BF_sim <- netBin.config[, , i]
+      FB_sim <- t(BF_sim)
+      LBM_sim <-as.matrix(FB_sim) %>%
+    sbm::estimateBipartiteSBM(model = 'bernoulli',
+                         estimOptions = list(plot = T))
+       memb_spl_sim <- LBM_sim$memberships$row ## Extract membership of the samples 
+    })
+```
+
+```{r}
+# Factors
+FruitType_vect_FruitsOnly_16S <- as.factor(mtd_FruitsOnly_16S$FruitType[match(rownames(FB_FruitsOnly_16S), mtd_FruitsOnly_16S$Sample)])
+
+FruitVariety_vect_FruitsOnly_16S <- as.factor(mtd_FruitsOnly_16S$FruitVariety[match(rownames(FB_FruitsOnly_16S), mtd_FruitsOnly_16S$Sample)])
+
+## Create a matrix with samples as rows and group asigned by the latent block model as column
+dummyMod_FruitsOnly_16S <- lme4::dummy(as.factor(memb_spl_obs_FruitsOnly_16S), levelsToKeep = levels(as.factor(memb_spl_obs_FruitsOnly_16S)))
+
+## Creates dataframe with the two variables of interest
+cca_data_FruitsOnly_16S <- data.frame("FruitType" = as.factor(FruitType_vect_FruitsOnly_16S), "FruitVariety" = as.factor(FruitVariety_vect_FruitsOnly_16S))
+
+## Partition the variation of the community matrix
+varp_FruitsOnly_16S <- vegan::varpart(dummyMod_FruitsOnly_16S, cca_data_FruitsOnly_16S$FruitType, cca_data_FruitsOnly_16S$FruitVariety, chisquare = T)
+
+#CCA with line randomization
+wholenetwork_cca_results_NULL_FruitsOnly_16S <- analysis.function.alt2(incid=as.data.frame(FB_FruitsOnly_16S), memb_obs=memb_spl_obs_FruitsOnly_16S, var1=cca_data_FruitsOnly_16S$FruitType, var2=cca_data_FruitsOnly_16S$FruitVariety, configs = NULL)
+
+#CCA with full randomization
+wholenetwork_cca_results_CONFIGS_FruitsOnly_16S <- analysis.function.alt2(incid=as.data.frame(FB_FruitsOnly_16S), memb_obs=memb_spl_obs_FruitsOnly_16S, var1=cca_data_FruitsOnly_16S$FruitType, var2=cca_data_FruitsOnly_16S$FruitVariety, configs = LBM.config)
+```
+
+
+# 2. Individuals
+## Prepare data
+```{r}
+# 16S
+
+## Only Life Stage samples
+ps_16S_rare_LS <- Subset_physeq(ps_rare_16S, LifeStage !="na")
+
+ps_rare_16S_LS_bin = phyloseq::transform_sample_counts(ps_16S_rare_LS, function(x) 1*(x>0)) 
+
+mtd_16S_LS <- data.frame(phyloseq::sample_data(ps_rare_16S_LS_bin))
+mtd_16S_LS <- mtd_16S_LS %>%
+  dplyr::rename(Sample = ID_pool)
+
+df_taxo_16S_LS = as.data.frame(tax_table(ps_rare_16S_LS_bin)) #taxonomy table into dataframe
+df_taxo_16S_LS$tax_ID = rownames(df_taxo_16S_LS)
+
+df_reads_16S_LS = as.data.frame(otu_table(ps_rare_16S_LS_bin)) #abundance table (binary) into a dataframe
+df_reads_16S_LS$tax_ID = rownames(df_reads_16S_LS)
+
+df_wide_16S_LS = dplyr::left_join(df_taxo_16S_LS, df_reads_16S_LS, by = "tax_ID") #merge the two (suppr "Species" column)
+df_wide_16S_LS$Species <- NULL
+
+BF_16S_LS <- df_wide_16S_LS[, c(6,8:dim(df_wide_16S_LS)[2])]
+BF_16S_LS$Genus <- make.unique(BF_16S_LS$Genus, sep = "_")
+rownames(BF_16S_LS) <- BF_16S_LS$Genus 
+BF_16S_LS$Genus <- NULL
+FB_16S_LS <- t(BF_16S_LS)
+```
+
+```{r}
+# ITS
+
+## Only Life Stage samples
+ps_ITS_rare_LS <- Subset_physeq(ps_rare_ITS, LifeStage !="na")
+ps_rare_ITS_LS_bin = phyloseq::transform_sample_counts(ps_ITS_rare_LS, function(x) 1*(x>0)) 
+
+mtd_ITS_LS <- data.frame(phyloseq::sample_data(ps_rare_ITS_LS_bin))
+mtd_ITS_LS <- mtd_ITS_LS %>%
+  dplyr::rename(Sample = ID_pool)
+
+df_taxo_ITS_LS = as.data.frame(tax_table(ps_rare_ITS_LS_bin)) #taxonomy table into dataframe
+df_taxo_ITS_LS$tax_ID = rownames(df_taxo_ITS_LS)
+
+df_reads_ITS_LS = as.data.frame(otu_table(ps_rare_ITS_LS_bin)) #abundance table (binary) into a dataframe
+df_reads_ITS_LS$tax_ID = rownames(df_reads_ITS_LS)
+
+df_wide_ITS_LS = dplyr::left_join(df_taxo_ITS_LS, df_reads_ITS_LS, by = "tax_ID") #merge the two (suppr "Species" column)
+df_wide_ITS_LS$Species <- NULL
+
+BF_ITS_LS <- df_wide_ITS_LS[, c(6,8:dim(df_wide_ITS_LS)[2])]
+BF_ITS_LS$Genus <- make.unique(BF_ITS_LS$Genus, sep = "_")
+rownames(BF_ITS_LS) <- BF_ITS_LS$Genus 
+BF_ITS_LS$Genus <- NULL
+FB_ITS_LS <- t(BF_ITS_LS)
+```
+
+## LBM clustering / Heatmap
+```{r}
+########
+# 16S #
+########
+LBM_bernoulli_16S_LS <-  as.matrix(FB_16S_LS) %>%
+    sbm::estimateBipartiteSBM(model = 'bernoulli')
+
+memb_spl_obs_16S_LS <- LBM_bernoulli_16S_LS$memberships$row
+memb_otu_obs_16S_LS <- LBM_bernoulli_16S_LS$memberships$col
+
+LBM_bernoulli_16S_LS$storedModels %>% dplyr::arrange(ICL)
+
+LBM_16S_LS_FruitType <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S_LS, BF_mat = BF_16S_LS, mtd = mtd_16S_LS, variable_name = "FruitType", modality_string = c("BL", "CH", "ST"), color_string = c("purple4", "red4","red2"))
+
+LBM_16S_LS_FruitSite <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S_LS, BF_mat = BF_16S_LS, mtd = mtd_16S_LS, variable_name = "FruitSite", modality_string = c("THU","FIN","LOM","IST","MIL","VAR"), color_string = c("skyblue","blue2","skyblue4","deepskyblue","coral2","dodgerblue"))
+
+LBM_16S_LS_LifeStage <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S_LS, BF_mat = BF_16S_LS, mtd = mtd_16S_LS, variable_name = "LifeStage", modality_string = c("Mother", "Larva", "Pupa", "Daughter", "PupalCase"), color_string = c("goldenrod2" , "darkolivegreen2","darkolivegreen4","darkorange2","#8B4500")) 
+
+LBM_16S_LS_Pop <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S_LS, BF_mat = BF_16S_LS, mtd = mtd_16S_LS, variable_name = "Pop", modality_string = c("CEC", "FRA", "na"), color_string = c("#C1FFC1", "seagreen3",))
+```
+
+```{r}
+# ITS
+```
+
+## Alluvial plot
+```{r}
+# 16S
+
+## Extract rows (samples) and columns (OTUs) for the alluvial plot
+memb_spl_obs_16S_LS <- LBM_bernoulli_16S_LS$memberships$row
+memb_otu_obs_16S_LS <- LBM_bernoulli_16S_LS$memberships$col
+
+## Data for alluvial plot : Compute SampleSize, the number of samples for each FruitType, Lifestage and OTU membership
+dataalluvial_16S_LS_FruitType_LifeStage <- as.data.frame(table(sample_data(ps_rare_16S_LS_bin)$FruitType,
+      memb_spl_obs_16S_LS, sample_data(ps_rare_16S_LS_bin)$LifeStage))
+
+colnames(dataalluvial_16S_LS_FruitType_LifeStage) = c("FruitType", "Bacteria",  "LifeStage", "SampleSize") # change column names
+
+# plot for fruits
+Alluvial_16S_Fruits_LS_FruitType_LifeStage <- dataalluvial_16S_LS_FruitType_LifeStage |>
+  ggplot(aes(axis1 = FruitType,
+             axis2 = Bacteria,
+             axis3 = LifeStage,
+             y = SampleSize)) +
+  ggalluvial::geom_alluvium(aes(fill = FruitType), alpha = 0.6) +
+  ggalluvial::geom_stratum(width = 0.4) +
+  geom_text(stat = "stratum",
+            aes(label = after_stat(stratum))) +
+  scale_x_discrete(limits = c("FruitType", "Bacteria", "Life stage"), expand = c(.2, .05)) +
+  scale_fill_manual(values = c("BL" = "purple4", "CH" = "red4","na" = "grey",  "ST" = "red2"),guide = "none") +
+  theme_minimal()+
+  theme(axis.text.x = element_text(size = 12, color = "black", face = "bold"))
+```
+
+```{r}
+#ITS
+```
+
+
+## CCA
+```{r}
+# 16S
+
+NPERM <- 10
+
+sim_list = list()
+  
+#for each rarefied matrix
+  sim_mat <- BF_16S_LS
+  #produce NPERM simulated graphs
+  netBin.config <-
+    simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
+
+  LBM.config <-
+    sapply(1:NPERM, function(i) {
+      BF_sim <- netBin.config[, , i]
+      FB_sim <- t(BF_sim)
+      LBM_sim <-as.matrix(FB_sim) %>%
+    sbm::estimateBipartiteSBM(model = 'bernoulli',
+                         estimOptions = list(plot = T))
+       memb_spl_sim <- LBM_sim$memberships$row ## Extract membership of the samples 
+    })
+```
+
+```{r}
+# 16S
+
+# Factors
+FruitType_vect_16S_LS <- as.factor(mtd_16S_LS$FruitType[match(rownames(FB_16S_LS), mtd_16S_LS$Sample)])
+LifeStage_vect_16S_LS <- as.factor(mtd_16S_LS$LifeStage[match(rownames(FB_16S_LS), mtd_16S_LS$Sample)])
+
+## Create a matrix with samples as rows and group asigned by the latent block model as column
+dummyMod_16S_LS <- lme4::dummy(as.factor(memb_spl_obs_16S_LS), levelsToKeep = levels(as.factor(memb_spl_obs_16S_LS)))
+
+## Creates dataframe with the two variables of interest
+cca_data_16S_LS <- data.frame("FruitType" = as.factor(FruitType_vect_16S_LS),
+    "LifeStage" = as.factor(LifeStage_vect_16S_LS))
+
+## Partition the variation of the community matrix
+varp_16S_LS <- vegan::varpart(dummyMod_16S_LS, cca_data_16S_LS$FruitType, cca_data_16S_LS$LifeStage, chisquare = T)
+varp_16S_LS$part
+
+#CCA with line randomization
+wholenetwork_cca_results_NULL_16S_LS <- analysis.function.alt2(incid=as.data.frame(FB_16S_LS), memb_obs=memb_spl_obs_16S_LS, var1=cca_data_16S_LS$FruitType, var2=cca_data_16S_LS$LifeStage, configs = NULL)
+
+#CCA with full randomization
+wholenetwork_cca_results_CONFIGS_16S_LS <- analysis.function.alt2(incid=as.data.frame(FB_16S_LS), memb_obs=memb_spl_obs_16S_LS, var1=cca_data_16S_LS$FruitType, var2=cca_data_16S_LS$LifeStage, configs = LBM.config)
+```
+
+
+
+```{r}
+# ITS
+
+NPERM <- 10
+sim_list = list()
+  #for each rarefied matrix
+  sim_mat <- BF_ITS_LS
+  #produce NPERM simulated graphs
+  netBin.config <-
+    simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
+
+  LBM.config <-
+    sapply(1:NPERM, function(i) {
+      BF_sim <- netBin.config[, , i]
+      FB_sim <- t(BF_sim)
+      LBM_sim <-as.matrix(FB_sim) %>%
+    sbm::estimateBipartiteSBM(model = 'bernoulli',
+                         estimOptions = list(plot = T))
+       memb_spl_sim <- LBM_sim$memberships$row ## Extract membership of the samples 
+    })
+```
+
+```{r}
+# Factors
+FruitType_vect_ITS_LS <- as.factor(mtd_ITS_LS$FruitType[match(rownames(FB_ITS_LS), mtd_ITS_LS$Sample)])
+LifeStage_vect_ITS_LS <- as.factor(mtd_ITS_LS$LifeStage[match(rownames(FB_ITS_LS), mtd_ITS_LS$Sample)])
+
+## Create a matrix with samples as rows and group asigned by the latent block model as column
+dummyMod_ITS_LS <- lme4::dummy(as.factor(memb_spl_obs_ITS_LS), levelsToKeep = levels(as.factor(memb_spl_obs_ITS_LS)))
+
+## Creates dataframe with the two variables of interest
+cca_data_ITS_LS <- data.frame("FruitType" = as.factor(FruitType_vect_ITS_LS), "LifeStage" = as.factor(LifeStage_vect_ITS_LS))
+
+## Partition the variation of the community matrix
+varp_ITS_LS <- vegan::varpart(dummyMod_ITS_LS, cca_data_ITS_LS$FruitType, cca_data_ITS_LS$LifeStage, chisquare = T)
+varp_16S_LS$part
+
+#CCA with line randomization
+wholenetwork_cca_results_NULL_ITS_LS <- analysis.function.alt2(incid=as.data.frame(FB_ITS_LS), memb_obs=memb_spl_obs_ITS_LS, var1=cca_data_ITS_LS$FruitType, var2=cca_data_ITS_LS$LifeStage, configs = NULL)
+
+#CCA with full randomization
+wholenetwork_cca_results_CONFIGS_ITS_LS <- analysis.function.alt2(incid=as.data.frame(FB_ITS_LS), memb_obs=memb_spl_obs_ITS_LS, var1=cca_data_ITS_LS$FruitType, var2=cca_data_ITS_LS$LifeStage, configs = LBM.config)
+```
+
+
+
+# 3. Indiv + Aunts + HostFruit
+
+## Prepare data
+```{r}
+# Filter data
+ps_16S_rare_expe <- Subset_physeq(ps_rare_16S, Sample_Category == "All_stages_Focal_Sites")
+
+ps_16S_rare_expe <- Subset_physeq(ps_16S_rare_expe, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
+
+ps_rare_16S_expe_bin = phyloseq::transform_sample_counts(ps_16S_rare_expe, function(x) 1*(x>0)) # counts -> presence/absence (binary table)
+
+mtd_16S_expe <- data.frame(phyloseq::sample_data(ps_rare_16S_expe_bin))
+mtd_16S_expe <- mtd_16S_expe %>%
+  dplyr::rename(Sample = ID_pool)
+
+df_taxo_16S_expe = as.data.frame(tax_table(ps_rare_16S_expe_bin)) #taxonomy table into dataframe
+df_taxo_16S_expe$tax_ID = rownames(df_taxo_16S_expe)
+
+df_reads_16S_expe = as.data.frame(otu_table(ps_rare_16S_expe_bin)) #abundance table (binary) into a dataframe
+df_reads_16S_expe$tax_ID = rownames(df_reads_16S_expe)
+
+df_wide_16S_expe = dplyr::left_join(df_taxo_16S_expe, df_reads_16S_expe, by = "tax_ID") #merge the two (suppr "Species" column)
+df_wide_16S_expe$Species <- NULL
+
+BF_16S_expe <- df_wide_16S_expe[, c(6,8:dim(df_wide_16S_expe)[2])]
+BF_16S_expe$Genus <- make.unique(BF_16S_expe$Genus, sep = "_")
+rownames(BF_16S_expe) <- BF_16S_expe$Genus 
+BF_16S_expe$Genus <- NULL
+FB_16S_expe <- t(BF_16S_expe)
+```
+
+```{r}
+# Filter data
+ps_ITS_rare_expe <- Subset_physeq(ps_rare_ITS, Sample_Category == "All_stages_Focal_Sites")
+
+ps_ITS_rare_expe <- Subset_physeq(ps_ITS_rare_expe, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
+
+ps_rare_ITS_expe_bin = phyloseq::transform_sample_counts(ps_ITS_rare_expe, function(x) 1*(x>0)) # counts -> presence/absence (binary table)
+
+mtd_ITS_expe <- data.frame(phyloseq::sample_data(ps_rare_ITS_expe_bin))
+mtd_ITS_expe <- mtd_ITS_expe %>%
+  dplyr::rename(Sample = ID_pool)
+
+df_taxo_ITS_expe = as.data.frame(tax_table(ps_rare_ITS_expe_bin)) #taxonomy table into dataframe
+df_taxo_ITS_expe$tax_ID = rownames(df_taxo_ITS_expe)
+
+df_reads_ITS_expe = as.data.frame(otu_table(ps_rare_ITS_expe_bin)) #abundance table (binary) into a dataframe
+df_reads_ITS_expe$tax_ID = rownames(df_reads_ITS_expe)
+
+df_wide_ITS_expe = dplyr::left_join(df_taxo_ITS_expe, df_reads_ITS_expe, by = "tax_ID") #merge the two (suppr "Species" column)
+df_wide_ITS_expe$Species <- NULL
+
+BF_ITS_expe <- df_wide_ITS_expe[, c(6,8:dim(df_wide_ITS_expe)[2])]
+BF_ITS_expe$Genus <- make.unique(BF_ITS_expe$Genus, sep = "_")
+rownames(BF_ITS_expe) <- BF_ITS_expe$Genus 
+BF_ITS_expe$Genus <- NULL
+FB_ITS_expe <- t(BF_ITS_expe)
+```
+
+## LBM clustering
+```{r}
+########
+# 16S #
+########
+LBM_bernoulli_16S_expe <-  as.matrix(FB_16S_expe) %>%
+    sbm::estimateBipartiteSBM(model = 'bernoulli')
+
+memb_spl_obs_16S_expe <- LBM_bernoulli_16S_expe$memberships$row
+memb_otu_obs_16S_expe <- LBM_bernoulli_16S_expe$memberships$col
+
+LBM_bernoulli_16S_expe$storedModels %>% dplyr::arrange(ICL)
+
+LBM_16S_expe_FruitType <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S_expe, BF_mat = BF_16S_expe, mtd = mtd_16S_expe, variable_name = "FruitType", modality_string = c("BL", "CH", "na","ST"), color_string = c("purple4", "red4", "grey","red2"))
+
+LBM_16S_expe_FruitSite <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S_expe, BF_mat = BF_16S_expe, mtd = mtd_16S_expe, variable_name = "FruitSite", modality_string = c("THU","FIN","LOM","IST","MIL","VAR","na"), color_string = c("skyblue","blue2","skyblue4","deepskyblue","grey", "coral2","dodgerblue"))
+
+LBM_16S_expe_LifeStage <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S_expe, BF_mat = BF_16S_expe, mtd = mtd_16S_expe, variable_name = "LifeStage", modality_string = c("na","Fruits_0days", "Aunts", "Mothers", "Fruits_5_6days", "Larvae", "Pupae" , "PupalCases", "Daughters"), color_string = c("darkolivegreen","goldenrod2", "red3","red4","green3","darkolivegreen3", "grey","darkorange2","#8B4500")) 
+```
+
+## Alluvial plot
+```{r}
+# 16S
+
+## Extract rows (samples) and columns (OTUs) for the alluvial plot
+memb_spl_obs_16S_expe <- LBM_bernoulli_16S_expe$memberships$row
+memb_otu_obs_16S_expe <- LBM_bernoulli_16S_expe$memberships$col
+
+## Data for alluvial plot : Compute SampleSize, the number of samples for each FruitType, Lifestage and OTU membership
+dataalluvial_16S_expe_FruitType_LifeStage <- as.data.frame(table(sample_data(ps_rare_16S_expe_bin)$FruitType,
+      memb_spl_obs_16S_expe, sample_data(ps_rare_16S_expe_bin)$LifeStage))
+
+colnames(dataalluvial_16S_expe_FruitType_LifeStage) = c("FruitType", "Bacteria",  "LifeStage", "SampleSize") # change column names
+
+# plot for fruits
+Alluvial_16S_expe_FruitType_LifeStage <- dataalluvial_16S_expe_FruitType_LifeStage |>
+  ggplot(aes(axis1 = FruitType,
+             axis2 = Bacteria,
+             axis3 = LifeStage,
+             y = SampleSize)) +
+  ggalluvial::geom_alluvium(aes(fill = FruitType), alpha = 0.6) +
+  ggalluvial::geom_stratum(width = 0.4) +
+  geom_text(stat = "stratum",
+            aes(label = after_stat(stratum))) +
+  scale_x_discrete(limits = c("FruitType", "Bacteria", "Life stage"), expand = c(.2, .05)) +
+  scale_fill_manual(values = c("BL" = "purple4", "CH" = "red4","na" = "grey",  "ST" = "red2"),guide = "none") +
+  theme_minimal()+
+  theme(axis.text.x = element_text(size = 12, color = "black", face = "bold"))
+```
+
+```{r}
+#ITS
+```
+
+
+## CCA
+```{r}
+# 16S
+
+NPERM <- 10
+
+sim_list = list()
+  
+#for each rarefied matrix
+  sim_mat <- BF_16S_expe
+  #produce NPERM simulated graphs
+  netBin.config <-
+    simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
+
+  LBM.config <-
+    sapply(1:NPERM, function(i) {
+      BF_sim <- netBin.config[, , i]
+      FB_sim <- t(BF_sim)
+      LBM_sim <-as.matrix(FB_sim) %>%
+    sbm::estimateBipartiteSBM(model = 'bernoulli',
+                         estimOptions = list(plot = T))
+       memb_spl_sim <- LBM_sim$memberships$row ## Extract membership of the samples 
+    })
+```
+
+```{r}
+# 16S
+
+# Factors
+FruitType_vect_16S_expe <- as.factor(mtd_16S_expe$FruitType[match(rownames(FB_16S_expe), mtd_16S_expe$Sample)])
+LifeStage_vect_16S_expe <- as.factor(mtd_16S_expe$LifeStage[match(rownames(FB_16S_expe), mtd_16S_expe$Sample)])
+
+## Create a matrix with samples as rows and group asigned by the latent block model as column
+dummyMod_16S_expe <- lme4::dummy(as.factor(memb_spl_obs_16S_expe), levelsToKeep = levels(as.factor(memb_spl_obs_16S_expe)))
+
+## Creates dataframe with the two variables of interest
+cca_data_16S_expe <- data.frame("FruitType" = as.factor(FruitType_vect_16S_expe),
+    "LifeStage" = as.factor(LifeStage_vect_16S_expe))
+
+## Partition the variation of the community matrix
+varp_16S_expe <- vegan::varpart(dummyMod_16S_expe, cca_data_16S_expe$FruitType, cca_data_16S_expe$LifeStage, chisquare = T)
+varp_16S_expe$part
+
+#CCA with line randomization
+wholenetwork_cca_results_NULL_16S_expe <- analysis.function.alt2(incid=as.data.frame(FB_16S_expe), memb_obs=memb_spl_obs_16S_expe, var1=cca_data_16S_expe$FruitType, var2=cca_data_16S_expe$LifeStage, configs = NULL)
+
+#CCA with full randomization
+wholenetwork_cca_results_CONFIGS_16S_expe <- analysis.function.alt2(incid=as.data.frame(FB_16S_expe), memb_obs=memb_spl_obs_16S_expe, var1=cca_data_16S_expe$FruitType, var2=cca_data_16S_expe$LifeStage, configs = LBM.config)
+```
+
+
+
+```{r}
+# ITS
+
+NPERM <- 10
+sim_list = list()
+  #for each rarefied matrix
+  sim_mat <- BF_ITS_expe
+  #produce NPERM simulated graphs
+  netBin.config <-
+    simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
+
+  LBM.config <-
+    sapply(1:NPERM, function(i) {
+      BF_sim <- netBin.config[, , i]
+      FB_sim <- t(BF_sim)
+      LBM_sim <-as.matrix(FB_sim) %>%
+    sbm::estimateBipartiteSBM(model = 'bernoulli',
+                         estimOptions = list(plot = T))
+       memb_spl_sim <- LBM_sim$memberships$row ## Extract membership of the samples 
+    })
+```
+
+```{r}
+# Factors
+FruitType_vect_ITS_expe <- as.factor(mtd_ITS_expe$FruitType[match(rownames(FB_ITS_expe), mtd_ITS_expe$Sample)])
+LifeStage_vect_ITS_expe <- as.factor(mtd_ITS_expe$LifeStage[match(rownames(FB_ITS_expe), mtd_ITS_expe$Sample)])
+
+## Create a matrix with samples as rows and group asigned by the latent block model as column
+dummyMod_ITS_expe <- lme4::dummy(as.factor(memb_spl_obs_ITS_expe), levelsToKeep = levels(as.factor(memb_spl_obs_ITS_expe)))
+
+## Creates dataframe with the two variables of interest
+cca_data_ITS_expe <- data.frame("FruitType" = as.factor(FruitType_vect_ITS_expe), "LifeStage" = as.factor(LifeStage_vect_ITS_expe))
+
+## Partition the variation of the community matrix
+varp_ITS_expe <- vegan::varpart(dummyMod_ITS_expe, cca_data_ITS_expe$FruitType, cca_data_ITS_expe$LifeStage, chisquare = T)
+varp_16S_expe$part
+
+#CCA with line randomization
+wholenetwork_cca_results_NULL_ITS_expe <- analysis.function.alt2(incid=as.data.frame(FB_ITS_expe), memb_obs=memb_spl_obs_ITS_expe, var1=cca_data_ITS_expe$FruitType, var2=cca_data_ITS_expe$LifeStage, configs = NULL)
+
+#CCA with full randomization
+wholenetwork_cca_results_CONFIGS_ITS_expe <- analysis.function.alt2(incid=as.data.frame(FB_ITS_expe), memb_obs=memb_spl_obs_ITS_expe, var1=cca_data_ITS_expe$FruitType, var2=cca_data_ITS_expe$LifeStage, configs = LBM.config)
+```
+
+
+
 
 ```{r}
 ########
@@ -308,84 +784,7 @@ title_plot <- "LBM_LifeStage_LS_ITS.jpg"
                 base_width = 50/cm(1), dpi = 1200)
 ```
 
-# Alluvial plot
 
-## 16S
-
-### Fruit type
-
-```{r, eval=FALSE}
-
-## Extract rows (samples) and columns (OTUs) for the alluvial plot
-memb_spl_obs_16S <- LBM_bernoulli_16S$memberships$row
-memb_otu_obs_16S <- LBM_bernoulli_16S$memberships$col
-
-# Cluster_Sample
-# data for alluvial plot (Freq = Number of samples associated with each line)
-dataalluvial_16S_fruits <- as.data.frame(table(
-      sample_data(ps_rare_16S_bin)$FruitType,
-      memb_spl_obs_16S))
-
-#dataalluvial_16S_fruits <- as.data.frame(table(
-#      sample_data(S_ps_rare_16S_bin)$FruitType,
-#      memb_spl_obs_16S,
-#      sample_data(S_ps_rare_16S_bin)$FruitSite))
-
-# change column names
-#colnames(dataalluvial_16S_fruits) = c("FruitType", "Gut_bacteria",  "FruitSite", "SampleSize")
-colnames(dataalluvial_16S_fruits) = c("FruitType", "Cluster_sample", "SampleSize")
-
-# plot for fruits
-Alluvial_16S_Fruits <- dataalluvial_16S_fruits |>
-  ggplot(aes(axis1 = FruitType,
-             axis2 = Gut_bacteria,
-             y = SampleSize)) +
-  #ggplot(aes(axis1 = FruitType, axis2 = Cluster_sample, axis3 = FruitSite, y = Freq)) +
-   # scale_x_discrete(limits = c("FruitType", "FruitSite", "Cluster_sample"), expand = c(.2, .05)) +
-  scale_x_discrete(limits = c("FruitType", "Gut bacteria"), expand = c(.2, .05)) +
-  ggalluvial::geom_alluvium(aes(fill = FruitType), alpha = 0.6) +
-  ggalluvial::geom_stratum() +
-  geom_text(stat = "stratum",
-            aes(label = after_stat(stratum))) +
-  scale_fill_manual(values = c("BL" = "purple4", "CH" = "red4","na" = "grey",  "ST" = "red2"),
-                    guide = "none") +
-  ggtitle("16S_Fruits") +
-  theme_minimal(axis.text.x = element_text(size = 12, color = "black", face = "bold"))
-```
-
-### Fruit type and life stage
-
-```{r}
-## Extract rows (samples) and columns (OTUs) for the alluvial plot
-memb_spl_obs_16S <- LBM_bernoulli_16S$memberships$row
-memb_otu_obs_16S <- LBM_bernoulli_16S$memberships$col
-
-## Data for alluvial plot : Compute SampleSize, the number of samples for each FruitType, Lifestage and OTU membership
-
-dataalluvial_16S_fruits_lifestage <- as.data.frame(table(
-      sample_data(ps_rare_16S_bin)$FruitType,
-      memb_spl_obs_16S, sample_data(ps_rare_16S_bin)$LifeStage))
-
-# change column names
-colnames(dataalluvial_16S_fruits_lifestage) = c("FruitType", "Gut_bacteria",  "LifeStage", "SampleSize")
-
-# plot for fruits
-Alluvial_16S_Fruits_LifeStage <- dataalluvial_16S_fruits_lifestage |>
-  ggplot(aes(axis1 = FruitType,
-             axis2 = Gut_bacteria,
-             axis3 = LifeStage,
-             y = SampleSize)) +
-  ggalluvial::geom_alluvium(aes(fill = FruitType), alpha = 0.6) +
-  ggalluvial::geom_stratum(width = 0.4) +
-  geom_text(stat = "stratum",
-            aes(label = after_stat(stratum))) +
-  scale_x_discrete(limits = c("FruitType", "Gut bacteria", "Life stage"), expand = c(.2, .05)) +
-  scale_fill_manual(values = c("BL" = "purple4", "CH" = "red4","na" = "grey",  "ST" = "red2"),guide = "none") +
-  ggtitle("16S_Fruits_LifeStages") +
-  theme_minimal()+
-  theme(axis.text.x = element_text(size = 12, color = "black", face = "bold"))
-
-```
 ## ITS
 ### Fruit type and life stage
 
@@ -420,283 +819,4 @@ Alluvial_ITS_Fruits_LifeStage <- dataalluvial_ITS_fruits_lifestage |>
 Alluvial_ITS_Fruits_LifeStage
 
 ```
-## Old stuff
 
-```{r, eval=FALSE}
-# plot for life stage
-color_LifeStage <- c("na" ="grey",  "Mother" = "darkorange2", "Larva"= "tan1", "Pupa" = "goldenrod2", "Daughter" ="darkolivegreen2",  "PupalCase"="darkolivegreen4")
-
-## NEED NEW DATA FILE ##
-Alluvial_16S_LifeStage <- ggplot(data = dataalluvial_16S_sample,
-       aes(axis1 = LifeStage, axis2 = Cluster_sample, axis3 = Pop,
-           y = Freq)) +
-  scale_x_discrete(limits = c("LifeStage", "Cluster_sample", "Pop"), expand = c(.2, .05)) +
-  ggalluvial::geom_alluvium(aes(fill = LifeStage), alpha = 0.6) +
-  ggalluvial::geom_stratum() +
-  geom_text(stat = "stratum", aes(label = after_stat(stratum))) +
- scale_fill_manual(values = c("na" ="grey",  "Mother" = "darkorange2", "Larva"= "tan1", "Pupa" = "goldenrod2", "Daughter" ="darkolivegreen2",  "PupalCase"="darkolivegreen4"), guide = "none") +
-  theme_minimal() +
-  ggtitle("16S_LifeStage")+
-  theme(axis.text.x = element_text(size = 12, color = "black", face = "bold"))
-
-## NEED NEW DATA FILE ##
-color_Pop <- c("na" = "grey", "CEC"="#C1FFC1", "FRA" = "seagreen3" )
-
-
-########
-# ITS #
-########
-
-# Cluster_Sample
-# data for alluvial plot (Freq = Number of samples associated with each line)
-dataalluvial_ITS_sample <-as.data.frame(table(
-      sample_data(ps_ITS_bin)$Generation_Name,
-      memb_spl_obs_ML2_ITS,
-      sample_data(ps_ML2_ITS_bin)$Site_Short))
-
-
-# change column names
-colnames(dataalluvial_ML2_ITS_sample) = c("Generation", "Cluster_sample",  "Site", "Freq")
-
-# eliminate lines with zero Freq
-w_ML2_ITS_sample <- which(dataalluvial_ML2_ITS_sample$Freq != 0)
-dataalluvial_ML2_ITS_sample <- dataalluvial_ML2_ITS_sample[w_ML2_ITS_sample, ]
-
-# alluvial plot
-Alluvial_ITS_ML2_Generation_sample <- ggplot(data = dataalluvial_ML2_ITS_sample,
-       aes(axis1 = Generation, axis2 = Cluster_sample, axis3 = Site,
-           y = Freq)) +
-  scale_x_discrete(limits = c("Generation", "Cluster_sample", "Site"), expand = c(.2, .05)) +
-  ggalluvial::geom_alluvium(aes(fill = Generation), alpha = 0.6) +
-  ggalluvial::geom_stratum() +
-  geom_text(stat = "stratum", aes(label = after_stat(stratum))) +
- scale_fill_manual(values = Color_Generation_Name, guide = "none") +
-  theme_minimal() +
-  ggtitle("ITS_ML2_Generation")+
-  theme(axis.text.x = element_text(size = 12, color = "black", face = "bold"))
-
-
-Alluvial_ITS_ML2_Site_sample <- ggplot(data = dataalluvial_ML2_ITS_sample,
-       aes(axis1 = Generation, axis2 = Cluster_sample, axis3 = Site,
-           y = Freq)) +
-  scale_x_discrete(limits = c("Generation", "Cluster_sample", "Site"), expand = c(.2, .05)) +
-  geom_alluvium(aes(fill = Site), alpha = 0.6) +
-  geom_stratum() +
-  geom_text(stat = "stratum", aes(label = after_stat(stratum))) +
- scale_fill_manual(values = Color_Site_Short, guide = "none") +
-  theme_minimal() +
-  ggtitle("ITS_MPC_Site")+
-  theme(axis.text.x = element_text(size = 12, color = "black", face = "bold"))
-```
-
-## 4. CCA 16S
-
-### 4.1 Null model
-
-```{r}
-
-NPERM <- 10
-
-sim_list = list()
-  
-#for each rarefied matrix
-  sim_mat <- BF_16S
-  #produce NPERM simulated graphs
-  netBin.config <-
-    simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
-
-  LBM.config <-
-    sapply(1:NPERM, function(i) {
-      BF_sim <- netBin.config[, , i]
-      FB_sim <- t(BF_sim)
-      LBM_sim <-as.matrix(FB_sim) %>%
-    sbm::estimateBipartiteSBM(model = 'bernoulli',
-                         estimOptions = list(plot = T))
-       memb_spl_sim <- LBM_sim$memberships$row ## Extract membership of the samples 
-    })
-```
-
-### 4.2 CCA
-#### All samples
-```{r}
-# Factors
-FruitType_vect_16S <- as.factor(mtd_16S$FruitType[match(rownames(FB_16S), mtd_16S$Sample)])
-LifeStage_vect_16S <- as.factor(mtd_16S$LifeStage[match(rownames(FB_16S), mtd_16S$Sample)])
-#Pop_vect_16S <- as.factor(mtd_16S$Pop[match(rownames(FB_16S), mtd_16S$Sample)])
-#FruitType_vect_ITS <- as.factor(mtd_ITS$Fruit[match(rownames(FB_ITS), mtd_16S$x_name)])
-
-#LifeStage_vect_ITS <- as.factor(mtd_ITS$LifeStage[match(rownames(FB_ITS), mtd_ITS$x_name)])
-
-#Pop_vect_ITS <- as.factor(mtd_ITS$Pop[match(rownames(FB_ITS), mtd_ITS$x_name)])
-
-## Create a matrix with samples as rows and group assigned by the latent block model as column
-dummyMod_16S <- lme4::dummy(as.factor(memb_spl_obs_16S), levelsToKeep = levels(as.factor(memb_spl_obs_16S)))
-
-## Creates dataframe with the two variables of interest
-cca_data_16S <- data.frame("FruitType" = as.factor(FruitType_vect_16S),
-    "LifeStage" = as.factor(LifeStage_vect_16S))
-
-## Partition the variation of the community matrix
-varp_16S <- vegan::varpart(dummyMod_16S, cca_data_16S$FruitType, cca_data_16S$LifeStage, chisquare = T)
-varp_16S$part
-
-#CCA with row randomization
-wholenetwork_cca_results_NULL_16S <- analysis.function.alt2(incid=as.data.frame(FB_16S), memb_obs=memb_spl_obs_16S, var1=cca_data_16S$FruitType, var2=cca_data_16S$LifeStage, configs = NULL)
-
-#CCA with full randomization
-wholenetwork_cca_results_CONFIGS_16S <- analysis.function.alt2(incid=as.data.frame(FB_16S), memb_obs=memb_spl_obs_16S, var1=cca_data_16S$FruitType, var2=cca_data_16S$LifeStage, configs = LBM.config)
-```
-
-#### Life stage
-
-```{r}
-# Factors
-FruitType_vect_16S_LS <- as.factor(mtd_16S_LS$FruitType[match(rownames(FB_16S_LS), mtd_16S_LS$Sample)])
-LifeStage_vect_16S_LS <- as.factor(mtd_16S_LS$LifeStage[match(rownames(FB_16S_LS), mtd_16S_LS$Sample)])
-
-## Create a matrix with samples as rows and group asigned by the latent block model as column
-dummyMod_16S_LS <- lme4::dummy(as.factor(memb_spl_obs_16S_LS), levelsToKeep = levels(as.factor(memb_spl_obs_16S_LS)))
-
-## Creates dataframe with the two variables of interest
-cca_data_16S_LS <- data.frame("FruitType" = as.factor(FruitType_vect_16S_LS),
-    "LifeStage" = as.factor(LifeStage_vect_16S_LS))
-
-## Partition the variation of the community matrix
-varp_16S_LS <- vegan::varpart(dummyMod_16S_LS, cca_data_16S_LS$FruitType, cca_data_16S_LS$LifeStage, chisquare = T)
-varp_16S_LS$part
-
-#CCA with line randomization
-wholenetwork_cca_results_NULL_16S_LS <- analysis.function.alt2(incid=as.data.frame(FB_16S_LS), memb_obs=memb_spl_obs_16S_LS, var1=cca_data_16S_LS$FruitType, var2=cca_data_16S_LS$LifeStage, configs = NULL)
-
-#CCA with full randomization
-wholenetwork_cca_results_CONFIGS_16S_LS <- analysis.function.alt2(incid=as.data.frame(FB_16S_LS), memb_obs=memb_spl_obs_16S_LS, var1=cca_data_16S_LS$FruitType, var2=cca_data_16S_LS$LifeStage, configs = LBM.config)
-
-```
-
-## 4. CCA ITS
-### 4.1 Null model
-```{r}
-
-NPERM <- 10
-
-sim_list = list()
-  
-#for each rarefied matrix
-  sim_mat <- BF_ITS
-  #produce NPERM simulated graphs
-  netBin.config <-
-    simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
-
-  LBM.config <-
-    sapply(1:NPERM, function(i) {
-      BF_sim <- netBin.config[, , i]
-      FB_sim <- t(BF_sim)
-      LBM_sim <-as.matrix(FB_sim) %>%
-    sbm::estimateBipartiteSBM(model = 'bernoulli',
-                         estimOptions = list(plot = T))
-       memb_spl_sim <- LBM_sim$memberships$row ## Extract membership of the samples 
-    })
-```
-
-### CCA
-#### All samples
-
-```{r}
-# Factors
-FruitType_vect_ITS <- as.factor(mtd_ITS$FruitType[match(rownames(FB_ITS), mtd_ITS$Sample)])
-LifeStage_vect_ITS <- as.factor(mtd_ITS$LifeStage[match(rownames(FB_ITS), mtd_ITS$Sample)])
-
-## Create a matrix with samples as rows and group asigned by the latent block model as column
-dummyMod_ITS <- lme4::dummy(as.factor(memb_spl_obs_ITS), levelsToKeep = levels(as.factor(memb_spl_obs_ITS)))
-
-## Creates dataframe with the two variables of interest
-cca_data_ITS <- data.frame("FruitType" = as.factor(FruitType_vect_ITS), "LifeStage" = as.factor(LifeStage_vect_ITS))
-
-## Partition the variation of the community matrix
-varp_ITS <- vegan::varpart(dummyMod_ITS, cca_data_ITS$FruitType, cca_data_ITS$LifeStage, chisquare = T)
-
-#CCA with line randomization
-wholenetwork_cca_results_NULL_ITS <- analysis.function.alt2(incid=as.data.frame(FB_ITS), memb_obs=memb_spl_obs_ITS, var1=cca_data_ITS$FruitType, var2=cca_data_ITS$LifeStage, configs = NULL)
-
-#CCA with full randomization
-wholenetwork_cca_results_CONFIGS_ITS <- analysis.function.alt2(incid=as.data.frame(FB_ITS), memb_obs=memb_spl_obs_ITS, var1=cca_data_ITS$FruitType, var2=cca_data_ITS$LifeStage, configs = LBM.config)
-```
-
-#### Life stage
-
-```{r}
-# Factors
-FruitType_vect_ITS_LS <- as.factor(mtd_ITS_LS$FruitType[match(rownames(FB_ITS_LS), mtd_ITS_LS$Sample)])
-LifeStage_vect_ITS_LS <- as.factor(mtd_ITS_LS$LifeStage[match(rownames(FB_ITS_LS), mtd_ITS_LS$Sample)])
-
-## Create a matrix with samples as rows and group asigned by the latent block model as column
-dummyMod_ITS_LS <- lme4::dummy(as.factor(memb_spl_obs_ITS_LS), levelsToKeep = levels(as.factor(memb_spl_obs_ITS_LS)))
-
-## Creates dataframe with the two variables of interest
-cca_data_ITS_LS <- data.frame("FruitType" = as.factor(FruitType_vect_ITS_LS), "LifeStage" = as.factor(LifeStage_vect_ITS_LS))
-
-## Partition the variation of the community matrix
-varp_ITS_LS <- vegan::varpart(dummyMod_ITS_LS, cca_data_ITS_LS$FruitType, cca_data_ITS_LS$LifeStage, chisquare = T)
-varp_16S_LS$part
-
-#CCA with line randomization
-wholenetwork_cca_results_NULL_ITS_LS <- analysis.function.alt2(incid=as.data.frame(FB_ITS_LS), memb_obs=memb_spl_obs_ITS_LS, var1=cca_data_ITS_LS$FruitType, var2=cca_data_ITS_LS$LifeStage, configs = NULL)
-
-#CCA with full randomization
-wholenetwork_cca_results_CONFIGS_ITS_LS <- analysis.function.alt2(incid=as.data.frame(FB_ITS_LS), memb_obs=memb_spl_obs_ITS_LS, var1=cca_data_ITS_LS$FruitType, var2=cca_data_ITS_LS$LifeStage, configs = LBM.config)
-
-```
-
-
-# 2. Individuals
-## Prepare data
-```{r}
-## Only Life Stage samples
-ps_16S_rare_LS <- Subset_physeq(ps_rare_16S, LifeStage !="na")
-ps_rare_16S_LS_bin = phyloseq::transform_sample_counts(ps_16S_rare_LS, function(x) 1*(x>0)) 
-
-mtd_16S_LS <- data.frame(phyloseq::sample_data(ps_rare_16S_LS_bin))
-mtd_16S_LS <- mtd_16S_LS %>%
-  dplyr::rename(Sample = ID_pool)
-
-df_taxo_16S_LS = as.data.frame(tax_table(ps_rare_16S_LS_bin)) #taxonomy table into dataframe
-df_taxo_16S_LS$tax_ID = rownames(df_taxo_16S_LS)
-
-df_reads_16S_LS = as.data.frame(otu_table(ps_rare_16S_LS_bin)) #abundance table (binary) into a dataframe
-df_reads_16S_LS$tax_ID = rownames(df_reads_16S_LS)
-
-df_wide_16S_LS = dplyr::left_join(df_taxo_16S_LS, df_reads_16S_LS, by = "tax_ID") #merge the two (suppr "Species" column)
-df_wide_16S_LS$Species <- NULL
-
-BF_16S_LS <- df_wide_16S_LS[, c(6,8:dim(df_wide_16S_LS)[2])]
-BF_16S_LS$Genus <- make.unique(BF_16S_LS$Genus, sep = "_")
-rownames(BF_16S_LS) <- BF_16S_LS$Genus 
-BF_16S_LS$Genus <- NULL
-FB_16S_LS <- t(BF_16S_LS)
-```
-
-```{r}
-## Only Life Stage samples
-ps_ITS_rare_LS <- Subset_physeq(ps_rare_ITS, LifeStage !="na")
-ps_rare_ITS_LS_bin = phyloseq::transform_sample_counts(ps_ITS_rare_LS, function(x) 1*(x>0)) 
-
-mtd_ITS_LS <- data.frame(phyloseq::sample_data(ps_rare_ITS_LS_bin))
-mtd_ITS_LS <- mtd_ITS_LS %>%
-  dplyr::rename(Sample = ID_pool)
-
-df_taxo_ITS_LS = as.data.frame(tax_table(ps_rare_ITS_LS_bin)) #taxonomy table into dataframe
-df_taxo_ITS_LS$tax_ID = rownames(df_taxo_ITS_LS)
-
-df_reads_ITS_LS = as.data.frame(otu_table(ps_rare_ITS_LS_bin)) #abundance table (binary) into a dataframe
-df_reads_ITS_LS$tax_ID = rownames(df_reads_ITS_LS)
-
-df_wide_ITS_LS = dplyr::left_join(df_taxo_ITS_LS, df_reads_ITS_LS, by = "tax_ID") #merge the two (suppr "Species" column)
-df_wide_ITS_LS$Species <- NULL
-
-BF_ITS_LS <- df_wide_ITS_LS[, c(6,8:dim(df_wide_ITS_LS)[2])]
-BF_ITS_LS$Genus <- make.unique(BF_ITS_LS$Genus, sep = "_")
-rownames(BF_ITS_LS) <- BF_ITS_LS$Genus 
-BF_ITS_LS$Genus <- NULL
-FB_ITS_LS <- t(BF_ITS_LS)
-```
-# 3. Indiv + Aunts + HostFruit
