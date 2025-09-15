@@ -86,12 +86,12 @@ df_AlphaDiv_ITS <- data.frame(phyloseq::sample_data(AlphaDiv_ITS))
 
 ```{r}
 # subset data
-metadata_AlphaDiv_16S_FruitsOnly <- filter(metadata_AlphaDiv_16S, SampleType %in% c("Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days", "Nat_Uninf_Fruits_5_6days"))
+metadata_AlphaDiv_16S_FruitsOnly <- filter(metadata_AlphaDiv_16S, SampleType %in% c("Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days", "Nat_Inf_Fruits_5_6days"))
 
 df_AlphaDiv_16S_FruitsOnly <- data.frame(metadata_AlphaDiv_16S_FruitsOnly)
 
 
-metadata_AlphaDiv_ITS_FruitsOnly <- filter(metadata_AlphaDiv_16S, SampleType %in% c("Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days", "Nat_Uninf_Fruits_5_6days"))
+metadata_AlphaDiv_ITS_FruitsOnly <- filter(metadata_AlphaDiv_16S, SampleType %in% c("Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days", "Nat_Inf_Fruits_5_6days"))
 
 df_AlphaDiv_ITS_FruitsOnly <- data.frame(metadata_AlphaDiv_16S_FruitsOnly)
 ```
@@ -116,6 +116,8 @@ Chao1_F_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS_FruitsOnly, "FruitType"
 
 invSimp_F_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS_FruitsOnly, "FruitType", c("BL","CH","ST"), "InvSimpson",color_FruitType)
 
+label_A <- "A. 16S"
+label_B <- "B. ITS"
 
 ## Figure : combine 16S and ITS plots
 F_16S <- (ObsRich_Fruit_16S + Chao1_Fruit_16S + Sha_Fruit_16S + invSimp_Fruit_16S) +
@@ -125,7 +127,7 @@ F_ITS <- (ObsRich_F_ITS + Chao1_F_ITS + Sha_F_ITS + invSimp_F_ITS) +
   plot_layout(ncol = 4, guides = "collect", axes = "collect_x", axis_titles = "collect_x")
 
 # Final plot
-F_combined <- (label_A / F_16S / label_B / F_ITS) + plot_layout(ncol = 1, heights = c(0.05, 1, 0.05, 1)) & theme(legend.position = "none")
+F_combined <- (label_A / F_16S / label_B / F_ITS) + plot_layout(ncol = 2, heights = c(0.05, 1, 0.05, 1)) & theme(legend.position = "none")
 
 title_plot <- "AlphaDiv_Fruits_FruitType.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot), F_combined, base_height = 21/cm(1),base_width = 29.7/cm(1), dpi = 1200)
@@ -160,7 +162,6 @@ ObsRich_LifeStage_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS_Indiv, "LifeS
 Chao1_LifeStage_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS_Indiv, "LifeStage", c("Mother" , "Larva","Pupa","PupalCase", "Daughter"), "Chao1" ,color_LifeStage)
  
 invSimp_LifeStage_ITS <- plot_AlphaDiv_index(metadata_AlphaDiv_ITS_Indiv, "LifeStage", c("Mother","Larva","Pupa","PupalCase","Daughter"), "InvSimpson" ,color_LifeStage)
-
 
 ## Figure : combine 16S and ITS plots
 row1 <- (ObsRich_LifeStage_16S + Chao1_LifeStage_16S + Sha_LifeStage_16S + invSimp_LifeStage_16S) +
