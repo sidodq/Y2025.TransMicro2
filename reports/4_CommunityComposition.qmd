@@ -343,6 +343,35 @@ plot_ITS_Family_PopLifeStage$data$LifeStage <- factor(plot_ITS_Family_PopLifeSta
 ggsave(filename = "Y_Abundance_Pop_LifeStage.jpg", plot = plot_ITS_Family_PopLifeStage, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 ```
 
+### c. Indiv + Aunts + Host Fruits
+```{r}
+# Filter data
+ps_16S_rare_expe <- Subset_physeq(ps_rare_16S, Sample_Category == "All_stages_Focal_Sites")
+
+ps_16S_rare_expe <- Subset_physeq(ps_16S_rare_expe, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
+
+ps_ITS_rare_expe <- Subset_physeq(ps_rare_ITS, Sample_Category == "All_stages_Focal_Sites")
+
+ps_ITS_rare_expe <- Subset_physeq(ps_ITS_rare_expe, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
+```
+
+#### SampleType + FruitType + Site 
+```{r}
+# 16S (Family)
+plot_16S_Expe_SampleTypeFruitTypeSite <- Make_composition_bar_plot_2(ps_16S_rare_expe, "Bacteria", "Family", 15, ~SampleType + FruitType+FruitSite, color_16S)
+
+plot_16S_Expe_SampleTypeFruitTypeSite$data$SampleType <- factor(plot_16S_Expe_SampleTypeFruitTypeSite$data$SampleType, levels = c("G0_Adults_0days", "Fruits_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "Artific_Inf_Fruits_5_6days", "G1_Pupae_Fruits", "G1_PupalCase_Fruits","G1_Adults_Fruits")) # reorder 
+
+ggsave(filename = "B_Expe_SampleType_FruitType_Site.jpg", plot = plot_16S_Expe_SampleTypeFruitTypeSite, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
+
+
+# ITS (Family)
+plot_ITS_Expe_SampleTypeFruitTypeSite <- Make_composition_bar_plot_2(ps_ITS_rare_expe, "Fungi", "Family", 15, ~SampleType + FruitType+FruitSite, color_ITS)
+
+plot_ITS_Expe_SampleTypeFruitTypeSite$data$SampleType <- factor(plot_ITS_Expe_SampleTypeFruitTypeSite$data$SampleType, levels = c("G0_Adults_0days", "Fruits_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "Artific_Inf_Fruits_5_6days", "G1_Pupae_Fruits", "G1_PupalCase_Fruits","G1_Adults_Fruits")) # reorder 
+
+ggsave(filename = "Y_Expe_SampleType_FruitType_Site.jpg", plot = plot_ITS_Expe_SampleTypeFruitTypeSite, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
+```
 
 ## 2. Heatmap
 
