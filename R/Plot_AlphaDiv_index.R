@@ -1,4 +1,4 @@
-#' @title plot alpha diversity index(es)
+#' @title plot alpha diversity index(es) on 1 sample level
 #'
 #' @param df a dataframe obtained from the phyloseq object studied
 #' @param group
