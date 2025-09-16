@@ -208,11 +208,15 @@ ps_rare_ITS_FruitsOnly <- Subset_physeq(ps_rare_ITS, SampleType %in% c("Artific_
 # 16S (Family)
 plot_16S_SampleTypeFruitType <- Make_composition_bar_plot_2(ps_rare_16S_FruitsOnly, "Bacteria", "Family", 15, ~SampleType + FruitType, color_16S)
 
+plot_16S_SampleTypeFruitType$data$SampleType <- factor(plot_16S_SampleTypeFruitType$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days")) # reorder sample type 
+
 ggsave(filename = "B_Abundance_Sample_Type_Fruit_Type.jpg", plot = plot_16S_SampleTypeFruitType, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 
 
 # ITS (Family)
 plot_ITS_SampleTypeFruitType <- Make_composition_bar_plot_2(ps_rare_ITS_FruitsOnly, "Fungi", "Family", 15, ~SampleType + FruitType, color_ITS)
+
+plot_ITS_SampleTypeFruitType$data$SampleType <- factor(plot_ITS_SampleTypeFruitType$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days")) # reorder sample type 
 
 ggsave(filename = "Y_Abundance_Sample_Type_Fruit_Type.jpg", plot = plot_ITS_SampleTypeFruitType, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 ```
@@ -259,6 +263,23 @@ plot_ITS_Family_FruitTypeSiteVariety <- Make_composition_bar_plot_2(ps_rare_ITS_
 ggsave(filename = "Y_Abundance_Fruit_Type_Site_Variety.jpg", plot = plot_ITS_Family_FruitTypeSiteVariety, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 ```
 
+#### SampleTYpe + FruitType + Site + Variety
+```{r}
+# 16S (Family)
+plot_16S_Family_SampleTypeFruitTypeSiteVariety <- Make_composition_bar_plot_2(ps_rare_16S_FruitsOnly, "Bacteria", "Family", 15, ~SampleType + FruitType+FruitSite+FruitVariety, color_16S)
+
+plot_16S_Family_SampleTypeFruitTypeSiteVariety$data$SampleType <- factor(plot_16S_Family_SampleTypeFruitTypeSiteVariety$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days")) # reorder sample type 
+
+ggsave(filename = "B_Abundance_SampleType_FruitType_Site_Variety.jpg", plot = plot_16S_Family_SampleTypeFruitTypeSiteVariety, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
+
+
+# ITS (Family)
+plot_ITS_Family_SampleTypeFruitTypeSiteVariety <- Make_composition_bar_plot_2(ps_rare_ITS_FruitsOnly, "Fungi", "Family", 15, ~SampleType+FruitType+FruitSite+FruitVariety, color_ITS)
+
+plot_ITS_Family_SampleTypeFruitTypeSiteVariety$data$SampleType <- factor(plot_ITS_Family_SampleTypeFruitTypeSiteVariety$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days")) # reorder sample type 
+
+ggsave(filename = "Y_Abundance_SampleTYpe_FruitType_Site_Variety.jpg", plot = plot_ITS_Family_SampleTypeFruitTypeSiteVariety, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
+```
 
 
 ### b. Individuals
