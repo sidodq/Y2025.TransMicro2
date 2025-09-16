@@ -60,7 +60,7 @@ metadata <- data.table::fread(file=file.path(here::here(), "data", "derived_data
 ########
 # 16S #
 ########
-ps_rare_16S_FruitsOnly <- Subset_physeq(ps_rare_16S, SampleType %in% c("Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days", "Nat_Uninf_Fruits_5_6days")) # subset data
+ps_rare_16S_FruitsOnly <- Subset_physeq(ps_rare_16S, SampleType %in% c("Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days", "Nat_Inf_Fruits_5_6days")) # subset data
 
 ps_rare_16S_FruitsOnly_bin = phyloseq::transform_sample_counts(ps_rare_16S_FruitsOnly, function(x) 1*(x>0)) # counts -> presence/absence (binary table)
 
@@ -98,7 +98,9 @@ FB_FruitsOnly_16S <- t(BF_FruitsOnly_16S)
 ########
 # ITS #
 ########
-ps_rare_ITS_bin = transform_sample_counts(ps_rare_ITS, function(x) 1*(x>0))
+ps_rare_ITS_FruitsOnly <- Subset_physeq(ps_rare_ITS, SampleType %in% c("Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days", "Nat_Inf_Fruits_5_6days")) # subset data
+
+ps_rare_ITS_FruitsOnly_bin = phyloseq::transform_sample_counts(ps_rare_ITS_FruitsOnly, function(x) 1*(x>0)) # counts -> presence/absence (binary table)
 
 mtd_ITS <- data.frame(sample_data(ps_rare_ITS_bin))
 mtd_ITS <- mtd_ITS %>%
@@ -794,6 +796,8 @@ memb_spl_obs_ITS <- LBM_bernoulli_ITS$memberships$row
 memb_otu_obs_ITS <- LBM_bernoulli_ITS$memberships$col
 
 ## Data for alluvial plot : Compute SampleSize, the number of samples for each FruitType, Lifestage and OTU membership
+
+
 dataalluvial_ITS_fruits_lifestage <- as.data.frame(table(
       sample_data(ps_rare_ITS_bin)$FruitType,
       memb_spl_obs_ITS, sample_data(ps_rare_ITS_bin)$LifeStage))
