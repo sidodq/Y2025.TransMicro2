@@ -15,7 +15,7 @@ plot_AlphaDiv_index_groups <- function(df, group, group_labels, index, color_set
     dplyr::filter((.data[[facet_factor]]) !="na") |>
     dplyr::mutate(!!group := factor(.data[[group]], levels = group_labels))
 
-  ggplot(df, aes(x = .data[[group]], y = .data[[index]] , fill = .data[[group]]))+
+  ggplot(df, aes(x = .data[[group]], y = .data[[index]] , fill = .data[[facet_factor]]))+
     geom_boxplot(outlier.shape = NA, position=position_dodge(1)) +
     theme_classic() +
     labs(x=group, y = paste(index)) +
@@ -24,7 +24,6 @@ plot_AlphaDiv_index_groups <- function(df, group, group_labels, index, color_set
           axis.title.y = element_text(color="Black", size=14, face="bold"),
           legend.title = element_text(color = "Black", size = 14, face="bold"),
           legend.text = element_text(color = "Black", size = 14)) +
-    scale_fill_manual(values =  color_set, labels = group_labels)+
+    scale_fill_manual(values =  color_set, labels = c("BL","CH","ST"))+
     geom_jitter(size = 1.5, shape = 21, position = position_jitter(0.1), alpha = 0.9, color = "black") + ggh4x::facet_nested(as.formula(paste("~", group, "+", facet_factor)), scales = "free_x", space = "free_x")
-
 }
