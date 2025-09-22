@@ -660,6 +660,53 @@ desired_order <- c("Fruits_0days", "Aunts", "Mothers", "Larvae", "Fruits_5_6days
 sample_data(ps_ITS_rare_expe)$SampleType <- factor(sample_data(ps_ITS_rare_expe)$SampleType, levels = desired_order)
 ```
 
+### Pop x Sample Type NMDS
+``` {r} 
+ordi_nmds_J_16S_expe_pop <- phyloseq::ordinate(ps_16S_rare_expe, method ="NMDS", distance ="jaccard") # stress = 0.1554102
+# plot with ellipses
+NMDS_J_16S_expe_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_expe, ordination = ordi_nmds_J_16S_expe_pop) + 
+  theme_bw() + 
+  geom_point(aes(fill = SampleType, shape = Pop), size = 4) + 
+  scale_shape_manual(values = c(CEC = 21, FRA = 22, na = 23)) +
+  scale_fill_manual(values = color_Expe) + 
+  stat_ellipse(aes(fill = SampleType, color = SampleType), geom = "polygon", alpha = 0.10, level = 0.95) + 
+  scale_color_manual(values = color_Expe) +
+  guides(
+    fill = guide_legend(override.aes = list(shape = 21, linetype = NULL, size = 5), title = "Sample Type", ncol = 1),
+    shape = guide_legend(title = "Genotype"), 
+    color = "none")+ annotate("text", x = -3.7, y = 3.3, label = "A. Bacteria", hjust = 0, size = 6, fontface = "bold")
+
+title_plot <- "NMDS_16S_Expe_Pop.png"
+ cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot), NMDS_J_16S_expe_Ellipses, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
+
+
+ordi_nmds_J_ITS_expe_pop <- phyloseq::ordinate(ps_ITS_rare_expe, method ="NMDS", distance ="jaccard") # stress = 0.1803797
+
+# plot with ellipses
+NMDS_J_ITS_Pop_Ellipses <- phyloseq::plot_ordination(physeq = ps_ITS_rare_expe, ordination = ordi_nmds_J_ITS_expe_pop) + 
+  theme_bw() + 
+  geom_point(aes(fill = SampleType, shape = Pop), size = 4) + 
+  scale_shape_manual(values = c(CEC = 21, FRA = 22, na = 23)) +
+  scale_fill_manual(values = color_Expe) + 
+  stat_ellipse(aes(fill = SampleType, color = SampleType), geom = "polygon", alpha = 0.10, level = 0.95) + 
+  scale_color_manual(values = color_Expe) +
+  guides(
+    fill = guide_legend(override.aes = list(shape = 21, linetype = NULL, size = 5), title = "Sample Type", ncol = 1),
+    shape = guide_legend(title = "Genotype"),
+    color = "none") +
+  annotate("text", x = -2.9, y = 1.7, label = "B. Fungi", hjust = 0, size = 6, fontface = "bold")
+
+title_plot <- "NMDS_ITS_Expe_Pop.png"
+ cowplot::save_plot(file =here::here("plots", "4_diversities", title_plot), NMDS_J_ITS_Pop_Ellipses, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
+ 
+
+# Combined plot
+NMDS_combined <- ( NMDS_J_16S_expe_Ellipses|NMDS_J_ITS_Pop_Ellipses) + plot_layout(ncol = 2,  widths = c(1, 1),guides = "collect") &  theme(legend.position = "right")
+
+title_plot <- "NMDS_Expe_Pop_combined.png"
+ cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot), NMDS_combined, base_height = 20/cm(1),  base_width = 34/cm(1), dpi = 1200)
+```
+
 ### Fruit Type x Sample Type NMDS
 ``` {r} 
 ordi_nmds_J_16S_expe <- phyloseq::ordinate(ps_16S_rare_expe, method ="NMDS", distance ="jaccard") # stress = 0.1554185

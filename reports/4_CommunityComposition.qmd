@@ -157,7 +157,7 @@ B = phyloseq::psmelt(ps_rare_16S)
 B$LifeStage <- factor(B$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter", "na"))
 B$FruitType <- factor(B$FruitType, levels = c("BL", "CH", "ST", "na"))
 
-write.table(x=B, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_melt.csv"), row.names=FALSE, quote=FALSE, sep=";")
+# write.table(x=B, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_melt.csv"), row.names=FALSE, quote=FALSE, sep=";")
 
 
 L = phyloseq::psmelt(ps_rare_ITS)
@@ -165,7 +165,7 @@ L = phyloseq::psmelt(ps_rare_ITS)
 L$LifeStage <- factor(L$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter", "na"))
 L$FruitType <- factor(L$FruitType, levels = c("BL", "CH", "ST", "na"))
 
-write.table(x=L, file=file.path(here::here(),"data", "derived_data", "3_CommunityComposition", "ITS_melt.csv"), row.names=FALSE, quote=FALSE, sep=";")
+# write.table(x=L, file=file.path(here::here(),"data", "derived_data", "3_CommunityComposition", "ITS_melt.csv"), row.names=FALSE, quote=FALSE, sep=";")
 ```
 
 ``` {r}
@@ -354,28 +354,55 @@ ps_16S_rare_expe <- Subset_physeq(ps_rare_16S, Sample_Category == "All_stages_Fo
 
 ps_16S_rare_expe <- Subset_physeq(ps_16S_rare_expe, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
 
+# rename + reorder Sample Type
+sample_data(ps_16S_rare_expe)$SampleType <- factor(sample_data(ps_16S_rare_expe)$SampleType)
+
+sample_data(ps_16S_rare_expe)$SampleType <- sample_data(ps_16S_rare_expe)$SampleType %>%
+  forcats::fct_recode(
+    Aunts = "G0_Adults_0days",
+    Mothers = "G0_Adults_Fruits_2days",
+    Larvae = "G1_Larvae_Fruits",
+    Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
+    Pupae = "G1_Pupae_Fruits",
+    PupalCases = "G1_PupalCase_Fruits",
+    Daughters = "G1_Adults_Fruits")
+
+desired_order <- c("Fruits_0days", "Aunts", "Mothers", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters")  
+sample_data(ps_16S_rare_expe)$SampleType <- factor(sample_data(ps_16S_rare_expe)$SampleType, levels = desired_order)
+
+
 ps_ITS_rare_expe <- Subset_physeq(ps_rare_ITS, Sample_Category == "All_stages_Focal_Sites")
 
 ps_ITS_rare_expe <- Subset_physeq(ps_ITS_rare_expe, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
+
+# rename + reorder Sample Type
+sample_data(ps_ITS_rare_expe)$SampleType <- factor(sample_data(ps_ITS_rare_expe)$SampleType)
+
+sample_data(ps_ITS_rare_expe)$SampleType <- sample_data(ps_ITS_rare_expe)$SampleType %>%
+  forcats::fct_recode(
+    Aunts = "G0_Adults_0days",
+    Mothers = "G0_Adults_Fruits_2days",
+    Larvae = "G1_Larvae_Fruits",
+    Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
+    Pupae = "G1_Pupae_Fruits",
+    PupalCases = "G1_PupalCase_Fruits",
+    Daughters = "G1_Adults_Fruits")
+
+sample_data(ps_ITS_rare_expe)$SampleType <- factor(sample_data(ps_ITS_rare_expe)$SampleType, levels = desired_order)
 ```
 
-#### Pop + SampleType
+#### Pop + SampleType + FruitType
 ```{r}
 # 16S (Family)
-plot_16S_Expe_Pop_SampleType <- Make_composition_bar_plot_2(ps_16S_rare_expe, "Bacteria", "Family", 15, ~Pop+SampleType, color_16S)
+plot_16S_Expe_Pop_ST_FT <- Make_composition_bar_plot_2(ps_16S_rare_expe, "Bacteria", "Family", 15, ~Pop+SampleType+FruitType, color_16S)
 
-
-plot_16S_Expe_Pop_SampleType$data$SampleType <- factor(plot_16S_Expe_Pop_SampleType$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_PupalCase_Fruits","G1_Adults_Fruits")) # reorder 
-
-ggsave(filename = "B_Expe_Pop_SampleType.jpg", plot = plot_16S_Expe_Pop_SampleType, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
+ggsave(filename = "B_Expe_Pop_ST_FT.jpg", plot = plot_16S_Expe_Pop_ST_FT, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 
 
 # ITS (Family)
-plot_ITS_Expe_Pop_SampleType <- Make_composition_bar_plot_2(ps_ITS_rare_expe, "Fungi", "Family", 15, ~SampleType + FruitType+FruitSite, color_ITS)
+plot_ITS_Expe_Pop_ST_FT <- Make_composition_bar_plot_2(ps_ITS_rare_expe, "Fungi", "Family", 15, ~Pop+SampleType + FruitType, color_ITS)
 
-plot_ITS_Expe_Pop_SampleType$data$SampleType <- factor(plot_ITS_Expe_Pop_SampleType$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_PupalCase_Fruits","G1_Adults_Fruits")) # reorder 
-
-ggsave(filename = "Y_Expe_Pop_SampleType.jpg", plot = plot_ITS_Expe_Pop_SampleType, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
+ggsave(filename = "Y_Expe_Pop_ST_FT.jpg", plot = plot_ITS_Expe_Pop_ST_FT, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 ```
 
 #### SampleType + FruitType + Site 
