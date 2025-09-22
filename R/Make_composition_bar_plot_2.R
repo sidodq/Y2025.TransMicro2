@@ -62,7 +62,7 @@ plot <- phyloseq.extended::plot_composition(
   ggplot2::labs(x = "Samples", y = "Relative abundance", title = "") +
   ggplot2::guides(fill = ggplot2::guide_legend(ncol = 1)) +
   ggplot2::theme(
-    strip.text.x = ggplot2::element_text(size = 13, face = "bold"),
+    strip.text.x = ggplot2::element_text(size = 8, face = "bold"),
     axis.text.x = ggplot2::element_text(size = 8),
     axis.text.y = ggplot2::element_text(size = 12),
     axis.title.x = ggplot2::element_text(size = 13),
