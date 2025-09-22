@@ -83,8 +83,9 @@ color_ITS <- c(
   "Unknown_4" = "grey70",
   "Unknown_5" = "grey75",
   "Unknown_62" = "grey80",
-  "Unknown_55" = "grey85"
-  
+  "Unknown_55" = "grey85",
+  "Unknown_27" = "grey90",
+  "Unknown_79" = "grey95"
   )
   
 
@@ -122,7 +123,8 @@ color_16S <- c(
   "Propionibacteriaceae "="#BFEFFF",
   "Comamonadaceae" = "#7AC5CD",
   "Other" = "grey70",
-  "Unknown_16" = "grey80")
+  "Unknown_16" = "grey80",
+  "Unknown_21"= "grey90")
 
 color_prev_B <- c(
    "Acetobacteraceae" = "#17becf",  
@@ -178,6 +180,7 @@ tax$Family <- ifelse(
   as.character(tax$Family))
 
 tax_table(ps_rare_16S) <- as.matrix(tax) # Put it back into the phyloseq object
+write.table(tax_table(ps_rare_16S), file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_TM1&2_tax_table_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 
 tax <- as.data.frame(tax_table(ps_rare_ITS)) # Extract taxonomy table as a data frame
@@ -189,6 +192,7 @@ tax$Family <- ifelse(
   as.character(tax$Family))
 
 tax_table(ps_rare_ITS) <- as.matrix(tax) # Put it back into the phyloseq object
+write.table(tax_table(ps_rare_ITS), file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "ITS_TM1&2_tax_table_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 ```
 
 # I. Composition (abundance)
@@ -355,12 +359,31 @@ ps_ITS_rare_expe <- Subset_physeq(ps_rare_ITS, Sample_Category == "All_stages_Fo
 ps_ITS_rare_expe <- Subset_physeq(ps_ITS_rare_expe, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
 ```
 
+#### Pop + SampleType
+```{r}
+# 16S (Family)
+plot_16S_Expe_Pop_SampleType <- Make_composition_bar_plot_2(ps_16S_rare_expe, "Bacteria", "Family", 15, ~Pop+SampleType, color_16S)
+
+
+plot_16S_Expe_Pop_SampleType$data$SampleType <- factor(plot_16S_Expe_Pop_SampleType$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_PupalCase_Fruits","G1_Adults_Fruits")) # reorder 
+
+ggsave(filename = "B_Expe_Pop_SampleType.jpg", plot = plot_16S_Expe_Pop_SampleType, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
+
+
+# ITS (Family)
+plot_ITS_Expe_Pop_SampleType <- Make_composition_bar_plot_2(ps_ITS_rare_expe, "Fungi", "Family", 15, ~SampleType + FruitType+FruitSite, color_ITS)
+
+plot_ITS_Expe_Pop_SampleType$data$SampleType <- factor(plot_ITS_Expe_Pop_SampleType$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_PupalCase_Fruits","G1_Adults_Fruits")) # reorder 
+
+ggsave(filename = "Y_Expe_Pop_SampleType.jpg", plot = plot_ITS_Expe_Pop_SampleType, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
+```
+
 #### SampleType + FruitType + Site 
 ```{r}
 # 16S (Family)
 plot_16S_Expe_SampleTypeFruitTypeSite <- Make_composition_bar_plot_2(ps_16S_rare_expe, "Bacteria", "Family", 15, ~SampleType + FruitType+FruitSite, color_16S)
 
-plot_16S_Expe_SampleTypeFruitTypeSite$data$SampleType <- factor(plot_16S_Expe_SampleTypeFruitTypeSite$data$SampleType, levels = c("G0_Adults_0days", "Fruits_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "Artific_Inf_Fruits_5_6days", "G1_Pupae_Fruits", "G1_PupalCase_Fruits","G1_Adults_Fruits")) # reorder 
+plot_16S_Expe_SampleTypeFruitTypeSite$data$SampleType <- factor(plot_16S_Expe_SampleTypeFruitTypeSite$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_PupalCase_Fruits","G1_Adults_Fruits")) # reorder 
 
 ggsave(filename = "B_Expe_SampleType_FruitType_Site.jpg", plot = plot_16S_Expe_SampleTypeFruitTypeSite, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 
@@ -368,7 +391,7 @@ ggsave(filename = "B_Expe_SampleType_FruitType_Site.jpg", plot = plot_16S_Expe_S
 # ITS (Family)
 plot_ITS_Expe_SampleTypeFruitTypeSite <- Make_composition_bar_plot_2(ps_ITS_rare_expe, "Fungi", "Family", 15, ~SampleType + FruitType+FruitSite, color_ITS)
 
-plot_ITS_Expe_SampleTypeFruitTypeSite$data$SampleType <- factor(plot_ITS_Expe_SampleTypeFruitTypeSite$data$SampleType, levels = c("G0_Adults_0days", "Fruits_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "Artific_Inf_Fruits_5_6days", "G1_Pupae_Fruits", "G1_PupalCase_Fruits","G1_Adults_Fruits")) # reorder 
+plot_ITS_Expe_SampleTypeFruitTypeSite$data$SampleType <- factor(plot_ITS_Expe_SampleTypeFruitTypeSite$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_PupalCase_Fruits","G1_Adults_Fruits")) # reorder 
 
 ggsave(filename = "Y_Expe_SampleType_FruitType_Site.jpg", plot = plot_ITS_Expe_SampleTypeFruitTypeSite, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 ```
