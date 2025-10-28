@@ -482,11 +482,11 @@ title_plot <- "AlphaDiv_Expe_SampleType_FruitType2.png"
 
 # II. Beta diversity
 
-# Qualitative (Jaccard index)
+
 
 ## 1. Fruits 
-### Subset data
 
+### Subset data
 ```{r}
 # Subset data
 ps_rare_16S_FruitsOnly <- Subset_physeq(ps_rare_16S, SampleType %in% c("Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days", "Nat_Inf_Fruits_5_6days"))
@@ -494,8 +494,10 @@ ps_rare_16S_FruitsOnly <- Subset_physeq(ps_rare_16S, SampleType %in% c("Artific_
 ps_rare_ITS_FruitsOnly <- Subset_physeq(ps_rare_ITS, SampleType %in% c("Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days", "Nat_Inf_Fruits_5_6days"))
 ```
 
+### A. Qualitative (Jaccard index)
 ### Fruit Type x Variety NMDS 
 ```{r}
+ps_rare_16S_FruitsOnly <- Subset_physeq(ps_rare_16S_FruitsOnly, !(FruitType=="BL" & FruitVariety=="LOC"))
 ##16S
 ordi_nmds_J_16S_Fruits <- phyloseq::ordinate(ps_rare_16S_FruitsOnly, method ="NMDS", distance ="jaccard") # stress =8.488021e-05
 
@@ -510,16 +512,15 @@ NMDS_J_16S_Fruits_Ellipses <- phyloseq::plot_ordination(physeq = ps_rare_16S_Fru
   guides(
     fill = guide_legend(override.aes = list(shape = 21, linetype = NULL, size = 5), title = "Fruit Variety", ncol = 1),
     shape = guide_legend(title = "Fruit Type"),
-    color = "none") + annotate("text", x = -18000, y = 3.8, label = "A. Bacteria", hjust = 0, size = 6, fontface = "bold")
+    color = "none") + annotate("text", x = -3.0, y = 2.8, label = "A. Bacteria", hjust = 0, size = 6, fontface = "bold")
 
 NMDS_J_16S_Fruits_Ellipses$data$FruitVariety <- factor(NMDS_J_16S_Fruits_Ellipses$data$FruitVariety, levels = c("CDP", "HED", "STA", "SUM" , "SWE" , "CIF", "CIR", "DRE", "INF", "MDB", "LOC", "UNK")) # reorder 
 
-title_plot <- "NMDS_16S_FruitType_FruitVariety.png"
+title_plot <- "NMDS_16S_FruitType_FruitVariety_OutlierLess.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot),
                  NMDS_J_16S_Fruits_Ellipses, base_height = 20/cm(1),
                 base_width = 20/cm(1), dpi = 1200)
 
- 
 ## ITS 
 ordi_nmds_J_ITS_Fruits <- phyloseq::ordinate(ps_rare_ITS_FruitsOnly, method ="NMDS", distance ="jaccard") # stress = 0.215778
 
@@ -547,6 +548,65 @@ NMDS_Fruits_combined <- ( NMDS_J_16S_Fruits_Ellipses|NMDS_J_ITS_Fruits_Ellipses)
 title_plot <- "NMDS_Fruits_combined.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot), NMDS_Fruits_combined, base_height = 20/cm(1),  base_width = 34/cm(1), dpi = 1200)
 ```
+
+### B. Quantitative (Bray-Curtis index)
+
+### Fruit Type x Variety NMDS 
+```{r}
+ordi_nmds_B_16S_Fruits <- phyloseq::ordinate(ps_rare_16S_FruitsOnly, method ="NMDS", distance ="bray") # stress = 0.174459
+
+# NMDS by FruitVariety (without BL_LOC)
+NMDS_B_16S_Fruits_Ellipses <- phyloseq::plot_ordination(physeq = ps_rare_16S_FruitsOnly, ordination = ordi_nmds_B_16S_Fruits) + 
+  theme_bw() + 
+  geom_point(aes(fill = FruitVariety, shape = FruitType), size = 4) + 
+  scale_shape_manual(values = c(BL = 21, CH = 22, ST = 24)) +
+  scale_fill_manual(values = color_FruitVariety) + 
+  stat_ellipse(aes(fill = FruitVariety, color = FruitVariety), geom = "polygon", alpha = 0.10, level = 0.95) + 
+  scale_color_manual(values = color_FruitVariety) + 
+  guides(
+    fill = guide_legend(override.aes = list(shape = 21, linetype = NULL, size = 5), title = "Fruit Variety", ncol = 1),
+    shape = guide_legend(title = "Fruit Type"),
+    color = "none") + annotate("text", x = -3.0, y = 2.7, label = "A. Bacteria", hjust = 0, size = 6, fontface = "bold")
+
+NMDS_B_16S_Fruits_Ellipses$data$FruitVariety <- factor(NMDS_B_16S_Fruits_Ellipses$data$FruitVariety, levels = c("CDP", "HED", "STA", "SUM" , "SWE" , "CIF", "CIR", "DRE", "INF", "MDB", "LOC", "UNK")) # reorder 
+
+title_plot <- "NMDS_BC_16S_FruitType_FruitVariety_OutlierLess.png"
+ cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot),
+                 NMDS_B_16S_Fruits_Ellipses, base_height = 20/cm(1),
+                base_width = 20/cm(1), dpi = 1200)
+
+## ITS 
+ordi_nmds_B_ITS_Fruits <- phyloseq::ordinate(ps_rare_ITS_FruitsOnly, method ="NMDS", distance ="bray") # stress = 0.215778
+
+# plot with ellipses
+NMDS_B_ITS_Fruits_Ellipses <- phyloseq::plot_ordination(physeq = ps_rare_ITS_FruitsOnly, ordination = ordi_nmds_B_ITS_Fruits) + 
+  theme_bw() + 
+  geom_point(aes(fill = FruitVariety, shape = FruitType), size = 4) + 
+  scale_shape_manual(values = c(BL = 21, CH = 22, ST = 24)) +
+  scale_fill_manual(values = color_FruitVariety) + 
+  stat_ellipse(aes(fill = FruitVariety, color = FruitVariety), geom = "polygon", alpha = 0.10, level = 0.95) + 
+  scale_color_manual(values = color_FruitVariety) +
+  guides(
+    fill = guide_legend(override.aes = list(shape = 21, linetype = NULL, size = 5), title = "Fruit Variety", ncol = 1),
+    shape = guide_legend(title = "Fruit Type"),
+    color = "none") + annotate("text", x = -2.8, y = 2.2, label = "B. Fungi", hjust = 0, size = 6, fontface = "bold")
+
+NMDS_B_ITS_Fruits_Ellipses$data$FruitVariety <- factor(NMDS_B_ITS_Fruits_Ellipses$data$FruitVariety, levels = c("CDP", "HED", "STA", "SUM" , "SWE" , "CIF", "CIR", "DRE", "INF", "MDB", "LOC", "UNK")) # reorder 
+
+title_plot <- "NMDS_BC_ITS_FruitType_FruitVariety.png"
+ cowplot::save_plot(file =here::here("plots", "4_diversities", title_plot), NMDS_B_ITS_Fruits_Ellipses, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
+ 
+# Combined plot
+NMDS_BC_Fruits_combined <- ( NMDS_B_16S_Fruits_Ellipses|NMDS_B_ITS_Fruits_Ellipses) + plot_layout(ncol = 2,  widths = c(1, 1),guides = "collect") &  theme(legend.position = "right")
+
+title_plot <- "NMDS_BC_Fruits_combined.png"
+ cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot), NMDS_BC_Fruits_combined, base_height = 20/cm(1),  base_width = 34/cm(1), dpi = 1200)
+```
+
+
+<!-- ## 3. Phylogeny correction -->
+<!-- ### Unifrac -->
+<!-- ### Weighted unifrac -->
 
 ## 2. Individuals
 ### Subset data
@@ -793,7 +853,9 @@ title_plot <- "NMDS_ITS_Expe_SampleType_EllipseByFruit.png"
 ```
 
 
-<!-- ## 2. Quantitative (B.-C. index) -->
+# B. Quantitative (Bray-Curtis index)
+
+
 
 <!-- ## 3. Phylogeny correction -->
 <!-- ### Unifrac -->
