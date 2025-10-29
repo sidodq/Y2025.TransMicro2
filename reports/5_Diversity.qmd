@@ -483,7 +483,6 @@ title_plot <- "AlphaDiv_Expe_SampleType_FruitType2.png"
 # II. Beta diversity
 
 
-
 ## 1. Fruits 
 
 ### Subset data
@@ -495,7 +494,7 @@ ps_rare_ITS_FruitsOnly <- Subset_physeq(ps_rare_ITS, SampleType %in% c("Artific_
 ```
 
 ### Fruit Type x Variety NMDS 
-#### A. Qualitative (Jaccard index)
+#### a. Qualitative (Jaccard index)
 ```{r}
 ps_rare_16S_FruitsOnly <- Subset_physeq(ps_rare_16S_FruitsOnly, !(FruitType=="BL" & FruitVariety=="LOC"))
 ##16S
@@ -549,7 +548,7 @@ title_plot <- "NMDS_Fruits_combined.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot), NMDS_Fruits_combined, base_height = 20/cm(1),  base_width = 34/cm(1), dpi = 1200)
 ```
 
-#### B. Quantitative (Bray-Curtis index)
+#### b. Quantitative (Bray-Curtis index)
 ```{r}
 ordi_nmds_B_16S_Fruits <- phyloseq::ordinate(ps_rare_16S_FruitsOnly, method ="NMDS", distance ="bray") # stress = 0.174459
 
@@ -612,7 +611,7 @@ ps_rare_ITS_Indiv <- Subset_physeq(ps_rare_ITS, LifeStage !="na" & Sample_Catego
 
 ### Life stage NMDS
 
-#### A. Qualitative (Jaccard index)
+#### a. Qualitative (Jaccard index)
 ```{r}
 ## 16S
 ordi_nmds_J_16S_LifeStage <- phyloseq::ordinate(ps_rare_16S_Indiv, method ="NMDS", distance ="jaccard") # stress = 0.1461996 
@@ -666,7 +665,7 @@ title_plot <- "NMDS_ITS_LifeStage_FruitType.png"
                 base_width = 20/cm(1), dpi = 1200)
 ```
 
-#### B. Quantitative (Bray-Curtis index)
+#### b. Quantitative (Bray-Curtis index)
 ```{r}
 ## 16S
 ordi_nmds_B_16S_LifeStage <- phyloseq::ordinate(ps_rare_16S_Indiv, method ="NMDS", distance ="bray") # stress = 0.1461997 
@@ -768,7 +767,7 @@ desired_order <- c("Fruits_0days", "Aunts", "Mothers", "Larvae", "Fruits_5_6days
 sample_data(ps_ITS_rare_expe)$SampleType <- factor(sample_data(ps_ITS_rare_expe)$SampleType, levels = desired_order)
 ```
 ### Pop x Sample Type NMDS
-#### A. Qualitative (Jaccard index)
+#### a. Qualitative (Jaccard index)
 ``` {r} 
 ordi_nmds_J_16S_expe_pop <- phyloseq::ordinate(ps_16S_rare_expe, method ="NMDS", distance ="jaccard") # stress = 0.1557752
 # plot with ellipses
@@ -815,7 +814,7 @@ title_plot <- "NMDS_Expe_Pop_combined.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot), NMDS_combined, base_height = 20/cm(1),  base_width = 34/cm(1), dpi = 1200)
 ```
 
-#### B. Quantitative (Bray-Curtis index)
+#### b. Quantitative (Bray-Curtis index)
 ``` {r}
 ordi_nmds_B_16S_expe_pop <- phyloseq::ordinate(ps_16S_rare_expe, method ="NMDS", distance ="bray") 
 # stress = 0.156245 
@@ -866,7 +865,7 @@ title_plot <- "NMDS_BC_Expe_Pop_combined.png"
 
 ### Fruit Type x Sample Type NMDS
 
-#### A. Qualitative (Jaccard index)
+#### a. Qualitative (Jaccard index)
 ``` {r} 
 ordi_nmds_J_16S_expe <- phyloseq::ordinate(ps_16S_rare_expe, method ="NMDS", distance ="jaccard") # stress = 0.1554185
 # plot with ellipses
@@ -913,7 +912,7 @@ title_plot <- "NMDS_Expe_SampleType_combined.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot), NMDS_combined, base_height = 20/cm(1),  base_width = 34/cm(1), dpi = 1200)
 ```
 
-#### B. Quantitative (BC index)
+#### b. Quantitative (BC index)
 ``` {r} 
 ordi_nmds_B_16S_expe <- phyloseq::ordinate(ps_16S_rare_expe, method ="NMDS", distance ="bray") # stress = 0.1558692 
 # plot with ellipses
@@ -961,7 +960,7 @@ title_plot <- "NMDS_BC_Expe_SampleType_combined.png"
 ```
 
 ### Fruit Type x Sample Type Ellipse by Fruit
-#### A. Qualitative (Jaccard index)
+#### a. Qualitative (Jaccard index)
 ```{r}
 # plot with ellipses by Fruit Type
 NMDS_J_16S_SampleType_EllipsesByFruit <- phyloseq::plot_ordination(physeq = ps_16S_rare_expe, ordination = ordi_nmds_J_16S_expe) + 
@@ -1000,7 +999,7 @@ title_plot <- "NMDS_ITS_Expe_SampleType_EllipseByFruit.png"
                 base_width = 20/cm(1), dpi = 1200)
 ```
 
-#### B. Quantitative (Bray-Curtis index)
+#### b. Quantitative (Bray-Curtis index)
 ```{r}
 # plot with ellipses by Fruit Type
 NMDS_B_16S_SampleType_EllipsesByFruit <- phyloseq::plot_ordination(physeq = ps_16S_rare_expe, ordination = ordi_nmds_B_16S_expe) + 
