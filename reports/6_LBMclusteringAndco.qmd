@@ -28,7 +28,6 @@ devtools::load_all()
 ```
 
 # Color Sets
-
 ```{r}
 color_SampleType <- hue_pal()(17)
 
@@ -131,67 +130,131 @@ FB_FruitsOnly_ITS <- t(BF_FruitsOnly_ITS)
 #   plotOptions = list( rowNames = TRUE,  colNames = TRUE,  legend = TRUE,  legend.position = 'right'))
 ```
 
-## LBM clustering / Heatmap
+## NMI
+
+```{r}
+# Import simulated clustering MPC
+
+netBin.config<-simulate(nullmodel(netBin.data,"curveball"),nsim=NPERM)
+graph.bin.gut.config<-simulate(nullmodel(netBin.gut,"curveball"),nsim=NPERM)
+graph.bin.bpk.config<-simulate(nullmodel(netBin.bpk,"curveball"),nsim=NPERM)
+
+
+```
+
+# 1. Table 1_bis : Exp. 1 MPC
+```{r}
+# Factors
+Fruit_vect_MPC_16S <- as.factor(mtd_MPC_16S$Fruit[match(rownames(FB_bin_MPC_16S), rownames(mtd_MPC_16S))])
+Fruit_vect_MPC_ITS <- as.factor(mtd_MPC_ITS$Fruit[match(rownames(FB_bin_MPC_ITS), rownames(mtd_MPC_ITS))])
+Locality_vect_MPC_16S <- as.factor(mtd_MPC_16S$Locality_Short[match(rownames(FB_bin_MPC_16S), rownames(mtd_MPC_16S))])
+Locality_vect_MPC_ITS <- as.factor(mtd_MPC_ITS$Locality_Short[match(rownames(FB_bin_MPC_ITS), rownames(mtd_MPC_ITS))])
+
+# Observed
+nmi_obs_MPC_16S_Fruit <- compare(as.factor(memb_spl_obs_MPC_16S), Fruit_vect_MPC_16S, method = "nmi")
+nmi_obs_MPC_ITS_Fruit <- compare(as.factor(memb_spl_obs_MPC_ITS), Fruit_vect_MPC_ITS, method = "nmi")
+nmi_obs_MPC_16S_Locality <- compare(as.factor(memb_spl_obs_MPC_16S), Locality_vect_MPC_16S, method = "nmi")
+nmi_obs_MPC_ITS_Locality <- compare(as.factor(memb_spl_obs_MPC_ITS), Locality_vect_MPC_ITS, method = "nmi")
+
+## Simulated clustering
+simulated_clustering_MPC_16S <- Simulate_Clustering_SBM(FB = FB_bin_MPC_16S, NPERM = 1000, name = "simulated_clustering_MPC_16S.tsv")
+simulated_clustering_MPC_ITS <- Simulate_Clustering_SBM(FB = FB_bin_MPC_ITS, NPERM = 1000, name = "simulated_clustering_MPC_ITS.tsv")
+
+# Simulated NMI
+simulated_nmi_MPC_16S_Fruit <- 
+simulated_clustering_MPC_16S %>% 
+  pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
+  group_by(Simulation) %>% 
+  summarise(., nmi_sim = compare(as.factor(Memberships), Fruit_vect_MPC_16S, method = "nmi"))
+
+simulated_nmi_MPC_16S_Locality <- 
+simulated_clustering_MPC_16S %>% 
+  pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
+  group_by(Simulation) %>% 
+  summarise(., nmi_sim = compare(as.factor(Memberships), Locality_vect_MPC_16S, method = "nmi"))
+
+simulated_nmi_MPC_ITS_Fruit <- 
+simulated_clustering_MPC_ITS %>% 
+  pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
+  group_by(Simulation) %>% 
+  summarise(., nmi_sim = compare(as.factor(Memberships), Fruit_vect_MPC_ITS, method = "nmi"))
+
+simulated_nmi_MPC_ITS_Locality <- 
+simulated_clustering_MPC_ITS %>% 
+  pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
+  group_by(Simulation) %>% 
+  summarise(., nmi_sim = compare(as.factor(Memberships), Locality_vect_MPC_ITS, method = "nmi"))
+
+print(c("NMI =", nmi_obs_MPC_16S_Fruit, "P-value = ", 1 - ecdf(simulated_nmi_MPC_16S_Fruit$nmi_sim)(nmi_obs_MPC_16S_Fruit)))
+print(c("NMI =", nmi_obs_MPC_16S_Locality, "P-value = ", 1 - ecdf(simulated_nmi_MPC_16S_Locality$nmi_sim)(nmi_obs_MPC_16S_Locality)))
+
+print(c("NMI =", nmi_obs_MPC_ITS_Fruit, "P-value = ", 1 - ecdf(simulated_nmi_MPC_ITS_Fruit$nmi_sim)(nmi_obs_MPC_ITS_Fruit)))
+print(c("NMI =", nmi_obs_MPC_ITS_Locality, "P-value = ", 1 - ecdf(simulated_nmi_MPC_ITS_Locality$nmi_sim)(nmi_obs_MPC_ITS_Locality)))
+
+```
+
+
+## SBM clustering
 ```{r}
 ########
 # 16S #
 ########
-LBM_bernoulli_FruitsOnly_16S <-  as.matrix(FB_FruitsOnly_16S) %>%
+SBM_bernoulli_FruitsOnly_16S <-  as.matrix(FB_FruitsOnly_16S) %>%
     sbm::estimateBipartiteSBM(model = 'bernoulli')
 
-memb_spl_obs_FruitsOnly_16S <- LBM_bernoulli_FruitsOnly_16S$memberships$row
-memb_otu_obs_FruitsOnly_16S <- LBM_bernoulli_FruitsOnly_16S$memberships$col
+memb_spl_obs_FruitsOnly_16S <- SBM_bernoulli_FruitsOnly_16S$memberships$row
+memb_otu_obs_FruitsOnly_16S <- SBM_bernoulli_FruitsOnly_16S$memberships$col
 
-LBM_bernoulli_FruitsOnly_16S$storedModels %>% dplyr::arrange(ICL)
+SBM_bernoulli_FruitsOnly_16S$storedModels %>% dplyr::arrange(ICL)
 
-LBM_FruitsOnly_16S_FruitType <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_FruitsOnly_16S, BF_mat = BF_FruitsOnly_16S, mtd = mtd_FruitsOnly_16S, variable_name = "FruitType", modality_string = c("BL", "CH", "ST"), color_string = c("purple4", "red4","red2"))
+SBM_FruitsOnly_16S_FruitType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_FruitsOnly_16S, BF_mat = BF_FruitsOnly_16S, mtd = mtd_FruitsOnly_16S, variable_name = "FruitType", modality_string = c("BL", "CH", "ST"), color_string = c("purple4", "red4","red2"))
 
-title_plot <- "LBM_FruitsOnly_16S_FruitType.png"
- cowplot::save_plot(file =here::here("plots", "5_LBM&co", title_plot), LBM_FruitsOnly_16S_FruitType, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
+title_plot <- "SBM_FruitsOnly_16S_FruitType.png"
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", title_plot), SBM_FruitsOnly_16S_FruitType, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
  
 
-LBM_FruitsOnly_16S_FruitSite <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_FruitsOnly_16S, BF_mat = BF_FruitsOnly_16S, mtd = mtd_FruitsOnly_16S, variable_name = "FruitSite", modality_string = c("THU","FIN","LOM","IST","MIL","VAR"), color_string = c("skyblue","blue2","skyblue4","deepskyblue","coral2","dodgerblue"))
+SBM_FruitsOnly_16S_FruitSite <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_FruitsOnly_16S, BF_mat = BF_FruitsOnly_16S, mtd = mtd_FruitsOnly_16S, variable_name = "FruitSite", modality_string = c("THU","FIN","LOM","IST","MIL","VAR"), color_string = c("skyblue","blue2","skyblue4","deepskyblue","coral2","dodgerblue"))
 
-title_plot <- "LBM_FruitsOnly_16S_FruitSite.png"
- cowplot::save_plot(file =here::here("plots", "5_LBM&co", title_plot), LBM_FruitsOnly_16S_FruitSite, base_height = 20/cm(1), base_width = 55/cm(1), dpi = 1200)
+title_plot <- "SBM_FruitsOnly_16S_FruitSite.png"
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", title_plot), SBM_FruitsOnly_16S_FruitSite, base_height = 20/cm(1), base_width = 55/cm(1), dpi = 1200)
  
  
 
-LBM_FruitsOnly_16S_FruitVariety <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_FruitsOnly_16S, BF_mat = BF_FruitsOnly_16S, mtd = mtd_FruitsOnly_16S, variable_name = "FruitVariety", modality_string = c("na", "CDP","HED","SUM","STA","SWE", "CIF","CIR","DRE","INF", "MDB", "UNK","LOC"), color_string = c("indianred", "gold","gold2", "lightgoldenrod1","indianred1","yellow2","deepskyblue","yellow","#CD2626","indianred4","firebrick1","skyblue"))     
+SBM_FruitsOnly_16S_FruitVariety <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_FruitsOnly_16S, BF_mat = BF_FruitsOnly_16S, mtd = mtd_FruitsOnly_16S, variable_name = "FruitVariety", modality_string = c("na", "CDP","HED","SUM","STA","SWE", "CIF","CIR","DRE","INF", "MDB", "UNK","LOC"), color_string = c("indianred", "gold","gold2", "lightgoldenrod1","indianred1","yellow2","deepskyblue","yellow","#CD2626","indianred4","firebrick1","skyblue"))     
 
-title_plot <- "LBM_FruitsOnly_16S_FruitVariety.png"
- cowplot::save_plot(file =here::here("plots", "5_LBM&co", title_plot), LBM_FruitsOnly_16S_FruitVariety, base_height = 21/cm(1), base_width = 29.7/cm(1), dpi = 1200)
+title_plot <- "SBM_FruitsOnly_16S_FruitVariety.png"
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", title_plot), SBM_FruitsOnly_16S_FruitVariety, base_height = 21/cm(1), base_width = 29.7/cm(1), dpi = 1200)
 ```
 
 ```{r}
 ########
 # ITS #
 ########
-LBM_bernoulli_FruitsOnly_ITS <-  as.matrix(FB_FruitsOnly_ITS) %>%
+SBM_bernoulli_FruitsOnly_ITS <-  as.matrix(FB_FruitsOnly_ITS) %>%
     sbm::estimateBipartiteSBM(model = 'bernoulli')
 
-memb_spl_obs_FruitsOnly_ITS <- LBM_bernoulli_FruitsOnly_ITS$memberships$row
-memb_otu_obs_FruitsOnly_ITS <- LBM_bernoulli_FruitsOnly_ITS$memberships$col
+memb_spl_obs_FruitsOnly_ITS <- SBM_bernoulli_FruitsOnly_ITS$memberships$row
+memb_otu_obs_FruitsOnly_ITS <- SBM_bernoulli_FruitsOnly_ITS$memberships$col
 
-LBM_bernoulli_FruitsOnly_ITS$storedModels %>% dplyr::arrange(ICL)
+SBM_bernoulli_FruitsOnly_ITS$storedModels %>% dplyr::arrange(ICL)
 
-LBM_FruitsOnly_ITS_FruitType <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_FruitsOnly_ITS, BF_mat = BF_FruitsOnly_ITS, mtd = mtd_FruitsOnly_ITS, variable_name = "FruitType", modality_string = c("BL", "CH", "ST"), color_string = c("purple4", "red4","red2"))
+SBM_FruitsOnly_ITS_FruitType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_FruitsOnly_ITS, BF_mat = BF_FruitsOnly_ITS, mtd = mtd_FruitsOnly_ITS, variable_name = "FruitType", modality_string = c("BL", "CH", "ST"), color_string = c("purple4", "red4","red2"))
 
-title_plot <- "LBM_FruitsOnly_ITS_FruitType.png"
- cowplot::save_plot(file =here::here("plots", "5_LBM&co", title_plot), LBM_FruitsOnly_ITS_FruitType, base_height = 20/cm(1),base_width = 60/cm(1), dpi = 1200)
+title_plot <- "SBM_FruitsOnly_ITS_FruitType.png"
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", title_plot), SBM_FruitsOnly_ITS_FruitType, base_height = 20/cm(1),base_width = 60/cm(1), dpi = 1200)
  
 
-LBM_FruitsOnly_ITS_FruitSite <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_FruitsOnly_ITS, BF_mat = BF_FruitsOnly_ITS, mtd = mtd_FruitsOnly_ITS, variable_name = "FruitSite", modality_string = c("THU","FIN","LOM","IST","MIL","VAR"), color_string = c("skyblue","blue2","skyblue4","deepskyblue","coral2","dodgerblue"))
+SBM_FruitsOnly_ITS_FruitSite <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_FruitsOnly_ITS, BF_mat = BF_FruitsOnly_ITS, mtd = mtd_FruitsOnly_ITS, variable_name = "FruitSite", modality_string = c("THU","FIN","LOM","IST","MIL","VAR"), color_string = c("skyblue","blue2","skyblue4","deepskyblue","coral2","dodgerblue"))
 
-title_plot <- "LBM_FruitsOnly_ITS_FruitSite.png"
- cowplot::save_plot(file =here::here("plots", "5_LBM&co", title_plot), LBM_FruitsOnly_ITS_FruitSite, base_height = 21/cm(1), base_width = 29.7/cm(1), dpi = 1200)
+title_plot <- "SBM_FruitsOnly_ITS_FruitSite.png"
+ cowplot::save_plot(file =here::here("plots", "5_LBM&co", title_plot), SBM_FruitsOnly_ITS_FruitSite, base_height = 21/cm(1), base_width = 29.7/cm(1), dpi = 1200)
  
  
-LBM_FruitsOnly_ITS_FruitVariety <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_FruitsOnly_ITS, BF_mat = BF_FruitsOnly_ITS, mtd = mtd_FruitsOnly_ITS, variable_name = "FruitVariety", modality_string = c("na", "CDP","HED","SUM","STA","SWE", "CIF","CIR","DRE","INF", "MDB", "UNK","LOC"), color_string = c("indianred", "gold","gold2", "lightgoldenrod1","indianred1","yellow2","deepskyblue","yellow","#CD2626","indianred4","firebrick1","skyblue"))     
+SBM_FruitsOnly_ITS_FruitVariety <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_FruitsOnly_ITS, BF_mat = BF_FruitsOnly_ITS, mtd = mtd_FruitsOnly_ITS, variable_name = "FruitVariety", modality_string = c("na", "CDP","HED","SUM","STA","SWE", "CIF","CIR","DRE","INF", "MDB", "UNK","LOC"), color_string = c("indianred", "gold","gold2", "lightgoldenrod1","indianred1","yellow2","deepskyblue","yellow","#CD2626","indianred4","firebrick1","skyblue"))     
 
-title_plot <- "LBM_FruitsOnly_ITS_FruitVariety.png"
- cowplot::save_plot(file =here::here("plots", "5_LBM&co", title_plot),
-                 LBM_FruitsOnly_ITS_FruitVariety, base_height = 21/cm(1),
+title_plot <- "SBM_FruitsOnly_ITS_FruitVariety.png"
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", title_plot),
+                 SBM_FruitsOnly_ITS_FruitVariety, base_height = 21/cm(1),
                 base_width = 29.7/cm(1), dpi = 1200)
 ```
 
