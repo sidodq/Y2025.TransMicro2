@@ -29,6 +29,7 @@ library(eulerr)
 library(microbiome)
 library(microbiomeutilities)
 library(plotly)
+library(VennDiagram)
 devtools::load_all()
 ```
 # Color Sets
@@ -534,9 +535,82 @@ ggsave(filename = "Y_Expe_SampleType_FruitType_Site.jpg", plot = plot_ITS_Expe_S
 
 # II. Shared core
 
+
 ## 1. Life stage
 
 ## 2. Fruit type
+### Function
+```{r}
+# Function to extract genera for a given FruitType
+get_genera_for_type <- function(physeq, fruit_type, taxo) {
+  # Subset manually using standard R logic
+  sample_keep <- sample_names(physeq)[get_variable(physeq, "FruitType") == fruit_type]
+  ps_sub <- prune_samples(sample_keep, physeq)
+  ps_sub <- prune_taxa(taxa_sums(ps_sub) > 0, ps_sub)
+  tax_df <- as.data.frame(tax_table(ps_sub))
+  unique(tax_df[[taxo]])
+  }
+```
+
+### 16S
+### Fruits (Family)
+```{r}
+# Get family lists for each FruitType
+genus_BL <- get_genera_for_type(ps_rare_16S_FruitsOnly, "BL", "Family")
+genus_CH <- get_genera_for_type(ps_rare_16S_FruitsOnly, "CH", "Family")
+genus_ST <- get_genera_for_type(ps_rare_16S_FruitsOnly, "ST", "Family")
+
+# Basic 3-set Venn Diagram
+venn.plot <- draw.triple.venn(
+  area1 = length(genus_BL),
+  area2 = length(genus_CH),
+  area3 = length(genus_ST),
+  n12 = length(intersect(genus_BL, genus_CH)),
+  n23 = length(intersect(genus_CH, genus_ST)),
+  n13 = length(intersect(genus_BL, genus_ST)),
+  n123 = length(Reduce(intersect, list(genus_BL, genus_CH, genus_ST))),
+  category = c("Blackberry (BL)", "Cherry (CH)", "Strawberry (ST)"),
+  fill = c("purple4", "red4", "red2"),
+  cat.cex = 1.2, cex = 1.3, fontfamily = "sans", cat.pos = c(-20, 20, 0), cat.dist = c(0.06, 0.06, - 0.45), scaled = TRUE)
+
+# Draw the diagram
+grid::grid.newpage()  # Start fresh for the plot
+grid::grid.draw(venn.plot)
+
+Venn_16S_Fruits_byFruitType <- Make_Venn_plot_FruitType(genus_BL, genus_CH, genus_ST)
+
+title_plot <- "Venn_16S_Fruits_byFruitType.png"
+ cowplot::save_plot(file=here::here("plots", "3_CommunityComposition", title_plot), Venn_16S_Fruits_byFruitType, base_height = 35/cm(1), base_width = 35/cm(1), dpi = 800)
+                 
+```
+
+### Individuals (Family)
+```{r}
+# Get family lists for each FruitType
+genus_BL <- get_genera_for_type(ps_rare_16S_Indiv, "BL", Family)
+genus_CH <- get_genera_for_type(ps_rare_16S_Indiv, "CH", Family)
+genus_ST <- get_genera_for_type(ps_rare_16S_Indiv, "ST", Family)
+
+# Basic 3-set Venn Diagram
+venn.plot <- draw.triple.venn(
+  area1 = length(genus_BL),
+  area2 = length(genus_CH),
+  area3 = length(genus_ST),
+  n12 = length(intersect(genus_BL, genus_CH)),
+  n23 = length(intersect(genus_CH, genus_ST)),
+  n13 = length(intersect(genus_BL, genus_ST)),
+  n123 = length(Reduce(intersect, list(genus_BL, genus_CH, genus_ST))),
+  category = c("Blackberry (BL)", "Cherry (CH)", "Strawberry (ST)"),
+  fill = c("purple4", "red4", "red2"),
+  cat.cex = 1.2, cex = 1.3, fontfamily = "sans", cat.pos = c(-20, 20, 0), cat.dist = c(0.06, 0.06, - 0.45), scaled = TRUE)
+
+# Draw the diagram
+grid::grid.newpage()  # Start fresh for the plot
+grid::grid.draw(venn.plot)
+
+title_plot <- "Venn_16S_Indiv_byFruitType.png"
+ cowplot::save_plot(file=here::here("plots", "3_CommunityComposition", title_plot), venn.plot, base_height = 35/cm(1), base_width = 35/cm(1), dpi = 800)
+```
 
 ## 3. Pop
 
