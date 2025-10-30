@@ -138,12 +138,10 @@ FB_FruitsOnly_ITS <- t(BF_FruitsOnly_ITS)
 netBin.config<-simulate(nullmodel(netBin.data,"curveball"),nsim=NPERM)
 graph.bin.gut.config<-simulate(nullmodel(netBin.gut,"curveball"),nsim=NPERM)
 graph.bin.bpk.config<-simulate(nullmodel(netBin.bpk,"curveball"),nsim=NPERM)
-
-
 ```
 
-# 1. Table 1_bis : Exp. 1 MPC
 ```{r}
+# 1. Table 1_bis : Exp. 1 MPC
 # Factors
 Fruit_vect_MPC_16S <- as.factor(mtd_MPC_16S$Fruit[match(rownames(FB_bin_MPC_16S), rownames(mtd_MPC_16S))])
 Fruit_vect_MPC_ITS <- as.factor(mtd_MPC_ITS$Fruit[match(rownames(FB_bin_MPC_ITS), rownames(mtd_MPC_ITS))])
@@ -190,7 +188,6 @@ print(c("NMI =", nmi_obs_MPC_16S_Locality, "P-value = ", 1 - ecdf(simulated_nmi_
 
 print(c("NMI =", nmi_obs_MPC_ITS_Fruit, "P-value = ", 1 - ecdf(simulated_nmi_MPC_ITS_Fruit$nmi_sim)(nmi_obs_MPC_ITS_Fruit)))
 print(c("NMI =", nmi_obs_MPC_ITS_Locality, "P-value = ", 1 - ecdf(simulated_nmi_MPC_ITS_Locality$nmi_sim)(nmi_obs_MPC_ITS_Locality)))
-
 ```
 
 
@@ -247,7 +244,7 @@ title_plot <- "SBM_FruitsOnly_ITS_FruitType.png"
 SBM_FruitsOnly_ITS_FruitSite <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_FruitsOnly_ITS, BF_mat = BF_FruitsOnly_ITS, mtd = mtd_FruitsOnly_ITS, variable_name = "FruitSite", modality_string = c("THU","FIN","LOM","IST","MIL","VAR"), color_string = c("skyblue","blue2","skyblue4","deepskyblue","coral2","dodgerblue"))
 
 title_plot <- "SBM_FruitsOnly_ITS_FruitSite.png"
- cowplot::save_plot(file =here::here("plots", "5_LBM&co", title_plot), SBM_FruitsOnly_ITS_FruitSite, base_height = 21/cm(1), base_width = 29.7/cm(1), dpi = 1200)
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", title_plot), SBM_FruitsOnly_ITS_FruitSite, base_height = 21/cm(1), base_width = 29.7/cm(1), dpi = 1200)
  
  
 SBM_FruitsOnly_ITS_FruitVariety <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_FruitsOnly_ITS, BF_mat = BF_FruitsOnly_ITS, mtd = mtd_FruitsOnly_ITS, variable_name = "FruitVariety", modality_string = c("na", "CDP","HED","SUM","STA","SWE", "CIF","CIR","DRE","INF", "MDB", "UNK","LOC"), color_string = c("indianred", "gold","gold2", "lightgoldenrod1","indianred1","yellow2","deepskyblue","yellow","#CD2626","indianred4","firebrick1","skyblue"))     
@@ -490,49 +487,50 @@ BF_ITS_LS$Genus <- NULL
 FB_ITS_LS <- t(BF_ITS_LS)
 ```
 
-## LBM clustering / Heatmap
+## SBM clustering
 ```{r}
 ########
 # 16S #
 ########
-LBM_bernoulli_16S_LS <-  as.matrix(FB_16S_LS) %>%
+SBM_bernoulli_16S_LS <-  as.matrix(FB_16S_LS) %>%
     sbm::estimateBipartiteSBM(model = 'bernoulli')
 
-memb_spl_obs_16S_LS <- LBM_bernoulli_16S_LS$memberships$row
-memb_otu_obs_16S_LS <- LBM_bernoulli_16S_LS$memberships$col
+memb_spl_obs_16S_LS <- SBM_bernoulli_16S_LS$memberships$row
+memb_otu_obs_16S_LS <- SBM_bernoulli_16S_LS$memberships$col
 
-LBM_bernoulli_16S_LS$storedModels %>% dplyr::arrange(ICL)
+SBM_bernoulli_16S_LS$storedModels %>% dplyr::arrange(ICL)
 
-LBM_16S_LS_FruitType <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S_LS, BF_mat = BF_16S_LS, mtd = mtd_16S_LS, variable_name = "FruitType", modality_string = c("BL", "CH", "ST"), color_string = c("purple4", "red4","red2"))
+SBM_16S_LS_FruitType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_LS, BF_mat = BF_16S_LS, mtd = mtd_16S_LS, variable_name = "FruitType", modality_string = c("BL", "CH", "ST"), color_string = c("purple4", "red4","red2"))
 
-LBM_16S_LS_FruitSite <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S_LS, BF_mat = BF_16S_LS, mtd = mtd_16S_LS, variable_name = "FruitSite", modality_string = c("THU","FIN","LOM","IST","MIL","VAR"), color_string = c("skyblue","blue2","skyblue4","deepskyblue","coral2","dodgerblue"))
+SBM_16S_LS_FruitSite <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_LS, BF_mat = BF_16S_LS, mtd = mtd_16S_LS, variable_name = "FruitSite", modality_string = c("THU","FIN","LOM","IST","MIL","VAR"), color_string = c("skyblue","blue2","skyblue4","deepskyblue","coral2","dodgerblue"))
 
-LBM_16S_LS_LifeStage <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S_LS, BF_mat = BF_16S_LS, mtd = mtd_16S_LS, variable_name = "LifeStage", modality_string = c("Mother", "Larva", "Pupa", "Daughter", "PupalCase"), color_string = c("goldenrod2" , "darkolivegreen2","darkolivegreen4","darkorange2","#8B4500")) 
+SBM_16S_LS_LifeStage <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_LS, BF_mat = BF_16S_LS, mtd = mtd_16S_LS, variable_name = "LifeStage", modality_string = c("Mother", "Larva", "Pupa", "Daughter", "PupalCase"), color_string = c("goldenrod2" , "darkolivegreen2","darkolivegreen4","darkorange2","#8B4500")) 
 
-LBM_16S_LS_Pop <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S_LS, BF_mat = BF_16S_LS, mtd = mtd_16S_LS, variable_name = "Pop", modality_string = c("CEC", "FRA", "na"), color_string = c("#C1FFC1", "seagreen3",))
+SBM_16S_LS_Pop <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_LS, BF_mat = BF_16S_LS, mtd = mtd_16S_LS, variable_name = "Pop", modality_string = c("CEC", "FRA", "na"), color_string = c("#C1FFC1", "seagreen3",))
 ```
 
 ```{r}
 ########
 # ITS #
 ########
-LBM_bernoulli_ITS_LS <-  as.matrix(FB_ITS_LS) %>%
+SBM_bernoulli_ITS_LS <-  as.matrix(FB_ITS_LS) %>%
     sbm::estimateBipartiteSBM(model = 'bernoulli')
 
-memb_spl_obs_ITS_LS <- LBM_bernoulli_ITS_LS$memberships$row
-memb_otu_obs_ITS_LS <- LBM_bernoulli_ITS_LS$memberships$col
+memb_spl_obs_ITS_LS <- SBM_bernoulli_ITS_LS$memberships$row
+memb_otu_obs_ITS_LS <- SBM_bernoulli_ITS_LS$memberships$col
 
-LBM_bernoulli_ITS_LS$storedModels %>% dplyr::arrange(ICL)
+SBM_bernoulli_ITS_LS$storedModels %>% dplyr::arrange(ICL)
 
-LBM_ITS_LS_FruitType <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_ITS_LS, BF_mat = BF_ITS_LS, mtd = mtd_ITS_LS, variable_name = "FruitType", modality_string = c("BL", "CH", "ST"), color_string = c("purple4", "red4","red2"))
+SBM_ITS_LS_FruitType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_ITS_LS, BF_mat = BF_ITS_LS, mtd = mtd_ITS_LS, variable_name = "FruitType", modality_string = c("BL", "CH", "ST"), color_string = c("purple4", "red4","red2"))
 
-LBM_ITS_LS_FruitSite <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_ITS_LS, BF_mat = BF_ITS_LS, mtd = mtd_ITS_LS, variable_name = "FruitSite", modality_string = c("THU","FIN","LOM","IST","MIL","VAR"), color_string = c("skyblue","blue2","skyblue4","deepskyblue","coral2","dodgerblue"))
+SBM_ITS_LS_FruitSite <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_ITS_LS, BF_mat = BF_ITS_LS, mtd = mtd_ITS_LS, variable_name = "FruitSite", modality_string = c("THU","FIN","LOM","IST","MIL","VAR"), color_string = c("skyblue","blue2","skyblue4","deepskyblue","coral2","dodgerblue"))
 
-LBM_ITS_LS_LifeStage <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_ITS_LS, BF_mat = BF_ITS_LS, mtd = mtd_ITS_LS, variable_name = "LifeStage", modality_string = c("Mother", "Larva", "Pupa", "Daughter", "PupalCase"), color_string = c("goldenrod2" , "darkolivegreen2","darkolivegreen4","darkorange2","#8B4500")) 
+SBM_ITS_LS_LifeStage <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_ITS_LS, BF_mat = BF_ITS_LS, mtd = mtd_ITS_LS, variable_name = "LifeStage", modality_string = c("Mother", "Larva", "Pupa", "Daughter", "PupalCase"), color_string = c("goldenrod2" , "darkolivegreen2","darkolivegreen4","darkorange2","#8B4500")) 
 
-LBM_ITS_LS_Pop <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_ITS_LS, BF_mat = BF_ITS_LS, mtd = mtd_ITS_LS, variable_name = "Pop", modality_string = c("CEC", "FRA", "na"), color_string = c("#C1FFC1", "seagreen3",))
+SBM_ITS_LS_Pop <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_ITS_LS, BF_mat = BF_ITS_LS, mtd = mtd_ITS_LS, variable_name = "Pop", modality_string = c("CEC", "FRA", "na"), color_string = c("#C1FFC1", "seagreen3",))
 
 ```
+
 
 ## Alluvial plot
 ```{r}
@@ -721,6 +719,22 @@ BF_16S_expe$Genus <- make.unique(BF_16S_expe$Genus, sep = "_")
 rownames(BF_16S_expe) <- BF_16S_expe$Genus 
 BF_16S_expe$Genus <- NULL
 FB_16S_expe <- t(BF_16S_expe)
+
+# rename + reorder Sample Type
+mtd_16S_expe$SampleType <- factor(mtd_16S_expe$SampleType)
+
+mtd_16S_expe$SampleType <- mtd_16S_expe$SampleType %>%
+  forcats::fct_recode(
+    Aunts = "G0_Adults_0days",
+    Mothers = "G0_Adults_Fruits_2days",
+    Larvae = "G1_Larvae_Fruits",
+    Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
+    Pupae = "G1_Pupae_Fruits",
+    PupalCases = "G1_PupalCase_Fruits",
+    Daughters = "G1_Adults_Fruits")
+
+desired_order <- c("Fruits_0days", "Aunts", "Mothers", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters")  
+mtd_16S_expe$SampleType <- factor(mtd_16S_expe$SampleType, levels = desired_order)
 ```
 
 ```{r}
@@ -749,57 +763,114 @@ BF_ITS_expe$Genus <- make.unique(BF_ITS_expe$Genus, sep = "_")
 rownames(BF_ITS_expe) <- BF_ITS_expe$Genus 
 BF_ITS_expe$Genus <- NULL
 FB_ITS_expe <- t(BF_ITS_expe)
+
+# rename + reorder Sample Type
+mtd_ITS_expe$SampleType <- factor(mtd_ITS_expe$SampleType)
+
+mtd_ITS_expe$SampleType <- mtd_ITS_expe$SampleType %>%
+  forcats::fct_recode(
+    Aunts = "G0_Adults_0days",
+    Mothers = "G0_Adults_Fruits_2days",
+    Larvae = "G1_Larvae_Fruits",
+    Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
+    Pupae = "G1_Pupae_Fruits",
+    PupalCases = "G1_PupalCase_Fruits",
+    Daughters = "G1_Adults_Fruits")
+
+desired_order <- c("Fruits_0days", "Aunts", "Mothers", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters")  
+mtd_ITS_expe$SampleType <- factor(mtd_ITS_expe$SampleType, levels = desired_order)
 ```
 
-## LBM clustering
+## SBM clustering
 ```{r}
 ########
 # 16S #
 ########
-LBM_bernoulli_16S_expe <-  as.matrix(FB_16S_expe) %>%
+SBM_bernoulli_16S_expe <-  as.matrix(FB_16S_expe) %>%
     sbm::estimateBipartiteSBM(model = 'bernoulli')
 
-memb_spl_obs_16S_expe <- LBM_bernoulli_16S_expe$memberships$row
-memb_otu_obs_16S_expe <- LBM_bernoulli_16S_expe$memberships$col
+memb_spl_obs_16S_expe <- SBM_bernoulli_16S_expe$memberships$row
+memb_otu_obs_16S_expe <- SBM_bernoulli_16S_expe$memberships$col
 
-LBM_bernoulli_16S_expe$storedModels %>% dplyr::arrange(ICL)
+SBM_bernoulli_16S_expe$storedModels %>% dplyr::arrange(ICL)
 
-LBM_16S_expe_FruitType <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S_expe, BF_mat = BF_16S_expe, mtd = mtd_16S_expe, variable_name = "FruitType", modality_string = c("BL", "CH", "na","ST"), color_string = c("purple4", "red4", "grey","red2"))
+SBM_16S_expe_FruitType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_expe, BF_mat = BF_16S_expe, mtd = mtd_16S_expe, variable_name = "FruitType", modality_string = c("BL", "CH", "na","ST"), color_string = c("purple4", "red4", "grey","red2"))
 
-title_plot <- "LBM_Expe_16S_FruitType.png"
- cowplot::save_plot(file =here::here("plots", "5_LBM&co", title_plot), LBM_16S_expe_FruitType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
+title_plot <- "SBM_Expe_16S_FruitType.png"
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", title_plot), SBM_16S_expe_FruitType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
  
-# LBM_16S_expe_FruitSite <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S_expe, BF_mat = BF_16S_expe, mtd = mtd_16S_expe, variable_name = "FruitSite", modality_string = c("THU","FIN","LOM","IST","MIL","VAR","na"), color_string = c("skyblue","blue2","skyblue4","deepskyblue","grey", "coral2","dodgerblue"))
+# SBM_16S_expe_FruitSite <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_expe, BF_mat = BF_16S_expe, mtd = mtd_16S_expe, variable_name = "FruitSite", modality_string = c("THU","FIN","LOM","IST","MIL","VAR","na"), color_string = c("skyblue","blue2","skyblue4","deepskyblue","grey", "coral2","dodgerblue"))
 
-LBM_16S_expe_SampleType <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S_expe, BF_mat = BF_16S_expe, mtd = mtd_16S_expe, variable_name = "SampleType", modality_string = c("Fruits_0days", "Aunts", "Mothers", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters"), color_string = color_Expe <- c("red3", "darkolivegreen", "darkolivegreen3", "red4", "green3", "darkorange2", "#8B4500", "goldenrod2")) 
+SBM_16S_expe_SampleType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_expe, BF_mat = BF_16S_expe, mtd = mtd_16S_expe, variable_name = "SampleType", modality_string = c("Fruits_0days", "Aunts", "Mothers", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters"), color_string = color_Expe <- c("red3", "darkolivegreen", "darkolivegreen3", "red4", "green3", "darkorange2", "#8B4500", "goldenrod2")) 
 
-title_plot <- "LBM_Expe_16S_SampletType.png"
- cowplot::save_plot(file =here::here("plots", "5_LBM&co", title_plot), LBM_16S_expe_SampleType, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
+title_plot <- "SBM_Expe_16S_SampletType.png"
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", title_plot), SBM_16S_expe_SampleType, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
+ 
+ 
+# Represent the 2 factors (Fruit Type & Life Stage)   
+SBM_16S_expe_FruitType_LifeStage <- Order_Matrix_Plot(
+  SBMobject = SBM_bernoulli_16S_expe,
+  BF_mat = BF_16S_expe,
+  mtd = mtd_16S_expe,
+  variable_name = "FruitType",
+  modality_string = c("BL", "CH", "na","ST"),
+  color_string = c("purple4", "red4", "grey","red2")) +
+  # Add another layer for LifeStage on top
+  geom_tile(
+    data = mtd_16S_expe,
+    aes(x = Sample, y = 0, color = SampleType),
+    inherit.aes = FALSE,
+    linewidth = 0.8) +
+  scale_color_manual(
+    values = c("Fruits_0days" = "red3", "Aunts"="darkolivegreen", "Mothers" = "darkolivegreen3", "Fruits_5_6days" = "red4", "Larvae"= "green3", "Pupae" = "darkorange2", "PupalCases"="#8B4500", "Daughters" ="goldenrod2")) + labs(color = "Life Stage", fill = "Fruit Type")
+
+title_plot <- "SBM_Expe_16S_FruitType&SampleType.png"
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", title_plot), SBM_16S_expe_FruitType_LifeStage, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
 ```
 
 ```{r}
 ########
 # ITS #
 ########
-LBM_bernoulli_ITS_expe <-  as.matrix(FB_ITS_expe) %>%
+SBM_bernoulli_ITS_expe <-  as.matrix(FB_ITS_expe) %>%
     sbm::estimateBipartiteSBM(model = 'bernoulli')
 
-memb_spl_obs_ITS_expe <- LBM_bernoulli_ITS_expe$memberships$row
-memb_otu_obs_ITS_expe <- LBM_bernoulli_ITS_expe$memberships$col
+memb_spl_obs_ITS_expe <- SBM_bernoulli_ITS_expe$memberships$row
+memb_otu_obs_ITS_expe <- SBM_bernoulli_ITS_expe$memberships$col
 
-LBM_bernoulli_ITS_expe$storedModels %>% dplyr::arrange(ICL)
+SBM_bernoulli_ITS_expe$storedModels %>% dplyr::arrange(ICL)
 
-LBM_ITS_expe_FruitType <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_ITS_expe, BF_mat = BF_ITS_expe, mtd = mtd_ITS_expe, variable_name = "FruitType", modality_string = c("BL", "CH", "na","ST"), color_string = c("purple4", "red4", "grey","red2"))
+SBM_ITS_expe_FruitType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_ITS_expe, BF_mat = BF_ITS_expe, mtd = mtd_ITS_expe, variable_name = "FruitType", modality_string = c("BL", "CH", "na","ST"), color_string = c("purple4", "red4", "grey","red2"))
 
-title_plot <- "LBM_Expe_ITS_FruitType.png"
- cowplot::save_plot(file =here::here("plots", "5_LBM&co", title_plot), LBM_ITS_expe_FruitType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
+title_plot <- "SBM_Expe_ITS_FruitType.png"
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", title_plot), SBM_ITS_expe_FruitType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
 
-# LBM_16S_expe_FruitSite <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S_expe, BF_mat = BF_16S_expe, mtd = mtd_16S_expe, variable_name = "FruitSite", modality_string = c("THU","FIN","LOM","IST","MIL","VAR","na"), color_string = c("skyblue","blue2","skyblue4","deepskyblue","grey", "coral2","dodgerblue"))
+# SBM_16S_expe_FruitSite <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_expe, BF_mat = BF_16S_expe, mtd = mtd_16S_expe, variable_name = "FruitSite", modality_string = c("THU","FIN","LOM","IST","MIL","VAR","na"), color_string = c("skyblue","blue2","skyblue4","deepskyblue","grey", "coral2","dodgerblue"))
 
-LBM_ITS_expe_SampleType <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_ITS_expe, BF_mat = BF_ITS_expe, mtd = mtd_ITS_expe, variable_name = "SampleType", modality_string = c("Fruits_0days", "Aunts", "Mothers", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters"), color_string = color_Expe <- c("red3", "darkolivegreen", "darkolivegreen3", "red4", "green3", "darkorange2", "#8B4500", "goldenrod2")) 
+SBM_ITS_expe_SampleType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_ITS_expe, BF_mat = BF_ITS_expe, mtd = mtd_ITS_expe, variable_name = "SampleType", modality_string = c("Fruits_0days", "Aunts", "Mothers", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters"), color_string = color_Expe <- c("red3", "darkolivegreen", "darkolivegreen3", "red4", "green3", "darkorange2", "#8B4500", "goldenrod2")) 
 
-title_plot <- "LBM_Expe_ITS_SampletType.png"
- cowplot::save_plot(file =here::here("plots", "5_LBM&co", title_plot), LBM_ITS_expe_SampleType, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
+title_plot <- "SBM_Expe_ITS_SampletType.png"
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", title_plot), SBM_ITS_expe_SampleType, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
+ 
+# Represent the 2 factors (Fruit Type & Life Stage)   
+SBM_ITS_expe_FruitType_LifeStage <- Order_Matrix_Plot(
+  SBMobject = SBM_bernoulli_ITS_expe,
+  BF_mat = BF_ITS_expe,
+  mtd = mtd_ITS_expe,
+  variable_name = "FruitType",
+  modality_string = c("BL", "CH", "na","ST"),
+  color_string = c("purple4", "red4", "grey","red2")) +
+  # Add another layer for LifeStage on top
+  geom_tile(
+    data = mtd_ITS_expe,
+    aes(x = Sample, y = 0, color = SampleType),
+    inherit.aes = FALSE,
+    linewidth = 0.8) +
+  scale_color_manual(
+    values = c("Fruits_0days" = "red3", "Aunts"="darkolivegreen", "Mothers" = "darkolivegreen3", "Fruits_5_6days" = "red4", "Larvae"= "green3", "Pupae" = "darkorange2", "PupalCases"="#8B4500", "Daughters" ="goldenrod2")) + labs(color = "Life Stage", fill = "Fruit Type")
+
+title_plot <- "SBM_Expe_ITS_FruitType&SampleType.png"
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", title_plot), SBM_ITS_expe_FruitType_LifeStage, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
 ```
 
 
