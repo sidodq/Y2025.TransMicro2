@@ -30,6 +30,8 @@ library(microbiome)
 library(microbiomeutilities)
 library(plotly)
 library(VennDiagram)
+library(grid)
+library(ggVennDiagram)
 devtools::load_all()
 ```
 # Color Sets
@@ -538,79 +540,111 @@ ggsave(filename = "Y_Expe_SampleType_FruitType_Site.jpg", plot = plot_ITS_Expe_S
 
 ## 1. Life stage
 
-## 2. Fruit type
-### Function
+### 16S
+### Individuals (Family)
 ```{r}
-# Function to extract genera for a given FruitType
-get_genera_for_type <- function(physeq, fruit_type, taxo) {
-  # Subset manually using standard R logic
-  sample_keep <- sample_names(physeq)[get_variable(physeq, "FruitType") == fruit_type]
-  ps_sub <- prune_samples(sample_keep, physeq)
-  ps_sub <- prune_taxa(taxa_sums(ps_sub) > 0, ps_sub)
-  tax_df <- as.data.frame(tax_table(ps_sub))
-  unique(tax_df[[taxo]])
-  }
+# Get family lists for each LifeStage
+ind_fam_M <- get_taxa_for_type(ps_rare_16S_Indiv, "LifeStage", "Mother", "Family")
+ind_fam_L <- get_taxa_for_type(ps_rare_16S_Indiv, "LifeStage", "Larva", "Family")
+ind_fam_P <- get_taxa_for_type(ps_rare_16S_Indiv, "LifeStage", "Pupa", "Family")
+ind_fam_PC <- get_taxa_for_type(ps_rare_16S_Indiv, "LifeStage", "PupalCase", "Family")
+ind_fam_D <- get_taxa_for_type(ps_rare_16S_Indiv, "LifeStage", "Daughter", "Family")
+
+Venn_16S_Indiv_byLifeStage <- Make_Venn_plot_LifeStage(ind_fam_M, ind_fam_L, ind_fam_P, ind_fam_PC, ind_fam_D) 
+
+title_plot <- "Venn_16S_Indiv_byLifeStage.png"
+ cowplot::save_plot(file=here::here("plots", "3_CommunityComposition", title_plot), Venn_16S_Indiv_byLifeStage, base_height = 35/cm(1), base_width = 35/cm(1), dpi = 800)
 ```
+
+### ITS
+### Individuals (Family)
+```{r}
+# Get family lists for each LifeStage
+ind_fam_M <- get_taxa_for_type(ps_rare_ITS_Indiv, "LifeStage", "Mother", "Family")
+ind_fam_L <- get_taxa_for_type(ps_rare_ITS_Indiv, "LifeStage", "Larva", "Family")
+ind_fam_P <- get_taxa_for_type(ps_rare_ITS_Indiv, "LifeStage", "Pupa", "Family")
+ind_fam_PC <- get_taxa_for_type(ps_rare_ITS_Indiv, "LifeStage", "PupalCase", "Family")
+ind_fam_D <- get_taxa_for_type(ps_rare_ITS_Indiv, "LifeStage", "Daughter", "Family")
+
+Venn_ITS_Indiv_byLifeStage <- Make_Venn_plot_LifeStage(ind_fam_M, ind_fam_L, ind_fam_P, ind_fam_PC, ind_fam_D) 
+
+title_plot <- "Venn_ITS_Indiv_byLifeStage.png"
+ cowplot::save_plot(file=here::here("plots", "3_CommunityComposition", title_plot), Venn_ITS_Indiv_byLifeStage, base_height = 35/cm(1), base_width = 35/cm(1), dpi = 800)
+```
+
+### Individuals (Genus)
+```{r}
+# Genus lists for each LifeStage
+ind_gen_M <- get_taxa_for_type(ps_rare_ITS_Indiv, "LifeStage", "Mother", "Genus")
+ind_gen_L <- get_taxa_for_type(ps_rare_ITS_Indiv, "LifeStage", "Larva", "Genus")
+ind_gen_P <- get_taxa_for_type(ps_rare_ITS_Indiv, "LifeStage", "Pupa", "Genus")
+ind_gen_PC <- get_taxa_for_type(ps_rare_ITS_Indiv, "LifeStage", "PupalCase", "Genus")
+ind_gen_D <- get_taxa_for_type(ps_rare_ITS_Indiv, "LifeStage", "Daughter", "Genus")
+
+Venn_ITS_Indiv_byLifeStage <- Make_Venn_plot_LifeStage(ind_gen_M, ind_gen_L, ind_gen_P, ind_gen_PC, ind_gen_D) 
+
+title_plot <- "Venn_ITS_Indiv_byLifeStage.png"
+ cowplot::save_plot(file=here::here("plots", "3_CommunityComposition", title_plot), Venn_ITS_Indiv_byLifeStage, base_height = 35/cm(1), base_width = 35/cm(1), dpi = 800)
+```
+
+
+## 2. Fruit type
 
 ### 16S
 ### Fruits (Family)
 ```{r}
 # Get family lists for each FruitType
-genus_BL <- get_genera_for_type(ps_rare_16S_FruitsOnly, "BL", "Family")
-genus_CH <- get_genera_for_type(ps_rare_16S_FruitsOnly, "CH", "Family")
-genus_ST <- get_genera_for_type(ps_rare_16S_FruitsOnly, "ST", "Family")
+f_fam_BL <- get_taxa_for_type(ps_rare_16S_FruitsOnly, "FruitType", "BL", "Family")
+f_fam_CH <- get_taxa_for_type(ps_rare_16S_FruitsOnly, "FruitType", "CH", "Family")
+f_fam_ST <- get_taxa_for_type(ps_rare_16S_FruitsOnly, "FruitType", "ST", "Family")
 
-# Basic 3-set Venn Diagram
-venn.plot <- draw.triple.venn(
-  area1 = length(genus_BL),
-  area2 = length(genus_CH),
-  area3 = length(genus_ST),
-  n12 = length(intersect(genus_BL, genus_CH)),
-  n23 = length(intersect(genus_CH, genus_ST)),
-  n13 = length(intersect(genus_BL, genus_ST)),
-  n123 = length(Reduce(intersect, list(genus_BL, genus_CH, genus_ST))),
-  category = c("Blackberry (BL)", "Cherry (CH)", "Strawberry (ST)"),
-  fill = c("purple4", "red4", "red2"),
-  cat.cex = 1.2, cex = 1.3, fontfamily = "sans", cat.pos = c(-20, 20, 0), cat.dist = c(0.06, 0.06, - 0.45), scaled = TRUE)
-
-# Draw the diagram
-grid::grid.newpage()  # Start fresh for the plot
-grid::grid.draw(venn.plot)
-
-Venn_16S_Fruits_byFruitType <- Make_Venn_plot_FruitType(genus_BL, genus_CH, genus_ST)
+Venn_16S_Fruits_byFruitType <- Make_Venn_plot_FruitType(f_fam_BL, f_fam_CH, f_fam_ST)
 
 title_plot <- "Venn_16S_Fruits_byFruitType.png"
  cowplot::save_plot(file=here::here("plots", "3_CommunityComposition", title_plot), Venn_16S_Fruits_byFruitType, base_height = 35/cm(1), base_width = 35/cm(1), dpi = 800)
+```
+
+### Individuals (Family)
+```{r}
+# Get family lists for each FruitType
+ind_fam_BL <- get_taxa_for_type(ps_rare_16S_Indiv, "BL", "Family")
+ind_fam_CH <- get_taxa_for_type(ps_rare_16S_Indiv, "CH", "Family")
+ind_fam_ST <- get_taxa_for_type(ps_rare_16S_Indiv, "ST", "Family")
+
+Venn_16S_Indiv_byFruitType <- Make_Venn_plot_FruitType(ind_fam_BL, ind_fam_CH, ind_fam_ST)
+
+title_plot <- "Venn_16S_Indiv_byFruitType.png"
+ cowplot::save_plot(file=here::here("plots", "3_CommunityComposition", title_plot), Venn_16S_Indiv_byFruitType, base_height = 35/cm(1), base_width = 35/cm(1), dpi = 800)
+```
+
+### ITS
+### Fruits (Family)
+```{r}
+# Get family lists for each FruitType
+genus_BL <- get_taxa_for_type(ps_rare_ITS_FruitsOnly, "BL", "Family")
+genus_CH <- get_taxa_for_type(ps_rare_ITS_FruitsOnly, "CH", "Family")
+genus_ST <- get_taxa_for_type(ps_rare_ITS_FruitsOnly, "ST", "Family")
+
+Venn_ITS_Fruits_byFruitType <- Make_Venn_plot_FruitType(genus_BL, genus_CH, genus_ST)
+
+title_plot <- "Venn_ITS_Fruits_byFruitType.png"
+ cowplot::save_plot(file=here::here("plots", "3_CommunityComposition", title_plot), Venn_ITS_Fruits_byFruitType, base_height = 35/cm(1), base_width = 35/cm(1), dpi = 800)
                  
 ```
 
 ### Individuals (Family)
 ```{r}
 # Get family lists for each FruitType
-genus_BL <- get_genera_for_type(ps_rare_16S_Indiv, "BL", Family)
-genus_CH <- get_genera_for_type(ps_rare_16S_Indiv, "CH", Family)
-genus_ST <- get_genera_for_type(ps_rare_16S_Indiv, "ST", Family)
+ind_fam_BL <- get_taxa_for_type(ps_rare_ITS_Indiv, "BL", "Family")
+ind_fam_CH <- get_taxa_for_type(ps_rare_ITS_Indiv, "CH", "Family")
+ind_fam_ST <- get_taxa_for_type(ps_rare_ITS_Indiv, "ST", "Family")
 
-# Basic 3-set Venn Diagram
-venn.plot <- draw.triple.venn(
-  area1 = length(genus_BL),
-  area2 = length(genus_CH),
-  area3 = length(genus_ST),
-  n12 = length(intersect(genus_BL, genus_CH)),
-  n23 = length(intersect(genus_CH, genus_ST)),
-  n13 = length(intersect(genus_BL, genus_ST)),
-  n123 = length(Reduce(intersect, list(genus_BL, genus_CH, genus_ST))),
-  category = c("Blackberry (BL)", "Cherry (CH)", "Strawberry (ST)"),
-  fill = c("purple4", "red4", "red2"),
-  cat.cex = 1.2, cex = 1.3, fontfamily = "sans", cat.pos = c(-20, 20, 0), cat.dist = c(0.06, 0.06, - 0.45), scaled = TRUE)
+Venn_ITS_Indiv_byFruitType <- Make_Venn_plot_FruitType(ind_fam_BL, ind_fam_CH, ind_fam_ST)
 
-# Draw the diagram
-grid::grid.newpage()  # Start fresh for the plot
-grid::grid.draw(venn.plot)
-
-title_plot <- "Venn_16S_Indiv_byFruitType.png"
- cowplot::save_plot(file=here::here("plots", "3_CommunityComposition", title_plot), venn.plot, base_height = 35/cm(1), base_width = 35/cm(1), dpi = 800)
+title_plot <- "Venn_ITS_Indiv_byFruitType.png"
+ cowplot::save_plot(file=here::here("plots", "3_CommunityComposition", title_plot), Venn_ITS_Indiv_byFruitType, base_height = 35/cm(1), base_width = 35/cm(1), dpi = 800)
 ```
+
 
 ## 3. Pop
 
