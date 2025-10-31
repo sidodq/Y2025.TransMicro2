@@ -24,6 +24,8 @@ library(future.apply)
 library(sbm)
 library(ggalluvial)
 library(openxlsx)
+library(vegan)
+library(igraph)
 devtools::load_all()
 ```
 
@@ -129,67 +131,6 @@ FB_FruitsOnly_ITS <- t(BF_FruitsOnly_ITS)
 # sbm::plotMyMatrix(FB_ITS, dimLabels = c('taxon', 'sample') ,
 #   plotOptions = list( rowNames = TRUE,  colNames = TRUE,  legend = TRUE,  legend.position = 'right'))
 ```
-
-## NMI
-
-```{r}
-# Import simulated clustering MPC
-
-netBin.config<-simulate(nullmodel(netBin.data,"curveball"),nsim=NPERM)
-graph.bin.gut.config<-simulate(nullmodel(netBin.gut,"curveball"),nsim=NPERM)
-graph.bin.bpk.config<-simulate(nullmodel(netBin.bpk,"curveball"),nsim=NPERM)
-```
-
-```{r}
-# 1. Table 1_bis : Exp. 1 MPC
-# Factors
-Fruit_vect_MPC_16S <- as.factor(mtd_MPC_16S$Fruit[match(rownames(FB_bin_MPC_16S), rownames(mtd_MPC_16S))])
-Fruit_vect_MPC_ITS <- as.factor(mtd_MPC_ITS$Fruit[match(rownames(FB_bin_MPC_ITS), rownames(mtd_MPC_ITS))])
-Locality_vect_MPC_16S <- as.factor(mtd_MPC_16S$Locality_Short[match(rownames(FB_bin_MPC_16S), rownames(mtd_MPC_16S))])
-Locality_vect_MPC_ITS <- as.factor(mtd_MPC_ITS$Locality_Short[match(rownames(FB_bin_MPC_ITS), rownames(mtd_MPC_ITS))])
-
-# Observed
-nmi_obs_MPC_16S_Fruit <- compare(as.factor(memb_spl_obs_MPC_16S), Fruit_vect_MPC_16S, method = "nmi")
-nmi_obs_MPC_ITS_Fruit <- compare(as.factor(memb_spl_obs_MPC_ITS), Fruit_vect_MPC_ITS, method = "nmi")
-nmi_obs_MPC_16S_Locality <- compare(as.factor(memb_spl_obs_MPC_16S), Locality_vect_MPC_16S, method = "nmi")
-nmi_obs_MPC_ITS_Locality <- compare(as.factor(memb_spl_obs_MPC_ITS), Locality_vect_MPC_ITS, method = "nmi")
-
-## Simulated clustering
-simulated_clustering_MPC_16S <- Simulate_Clustering_SBM(FB = FB_bin_MPC_16S, NPERM = 1000, name = "simulated_clustering_MPC_16S.tsv")
-simulated_clustering_MPC_ITS <- Simulate_Clustering_SBM(FB = FB_bin_MPC_ITS, NPERM = 1000, name = "simulated_clustering_MPC_ITS.tsv")
-
-# Simulated NMI
-simulated_nmi_MPC_16S_Fruit <- 
-simulated_clustering_MPC_16S %>% 
-  pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
-  group_by(Simulation) %>% 
-  summarise(., nmi_sim = compare(as.factor(Memberships), Fruit_vect_MPC_16S, method = "nmi"))
-
-simulated_nmi_MPC_16S_Locality <- 
-simulated_clustering_MPC_16S %>% 
-  pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
-  group_by(Simulation) %>% 
-  summarise(., nmi_sim = compare(as.factor(Memberships), Locality_vect_MPC_16S, method = "nmi"))
-
-simulated_nmi_MPC_ITS_Fruit <- 
-simulated_clustering_MPC_ITS %>% 
-  pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
-  group_by(Simulation) %>% 
-  summarise(., nmi_sim = compare(as.factor(Memberships), Fruit_vect_MPC_ITS, method = "nmi"))
-
-simulated_nmi_MPC_ITS_Locality <- 
-simulated_clustering_MPC_ITS %>% 
-  pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
-  group_by(Simulation) %>% 
-  summarise(., nmi_sim = compare(as.factor(Memberships), Locality_vect_MPC_ITS, method = "nmi"))
-
-print(c("NMI =", nmi_obs_MPC_16S_Fruit, "P-value = ", 1 - ecdf(simulated_nmi_MPC_16S_Fruit$nmi_sim)(nmi_obs_MPC_16S_Fruit)))
-print(c("NMI =", nmi_obs_MPC_16S_Locality, "P-value = ", 1 - ecdf(simulated_nmi_MPC_16S_Locality$nmi_sim)(nmi_obs_MPC_16S_Locality)))
-
-print(c("NMI =", nmi_obs_MPC_ITS_Fruit, "P-value = ", 1 - ecdf(simulated_nmi_MPC_ITS_Fruit$nmi_sim)(nmi_obs_MPC_ITS_Fruit)))
-print(c("NMI =", nmi_obs_MPC_ITS_Locality, "P-value = ", 1 - ecdf(simulated_nmi_MPC_ITS_Locality$nmi_sim)(nmi_obs_MPC_ITS_Locality)))
-```
-
 
 ## SBM clustering
 ```{r}
@@ -780,6 +721,82 @@ mtd_ITS_expe$SampleType <- mtd_ITS_expe$SampleType %>%
 desired_order <- c("Fruits_0days", "Aunts", "Mothers", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters")  
 mtd_ITS_expe$SampleType <- factor(mtd_ITS_expe$SampleType, levels = desired_order)
 ```
+
+## NMI
+```{r}
+NPERM=100#set quite low, so that permutations do not take too long, only for proof of principle, set to 10000 for serious comparisons
+
+# Import simulated clustering MPC
+netBin.config<-simulate(nullmodel(FB_16S_expe,"curveball"),nsim=NPERM)
+graph.bin.gut.config<-simulate(nullmodel(FB_16S_expe,"curveball"),nsim=NPERM)
+graph.bin.bpk.config<-simulate(nullmodel(FB_16S_expe,"curveball"),nsim=NPERM)
+```
+
+```{r}
+####comparisons with treatments
+cle.config<-sapply(1:NPERM, function(x) cluster_leading_eigen(graph_from_incidence_matrix(as.matrix(netBin.config[,,x])))$mem[1:104])#memberships in communities for simulated datasets
+compare(netData$mod.cle,netData$FruitType,method="nmi")#NMI of comparison with Type
+wholenetmod.type.nmi.config<-sapply(1:NPERM, function(x) compare(cle.config[,x],netData$Type,method="nmi"))
+1-ecdf(wholenetmod.type.nmi.config)(compare(netData$mod.cle,netData$Type,method="nmi"))#p-value of comparison with Type
+compare(netData$mod.cle,netData$Diet,method="nmi")#NMI of comparison with Diet
+wholenetmod.diet.nmi.config<-sapply(1:NPERM, function(x) compare(cle.config[,x],netData$Diet,method="nmi"))
+1-ecdf(wholenetmod.diet.nmi.config)(compare(netData$mod.cle,netData$Diet,method="nmi"))#p-value of comparison with Diet
+compare(netData$mod.cle,netData$Genotype,method="nmi")#NMI of comparison with Genotype
+wholenetmod.genotype.nmi.config<-sapply(1:NPERM, function(x) compare(cle.config[,x],netData$Genotype,method="nmi"))
+1-ecdf(wholenetmod.genotype.nmi.config)(compare(netData$mod.cle,netData$Genotype,method="nmi"))#p-value of comparison with Genotype
+```
+
+
+```{r}
+# 1. Table 1_bis : Exp. 1 MPC
+# Factors
+Fruit_vect_MPC_16S <- as.factor(mtd_MPC_16S$Fruit[match(rownames(FB_bin_MPC_16S), rownames(mtd_MPC_16S))])
+Fruit_vect_MPC_ITS <- as.factor(mtd_MPC_ITS$Fruit[match(rownames(FB_bin_MPC_ITS), rownames(mtd_MPC_ITS))])
+Locality_vect_MPC_16S <- as.factor(mtd_MPC_16S$Locality_Short[match(rownames(FB_bin_MPC_16S), rownames(mtd_MPC_16S))])
+Locality_vect_MPC_ITS <- as.factor(mtd_MPC_ITS$Locality_Short[match(rownames(FB_bin_MPC_ITS), rownames(mtd_MPC_ITS))])
+
+# Observed
+nmi_obs_MPC_16S_Fruit <- compare(as.factor(memb_spl_obs_MPC_16S), Fruit_vect_MPC_16S, method = "nmi")
+nmi_obs_MPC_ITS_Fruit <- compare(as.factor(memb_spl_obs_MPC_ITS), Fruit_vect_MPC_ITS, method = "nmi")
+nmi_obs_MPC_16S_Locality <- compare(as.factor(memb_spl_obs_MPC_16S), Locality_vect_MPC_16S, method = "nmi")
+nmi_obs_MPC_ITS_Locality <- compare(as.factor(memb_spl_obs_MPC_ITS), Locality_vect_MPC_ITS, method = "nmi")
+
+## Simulated clustering
+simulated_clustering_MPC_16S <- Simulate_Clustering_SBM(FB = FB_bin_MPC_16S, NPERM = 1000, name = "simulated_clustering_MPC_16S.tsv")
+simulated_clustering_MPC_ITS <- Simulate_Clustering_SBM(FB = FB_bin_MPC_ITS, NPERM = 1000, name = "simulated_clustering_MPC_ITS.tsv")
+
+# Simulated NMI
+simulated_nmi_MPC_16S_Fruit <- 
+simulated_clustering_MPC_16S %>% 
+  pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
+  group_by(Simulation) %>% 
+  summarise(., nmi_sim = compare(as.factor(Memberships), Fruit_vect_MPC_16S, method = "nmi"))
+
+simulated_nmi_MPC_16S_Locality <- 
+simulated_clustering_MPC_16S %>% 
+  pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
+  group_by(Simulation) %>% 
+  summarise(., nmi_sim = compare(as.factor(Memberships), Locality_vect_MPC_16S, method = "nmi"))
+
+simulated_nmi_MPC_ITS_Fruit <- 
+simulated_clustering_MPC_ITS %>% 
+  pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
+  group_by(Simulation) %>% 
+  summarise(., nmi_sim = compare(as.factor(Memberships), Fruit_vect_MPC_ITS, method = "nmi"))
+
+simulated_nmi_MPC_ITS_Locality <- 
+simulated_clustering_MPC_ITS %>% 
+  pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
+  group_by(Simulation) %>% 
+  summarise(., nmi_sim = compare(as.factor(Memberships), Locality_vect_MPC_ITS, method = "nmi"))
+
+print(c("NMI =", nmi_obs_MPC_16S_Fruit, "P-value = ", 1 - ecdf(simulated_nmi_MPC_16S_Fruit$nmi_sim)(nmi_obs_MPC_16S_Fruit)))
+print(c("NMI =", nmi_obs_MPC_16S_Locality, "P-value = ", 1 - ecdf(simulated_nmi_MPC_16S_Locality$nmi_sim)(nmi_obs_MPC_16S_Locality)))
+
+print(c("NMI =", nmi_obs_MPC_ITS_Fruit, "P-value = ", 1 - ecdf(simulated_nmi_MPC_ITS_Fruit$nmi_sim)(nmi_obs_MPC_ITS_Fruit)))
+print(c("NMI =", nmi_obs_MPC_ITS_Locality, "P-value = ", 1 - ecdf(simulated_nmi_MPC_ITS_Locality$nmi_sim)(nmi_obs_MPC_ITS_Locality)))
+```
+
 
 ## SBM clustering
 ```{r}
