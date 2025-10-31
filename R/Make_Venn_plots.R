@@ -5,18 +5,28 @@
 #' @param physeq the phyloseq object
 #' @param variable the sample category of interest (ex. FruitType), to write between ""
 #' @param value the value of the category (ex. BL), to write between ""
-#' @param taxo the taxonomic level wanted (ex. Family)
 #'
 #'
 #' @export
-get_taxa_for_type <- function(physeq, variable, value, taxo) {
+get_otus_for_type <- function(physeq, variable, value) {
   # Subset manually using standard R logic
   sample_keep <- sample_names(physeq)[get_variable(physeq, variable) == value]
   ps_sub <- prune_samples(sample_keep, physeq)
   ps_sub <- prune_taxa(taxa_sums(ps_sub) > 0, ps_sub)
-  tax_df <- as.data.frame(tax_table(ps_sub))
-  unique(tax_df[[taxo]])
+
+  # Return OTU names (row names of OTU table)
+  return(taxa_names(ps_sub))
 }
+
+# @param taxo the taxonomic level wanted (ex. Family)
+# get_taxa_for_type <- function(physeq, variable, value, taxo) {
+#   # Subset manually using standard R logic
+#   sample_keep <- sample_names(physeq)[get_variable(physeq, variable) == value]
+#   ps_sub <- prune_samples(sample_keep, physeq)
+#   ps_sub <- prune_taxa(taxa_sums(ps_sub) > 0, ps_sub)
+#   tax_df <- as.data.frame(tax_table(ps_sub))
+#   unique(tax_df[[taxo]])
+# }
 
 
 #' @title Make Venn plot divided per FruitType (BL, CH, ST)
