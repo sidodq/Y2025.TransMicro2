@@ -750,20 +750,20 @@ wholenetmod.genotype.nmi.config<-sapply(1:NPERM, function(x) compare(cle.config[
 ```{r}
 # 1. Table 1_bis : Exp. 1 MPC
 # Factors
-Fruit_vect_MPC_16S <- as.factor(mtd_MPC_16S$Fruit[match(rownames(FB_bin_MPC_16S), rownames(mtd_MPC_16S))])
-Fruit_vect_MPC_ITS <- as.factor(mtd_MPC_ITS$Fruit[match(rownames(FB_bin_MPC_ITS), rownames(mtd_MPC_ITS))])
-Locality_vect_MPC_16S <- as.factor(mtd_MPC_16S$Locality_Short[match(rownames(FB_bin_MPC_16S), rownames(mtd_MPC_16S))])
-Locality_vect_MPC_ITS <- as.factor(mtd_MPC_ITS$Locality_Short[match(rownames(FB_bin_MPC_ITS), rownames(mtd_MPC_ITS))])
+FT_vect_expe_16S <- as.factor(mtd_16S_expe$FruitType[match(rownames(FB_16S_expe), rownames(mtd_16S_expe))])
+FT_vect_expe_ITS <- as.factor(mtd_ITS_expe$FruitType[match(rownames(FB_ITS_expe), rownames(mtd_ITS_expe))])
+LS_vect_expe_16S <- as.factor(mtd_16S_expe$LifeStage[match(rownames(FB_16S_expe), rownames(mtd_16S_expe))])
+LS_vect_expe_ITS <- as.factor(mtd_ITS_expe$LifeStage[match(rownames(FB_ITS_expe), rownames(mtd_ITS_expe))])
 
 # Observed
-nmi_obs_MPC_16S_Fruit <- compare(as.factor(memb_spl_obs_MPC_16S), Fruit_vect_MPC_16S, method = "nmi")
-nmi_obs_MPC_ITS_Fruit <- compare(as.factor(memb_spl_obs_MPC_ITS), Fruit_vect_MPC_ITS, method = "nmi")
-nmi_obs_MPC_16S_Locality <- compare(as.factor(memb_spl_obs_MPC_16S), Locality_vect_MPC_16S, method = "nmi")
-nmi_obs_MPC_ITS_Locality <- compare(as.factor(memb_spl_obs_MPC_ITS), Locality_vect_MPC_ITS, method = "nmi")
+nmi_obs_expe_16S_FruitType <- compare(as.factor(memb_spl_obs_16S_expe), FT_vect_expe_16S, method = "nmi")
+nmi_obs_expe_ITS_FruitType <- compare(as.factor(memb_spl_obs_ITS_expe), FT_vect_expe_ITS, method = "nmi")
+nmi_obs_expe_16S_LifeStage <- compare(as.factor(memb_spl_obs_16S_expe), LS_vect_expe_16S, method = "nmi")
+nmi_obs_expe_ITS_LifeStage <- compare(as.factor(memb_spl_obs_ITS_expe), LS_vect_expe_ITS, method = "nmi")
 
 ## Simulated clustering
-simulated_clustering_MPC_16S <- Simulate_Clustering_SBM(FB = FB_bin_MPC_16S, NPERM = 1000, name = "simulated_clustering_MPC_16S.tsv")
-simulated_clustering_MPC_ITS <- Simulate_Clustering_SBM(FB = FB_bin_MPC_ITS, NPERM = 1000, name = "simulated_clustering_MPC_ITS.tsv")
+simulated_clustering_expe_16S <- Simulate_Clustering_SBM(FB = FB_16S_expe, NPERM = 100, name = "simulated_clustering_expe_16S.tsv")
+simulated_clustering_MPC_ITS <- Simulate_Clustering_SBM(FB = FB_ITS_expe, NPERM = 100, name = "simulated_clustering_MPC_ITS.tsv")
 
 # Simulated NMI
 simulated_nmi_MPC_16S_Fruit <- 
