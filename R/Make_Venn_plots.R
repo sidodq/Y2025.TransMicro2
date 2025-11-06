@@ -9,13 +9,16 @@
 #'
 #' @export
 get_otus_for_type <- function(physeq, variable, value) {
-  # Subset manually using standard R logic
-  sample_keep <- sample_names(physeq)[get_variable(physeq, variable) == value]
-  ps_sub <- prune_samples(sample_keep, physeq)
-  ps_sub <- prune_taxa(taxa_sums(ps_sub) > 0, ps_sub)
+# Extract metadata
+meta <- as.data.frame(sample_data(physeq))
 
-  # Return OTU names (row names of OTU table)
-  return(taxa_names(ps_sub))
+# Subset manually
+sample_keep <- rownames(meta)[meta[[variable]] == value]
+ps_sub <- prune_samples(sample_keep, physeq)
+ps_sub <- prune_taxa(taxa_sums(ps_sub) > 0, ps_sub)
+
+# Return ASV names
+return(taxa_names(ps_sub))
 }
 
 # @param taxo the taxonomic level wanted (ex. Family)
@@ -64,6 +67,31 @@ Make_Venn_plot_FruitType <- function(list_BL, list_CH, list_ST) {
 #' Function to represent Families or Genus shared between and across Life Stages
 #'
 #'
+#' @param list_THU list of the Families or Genus proper to Mothers samples
+#' @param list_FIN idem with samples from Larvae
+#' @param list_LOM idem with samples from Pupae
+#' @param list_IST idem with samples from Pupal Cases
+#' @param list_MIL idem with samples from Daughters
+#' @param list_VAR
+#'
+#'
+#' @export
+Make_Venn_plot_FruitSite <- function(list_THU, list_FIN, list_LOM, list_IST, list_MIL, list_VAR) {
+
+  venn_data <- list(THURINS = list_THU, FINISTRET = list_FIN, LOSMASOS = list_LOM, ILESURTET = list_IST, MILLAS = list_MIL, VARETZ = list_VAR)
+
+ggVennDiagram(venn_data, label_alpha = 0, edge_size = 0.8) +
+  scale_fill_gradient(low = "white", high = "#8B0A50", name ="ASVs number") + theme_void() + theme(legend.title = element_text(size = 12, face = "bold"), legend.text = element_text(size = 10))
+}
+
+
+
+#' @title Make Venn plot divided per LifeStage (Mother, Larvae, Pupae, PupalCase, Daughter)
+#'
+#' @description
+#' Function to represent Families or Genus shared between and across Life Stages
+#'
+#'
 #' @param list_M list of the Families or Genus proper to Mothers samples
 #' @param list_L idem with samples from Larvae
 #' @param list_P idem with samples from Pupae
@@ -76,9 +104,10 @@ Make_Venn_plot_LifeStage <- function(list_M, list_L, list_P, list_PC, list_D) {
 
   venn_data <- list(Mother = list_M, Larva = list_L, Pupa = list_P, PupalCase = list_PC, Daughter = list_D)
 
-ggVennDiagram(venn_data, label_alpha = 0, edge_size = 0.8) +
-  scale_fill_gradient(low = "white", high = "steelblue", name ="Taxa number") + theme_void() + theme(legend.title = element_text(size = 12, face = "bold"), legend.text = element_text(size = 10))
+  ggVennDiagram(venn_data, label_alpha = 0, edge_size = 0.8) +
+    scale_fill_gradient(low = "white", high = "steelblue", name ="ASVs number") + theme_void() + theme(legend.title = element_text(size = 12, face = "bold"), legend.text = element_text(size = 10))
 }
+
 
 #'
 # Make_Venn_plot_LifeStage <- function(list_M, list_L, list_P, list_PC, list_D) {

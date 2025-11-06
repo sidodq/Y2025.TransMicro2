@@ -22,6 +22,7 @@ library(ggh4x)
 library("ggplot2")
 library(patchwork)
 library(ggpubr)
+library(ggplot2)
 library(ggrepel)
 library(purrr)
 library(rlang)
@@ -32,6 +33,7 @@ library(plotly)
 library(VennDiagram)
 library(grid)
 library(ggVennDiagram)
+library(cowplot)
 devtools::load_all()
 ```
 # Color Sets
@@ -363,7 +365,7 @@ plot_ITS_Family_FruitTypeSiteVariety <- Make_composition_bar_plot_2(ps_rare_ITS_
 ggsave(filename = "Y_Abundance_Fruit_Type_Site_Variety.jpg", plot = plot_ITS_Family_FruitTypeSiteVariety, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 ```
 
-#### SampleTYpe + FruitType + Site + Variety
+#### SampleType + FruitType + Site + Variety
 ```{r}
 # 16S (Family)
 plot_16S_Family_SampleTypeFruitTypeSiteVariety <- Make_composition_bar_plot_2(ps_rare_16S_FruitsOnly, "Bacteria", "Family", 15, ~SampleType + FruitType+FruitSite+FruitVariety, color_16S)
@@ -535,7 +537,7 @@ ggsave(filename = "Y_Expe_SampleType_FruitType_Site.jpg", plot = plot_ITS_Expe_S
 
 ## 2. Heatmap
 
-# II. Shared core
+# II. Shared ASVs (Venn diag)
 
 ## 1. Fruits Samples
 ### 16S ASVs
@@ -545,10 +547,36 @@ f_BL <- get_otus_for_type(ps_rare_16S_FruitsOnly, "FruitType", "BL")
 f_CH <- get_otus_for_type(ps_rare_16S_FruitsOnly, "FruitType", "CH")
 f_ST <- get_otus_for_type(ps_rare_16S_FruitsOnly, "FruitType", "ST")
 
-Venn_16S_Fruits_byFruitType <- Make_Venn_plot_FruitType(f_BL, f_CH, f_ST)
+Venn_16S_Fruits_byFruitType <- Make_Venn_plot_FruitType(f_BL, f_CH, f_ST) 
 
 title_plot <- "Venn_16S_Fruits_byFruitType.png"
  cowplot::save_plot(file=here::here("plots", "3_CommunityComposition", title_plot), Venn_16S_Fruits_byFruitType, base_height = 35/cm(1), base_width = 35/cm(1), dpi = 800)
+
+ 
+venn_square <- ggdraw(Venn_16S_Fruits_byFruitType) +
+  theme(plot.margin = margin(0, 0, 0, 0, "pt"))
+
+combined_plot <- plot_grid(
+  plot_16S_Family_SampleTypeFruitTypeSiteVariety,
+  venn_square,
+  labels = c("A.", "B."),
+  label_size = 16,
+  ncol = 1,
+  align = "v",
+  rel_widths = c(2.5, 1)) 
+
+## Split by Time to explain ASVs fruit specificity on general VennDiagram
+f_THU <- get_otus_for_type(ps_rare_16S_FruitsOnly, "FruitSite", "THU")
+f_FIN <- get_otus_for_type(ps_rare_16S_FruitsOnly, "FruitSite", "FIN")
+f_LOM <- get_otus_for_type(ps_rare_16S_FruitsOnly, "FruitSite","LOM")
+f_IST <- get_otus_for_type(ps_rare_16S_FruitsOnly, "FruitSite","IST")
+f_MIL <- get_otus_for_type(ps_rare_16S_FruitsOnly, "FruitSite", "MIL")
+f_VAR <- get_otus_for_type(ps_rare_16S_FruitsOnly, "FruitSite", "VAR")
+
+Venn_16S_Fruits_byFruitSite <- Make_Venn_plot_FruitSite(f_THU, f_FIN, f_LOM, f_IST, f_MIL, f_VAR) 
+
+title_plot <- "Venn_16S_Fruits_bySite.png"
+ cowplot::save_plot(file=here::here("plots", "3_CommunityComposition", title_plot), Venn_16S_Fruits_byFruitSite, base_height = 35/cm(1), base_width = 35/cm(1), dpi = 800)
 ```
 
 ### ITS ASVs
