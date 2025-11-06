@@ -542,7 +542,7 @@ title_plot <- "NMDS_ITS_FruitType_FruitVariety.png"
  cowplot::save_plot(file =here::here("plots", "4_diversities", title_plot), NMDS_J_ITS_Fruits_Ellipses, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
  
 # Combined plot
-NMDS_Fruits_combined <- ( NMDS_J_16S_Fruits_Ellipses|NMDS_J_ITS_Fruits_Ellipses) + plot_layout(ncol = 2,  widths = c(1, 1),guides = "collect") &  theme(legend.position = "right")
+NMDS_Fruits_combined <- ( NMDS_J_16S_Fruits_Ellipses+theme(legend.position = "none") |NMDS_J_ITS_Fruits_Ellipses+theme(legend.position = "right")) + plot_layout(ncol = 2,  widths = c(1, 1),guides = "collect") 
 
 title_plot <- "NMDS_Fruits_combined.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot), NMDS_Fruits_combined, base_height = 20/cm(1),  base_width = 34/cm(1), dpi = 1200)
@@ -594,7 +594,7 @@ title_plot <- "NMDS_BC_ITS_FruitType_FruitVariety.png"
  cowplot::save_plot(file =here::here("plots", "4_diversities", title_plot), NMDS_B_ITS_Fruits_Ellipses, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
  
 # Combined plot
-NMDS_BC_Fruits_combined <- ( NMDS_B_16S_Fruits_Ellipses|NMDS_B_ITS_Fruits_Ellipses) + plot_layout(ncol = 2,  widths = c(1, 1),guides = "collect") &  theme(legend.position = "right")
+NMDS_BC_Fruits_combined <- (NMDS_B_16S_Fruits_Ellipses + theme(legend.position = "none") |NMDS_B_ITS_Fruits_Ellipses + theme(legend.position = "right")) + plot_layout(ncol = 2, widths = c(1, 1))
 
 title_plot <- "NMDS_BC_Fruits_combined.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot), NMDS_BC_Fruits_combined, base_height = 20/cm(1),  base_width = 34/cm(1), dpi = 1200)
