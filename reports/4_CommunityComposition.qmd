@@ -552,7 +552,7 @@ Venn_16S_Fruits_byFruitType <- Make_Venn_plot_FruitType(f_BL, f_CH, f_ST)
 title_plot <- "Venn_16S_Fruits_byFruitType.png"
  cowplot::save_plot(file=here::here("plots", "3_CommunityComposition", title_plot), Venn_16S_Fruits_byFruitType, base_height = 35/cm(1), base_width = 35/cm(1), dpi = 800)
 
- 
+# combined plot (Bars + Venn) 
 venn_square <- ggdraw(Venn_16S_Fruits_byFruitType) +
   theme(plot.margin = margin(0, 0, 0, 0, "pt"))
 
@@ -565,7 +565,7 @@ combined_plot <- plot_grid(
   align = "v",
   rel_widths = c(2.5, 1)) 
 
-## Split by Time to explain ASVs fruit specificity on general VennDiagram
+# Split by Site to explain ASVs fruit specificity on general VennDiagram
 f_THU <- get_otus_for_type(ps_rare_16S_FruitsOnly, "FruitSite", "THU")
 f_FIN <- get_otus_for_type(ps_rare_16S_FruitsOnly, "FruitSite", "FIN")
 f_LOM <- get_otus_for_type(ps_rare_16S_FruitsOnly, "FruitSite","LOM")
@@ -706,83 +706,118 @@ title_plot <- "Venn_ITS_Indiv_byLifeStage.png"
 ```
 
 
-
 ## 3. Pop
 
-# III. Prevalence
 
-## 1. All samples
 
-### a. Calculation
-
+# III. Shared Core
+## 1. Fruits only
 ```{r}
-# function for a phyloseq object
-estimate_prevalence_all <- function(physeq) {
-  otu <- otu_table(physeq)
-  if (taxa_are_rows(physeq)) {
-    otu <- t(otu)
-  }
-  
-  prev <- colSums(otu > 0) / nrow(otu)  # fraction of samples where each taxon is present (prevalence = % of samples where abundance > 0)
-  rel_abund <- colMeans(otu / rowSums(otu))  # mean relative abundance
-  
-  tax <- as.data.frame(tax_table(physeq))
-  tax$Taxon <- rownames(tax)
-  
-  data.frame(
-    Taxon = colnames(otu),
-    Prevalence = prev,
-    RelativeAbundance = rel_abund
-  ) |>
-    dplyr::left_join(tax, by = c("Taxon" = "Taxon"))
-  
-}
+#1- data
+## phyloseq objects
+ps_rare_16S_FruitsOnly 
+ps_rare_ITS_FruitsOnly
 
-# Apply function
-B_absolute_prevalence <- estimate_prevalence_all(S_ps_rare_16S)
-Y_absolute_prevalence <- estimate_prevalence_all(S_ps_rare_ITS)
+## Get ASVs lists for each FruitType
+f_BL_B <- get_otus_for_type(ps_rare_16S_FruitsOnly, "FruitType", "BL")
+f_CH_B <- get_otus_for_type(ps_rare_16S_FruitsOnly, "FruitType", "CH")
+f_ST_B <- get_otus_for_type(ps_rare_16S_FruitsOnly, "FruitType", "ST")
+
+f_BL_Y <- get_otus_for_type(ps_rare_ITS_FruitsOnly, "FruitType", "BL")
+f_CH_Y <- get_otus_for_type(ps_rare_ITS_FruitsOnly, "FruitType", "CH")
+f_ST_Y <- get_otus_for_type(ps_rare_ITS_FruitsOnly, "FruitType", "ST")
+
+#2- extract the list of common ASVs (all samples compared)
+f_comASVs_16S = Reduce(intersect, list(f_BL_B, f_CH_B, f_ST_B))
+f_comASVs_ITS = Reduce(intersect, list(f_BL_Y, f_CH_Y, f_ST_Y))
+
+#3- reduc phyloseq object based on the common ASVs list
+ps_rare_16S_FruitsOnly_reduced <- prune_taxa(taxa_names(ps_rare_16S_FruitsOnly) %in% f_comASVs_16S, ps_rare_16S_FruitsOnly)
+
+ps_rare_ITS_FruitsOnly_reduced <- prune_taxa(taxa_names(ps_rare_ITS_FruitsOnly) %in% f_comASVs_ITS,
+  ps_rare_ITS_FruitsOnly)
+
+#4- plot Venn diagram on samples 
+
 ```
 
-### b. Plot
+## 2. Larvae
+## 3. Mothers
 
-```{r}
-B <- Make_prevalence_abundance_plot(B_absolute_prevalence, color_16S)  
-ggsave( file =here::here("plots", "sido", "Community_composition","PrevalenceAbundance_All_16S.pdf"), plot = B, width = 29.7, height = 21, units = "cm")
+<!-- # III. Prevalence -->
 
-dev.off()
-#rise the size of the plot window before plotting otherwise -> error
-Y <- Make_prevalence_abundance_plot(Y_absolute_prevalence, color_ITS)  
-ggsave( file =here::here("plots", "sido", "Community_composition","PrevalenceAbundance_All_ITS.pdf"), plot = Y, width = 29.7, height = 21, units = "cm")
-```
+<!-- ## 1. All samples -->
 
-## 2. Per factor
+<!-- ### a. Calculation -->
 
-### a. Plot - TO FINISH : nb max of families
+<!-- ```{r} -->
+<!-- # function for a phyloseq object -->
+<!-- estimate_prevalence_all <- function(physeq) { -->
+<!--   otu <- otu_table(physeq) -->
+<!--   if (taxa_are_rows(physeq)) { -->
+<!--     otu <- t(otu) -->
+<!--   } -->
 
-```{r}
-#Life Stage
-B_relPrev_Fam <- Make_prevalence_abundance_plot_3(S_ps_rare_16S, "Family", "LifeStage", color_16S) + 
-  theme(legend.position = c(0.64, -0.03),legend.justification = c("left", "bottom"))
+<!--   prev <- colSums(otu > 0) / nrow(otu)  # fraction of samples where each taxon is present (prevalence = % of samples where abundance > 0) -->
+<!--   rel_abund <- colMeans(otu / rowSums(otu))  # mean relative abundance -->
 
-ggsave( file =here::here("plots", "sido", "Community_composition","PrevalenceAbundance_LifeStage_16S.pdf"), plot = B_relPrev_Fam, width = 29.7, height = 21, units = "cm")
+<!--   tax <- as.data.frame(tax_table(physeq)) -->
+<!--   tax$Taxon <- rownames(tax) -->
 
-Y_relPrev_Fam <- Make_prevalence_abundance_plot_3(S_ps_rare_ITS, "Family", "LifeStage", color_ITS) + 
-  theme(legend.position = c(0.64, -0.03),legend.justification = c("left", "bottom"))
+<!--   data.frame( -->
+<!--     Taxon = colnames(otu), -->
+<!--     Prevalence = prev, -->
+<!--     RelativeAbundance = rel_abund -->
+<!--   ) |> -->
+<!--     dplyr::left_join(tax, by = c("Taxon" = "Taxon")) -->
 
-ggsave(file =here::here("plots", "sido", "Community_composition", "PrevalenceAbundance_LifeStage_ITS.pdf"), plot = Y_relPrev_Fam, width = 29.7, height = 21, units = "cm")
+<!-- } -->
 
-#Fruit Type
-B_Prevalence_FruitType <- Make_prevalence_abundance_plot_3(S_ps_rare_16S, "Family", "FruitType", color_16S) 
-ggsave( file =here::here("plots", "sido", "Community_composition","PrevalenceAbundance_FruitType_16S.pdf"), plot = B_Prevalence_FruitType, width = 29.7, height = 21, units = "cm")
+<!-- # Apply function -->
+<!-- B_absolute_prevalence <- estimate_prevalence_all(S_ps_rare_16S) -->
+<!-- Y_absolute_prevalence <- estimate_prevalence_all(S_ps_rare_ITS) -->
+<!-- ``` -->
 
-Y_Prevalence_FruitType <- Make_prevalence_abundance_plot_3(S_ps_rare_ITS, "Family", "FruitType", color_ITS) 
-ggsave( file =here::here("plots", "sido", "Community_composition","PrevalenceAbundance_FruitType_ITS.pdf"), plot = Y_Prevalence_FruitType, width = 29.7, height = 21, units = "cm")
+<!-- ### b. Plot -->
 
-#Pop
-B_Prevalence_Pop <- Make_prevalence_abundance_plot_3(S_ps_rare_16S, "Family", "Pop", color_16S) 
-ggsave( file =here::here("plots", "sido", "Community_composition","PrevalenceAbundance_Pop_16S.pdf"), plot = B_Prevalence_Pop, width = 29.7, height = 21, units = "cm")
+<!-- ```{r} -->
+<!-- B <- Make_prevalence_abundance_plot(B_absolute_prevalence, color_16S)   -->
+<!-- ggsave( file =here::here("plots", "sido", "Community_composition","PrevalenceAbundance_All_16S.pdf"), plot = B, width = 29.7, height = 21, units = "cm") -->
 
-Y_Prevalence_Pop <- Make_prevalence_abundance_plot_3(S_ps_rare_ITS, "Family", 15, "Pop", color_ITS)
+<!-- dev.off() -->
+<!-- #rise the size of the plot window before plotting otherwise -> error -->
+<!-- Y <- Make_prevalence_abundance_plot(Y_absolute_prevalence, color_ITS)   -->
+<!-- ggsave( file =here::here("plots", "sido", "Community_composition","PrevalenceAbundance_All_ITS.pdf"), plot = Y, width = 29.7, height = 21, units = "cm") -->
+<!-- ``` -->
 
-ggsave( file =here::here("plots", "sido", "Community_composition","PrevalenceAbundance_Pop_ITS.pdf"), plot = Y_Prevalence_Pop, width = 29.7, height = 21, units = "cm")
-```
+<!-- ## 2. Per factor -->
+
+<!-- ### a. Plot - TO FINISH : nb max of families -->
+
+<!-- ```{r} -->
+<!-- #Life Stage -->
+<!-- B_relPrev_Fam <- Make_prevalence_abundance_plot_3(S_ps_rare_16S, "Family", "LifeStage", color_16S) +  -->
+<!--   theme(legend.position = c(0.64, -0.03),legend.justification = c("left", "bottom")) -->
+
+<!-- ggsave( file =here::here("plots", "sido", "Community_composition","PrevalenceAbundance_LifeStage_16S.pdf"), plot = B_relPrev_Fam, width = 29.7, height = 21, units = "cm") -->
+
+<!-- Y_relPrev_Fam <- Make_prevalence_abundance_plot_3(S_ps_rare_ITS, "Family", "LifeStage", color_ITS) +  -->
+<!--   theme(legend.position = c(0.64, -0.03),legend.justification = c("left", "bottom")) -->
+
+<!-- ggsave(file =here::here("plots", "sido", "Community_composition", "PrevalenceAbundance_LifeStage_ITS.pdf"), plot = Y_relPrev_Fam, width = 29.7, height = 21, units = "cm") -->
+
+<!-- #Fruit Type -->
+<!-- B_Prevalence_FruitType <- Make_prevalence_abundance_plot_3(S_ps_rare_16S, "Family", "FruitType", color_16S)  -->
+<!-- ggsave( file =here::here("plots", "sido", "Community_composition","PrevalenceAbundance_FruitType_16S.pdf"), plot = B_Prevalence_FruitType, width = 29.7, height = 21, units = "cm") -->
+
+<!-- Y_Prevalence_FruitType <- Make_prevalence_abundance_plot_3(S_ps_rare_ITS, "Family", "FruitType", color_ITS)  -->
+<!-- ggsave( file =here::here("plots", "sido", "Community_composition","PrevalenceAbundance_FruitType_ITS.pdf"), plot = Y_Prevalence_FruitType, width = 29.7, height = 21, units = "cm") -->
+
+<!-- #Pop -->
+<!-- B_Prevalence_Pop <- Make_prevalence_abundance_plot_3(S_ps_rare_16S, "Family", "Pop", color_16S)  -->
+<!-- ggsave( file =here::here("plots", "sido", "Community_composition","PrevalenceAbundance_Pop_16S.pdf"), plot = B_Prevalence_Pop, width = 29.7, height = 21, units = "cm") -->
+
+<!-- Y_Prevalence_Pop <- Make_prevalence_abundance_plot_3(S_ps_rare_ITS, "Family", 15, "Pop", color_ITS) -->
+
+<!-- ggsave( file =here::here("plots", "sido", "Community_composition","PrevalenceAbundance_Pop_ITS.pdf"), plot = Y_Prevalence_Pop, width = 29.7, height = 21, units = "cm") -->
+<!-- ``` -->
