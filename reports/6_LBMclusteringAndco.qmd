@@ -26,6 +26,7 @@ library(ggalluvial)
 library(openxlsx)
 library(vegan)
 library(igraph)
+library(parallel)
 devtools::load_all()
 ```
 
