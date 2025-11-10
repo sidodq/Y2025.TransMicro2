@@ -44,3 +44,44 @@ Simulate_Clustering_SBM <- function(FB, NPERM, name)
 
   return(simulated_clustering)
 }
+
+
+
+
+#' @title Compute simulated matrix with parallel simulations
+#'
+#' @param  NPERM number of permutations performed on the matrix
+#' @param FB matrix with samples in rows and taxa in columns
+#' @param name name of exported file
+#' @description
+#' This function is used to Compute clustering (memberships) on each simulated matrix with SBM algorithm.
+#'
+#' @return
+#' A table with the memberships of each sample (in rows) as a function of each permuted matrix (in columns).
+#' The number of columns corresponds to the number of permutations and the number of rows corresponds to the number of samples.
+#'
+#'
+#' @export
+Simulate_Clustering_SBM <- function(FB, NPERM, name, ncores = detectCores() - 1) {
+  netBin.config <- simulate(nullmodel(as.data.frame(FB), "curveball"), nsim = NPERM)
+  cl <- makeCluster(ncores)
+  clusterEvalQ(cl, library(bipartiteSBM))  # or whatever package defines estimateBipartiteSBM
+  clusterExport(cl, c("netBin.config", "NPERM"))
+
+  results <- parLapply(cl, 1:NPERM, function(x) {
+    simulSBM <- estimateBipartiteSBM(as.matrix(netBin.config[, , x]),
+                                     model = 'bernoulli',
+                                     estimOptions = list(verbosity = 0, plot = FALSE))
+    simulSBM$memberships$row
+  })
+
+  stopCluster(cl)
+
+  simulated_clustering <- do.call(cbind, results) |> as.data.frame()
+
+  write.table(simulated_clustering,
+              file = file.path(here::here(), "data", "derived_data", "5_SBMclustering", name),
+              sep = "\t", row.names = FALSE, col.names = TRUE, quote = FALSE)
+
+  simulated_clustering
+}
