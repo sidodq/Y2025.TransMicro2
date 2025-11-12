@@ -109,6 +109,42 @@ Make_Venn_plot_LifeStage <- function(list_M, list_L, list_P, list_PC, list_D) {
 }
 
 
+
+
+
+#' @title Common ASVs
+#'
+#' @description extract the list of ASVs shared by a % of samples
+#'
+#'
+#' @param physeq phyloseq object
+#' @param thresh percentage of samples
+#'
+#'
+#' @export
+Common_ASVs <- function(physeq, thresh) {
+
+# Extract the abundance matrix
+otu_mat <- as(otu_table(physeq), "matrix")
+
+# If taxa are in rows, nothing to change; if in columns, transpose it
+if (taxa_are_rows(physeq)) {
+  otu_mat <- otu_mat
+} else {
+  otu_mat <- t(otu_mat)}
+
+# Compute presence/absence matrix
+otu_pa <- otu_mat > 0
+
+# Find taxa present in at least 80% of samples
+threshold <- thresh * ncol(otu_pa)
+shared_ASVs <- rownames(otu_pa)[rowSums(otu_pa) >= threshold]
+
+return(shared_ASVs)
+}
+
+
+
 #'
 # Make_Venn_plot_LifeStage <- function(list_M, list_L, list_P, list_PC, list_D) {
 #
