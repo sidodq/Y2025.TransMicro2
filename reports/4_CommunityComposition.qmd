@@ -709,7 +709,6 @@ title_plot <- "Venn_ITS_Indiv_byLifeStage.png"
 ## 3. Pop
 
 
-
 # III. Shared Core
 ## 1. Fruits only
 ```{r}
@@ -718,31 +717,131 @@ title_plot <- "Venn_ITS_Indiv_byLifeStage.png"
 ps_rare_16S_FruitsOnly 
 ps_rare_ITS_FruitsOnly
 
-## Get ASVs lists for each FruitType
-f_BL_B <- get_otus_for_type(ps_rare_16S_FruitsOnly, "FruitType", "BL")
-f_CH_B <- get_otus_for_type(ps_rare_16S_FruitsOnly, "FruitType", "CH")
-f_ST_B <- get_otus_for_type(ps_rare_16S_FruitsOnly, "FruitType", "ST")
-
-f_BL_Y <- get_otus_for_type(ps_rare_ITS_FruitsOnly, "FruitType", "BL")
-f_CH_Y <- get_otus_for_type(ps_rare_ITS_FruitsOnly, "FruitType", "CH")
-f_ST_Y <- get_otus_for_type(ps_rare_ITS_FruitsOnly, "FruitType", "ST")
-
-#2- extract the list of common ASVs (all samples compared)
-f_comASVs_16S = Reduce(intersect, list(f_BL_B, f_CH_B, f_ST_B))
-f_comASVs_ITS = Reduce(intersect, list(f_BL_Y, f_CH_Y, f_ST_Y))
+#2- extract the list of ASVs shared by all or a % of samples
+f_sharedASVs_B <- Common_ASVs(ps_rare_16S_FruitsOnly, 0.75)
+f_sharedASVs_Y <- Common_ASVs(ps_rare_ITS_FruitsOnly, 0.8)
 
 #3- reduc phyloseq object based on the common ASVs list
-ps_rare_16S_FruitsOnly_reduced <- prune_taxa(taxa_names(ps_rare_16S_FruitsOnly) %in% f_comASVs_16S, ps_rare_16S_FruitsOnly)
+ps_rare_16S_FruitsOnly_reduced <- prune_taxa(taxa_names(ps_rare_16S_FruitsOnly) %in% f_sharedASVs_B, ps_rare_16S_FruitsOnly)
 
-ps_rare_ITS_FruitsOnly_reduced <- prune_taxa(taxa_names(ps_rare_ITS_FruitsOnly) %in% f_comASVs_ITS,
-  ps_rare_ITS_FruitsOnly)
+# ps_rare_ITS_FruitsOnly_reduced <- prune_taxa(taxa_names(ps_rare_ITS_FruitsOnly) %in% f_sharedASVs_Y,
+#   ps_rare_ITS_FruitsOnly)
+
+ps_rare_ITS_FruitsOnly_reduced <- prune_samples(
+  sample_names(ps_rare_ITS_FruitsOnly)[
+    rowSums(otu_table(prune_taxa(taxa_names(ps_rare_ITS_FruitsOnly) %in% f_sharedASVs_Y,
+                                  ps_rare_ITS_FruitsOnly)) > 0) == length(f_sharedASVs_Y)],
+  prune_taxa(taxa_names(ps_rare_ITS_FruitsOnly) %in% f_sharedASVs_Y, ps_rare_ITS_FruitsOnly))
+
+
+
 
 #4- plot Venn diagram on samples 
+
+# Convert OTU table to a data frame
+otu_df <- as.data.frame(otu_table(ps_rare_ITS_FruitsOnly_reduced))
+if (taxa_are_rows(ps_rare_ITS_FruitsOnly_reduced)) {
+  otu_df <- t(otu_df)  # Samples in rows
+}
+
+otu_df <- as.data.frame(otu_df)
+otu_df$SampleID <- rownames(otu_df)
+
+# Add metadata
+meta_df <- as.data.frame(sample_data(ps_rare_ITS_FruitsOnly_reduced))
+meta_df$SampleID <- rownames(meta_df)
+
+otu_meta <- otu_df %>%
+  left_join(meta_df, by = "SampleID")
+
+# Filter only samples where Cluster_5 > 0
+otu_meta_filtered <- otu_meta %>% filter("Cluster_5" > 0)
+
+# Split by FruitType
+samples_BL <- otu_meta_filtered %>% filter(FruitType == "BL") %>% pull(SampleID)
+samples_CH <- otu_meta_filtered %>% filter(FruitType == "CH") %>% pull(SampleID)
+samples_ST <- otu_meta_filtered %>% filter(FruitType == "ST") %>% pull(SampleID)
+
+
+
+# Convert OTU table to a data frame
+otu_df <- as.data.frame(otu_table(ps_rare_ITS_FruitsOnly))
+if (taxa_are_rows(ps_rare_ITS_FruitsOnly)) {
+  otu_df <- t(otu_df)  # Samples in rows
+}
+
+otu_df <- as.data.frame(otu_df)
+otu_df$SampleID <- rownames(otu_df)
+
+# Add metadat
+meta_df <- as.data.frame(sample_data(ps_rare_ITS_FruitsOnly))
+meta_df$SampleID <- rownames(meta_df)
+
+otu_meta <- otu_df %>%
+  left_join(meta_df, by = "SampleID")
+
+# Add a presence/absence column for Cluster_5
+otu_meta <- otu_meta %>%
+  mutate(Cluster_5_present = ifelse("Cluster_5" > 0, 1, 0))
+
+# Summarize per FruitType
+summary_df <- otu_meta %>%
+  group_by(FruitType) %>%
+  summarise(
+    n_samples = n(),
+    n_present = sum(Cluster_5_present),
+    prop_present = n_present / n_samples)
+
+summary_df
+
+
+sum(sample_data(ps_rare_ITS_FruitsOnly)$FruitType == "BL")
+sum(sample_data(ps_rare_ITS_FruitsOnly_reduced)$FruitType == "BL")
+
+sum(sample_data(ps_rare_ITS_FruitsOnly)$FruitType == "ST")
+sum(sample_data(ps_rare_ITS_FruitsOnly_reduced)$FruitType == "ST")
+
+sum(sample_data(ps_rare_ITS_FruitsOnly)$FruitType == "CH")
+sum(sample_data(ps_rare_ITS_FruitsOnly_reduced)$FruitType == "CH")
+
+
+
+samples_FIN <- otu_meta_filtered %>% filter(FruitSite == "FIN") %>% pull(SampleID)
+samples_LOM <- otu_meta_filtered %>% filter(FruitSite == "LOM") %>% pull(SampleID)
+samples_IST <- otu_meta_filtered %>% filter(FruitSite == "IST") %>% pull(SampleID)
+samples_MIL <- otu_meta_filtered %>% filter(FruitSite == "MIL") %>% pull(SampleID)
+samples_VAR <- otu_meta_filtered %>% filter(FruitSite == "VAR") %>% pull(SampleID)
+
 
 ```
 
 ## 2. Larvae
+```{r}
+#1- data
+## phyloseq objects
+ps_16S_rare_larvae <- Subset_physeq(ps_16S_rare_expe, SampleType == "Larvae")
+ps_ITS_rare_larvae <- Subset_physeq(ps_ITS_rare_expe, SampleType == "Larvae")
+
+#2- extract the list of ASVs shared by all or a % of samples
+L_sharedASVs_B <- Common_ASVs(ps_16S_rare_larvae, 0.7)
+L_sharedASVs_Y <- Common_ASVs(ps_ITS_rare_larvae, 0.7)
+
+#3- reduc phyloseq object based on the common ASVs list
+```
+
 ## 3. Mothers
+```{r}
+#1- data
+## phyloseq objects
+ps_16S_rare_mothers <- Subset_physeq(ps_16S_rare_expe, SampleType == "Mothers")
+ps_ITS_rare_mothers <- Subset_physeq(ps_ITS_rare_expe, SampleType == "Mothers")
+
+#2- extract the list of ASVs shared by all or a % of samples
+M_sharedASVs_B <- Common_ASVs(ps_16S_rare_mothers, 0.75)
+M_sharedASVs_Y <- Common_ASVs(ps_ITS_rare_mothers, 0.9)
+
+#3- reduc phyloseq object based on the common ASVs list
+```
 
 <!-- # III. Prevalence -->
 
