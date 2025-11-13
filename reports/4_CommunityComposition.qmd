@@ -712,6 +712,7 @@ title_plot <- "Venn_ITS_Indiv_byLifeStage.png"
 # III. Shared Core
 
 ## 1. Extract shared ASVs
+### All fruits
 ```{r}
 ### AUNTS ###
 ps_16S_rare_aunts <- Subset_physeq(ps_16S_rare_expe, SampleType == "Aunts")
@@ -725,7 +726,6 @@ A_sharedASVs_Y <- Common_ASVs(ps_ITS_rare_aunts, 1)
 ps_rare_16S_Fruits0days <- Subset_physeq(ps_rare_16S_FruitsOnly, SampleType == "Fruits_0days")
 ps_rare_ITS_Fruits0days <- Subset_physeq(ps_rare_ITS_FruitsOnly, SampleType == "Fruits_0days")
 
-# extract the list of ASVs shared by all or a % of samples
 f_sharedASVs_B <- Common_ASVs(ps_rare_16S_Fruits0days, 1)
 f_sharedASVs_Y <- Common_ASVs(ps_rare_ITS_Fruits0days, 0.8)
 
@@ -745,6 +745,75 @@ ps_ITS_rare_larvae <- Subset_physeq(ps_ITS_rare_expe, SampleType == "Larvae")
 L_sharedASVs_B <- Common_ASVs(ps_16S_rare_larvae, 0.7)
 L_sharedASVs_Y <- Common_ASVs(ps_ITS_rare_larvae, 0.7)
 ```
+
+### BL
+```{r}
+### AUNTS ###
+ps_16S_rare_aunts_BL <- Subset_physeq(ps_16S_rare_expe, FruitType == "BL")
+ps_ITS_rare_aunts_BL <- Subset_physeq(ps_ITS_rare_expe, FruitType == "BL")
+
+A_sharedASVs_B_BL <- Common_ASVs(ps_16S_rare_aunts_BL, 0.5)
+A_sharedASVs_Y_BL <- Common_ASVs(ps_ITS_rare_aunts_BL, 0.95)
+
+
+### FRUITS 0 DAYS ###
+ps_rare_16S_Fruits0days_BL <- Subset_physeq(ps_rare_16S_Fruits0days, FruitType == "BL") # NO DATA
+ps_rare_ITS_Fruits0days_BL <- Subset_physeq(ps_rare_ITS_Fruits0days, FruitType == "BL")
+
+# f_sharedASVs_B_BL <- Common_ASVs(ps_rare_16S_Fruits0days, 1)
+f_sharedASVs_Y_BL <- Common_ASVs(ps_rare_ITS_Fruits0days_BL, 1) # 1 SAMPLE ONLY
+
+
+### MOTHERS ###
+ps_16S_rare_mothers_BL <- Subset_physeq(ps_16S_rare_mothers, FruitType == "BL")
+ps_ITS_rare_mothers_BL <- Subset_physeq(ps_ITS_rare_mothers, FruitType == "BL")
+
+M_sharedASVs_B_BL <- Common_ASVs(ps_16S_rare_mothers_BL, 1)
+M_sharedASVs_Y_BL <- Common_ASVs(ps_ITS_rare_mothers_BL, 1)
+
+
+### LARVAE ###
+ps_16S_rare_larvae_BL <- Subset_physeq(ps_16S_rare_larvae, FruitType == "BL")
+ps_ITS_rare_larvae_BL <- Subset_physeq(ps_ITS_rare_larvae, FruitType == "BL")
+
+L_sharedASVs_B_BL <- Common_ASVs(ps_16S_rare_larvae_BL, 0.5)
+L_sharedASVs_Y_BL <- Common_ASVs(ps_ITS_rare_larvae_BL, 1)
+```
+
+### CH
+```{r}
+### AUNTS ###
+ps_16S_rare_aunts_CH <- Subset_physeq(ps_16S_rare_expe, FruitType == "CH")
+ps_ITS_rare_aunts_CH <- Subset_physeq(ps_ITS_rare_expe, FruitType == "CH")
+
+A_sharedASVs_B_CH <- Common_ASVs(ps_16S_rare_aunts_CH, 0.6)
+A_sharedASVs_Y_CH <- Common_ASVs(ps_ITS_rare_aunts_CH, 0.9)
+
+
+### FRUITS 0 DAYS ###
+ps_rare_16S_Fruits0days_CH <- Subset_physeq(ps_rare_16S_Fruits0days, FruitType == "CH") # NO DATA
+ps_rare_ITS_Fruits0days_CH <- Subset_physeq(ps_rare_ITS_Fruits0days, FruitType == "CH")
+
+f_sharedASVs_B_CH <- Common_ASVs(ps_rare_16S_Fruits0days, 1)
+f_sharedASVs_Y_CH <- Common_ASVs(ps_rare_ITS_Fruits0days_CH, 1) # 1 SAMPLE ONLY
+
+
+### MOTHERS ###
+ps_16S_rare_mothers_CH <- Subset_physeq(ps_16S_rare_mothers, FruitType == "CH")
+ps_ITS_rare_mothers_CH <- Subset_physeq(ps_ITS_rare_mothers, FruitType == "CH")
+
+M_sharedASVs_B_CH <- Common_ASVs(ps_16S_rare_mothers_CH, 0.7)
+M_sharedASVs_Y_CH <- Common_ASVs(ps_ITS_rare_mothers_CH, 1)
+
+
+### LARVAE ###
+ps_16S_rare_larvae_CH <- Subset_physeq(ps_16S_rare_larvae, FruitType == "CH")
+ps_ITS_rare_larvae_CH <- Subset_physeq(ps_ITS_rare_larvae, FruitType == "CH")
+
+L_sharedASVs_B_CH <- Common_ASVs(ps_16S_rare_larvae_CH, 0.8)
+L_sharedASVs_Y_CH <- Common_ASVs(ps_ITS_rare_larvae_CH, 1)
+```
+
 
 ## 2. Reduced physeq object based on shared ASVs
 ```{r}
@@ -797,6 +866,7 @@ SC_ITS_SampleType <- ggVennDiagram(taxa_by_type_Y, label = "count",label_alpha =
 ggsave(here::here("plots", "3_CommunityComposition", "SharedCore_ITS_SampleType.png"),
   SC_ITS_SampleType,  width = 16, height = 12, units = "cm", dpi = 1200)
 ```
+
 
 
 
