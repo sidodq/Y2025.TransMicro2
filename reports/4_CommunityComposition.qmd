@@ -748,14 +748,6 @@ L_sharedASVs_Y <- Common_ASVs(ps_ITS_rare_larvae, 0.7)
 
 ### BL
 ```{r}
-### AUNTS ###
-ps_16S_rare_aunts_BL <- Subset_physeq(ps_16S_rare_expe, FruitType == "BL")
-ps_ITS_rare_aunts_BL <- Subset_physeq(ps_ITS_rare_expe, FruitType == "BL")
-
-A_sharedASVs_B_BL <- Common_ASVs(ps_16S_rare_aunts_BL, 0.5)
-A_sharedASVs_Y_BL <- Common_ASVs(ps_ITS_rare_aunts_BL, 0.95)
-
-
 ### FRUITS 0 DAYS ###
 ps_rare_16S_Fruits0days_BL <- Subset_physeq(ps_rare_16S_Fruits0days, FruitType == "BL") # NO DATA
 ps_rare_ITS_Fruits0days_BL <- Subset_physeq(ps_rare_ITS_Fruits0days, FruitType == "BL")
@@ -782,14 +774,6 @@ L_sharedASVs_Y_BL <- Common_ASVs(ps_ITS_rare_larvae_BL, 1)
 
 ### CH
 ```{r}
-### AUNTS ###
-ps_16S_rare_aunts_CH <- Subset_physeq(ps_16S_rare_expe, FruitType == "CH")
-ps_ITS_rare_aunts_CH <- Subset_physeq(ps_ITS_rare_expe, FruitType == "CH")
-
-A_sharedASVs_B_CH <- Common_ASVs(ps_16S_rare_aunts_CH, 0.6)
-A_sharedASVs_Y_CH <- Common_ASVs(ps_ITS_rare_aunts_CH, 0.9)
-
-
 ### FRUITS 0 DAYS ###
 ps_rare_16S_Fruits0days_CH <- Subset_physeq(ps_rare_16S_Fruits0days, FruitType == "CH") # NO DATA
 ps_rare_ITS_Fruits0days_CH <- Subset_physeq(ps_rare_ITS_Fruits0days, FruitType == "CH")
@@ -814,8 +798,35 @@ L_sharedASVs_B_CH <- Common_ASVs(ps_16S_rare_larvae_CH, 0.8)
 L_sharedASVs_Y_CH <- Common_ASVs(ps_ITS_rare_larvae_CH, 1)
 ```
 
+### ST
+```{r}
+### FRUITS 0 DAYS ###
+ps_rare_16S_Fruits0days_ST <- Subset_physeq(ps_rare_16S_Fruits0days, FruitType == "ST") 
+ps_rare_ITS_Fruits0days_ST <- Subset_physeq(ps_rare_ITS_Fruits0days, FruitType == "ST")
+
+f_sharedASVs_B_ST <- Common_ASVs(ps_rare_16S_Fruits0days_ST, 1)
+f_sharedASVs_Y_ST <- Common_ASVs(ps_rare_ITS_Fruits0days_ST, 1) # 1 SAMPLE ONLY
+
+
+### MOTHERS ###
+ps_16S_rare_mothers_ST <- Subset_physeq(ps_16S_rare_mothers, FruitType == "ST")
+ps_ITS_rare_mothers_ST <- Subset_physeq(ps_ITS_rare_mothers, FruitType == "ST")
+
+M_sharedASVs_B_ST <- Common_ASVs(ps_16S_rare_mothers_ST, 0.8)
+M_sharedASVs_Y_ST <- Common_ASVs(ps_ITS_rare_mothers_ST, 0.85)
+
+
+### LARVAE ###
+ps_16S_rare_larvae_ST <- Subset_physeq(ps_16S_rare_larvae, FruitType == "ST")
+ps_ITS_rare_larvae_ST <- Subset_physeq(ps_ITS_rare_larvae, FruitType == "ST")
+
+L_sharedASVs_B_ST <- Common_ASVs(ps_16S_rare_larvae_ST, 1)
+L_sharedASVs_Y_ST <- Common_ASVs(ps_ITS_rare_larvae_ST, 1)
+```
+
 
 ## 2. Reduced physeq object based on shared ASVs
+### All fruits
 ```{r}
 # Combine ASVs lists
 sharedASVs_B <- unique(c(L_sharedASVs_B, M_sharedASVs_B, f_sharedASVs_B, A_sharedASVs_B))
@@ -837,7 +848,63 @@ ps_rare_ITS_expe_reduced <- prune_samples(
   prune_taxa(taxa_names(ps_ITS_rare_expe_red) %in% sharedASVs_Y, ps_ITS_rare_expe_red))
 ```
 
+### BL
+```{r}
+# Combine ASVs lists
+sharedASVs_B_BL <- unique(c(L_sharedASVs_B_BL, M_sharedASVs_B_BL,  A_sharedASVs_B)) #f_sharedASVs_B_BL = empty
+sharedASVs_Y_BL <- unique(c(L_sharedASVs_Y_BL, M_sharedASVs_Y_BL, f_sharedASVs_Y_BL, A_sharedASVs_Y))
+
+# Reduced taxa and samples of physeq object
+ps_rare_16S_expe_reduced_BL <- prune_samples(
+  sample_names(ps_16S_rare_expe_red)[
+    rowSums(otu_table(prune_taxa(taxa_names(ps_16S_rare_expe_red) %in% sharedASVs_B_BL, ps_16S_rare_expe_red)) > 0) > 0],
+  prune_taxa(taxa_names(ps_16S_rare_expe_red) %in% sharedASVs_B_BL, ps_16S_rare_expe_red))
+
+ps_rare_ITS_expe_reduced_BL <- prune_samples(
+  sample_names(ps_ITS_rare_expe_red)[
+    rowSums(otu_table(prune_taxa(taxa_names(ps_ITS_rare_expe_red) %in% sharedASVs_Y_BL, ps_ITS_rare_expe_red)) > 0) > 0],
+  prune_taxa(taxa_names(ps_ITS_rare_expe_red) %in% sharedASVs_Y_BL, ps_ITS_rare_expe_red))
+```
+
+### CH
+```{r}
+# Combine ASVs lists
+sharedASVs_B_CH <- unique(c(L_sharedASVs_B_CH, M_sharedASVs_B_CH,  f_sharedASVs_B_CH, A_sharedASVs_B)) 
+sharedASVs_Y_CH <- unique(c(L_sharedASVs_Y_CH, M_sharedASVs_Y_CH, f_sharedASVs_Y_CH, A_sharedASVs_Y))
+
+# Reduced taxa and samples of physeq object
+ps_rare_16S_expe_reduced_CH <- prune_samples(
+  sample_names(ps_16S_rare_expe_red)[
+    rowSums(otu_table(prune_taxa(taxa_names(ps_16S_rare_expe_red) %in% sharedASVs_B_CH, ps_16S_rare_expe_red)) > 0) > 0],
+  prune_taxa(taxa_names(ps_16S_rare_expe_red) %in% sharedASVs_B_CH, ps_16S_rare_expe_red))
+
+ps_rare_ITS_expe_reduced_CH <- prune_samples(
+  sample_names(ps_ITS_rare_expe_red)[
+    rowSums(otu_table(prune_taxa(taxa_names(ps_ITS_rare_expe_red) %in% sharedASVs_Y_CH, ps_ITS_rare_expe_red)) > 0) > 0],
+  prune_taxa(taxa_names(ps_ITS_rare_expe_red) %in% sharedASVs_Y_CH, ps_ITS_rare_expe_red))
+```
+
+### ST
+```{r}
+# Combine ASVs lists
+sharedASVs_B_ST <- unique(c(L_sharedASVs_B_ST, M_sharedASVs_B_ST,  f_sharedASVs_B_ST, A_sharedASVs_B))
+sharedASVs_Y_ST <- unique(c(L_sharedASVs_Y_ST, M_sharedASVs_Y_ST, f_sharedASVs_Y_ST, A_sharedASVs_Y))
+
+# Reduced taxa and samples of physeq object
+ps_rare_16S_expe_reduced_ST <- prune_samples(
+  sample_names(ps_16S_rare_expe_red)[
+    rowSums(otu_table(prune_taxa(taxa_names(ps_16S_rare_expe_red) %in% sharedASVs_B_ST, ps_16S_rare_expe_red)) > 0) > 0],
+  prune_taxa(taxa_names(ps_16S_rare_expe_red) %in% sharedASVs_B_ST, ps_16S_rare_expe_red))
+
+ps_rare_ITS_expe_reduced_ST <- prune_samples(
+  sample_names(ps_ITS_rare_expe_red)[
+    rowSums(otu_table(prune_taxa(taxa_names(ps_ITS_rare_expe_red) %in% sharedASVs_Y_ST, ps_ITS_rare_expe_red)) > 0) > 0],
+  prune_taxa(taxa_names(ps_ITS_rare_expe_red) %in% sharedASVs_Y_ST, ps_ITS_rare_expe_red))
+```
+
+
 ## 3. Plot Venn diagram on samples 
+### All fruits
 ```{r}
 ### 16S ###
 taxa_by_type <- list(Aunts = A_sharedASVs_B, Fruits_0days= f_sharedASVs_B,  Mothers = M_sharedASVs_B, Larvae  = L_sharedASVs_B)
@@ -848,7 +915,7 @@ color_LifeStage <- c("Aunts"  = "goldenrod2", "Fruits_0days"  = "darkolivegreen4
 
 SC_16S_SampleType <- ggVennDiagram(taxa_by_type, label = "count",label_alpha = 0,edge_size = 1,set_color = color_LifeStage) +
   scale_fill_gradient(low = "white", high = "grey") +
-  labs(title = "", fill = "Taxa number") +
+  labs(title = "16S", fill = "Taxa number") +
   theme_void()
 
 ggsave(here::here("plots", "3_CommunityComposition", "SharedCore_16S_SampleType.png"),
@@ -860,15 +927,116 @@ taxa_by_type_Y <- list(Aunts = A_sharedASVs_Y, Fruits_0days= f_sharedASVs_Y,  Mo
 
 SC_ITS_SampleType <- ggVennDiagram(taxa_by_type_Y, label = "count",label_alpha = 0,edge_size = 1,set_color = color_LifeStage) +
   scale_fill_gradient(low = "white", high = "grey") +
-  labs(title = "", fill = "Taxa number") +
+  labs(title = "ITS", fill = "Taxa number") +
   theme_void()
 
 ggsave(here::here("plots", "3_CommunityComposition", "SharedCore_ITS_SampleType.png"),
   SC_ITS_SampleType,  width = 16, height = 12, units = "cm", dpi = 1200)
+
+### COMBINED ###
+SC_combined <- (SC_16S_SampleType / SC_ITS_SampleType) + plot_layout(ncol = 1) & theme(legend.position = "right")
+
+ggsave(here::here("plots", "3_CommunityComposition", "SharedCore_16S&ITS_SampleType.png"),
+  SC_combined,  width = 20, height = 30, units = "cm", dpi = 1200)
 ```
 
+### BL
+```{r}
+### 16S ###
+taxa_by_type_B_BL <- list(Aunts = A_sharedASVs_B,  Mothers = M_sharedASVs_B_BL, Larvae  = L_sharedASVs_B_BL) # NO Fruits_0days
+
+color_LifeStage <- c("Aunts"  = "goldenrod2", "Mothers" = "darkorange2","Larvae"  = "darkolivegreen2")
+
+SC_16S_SampleType_BL <- ggVennDiagram(taxa_by_type_B_BL, label = "count",label_alpha = 0,edge_size = 1,set_color = color_LifeStage) +
+  scale_fill_gradient(low = "white", high = "grey") +
+  labs(title = "16S", fill = "Taxa number") +
+  theme_void()
+
+# ggsave(here::here("plots", "3_CommunityComposition", "SharedCore_16S_SampleType_BL.png"),
+#   SC_16S_SampleType_BL,  width = 16, height = 12, units = "cm", dpi = 1200)
 
 
+### ITS ###
+taxa_by_type_Y_BL <- list(Aunts = A_sharedASVs_Y, Fruits_0days= f_sharedASVs_Y_BL,  Mothers = M_sharedASVs_Y_BL, Larvae  = L_sharedASVs_Y_BL)
+
+color_LifeStage <- c("Aunts"  = "goldenrod2", "Fruits_0days"  = "darkolivegreen4","Mothers" = "darkorange2","Larvae"  = "darkolivegreen2")
+
+SC_ITS_SampleType_BL <- ggVennDiagram(taxa_by_type_Y_BL, label = "count",label_alpha = 0,edge_size = 1,set_color = color_LifeStage) +
+  scale_fill_gradient(low = "white", high = "grey") +
+  labs(title = "ITS", fill = "Taxa number") +
+  theme_void()
+
+# ggsave(here::here("plots", "3_CommunityComposition", "SharedCore_ITS_SampleType_BL.png"),
+#   SC_ITS_SampleType_BL,  width = 16, height = 12, units = "cm", dpi = 1200)
+
+### COMBINED ###
+SC_combined_BL <- (SC_16S_SampleType_BL / SC_ITS_SampleType_BL) + plot_layout(ncol = 1) & theme(legend.position = "right")
+
+ggsave(here::here("plots", "3_CommunityComposition", "SharedCore_16S&ITS_SampleType_BL.png"),
+  SC_combined_BL,  width = 20, height = 30, units = "cm", dpi = 1200)
+```
+
+### CH
+```{r}
+### 16S ###
+taxa_by_type_B_CH <- list(Aunts = A_sharedASVs_B,  Fruits_0days= f_sharedASVs_B_CH, Mothers = M_sharedASVs_B_CH, Larvae  = L_sharedASVs_B_CH) 
+
+SC_16S_SampleType_CH <- ggVennDiagram(taxa_by_type_B_CH, label = "count",label_alpha = 0,edge_size = 1,set_color = color_LifeStage) +
+  scale_fill_gradient(low = "white", high = "grey") +
+  labs(title = "16S", fill = "Taxa number") +
+  theme_void()
+
+# ggsave(here::here("plots", "3_CommunityComposition", "SharedCore_16S_SampleType_CH.png"),
+#   SC_16S_SampleType_CH,  width = 16, height = 12, units = "cm", dpi = 1200)
+
+### ITS ###
+taxa_by_type_Y_CH <- list(Aunts = A_sharedASVs_Y, Fruits_0days= f_sharedASVs_Y_CH,  Mothers = M_sharedASVs_Y_CH, Larvae  = L_sharedASVs_Y_CH)
+
+SC_ITS_SampleType_CH <- ggVennDiagram(taxa_by_type_Y_CH, label = "count",label_alpha = 0,edge_size = 1,set_color = color_LifeStage) +
+  scale_fill_gradient(low = "white", high = "grey") +
+  labs(title = "ITS", fill = "Taxa number") +
+  theme_void()
+
+# ggsave(here::here("plots", "3_CommunityComposition", "SharedCore_ITS_SampleType_CH.png"),
+#   SC_ITS_SampleType_CH,  width = 16, height = 12, units = "cm", dpi = 1200)
+
+### COMBINED ###
+SC_combined_CH <- (SC_16S_SampleType_CH / SC_ITS_SampleType_CH) + plot_layout(ncol = 1) & theme(legend.position = "right")
+
+ggsave(here::here("plots", "3_CommunityComposition", "SharedCore_16S&ITS_SampleType_CH.png"),
+  SC_combined_CH,  width = 20, height = 30, units = "cm", dpi = 1200)
+```
+
+### ST
+```{r}
+### 16S ###
+taxa_by_type_B_ST <- list(Aunts = A_sharedASVs_B,  Fruits_0days= f_sharedASVs_B_ST, Mothers = M_sharedASVs_B_ST, Larvae  = L_sharedASVs_B_ST) 
+
+SC_16S_SampleType_ST <- ggVennDiagram(taxa_by_type_B_ST, label = "count",label_alpha = 0,edge_size = 1,set_color = color_LifeStage) +
+  scale_fill_gradient(low = "white", high = "grey") +
+  labs(title = "16S", fill = "Taxa number") +
+  theme_void()
+
+# ggsave(here::here("plots", "3_CommunityComposition", "SharedCore_16S_SampleType_ST.png"),
+#   SC_16S_SampleType_ST,  width = 16, height = 12, units = "cm", dpi = 1200)
+
+### ITS ###
+taxa_by_type_Y_ST <- list(Aunts = A_sharedASVs_Y, Fruits_0days= f_sharedASVs_Y_ST,  Mothers = M_sharedASVs_Y_ST, Larvae  = L_sharedASVs_Y_ST)
+
+SC_ITS_SampleType_ST <- ggVennDiagram(taxa_by_type_Y_ST, label = "count",label_alpha = 0,edge_size = 1,set_color = color_LifeStage) +
+  scale_fill_gradient(low = "white", high = "grey") +
+  labs(title = "ITS", fill = "Taxa number") +
+  theme_void()
+
+# ggsave(here::here("plots", "3_CommunityComposition", "SharedCore_ITS_SampleType_ST.png"),
+#   SC_ITS_SampleType_ST,  width = 16, height = 12, units = "cm", dpi = 1200)
+
+### COMBINED ###
+SC_combined_ST <- (SC_16S_SampleType_ST / SC_ITS_SampleType_ST) + plot_layout(ncol = 1) & theme(legend.position = "right")
+
+ggsave(here::here("plots", "3_CommunityComposition", "SharedCore_16S&ITS_SampleType_ST.png"),
+  SC_combined_ST,  width = 20, height = 30, units = "cm", dpi = 1200)
+```
 
 <!-- # III. Prevalence -->
 
