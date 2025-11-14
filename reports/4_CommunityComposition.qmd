@@ -749,7 +749,7 @@ L_sharedASVs_Y <- Common_ASVs(ps_ITS_rare_larvae, 0.7)
 ### BL
 ```{r}
 ### FRUITS 0 DAYS ###
-ps_rare_16S_Fruits0days_BL <- Subset_physeq(ps_rare_16S_Fruits0days, FruitType == "BL") # NO DATA
+#ps_rare_16S_Fruits0days_BL <- Subset_physeq(ps_rare_16S_Fruits0days, FruitType == "BL") # NO DATA
 ps_rare_ITS_Fruits0days_BL <- Subset_physeq(ps_rare_ITS_Fruits0days, FruitType == "BL")
 
 # f_sharedASVs_B_BL <- Common_ASVs(ps_rare_16S_Fruits0days, 1)
