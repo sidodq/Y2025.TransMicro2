@@ -165,6 +165,12 @@ ps_16S <- prune_taxa(!(taxa_names(ps_16S) %in% wolbachia_rows), ps_16S)
 
 # Remove Lentihominibacter hominis cluster
 ps_16S <- prune_taxa(taxa_names(ps_16S) != "Cluster_12", ps_16S)
+ps_16S <- prune_taxa(taxa_names(ps_16S) != "Cluster_139", ps_16S) #unknown Genus + Species but same Family (Anaerovoracaceae)
+
+# Remove Malassezia clusters
+malas_taxa <- taxa_names(ps_ITS)[tax_table(ps_ITS)[, "Family"] == "Malasseziaceae"]
+length(malas_taxa) # 38 clusters
+ps_ITS <- prune_taxa(!(taxa_names(ps_ITS) %in% malas_taxa), ps_ITS)
 
 
 # Distribution of the number of reads across samples
