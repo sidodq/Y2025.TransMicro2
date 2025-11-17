@@ -66,7 +66,8 @@ prevalence_data <- freq_data |>
   dplyr::mutate(SampleType_Sample_size=paste0(SampleType, " (n=", Sample_size, ")")) |>
   dplyr::select(Marker, OTUname, OTU, SampleType, SampleType_Sample_size, Frequency)
 
-prevalence_data_wide <- prevalence_data  |>
+prevalence_data_wide <- prevalence_data |>
+  dplyr::select(-SampleType_Sample_size) |>
   tidyr::pivot_wider(names_from = SampleType, values_from = Frequency)
 
 write.table(x=prevalence_data_wide, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "prevalence_data.csv"), sep=";", row.names=FALSE)
@@ -129,9 +130,13 @@ prevalence_data_fruit <- freq_data_fruit |>
   dplyr::select(Marker, OTUname, OTU, SampleType, SampleType_Fruit, Fruit_SampleType, SampleType_Fruit_Sample_size, FruitType, Fruit_SampleType_Sample_size, Frequency)
 
 prevalence_data_fruit_wide <- prevalence_data_fruit  |>
+  dplyr::select(-SampleType) |>
+  dplyr::select(-Fruit_SampleType) |>
+    dplyr::select(-SampleType_Fruit_Sample_size) |>
+  dplyr::select(-Fruit_SampleType_Sample_size) |>
   tidyr::pivot_wider(names_from = SampleType_Fruit, values_from = Frequency)
 
-write.table(x=prevalence_data_wide, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "prevalence_data_fruit.csv"), sep=";", row.names=FALSE)
+write.table(x=prevalence_data_fruit_wide, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "prevalence_data_fruit.csv"), sep=";", row.names=FALSE)
 ```
 
 ## Make plot SampleType_Fruit

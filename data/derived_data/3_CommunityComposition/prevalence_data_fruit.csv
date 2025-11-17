@@ -1,737 +1,565 @@
-"Marker";"OTUname";"OTU";"SampleType_Sample_size";"Artific_Inf_Fruits_5_6days";"Fruits_0days";"G0_Adults_0days";"G0_Adults_Fruits_2days";"G0_Adults_Medium_2days";"G1_Adults_Fruits";"G1_Adults_Nat_Inf_Fruit_5_6days";"G1_Larvae_Fruits";"G1_Larvae_Medium_5_6days";"G1_Larvae_Nat_Inf_Fruits_5_6days";"G1_Pupae_Fruits";"G1_Pupae_Nat_Inf_Fruit_5_6days";"G1_PupalCase_Fruits";"Medium_5_6days";"Nat_Inf_Fruits_5_6days";"Nat_Uninf_Fruits_5_6days"
-"16S";"Gluconobacter_Cluster_10";"Cluster_10";"Artific_Inf_Fruits_5_6days (n=16)";0.375;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Fructilactobacillus_Cluster_13";"Cluster_13";"Artific_Inf_Fruits_5_6days (n=16)";0.0625;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Levilactobacillus_Cluster_14";"Cluster_14";"Artific_Inf_Fruits_5_6days (n=16)";0.125;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_15";"Cluster_15";"Artific_Inf_Fruits_5_6days (n=16)";0.1875;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_17";"Cluster_17";"Artific_Inf_Fruits_5_6days (n=16)";0.1875;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_19";"Cluster_19";"Artific_Inf_Fruits_5_6days (n=16)";0.6875;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_20";"Cluster_20";"Artific_Inf_Fruits_5_6days (n=16)";0.0625;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_21";"Cluster_21";"Artific_Inf_Fruits_5_6days (n=16)";0.125;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Lysinibacillus_Cluster_23";"Cluster_23";"Artific_Inf_Fruits_5_6days (n=16)";0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Pseudomonas_Cluster_35";"Cluster_35";"Artific_Inf_Fruits_5_6days (n=16)";0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_38";"Cluster_38";"Artific_Inf_Fruits_5_6days (n=16)";0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_4";"Cluster_4";"Artific_Inf_Fruits_5_6days (n=16)";0.8125;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Flavobacterium_Cluster_41";"Cluster_41";"Artific_Inf_Fruits_5_6days (n=16)";0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acinetobacter_Cluster_43";"Cluster_43";"Artific_Inf_Fruits_5_6days (n=16)";0.1875;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_5";"Cluster_5";"Artific_Inf_Fruits_5_6days (n=16)";0.75;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Massilia_Cluster_55";"Cluster_55";"Artific_Inf_Fruits_5_6days (n=16)";0.0625;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_7";"Cluster_7";"Artific_Inf_Fruits_5_6days (n=16)";0.5625;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_9";"Cluster_9";"Artific_Inf_Fruits_5_6days (n=16)";0.1875;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_10";"Cluster_10";"Fruits_0days (n=11)";NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Fructilactobacillus_Cluster_13";"Cluster_13";"Fruits_0days (n=11)";NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Levilactobacillus_Cluster_14";"Cluster_14";"Fruits_0days (n=11)";NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_15";"Cluster_15";"Fruits_0days (n=11)";NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_17";"Cluster_17";"Fruits_0days (n=11)";NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_19";"Cluster_19";"Fruits_0days (n=11)";NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_20";"Cluster_20";"Fruits_0days (n=11)";NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_21";"Cluster_21";"Fruits_0days (n=11)";NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Lysinibacillus_Cluster_23";"Cluster_23";"Fruits_0days (n=11)";NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Pseudomonas_Cluster_35";"Cluster_35";"Fruits_0days (n=11)";NA;0.0909090909090909;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_38";"Cluster_38";"Fruits_0days (n=11)";NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_4";"Cluster_4";"Fruits_0days (n=11)";NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Flavobacterium_Cluster_41";"Cluster_41";"Fruits_0days (n=11)";NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acinetobacter_Cluster_43";"Cluster_43";"Fruits_0days (n=11)";NA;0.363636363636364;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_5";"Cluster_5";"Fruits_0days (n=11)";NA;0.0909090909090909;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Massilia_Cluster_55";"Cluster_55";"Fruits_0days (n=11)";NA;0.0909090909090909;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_7";"Cluster_7";"Fruits_0days (n=11)";NA;0.0909090909090909;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_9";"Cluster_9";"Fruits_0days (n=11)";NA;0.0909090909090909;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_10";"Cluster_10";"G0_Adults_0days (n=6)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Fructilactobacillus_Cluster_13";"Cluster_13";"G0_Adults_0days (n=6)";NA;NA;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Levilactobacillus_Cluster_14";"Cluster_14";"G0_Adults_0days (n=6)";NA;NA;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_15";"Cluster_15";"G0_Adults_0days (n=6)";NA;NA;0.166666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_17";"Cluster_17";"G0_Adults_0days (n=6)";NA;NA;0.166666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_19";"Cluster_19";"G0_Adults_0days (n=6)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_20";"Cluster_20";"G0_Adults_0days (n=6)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_21";"Cluster_21";"G0_Adults_0days (n=6)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Lysinibacillus_Cluster_23";"Cluster_23";"G0_Adults_0days (n=6)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Pseudomonas_Cluster_35";"Cluster_35";"G0_Adults_0days (n=6)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_38";"Cluster_38";"G0_Adults_0days (n=6)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_4";"Cluster_4";"G0_Adults_0days (n=6)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Flavobacterium_Cluster_41";"Cluster_41";"G0_Adults_0days (n=6)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acinetobacter_Cluster_43";"Cluster_43";"G0_Adults_0days (n=6)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_5";"Cluster_5";"G0_Adults_0days (n=6)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Massilia_Cluster_55";"Cluster_55";"G0_Adults_0days (n=6)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_7";"Cluster_7";"G0_Adults_0days (n=6)";NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_9";"Cluster_9";"G0_Adults_0days (n=6)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_10";"Cluster_10";"G0_Adults_Fruits_2days (n=21)";NA;NA;NA;0.0476190476190476;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Fructilactobacillus_Cluster_13";"Cluster_13";"G0_Adults_Fruits_2days (n=21)";NA;NA;NA;0.571428571428572;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Levilactobacillus_Cluster_14";"Cluster_14";"G0_Adults_Fruits_2days (n=21)";NA;NA;NA;0.428571428571428;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_15";"Cluster_15";"G0_Adults_Fruits_2days (n=21)";NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_17";"Cluster_17";"G0_Adults_Fruits_2days (n=21)";NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_19";"Cluster_19";"G0_Adults_Fruits_2days (n=21)";NA;NA;NA;0.142857142857143;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_20";"Cluster_20";"G0_Adults_Fruits_2days (n=21)";NA;NA;NA;0.142857142857143;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_21";"Cluster_21";"G0_Adults_Fruits_2days (n=21)";NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Lysinibacillus_Cluster_23";"Cluster_23";"G0_Adults_Fruits_2days (n=21)";NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Pseudomonas_Cluster_35";"Cluster_35";"G0_Adults_Fruits_2days (n=21)";NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_38";"Cluster_38";"G0_Adults_Fruits_2days (n=21)";NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_4";"Cluster_4";"G0_Adults_Fruits_2days (n=21)";NA;NA;NA;0.761904761904762;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Flavobacterium_Cluster_41";"Cluster_41";"G0_Adults_Fruits_2days (n=21)";NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acinetobacter_Cluster_43";"Cluster_43";"G0_Adults_Fruits_2days (n=21)";NA;NA;NA;0.19047619047619;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_5";"Cluster_5";"G0_Adults_Fruits_2days (n=21)";NA;NA;NA;0.285714285714286;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Massilia_Cluster_55";"Cluster_55";"G0_Adults_Fruits_2days (n=21)";NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_7";"Cluster_7";"G0_Adults_Fruits_2days (n=21)";NA;NA;NA;0.571428571428572;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_9";"Cluster_9";"G0_Adults_Fruits_2days (n=21)";NA;NA;NA;0.0476190476190476;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_10";"Cluster_10";"G0_Adults_Medium_2days (n=2)";NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Fructilactobacillus_Cluster_13";"Cluster_13";"G0_Adults_Medium_2days (n=2)";NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Levilactobacillus_Cluster_14";"Cluster_14";"G0_Adults_Medium_2days (n=2)";NA;NA;NA;NA;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_15";"Cluster_15";"G0_Adults_Medium_2days (n=2)";NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_17";"Cluster_17";"G0_Adults_Medium_2days (n=2)";NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_19";"Cluster_19";"G0_Adults_Medium_2days (n=2)";NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_20";"Cluster_20";"G0_Adults_Medium_2days (n=2)";NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_21";"Cluster_21";"G0_Adults_Medium_2days (n=2)";NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Lysinibacillus_Cluster_23";"Cluster_23";"G0_Adults_Medium_2days (n=2)";NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Pseudomonas_Cluster_35";"Cluster_35";"G0_Adults_Medium_2days (n=2)";NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_38";"Cluster_38";"G0_Adults_Medium_2days (n=2)";NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_4";"Cluster_4";"G0_Adults_Medium_2days (n=2)";NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Flavobacterium_Cluster_41";"Cluster_41";"G0_Adults_Medium_2days (n=2)";NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acinetobacter_Cluster_43";"Cluster_43";"G0_Adults_Medium_2days (n=2)";NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_5";"Cluster_5";"G0_Adults_Medium_2days (n=2)";NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Massilia_Cluster_55";"Cluster_55";"G0_Adults_Medium_2days (n=2)";NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_7";"Cluster_7";"G0_Adults_Medium_2days (n=2)";NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_9";"Cluster_9";"G0_Adults_Medium_2days (n=2)";NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_10";"Cluster_10";"G1_Adults_Fruits (n=11)";NA;NA;NA;NA;NA;0.181818181818182;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Fructilactobacillus_Cluster_13";"Cluster_13";"G1_Adults_Fruits (n=11)";NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Levilactobacillus_Cluster_14";"Cluster_14";"G1_Adults_Fruits (n=11)";NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_15";"Cluster_15";"G1_Adults_Fruits (n=11)";NA;NA;NA;NA;NA;0.0909090909090909;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_17";"Cluster_17";"G1_Adults_Fruits (n=11)";NA;NA;NA;NA;NA;0.0909090909090909;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_19";"Cluster_19";"G1_Adults_Fruits (n=11)";NA;NA;NA;NA;NA;0.363636363636364;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_20";"Cluster_20";"G1_Adults_Fruits (n=11)";NA;NA;NA;NA;NA;0.0909090909090909;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_21";"Cluster_21";"G1_Adults_Fruits (n=11)";NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Lysinibacillus_Cluster_23";"Cluster_23";"G1_Adults_Fruits (n=11)";NA;NA;NA;NA;NA;0.0909090909090909;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Pseudomonas_Cluster_35";"Cluster_35";"G1_Adults_Fruits (n=11)";NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_38";"Cluster_38";"G1_Adults_Fruits (n=11)";NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_4";"Cluster_4";"G1_Adults_Fruits (n=11)";NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Flavobacterium_Cluster_41";"Cluster_41";"G1_Adults_Fruits (n=11)";NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acinetobacter_Cluster_43";"Cluster_43";"G1_Adults_Fruits (n=11)";NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_5";"Cluster_5";"G1_Adults_Fruits (n=11)";NA;NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Massilia_Cluster_55";"Cluster_55";"G1_Adults_Fruits (n=11)";NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_7";"Cluster_7";"G1_Adults_Fruits (n=11)";NA;NA;NA;NA;NA;0.181818181818182;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_9";"Cluster_9";"G1_Adults_Fruits (n=11)";NA;NA;NA;NA;NA;0.272727272727273;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_10";"Cluster_10";"G1_Adults_Nat_Inf_Fruit_5_6days (n=1)";NA;NA;NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Fructilactobacillus_Cluster_13";"Cluster_13";"G1_Adults_Nat_Inf_Fruit_5_6days (n=1)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Levilactobacillus_Cluster_14";"Cluster_14";"G1_Adults_Nat_Inf_Fruit_5_6days (n=1)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_15";"Cluster_15";"G1_Adults_Nat_Inf_Fruit_5_6days (n=1)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_17";"Cluster_17";"G1_Adults_Nat_Inf_Fruit_5_6days (n=1)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_19";"Cluster_19";"G1_Adults_Nat_Inf_Fruit_5_6days (n=1)";NA;NA;NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_20";"Cluster_20";"G1_Adults_Nat_Inf_Fruit_5_6days (n=1)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_21";"Cluster_21";"G1_Adults_Nat_Inf_Fruit_5_6days (n=1)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Lysinibacillus_Cluster_23";"Cluster_23";"G1_Adults_Nat_Inf_Fruit_5_6days (n=1)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Pseudomonas_Cluster_35";"Cluster_35";"G1_Adults_Nat_Inf_Fruit_5_6days (n=1)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_38";"Cluster_38";"G1_Adults_Nat_Inf_Fruit_5_6days (n=1)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_4";"Cluster_4";"G1_Adults_Nat_Inf_Fruit_5_6days (n=1)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Flavobacterium_Cluster_41";"Cluster_41";"G1_Adults_Nat_Inf_Fruit_5_6days (n=1)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acinetobacter_Cluster_43";"Cluster_43";"G1_Adults_Nat_Inf_Fruit_5_6days (n=1)";NA;NA;NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_5";"Cluster_5";"G1_Adults_Nat_Inf_Fruit_5_6days (n=1)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Massilia_Cluster_55";"Cluster_55";"G1_Adults_Nat_Inf_Fruit_5_6days (n=1)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_7";"Cluster_7";"G1_Adults_Nat_Inf_Fruit_5_6days (n=1)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_9";"Cluster_9";"G1_Adults_Nat_Inf_Fruit_5_6days (n=1)";NA;NA;NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_10";"Cluster_10";"G1_Larvae_Fruits (n=11)";NA;NA;NA;NA;NA;NA;NA;0.636363636363636;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Fructilactobacillus_Cluster_13";"Cluster_13";"G1_Larvae_Fruits (n=11)";NA;NA;NA;NA;NA;NA;NA;0.454545454545454;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Levilactobacillus_Cluster_14";"Cluster_14";"G1_Larvae_Fruits (n=11)";NA;NA;NA;NA;NA;NA;NA;0.0909090909090909;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_15";"Cluster_15";"G1_Larvae_Fruits (n=11)";NA;NA;NA;NA;NA;NA;NA;0.181818181818182;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_17";"Cluster_17";"G1_Larvae_Fruits (n=11)";NA;NA;NA;NA;NA;NA;NA;0.0909090909090909;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_19";"Cluster_19";"G1_Larvae_Fruits (n=11)";NA;NA;NA;NA;NA;NA;NA;0.545454545454545;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_20";"Cluster_20";"G1_Larvae_Fruits (n=11)";NA;NA;NA;NA;NA;NA;NA;0.0909090909090909;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_21";"Cluster_21";"G1_Larvae_Fruits (n=11)";NA;NA;NA;NA;NA;NA;NA;0.181818181818182;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Lysinibacillus_Cluster_23";"Cluster_23";"G1_Larvae_Fruits (n=11)";NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Pseudomonas_Cluster_35";"Cluster_35";"G1_Larvae_Fruits (n=11)";NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_38";"Cluster_38";"G1_Larvae_Fruits (n=11)";NA;NA;NA;NA;NA;NA;NA;0.181818181818182;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_4";"Cluster_4";"G1_Larvae_Fruits (n=11)";NA;NA;NA;NA;NA;NA;NA;0.454545454545454;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Flavobacterium_Cluster_41";"Cluster_41";"G1_Larvae_Fruits (n=11)";NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acinetobacter_Cluster_43";"Cluster_43";"G1_Larvae_Fruits (n=11)";NA;NA;NA;NA;NA;NA;NA;0.0909090909090909;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_5";"Cluster_5";"G1_Larvae_Fruits (n=11)";NA;NA;NA;NA;NA;NA;NA;0.272727272727273;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Massilia_Cluster_55";"Cluster_55";"G1_Larvae_Fruits (n=11)";NA;NA;NA;NA;NA;NA;NA;0.0909090909090909;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_7";"Cluster_7";"G1_Larvae_Fruits (n=11)";NA;NA;NA;NA;NA;NA;NA;0.727272727272727;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_9";"Cluster_9";"G1_Larvae_Fruits (n=11)";NA;NA;NA;NA;NA;NA;NA;0.181818181818182;NA;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_10";"Cluster_10";"G1_Larvae_Medium_5_6days (n=3)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"16S";"Fructilactobacillus_Cluster_13";"Cluster_13";"G1_Larvae_Medium_5_6days (n=3)";NA;NA;NA;NA;NA;NA;NA;NA;0.333333333333333;NA;NA;NA;NA;NA;NA;NA
-"16S";"Levilactobacillus_Cluster_14";"Cluster_14";"G1_Larvae_Medium_5_6days (n=3)";NA;NA;NA;NA;NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_15";"Cluster_15";"G1_Larvae_Medium_5_6days (n=3)";NA;NA;NA;NA;NA;NA;NA;NA;0.666666666666667;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_17";"Cluster_17";"G1_Larvae_Medium_5_6days (n=3)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_19";"Cluster_19";"G1_Larvae_Medium_5_6days (n=3)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_20";"Cluster_20";"G1_Larvae_Medium_5_6days (n=3)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_21";"Cluster_21";"G1_Larvae_Medium_5_6days (n=3)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"16S";"Lysinibacillus_Cluster_23";"Cluster_23";"G1_Larvae_Medium_5_6days (n=3)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"16S";"Pseudomonas_Cluster_35";"Cluster_35";"G1_Larvae_Medium_5_6days (n=3)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_38";"Cluster_38";"G1_Larvae_Medium_5_6days (n=3)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_4";"Cluster_4";"G1_Larvae_Medium_5_6days (n=3)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"16S";"Flavobacterium_Cluster_41";"Cluster_41";"G1_Larvae_Medium_5_6days (n=3)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acinetobacter_Cluster_43";"Cluster_43";"G1_Larvae_Medium_5_6days (n=3)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_5";"Cluster_5";"G1_Larvae_Medium_5_6days (n=3)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"16S";"Massilia_Cluster_55";"Cluster_55";"G1_Larvae_Medium_5_6days (n=3)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_7";"Cluster_7";"G1_Larvae_Medium_5_6days (n=3)";NA;NA;NA;NA;NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_9";"Cluster_9";"G1_Larvae_Medium_5_6days (n=3)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_10";"Cluster_10";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.428571428571429;NA;NA;NA;NA;NA;NA
-"16S";"Fructilactobacillus_Cluster_13";"Cluster_13";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA
-"16S";"Levilactobacillus_Cluster_14";"Cluster_14";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_15";"Cluster_15";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_17";"Cluster_17";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_19";"Cluster_19";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.428571428571429;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_20";"Cluster_20";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.428571428571429;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_21";"Cluster_21";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA
-"16S";"Lysinibacillus_Cluster_23";"Cluster_23";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.142857142857143;NA;NA;NA;NA;NA;NA
-"16S";"Pseudomonas_Cluster_35";"Cluster_35";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_38";"Cluster_38";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.142857142857143;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_4";"Cluster_4";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.571428571428571;NA;NA;NA;NA;NA;NA
-"16S";"Flavobacterium_Cluster_41";"Cluster_41";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA
-"16S";"Acinetobacter_Cluster_43";"Cluster_43";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_5";"Cluster_5";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.714285714285714;NA;NA;NA;NA;NA;NA
-"16S";"Massilia_Cluster_55";"Cluster_55";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_7";"Cluster_7";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.428571428571429;NA;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_9";"Cluster_9";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.428571428571429;NA;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_10";"Cluster_10";"G1_Pupae_Fruits (n=21)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.238095238095238;NA;NA;NA;NA;NA
-"16S";"Fructilactobacillus_Cluster_13";"Cluster_13";"G1_Pupae_Fruits (n=21)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA
-"16S";"Levilactobacillus_Cluster_14";"Cluster_14";"G1_Pupae_Fruits (n=21)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_15";"Cluster_15";"G1_Pupae_Fruits (n=21)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.19047619047619;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_17";"Cluster_17";"G1_Pupae_Fruits (n=21)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.0476190476190476;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_19";"Cluster_19";"G1_Pupae_Fruits (n=21)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.380952380952381;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_20";"Cluster_20";"G1_Pupae_Fruits (n=21)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.142857142857143;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_21";"Cluster_21";"G1_Pupae_Fruits (n=21)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.0476190476190476;NA;NA;NA;NA;NA
-"16S";"Lysinibacillus_Cluster_23";"Cluster_23";"G1_Pupae_Fruits (n=21)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA
-"16S";"Pseudomonas_Cluster_35";"Cluster_35";"G1_Pupae_Fruits (n=21)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_38";"Cluster_38";"G1_Pupae_Fruits (n=21)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_4";"Cluster_4";"G1_Pupae_Fruits (n=21)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.238095238095238;NA;NA;NA;NA;NA
-"16S";"Flavobacterium_Cluster_41";"Cluster_41";"G1_Pupae_Fruits (n=21)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA
-"16S";"Acinetobacter_Cluster_43";"Cluster_43";"G1_Pupae_Fruits (n=21)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_5";"Cluster_5";"G1_Pupae_Fruits (n=21)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;NA;NA;NA;NA;NA
-"16S";"Massilia_Cluster_55";"Cluster_55";"G1_Pupae_Fruits (n=21)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_7";"Cluster_7";"G1_Pupae_Fruits (n=21)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.142857142857143;NA;NA;NA;NA;NA
-"16S";"Unknown_Cluster_9";"Cluster_9";"G1_Pupae_Fruits (n=21)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.285714285714286;NA;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_10";"Cluster_10";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=5)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.4;NA;NA;NA;NA
-"16S";"Fructilactobacillus_Cluster_13";"Cluster_13";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=5)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA
-"16S";"Levilactobacillus_Cluster_14";"Cluster_14";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=5)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_15";"Cluster_15";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=5)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA
-"16S";"Unknown_Cluster_17";"Cluster_17";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=5)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA
-"16S";"Unknown_Cluster_19";"Cluster_19";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=5)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_20";"Cluster_20";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=5)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.4;NA;NA;NA;NA
-"16S";"Unknown_Cluster_21";"Cluster_21";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=5)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA
-"16S";"Lysinibacillus_Cluster_23";"Cluster_23";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=5)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA
-"16S";"Pseudomonas_Cluster_35";"Cluster_35";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=5)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA
-"16S";"Unknown_Cluster_38";"Cluster_38";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=5)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA
-"16S";"Unknown_Cluster_4";"Cluster_4";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=5)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;NA;NA;NA;NA
-"16S";"Flavobacterium_Cluster_41";"Cluster_41";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=5)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA
-"16S";"Acinetobacter_Cluster_43";"Cluster_43";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=5)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_5";"Cluster_5";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=5)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;NA;NA;NA;NA
-"16S";"Massilia_Cluster_55";"Cluster_55";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=5)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA
-"16S";"Acetobacter_Cluster_7";"Cluster_7";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=5)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA
-"16S";"Unknown_Cluster_9";"Cluster_9";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=5)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2;NA;NA;NA;NA
-"16S";"Gluconobacter_Cluster_10";"Cluster_10";"G1_PupalCase_Fruits (n=28)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.357142857142857;NA;NA;NA
-"16S";"Fructilactobacillus_Cluster_13";"Cluster_13";"G1_PupalCase_Fruits (n=28)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
-"16S";"Levilactobacillus_Cluster_14";"Cluster_14";"G1_PupalCase_Fruits (n=28)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.0357142857142857;NA;NA;NA
-"16S";"Acetobacter_Cluster_15";"Cluster_15";"G1_PupalCase_Fruits (n=28)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.357142857142857;NA;NA;NA
-"16S";"Unknown_Cluster_17";"Cluster_17";"G1_PupalCase_Fruits (n=28)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.178571428571429;NA;NA;NA
-"16S";"Unknown_Cluster_19";"Cluster_19";"G1_PupalCase_Fruits (n=28)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.857142857142857;NA;NA;NA
-"16S";"Gluconobacter_Cluster_20";"Cluster_20";"G1_PupalCase_Fruits (n=28)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.25;NA;NA;NA
-"16S";"Unknown_Cluster_21";"Cluster_21";"G1_PupalCase_Fruits (n=28)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
-"16S";"Lysinibacillus_Cluster_23";"Cluster_23";"G1_PupalCase_Fruits (n=28)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
-"16S";"Pseudomonas_Cluster_35";"Cluster_35";"G1_PupalCase_Fruits (n=28)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
-"16S";"Unknown_Cluster_38";"Cluster_38";"G1_PupalCase_Fruits (n=28)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.0357142857142857;NA;NA;NA
-"16S";"Unknown_Cluster_4";"Cluster_4";"G1_PupalCase_Fruits (n=28)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.214285714285714;NA;NA;NA
-"16S";"Flavobacterium_Cluster_41";"Cluster_41";"G1_PupalCase_Fruits (n=28)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
-"16S";"Acinetobacter_Cluster_43";"Cluster_43";"G1_PupalCase_Fruits (n=28)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
-"16S";"Gluconobacter_Cluster_5";"Cluster_5";"G1_PupalCase_Fruits (n=28)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;NA;NA;NA
-"16S";"Massilia_Cluster_55";"Cluster_55";"G1_PupalCase_Fruits (n=28)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
-"16S";"Acetobacter_Cluster_7";"Cluster_7";"G1_PupalCase_Fruits (n=28)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.785714285714286;NA;NA;NA
-"16S";"Unknown_Cluster_9";"Cluster_9";"G1_PupalCase_Fruits (n=28)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.571428571428572;NA;NA;NA
-"16S";"Gluconobacter_Cluster_10";"Cluster_10";"Medium_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA
-"16S";"Fructilactobacillus_Cluster_13";"Cluster_13";"Medium_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA
-"16S";"Levilactobacillus_Cluster_14";"Cluster_14";"Medium_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.833333333333333;NA;NA
-"16S";"Acetobacter_Cluster_15";"Cluster_15";"Medium_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;NA;NA
-"16S";"Unknown_Cluster_17";"Cluster_17";"Medium_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;NA;NA
-"16S";"Unknown_Cluster_19";"Cluster_19";"Medium_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA
-"16S";"Gluconobacter_Cluster_20";"Cluster_20";"Medium_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA
-"16S";"Unknown_Cluster_21";"Cluster_21";"Medium_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA
-"16S";"Lysinibacillus_Cluster_23";"Cluster_23";"Medium_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA
-"16S";"Pseudomonas_Cluster_35";"Cluster_35";"Medium_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA
-"16S";"Unknown_Cluster_38";"Cluster_38";"Medium_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA
-"16S";"Unknown_Cluster_4";"Cluster_4";"Medium_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA
-"16S";"Flavobacterium_Cluster_41";"Cluster_41";"Medium_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA
-"16S";"Acinetobacter_Cluster_43";"Cluster_43";"Medium_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA
-"16S";"Gluconobacter_Cluster_5";"Cluster_5";"Medium_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA
-"16S";"Massilia_Cluster_55";"Cluster_55";"Medium_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA
-"16S";"Acetobacter_Cluster_7";"Cluster_7";"Medium_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.916666666666667;NA;NA
-"16S";"Unknown_Cluster_9";"Cluster_9";"Medium_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA
-"16S";"Gluconobacter_Cluster_10";"Cluster_10";"Nat_Inf_Fruits_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;NA
-"16S";"Fructilactobacillus_Cluster_13";"Cluster_13";"Nat_Inf_Fruits_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA
-"16S";"Levilactobacillus_Cluster_14";"Cluster_14";"Nat_Inf_Fruits_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA
-"16S";"Acetobacter_Cluster_15";"Cluster_15";"Nat_Inf_Fruits_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.25;NA
-"16S";"Unknown_Cluster_17";"Cluster_17";"Nat_Inf_Fruits_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA
-"16S";"Unknown_Cluster_19";"Cluster_19";"Nat_Inf_Fruits_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;NA
-"16S";"Gluconobacter_Cluster_20";"Cluster_20";"Nat_Inf_Fruits_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.166666666666667;NA
-"16S";"Unknown_Cluster_21";"Cluster_21";"Nat_Inf_Fruits_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.166666666666667;NA
-"16S";"Lysinibacillus_Cluster_23";"Cluster_23";"Nat_Inf_Fruits_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.166666666666667;NA
-"16S";"Pseudomonas_Cluster_35";"Cluster_35";"Nat_Inf_Fruits_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA
-"16S";"Unknown_Cluster_38";"Cluster_38";"Nat_Inf_Fruits_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA
-"16S";"Unknown_Cluster_4";"Cluster_4";"Nat_Inf_Fruits_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;NA
-"16S";"Flavobacterium_Cluster_41";"Cluster_41";"Nat_Inf_Fruits_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA
-"16S";"Acinetobacter_Cluster_43";"Cluster_43";"Nat_Inf_Fruits_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;NA
-"16S";"Gluconobacter_Cluster_5";"Cluster_5";"Nat_Inf_Fruits_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.833333333333333;NA
-"16S";"Massilia_Cluster_55";"Cluster_55";"Nat_Inf_Fruits_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA
-"16S";"Acetobacter_Cluster_7";"Cluster_7";"Nat_Inf_Fruits_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.666666666666667;NA
-"16S";"Unknown_Cluster_9";"Cluster_9";"Nat_Inf_Fruits_5_6days (n=12)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;NA
-"16S";"Gluconobacter_Cluster_10";"Cluster_10";"Nat_Uninf_Fruits_5_6days (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
-"16S";"Fructilactobacillus_Cluster_13";"Cluster_13";"Nat_Uninf_Fruits_5_6days (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
-"16S";"Levilactobacillus_Cluster_14";"Cluster_14";"Nat_Uninf_Fruits_5_6days (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
-"16S";"Acetobacter_Cluster_15";"Cluster_15";"Nat_Uninf_Fruits_5_6days (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
-"16S";"Unknown_Cluster_17";"Cluster_17";"Nat_Uninf_Fruits_5_6days (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
-"16S";"Unknown_Cluster_19";"Cluster_19";"Nat_Uninf_Fruits_5_6days (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.08
-"16S";"Gluconobacter_Cluster_20";"Cluster_20";"Nat_Uninf_Fruits_5_6days (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2
-"16S";"Unknown_Cluster_21";"Cluster_21";"Nat_Uninf_Fruits_5_6days (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
-"16S";"Lysinibacillus_Cluster_23";"Cluster_23";"Nat_Uninf_Fruits_5_6days (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
-"16S";"Pseudomonas_Cluster_35";"Cluster_35";"Nat_Uninf_Fruits_5_6days (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.28
-"16S";"Unknown_Cluster_38";"Cluster_38";"Nat_Uninf_Fruits_5_6days (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.44
-"16S";"Unknown_Cluster_4";"Cluster_4";"Nat_Uninf_Fruits_5_6days (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.6
-"16S";"Flavobacterium_Cluster_41";"Cluster_41";"Nat_Uninf_Fruits_5_6days (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.04
-"16S";"Acinetobacter_Cluster_43";"Cluster_43";"Nat_Uninf_Fruits_5_6days (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
-"16S";"Gluconobacter_Cluster_5";"Cluster_5";"Nat_Uninf_Fruits_5_6days (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.32
-"16S";"Massilia_Cluster_55";"Cluster_55";"Nat_Uninf_Fruits_5_6days (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.28
-"16S";"Acetobacter_Cluster_7";"Cluster_7";"Nat_Uninf_Fruits_5_6days (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
-"16S";"Unknown_Cluster_9";"Cluster_9";"Nat_Uninf_Fruits_5_6days (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.12
-"ITS";"Pichia_Cluster_1";"Cluster_1";"Artific_Inf_Fruits_5_6days (n=20)";0.6;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_10";"Cluster_10";"Artific_Inf_Fruits_5_6days (n=20)";0.8;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cutaneotrichosporon_Cluster_12";"Cluster_12";"Artific_Inf_Fruits_5_6days (n=20)";0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_13";"Cluster_13";"Artific_Inf_Fruits_5_6days (n=20)";0.35;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_14";"Cluster_14";"Artific_Inf_Fruits_5_6days (n=20)";0.15;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_15";"Cluster_15";"Artific_Inf_Fruits_5_6days (n=20)";0.2;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_17";"Cluster_17";"Artific_Inf_Fruits_5_6days (n=20)";0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_19";"Cluster_19";"Artific_Inf_Fruits_5_6days (n=20)";0.8;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_2";"Cluster_2";"Artific_Inf_Fruits_5_6days (n=20)";0.45;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Alternaria_Cluster_20";"Cluster_20";"Artific_Inf_Fruits_5_6days (n=20)";0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_21";"Cluster_21";"Artific_Inf_Fruits_5_6days (n=20)";0.4;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_23";"Cluster_23";"Artific_Inf_Fruits_5_6days (n=20)";0.35;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_26";"Cluster_26";"Artific_Inf_Fruits_5_6days (n=20)";0.4;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_3";"Cluster_3";"Artific_Inf_Fruits_5_6days (n=20)";0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_31";"Cluster_31";"Artific_Inf_Fruits_5_6days (n=20)";0.2;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_35";"Cluster_35";"Artific_Inf_Fruits_5_6days (n=20)";0.25;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_38";"Cluster_38";"Artific_Inf_Fruits_5_6days (n=20)";0.2;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_4";"Cluster_4";"Artific_Inf_Fruits_5_6days (n=20)";0.4;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_41";"Cluster_41";"Artific_Inf_Fruits_5_6days (n=20)";0.25;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_43";"Cluster_43";"Artific_Inf_Fruits_5_6days (n=20)";0.35;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Filobasidium_Cluster_46";"Cluster_46";"Artific_Inf_Fruits_5_6days (n=20)";0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_5";"Cluster_5";"Artific_Inf_Fruits_5_6days (n=20)";0.65;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_55";"Cluster_55";"Artific_Inf_Fruits_5_6days (n=20)";0.6;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_6";"Cluster_6";"Artific_Inf_Fruits_5_6days (n=20)";0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Aureobasidium_Cluster_7";"Cluster_7";"Artific_Inf_Fruits_5_6days (n=20)";0.6;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_70";"Cluster_70";"Artific_Inf_Fruits_5_6days (n=20)";0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_8";"Cluster_8";"Artific_Inf_Fruits_5_6days (n=20)";0.2;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_9";"Cluster_9";"Artific_Inf_Fruits_5_6days (n=20)";0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_1";"Cluster_1";"Fruits_0days (n=18)";NA;0.111111111111111;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_10";"Cluster_10";"Fruits_0days (n=18)";NA;0.888888888888889;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cutaneotrichosporon_Cluster_12";"Cluster_12";"Fruits_0days (n=18)";NA;0.222222222222222;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_13";"Cluster_13";"Fruits_0days (n=18)";NA;0.611111111111111;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_14";"Cluster_14";"Fruits_0days (n=18)";NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_15";"Cluster_15";"Fruits_0days (n=18)";NA;0.111111111111111;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_17";"Cluster_17";"Fruits_0days (n=18)";NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_19";"Cluster_19";"Fruits_0days (n=18)";NA;0.888888888888889;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_2";"Cluster_2";"Fruits_0days (n=18)";NA;0.111111111111111;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Alternaria_Cluster_20";"Cluster_20";"Fruits_0days (n=18)";NA;0.944444444444444;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_21";"Cluster_21";"Fruits_0days (n=18)";NA;0.388888888888889;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_23";"Cluster_23";"Fruits_0days (n=18)";NA;0.388888888888889;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_26";"Cluster_26";"Fruits_0days (n=18)";NA;0.388888888888889;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_3";"Cluster_3";"Fruits_0days (n=18)";NA;0.277777777777778;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_31";"Cluster_31";"Fruits_0days (n=18)";NA;0.166666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_35";"Cluster_35";"Fruits_0days (n=18)";NA;0.222222222222222;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_38";"Cluster_38";"Fruits_0days (n=18)";NA;0.222222222222222;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_4";"Cluster_4";"Fruits_0days (n=18)";NA;0.722222222222222;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_41";"Cluster_41";"Fruits_0days (n=18)";NA;0.111111111111111;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_43";"Cluster_43";"Fruits_0days (n=18)";NA;0.277777777777778;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Filobasidium_Cluster_46";"Cluster_46";"Fruits_0days (n=18)";NA;0.722222222222222;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_5";"Cluster_5";"Fruits_0days (n=18)";NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_55";"Cluster_55";"Fruits_0days (n=18)";NA;0.777777777777778;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_6";"Cluster_6";"Fruits_0days (n=18)";NA;0.444444444444444;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Aureobasidium_Cluster_7";"Cluster_7";"Fruits_0days (n=18)";NA;0.888888888888889;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_70";"Cluster_70";"Fruits_0days (n=18)";NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_8";"Cluster_8";"Fruits_0days (n=18)";NA;0.222222222222222;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_9";"Cluster_9";"Fruits_0days (n=18)";NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_1";"Cluster_1";"G0_Adults_0days (n=2)";NA;NA;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_10";"Cluster_10";"G0_Adults_0days (n=2)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cutaneotrichosporon_Cluster_12";"Cluster_12";"G0_Adults_0days (n=2)";NA;NA;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_13";"Cluster_13";"G0_Adults_0days (n=2)";NA;NA;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_14";"Cluster_14";"G0_Adults_0days (n=2)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_15";"Cluster_15";"G0_Adults_0days (n=2)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_17";"Cluster_17";"G0_Adults_0days (n=2)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_19";"Cluster_19";"G0_Adults_0days (n=2)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_2";"Cluster_2";"G0_Adults_0days (n=2)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Alternaria_Cluster_20";"Cluster_20";"G0_Adults_0days (n=2)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_21";"Cluster_21";"G0_Adults_0days (n=2)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_23";"Cluster_23";"G0_Adults_0days (n=2)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_26";"Cluster_26";"G0_Adults_0days (n=2)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_3";"Cluster_3";"G0_Adults_0days (n=2)";NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_31";"Cluster_31";"G0_Adults_0days (n=2)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_35";"Cluster_35";"G0_Adults_0days (n=2)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_38";"Cluster_38";"G0_Adults_0days (n=2)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_4";"Cluster_4";"G0_Adults_0days (n=2)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_41";"Cluster_41";"G0_Adults_0days (n=2)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_43";"Cluster_43";"G0_Adults_0days (n=2)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Filobasidium_Cluster_46";"Cluster_46";"G0_Adults_0days (n=2)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_5";"Cluster_5";"G0_Adults_0days (n=2)";NA;NA;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_55";"Cluster_55";"G0_Adults_0days (n=2)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_6";"Cluster_6";"G0_Adults_0days (n=2)";NA;NA;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Aureobasidium_Cluster_7";"Cluster_7";"G0_Adults_0days (n=2)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_70";"Cluster_70";"G0_Adults_0days (n=2)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_8";"Cluster_8";"G0_Adults_0days (n=2)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_9";"Cluster_9";"G0_Adults_0days (n=2)";NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_1";"Cluster_1";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.391304347826087;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_10";"Cluster_10";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.608695652173913;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cutaneotrichosporon_Cluster_12";"Cluster_12";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.130434782608696;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_13";"Cluster_13";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.347826086956522;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_14";"Cluster_14";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.391304347826087;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_15";"Cluster_15";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.173913043478261;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_17";"Cluster_17";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.130434782608696;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_19";"Cluster_19";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.565217391304348;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_2";"Cluster_2";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.304347826086956;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Alternaria_Cluster_20";"Cluster_20";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.260869565217391;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_21";"Cluster_21";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.173913043478261;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_23";"Cluster_23";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.260869565217391;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_26";"Cluster_26";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.173913043478261;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_3";"Cluster_3";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.217391304347826;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_31";"Cluster_31";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.0434782608695652;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_35";"Cluster_35";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.260869565217391;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_38";"Cluster_38";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.0869565217391305;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_4";"Cluster_4";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.173913043478261;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_41";"Cluster_41";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.130434782608696;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_43";"Cluster_43";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.0869565217391305;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Filobasidium_Cluster_46";"Cluster_46";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.173913043478261;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_5";"Cluster_5";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.91304347826087;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_55";"Cluster_55";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.608695652173913;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_6";"Cluster_6";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.0434782608695652;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Aureobasidium_Cluster_7";"Cluster_7";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.478260869565217;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_70";"Cluster_70";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_8";"Cluster_8";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.347826086956522;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_9";"Cluster_9";"G0_Adults_Fruits_2days (n=23)";NA;NA;NA;0.130434782608696;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_1";"Cluster_1";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0.428571428571429;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_10";"Cluster_10";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cutaneotrichosporon_Cluster_12";"Cluster_12";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0.285714285714286;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_13";"Cluster_13";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_14";"Cluster_14";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0.428571428571429;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_15";"Cluster_15";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0.714285714285714;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_17";"Cluster_17";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0.142857142857143;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_19";"Cluster_19";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_2";"Cluster_2";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0.285714285714286;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Alternaria_Cluster_20";"Cluster_20";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_21";"Cluster_21";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0.428571428571429;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_23";"Cluster_23";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0.428571428571429;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_26";"Cluster_26";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0.714285714285714;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_3";"Cluster_3";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0.428571428571429;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_31";"Cluster_31";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0.142857142857143;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_35";"Cluster_35";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0.285714285714286;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_38";"Cluster_38";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0.714285714285714;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_4";"Cluster_4";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_41";"Cluster_41";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0.142857142857143;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_43";"Cluster_43";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0.142857142857143;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Filobasidium_Cluster_46";"Cluster_46";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0.571428571428571;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_5";"Cluster_5";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0.428571428571429;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_55";"Cluster_55";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_6";"Cluster_6";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0.428571428571429;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Aureobasidium_Cluster_7";"Cluster_7";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0.428571428571429;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_70";"Cluster_70";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_8";"Cluster_8";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_9";"Cluster_9";"G0_Adults_Medium_2days (n=7)";NA;NA;NA;NA;0.142857142857143;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_1";"Cluster_1";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0.666666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_10";"Cluster_10";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0.259259259259259;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cutaneotrichosporon_Cluster_12";"Cluster_12";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0.185185185185185;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_13";"Cluster_13";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_14";"Cluster_14";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_15";"Cluster_15";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0.222222222222222;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_17";"Cluster_17";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0.111111111111111;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_19";"Cluster_19";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0.185185185185185;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_2";"Cluster_2";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0.555555555555556;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Alternaria_Cluster_20";"Cluster_20";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_21";"Cluster_21";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0.37037037037037;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_23";"Cluster_23";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0.37037037037037;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_26";"Cluster_26";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_3";"Cluster_3";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0.555555555555556;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_31";"Cluster_31";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0.185185185185185;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_35";"Cluster_35";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0.407407407407407;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_38";"Cluster_38";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0.259259259259259;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_4";"Cluster_4";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_41";"Cluster_41";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_43";"Cluster_43";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Filobasidium_Cluster_46";"Cluster_46";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_5";"Cluster_5";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0.0370370370370371;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_55";"Cluster_55";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_6";"Cluster_6";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Aureobasidium_Cluster_7";"Cluster_7";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0.0740740740740741;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_70";"Cluster_70";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_8";"Cluster_8";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0.37037037037037;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_9";"Cluster_9";"G1_Adults_Fruits (n=27)";NA;NA;NA;NA;NA;0.111111111111111;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_1";"Cluster_1";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_10";"Cluster_10";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cutaneotrichosporon_Cluster_12";"Cluster_12";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_13";"Cluster_13";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_14";"Cluster_14";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_15";"Cluster_15";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_17";"Cluster_17";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_19";"Cluster_19";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_2";"Cluster_2";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Alternaria_Cluster_20";"Cluster_20";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_21";"Cluster_21";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_23";"Cluster_23";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_26";"Cluster_26";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_3";"Cluster_3";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_31";"Cluster_31";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_35";"Cluster_35";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_38";"Cluster_38";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_4";"Cluster_4";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_41";"Cluster_41";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_43";"Cluster_43";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Filobasidium_Cluster_46";"Cluster_46";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_5";"Cluster_5";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_55";"Cluster_55";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_6";"Cluster_6";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Aureobasidium_Cluster_7";"Cluster_7";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_70";"Cluster_70";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_8";"Cluster_8";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;1;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_9";"Cluster_9";"G1_Adults_Nat_Inf_Fruit_5_6days (n=2)";NA;NA;NA;NA;NA;NA;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_1";"Cluster_1";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0.722222222222222;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_10";"Cluster_10";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0.777777777777778;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cutaneotrichosporon_Cluster_12";"Cluster_12";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_13";"Cluster_13";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_14";"Cluster_14";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_15";"Cluster_15";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0.222222222222222;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_17";"Cluster_17";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0.111111111111111;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_19";"Cluster_19";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0.777777777777778;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_2";"Cluster_2";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0.611111111111111;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Alternaria_Cluster_20";"Cluster_20";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_21";"Cluster_21";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0.222222222222222;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_23";"Cluster_23";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0.222222222222222;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_26";"Cluster_26";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0.222222222222222;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_3";"Cluster_3";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0.444444444444444;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_31";"Cluster_31";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0.222222222222222;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_35";"Cluster_35";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0.222222222222222;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_38";"Cluster_38";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0.222222222222222;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_4";"Cluster_4";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0.0555555555555555;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_41";"Cluster_41";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0.222222222222222;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_43";"Cluster_43";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0.166666666666667;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Filobasidium_Cluster_46";"Cluster_46";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_5";"Cluster_5";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_55";"Cluster_55";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0.111111111111111;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_6";"Cluster_6";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0.0555555555555555;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Aureobasidium_Cluster_7";"Cluster_7";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_70";"Cluster_70";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_8";"Cluster_8";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0.222222222222222;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_9";"Cluster_9";"G1_Larvae_Fruits (n=18)";NA;NA;NA;NA;NA;NA;NA;0.166666666666667;NA;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_1";"Cluster_1";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0.5;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_10";"Cluster_10";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0.666666666666667;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cutaneotrichosporon_Cluster_12";"Cluster_12";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0.833333333333333;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_13";"Cluster_13";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_14";"Cluster_14";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_15";"Cluster_15";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0.333333333333333;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_17";"Cluster_17";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_19";"Cluster_19";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0.333333333333333;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_2";"Cluster_2";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0.333333333333333;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Alternaria_Cluster_20";"Cluster_20";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_21";"Cluster_21";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0.166666666666667;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_23";"Cluster_23";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_26";"Cluster_26";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0.333333333333333;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_3";"Cluster_3";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_31";"Cluster_31";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_35";"Cluster_35";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_38";"Cluster_38";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0.166666666666667;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_4";"Cluster_4";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_41";"Cluster_41";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_43";"Cluster_43";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Filobasidium_Cluster_46";"Cluster_46";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0.5;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_5";"Cluster_5";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_55";"Cluster_55";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_6";"Cluster_6";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Aureobasidium_Cluster_7";"Cluster_7";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0.333333333333333;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_70";"Cluster_70";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_8";"Cluster_8";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0.5;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_9";"Cluster_9";"G1_Larvae_Medium_5_6days (n=6)";NA;NA;NA;NA;NA;NA;NA;NA;0.166666666666667;NA;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_1";"Cluster_1";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.571428571428571;NA;NA;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_10";"Cluster_10";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.857142857142857;NA;NA;NA;NA;NA;NA
-"ITS";"Cutaneotrichosporon_Cluster_12";"Cluster_12";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.142857142857143;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_13";"Cluster_13";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_14";"Cluster_14";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_15";"Cluster_15";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.142857142857143;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_17";"Cluster_17";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.142857142857143;NA;NA;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_19";"Cluster_19";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.571428571428571;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_2";"Cluster_2";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.571428571428571;NA;NA;NA;NA;NA;NA
-"ITS";"Alternaria_Cluster_20";"Cluster_20";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_21";"Cluster_21";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.714285714285714;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_23";"Cluster_23";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.571428571428571;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_26";"Cluster_26";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.285714285714286;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_3";"Cluster_3";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.285714285714286;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_31";"Cluster_31";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.285714285714286;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_35";"Cluster_35";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.428571428571429;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_38";"Cluster_38";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.428571428571429;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_4";"Cluster_4";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.285714285714286;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_41";"Cluster_41";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.428571428571429;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_43";"Cluster_43";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.428571428571429;NA;NA;NA;NA;NA;NA
-"ITS";"Filobasidium_Cluster_46";"Cluster_46";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.142857142857143;NA;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_5";"Cluster_5";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.142857142857143;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_55";"Cluster_55";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_6";"Cluster_6";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.285714285714286;NA;NA;NA;NA;NA;NA
-"ITS";"Aureobasidium_Cluster_7";"Cluster_7";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.428571428571429;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_70";"Cluster_70";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.285714285714286;NA;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_8";"Cluster_8";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.428571428571429;NA;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_9";"Cluster_9";"G1_Larvae_Nat_Inf_Fruits_5_6days (n=7)";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.142857142857143;NA;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_1";"Cluster_1";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.68;NA;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_10";"Cluster_10";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.6;NA;NA;NA;NA;NA
-"ITS";"Cutaneotrichosporon_Cluster_12";"Cluster_12";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_13";"Cluster_13";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_14";"Cluster_14";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.04;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_15";"Cluster_15";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.36;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_17";"Cluster_17";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.08;NA;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_19";"Cluster_19";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.72;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_2";"Cluster_2";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.68;NA;NA;NA;NA;NA
-"ITS";"Alternaria_Cluster_20";"Cluster_20";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_21";"Cluster_21";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.4;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_23";"Cluster_23";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.36;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_26";"Cluster_26";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.36;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_3";"Cluster_3";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.48;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_31";"Cluster_31";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.24;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_35";"Cluster_35";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.4;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_38";"Cluster_38";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.24;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_4";"Cluster_4";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.08;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_41";"Cluster_41";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.28;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_43";"Cluster_43";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.32;NA;NA;NA;NA;NA
-"ITS";"Filobasidium_Cluster_46";"Cluster_46";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_5";"Cluster_5";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.08;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_55";"Cluster_55";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_6";"Cluster_6";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.28;NA;NA;NA;NA;NA
-"ITS";"Aureobasidium_Cluster_7";"Cluster_7";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.04;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_70";"Cluster_70";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_8";"Cluster_8";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.32;NA;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_9";"Cluster_9";"G1_Pupae_Fruits (n=25)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.08;NA;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_1";"Cluster_1";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.333333333333333;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_10";"Cluster_10";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.777777777777778;NA;NA;NA;NA
-"ITS";"Cutaneotrichosporon_Cluster_12";"Cluster_12";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_13";"Cluster_13";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_14";"Cluster_14";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_15";"Cluster_15";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.111111111111111;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_17";"Cluster_17";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_19";"Cluster_19";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.888888888888889;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_2";"Cluster_2";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.333333333333333;NA;NA;NA;NA
-"ITS";"Alternaria_Cluster_20";"Cluster_20";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.444444444444444;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_21";"Cluster_21";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.444444444444444;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_23";"Cluster_23";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.333333333333333;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_26";"Cluster_26";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.111111111111111;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_3";"Cluster_3";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.444444444444444;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_31";"Cluster_31";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.222222222222222;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_35";"Cluster_35";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.444444444444444;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_38";"Cluster_38";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.222222222222222;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_4";"Cluster_4";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.444444444444444;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_41";"Cluster_41";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.555555555555556;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_43";"Cluster_43";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.333333333333333;NA;NA;NA;NA
-"ITS";"Filobasidium_Cluster_46";"Cluster_46";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA;NA
-"ITS";"Cladosporium_Cluster_5";"Cluster_5";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.444444444444444;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_55";"Cluster_55";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.111111111111111;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_6";"Cluster_6";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.333333333333333;NA;NA;NA;NA
-"ITS";"Aureobasidium_Cluster_7";"Cluster_7";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.333333333333333;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_70";"Cluster_70";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.222222222222222;NA;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_8";"Cluster_8";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.222222222222222;NA;NA;NA;NA
-"ITS";"Unknown_Cluster_9";"Cluster_9";"G1_Pupae_Nat_Inf_Fruit_5_6days (n=9)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.222222222222222;NA;NA;NA;NA
-"ITS";"Pichia_Cluster_1";"Cluster_1";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.814814814814815;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_10";"Cluster_10";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.851851851851852;NA;NA;NA
-"ITS";"Cutaneotrichosporon_Cluster_12";"Cluster_12";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
-"ITS";"Cladosporium_Cluster_13";"Cluster_13";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
-"ITS";"Cladosporium_Cluster_14";"Cluster_14";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_15";"Cluster_15";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.296296296296296;NA;NA;NA
-"ITS";"Unknown_Cluster_17";"Cluster_17";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.111111111111111;NA;NA;NA
-"ITS";"Hanseniaspora_Cluster_19";"Cluster_19";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.777777777777778;NA;NA;NA
-"ITS";"Pichia_Cluster_2";"Cluster_2";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.703703703703704;NA;NA;NA
-"ITS";"Alternaria_Cluster_20";"Cluster_20";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_21";"Cluster_21";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.407407407407407;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_23";"Cluster_23";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.296296296296296;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_26";"Cluster_26";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.444444444444444;NA;NA;NA
-"ITS";"Pichia_Cluster_3";"Cluster_3";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.518518518518519;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_31";"Cluster_31";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.222222222222222;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_35";"Cluster_35";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.407407407407407;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_38";"Cluster_38";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.296296296296296;NA;NA;NA
-"ITS";"Unknown_Cluster_4";"Cluster_4";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_41";"Cluster_41";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.407407407407407;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_43";"Cluster_43";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.333333333333333;NA;NA;NA
-"ITS";"Filobasidium_Cluster_46";"Cluster_46";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
-"ITS";"Cladosporium_Cluster_5";"Cluster_5";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.0370370370370371;NA;NA;NA
-"ITS";"Unknown_Cluster_55";"Cluster_55";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
-"ITS";"Unknown_Cluster_6";"Cluster_6";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.111111111111111;NA;NA;NA
-"ITS";"Aureobasidium_Cluster_7";"Cluster_7";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.111111111111111;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_70";"Cluster_70";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
-"ITS";"Metschnikowia_Cluster_8";"Cluster_8";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.37037037037037;NA;NA;NA
-"ITS";"Unknown_Cluster_9";"Cluster_9";"G1_PupalCase_Fruits (n=27)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.111111111111111;NA;NA;NA
-"ITS";"Pichia_Cluster_1";"Cluster_1";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA
-"ITS";"Hanseniaspora_Cluster_10";"Cluster_10";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.454545454545454;NA;NA
-"ITS";"Cutaneotrichosporon_Cluster_12";"Cluster_12";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.636363636363636;NA;NA
-"ITS";"Cladosporium_Cluster_13";"Cluster_13";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.0909090909090909;NA;NA
-"ITS";"Cladosporium_Cluster_14";"Cluster_14";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.454545454545454;NA;NA
-"ITS";"Metschnikowia_Cluster_15";"Cluster_15";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.636363636363636;NA;NA
-"ITS";"Unknown_Cluster_17";"Cluster_17";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.0909090909090909;NA;NA
-"ITS";"Hanseniaspora_Cluster_19";"Cluster_19";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.363636363636364;NA;NA
-"ITS";"Pichia_Cluster_2";"Cluster_2";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA
-"ITS";"Alternaria_Cluster_20";"Cluster_20";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.636363636363636;NA;NA
-"ITS";"Metschnikowia_Cluster_21";"Cluster_21";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.181818181818182;NA;NA
-"ITS";"Metschnikowia_Cluster_23";"Cluster_23";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.272727272727273;NA;NA
-"ITS";"Metschnikowia_Cluster_26";"Cluster_26";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.272727272727273;NA;NA
-"ITS";"Pichia_Cluster_3";"Cluster_3";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.181818181818182;NA;NA
-"ITS";"Metschnikowia_Cluster_31";"Cluster_31";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.0909090909090909;NA;NA
-"ITS";"Metschnikowia_Cluster_35";"Cluster_35";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.181818181818182;NA;NA
-"ITS";"Metschnikowia_Cluster_38";"Cluster_38";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.363636363636364;NA;NA
-"ITS";"Unknown_Cluster_4";"Cluster_4";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.181818181818182;NA;NA
-"ITS";"Metschnikowia_Cluster_41";"Cluster_41";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.181818181818182;NA;NA
-"ITS";"Metschnikowia_Cluster_43";"Cluster_43";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.181818181818182;NA;NA
-"ITS";"Filobasidium_Cluster_46";"Cluster_46";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.181818181818182;NA;NA
-"ITS";"Cladosporium_Cluster_5";"Cluster_5";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.727272727272727;NA;NA
-"ITS";"Unknown_Cluster_55";"Cluster_55";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.0909090909090909;NA;NA
-"ITS";"Unknown_Cluster_6";"Cluster_6";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.818181818181818;NA;NA
-"ITS";"Aureobasidium_Cluster_7";"Cluster_7";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.727272727272727;NA;NA
-"ITS";"Metschnikowia_Cluster_70";"Cluster_70";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA
-"ITS";"Metschnikowia_Cluster_8";"Cluster_8";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.181818181818182;NA;NA
-"ITS";"Unknown_Cluster_9";"Cluster_9";"Medium_5_6days (n=11)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA
-"ITS";"Pichia_Cluster_1";"Cluster_1";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.4;NA
-"ITS";"Hanseniaspora_Cluster_10";"Cluster_10";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;NA
-"ITS";"Cutaneotrichosporon_Cluster_12";"Cluster_12";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA
-"ITS";"Cladosporium_Cluster_13";"Cluster_13";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA
-"ITS";"Cladosporium_Cluster_14";"Cluster_14";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2;NA
-"ITS";"Metschnikowia_Cluster_15";"Cluster_15";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.133333333333333;NA
-"ITS";"Unknown_Cluster_17";"Cluster_17";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2;NA
-"ITS";"Hanseniaspora_Cluster_19";"Cluster_19";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;NA
-"ITS";"Pichia_Cluster_2";"Cluster_2";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.333333333333333;NA
-"ITS";"Alternaria_Cluster_20";"Cluster_20";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.133333333333333;NA
-"ITS";"Metschnikowia_Cluster_21";"Cluster_21";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.333333333333333;NA
-"ITS";"Metschnikowia_Cluster_23";"Cluster_23";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.333333333333333;NA
-"ITS";"Metschnikowia_Cluster_26";"Cluster_26";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.266666666666667;NA
-"ITS";"Pichia_Cluster_3";"Cluster_3";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.333333333333333;NA
-"ITS";"Metschnikowia_Cluster_31";"Cluster_31";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2;NA
-"ITS";"Metschnikowia_Cluster_35";"Cluster_35";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.266666666666667;NA
-"ITS";"Metschnikowia_Cluster_38";"Cluster_38";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.133333333333333;NA
-"ITS";"Unknown_Cluster_4";"Cluster_4";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.466666666666667;NA
-"ITS";"Metschnikowia_Cluster_41";"Cluster_41";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.266666666666667;NA
-"ITS";"Metschnikowia_Cluster_43";"Cluster_43";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.4;NA
-"ITS";"Filobasidium_Cluster_46";"Cluster_46";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2;NA
-"ITS";"Cladosporium_Cluster_5";"Cluster_5";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.533333333333333;NA
-"ITS";"Unknown_Cluster_55";"Cluster_55";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.133333333333333;NA
-"ITS";"Unknown_Cluster_6";"Cluster_6";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.4;NA
-"ITS";"Aureobasidium_Cluster_7";"Cluster_7";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.666666666666667;NA
-"ITS";"Metschnikowia_Cluster_70";"Cluster_70";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.133333333333333;NA
-"ITS";"Metschnikowia_Cluster_8";"Cluster_8";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.133333333333333;NA
-"ITS";"Unknown_Cluster_9";"Cluster_9";"Nat_Inf_Fruits_5_6days (n=15)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.333333333333333;NA
-"ITS";"Pichia_Cluster_1";"Cluster_1";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.394736842105263
-"ITS";"Hanseniaspora_Cluster_10";"Cluster_10";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.657894736842105
-"ITS";"Cutaneotrichosporon_Cluster_12";"Cluster_12";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.0263157894736842
-"ITS";"Cladosporium_Cluster_13";"Cluster_13";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.631578947368421
-"ITS";"Cladosporium_Cluster_14";"Cluster_14";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.894736842105263
-"ITS";"Metschnikowia_Cluster_15";"Cluster_15";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.157894736842105
-"ITS";"Unknown_Cluster_17";"Cluster_17";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.0263157894736842
-"ITS";"Hanseniaspora_Cluster_19";"Cluster_19";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.526315789473684
-"ITS";"Pichia_Cluster_2";"Cluster_2";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.289473684210526
-"ITS";"Alternaria_Cluster_20";"Cluster_20";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.789473684210526
-"ITS";"Metschnikowia_Cluster_21";"Cluster_21";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.342105263157895
-"ITS";"Metschnikowia_Cluster_23";"Cluster_23";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.263157894736842
-"ITS";"Metschnikowia_Cluster_26";"Cluster_26";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.263157894736842
-"ITS";"Pichia_Cluster_3";"Cluster_3";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.526315789473684
-"ITS";"Metschnikowia_Cluster_31";"Cluster_31";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.157894736842105
-"ITS";"Metschnikowia_Cluster_35";"Cluster_35";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.157894736842105
-"ITS";"Metschnikowia_Cluster_38";"Cluster_38";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.236842105263158
-"ITS";"Unknown_Cluster_4";"Cluster_4";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.368421052631579
-"ITS";"Metschnikowia_Cluster_41";"Cluster_41";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.157894736842105
-"ITS";"Metschnikowia_Cluster_43";"Cluster_43";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.18421052631579
-"ITS";"Filobasidium_Cluster_46";"Cluster_46";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.31578947368421
-"ITS";"Cladosporium_Cluster_5";"Cluster_5";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.973684210526316
-"ITS";"Unknown_Cluster_55";"Cluster_55";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.68421052631579
-"ITS";"Unknown_Cluster_6";"Cluster_6";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.68421052631579
-"ITS";"Aureobasidium_Cluster_7";"Cluster_7";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.736842105263158
-"ITS";"Metschnikowia_Cluster_70";"Cluster_70";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
-"ITS";"Metschnikowia_Cluster_8";"Cluster_8";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.263157894736842
-"ITS";"Unknown_Cluster_9";"Cluster_9";"Nat_Uninf_Fruits_5_6days (n=38)";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.0526315789473685
+"Marker";"OTUname";"OTU";"FruitType";"Artific_Inf_Fruits_5_6days_BL";"G0_Adults_Fruits_2days_BL";"G0_Adults_Medium_2days_BL";"G1_Adults_Fruits_BL";"G1_Larvae_Fruits_BL";"G1_Pupae_Fruits_BL";"G1_PupalCase_Fruits_BL";"Medium_5_6days_BL";"Nat_Uninf_Fruits_5_6days_BL";"Artific_Inf_Fruits_5_6days_CH";"Fruits_0days_CH";"G0_Adults_Fruits_2days_CH";"G1_Adults_Fruits_CH";"G1_Adults_Nat_Inf_Fruit_5_6days_CH";"G1_Larvae_Fruits_CH";"G1_Larvae_Medium_5_6days_CH";"G1_Larvae_Nat_Inf_Fruits_5_6days_CH";"G1_Pupae_Fruits_CH";"G1_Pupae_Nat_Inf_Fruit_5_6days_CH";"G1_PupalCase_Fruits_CH";"Medium_5_6days_CH";"Nat_Inf_Fruits_5_6days_CH";"Nat_Uninf_Fruits_5_6days_CH";"Artific_Inf_Fruits_5_6days_ST";"Fruits_0days_ST";"G0_Adults_Fruits_2days_ST";"G1_Adults_Fruits_ST";"G1_Larvae_Fruits_ST";"G1_Larvae_Nat_Inf_Fruits_5_6days_ST";"G1_Pupae_Fruits_ST";"G1_Pupae_Nat_Inf_Fruit_5_6days_ST";"G1_PupalCase_Fruits_ST";"Medium_5_6days_ST";"Nat_Inf_Fruits_5_6days_ST";"Nat_Uninf_Fruits_5_6days_ST";"G0_Adults_0days_na";"Fruits_0days_BL";"G1_Larvae_Medium_5_6days_BL";"G0_Adults_Medium_2days_CH"
+"16S";"Gluconobacter_Cluster_10";"Cluster_10";"BL";0;0;0;0;0;0;0.4;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_11";"Cluster_11";"BL";0;0;0;0;0;0;0.2;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_1196";"Cluster_1196";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Fructilactobacillus_Cluster_13";"Cluster_13";"BL";0;1;1;0;0.5;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Levilactobacillus_Cluster_14";"Cluster_14";"BL";0.666666666666667;0;0.5;0;0;0;0;0.5;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Flavobacterium_Cluster_147";"Cluster_147";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Acetobacter_Cluster_15";"Cluster_15";"BL";0;0;0;0;0;0;0;0.5;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Lactobacillus_Cluster_152";"Cluster_152";"BL";0;0;0;0;0;0;0;0;0.4;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_154";"Cluster_154";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Massilia_Cluster_155";"Cluster_155";"BL";0;0;0;0;0;0;0;0;0.2;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_16";"Cluster_16";"BL";0;0;0;0;0;0;0;0;0.6;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Sphingomonas_Cluster_160";"Cluster_160";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Pedobacter_Cluster_167";"Cluster_167";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_17";"Cluster_17";"BL";0.333333333333333;0;1;0;0;0.25;0.4;0.5;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_19";"Cluster_19";"BL";0;0;0;0;0;0.25;0.8;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Gluconobacter_Cluster_20";"Cluster_20";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Acetobacter_Cluster_2079";"Cluster_2079";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_21";"Cluster_21";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_22";"Cluster_22";"BL";0;0;0;0;0;0;0;0;0.8;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Flavobacterium_Cluster_224";"Cluster_224";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Lysinibacillus_Cluster_23";"Cluster_23";"BL";0;0;0;1;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Planococcus_Cluster_252";"Cluster_252";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_27";"Cluster_27";"BL";0;0;0;0;0;0;0;0;0.8;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Paenibacillus_Cluster_2755";"Cluster_2755";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Xanthomonas_Cluster_28";"Cluster_28";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Sphingomonas_Cluster_283";"Cluster_283";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Cloacibacterium_Cluster_29";"Cluster_29";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Streptomyces_Cluster_291";"Cluster_291";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_33";"Cluster_33";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Phaseolibacter_Cluster_34";"Cluster_34";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Neisseria_Cluster_344";"Cluster_344";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Pseudomonas_Cluster_35";"Cluster_35";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_37";"Cluster_37";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_38";"Cluster_38";"BL";0;0;0;0;0;0;0.2;0;0.8;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Thermus_Cluster_39";"Cluster_39";"BL";0;0;0;0;0;0;0;0;0.2;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_4";"Cluster_4";"BL";0;0.5;0;0;0;0;0;0;0.4;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Paenibacillus_Cluster_409";"Cluster_409";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Flavobacterium_Cluster_41";"Cluster_41";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Acinetobacter_Cluster_43";"Cluster_43";"BL";0;0.5;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Corynebacterium_Cluster_44";"Cluster_44";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Massilia_Cluster_45";"Cluster_45";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Gluconobacter_Cluster_5";"Cluster_5";"BL";0;0;0;1;0;1;1;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Massilia_Cluster_55";"Cluster_55";"BL";0;0;0;0;0.5;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Bacillus_Cluster_57";"Cluster_57";"BL";0;0;0;0;0.5;0;0;0.75;0.2;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Pseudomonas_Cluster_62";"Cluster_62";"BL";0;0;0;0;0;0;0;0;0.4;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Cutibacterium_Cluster_63";"Cluster_63";"BL";0;0;0;0;0;0;0;0;0.8;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Corynebacterium_Cluster_67";"Cluster_67";"BL";0;0;0;0;0;0;0;0;0.6;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Acetobacter_Cluster_7";"Cluster_7";"BL";0;0.5;1;0;0;0.25;0.8;0.75;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_81";"Cluster_81";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_85";"Cluster_85";"BL";0;0;0;0;0;0;0.2;0;0.4;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Pseudomonas_Cluster_87";"Cluster_87";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_9";"Cluster_9";"BL";0;0;0;0;0;0;0.6;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Gluconobacter_Cluster_10";"Cluster_10";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;0;0;0.5;1;0.666666666666667;0;0.4;0.444444444444444;0.25;0.5;0;0.4;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_11";"Cluster_11";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.25;0.25;0.111111111111111;0;0;0.333333333333333;0;0.4;0;0;0;0;0.2;0.444444444444444;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_1196";"Cluster_1196";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Fructilactobacillus_Cluster_13";"Cluster_13";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.125;0;0.666666666666667;0;0;0.5;0.333333333333333;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Levilactobacillus_Cluster_14";"Cluster_14";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0.444444444444444;0;0;0;1;0;0;0;0;1;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Flavobacterium_Cluster_147";"Cluster_147";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Acetobacter_Cluster_15";"Cluster_15";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.25;0;0;0.25;0;0.333333333333333;0.666666666666667;0;0.333333333333333;0;0.333333333333333;0.5;0.3;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Lactobacillus_Cluster_152";"Cluster_152";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0.111111111111111;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_154";"Cluster_154";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0.555555555555556;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Massilia_Cluster_155";"Cluster_155";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0.2;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_16";"Cluster_16";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.75;0.5;0;0;0;0.333333333333333;0;0.4;0;0;0;0;0.2;0.888888888888889;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Sphingomonas_Cluster_160";"Cluster_160";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Pedobacter_Cluster_167";"Cluster_167";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_17";"Cluster_17";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.25;0;0;0.25;0;0.166666666666667;0;0;0;0;0.166666666666667;0.5;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_19";"Cluster_19";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.75;0;0;0.5;1;0.666666666666667;0;0.4;0.222222222222222;0;0.833333333333333;0;0.4;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Gluconobacter_Cluster_20";"Cluster_20";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0.4;0;0.25;0;0;0.2;0.222222222222222;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Acetobacter_Cluster_2079";"Cluster_2079";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_21";"Cluster_21";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_22";"Cluster_22";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0.1;0.111111111111111;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Flavobacterium_Cluster_224";"Cluster_224";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Lysinibacillus_Cluster_23";"Cluster_23";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0.2;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Planococcus_Cluster_252";"Cluster_252";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_27";"Cluster_27";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0.555555555555556;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Paenibacillus_Cluster_2755";"Cluster_2755";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Xanthomonas_Cluster_28";"Cluster_28";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Sphingomonas_Cluster_283";"Cluster_283";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Cloacibacterium_Cluster_29";"Cluster_29";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Streptomyces_Cluster_291";"Cluster_291";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_33";"Cluster_33";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0.111111111111111;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Phaseolibacter_Cluster_34";"Cluster_34";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Neisseria_Cluster_344";"Cluster_344";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Pseudomonas_Cluster_35";"Cluster_35";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0.777777777777778;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_37";"Cluster_37";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_38";"Cluster_38";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0.333333333333333;0;0.2;0;0;0;0;0;0.444444444444444;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Thermus_Cluster_39";"Cluster_39";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_4";"Cluster_4";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;1;1;0.777777777777778;0;0;0.666666666666667;0;0.6;0.333333333333333;1;0.25;0;1;0.444444444444444;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Paenibacillus_Cluster_409";"Cluster_409";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Flavobacterium_Cluster_41";"Cluster_41";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0.111111111111111;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Acinetobacter_Cluster_43";"Cluster_43";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.375;0.75;0.333333333333333;0;1;0;0;0;0;0.25;0;0;0.6;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Corynebacterium_Cluster_44";"Cluster_44";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Massilia_Cluster_45";"Cluster_45";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0.777777777777778;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Gluconobacter_Cluster_5";"Cluster_5";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.875;0.25;0;1;0;0.333333333333333;0;0.8;1;1;1;0;0.8;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Massilia_Cluster_55";"Cluster_55";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.125;0;0;0;0;0;0;0;0;0;0;0;0;0.777777777777778;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Bacillus_Cluster_57";"Cluster_57";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0.666666666666667;0;0.6;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Pseudomonas_Cluster_62";"Cluster_62";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0.111111111111111;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Cutibacterium_Cluster_63";"Cluster_63";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0.666666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Corynebacterium_Cluster_67";"Cluster_67";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0.111111111111111;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Acetobacter_Cluster_7";"Cluster_7";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.75;0;0.444444444444444;0.25;0;0.833333333333333;1;0.4;0.111111111111111;0;0.666666666666667;1;0.6;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_81";"Cluster_81";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_85";"Cluster_85";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0.444444444444444;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Pseudomonas_Cluster_87";"Cluster_87";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0.111111111111111;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Unknown_Cluster_9";"Cluster_9";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.5;1;0;0;0.4;0.111111111111111;0;0.416666666666667;0;0.4;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA
+"16S";"Gluconobacter_Cluster_10";"Cluster_10";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.4;0;0.1;0;1;0.5;0.125;1;0.181818181818182;0;1;0;NA;NA;NA;NA
+"16S";"Unknown_Cluster_11";"Cluster_11";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.142857142857143;0;0;0;0;0;0;0;0;0;0.272727272727273;NA;NA;NA;NA
+"16S";"Unknown_Cluster_1196";"Cluster_1196";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;1;0;NA;NA;NA;NA
+"16S";"Fructilactobacillus_Cluster_13";"Cluster_13";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0.4;0;0.333333333333333;0;0;0;0;0;0;0;NA;NA;NA;NA
+"16S";"Levilactobacillus_Cluster_14";"Cluster_14";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0.5;0;0.333333333333333;0;0;0;0.0909090909090909;1;0;0;NA;NA;NA;NA
+"16S";"Flavobacterium_Cluster_147";"Cluster_147";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0.0909090909090909;NA;NA;NA;NA
+"16S";"Acetobacter_Cluster_15";"Cluster_15";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2;0;0;0;0;0;0.125;0;0.545454545454545;0.5;0;0;NA;NA;NA;NA
+"16S";"Lactobacillus_Cluster_152";"Cluster_152";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0.181818181818182;NA;NA;NA;NA
+"16S";"Unknown_Cluster_154";"Cluster_154";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"16S";"Massilia_Cluster_155";"Cluster_155";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.428571428571429;0;0;0;0;0;1;0;0;0;0.272727272727273;NA;NA;NA;NA
+"16S";"Unknown_Cluster_16";"Cluster_16";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.571428571428571;0;0;0;0;0.125;0;0;0;0;0.181818181818182;NA;NA;NA;NA
+"16S";"Sphingomonas_Cluster_160";"Cluster_160";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0.181818181818182;NA;NA;NA;NA
+"16S";"Pedobacter_Cluster_167";"Cluster_167";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0.0909090909090909;NA;NA;NA;NA
+"16S";"Unknown_Cluster_17";"Cluster_17";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0.0909090909090909;0.5;0;0;NA;NA;NA;NA
+"16S";"Unknown_Cluster_19";"Cluster_19";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;0.3;0.333333333333333;0.666666666666667;0.5;0.625;1;0.909090909090909;0;1;0.181818181818182;NA;NA;NA;NA
+"16S";"Gluconobacter_Cluster_20";"Cluster_20";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2;0;0.3;0.166666666666667;0.333333333333333;0.5;0.375;1;0.636363636363636;0;0;0.272727272727273;NA;NA;NA;NA
+"16S";"Acetobacter_Cluster_2079";"Cluster_2079";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;1;0;NA;NA;NA;NA
+"16S";"Unknown_Cluster_21";"Cluster_21";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.4;0;0;0;0.666666666666667;0;0.125;0;0;0;1;0;NA;NA;NA;NA
+"16S";"Unknown_Cluster_22";"Cluster_22";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.4;0.285714285714286;0;0;0.666666666666667;0;0.125;0;0;0;0;0;NA;NA;NA;NA
+"16S";"Flavobacterium_Cluster_224";"Cluster_224";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0.0909090909090909;NA;NA;NA;NA
+"16S";"Lysinibacillus_Cluster_23";"Cluster_23";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;1;0;NA;NA;NA;NA
+"16S";"Planococcus_Cluster_252";"Cluster_252";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0.181818181818182;NA;NA;NA;NA
+"16S";"Unknown_Cluster_27";"Cluster_27";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0.454545454545454;NA;NA;NA;NA
+"16S";"Paenibacillus_Cluster_2755";"Cluster_2755";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;1;0;NA;NA;NA;NA
+"16S";"Xanthomonas_Cluster_28";"Cluster_28";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0.0909090909090909;NA;NA;NA;NA
+"16S";"Sphingomonas_Cluster_283";"Cluster_283";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0.272727272727273;NA;NA;NA;NA
+"16S";"Cloacibacterium_Cluster_29";"Cluster_29";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0.0909090909090909;NA;NA;NA;NA
+"16S";"Streptomyces_Cluster_291";"Cluster_291";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.142857142857143;0;0;0;0;0;0;0;0;1;0;NA;NA;NA;NA
+"16S";"Unknown_Cluster_33";"Cluster_33";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2;0.285714285714286;0.2;0;0;0;0.125;1;0.181818181818182;0;0;0.272727272727273;NA;NA;NA;NA
+"16S";"Phaseolibacter_Cluster_34";"Cluster_34";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.571428571428571;0;0;0;0;0;0;0;0;0;0.272727272727273;NA;NA;NA;NA
+"16S";"Neisseria_Cluster_344";"Cluster_344";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0.0909090909090909;NA;NA;NA;NA
+"16S";"Pseudomonas_Cluster_35";"Cluster_35";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.142857142857143;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"16S";"Unknown_Cluster_37";"Cluster_37";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.428571428571429;0;0;0;0;0;0;0;0;0;0.181818181818182;NA;NA;NA;NA
+"16S";"Unknown_Cluster_38";"Cluster_38";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0.272727272727273;NA;NA;NA;NA
+"16S";"Thermus_Cluster_39";"Cluster_39";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"16S";"Unknown_Cluster_4";"Cluster_4";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;1;0.8;0;0.333333333333333;0.5;0.25;1;0.272727272727273;0;1;0.818181818181818;NA;NA;NA;NA
+"16S";"Paenibacillus_Cluster_409";"Cluster_409";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;1;0;NA;NA;NA;NA
+"16S";"Flavobacterium_Cluster_41";"Cluster_41";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"16S";"Acinetobacter_Cluster_43";"Cluster_43";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.142857142857143;0;0;0.333333333333333;0;0;0;0;0;0;0;NA;NA;NA;NA
+"16S";"Corynebacterium_Cluster_44";"Cluster_44";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0.0909090909090909;NA;NA;NA;NA
+"16S";"Massilia_Cluster_45";"Cluster_45";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"16S";"Gluconobacter_Cluster_5";"Cluster_5";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;0.6;1;0.333333333333333;0.5;1;1;1;0;1;0.454545454545454;NA;NA;NA;NA
+"16S";"Massilia_Cluster_55";"Cluster_55";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.142857142857143;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"16S";"Bacillus_Cluster_57";"Cluster_57";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.285714285714286;0;0;0.333333333333333;0;0;0;0.0909090909090909;0.75;1;0.0909090909090909;NA;NA;NA;NA
+"16S";"Pseudomonas_Cluster_62";"Cluster_62";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.4;0.285714285714286;0;0;0;0;0;0;0;0;0;0.0909090909090909;NA;NA;NA;NA
+"16S";"Cutibacterium_Cluster_63";"Cluster_63";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0.363636363636364;NA;NA;NA;NA
+"16S";"Corynebacterium_Cluster_67";"Cluster_67";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"16S";"Acetobacter_Cluster_7";"Cluster_7";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.6;0.142857142857143;0.7;0.166666666666667;1;0.5;0.125;0;0.909090909090909;1;1;0;NA;NA;NA;NA
+"16S";"Unknown_Cluster_81";"Cluster_81";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0.0909090909090909;NA;NA;NA;NA
+"16S";"Unknown_Cluster_85";"Cluster_85";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.142857142857143;0;0;0;0;0;0;0.0909090909090909;0;0;0.181818181818182;NA;NA;NA;NA
+"16S";"Pseudomonas_Cluster_87";"Cluster_87";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"16S";"Unknown_Cluster_9";"Cluster_9";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.6;0.142857142857143;0.1;0.166666666666667;0.666666666666667;0.5;0.625;1;0.727272727272727;0;1;0.272727272727273;NA;NA;NA;NA
+"16S";"Gluconobacter_Cluster_10";"Cluster_10";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Unknown_Cluster_11";"Cluster_11";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Unknown_Cluster_1196";"Cluster_1196";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Fructilactobacillus_Cluster_13";"Cluster_13";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;NA;NA;NA
+"16S";"Levilactobacillus_Cluster_14";"Cluster_14";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;NA;NA;NA
+"16S";"Flavobacterium_Cluster_147";"Cluster_147";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Acetobacter_Cluster_15";"Cluster_15";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.166666666666667;NA;NA;NA
+"16S";"Lactobacillus_Cluster_152";"Cluster_152";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Unknown_Cluster_154";"Cluster_154";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Massilia_Cluster_155";"Cluster_155";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Unknown_Cluster_16";"Cluster_16";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Sphingomonas_Cluster_160";"Cluster_160";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Pedobacter_Cluster_167";"Cluster_167";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Unknown_Cluster_17";"Cluster_17";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.166666666666667;NA;NA;NA
+"16S";"Unknown_Cluster_19";"Cluster_19";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Gluconobacter_Cluster_20";"Cluster_20";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Acetobacter_Cluster_2079";"Cluster_2079";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Unknown_Cluster_21";"Cluster_21";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Unknown_Cluster_22";"Cluster_22";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Flavobacterium_Cluster_224";"Cluster_224";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Lysinibacillus_Cluster_23";"Cluster_23";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Planococcus_Cluster_252";"Cluster_252";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Unknown_Cluster_27";"Cluster_27";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Paenibacillus_Cluster_2755";"Cluster_2755";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Xanthomonas_Cluster_28";"Cluster_28";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Sphingomonas_Cluster_283";"Cluster_283";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Cloacibacterium_Cluster_29";"Cluster_29";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Streptomyces_Cluster_291";"Cluster_291";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Unknown_Cluster_33";"Cluster_33";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Phaseolibacter_Cluster_34";"Cluster_34";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Neisseria_Cluster_344";"Cluster_344";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Pseudomonas_Cluster_35";"Cluster_35";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Unknown_Cluster_37";"Cluster_37";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Unknown_Cluster_38";"Cluster_38";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Thermus_Cluster_39";"Cluster_39";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Unknown_Cluster_4";"Cluster_4";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Paenibacillus_Cluster_409";"Cluster_409";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Flavobacterium_Cluster_41";"Cluster_41";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Acinetobacter_Cluster_43";"Cluster_43";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Corynebacterium_Cluster_44";"Cluster_44";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Massilia_Cluster_45";"Cluster_45";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Gluconobacter_Cluster_5";"Cluster_5";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Massilia_Cluster_55";"Cluster_55";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Bacillus_Cluster_57";"Cluster_57";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Pseudomonas_Cluster_62";"Cluster_62";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Cutibacterium_Cluster_63";"Cluster_63";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Corynebacterium_Cluster_67";"Cluster_67";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Acetobacter_Cluster_7";"Cluster_7";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;NA;NA;NA
+"16S";"Unknown_Cluster_81";"Cluster_81";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Unknown_Cluster_85";"Cluster_85";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Pseudomonas_Cluster_87";"Cluster_87";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"16S";"Unknown_Cluster_9";"Cluster_9";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Pichia_Cluster_1";"Cluster_1";"BL";0;0;1;0.166666666666667;0;0.333333333333333;0.8;0;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;1;NA
+"ITS";"Hanseniaspora_Cluster_10";"Cluster_10";"BL";0;0.166666666666667;0;0;0;0;0.4;0;0.166666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;1;NA
+"ITS";"Metschnikowia_Cluster_104";"Cluster_104";"BL";0.75;0.5;0;0.833333333333333;0.5;0.833333333333333;1;0;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Vishniacozyma_Cluster_108";"Cluster_108";"BL";0;0;0;0;0;0;0;0;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Pichia_Cluster_11";"Cluster_11";"BL";0;0;0;0.166666666666667;0;0;0.2;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Metschnikowia_Cluster_117";"Cluster_117";"BL";1;0.166666666666667;0;0.5;0;0.166666666666667;0.8;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Neocucurbitaria_Cluster_1196";"Cluster_1196";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Cutaneotrichosporon_Cluster_12";"Cluster_12";"BL";0;0.166666666666667;0;0.166666666666667;0;0;0;1;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;1;NA
+"ITS";"Taphrina_Cluster_121";"Cluster_121";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Vishniacozyma_Cluster_123";"Cluster_123";"BL";0;0;1;0;0;0;0;0.25;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Cladosporium_Cluster_13";"Cluster_13";"BL";1;1;0;0;0;0;0;0.25;1;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Metschnikowia_Cluster_138";"Cluster_138";"BL";1;0;0;0.5;0.75;0.333333333333333;0.8;0;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Cladosporium_Cluster_14";"Cluster_14";"BL";0.5;0.666666666666667;1;0;0;0;0;0.75;1;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Unknown_Cluster_147";"Cluster_147";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Stemphylium_Cluster_148";"Cluster_148";"BL";0;0;0;0;0;0;0;0.25;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Metschnikowia_Cluster_15";"Cluster_15";"BL";1;0.666666666666667;1;0.833333333333333;1;0.833333333333333;1;1;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0.5;NA
+"ITS";"Unknown_Cluster_152";"Cluster_152";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Unknown_Cluster_154";"Cluster_154";"BL";0;0;0;0;0;0;0;0;0.166666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;0;NA
+"ITS";"Vishniacozyma_Cluster_155";"Cluster_155";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Penicillium_Cluster_16";"Cluster_16";"BL";0;0;0;0;0;0;0;1;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Metschnikowia_Cluster_160";"Cluster_160";"BL";0.5;0;0;0.5;0;0.5;0.8;0;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Rachicladosporium_Cluster_163";"Cluster_163";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Unknown_Cluster_167";"Cluster_167";"BL";0;0;0;0;0;0;0;0.25;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Unknown_Cluster_17";"Cluster_17";"BL";0;0;0;0;0;0;0.2;0.25;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Metschnikowia_Cluster_18";"Cluster_18";"BL";1;0;0;0.833333333333333;1;0.5;1;0;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Hanseniaspora_Cluster_19";"Cluster_19";"BL";0;0.166666666666667;0;0;0;0.333333333333333;0.4;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.5;NA
+"ITS";"Vishniacozyma_Cluster_197";"Cluster_197";"BL";0;0;0;0;0;0;0;0;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Pichia_Cluster_2";"Cluster_2";"BL";0;0;0.5;0.333333333333333;0;0.333333333333333;0.6;0;0.25;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;1;NA
+"ITS";"Alternaria_Cluster_20";"Cluster_20";"BL";0.5;0;0;0;0;0;0;0.5;0.666666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;0;NA
+"ITS";"Metschnikowia_Cluster_21";"Cluster_21";"BL";1;0.5;0.5;1;1;0.833333333333333;1;0.25;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Taphrina_Cluster_210";"Cluster_210";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Unknown_Cluster_211";"Cluster_211";"BL";0;0;0;0;0;0;0;0.75;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Mucor_Cluster_22";"Cluster_22";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Cladosporium_Cluster_224";"Cluster_224";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Metschnikowia_Cluster_227";"Cluster_227";"BL";0.25;0;0;0.333333333333333;0.75;0.333333333333333;0.4;0;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Metschnikowia_Cluster_23";"Cluster_23";"BL";1;0.666666666666667;1;1;1;0.833333333333333;1;0.25;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Alternaria_Cluster_237";"Cluster_237";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Dioszegia_Cluster_249";"Cluster_249";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Wickerhamomyces_Cluster_25";"Cluster_25";"BL";0;0.333333333333333;0;0;0;0.166666666666667;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Metschnikowia_Cluster_251";"Cluster_251";"BL";0;0;0;0;0;0.166666666666667;0.2;0;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Cladosporium_Cluster_252";"Cluster_252";"BL";0;0;0;0;0;0;0;0;0.75;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Metschnikowia_Cluster_257";"Cluster_257";"BL";1;0;0;0.666666666666667;1;0.666666666666667;1;0;0.25;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Metschnikowia_Cluster_26";"Cluster_26";"BL";1;0.5;1;0.833333333333333;1;0.833333333333333;1;0.25;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Unknown_Cluster_27";"Cluster_27";"BL";0;0;1;0;0;0;0.2;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Cladosporium_Cluster_276";"Cluster_276";"BL";0;0;0;0;0;0;0;0;0.166666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Penicillium_Cluster_28";"Cluster_28";"BL";0;0;0;0;0;0.166666666666667;0;0;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Sporobolomyces_Cluster_283";"Cluster_283";"BL";0;0;0;0;0;0;0;0;0.25;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Metschnikowia_Cluster_29";"Cluster_29";"BL";1;0.333333333333333;0;1;1;0.666666666666667;1;0;0.166666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Unknown_Cluster_291";"Cluster_291";"BL";0;0;0;0;0;0;0;0;0.166666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Pichia_Cluster_3";"Cluster_3";"BL";0;0;1;0.166666666666667;0;0;0;0.25;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Metschnikowia_Cluster_31";"Cluster_31";"BL";1;0.166666666666667;0;0.666666666666667;1;0.833333333333333;1;0;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Malassezia_Cluster_33";"Cluster_33";"BL";0;0.166666666666667;0.5;0;0;0;0;0;0.166666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Wickerhamomyces_Cluster_34";"Cluster_34";"BL";0;0.5;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Metschnikowia_Cluster_344";"Cluster_344";"BL";0.5;0;0;0;0.25;0.166666666666667;0.4;0;0.25;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Metschnikowia_Cluster_35";"Cluster_35";"BL";1;0.833333333333333;1;1;1;0.833333333333333;1;0;0.416666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Podosphaera_Cluster_37";"Cluster_37";"BL";0;0;0;0;0;0;0;0;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Metschnikowia_Cluster_38";"Cluster_38";"BL";1;0.333333333333333;1;1;1;0.833333333333333;1;0.25;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Metschnikowia_Cluster_39";"Cluster_39";"BL";0.75;0;1;0.833333333333333;1;0.666666666666667;1;0.5;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Unknown_Cluster_4";"Cluster_4";"BL";0;0;0;0;0;0;0;0;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;0;NA
+"ITS";"Wickerhamomyces_Cluster_40";"Cluster_40";"BL";0;0.333333333333333;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Unknown_Cluster_409";"Cluster_409";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Metschnikowia_Cluster_41";"Cluster_41";"BL";1;0.333333333333333;0.5;0.833333333333333;1;0.833333333333333;1;0.25;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Metschnikowia_Cluster_43";"Cluster_43";"BL";0.75;0;0;0.833333333333333;0.75;0.666666666666667;1;0;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Metschnikowia_Cluster_44";"Cluster_44";"BL";1;0.666666666666667;0;1;1;0.833333333333333;1;0.25;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Filobasidium_Cluster_46";"Cluster_46";"BL";0;0;0.5;0;0;0;0;0;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Metschnikowia_Cluster_49";"Cluster_49";"BL";1;0.5;0;0.666666666666667;0.5;0.666666666666667;0.8;0;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Cladosporium_Cluster_5";"Cluster_5";"BL";1;1;1;0.166666666666667;0.75;0;0.2;1;1;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Metschnikowia_Cluster_50";"Cluster_50";"BL";1;0.5;0;1;1;0.833333333333333;1;0;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Metschnikowia_Cluster_53";"Cluster_53";"BL";1;0.166666666666667;0;0.833333333333333;0.75;0.833333333333333;1;0;0.416666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Unknown_Cluster_55";"Cluster_55";"BL";1;0.833333333333333;0;0;0;0;0;0.25;0.916666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Metschnikowia_Cluster_57";"Cluster_57";"BL";0.5;0.333333333333333;0;0.666666666666667;0.5;0.666666666666667;0.4;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Unknown_Cluster_6";"Cluster_6";"BL";0.5;0;1;0;0;0.166666666666667;0;1;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;0;NA
+"ITS";"Metschnikowia_Cluster_61";"Cluster_61";"BL";0;0.166666666666667;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Unknown_Cluster_62";"Cluster_62";"BL";0.5;0;0;0;0;0;0;0;0.916666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Metschnikowia_Cluster_64";"Cluster_64";"BL";0.5;0;0;0.5;0.5;0.333333333333333;0.8;0;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Metschnikowia_Cluster_67";"Cluster_67";"BL";1;0.333333333333333;0;1;1;0.666666666666667;1;0;0.416666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Aureobasidium_Cluster_7";"Cluster_7";"BL";0.25;0;0.5;0;0;0;0;0.75;0.583333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;0;NA
+"ITS";"Metschnikowia_Cluster_70";"Cluster_70";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Unknown_Cluster_73";"Cluster_73";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;1;NA
+"ITS";"Metschnikowia_Cluster_739";"Cluster_739";"BL";0;0;0;0;0.25;0.166666666666667;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Metschnikowia_Cluster_76";"Cluster_76";"BL";0;0;0;0;0;0;0;0;0.75;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Metschnikowia_Cluster_8";"Cluster_8";"BL";1;1;1;1;1;0.833333333333333;1;0;0.666666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0.5;NA
+"ITS";"Metschnikowia_Cluster_81";"Cluster_81";"BL";0.75;0;0;0.333333333333333;0.5;0.5;0.6;0;0.166666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Cladosporium_Cluster_85";"Cluster_85";"BL";0.5;0.833333333333333;0;0;0.25;0;0;0;0.833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0;NA
+"ITS";"Dothiora_Cluster_87";"Cluster_87";"BL";0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Unknown_Cluster_9";"Cluster_9";"BL";0;0;0;0;0;0;0.2;0;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Metschnikowia_Cluster_91";"Cluster_91";"BL";0.5;0.166666666666667;0;0.5;0;0.666666666666667;0.8;0;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Ramularia_Cluster_92";"Cluster_92";"BL";0;0;0;0;0;0;0;0;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Metschnikowia_Cluster_95";"Cluster_95";"BL";1;0.333333333333333;0;0.666666666666667;1;0.666666666666667;1;0;0.416666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;NA
+"ITS";"Pichia_Cluster_1";"Cluster_1";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;0;0;0.666666666666667;1;0.833333333333333;0.25;0.6;0.666666666666667;0.2;0.636363636363636;0;0.3;0.416666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2
+"ITS";"Hanseniaspora_Cluster_10";"Cluster_10";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;1;1;0.833333333333333;0.777777777777778;1;1;0.5;1;1;0.8;1;0.5;1;0.75;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_104";"Cluster_104";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.111111111111111;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Vishniacozyma_Cluster_108";"Cluster_108";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.5;0.333333333333333;0;0;0;0;0.2;0;0;0;0;0;0.166666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Pichia_Cluster_11";"Cluster_11";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0.166666666666667;0;0;0;0;0.181818181818182;0;0;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_117";"Cluster_117";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.111111111111111;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Neocucurbitaria_Cluster_1196";"Cluster_1196";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.125;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Cutaneotrichosporon_Cluster_12";"Cluster_12";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0.166666666666667;0.111111111111111;0;0;0.75;0.2;0;0;0;0.25;0;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.4
+"ITS";"Taphrina_Cluster_121";"Cluster_121";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.125;1;0.666666666666667;0;0;0.166666666666667;0;0;0;0;0;0;0.1;0.583333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Vishniacozyma_Cluster_123";"Cluster_123";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Cladosporium_Cluster_13";"Cluster_13";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.125;0;0;0;0;0;0;0;0;0;0;0;0.166666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_138";"Cluster_138";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.222222222222222;0;0;0;0;0;0;0.272727272727273;0;0.2;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Cladosporium_Cluster_14";"Cluster_14";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;1;0.666666666666667;0;0;0;0;0;0.111111111111111;0;0;0.5;0.3;1;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2
+"ITS";"Unknown_Cluster_147";"Cluster_147";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.75;0.333333333333333;0;0;0;0;0;0;0;0;0;0.1;0.166666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Stemphylium_Cluster_148";"Cluster_148";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.875;0;0;0;0;0;0;0;0;0;0.25;0;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_15";"Cluster_15";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.111111111111111;0;0;0.25;0.2;0.333333333333333;0.2;0.272727272727273;0.5;0.2;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.6
+"ITS";"Unknown_Cluster_152";"Cluster_152";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;1;0.166666666666667;0;0;0;0;0;0;0;0;0;0;0.833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Unknown_Cluster_154";"Cluster_154";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.5;0.166666666666667;0;0;0;0;0;0;0;0;0;0;0.166666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Vishniacozyma_Cluster_155";"Cluster_155";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.125;0;0;0;0;0;0;0;0;0;0;0;0.166666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Penicillium_Cluster_16";"Cluster_16";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_160";"Cluster_160";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.111111111111111;0;0;0.25;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Rachicladosporium_Cluster_163";"Cluster_163";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;1;0.333333333333333;0;0;0;0;0;0;0;0;0;0;0.25;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Unknown_Cluster_167";"Cluster_167";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0.2;0.111111111111111;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Unknown_Cluster_17";"Cluster_17";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0.5;0.222222222222222;0;0.333333333333333;0;0.2;0.222222222222222;0;0.181818181818182;0;0.2;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2
+"ITS";"Metschnikowia_Cluster_18";"Cluster_18";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0.2;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Hanseniaspora_Cluster_19";"Cluster_19";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;1;1;0.5;0.555555555555556;1;1;0.25;0.6;0.777777777777778;0.8;0.818181818181818;0.5;1;0.666666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Vishniacozyma_Cluster_197";"Cluster_197";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.125;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Pichia_Cluster_2";"Cluster_2";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;0;0;0.555555555555556;1;0.833333333333333;0;0.6;0.666666666666667;0.2;0.636363636363636;0;0.2;0.416666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2
+"ITS";"Alternaria_Cluster_20";"Cluster_20";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;1;0.166666666666667;0;0;0;0;0;0;0;0;0.5;0;0.833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_21";"Cluster_21";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;0.5;0.166666666666667;0.333333333333333;1;0;0.25;1;0.555555555555556;0.8;0.454545454545454;0.25;0.5;0.583333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.4
+"ITS";"Taphrina_Cluster_210";"Cluster_210";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.25;0.166666666666667;0;0;0;0;0;0;0;0;0;0;0.75;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Unknown_Cluster_211";"Cluster_211";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0.166666666666667;0;0;0;0;0.2;0;0;0;0.25;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Mucor_Cluster_22";"Cluster_22";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0.5;0;0;0;0;0.5;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Cladosporium_Cluster_224";"Cluster_224";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_227";"Cluster_227";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_23";"Cluster_23";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.375;0.5;0.333333333333333;0.444444444444444;1;0;0;0.8;0.444444444444444;0.6;0.272727272727273;0.5;0.5;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2
+"ITS";"Alternaria_Cluster_237";"Cluster_237";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.75;0;0;0;0;0;0;0;0;0;0;0;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Dioszegia_Cluster_249";"Cluster_249";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.75;0.166666666666667;0;0;0;0;0;0;0;0;0;0;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Wickerhamomyces_Cluster_25";"Cluster_25";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.111111111111111;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_251";"Cluster_251";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0.25;0.2;0;0;0;0;0.2;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Cladosporium_Cluster_252";"Cluster_252";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.25;0;0;0;0;0;0;0;0;0;0;0;0.583333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_257";"Cluster_257";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0.166666666666667;0.222222222222222;0;0;0.25;0.4;0;0;0.0909090909090909;0;0.2;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_26";"Cluster_26";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;0.625;0.166666666666667;0.333333333333333;0;0;0.5;0.4;0.444444444444444;0.2;0.454545454545454;0.5;0.4;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.6
+"ITS";"Unknown_Cluster_27";"Cluster_27";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0.0909090909090909;0;0.2;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2
+"ITS";"Cladosporium_Cluster_276";"Cluster_276";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Penicillium_Cluster_28";"Cluster_28";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0.166666666666667;0;0.2;0;0;0;0;0;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Sporobolomyces_Cluster_283";"Cluster_283";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_29";"Cluster_29";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.111111111111111;0;0;0;0;0;0;0.181818181818182;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Unknown_Cluster_291";"Cluster_291";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Pichia_Cluster_3";"Cluster_3";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.25;0;0;0.444444444444444;0;0;0;0;0.333333333333333;0;0.363636363636364;0;0;0.416666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2
+"ITS";"Metschnikowia_Cluster_31";"Cluster_31";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.125;0;0;1;0;0;0.4;0.111111111111111;0.4;0.0909090909090909;0.25;0.3;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2
+"ITS";"Malassezia_Cluster_33";"Cluster_33";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.6
+"ITS";"Wickerhamomyces_Cluster_34";"Cluster_34";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0.166666666666667;0;0;0;0.2;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_344";"Cluster_344";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0.25;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_35";"Cluster_35";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.125;0.125;0.166666666666667;0.444444444444444;1;0;0;0.6;0.444444444444444;0.8;0.545454545454545;0.5;0.4;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Podosphaera_Cluster_37";"Cluster_37";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.25;0;0;0;0;0;0;0;0;0;0;0;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_38";"Cluster_38";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.25;0;0.111111111111111;1;0;0.25;0.6;0.111111111111111;0.4;0.272727272727273;0.5;0.2;0.25;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.6
+"ITS";"Metschnikowia_Cluster_39";"Cluster_39";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.222222222222222;0;0;0;0.6;0;0.4;0;0;0.3;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Unknown_Cluster_4";"Cluster_4";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;1;1;0.666666666666667;0;0.5;0;0;0.4;0.222222222222222;0.8;0;0.5;0.7;0.666666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Wickerhamomyces_Cluster_40";"Cluster_40";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.111111111111111;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Unknown_Cluster_409";"Cluster_409";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_41";"Cluster_41";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.125;0.25;0.166666666666667;0.333333333333333;1;0;0;0.6;0.222222222222222;1;0.545454545454545;0.25;0.4;0.166666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_43";"Cluster_43";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;0.375;0.333333333333333;0.333333333333333;0;0;0;0.6;0.444444444444444;0.6;0.363636363636364;0.5;0.6;0.25;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2
+"ITS";"Metschnikowia_Cluster_44";"Cluster_44";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.333333333333333;0;0;0;0.2;0.111111111111111;0;0.272727272727273;0.5;0.2;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.8
+"ITS";"Filobasidium_Cluster_46";"Cluster_46";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;1;0.5;0;0;0;0.75;0.2;0;0;0;0.5;0.3;0.916666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.6
+"ITS";"Metschnikowia_Cluster_49";"Cluster_49";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.375;0;0.111111111111111;0.5;0;0.25;0.2;0.111111111111111;0.4;0.0909090909090909;0.5;0.2;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2
+"ITS";"Cladosporium_Cluster_5";"Cluster_5";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.125;1;0.833333333333333;0;0;0;0;0.2;0.222222222222222;0.2;0;0.25;0.4;1;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2
+"ITS";"Metschnikowia_Cluster_50";"Cluster_50";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.125;0.166666666666667;0.333333333333333;0;0;0;0.2;0.222222222222222;0.2;0.545454545454545;0.5;0.3;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_53";"Cluster_53";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.111111111111111;0;0;0.25;0;0;0;0;0.25;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Unknown_Cluster_55";"Cluster_55";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.5;0.166666666666667;0;0;0;0;0;0;0;0;0;0;0.166666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_57";"Cluster_57";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.111111111111111;0;0;0;0;0;0;0.181818181818182;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Unknown_Cluster_6";"Cluster_6";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.125;0;0;0;0.166666666666667;0;0.4;0.444444444444444;0.4;0.0909090909090909;0.5;0.2;0.5;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2
+"ITS";"Metschnikowia_Cluster_61";"Cluster_61";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.125;0.75;0.5;0;0;0;0;0.4;0;0.2;0;0;0.4;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Unknown_Cluster_62";"Cluster_62";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0.333333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_64";"Cluster_64";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_67";"Cluster_67";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.111111111111111;0;0;0;0.2;0.111111111111111;0;0.0909090909090909;0.5;0.2;0.416666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Aureobasidium_Cluster_7";"Cluster_7";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.875;1;1;0.111111111111111;0;0;0.5;0.6;0.111111111111111;0.6;0.0909090909090909;0.5;0.8;1;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.4
+"ITS";"Metschnikowia_Cluster_70";"Cluster_70";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;1;0;0;0.4;0;0.4;0;0;0.2;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Unknown_Cluster_73";"Cluster_73";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_739";"Cluster_739";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_76";"Cluster_76";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_8";"Cluster_8";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.125;0.333333333333333;0.444444444444444;1;0;0.5;0.6;0.333333333333333;0.4;0.454545454545454;0.5;0.2;0.166666666666667;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1
+"ITS";"Metschnikowia_Cluster_81";"Cluster_81";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0.0909090909090909;0.25;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Cladosporium_Cluster_85";"Cluster_85";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.375;0;0;0;0;0;0;0;0;0;0;0;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Dothiora_Cluster_87";"Cluster_87";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0.625;1;0.5;0;0;0;0;0.4;0;0;0;0;0.6;0.833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Unknown_Cluster_9";"Cluster_9";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0.5;0.222222222222222;0.5;0.333333333333333;0.25;0.2;0.222222222222222;0.4;0.181818181818182;0;0.4;0.0833333333333333;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.2
+"ITS";"Metschnikowia_Cluster_91";"Cluster_91";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.333333333333333;0.5;0;0;0;0.333333333333333;0;0.363636363636364;0;0.1;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Ramularia_Cluster_92";"Cluster_92";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Metschnikowia_Cluster_95";"Cluster_95";"CH";NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.111111111111111;0.5;0;0.25;0.2;0.111111111111111;0;0.181818181818182;0.5;0.2;0;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0
+"ITS";"Pichia_Cluster_1";"Cluster_1";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0.25;0.818181818181818;0.916666666666667;1;0.5;0.9;0.5;1;0;0.6;0.285714285714286;NA;NA;NA;NA
+"ITS";"Hanseniaspora_Cluster_10";"Cluster_10";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;1;0.727272727272727;0;1;0.5;0.6;0.75;0.909090909090909;1;1;1;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_104";"Cluster_104";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.0833333333333333;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Vishniacozyma_Cluster_108";"Cluster_108";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.125;0.875;0.181818181818182;0;0.25;0;0;0.25;0;0;0;0.142857142857143;NA;NA;NA;NA
+"ITS";"Pichia_Cluster_11";"Cluster_11";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.625;0.375;0.454545454545454;0.416666666666667;0.5;0;0.5;0.75;0.454545454545454;0;0.4;0.0714285714285715;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_117";"Cluster_117";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.125;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Neocucurbitaria_Cluster_1196";"Cluster_1196";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Cutaneotrichosporon_Cluster_12";"Cluster_12";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.375;0.0909090909090909;0.25;0;0;0;0;0;0.666666666666667;0;0;NA;NA;NA;NA
+"ITS";"Taphrina_Cluster_121";"Cluster_121";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.375;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Vishniacozyma_Cluster_123";"Cluster_123";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.375;0;0;0.125;0;0;0;0;0;0;0.142857142857143;NA;NA;NA;NA
+"ITS";"Cladosporium_Cluster_13";"Cluster_13";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.375;1;0.181818181818182;0;0;0;0;0;0;0;0;0.714285714285714;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_138";"Cluster_138";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Cladosporium_Cluster_14";"Cluster_14";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.125;1;0.0909090909090909;0;0;0;0;0;0;0;0;0.714285714285714;NA;NA;NA;NA
+"ITS";"Unknown_Cluster_147";"Cluster_147";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.125;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Stemphylium_Cluster_148";"Cluster_148";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.625;0;0;0;0;0.1;0;0;0.333333333333333;0.4;0.0714285714285715;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_15";"Cluster_15";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0.1;0;0;0.333333333333333;0;0;NA;NA;NA;NA
+"ITS";"Unknown_Cluster_152";"Cluster_152";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.125;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Unknown_Cluster_154";"Cluster_154";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.25;0.875;0.0909090909090909;0;0;0;0;0;0;0;0;0.642857142857143;NA;NA;NA;NA
+"ITS";"Vishniacozyma_Cluster_155";"Cluster_155";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.125;0.625;0;0;0;0;0;0;0;0;0;0.214285714285714;NA;NA;NA;NA
+"ITS";"Penicillium_Cluster_16";"Cluster_16";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.375;0.25;0;0;0;0;0;0;0;0;0;0.428571428571429;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_160";"Cluster_160";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Rachicladosporium_Cluster_163";"Cluster_163";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Unknown_Cluster_167";"Cluster_167";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.75;0.0909090909090909;0;0;0;0;0;0;0.333333333333333;0;0.142857142857143;NA;NA;NA;NA
+"ITS";"Unknown_Cluster_17";"Cluster_17";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.0833333333333333;0;0;0;0;0;0;0.2;0;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_18";"Cluster_18";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.0833333333333333;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Hanseniaspora_Cluster_19";"Cluster_19";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;1;0.818181818181818;0;1;0.5;0.9;1;0.909090909090909;0.666666666666667;1;0.857142857142857;NA;NA;NA;NA
+"ITS";"Vishniacozyma_Cluster_197";"Cluster_197";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.625;0.0909090909090909;0;0.125;0;0;0;0;0;0;0.214285714285714;NA;NA;NA;NA
+"ITS";"Pichia_Cluster_2";"Cluster_2";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.625;0.25;0.636363636363636;0.666666666666667;0.75;0.5;0.9;0.5;0.818181818181818;0;0.6;0.214285714285714;NA;NA;NA;NA
+"ITS";"Alternaria_Cluster_20";"Cluster_20";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;1;0.454545454545454;0;0;0;0;1;0;1;0.4;0.857142857142857;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_21";"Cluster_21";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.125;0;0.0833333333333333;0;0;0;0;0.0909090909090909;0;0;0;NA;NA;NA;NA
+"ITS";"Taphrina_Cluster_210";"Cluster_210";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.125;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Unknown_Cluster_211";"Cluster_211";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.25;0.0909090909090909;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Mucor_Cluster_22";"Cluster_22";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Cladosporium_Cluster_224";"Cluster_224";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.25;0.5;0.0909090909090909;0;0;0;0;0;0;0;0;0.357142857142857;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_227";"Cluster_227";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_23";"Cluster_23";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.125;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Alternaria_Cluster_237";"Cluster_237";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.125;0.625;0;0;0;0;0;0;0;0;0;0.0714285714285715;NA;NA;NA;NA
+"ITS";"Dioszegia_Cluster_249";"Cluster_249";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Wickerhamomyces_Cluster_25";"Cluster_25";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.625;0.25;0.727272727272727;0.0833333333333333;0.5;0.5;0.2;0;0.181818181818182;0;0.2;0.142857142857143;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_251";"Cluster_251";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Cladosporium_Cluster_252";"Cluster_252";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.375;0;0;0;0;0;0;0;0;0;0.357142857142857;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_257";"Cluster_257";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_26";"Cluster_26";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.0833333333333333;0;0;0;0;0.181818181818182;0;0;0;NA;NA;NA;NA
+"ITS";"Unknown_Cluster_27";"Cluster_27";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;0;0.0909090909090909;0.333333333333333;0.5;0.5;0.3;0;0.545454545454545;0;0.4;0.0714285714285715;NA;NA;NA;NA
+"ITS";"Cladosporium_Cluster_276";"Cluster_276";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.25;0.375;0.0909090909090909;0;0.125;0;0;0;0;0;0;0.5;NA;NA;NA;NA
+"ITS";"Penicillium_Cluster_28";"Cluster_28";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.75;0.625;0.363636363636364;0;0.25;0;0;0.5;0;0;0.6;0.714285714285714;NA;NA;NA;NA
+"ITS";"Sporobolomyces_Cluster_283";"Cluster_283";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0.214285714285714;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_29";"Cluster_29";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.25;0.0909090909090909;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Unknown_Cluster_291";"Cluster_291";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Pichia_Cluster_3";"Cluster_3";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0.625;0.454545454545454;0.833333333333333;1;1;0.9;1;0.909090909090909;0.333333333333333;1;0.785714285714286;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_31";"Cluster_31";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.0833333333333333;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Malassezia_Cluster_33";"Cluster_33";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0.125;0;0;0;0;0.333333333333333;0;0.142857142857143;NA;NA;NA;NA
+"ITS";"Wickerhamomyces_Cluster_34";"Cluster_34";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.625;0.25;0.727272727272727;0.0833333333333333;0.5;0.5;0.1;0;0.181818181818182;0;0.2;0.142857142857143;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_344";"Cluster_344";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_35";"Cluster_35";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.125;0;0.0833333333333333;0;0;0.1;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Podosphaera_Cluster_37";"Cluster_37";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;1;0;0;0;0;0;0;0;0;0;0.428571428571429;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_38";"Cluster_38";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0.333333333333333;0;0;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_39";"Cluster_39";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Unknown_Cluster_4";"Cluster_4";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.5;0;0;0.125;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Wickerhamomyces_Cluster_40";"Cluster_40";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.625;0.125;0.727272727272727;0;0.5;0.5;0.1;0;0.181818181818182;0;0.2;0.142857142857143;NA;NA;NA;NA
+"ITS";"Unknown_Cluster_409";"Cluster_409";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_41";"Cluster_41";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.0833333333333333;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_43";"Cluster_43";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.0833333333333333;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_44";"Cluster_44";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.125;0.0909090909090909;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Filobasidium_Cluster_46";"Cluster_46";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.625;0.0909090909090909;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_49";"Cluster_49";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Cladosporium_Cluster_5";"Cluster_5";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;1;0.909090909090909;0;0.375;0;0;0.75;0;1;0.8;0.928571428571429;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_50";"Cluster_50";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.0833333333333333;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_53";"Cluster_53";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.125;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Unknown_Cluster_55";"Cluster_55";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;1;0.727272727272727;0;0.25;0;0;0.25;0;0;0.4;0.928571428571429;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_57";"Cluster_57";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.0833333333333333;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Unknown_Cluster_6";"Cluster_6";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;0.75;0.0909090909090909;0;0;0;0.2;0.25;0.181818181818182;1;0.8;1;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_61";"Cluster_61";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.25;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Unknown_Cluster_62";"Cluster_62";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;0.75;0.272727272727273;0;0.125;0;0;0.25;0;0;0.4;0.785714285714286;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_64";"Cluster_64";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_67";"Cluster_67";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0.0909090909090909;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Aureobasidium_Cluster_7";"Cluster_7";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;0.875;0.454545454545454;0.0833333333333333;0;0;0;0;0.181818181818182;1;0.4;0.642857142857143;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_70";"Cluster_70";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Unknown_Cluster_73";"Cluster_73";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_739";"Cluster_739";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_76";"Cluster_76";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_8";"Cluster_8";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.125;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_81";"Cluster_81";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.0833333333333333;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Cladosporium_Cluster_85";"Cluster_85";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.25;0.625;0.272727272727273;0;0;0;0;0;0;0;0.2;0.714285714285714;NA;NA;NA;NA
+"ITS";"Dothiora_Cluster_87";"Cluster_87";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0.25;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Unknown_Cluster_9";"Cluster_9";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0.0833333333333333;0.125;0;0;0;0;0;0.2;0;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_91";"Cluster_91";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Ramularia_Cluster_92";"Cluster_92";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.125;0.75;0.363636363636364;0;0;0;0;0;0;0;0;0.142857142857143;NA;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_95";"Cluster_95";"ST";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;0;0;0;0;0;0;0;0;0;0;0;NA;NA;NA;NA
+"ITS";"Pichia_Cluster_1";"Cluster_1";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;NA;NA;NA
+"ITS";"Hanseniaspora_Cluster_10";"Cluster_10";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_104";"Cluster_104";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Vishniacozyma_Cluster_108";"Cluster_108";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Pichia_Cluster_11";"Cluster_11";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_117";"Cluster_117";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Neocucurbitaria_Cluster_1196";"Cluster_1196";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Cutaneotrichosporon_Cluster_12";"Cluster_12";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;NA;NA;NA
+"ITS";"Taphrina_Cluster_121";"Cluster_121";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Vishniacozyma_Cluster_123";"Cluster_123";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Cladosporium_Cluster_13";"Cluster_13";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_138";"Cluster_138";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Cladosporium_Cluster_14";"Cluster_14";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Unknown_Cluster_147";"Cluster_147";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Stemphylium_Cluster_148";"Cluster_148";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_15";"Cluster_15";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Unknown_Cluster_152";"Cluster_152";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Unknown_Cluster_154";"Cluster_154";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Vishniacozyma_Cluster_155";"Cluster_155";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Penicillium_Cluster_16";"Cluster_16";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_160";"Cluster_160";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Rachicladosporium_Cluster_163";"Cluster_163";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Unknown_Cluster_167";"Cluster_167";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Unknown_Cluster_17";"Cluster_17";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_18";"Cluster_18";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Hanseniaspora_Cluster_19";"Cluster_19";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Vishniacozyma_Cluster_197";"Cluster_197";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Pichia_Cluster_2";"Cluster_2";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Alternaria_Cluster_20";"Cluster_20";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_21";"Cluster_21";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Taphrina_Cluster_210";"Cluster_210";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Unknown_Cluster_211";"Cluster_211";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Mucor_Cluster_22";"Cluster_22";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;NA;NA;NA
+"ITS";"Cladosporium_Cluster_224";"Cluster_224";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_227";"Cluster_227";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_23";"Cluster_23";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Alternaria_Cluster_237";"Cluster_237";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Dioszegia_Cluster_249";"Cluster_249";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Wickerhamomyces_Cluster_25";"Cluster_25";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_251";"Cluster_251";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Cladosporium_Cluster_252";"Cluster_252";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_257";"Cluster_257";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_26";"Cluster_26";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Unknown_Cluster_27";"Cluster_27";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Cladosporium_Cluster_276";"Cluster_276";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Penicillium_Cluster_28";"Cluster_28";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Sporobolomyces_Cluster_283";"Cluster_283";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_29";"Cluster_29";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Unknown_Cluster_291";"Cluster_291";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Pichia_Cluster_3";"Cluster_3";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;1;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_31";"Cluster_31";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Malassezia_Cluster_33";"Cluster_33";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Wickerhamomyces_Cluster_34";"Cluster_34";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_344";"Cluster_344";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_35";"Cluster_35";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Podosphaera_Cluster_37";"Cluster_37";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_38";"Cluster_38";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_39";"Cluster_39";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Unknown_Cluster_4";"Cluster_4";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Wickerhamomyces_Cluster_40";"Cluster_40";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;NA;NA;NA
+"ITS";"Unknown_Cluster_409";"Cluster_409";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_41";"Cluster_41";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_43";"Cluster_43";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_44";"Cluster_44";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Filobasidium_Cluster_46";"Cluster_46";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_49";"Cluster_49";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Cladosporium_Cluster_5";"Cluster_5";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_50";"Cluster_50";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_53";"Cluster_53";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Unknown_Cluster_55";"Cluster_55";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_57";"Cluster_57";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Unknown_Cluster_6";"Cluster_6";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_61";"Cluster_61";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Unknown_Cluster_62";"Cluster_62";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0.5;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_64";"Cluster_64";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_67";"Cluster_67";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Aureobasidium_Cluster_7";"Cluster_7";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_70";"Cluster_70";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Unknown_Cluster_73";"Cluster_73";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_739";"Cluster_739";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_76";"Cluster_76";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_8";"Cluster_8";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_81";"Cluster_81";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Cladosporium_Cluster_85";"Cluster_85";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Dothiora_Cluster_87";"Cluster_87";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Unknown_Cluster_9";"Cluster_9";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_91";"Cluster_91";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Ramularia_Cluster_92";"Cluster_92";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
+"ITS";"Metschnikowia_Cluster_95";"Cluster_95";"na";NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;NA;0;NA;NA;NA
