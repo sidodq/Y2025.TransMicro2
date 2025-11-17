@@ -785,7 +785,7 @@ ps_16S_rare_larvae_BL <- Subset_physeq(ps_16S_rare_larvae, FruitType == "BL")
 ps_ITS_rare_larvae_BL <- Subset_physeq(ps_ITS_rare_larvae, FruitType == "BL")
 
 L_sharedASVs_B_BL <- Common_ASVs(ps_16S_rare_larvae_BL, 0.7)
-L_sharedASVs_Y_BL <- Common_ASVs(ps_ITS_rare_larvae_BL, 1)
+L_sharedASVs_Y_BL <- Common_ASVs(ps_ITS_rare_larvae_BL, 0.7)
 
 
 ### PuPAE ###
@@ -807,11 +807,11 @@ D_sharedASVs_Y_BL <- Common_ASVs(ps_ITS_rare_daughters_BL, 0.7)
 ### CH
 ```{r}
 ### FRUITS 0 DAYS ###
-ps_rare_16S_Fruits0days_CH <- Subset_physeq(ps_rare_16S_Fruits0days, FruitType == "CH") # NO DATA
+ps_rare_16S_Fruits0days_CH <- Subset_physeq(ps_rare_16S_Fruits0days, FruitType == "CH") 
 ps_rare_ITS_Fruits0days_CH <- Subset_physeq(ps_rare_ITS_Fruits0days, FruitType == "CH")
 
-f_sharedASVs_B_CH <- Common_ASVs(ps_rare_16S_Fruits0days, 1)
-f_sharedASVs_Y_CH <- Common_ASVs(ps_rare_ITS_Fruits0days_CH, 1) # 1 SAMPLE ONLY
+f_sharedASVs_B_CH <- Common_ASVs(ps_rare_16S_Fruits0days, 0.7)
+f_sharedASVs_Y_CH <- Common_ASVs(ps_rare_ITS_Fruits0days_CH, 0.7) 
 
 
 ### MOTHERS ###
@@ -819,15 +819,31 @@ ps_16S_rare_mothers_CH <- Subset_physeq(ps_16S_rare_mothers, FruitType == "CH")
 ps_ITS_rare_mothers_CH <- Subset_physeq(ps_ITS_rare_mothers, FruitType == "CH")
 
 M_sharedASVs_B_CH <- Common_ASVs(ps_16S_rare_mothers_CH, 0.7)
-M_sharedASVs_Y_CH <- Common_ASVs(ps_ITS_rare_mothers_CH, 1)
+M_sharedASVs_Y_CH <- Common_ASVs(ps_ITS_rare_mothers_CH, 0.7)
 
 
 ### LARVAE ###
 ps_16S_rare_larvae_CH <- Subset_physeq(ps_16S_rare_larvae, FruitType == "CH")
 ps_ITS_rare_larvae_CH <- Subset_physeq(ps_ITS_rare_larvae, FruitType == "CH")
 
-L_sharedASVs_B_CH <- Common_ASVs(ps_16S_rare_larvae_CH, 0.8)
-L_sharedASVs_Y_CH <- Common_ASVs(ps_ITS_rare_larvae_CH, 1)
+L_sharedASVs_B_CH <- Common_ASVs(ps_16S_rare_larvae_CH, 0.7)
+L_sharedASVs_Y_CH <- Common_ASVs(ps_ITS_rare_larvae_CH, 0.7)
+
+
+### PUPAE ###
+ps_16S_rare_pupae_CH <- Subset_physeq(ps_16S_rare_pupae, FruitType == "CH")
+ps_ITS_rare_pupae_CH <- Subset_physeq(ps_ITS_rare_pupae, FruitType == "CH")
+
+P_sharedASVs_B_CH <- Common_ASVs(ps_16S_rare_pupae_CH, 0.7)
+P_sharedASVs_Y_CH <- Common_ASVs(ps_ITS_rare_pupae_CH, 0.7)
+
+
+### DAUGHTERS ###
+ps_16S_rare_daughters_CH <- Subset_physeq(ps_16S_rare_daughters, FruitType == "CH")
+ps_ITS_rare_daughters_CH <- Subset_physeq(ps_ITS_rare_daughters, FruitType == "CH")
+
+D_sharedASVs_B_CH <- Common_ASVs(ps_16S_rare_daughters_CH, 0.7)
+D_sharedASVs_Y_CH <- Common_ASVs(ps_ITS_rare_daughters_CH, 0.7)
 ```
 
 ### ST
@@ -836,24 +852,40 @@ L_sharedASVs_Y_CH <- Common_ASVs(ps_ITS_rare_larvae_CH, 1)
 ps_rare_16S_Fruits0days_ST <- Subset_physeq(ps_rare_16S_Fruits0days, FruitType == "ST") 
 ps_rare_ITS_Fruits0days_ST <- Subset_physeq(ps_rare_ITS_Fruits0days, FruitType == "ST")
 
-f_sharedASVs_B_ST <- Common_ASVs(ps_rare_16S_Fruits0days_ST, 1)
-f_sharedASVs_Y_ST <- Common_ASVs(ps_rare_ITS_Fruits0days_ST, 1) # 1 SAMPLE ONLY
+f_sharedASVs_B_ST <- Common_ASVs(ps_rare_16S_Fruits0days_ST, 0.7)
+f_sharedASVs_Y_ST <- Common_ASVs(ps_rare_ITS_Fruits0days_ST, 0.7) 
 
 
 ### MOTHERS ###
 ps_16S_rare_mothers_ST <- Subset_physeq(ps_16S_rare_mothers, FruitType == "ST")
 ps_ITS_rare_mothers_ST <- Subset_physeq(ps_ITS_rare_mothers, FruitType == "ST")
 
-M_sharedASVs_B_ST <- Common_ASVs(ps_16S_rare_mothers_ST, 0.8)
-M_sharedASVs_Y_ST <- Common_ASVs(ps_ITS_rare_mothers_ST, 0.85)
+M_sharedASVs_B_ST <- Common_ASVs(ps_16S_rare_mothers_ST, 0.7)
+M_sharedASVs_Y_ST <- Common_ASVs(ps_ITS_rare_mothers_ST, 0.7)
 
 
 ### LARVAE ###
 ps_16S_rare_larvae_ST <- Subset_physeq(ps_16S_rare_larvae, FruitType == "ST")
 ps_ITS_rare_larvae_ST <- Subset_physeq(ps_ITS_rare_larvae, FruitType == "ST")
 
-L_sharedASVs_B_ST <- Common_ASVs(ps_16S_rare_larvae_ST, 1)
-L_sharedASVs_Y_ST <- Common_ASVs(ps_ITS_rare_larvae_ST, 1)
+L_sharedASVs_B_ST <- Common_ASVs(ps_16S_rare_larvae_ST, 0.7)
+L_sharedASVs_Y_ST <- Common_ASVs(ps_ITS_rare_larvae_ST, 0.7)
+
+
+### PUPAE ###
+ps_16S_rare_pupae_ST <- Subset_physeq(ps_16S_rare_pupae, FruitType == "ST")
+ps_ITS_rare_pupae_ST <- Subset_physeq(ps_ITS_rare_pupae, FruitType == "ST")
+
+P_sharedASVs_B_ST <- Common_ASVs(ps_16S_rare_pupae_ST, 0.7)
+P_sharedASVs_Y_ST <- Common_ASVs(ps_ITS_rare_pupae_ST, 0.7)
+
+
+### DAUGHTERS ###
+ps_16S_rare_daughters_ST <- Subset_physeq(ps_16S_rare_daughters, FruitType == "ST")
+ps_ITS_rare_daughters_ST <- Subset_physeq(ps_ITS_rare_daughters, FruitType == "ST")
+
+D_sharedASVs_B_ST <- Common_ASVs(ps_16S_rare_daughters_ST, 0.7)
+D_sharedASVs_Y_ST <- Common_ASVs(ps_ITS_rare_daughters_ST, 0.7)
 ```
 
 
