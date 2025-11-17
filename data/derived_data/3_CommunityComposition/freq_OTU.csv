@@ -1,0 +1,79 @@
+"Marker";"SampleType";"OTU";"OTU_ID";"Family";"Genus";"Species";"Frequency"
+"16S";"Artific_Inf_Fruits_5_6days";"Cluster_4";4;"Erwiniaceae";"Unknown";"Unknown";0.8125
+"16S";"Fruits_0days";"Cluster_4";4;"Erwiniaceae";"Unknown";"Unknown";1
+"16S";"G0_Adults_Fruits_2days";"Cluster_4";4;"Erwiniaceae";"Unknown";"Unknown";0.761904761904762
+"16S";"G1_Pupae_Nat_Inf_Fruit_5_6days";"Cluster_4";4;"Erwiniaceae";"Unknown";"Unknown";1
+"16S";"Nat_Inf_Fruits_5_6days";"Cluster_4";4;"Erwiniaceae";"Unknown";"Unknown";1
+"16S";"Artific_Inf_Fruits_5_6days";"Cluster_5";5;"Acetobacteraceae";"Gluconobacter";"Unknown";0.75
+"16S";"G1_Adults_Fruits";"Cluster_5";5;"Acetobacteraceae";"Gluconobacter";"Unknown";1
+"16S";"G1_Larvae_Nat_Inf_Fruits_5_6days";"Cluster_5";5;"Acetobacteraceae";"Gluconobacter";"Unknown";0.714285714285714
+"16S";"G1_Pupae_Fruits";"Cluster_5";5;"Acetobacteraceae";"Gluconobacter";"Unknown";1
+"16S";"G1_Pupae_Nat_Inf_Fruit_5_6days";"Cluster_5";5;"Acetobacteraceae";"Gluconobacter";"Unknown";1
+"16S";"G1_PupalCase_Fruits";"Cluster_5";5;"Acetobacteraceae";"Gluconobacter";"Unknown";1
+"16S";"Nat_Inf_Fruits_5_6days";"Cluster_5";5;"Acetobacteraceae";"Gluconobacter";"Unknown";0.833333333333333
+"16S";"G0_Adults_0days";"Cluster_7";7;"Acetobacteraceae";"Acetobacter";"Unknown";1
+"16S";"G0_Adults_Medium_2days";"Cluster_7";7;"Acetobacteraceae";"Acetobacter";"Unknown";1
+"16S";"G1_Larvae_Fruits";"Cluster_7";7;"Acetobacteraceae";"Acetobacter";"Unknown";0.727272727272727
+"16S";"G1_Larvae_Medium_5_6days";"Cluster_7";7;"Acetobacteraceae";"Acetobacter";"Unknown";1
+"16S";"G1_PupalCase_Fruits";"Cluster_7";7;"Acetobacteraceae";"Acetobacter";"Unknown";0.785714285714286
+"16S";"Medium_5_6days";"Cluster_7";7;"Acetobacteraceae";"Acetobacter";"Unknown";0.916666666666667
+"16S";"G1_Adults_Nat_Inf_Fruit_5_6days";"Cluster_9";9;"Acetobacteraceae";"Unknown";"Acetobacter thailandicus";1
+"16S";"G1_Adults_Nat_Inf_Fruit_5_6days";"Cluster_10";10;"Acetobacteraceae";"Gluconobacter";"Unknown";1
+"16S";"G0_Adults_Medium_2days";"Cluster_13";13;"Lactobacillaceae";"Fructilactobacillus";"Unknown";1
+"16S";"G1_Larvae_Medium_5_6days";"Cluster_14";14;"Lactobacillaceae";"Levilactobacillus";"Lactobacillus brevis";1
+"16S";"Medium_5_6days";"Cluster_14";14;"Lactobacillaceae";"Levilactobacillus";"Lactobacillus brevis";0.833333333333333
+"16S";"G0_Adults_Medium_2days";"Cluster_17";17;"Acetobacteraceae";"Unknown";"Unknown";1
+"16S";"G1_Adults_Nat_Inf_Fruit_5_6days";"Cluster_19";19;"Acetobacteraceae";"Unknown";"Acetobacter thailandicus";1
+"16S";"G1_PupalCase_Fruits";"Cluster_19";19;"Acetobacteraceae";"Unknown";"Acetobacter thailandicus";0.857142857142857
+"16S";"G1_Adults_Nat_Inf_Fruit_5_6days";"Cluster_43";43;"Moraxellaceae";"Acinetobacter";"Unknown";1
+"ITS";"G1_Adults_Nat_Inf_Fruit_5_6days";"Cluster_1";1;"Pichiaceae";"Pichia";"Pichia kluyveri";1
+"ITS";"G1_Larvae_Fruits";"Cluster_1";1;"Pichiaceae";"Pichia";"Pichia kluyveri";0.722222222222222
+"ITS";"G1_PupalCase_Fruits";"Cluster_1";1;"Pichiaceae";"Pichia";"Pichia kluyveri";0.814814814814815
+"ITS";"G1_Adults_Nat_Inf_Fruit_5_6days";"Cluster_2";2;"Pichiaceae";"Pichia";"Pichia kluyveri";1
+"ITS";"G1_PupalCase_Fruits";"Cluster_2";2;"Pichiaceae";"Pichia";"Pichia kluyveri";0.703703703703704
+"ITS";"G0_Adults_0days";"Cluster_3";3;"Pichiaceae";"Pichia";"Pichia terricola";1
+"ITS";"Fruits_0days";"Cluster_4";4;"Sclerotiniaceae";"Unknown";"Unknown";0.722222222222222
+"ITS";"Fruits_0days";"Cluster_5";5;"Cladosporiaceae";"Cladosporium";"Unknown";1
+"ITS";"G0_Adults_Fruits_2days";"Cluster_5";5;"Cladosporiaceae";"Cladosporium";"Unknown";0.91304347826087
+"ITS";"Medium_5_6days";"Cluster_5";5;"Cladosporiaceae";"Cladosporium";"Unknown";0.727272727272727
+"ITS";"Nat_Uninf_Fruits_5_6days";"Cluster_5";5;"Cladosporiaceae";"Cladosporium";"Unknown";0.973684210526316
+"ITS";"Medium_5_6days";"Cluster_6";6;"Sclerotiniaceae";"Unknown";"Unknown";0.818181818181818
+"ITS";"Fruits_0days";"Cluster_7";7;"Saccotheciaceae";"Aureobasidium";"Aureobasidium pullulans";0.888888888888889
+"ITS";"Medium_5_6days";"Cluster_7";7;"Saccotheciaceae";"Aureobasidium";"Aureobasidium pullulans";0.727272727272727
+"ITS";"Nat_Uninf_Fruits_5_6days";"Cluster_7";7;"Saccotheciaceae";"Aureobasidium";"Aureobasidium pullulans";0.736842105263158
+"ITS";"G0_Adults_Medium_2days";"Cluster_8";8;"Metschnikowiaceae";"Metschnikowia";"Metschnikowia chrysoperlae";1
+"ITS";"G1_Adults_Nat_Inf_Fruit_5_6days";"Cluster_8";8;"Metschnikowiaceae";"Metschnikowia";"Metschnikowia chrysoperlae";1
+"ITS";"Artific_Inf_Fruits_5_6days";"Cluster_10";10;"Saccharomycodaceae";"Hanseniaspora";"Unknown";0.8
+"ITS";"Fruits_0days";"Cluster_10";10;"Saccharomycodaceae";"Hanseniaspora";"Unknown";0.888888888888889
+"ITS";"G1_Adults_Nat_Inf_Fruit_5_6days";"Cluster_10";10;"Saccharomycodaceae";"Hanseniaspora";"Unknown";1
+"ITS";"G1_Larvae_Fruits";"Cluster_10";10;"Saccharomycodaceae";"Hanseniaspora";"Unknown";0.777777777777778
+"ITS";"G1_Larvae_Nat_Inf_Fruits_5_6days";"Cluster_10";10;"Saccharomycodaceae";"Hanseniaspora";"Unknown";0.857142857142857
+"ITS";"G1_Pupae_Nat_Inf_Fruit_5_6days";"Cluster_10";10;"Saccharomycodaceae";"Hanseniaspora";"Unknown";0.777777777777778
+"ITS";"G1_PupalCase_Fruits";"Cluster_10";10;"Saccharomycodaceae";"Hanseniaspora";"Unknown";0.851851851851852
+"ITS";"Nat_Inf_Fruits_5_6days";"Cluster_10";10;"Saccharomycodaceae";"Hanseniaspora";"Unknown";1
+"ITS";"G1_Larvae_Medium_5_6days";"Cluster_12";12;"Trichosporonaceae";"Cutaneotrichosporon";"Cutaneotrichosporon curvatum";0.833333333333333
+"ITS";"Fruits_0days";"Cluster_14";14;"Cladosporiaceae";"Cladosporium";"Cladosporium herbarum";1
+"ITS";"Nat_Uninf_Fruits_5_6days";"Cluster_14";14;"Cladosporiaceae";"Cladosporium";"Cladosporium herbarum";0.894736842105263
+"ITS";"G0_Adults_Medium_2days";"Cluster_15";15;"Metschnikowiaceae";"Metschnikowia";"Unknown";0.714285714285714
+"ITS";"Artific_Inf_Fruits_5_6days";"Cluster_19";19;"Saccharomycodaceae";"Hanseniaspora";"Unknown";0.8
+"ITS";"Fruits_0days";"Cluster_19";19;"Saccharomycodaceae";"Hanseniaspora";"Unknown";0.888888888888889
+"ITS";"G1_Adults_Nat_Inf_Fruit_5_6days";"Cluster_19";19;"Saccharomycodaceae";"Hanseniaspora";"Unknown";1
+"ITS";"G1_Larvae_Fruits";"Cluster_19";19;"Saccharomycodaceae";"Hanseniaspora";"Unknown";0.777777777777778
+"ITS";"G1_Pupae_Fruits";"Cluster_19";19;"Saccharomycodaceae";"Hanseniaspora";"Unknown";0.72
+"ITS";"G1_Pupae_Nat_Inf_Fruit_5_6days";"Cluster_19";19;"Saccharomycodaceae";"Hanseniaspora";"Unknown";0.888888888888889
+"ITS";"G1_PupalCase_Fruits";"Cluster_19";19;"Saccharomycodaceae";"Hanseniaspora";"Unknown";0.777777777777778
+"ITS";"Nat_Inf_Fruits_5_6days";"Cluster_19";19;"Saccharomycodaceae";"Hanseniaspora";"Unknown";1
+"ITS";"Fruits_0days";"Cluster_20";20;"Pleosporaceae";"Alternaria";"Unknown";0.944444444444444
+"ITS";"Nat_Uninf_Fruits_5_6days";"Cluster_20";20;"Pleosporaceae";"Alternaria";"Unknown";0.789473684210526
+"ITS";"G1_Adults_Nat_Inf_Fruit_5_6days";"Cluster_21";21;"Metschnikowiaceae";"Metschnikowia";"Metschnikowia pulcherrima";1
+"ITS";"G1_Larvae_Nat_Inf_Fruits_5_6days";"Cluster_21";21;"Metschnikowiaceae";"Metschnikowia";"Metschnikowia pulcherrima";0.714285714285714
+"ITS";"G1_Adults_Nat_Inf_Fruit_5_6days";"Cluster_23";23;"Metschnikowiaceae";"Metschnikowia";"Unknown";1
+"ITS";"G0_Adults_Medium_2days";"Cluster_26";26;"Metschnikowiaceae";"Metschnikowia";"Metschnikowia leonuri";0.714285714285714
+"ITS";"G1_Adults_Nat_Inf_Fruit_5_6days";"Cluster_31";31;"Metschnikowiaceae";"Metschnikowia";"Metschnikowia chrysoperlae";1
+"ITS";"G1_Adults_Nat_Inf_Fruit_5_6days";"Cluster_35";35;"Metschnikowiaceae";"Metschnikowia";"Metschnikowia pulcherrima";1
+"ITS";"G0_Adults_Medium_2days";"Cluster_38";38;"Metschnikowiaceae";"Metschnikowia";"Metschnikowia pulcherrima";0.714285714285714
+"ITS";"G1_Adults_Nat_Inf_Fruit_5_6days";"Cluster_38";38;"Metschnikowiaceae";"Metschnikowia";"Metschnikowia pulcherrima";1
+"ITS";"G1_Adults_Nat_Inf_Fruit_5_6days";"Cluster_41";41;"Metschnikowiaceae";"Metschnikowia";"Metschnikowia pulcherrima";1
+"ITS";"Fruits_0days";"Cluster_46";46;"Filobasidiaceae";"Filobasidium";"Filobasidium wieringae";0.722222222222222
+"ITS";"Fruits_0days";"Cluster_55";55;"Unknown";"Unknown";"Unknown";0.777777777777778
+"ITS";"G1_Adults_Nat_Inf_Fruit_5_6days";"Cluster_70";70;"Metschnikowiaceae";"Metschnikowia";"Metschnikowia chrysoperlae";1

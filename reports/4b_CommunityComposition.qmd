@@ -1,0 +1,79 @@
+---
+title: "4b Communities Composition"
+author: "Sido Dunis-Quarré, Nicolas O. Rode"
+date: "`r format(Sys.Date(), '%d-%B-%Y')`"
+format:
+  html:
+    toc: true
+    toc-location: left
+    number-sections: true
+    embed-resources: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+devtools::load_all()
+```
+
+# Load melted data
+
+```{r}
+##Issue with sample MS_204 (I guess there was an extra ";" in the text of one of the columns)
+data16S <- tidyr::as_tibble(read.table(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_melt_without_MS_204.csv"), header=TRUE, sep=";"))|>
+dplyr::mutate(Marker="16S")
+head(data16S)
+
+##Issue with sample MS_204 (I guess there was an extra ";" in the text of one of the columns)
+dataITS <- tidyr::as_tibble(read.table(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "ITS_melt_without_MS_204.csv"), header=TRUE, sep=";"))|>
+dplyr::mutate(Marker="ITS")
+
+data <- dplyr::bind_rows(data16S, dataITS)
+
+## OTU present or absent
+data <- data |>
+dplyr::mutate(present=dplyr::if_else(Abundance>0, 1, 0))
+```
+
+
+# Compute frequency across all three fruits 
+
+```{r}
+
+freq_data <- data |>
+  dplyr::group_by(Marker, SampleType, OTU, Family, Genus, Species) |>
+  dplyr::summarise(Frequency = mean(present))
+
+
+freq_data <- freq_data |>
+  dplyr::filter(Frequency>0.7) |>
+  tidyr::separate(col = "OTU", into=c(NA, "OTU_ID"), sep="_",
+  remove = FALSE) |>
+  dplyr::mutate(OTU_ID=as.numeric(OTU_ID)) |>
+  dplyr::arrange(Marker, OTU_ID)
+
+write.table(x=freq_data, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "freq_OTU.csv"), sep=";", row.names=FALSE)
+
+```
+
+# Compute frequency per fruit 
+
+```{r}
+
+freq_data_fruit <- data |>
+  dplyr::group_by(Marker, FruitType, SampleType, OTU, Family, Genus, Species) |>
+  dplyr::summarise(Frequency = mean(present))
+
+
+freq_data_fruit <- freq_data_fruit |>
+  dplyr::filter(Frequency>0.7) |>
+  tidyr::separate(col = "OTU", into=c(NA, "OTU_ID"), sep="_",
+  remove = FALSE) |>
+  dplyr::mutate(OTU_ID=as.numeric(OTU_ID)) |>
+  dplyr::arrange(Marker, OTU_ID, FruitType)
+
+write.table(x=freq_data_fruit, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "freq_OTU_fruit.csv"), sep=";", row.names=FALSE)
+
+```
