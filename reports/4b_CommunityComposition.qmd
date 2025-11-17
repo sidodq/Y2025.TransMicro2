@@ -43,7 +43,7 @@ dplyr::mutate(present=dplyr::if_else(Abundance>0, 1, 0))
 
 freq_data <- data |>
   dplyr::group_by(Marker, SampleType, OTU, Family, Genus, Species) |>
-  dplyr::summarise(Frequency = mean(present))|>
+  dplyr::summarise(Frequency = mean(present), Sample_size=dplyr::n())|>
   dplyr::ungroup()
 
 
@@ -63,7 +63,8 @@ write.table(x=freq_data_70, file=file.path(here::here(), "data", "derived_data",
 prevalence_data <- freq_data |>
   dplyr::filter(OTU%in%freq_data_70$OTU)|>
   dplyr::mutate(OTUname=paste(Genus, OTU, sep="_"))|>
-  dplyr::select(Marker, OTUname, OTU, SampleType, Frequency)
+  dplyr::mutate(SampleType_Sample_size=paste0(SampleType, " (n=", Sample_size, ")")) |>
+  dplyr::select(Marker, OTUname, OTU, SampleType, SampleType_Sample_size, Frequency)
 
 prevalence_data_wide <- prevalence_data  |>
   tidyr::pivot_wider(names_from = SampleType, values_from = Frequency)
@@ -75,14 +76,14 @@ write.table(x=prevalence_data_wide, file=file.path(here::here(), "data", "derive
 ```{r}
 p16S <- prevalence_data |>
   dplyr::filter(Marker=="16S")|>
-  ggplot(aes(SampleType, OTUname, fill= Frequency)) + 
+  ggplot(aes(SampleType_Sample_size, OTUname, fill= Frequency)) + 
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 pITS <- prevalence_data |>
   dplyr::filter(Marker=="ITS")|>
-  ggplot(aes(SampleType, OTUname, fill= Frequency)) + 
+  ggplot(aes(SampleType_Sample_size, OTUname, fill= Frequency)) + 
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
@@ -90,7 +91,7 @@ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
 panel
-ggsave(filename = "prevalence.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 15, units = "cm")
+ggsave(filename = "prevalence_allfruits.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 20, units = "cm")
 ```
 
 # Taxa across per fruit
@@ -99,7 +100,7 @@ ggsave(filename = "prevalence.jpg", path = file.path(here::here(), "plots", "3_C
 
 freq_data_fruit <- data |>
   dplyr::group_by(Marker, FruitType, SampleType, OTU, Family, Genus, Species) |>
-  dplyr::summarise(Frequency = mean(present))|>
+  dplyr::summarise(Frequency = mean(present), Sample_size=dplyr::n())|>
   dplyr::ungroup()
 
 
@@ -115,7 +116,7 @@ write.table(x=freq_data_fruit70, file=file.path(here::here(), "data", "derived_d
 ```
 
 
-## Prevalence
+## Prevalence per fruit type
 ```{r}
 
 prevalence_data_fruit <- freq_data_fruit |>
@@ -123,7 +124,9 @@ prevalence_data_fruit <- freq_data_fruit |>
   dplyr::mutate(OTUname=paste(Genus, OTU, sep="_"))|>
   dplyr::mutate(SampleType_Fruit=paste(SampleType, FruitType, sep="_"))|>
   dplyr::mutate(Fruit_SampleType=paste(FruitType, SampleType, sep="_"))|>
-  dplyr::select(Marker, OTUname, OTU, SampleType, SampleType_Fruit, Fruit_SampleType, FruitType, Frequency)
+  dplyr::mutate(SampleType_Fruit_Sample_size=paste0(SampleType_Fruit, "(n=",Sample_size, ")"))|>
+  dplyr::mutate(Fruit_SampleType_Sample_size=paste0(Fruit_SampleType, "(n=", Sample_size, ")"))|>
+  dplyr::select(Marker, OTUname, OTU, SampleType, SampleType_Fruit, Fruit_SampleType, SampleType_Fruit_Sample_size, FruitType, Fruit_SampleType_Sample_size, Frequency)
 
 prevalence_data_fruit_wide <- prevalence_data_fruit  |>
   tidyr::pivot_wider(names_from = SampleType_Fruit, values_from = Frequency)
@@ -135,14 +138,14 @@ write.table(x=prevalence_data_wide, file=file.path(here::here(), "data", "derive
 ```{r}
 p16S <- prevalence_data_fruit |>
   dplyr::filter(Marker=="16S")|>
-  ggplot(aes(SampleType_Fruit, OTUname, fill= Frequency)) + 
+  ggplot(aes(SampleType_Fruit_Sample_size, OTUname, fill= Frequency)) + 
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 pITS <- prevalence_data_fruit |>
   dplyr::filter(Marker=="ITS")|>
-  ggplot(aes(SampleType_Fruit, OTUname, fill= Frequency)) + 
+  ggplot(aes(SampleType_Fruit_Sample_size, OTUname, fill= Frequency)) + 
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
@@ -150,7 +153,7 @@ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
 panel
-ggsave(filename = "prevalence_sampletype_fruit.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 15, units = "cm")
+ggsave(filename = "prevalence_sampletype_fruit.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 20, units = "cm")
 ```
 
 
@@ -158,7 +161,7 @@ ggsave(filename = "prevalence_sampletype_fruit.jpg", path = file.path(here::here
 ```{r}
 p16S <- prevalence_data_fruit |>
   dplyr::filter(Marker=="16S")|>
-  ggplot(aes(Fruit_SampleType, OTUname, fill= Frequency)) + 
+  ggplot(aes(Fruit_SampleType_Sample_size, OTUname, fill= Frequency)) + 
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
@@ -166,7 +169,7 @@ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
 
 pITS <- prevalence_data_fruit |>
   dplyr::filter(Marker=="ITS")|>
-  ggplot(aes(Fruit_SampleType, OTUname, fill= Frequency)) + 
+  ggplot(aes(Fruit_SampleType_Sample_size, OTUname, fill= Frequency)) + 
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
@@ -175,5 +178,5 @@ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
 panel
-ggsave(filename = "prevalence_fruit_sampletype.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 15, units = "cm")
+ggsave(filename = "prevalence_fruit_sampletype.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 20, units = "cm")
 ```
