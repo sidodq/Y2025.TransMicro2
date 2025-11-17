@@ -161,14 +161,16 @@ p16S <- prevalence_data_fruit |>
   ggplot(aes(Fruit_SampleType, OTUname, fill= Frequency)) + 
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
-theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  geom_vline(xintercept=c(9.5, 23.5, 24.5), linetype=1, color="red", linewidth=1)
 
 pITS <- prevalence_data_fruit |>
   dplyr::filter(Marker=="ITS")|>
   ggplot(aes(Fruit_SampleType, OTUname, fill= Frequency)) + 
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
-theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  geom_vline(xintercept=c(9.5, 23.5, 24.5), linetype=1, color="red", linewidth=1)
 
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
