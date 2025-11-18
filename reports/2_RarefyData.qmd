@@ -277,69 +277,74 @@ write.table(otu_table(ps_rare_16S), file=file.path(here::here(), "data", "derive
 
 write.table(tax_table(ps_rare_16S), file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM1&2_tax_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
-metadata_df <- as.data.frame(sample_data(ps_rare_16S))
-write.xlsx(metadata_df, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ps_rare_16S_sample_data.xlsx"), rowNames = TRUE)
+metadata_16S_df <- as.data.frame(sample_data(ps_rare_16S))
+write.xlsx(metadata_16S_df, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ps_rare_16S_sample_data.xlsx"), rowNames = TRUE)
 
-
+out_rarefied_16S <- anti_join(mtd, metadata_16S_df, by ="ID_pool")
+write.xlsx(out_rarefied_16S, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "mtd_samples_outAfterRare_16S.xlsx"), rowNames = TRUE)
+  
 
 write.table(otu_table(ps_rare_ITS), file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM1&2_otu_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 write.table(tax_table(ps_rare_ITS), file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM1&2_tax_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
-metadata_df <- as.data.frame(sample_data(ps_rare_ITS))
-write.xlsx(metadata_df, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ps_rare_ITS_sample_data.xlsx"), rowNames = TRUE)
+metadata_ITS_df <- as.data.frame(sample_data(ps_rare_ITS))
+write.xlsx(metadata_ITS_df, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ps_rare_ITS_sample_data.xlsx"), rowNames = TRUE)
+
+out_rarefied_ITS <- anti_join(mtd, metadata_ITS_df, by ="ID_pool")
+write.xlsx(out_rarefied_ITS, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "mtd_samples_outAfterRare_ITS.xlsx"), rowNames = TRUE)
 ```
 
-# 5. Select data
+<!-- # 5. Select data -->
 
-```{r}
-# Filter samples by abundance (>0) and by type (fruits and suzu at all stages from "Focal_Sites")
-ps_16S_rare_FocalSites_All <- subset_samples(ps_rare_16S, grepl("Focal_Sites", Sample_Category)) # not only Sample_Category == "All_stages_focal_Sites"
-ps_16S_rare_FocalSites_All <- prune_taxa(taxa_sums(ps_16S_rare_FocalSites_All)>0, ps_16S_rare_FocalSites_All)
+<!-- ```{r} -->
+<!-- # Filter samples by abundance (>0) and by type (fruits and suzu at all stages from "Focal_Sites") -->
+<!-- ps_16S_rare_FocalSites_All <- subset_samples(ps_rare_16S, grepl("Focal_Sites", Sample_Category)) # not only Sample_Category == "All_stages_focal_Sites" -->
+<!-- ps_16S_rare_FocalSites_All <- prune_taxa(taxa_sums(ps_16S_rare_FocalSites_All)>0, ps_16S_rare_FocalSites_All) -->
 
-ps_ITS_rare_FocalSites_All <- subset_samples(ps_rare_ITS, grepl("Focal_Sites", Sample_Category))
-ps_ITS_rare_FocalSites_All <- prune_taxa(taxa_sums(ps_ITS_rare_FocalSites_All)>0, ps_ITS_rare_FocalSites_All)
+<!-- ps_ITS_rare_FocalSites_All <- subset_samples(ps_rare_ITS, grepl("Focal_Sites", Sample_Category)) -->
+<!-- ps_ITS_rare_FocalSites_All <- prune_taxa(taxa_sums(ps_ITS_rare_FocalSites_All)>0, ps_ITS_rare_FocalSites_All) -->
 
-#
-S_ps_16S_rare_Larvae <- subset_samples(S_ps_rare_16S, SampleType %in% c("G0_Adults_Fruits_2days", "G0_Adults_Medium_2days", "G1_Larvae_Fruits", "G1_Larvae_Nat_Inf_Fruits_5_6days"," G1_Larvae_Medium_5_6days")) 
-#S_ps_16S_rare_Larvae <- subset_samples(S_ps_rare_16S, grepl("Larvae", Sample_Category))
-S_ps_16S_rare_Larvae <- prune_taxa(taxa_sums(S_ps_16S_rare_Larvae)>0, S_ps_16S_rare_Larvae)
+<!-- # -->
+<!-- S_ps_16S_rare_Larvae <- subset_samples(S_ps_rare_16S, SampleType %in% c("G0_Adults_Fruits_2days", "G0_Adults_Medium_2days", "G1_Larvae_Fruits", "G1_Larvae_Nat_Inf_Fruits_5_6days"," G1_Larvae_Medium_5_6days"))  -->
+<!-- #S_ps_16S_rare_Larvae <- subset_samples(S_ps_rare_16S, grepl("Larvae", Sample_Category)) -->
+<!-- S_ps_16S_rare_Larvae <- prune_taxa(taxa_sums(S_ps_16S_rare_Larvae)>0, S_ps_16S_rare_Larvae) -->
 
-S_ps_ITS_rare_Larvae <- subset_samples(S_ps_rare_ITS, SampleType ==  c("G1_Larvae_Fruits","G1_Larvae_Medium_5_6days", "G0_Adults_Fruits_2days", "G0_Adults_Medium_2days"))
-S_ps_ITS_rare_Larvae <- prune_taxa(taxa_sums(S_ps_ITS_rare_Larvae)>0, S_ps_ITS_rare_Larvae)
+<!-- S_ps_ITS_rare_Larvae <- subset_samples(S_ps_rare_ITS, SampleType ==  c("G1_Larvae_Fruits","G1_Larvae_Medium_5_6days", "G0_Adults_Fruits_2days", "G0_Adults_Medium_2days")) -->
+<!-- S_ps_ITS_rare_Larvae <- prune_taxa(taxa_sums(S_ps_ITS_rare_Larvae)>0, S_ps_ITS_rare_Larvae) -->
 
-# Fruits 
-S_ps_16S_rare_Fruits <- subset_samples(S_ps_rare_16S, SampleType %in% c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days"))
-S_ps_16S_rare_Fruits <- prune_taxa(taxa_sums(S_ps_16S_rare_Fruits)>0,S_ps_16S_rare_Fruits)
+<!-- # Fruits  -->
+<!-- S_ps_16S_rare_Fruits <- subset_samples(S_ps_rare_16S, SampleType %in% c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days")) -->
+<!-- S_ps_16S_rare_Fruits <- prune_taxa(taxa_sums(S_ps_16S_rare_Fruits)>0,S_ps_16S_rare_Fruits) -->
 
-S_ps_ITS_rare_Fruits <- subset_samples(S_ps_rare_ITS, SampleType %in% c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days"))
-S_ps_ITS_rare_Fruits <- prune_taxa(taxa_sums(S_ps_ITS_rare_Fruits)>0,S_ps_ITS_rare_Fruits) 
+<!-- S_ps_ITS_rare_Fruits <- subset_samples(S_ps_rare_ITS, SampleType %in% c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days")) -->
+<!-- S_ps_ITS_rare_Fruits <- prune_taxa(taxa_sums(S_ps_ITS_rare_Fruits)>0,S_ps_ITS_rare_Fruits)  -->
 
-# Fruits 0 days
-S_ps_16S_rare_Fruits_0days <- subset_samples(S_ps_rare_16S, SampleType == "Fruits_0days")
-S_ps_16S_rare_Fruits_0days <- prune_taxa(taxa_sums(S_ps_16S_rare_Fruits_0days)>0,S_ps_16S_rare_Fruits_0days)
+<!-- # Fruits 0 days -->
+<!-- S_ps_16S_rare_Fruits_0days <- subset_samples(S_ps_rare_16S, SampleType == "Fruits_0days") -->
+<!-- S_ps_16S_rare_Fruits_0days <- prune_taxa(taxa_sums(S_ps_16S_rare_Fruits_0days)>0,S_ps_16S_rare_Fruits_0days) -->
 
-S_ps_ITS_rare_Fruits_0days <- subset_samples(S_ps_rare_ITS, SampleType =="Fruits_0days")
-S_ps_ITS_rare_Fruits_0days <- prune_taxa(taxa_sums(S_ps_ITS_rare_Fruits_0days)>0,S_ps_ITS_rare_Fruits_0days)
+<!-- S_ps_ITS_rare_Fruits_0days <- subset_samples(S_ps_rare_ITS, SampleType =="Fruits_0days") -->
+<!-- S_ps_ITS_rare_Fruits_0days <- prune_taxa(taxa_sums(S_ps_ITS_rare_Fruits_0days)>0,S_ps_ITS_rare_Fruits_0days) -->
 
-# Main expe : transmission
-ps_16S_rare_expe <- subset_samples(ps_16S_rare_FocalSites_All, SampleType %in% c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days" ))
-ps_16S_rare_expe <- prune_taxa(taxa_sums(ps_16S_rare_expe)>0, ps_16S_rare_expe)
+<!-- # Main expe : transmission -->
+<!-- ps_16S_rare_expe <- subset_samples(ps_16S_rare_FocalSites_All, SampleType %in% c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days" )) -->
+<!-- ps_16S_rare_expe <- prune_taxa(taxa_sums(ps_16S_rare_expe)>0, ps_16S_rare_expe) -->
 
-ps_ITS_rare_expe <- subset_samples(ps_ITS_rare_FocalSites_All, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
-ps_ITS_rare_expe <- prune_taxa(taxa_sums(ps_ITS_rare_expe)>0, ps_ITS_rare_expe)
+<!-- ps_ITS_rare_expe <- subset_samples(ps_ITS_rare_FocalSites_All, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days")) -->
+<!-- ps_ITS_rare_expe <- prune_taxa(taxa_sums(ps_ITS_rare_expe)>0, ps_ITS_rare_expe) -->
 
-#
-S_ps_16S_rare_G1 <- subset_samples(S_ps_rare_16S, SampleType %in% c("G1_Adults_Fruits", "G1_Larvae_Fruits", "G1_Pupae_Fruits"))
-S_ps_16S_rare_G1 <- prune_taxa(taxa_sums(S_ps_16S_rare_G1)>0, S_ps_16S_rare_G1)
+<!-- # -->
+<!-- S_ps_16S_rare_G1 <- subset_samples(S_ps_rare_16S, SampleType %in% c("G1_Adults_Fruits", "G1_Larvae_Fruits", "G1_Pupae_Fruits")) -->
+<!-- S_ps_16S_rare_G1 <- prune_taxa(taxa_sums(S_ps_16S_rare_G1)>0, S_ps_16S_rare_G1) -->
 
-S_ps_ITS_rare_G1 <- subset_samples(S_ps_rare_ITS, SampleType ==  c("G1_Adults_Fruits", "G1_Larvae_Fruits", "G1_Pupae_Fruits"))
-S_ps_ITS_rare_G1 <- prune_taxa(taxa_sums(S_ps_ITS_rare_G1)>0, S_ps_ITS_rare_G1)
+<!-- S_ps_ITS_rare_G1 <- subset_samples(S_ps_rare_ITS, SampleType ==  c("G1_Adults_Fruits", "G1_Larvae_Fruits", "G1_Pupae_Fruits")) -->
+<!-- S_ps_ITS_rare_G1 <- prune_taxa(taxa_sums(S_ps_ITS_rare_G1)>0, S_ps_ITS_rare_G1) -->
 
-# Only natural infested samples (fruits inf/unInf, larvae, pupae, G1 adults)
-S_ps_16S_rare_Inf <- subset_samples(S_ps_rare_16S, SampleType %in% c("Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "G1_Larvae_Nat_Inf_Fruits_5_6days", "G1_Pupae_Nat_Inf_Fruit_5_6days", "G1_Adults_Nat_Inf_Fruit_5_6days"))
-S_ps_16S_rare_Inf <- prune_taxa(taxa_sums(S_ps_16S_rare_Inf)>0, S_ps_16S_rare_Inf)
+<!-- # Only natural infested samples (fruits inf/unInf, larvae, pupae, G1 adults) -->
+<!-- S_ps_16S_rare_Inf <- subset_samples(S_ps_rare_16S, SampleType %in% c("Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "G1_Larvae_Nat_Inf_Fruits_5_6days", "G1_Pupae_Nat_Inf_Fruit_5_6days", "G1_Adults_Nat_Inf_Fruit_5_6days")) -->
+<!-- S_ps_16S_rare_Inf <- prune_taxa(taxa_sums(S_ps_16S_rare_Inf)>0, S_ps_16S_rare_Inf) -->
 
-S_ps_ITS_rare_Inf <- subset_samples(S_ps_rare_ITS, SampleType %in%  c("Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "G1_Larvae_Nat_Inf_Fruits_5_6days", "G1_Pupae_Nat_Inf_Fruit_5_6days", "G1_Adults_Nat_Inf_Fruit_5_6days"))
-S_ps_ITS_rare_Inf <- prune_taxa(taxa_sums(S_ps_ITS_rare_Inf)>0, S_ps_ITS_rare_Inf)
-```
+<!-- S_ps_ITS_rare_Inf <- subset_samples(S_ps_rare_ITS, SampleType %in%  c("Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "G1_Larvae_Nat_Inf_Fruits_5_6days", "G1_Pupae_Nat_Inf_Fruit_5_6days", "G1_Adults_Nat_Inf_Fruit_5_6days")) -->
+<!-- S_ps_ITS_rare_Inf <- prune_taxa(taxa_sums(S_ps_ITS_rare_Inf)>0, S_ps_ITS_rare_Inf) -->
+<!-- ``` -->
