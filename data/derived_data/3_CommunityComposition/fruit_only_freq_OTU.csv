@@ -1,0 +1,5 @@
+"Marker";"SampleType";"OTU";"OTU_ID";"Family";"Genus";"Species";"Frequency";"Sample_size"
+"16S";"Artific_Inf_Fruits_5_6days";"Cluster_4";4;"Erwiniaceae";"Unknown";"Unknown";0.8125;16
+"16S";"Artific_Inf_Fruits_5_6days";"Cluster_5";5;"Acetobacteraceae";"Gluconobacter";"Unknown";0.75;16
+"ITS";"Artific_Inf_Fruits_5_6days";"Cluster_10";10;"Saccharomycodaceae";"Hanseniaspora";"Unknown";0.8;20
+"ITS";"Artific_Inf_Fruits_5_6days";"Cluster_19";19;"Saccharomycodaceae";"Hanseniaspora";"Unknown";0.8;20
