@@ -1,5 +1,28 @@
 "Marker";"SampleType";"OTU";"OTU_ID";"Family";"Genus";"Species";"Frequency";"Sample_size"
 "16S";"Artific_Inf_Fruits_5_6days";"Cluster_4";4;"Erwiniaceae";"Unknown";"Unknown";0.8125;16
+"16S";"Fruits_0days";"Cluster_4";4;"Erwiniaceae";"Unknown";"Unknown";1;11
 "16S";"Artific_Inf_Fruits_5_6days";"Cluster_5";5;"Acetobacteraceae";"Gluconobacter";"Unknown";0.75;16
+"16S";"Nat_Uninf_Fruits_5_6days";"Cluster_16";16;"Unknown";"Unknown";"Unknown";0.705882352941176;17
+"16S";"Nat_Uninf_Fruits_5_6days";"Cluster_27";27;"Moraxellaceae";"Unknown";"Unknown";0.823529411764706;17
+"16S";"Nat_Uninf_Fruits_5_6days";"Cluster_63";63;"Propionibacteriaceae";"Cutibacterium";"Unknown";0.823529411764706;17
+"16S";"Nat_Uninf_Fruits_5_6days";"Cluster_80";80;"Sphingomonadaceae";"Sphingomonas";"Unknown";0.705882352941176;17
+"ITS";"Fruits_0days";"Cluster_4";4;"Sclerotiniaceae";"Unknown";"Unknown";0.722222222222222;18
+"ITS";"Fruits_0days";"Cluster_5";5;"Cladosporiaceae";"Cladosporium";"Unknown";1;18
+"ITS";"Nat_Uninf_Fruits_5_6days";"Cluster_5";5;"Cladosporiaceae";"Cladosporium";"Unknown";1;24
+"ITS";"Nat_Uninf_Fruits_5_6days";"Cluster_6";6;"Sclerotiniaceae";"Unknown";"Unknown";0.833333333333333;24
+"ITS";"Fruits_0days";"Cluster_7";7;"Saccotheciaceae";"Aureobasidium";"Aureobasidium pullulans";0.888888888888889;18
+"ITS";"Nat_Uninf_Fruits_5_6days";"Cluster_7";7;"Saccotheciaceae";"Aureobasidium";"Aureobasidium pullulans";0.833333333333333;24
 "ITS";"Artific_Inf_Fruits_5_6days";"Cluster_10";10;"Saccharomycodaceae";"Hanseniaspora";"Unknown";0.8;20
+"ITS";"Fruits_0days";"Cluster_10";10;"Saccharomycodaceae";"Hanseniaspora";"Unknown";0.888888888888889;18
+"ITS";"Nat_Uninf_Fruits_5_6days";"Cluster_13";13;"Cladosporiaceae";"Cladosporium";"Unknown";0.75;24
+"ITS";"Fruits_0days";"Cluster_14";14;"Cladosporiaceae";"Cladosporium";"Cladosporium herbarum";1;18
+"ITS";"Nat_Uninf_Fruits_5_6days";"Cluster_14";14;"Cladosporiaceae";"Cladosporium";"Cladosporium herbarum";1;24
 "ITS";"Artific_Inf_Fruits_5_6days";"Cluster_19";19;"Saccharomycodaceae";"Hanseniaspora";"Unknown";0.8;20
+"ITS";"Fruits_0days";"Cluster_19";19;"Saccharomycodaceae";"Hanseniaspora";"Unknown";0.888888888888889;18
+"ITS";"Fruits_0days";"Cluster_20";20;"Pleosporaceae";"Alternaria";"Unknown";0.944444444444444;18
+"ITS";"Nat_Uninf_Fruits_5_6days";"Cluster_20";20;"Pleosporaceae";"Alternaria";"Unknown";0.875;24
+"ITS";"Fruits_0days";"Cluster_46";46;"Filobasidiaceae";"Filobasidium";"Filobasidium wieringae";0.722222222222222;18
+"ITS";"Fruits_0days";"Cluster_55";55;"Unknown";"Unknown";"Unknown";0.777777777777778;18
+"ITS";"Nat_Uninf_Fruits_5_6days";"Cluster_62";62;"Unknown";"Unknown";"Unknown";0.75;24
+"ITS";"Nat_Uninf_Fruits_5_6days";"Cluster_169";169;"Pleosporaceae";"Unknown";"Unknown";0.75;24
+"ITS";"Nat_Uninf_Fruits_5_6days";"Cluster_252";252;"Cladosporiaceae";"Cladosporium";"Unknown";0.75;24

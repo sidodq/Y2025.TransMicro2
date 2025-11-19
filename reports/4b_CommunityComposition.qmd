@@ -45,7 +45,7 @@ dplyr::mutate(present=dplyr::if_else(Abundance>0, 1, 0))
 
 ## Compare only fruit samples
 freq_data <- data |>
-dplyr::filter(FrozenLifeStage%in%c("FrozenLifeStage", "FruitLayedIn")) |>
+dplyr::filter(FrozenLifeStage%in%c("Fruit_samples", "FruitLayedIn")) |>
   dplyr::group_by(Marker, SampleType, OTU, Family, Genus, Species) |>
   dplyr::summarise(Frequency = mean(present), Sample_size=dplyr::n())|>
   dplyr::ungroup()
@@ -105,7 +105,7 @@ ggsave(filename = "fruit_only_prevalence_allfruits.jpg", path = file.path(here::
 
 ## Compare only fruit samples
 freq_data_fruit <- data |>
-dplyr::filter(FrozenLifeStage%in%c("FrozenLifeStage", "FruitLayedIn")) |>
+dplyr::filter(FrozenLifeStage%in%c("Fruit_samples", "FruitLayedIn")) |>
   dplyr::group_by(Marker, FruitType, SampleType, OTU, Family, Genus, Species) |>
   dplyr::summarise(Frequency = mean(present), Sample_size=dplyr::n())|>
   dplyr::ungroup()
