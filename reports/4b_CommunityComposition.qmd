@@ -177,7 +177,7 @@ p16S <- prevalence_data_fruit |>
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
-  geom_vline(xintercept=c(9.5, 23.5, 24.5), linetype=1, color="red", linewidth=1)
+  geom_vline(xintercept=c(2.5, 5.5), linetype=1, color="red", linewidth=1)
 
 pITS <- prevalence_data_fruit |>
   dplyr::filter(Marker=="ITS")|>
@@ -185,7 +185,7 @@ pITS <- prevalence_data_fruit |>
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
-  geom_vline(xintercept=c(9.5, 23.5, 24.5), linetype=1, color="red", linewidth=1)
+  geom_vline(xintercept=c(3.5, 6.5), linetype=1, color="red", linewidth=1)
 
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
