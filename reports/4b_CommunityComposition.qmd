@@ -35,13 +35,16 @@ data <- dplyr::bind_rows(data16S, dataITS)
 ## OTU present or absent
 data <- data |>
 dplyr::mutate(present=dplyr::if_else(Abundance>0, 1, 0))
+
 ```
 
 # Taxa across all three fruits
 ## Compute frequency across all three fruits 
 ```{r}
 
+## Compare only samples with life stages available
 freq_data <- data |>
+dplyr::filter(FruitSiteTypeVariety%in%c("FIN_CH_CDP", "IST_ST_CIF", "LOM_CH_CDP", "MIL_ST_MDB", "VAR_BL_LOC")) |>
   dplyr::group_by(Marker, SampleType, OTU, Family, Genus, Species) |>
   dplyr::summarise(Frequency = mean(present), Sample_size=dplyr::n())|>
   dplyr::ungroup()
@@ -95,11 +98,13 @@ panel
 ggsave(filename = "prevalence_allfruits.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 20, units = "cm")
 ```
 
-# Taxa across per fruit
+# Taxa per fruit
 ## Compute frequency per fruit 
 ```{r}
 
+## Compare only samples with life stages available
 freq_data_fruit <- data |>
+dplyr::filter(FruitSiteTypeVariety%in%c("FIN_CH_CDP", "IST_ST_CIF", "LOM_CH_CDP", "MIL_ST_MDB", "VAR_BL_LOC")) |>
   dplyr::group_by(Marker, FruitType, SampleType, OTU, Family, Genus, Species) |>
   dplyr::summarise(Frequency = mean(present), Sample_size=dplyr::n())|>
   dplyr::ungroup()
