@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Sido Dunis-Quarré, Nicolas O. Rode">
-<meta name="dcterms.date" content="2025-11-17">
+<meta name="dcterms.date" content="2025-11-19">
 
 <title>4b Communities Composition</title>
 <style>
@@ -3065,7 +3065,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 17, 2025</p>
+      <p class="date">November 19, 2025</p>
     </div>
   </div>
   
@@ -3209,12 +3209,13 @@ vertical-align: -.125em;
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>prevalence_data_fruit_wide <span class="ot">&lt;-</span> prevalence_data_fruit  <span class="sc">|&gt;</span></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>SampleType) <span class="sc">|&gt;</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>Fruit_SampleType) <span class="sc">|&gt;</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>SampleType_Fruit_Sample_size) <span class="sc">|&gt;</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>Fruit_SampleType_Sample_size) <span class="sc">|&gt;</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(<span class="at">names_from =</span> SampleType_Fruit, <span class="at">values_from =</span> Frequency)</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(<span class="at">x=</span>prevalence_data_fruit_wide, <span class="at">file=</span><span class="fu">file.path</span>(here<span class="sc">::</span><span class="fu">here</span>(), <span class="st">&quot;data&quot;</span>, <span class="st">&quot;derived_data&quot;</span>, <span class="st">&quot;3_CommunityComposition&quot;</span>, <span class="st">&quot;prevalence_data_fruit.csv&quot;</span>), <span class="at">sep=</span><span class="st">&quot;;&quot;</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>FruitType) <span class="sc">|&gt;</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>Fruit_SampleType) <span class="sc">|&gt;</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>SampleType_Fruit_Sample_size) <span class="sc">|&gt;</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>Fruit_SampleType_Sample_size) <span class="sc">|&gt;</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(<span class="at">names_from =</span> SampleType_Fruit, <span class="at">values_from =</span> Frequency)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(<span class="at">x=</span>prevalence_data_fruit_wide, <span class="at">file=</span><span class="fu">file.path</span>(here<span class="sc">::</span><span class="fu">here</span>(), <span class="st">&quot;data&quot;</span>, <span class="st">&quot;derived_data&quot;</span>, <span class="st">&quot;3_CommunityComposition&quot;</span>, <span class="st">&quot;prevalence_data_fruit.csv&quot;</span>), <span class="at">sep=</span><span class="st">&quot;;&quot;</span>, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="make-plot-sampletype_fruit" class="level2" data-number="3.3">

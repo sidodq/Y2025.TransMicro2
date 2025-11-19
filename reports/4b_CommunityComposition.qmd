@@ -131,6 +131,7 @@ prevalence_data_fruit <- freq_data_fruit |>
 
 prevalence_data_fruit_wide <- prevalence_data_fruit  |>
   dplyr::select(-SampleType) |>
+    dplyr::select(-FruitType) |>
   dplyr::select(-Fruit_SampleType) |>
     dplyr::select(-SampleType_Fruit_Sample_size) |>
   dplyr::select(-Fruit_SampleType_Sample_size) |>
