@@ -18,8 +18,8 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 devtools::load_all()
 ```
 
-# Load melted data
-
+# Compute frequency
+## Load melted data
 ```{r}
 ##Issue with sample MS_204 (I guess there was an extra ";" in the text of one of the columns)
 data16S <- tidyr::as_tibble(read.table(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_melt_without_MS_204.csv"), header=TRUE, sep=";"))|>
@@ -36,36 +36,48 @@ data <- dplyr::bind_rows(data16S, dataITS)
 data <- data |>
 dplyr::mutate(present=dplyr::if_else(Abundance>0, 1, 0))
 
-```
-
-# Fruit samples only
-## Taxa across all three fruits
-### Compute frequency across all three fruits 
-```{r}
-
-## Compare only fruit samples
-freq_data <- data |>
-dplyr::filter(FrozenLifeStage%in%c("Fruit_samples", "FruitLayedIn")) |>
+## Compute frequency per type of sample
+freq_data <- data  |>
   dplyr::group_by(Marker, SampleType, OTU, Family, Genus, Species) |>
   dplyr::summarise(Frequency = mean(present), Sample_size=dplyr::n())|>
-  dplyr::ungroup()
+  dplyr::ungroup()|>
+  dplyr::mutate(Marker_OTU=paste(Marker, OTU, sep="_"))
 
 
-freq_data_70 <- freq_data |>
+## Compute frequency per type of sample and fruit
+freq_data_perfruit <- data |>
+  dplyr::group_by(Marker, FruitType, SampleType, OTU, Family, Genus, Species) |>
+  dplyr::summarise(Frequency = mean(present), Sample_size=dplyr::n())|>
+  dplyr::ungroup()|>
+  dplyr::mutate(Marker_OTU=paste(Marker, OTU, sep="_"))
+
+
+```
+  
+# Fruit samples only
+## Taxa across all three fruits
+### Select frequency across all three fruits 
+```{r}
+
+## Select only fruits
+freq_data_fruit <- freq_data |>
+dplyr::filter(SampleType%in%c("Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days"))
+
+freq_data_70 <- freq_data_fruit |>
   dplyr::filter(Frequency>0.7) |>
   tidyr::separate(col = "OTU", into=c(NA, "OTU_ID"), sep="_",
   remove = FALSE) |>
   dplyr::mutate(OTU_ID=as.numeric(OTU_ID)) |>
   dplyr::arrange(Marker, OTU_ID) 
 
-write.table(x=freq_data_70, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "fruit_only_freq_OTU.csv"), sep=";", row.names=FALSE)
+write.table(x=freq_data_70, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "freq_OTU_fruit_only.csv"), sep=";", row.names=FALSE)
 
 ```
 
 ### Prevalence
 ```{r}
-prevalence_data <- freq_data |>
-  dplyr::filter(OTU%in%freq_data_70$OTU)|>
+prevalence_data <- freq_data_fruit |>
+  dplyr::filter(Marker_OTU%in%freq_data_70$Marker_OTU)|>
   dplyr::mutate(OTUname=paste(Genus, OTU, sep="_"))|>
   dplyr::mutate(SampleType_Sample_size=paste0(SampleType, " (n=", Sample_size, ")")) |>
   dplyr::select(Marker, OTUname, OTU, SampleType, SampleType_Sample_size, Frequency)
@@ -74,7 +86,7 @@ prevalence_data_wide <- prevalence_data |>
   dplyr::select(-SampleType_Sample_size) |>
   tidyr::pivot_wider(names_from = SampleType, values_from = Frequency)
 
-write.table(x=prevalence_data_wide, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "fruit_only_prevalence_data.csv"), sep=";", row.names=FALSE)
+write.table(x=prevalence_data_wide, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "prevalence_data_fruit_only.csv"), sep=";", row.names=FALSE)
 ```
 
 ### Make plot
@@ -96,20 +108,16 @@ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
 panel
-ggsave(filename = "fruit_only_prevalence_allfruits.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 20, units = "cm")
+ggsave(filename = "prevalence_allfruits_fruit_only.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 20, units = "cm")
 ```
 
-## Taxa per fruit
-### Compute frequency per fruit 
+## Taxa per sampletype/fruit
+### Select frequency per fruit 
 ```{r}
 
-## Compare only fruit samples
-freq_data_fruit <- data |>
-dplyr::filter(FrozenLifeStage%in%c("Fruit_samples", "FruitLayedIn")) |>
-  dplyr::group_by(Marker, FruitType, SampleType, OTU, Family, Genus, Species) |>
-  dplyr::summarise(Frequency = mean(present), Sample_size=dplyr::n())|>
-  dplyr::ungroup()
-
+## Select only fruits
+freq_data_fruit <- freq_data_perfruit |>
+dplyr::filter(SampleType%in%c("Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days"))
 
 freq_data_fruit70 <- freq_data_fruit |>
   dplyr::filter(Frequency>0.7) |>
@@ -118,7 +126,7 @@ freq_data_fruit70 <- freq_data_fruit |>
   dplyr::mutate(OTU_ID=as.numeric(OTU_ID)) |>
   dplyr::arrange(Marker, OTU_ID, FruitType)
 
-write.table(x=freq_data_fruit70, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "fruit_only_freq_OTU_fruit.csv"), sep=";", row.names=FALSE)
+write.table(x=freq_data_fruit70, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "freq_OTU_perfruit_fruit_only.csv"), sep=";", row.names=FALSE)
 
 ```
 
@@ -127,7 +135,7 @@ write.table(x=freq_data_fruit70, file=file.path(here::here(), "data", "derived_d
 ```{r}
 
 prevalence_data_fruit <- freq_data_fruit |>
-  dplyr::filter(OTU%in%freq_data_fruit70$OTU)|>
+    dplyr::filter(Marker_OTU%in%freq_data_fruit70$Marker_OTU)|>
   dplyr::mutate(OTUname=paste(Genus, OTU, sep="_"))|>
   dplyr::mutate(SampleType_Fruit=paste(SampleType, FruitType, sep="_"))|>
   dplyr::mutate(Fruit_SampleType=paste(FruitType, SampleType, sep="_"))|>
@@ -143,7 +151,7 @@ prevalence_data_fruit_wide <- prevalence_data_fruit  |>
   dplyr::select(-Fruit_SampleType_Sample_size) |>
   tidyr::pivot_wider(names_from = SampleType_Fruit, values_from = Frequency)
 
-write.table(x=prevalence_data_fruit_wide, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "fruit_only_prevalence_data_fruit.csv"), sep=";", row.names=FALSE)
+write.table(x=prevalence_data_fruit_wide, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "prevalence_data_perfruit_fruit_only.csv"), sep=";", row.names=FALSE)
 ```
 
 ### Make plot SampleType_Fruit
@@ -165,7 +173,7 @@ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
 panel
-ggsave(filename = "fruit_only_prevalence_sampletype_fruit.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 20, units = "cm")
+ggsave(filename = "prevalence_sampletype_perfruit_fruit_only.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 20, units = "cm")
 ```
 
 
@@ -177,7 +185,7 @@ p16S <- prevalence_data_fruit |>
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
-  geom_vline(xintercept=c(2.5, 5.5), linetype=1, color="red", linewidth=1)
+  geom_vline(xintercept=c(1.5, 4.5), linetype=1, color="red", linewidth=1)
 
 pITS <- prevalence_data_fruit |>
   dplyr::filter(Marker=="ITS")|>
@@ -185,12 +193,12 @@ pITS <- prevalence_data_fruit |>
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
-  geom_vline(xintercept=c(3.5, 6.5), linetype=1, color="red", linewidth=1)
+  geom_vline(xintercept=c(2.5, 5.5), linetype=1, color="red", linewidth=1)
 
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
 panel
-ggsave(filename = "fruit_only_prevalence_fruit_sampletype.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 20, units = "cm")
+ggsave(filename = "prevalence_fruit_sampletype_fruit_only.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 20, units = "cm")
 ```
 
 # Samples with lifestages ("FIN_CH_CDP", "IST_ST_CIF", "LOM_CH_CDP", "MIL_ST_MDB", "VAR_BL_LOC")
@@ -200,10 +208,11 @@ ggsave(filename = "fruit_only_prevalence_fruit_sampletype.jpg", path = file.path
 
 ## Compare only samples with life stages available
 freq_data <- data |>
-dplyr::filter(FruitSiteTypeVariety%in%c("FIN_CH_CDP", "IST_ST_CIF", "LOM_CH_CDP", "MIL_ST_MDB", "VAR_BL_LOC")) |>
+dplyr::filter(FruitSiteTypeVariety%in%c("FIN_CH_CDP", "IST_ST_CIF", "LOM_CH_CDP", "MIL_ST_MDB", "VAR_BL_LOC")|SampleType=="G0_Adults_0days") |>
   dplyr::group_by(Marker, SampleType, OTU, Family, Genus, Species) |>
   dplyr::summarise(Frequency = mean(present), Sample_size=dplyr::n())|>
-  dplyr::ungroup()
+  dplyr::ungroup()|>
+  dplyr::mutate(Marker_OTU=paste(Marker, OTU, sep="_"))
 
 
 freq_data_70 <- freq_data |>
@@ -213,14 +222,14 @@ freq_data_70 <- freq_data |>
   dplyr::mutate(OTU_ID=as.numeric(OTU_ID)) |>
   dplyr::arrange(Marker, OTU_ID) 
 
-write.table(x=freq_data_70, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "freq_OTU.csv"), sep=";", row.names=FALSE)
+write.table(x=freq_data_70, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "freq_OTU_5sites.csv"), sep=";", row.names=FALSE)
 
 ```
 
 ### Prevalence
 ```{r}
 prevalence_data <- freq_data |>
-  dplyr::filter(OTU%in%freq_data_70$OTU)|>
+  dplyr::filter(Marker_OTU%in%freq_data_70$Marker_OTU)|>
   dplyr::mutate(OTUname=paste(Genus, OTU, sep="_"))|>
   dplyr::mutate(SampleType_Sample_size=paste0(SampleType, " (n=", Sample_size, ")")) |>
   dplyr::select(Marker, OTUname, OTU, SampleType, SampleType_Sample_size, Frequency)
@@ -229,7 +238,7 @@ prevalence_data_wide <- prevalence_data |>
   dplyr::select(-SampleType_Sample_size) |>
   tidyr::pivot_wider(names_from = SampleType, values_from = Frequency)
 
-write.table(x=prevalence_data_wide, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "prevalence_data.csv"), sep=";", row.names=FALSE)
+write.table(x=prevalence_data_wide, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "prevalence_data_5sites.csv"), sep=";", row.names=FALSE)
 ```
 
 ### Make plot
@@ -251,7 +260,7 @@ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
 panel
-ggsave(filename = "prevalence_allfruits.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 20, units = "cm")
+ggsave(filename = "prevalence_allfruits_5sites.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 20, units = "cm")
 ```
 
 ## Taxa per fruit
@@ -260,10 +269,11 @@ ggsave(filename = "prevalence_allfruits.jpg", path = file.path(here::here(), "pl
 
 ## Compare only samples with life stages available
 freq_data_fruit <- data |>
-dplyr::filter(FruitSiteTypeVariety%in%c("FIN_CH_CDP", "IST_ST_CIF", "LOM_CH_CDP", "MIL_ST_MDB", "VAR_BL_LOC")) |>
+dplyr::filter(FruitSiteTypeVariety%in%c("FIN_CH_CDP", "IST_ST_CIF", "LOM_CH_CDP", "MIL_ST_MDB", "VAR_BL_LOC")|SampleType=="G0_Adults_0days") |>
   dplyr::group_by(Marker, FruitType, SampleType, OTU, Family, Genus, Species) |>
   dplyr::summarise(Frequency = mean(present), Sample_size=dplyr::n())|>
-  dplyr::ungroup()
+  dplyr::ungroup()|>
+  dplyr::mutate(Marker_OTU=paste(Marker, OTU, sep="_"))
 
 
 freq_data_fruit70 <- freq_data_fruit |>
@@ -273,7 +283,7 @@ freq_data_fruit70 <- freq_data_fruit |>
   dplyr::mutate(OTU_ID=as.numeric(OTU_ID)) |>
   dplyr::arrange(Marker, OTU_ID, FruitType)
 
-write.table(x=freq_data_fruit70, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "freq_OTU_fruit.csv"), sep=";", row.names=FALSE)
+write.table(x=freq_data_fruit70, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "freq_OTU_perfruit_5sites.csv"), sep=";", row.names=FALSE)
 
 ```
 
@@ -282,7 +292,7 @@ write.table(x=freq_data_fruit70, file=file.path(here::here(), "data", "derived_d
 ```{r}
 
 prevalence_data_fruit <- freq_data_fruit |>
-  dplyr::filter(OTU%in%freq_data_fruit70$OTU)|>
+    dplyr::filter(Marker_OTU%in%freq_data_fruit70$Marker_OTU)|>
   dplyr::mutate(OTUname=paste(Genus, OTU, sep="_"))|>
   dplyr::mutate(SampleType_Fruit=paste(SampleType, FruitType, sep="_"))|>
   dplyr::mutate(Fruit_SampleType=paste(FruitType, SampleType, sep="_"))|>
@@ -298,7 +308,7 @@ prevalence_data_fruit_wide <- prevalence_data_fruit  |>
   dplyr::select(-Fruit_SampleType_Sample_size) |>
   tidyr::pivot_wider(names_from = SampleType_Fruit, values_from = Frequency)
 
-write.table(x=prevalence_data_fruit_wide, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "prevalence_data_fruit.csv"), sep=";", row.names=FALSE)
+write.table(x=prevalence_data_fruit_wide, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "prevalence_data_perfruit_5sites.csv"), sep=";", row.names=FALSE)
 ```
 
 ### Make plot SampleType_Fruit
@@ -320,7 +330,7 @@ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
 panel
-ggsave(filename = "prevalence_sampletype_fruit.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 20, units = "cm")
+ggsave(filename = "prevalence_sampletype_fruit_5sites.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 20, units = "cm")
 ```
 
 
@@ -332,7 +342,7 @@ p16S <- prevalence_data_fruit |>
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
-  geom_vline(xintercept=c(9.5, 23.5, 24.5), linetype=1, color="red", linewidth=1)
+  geom_vline(xintercept=c(6.5, 18.5, 19.5), linetype=1, color="red", linewidth=1)
 
 pITS <- prevalence_data_fruit |>
   dplyr::filter(Marker=="ITS")|>
@@ -340,10 +350,103 @@ pITS <- prevalence_data_fruit |>
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
-  geom_vline(xintercept=c(9.5, 23.5, 24.5), linetype=1, color="red", linewidth=1)
+  geom_vline(xintercept=c(8.5, 20.5, 21.5), linetype=1, color="red", linewidth=1)
 
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
 panel
-ggsave(filename = "prevalence_fruit_sampletype.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 20, units = "cm")
+ggsave(filename = "prevalence_fruit_sampletype_5sites.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 25, units = "cm")
+```
+
+# Medium controls
+## Taxa per fruit
+### Compute frequency per fruit 
+```{r}
+
+## Select only controls
+freq_data_control <- freq_data_perfruit |>
+dplyr::filter(SampleType%in%c("G0_Adults_0days", "Medium_5_6days", "G1_Larvae_Medium_5_6days", "G0_Adults_Medium_2days"))
+
+freq_data_control70 <- freq_data_control|>
+  dplyr::filter(Frequency>0.7) |>
+  tidyr::separate(col = "OTU", into=c(NA, "OTU_ID"), sep="_",
+  remove = FALSE) |>
+  dplyr::mutate(OTU_ID=as.numeric(OTU_ID)) |>
+  dplyr::arrange(Marker, OTU_ID, FruitType)
+
+write.table(x=freq_data_control70, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "freq_OTU_perfruit_control.csv"), sep=";", row.names=FALSE)
+
+```
+
+
+### Prevalence per fruit type
+```{r}
+
+prevalence_data_control <- freq_data_control |>
+  dplyr::filter(Marker_OTU%in%freq_data_control70$Marker_OTU)|>
+  dplyr::mutate(OTUname=paste(Genus, OTU, sep="_"))|>
+  dplyr::mutate(SampleType_Fruit=paste(SampleType, FruitType, sep="_"))|>
+  dplyr::mutate(Fruit_SampleType=paste(FruitType, SampleType, sep="_"))|>
+  dplyr::mutate(SampleType_Fruit_Sample_size=paste0(SampleType_Fruit, "(n=",Sample_size, ")"))|>
+  dplyr::mutate(Fruit_SampleType_Sample_size=paste0(Fruit_SampleType, "(n=", Sample_size, ")"))|>
+  dplyr::select(Marker, OTUname, OTU, SampleType, SampleType_Fruit, Fruit_SampleType, SampleType_Fruit_Sample_size, FruitType, Fruit_SampleType_Sample_size, Frequency)
+
+prevalence_data_control_wide <- prevalence_data_control  |>
+  dplyr::select(-SampleType) |>
+    dplyr::select(-FruitType) |>
+  dplyr::select(-Fruit_SampleType) |>
+    dplyr::select(-SampleType_Fruit_Sample_size) |>
+  dplyr::select(-Fruit_SampleType_Sample_size) |>
+  tidyr::pivot_wider(names_from = SampleType_Fruit, values_from = Frequency)
+
+write.table(x=prevalence_data_control_wide, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "prevalence_data_control.csv"), sep=";", row.names=FALSE)
+```
+
+### Make plot SampleType_Fruit
+```{r}
+p16S <- prevalence_data_control |>
+  dplyr::filter(Marker=="16S")|>
+  ggplot(aes(SampleType_Fruit_Sample_size, OTUname, fill= Frequency)) + 
+  geom_tile()+
+scale_fill_gradient(low="white", high="blue") +
+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  geom_vline(xintercept=c(1.5, 2.5), linetype=1, color="red", linewidth=1)
+
+pITS <- prevalence_data_control |>
+  dplyr::filter(Marker=="ITS")|>
+  ggplot(aes(SampleType_Fruit_Sample_size, OTUname, fill= Frequency)) + 
+  geom_tile()+
+scale_fill_gradient(low="white", high="blue") +
+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  geom_vline(xintercept=c(2.5, 4.5), linetype=1, color="red", linewidth=1)
+
+panel <- p16S + pITS+
+  patchwork::plot_annotation(tag_levels = "A")
+panel
+ggsave(filename = "prevalence_sampletype_fruit_control.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 20, units = "cm")
+```
+
+
+### Make plot Fruit_SampleType
+```{r}
+p16S <- prevalence_data_control |>
+  dplyr::filter(Marker=="16S")|>
+  ggplot(aes(Fruit_SampleType_Sample_size, OTUname, fill= Frequency)) + 
+  geom_tile()+
+scale_fill_gradient(low="white", high="blue") +
+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  geom_vline(xintercept=c(2.5, 4.5, 5.5), linetype=1, color="red", linewidth=1)
+
+pITS <- prevalence_data_control |>
+  dplyr::filter(Marker=="ITS")|>
+  ggplot(aes(Fruit_SampleType_Sample_size, OTUname, fill= Frequency)) + 
+  geom_tile()+
+scale_fill_gradient(low="white", high="blue") +
+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  geom_vline(xintercept=c(3.5, 6.5, 7.5), linetype=1, color="red", linewidth=1)
+
+panel <- p16S + pITS+
+  patchwork::plot_annotation(tag_levels = "A")
+panel
+ggsave(filename = "prevalence_fruit_sampletype_control.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 20, units = "cm")
 ```

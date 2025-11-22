@@ -1,0 +1,49 @@
+"Marker";"FruitType";"SampleType";"OTU";"OTU_ID";"Family";"Genus";"Species";"Frequency";"Sample_size"
+"16S";"BL";"G0_Adults_Medium_2days";"Cluster_7";7;"Acetobacteraceae";"Acetobacter";"Unknown";1;2
+"16S";"BL";"Medium_5_6days";"Cluster_7";7;"Acetobacteraceae";"Acetobacter";"Unknown";0.75;4
+"16S";"CH";"G1_Larvae_Medium_5_6days";"Cluster_7";7;"Acetobacteraceae";"Acetobacter";"Unknown";1;3
+"16S";"CH";"Medium_5_6days";"Cluster_7";7;"Acetobacteraceae";"Acetobacter";"Unknown";1;4
+"16S";"ST";"Medium_5_6days";"Cluster_7";7;"Acetobacteraceae";"Acetobacter";"Unknown";1;4
+"16S";"BL";"G0_Adults_Medium_2days";"Cluster_13";13;"Lactobacillaceae";"Fructilactobacillus";"Unknown";1;2
+"16S";"CH";"G1_Larvae_Medium_5_6days";"Cluster_14";14;"Lactobacillaceae";"Levilactobacillus";"Lactobacillus brevis";1;3
+"16S";"CH";"Medium_5_6days";"Cluster_14";14;"Lactobacillaceae";"Levilactobacillus";"Lactobacillus brevis";1;4
+"16S";"ST";"Medium_5_6days";"Cluster_14";14;"Lactobacillaceae";"Levilactobacillus";"Lactobacillus brevis";1;4
+"16S";"BL";"G0_Adults_Medium_2days";"Cluster_17";17;"Acetobacteraceae";"Unknown";"Unknown";1;2
+"16S";"BL";"Medium_5_6days";"Cluster_57";57;"Bacillaceae";"Bacillus";"Unknown";0.75;4
+"16S";"ST";"Medium_5_6days";"Cluster_57";57;"Bacillaceae";"Bacillus";"Unknown";0.75;4
+"ITS";"BL";"G0_Adults_Medium_2days";"Cluster_1";1;"Pichiaceae";"Pichia";"Pichia kluyveri";1;2
+"ITS";"BL";"G1_Larvae_Medium_5_6days";"Cluster_1";1;"Pichiaceae";"Pichia";"Pichia kluyveri";1;2
+"ITS";"BL";"G1_Larvae_Medium_5_6days";"Cluster_2";2;"Pichiaceae";"Pichia";"Pichia kluyveri";1;2
+"ITS";"BL";"G0_Adults_Medium_2days";"Cluster_3";3;"Pichiaceae";"Pichia";"Pichia terricola";1;2
+"ITS";"BL";"G0_Adults_Medium_2days";"Cluster_5";5;"Cladosporiaceae";"Cladosporium";"Unknown";1;2
+"ITS";"BL";"Medium_5_6days";"Cluster_5";5;"Cladosporiaceae";"Cladosporium";"Unknown";1;4
+"ITS";"ST";"Medium_5_6days";"Cluster_5";5;"Cladosporiaceae";"Cladosporium";"Unknown";1;3
+"ITS";"BL";"G0_Adults_Medium_2days";"Cluster_6";6;"Sclerotiniaceae";"Unknown";"Unknown";1;2
+"ITS";"BL";"Medium_5_6days";"Cluster_6";6;"Sclerotiniaceae";"Unknown";"Unknown";1;4
+"ITS";"ST";"Medium_5_6days";"Cluster_6";6;"Sclerotiniaceae";"Unknown";"Unknown";1;3
+"ITS";"BL";"Medium_5_6days";"Cluster_7";7;"Saccotheciaceae";"Aureobasidium";"Aureobasidium pullulans";0.75;4
+"ITS";"ST";"Medium_5_6days";"Cluster_7";7;"Saccotheciaceae";"Aureobasidium";"Aureobasidium pullulans";1;3
+"ITS";"BL";"G0_Adults_Medium_2days";"Cluster_8";8;"Metschnikowiaceae";"Metschnikowia";"Metschnikowia chrysoperlae";1;2
+"ITS";"CH";"G0_Adults_Medium_2days";"Cluster_8";8;"Metschnikowiaceae";"Metschnikowia";"Metschnikowia chrysoperlae";1;5
+"ITS";"BL";"G1_Larvae_Medium_5_6days";"Cluster_10";10;"Saccharomycodaceae";"Hanseniaspora";"Unknown";1;2
+"ITS";"ST";"Medium_5_6days";"Cluster_10";10;"Saccharomycodaceae";"Hanseniaspora";"Unknown";1;3
+"ITS";"BL";"G1_Larvae_Medium_5_6days";"Cluster_12";12;"Trichosporonaceae";"Cutaneotrichosporon";"Cutaneotrichosporon curvatum";1;2
+"ITS";"BL";"Medium_5_6days";"Cluster_12";12;"Trichosporonaceae";"Cutaneotrichosporon";"Cutaneotrichosporon curvatum";1;4
+"ITS";"CH";"G1_Larvae_Medium_5_6days";"Cluster_12";12;"Trichosporonaceae";"Cutaneotrichosporon";"Cutaneotrichosporon curvatum";0.75;4
+"ITS";"BL";"G0_Adults_Medium_2days";"Cluster_14";14;"Cladosporiaceae";"Cladosporium";"Cladosporium herbarum";1;2
+"ITS";"BL";"Medium_5_6days";"Cluster_14";14;"Cladosporiaceae";"Cladosporium";"Cladosporium herbarum";0.75;4
+"ITS";"BL";"G0_Adults_Medium_2days";"Cluster_15";15;"Metschnikowiaceae";"Metschnikowia";"Unknown";1;2
+"ITS";"BL";"Medium_5_6days";"Cluster_15";15;"Metschnikowiaceae";"Metschnikowia";"Unknown";1;4
+"ITS";"BL";"Medium_5_6days";"Cluster_16";16;"Aspergillaceae";"Penicillium";"Penicillium olsonii";1;4
+"ITS";"ST";"Medium_5_6days";"Cluster_20";20;"Pleosporaceae";"Alternaria";"Unknown";1;3
+"ITS";"BL";"G0_Adults_Medium_2days";"Cluster_23";23;"Metschnikowiaceae";"Metschnikowia";"Unknown";1;2
+"ITS";"BL";"G0_Adults_Medium_2days";"Cluster_26";26;"Metschnikowiaceae";"Metschnikowia";"Metschnikowia leonuri";1;2
+"ITS";"BL";"G0_Adults_Medium_2days";"Cluster_27";27;"Unknown";"Unknown";"Unknown";1;2
+"ITS";"BL";"G0_Adults_Medium_2days";"Cluster_35";35;"Metschnikowiaceae";"Metschnikowia";"Metschnikowia pulcherrima";1;2
+"ITS";"BL";"G0_Adults_Medium_2days";"Cluster_38";38;"Metschnikowiaceae";"Metschnikowia";"Metschnikowia pulcherrima";1;2
+"ITS";"BL";"G0_Adults_Medium_2days";"Cluster_39";39;"Metschnikowiaceae";"Metschnikowia";"Metschnikowia pulcherrima";1;2
+"ITS";"CH";"G0_Adults_Medium_2days";"Cluster_44";44;"Metschnikowiaceae";"Metschnikowia";"Metschnikowia pulcherrima";0.8;5
+"ITS";"CH";"G1_Larvae_Medium_5_6days";"Cluster_46";46;"Filobasidiaceae";"Filobasidium";"Filobasidium wieringae";0.75;4
+"ITS";"BL";"G1_Larvae_Medium_5_6days";"Cluster_73";73;"Unknown";"Unknown";"Unknown";1;2
+"ITS";"BL";"G0_Adults_Medium_2days";"Cluster_123";123;"Bulleribasidiaceae";"Vishniacozyma";"Vishniacozyma victoriae";1;2
+"ITS";"BL";"Medium_5_6days";"Cluster_211";211;"Unknown";"Unknown";"Unknown";0.75;4
