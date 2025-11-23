@@ -275,7 +275,6 @@ dplyr::filter(FruitSiteTypeVariety%in%c("FIN_CH_CDP", "IST_ST_CIF", "LOM_CH_CDP"
   dplyr::ungroup()|>
   dplyr::mutate(Marker_OTU=paste(Marker, OTU, sep="_"))
 
-
 freq_data_fruit70 <- freq_data_fruit |>
   dplyr::filter(Frequency>0.7) |>
   tidyr::separate(col = "OTU", into=c(NA, "OTU_ID"), sep="_",
@@ -335,24 +334,69 @@ panel
 ggsave(filename = "prevalence_sampletype_fruit_5sites.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 20, units = "cm")
 ```
 
+### Relevel Fruit_SampleType_Sample_size
+#### 16S
+```{r}
+## Order we want
+lev <- c("G0_Adults_0days","G0_Adults_Fruits_2days","Fruits_0days","Nat_Uninf_Fruits_5_6days","Nat_Inf_Fruits_5_6days","Artific_Inf_Fruits_5_6days","G1_Larvae_Fruits","G1_Larvae_Nat_Inf_Fruits_5_6days","G1_Pupae_Fruits","G1_Pupae_Nat_Inf_Fruit_5_6days","G1_PupalCase_Fruits","G1_Adults_Fruits","G1_Adults_Nat_Inf_Fruit_5_6days")
+
+prevalence_data_fruit16S <- prevalence_data_fruit |>
+  dplyr::filter(Marker=="16S")|>
+  dplyr::mutate(Fruit_SampleType_Sample_size=factor(Fruit_SampleType_Sample_size))
+
+fact <- levels(prevalence_data_fruit16S$Fruit_SampleType_Sample_size)
+## Extract levels in the right order
+new_level_order <- fact[grep("na", fact, value = FALSE)]
+for (fruit_i in c("BL", "CH", "ST")){
+  out <- setNames(sapply(paste(fruit_i,lev, sep="_"), function(x) grep(x, fact, value = FALSE)), lev)
+new_level_order <- c(new_level_order, fact[unlist(out)])
+}
+
+prevalence_data_fruit16S <- prevalence_data_fruit16S |>
+  dplyr::mutate(Fruit_SampleType_Sample_size=factor(Fruit_SampleType_Sample_size, new_level_order))
+
+
+
+```
+
+#### ITS
+```{r}
+## Order we want
+lev <- c("G0_Adults_0days","G0_Adults_Fruits_2days","Fruits_0days","Nat_Uninf_Fruits_5_6days","Nat_Inf_Fruits_5_6days","Artific_Inf_Fruits_5_6days","G1_Larvae_Fruits","G1_Larvae_Nat_Inf_Fruits_5_6days","G1_Pupae_Fruits","G1_Pupae_Nat_Inf_Fruit_5_6days","G1_PupalCase_Fruits","G1_Adults_Fruits","G1_Adults_Nat_Inf_Fruit_5_6days")
+
+prevalence_data_fruitITS <- prevalence_data_fruit |>
+  dplyr::filter(Marker=="ITS")|>
+  dplyr::mutate(Fruit_SampleType_Sample_size=factor(Fruit_SampleType_Sample_size))
+
+fact <- levels(prevalence_data_fruitITS$Fruit_SampleType_Sample_size)
+## Extract levels in the right order
+new_level_order <- fact[grep("na", fact, value = FALSE)]
+for (fruit_i in c("BL", "CH", "ST")){
+  out <- setNames(sapply(paste(fruit_i,lev, sep="_"), function(x) grep(x, fact, value = FALSE)), lev)
+new_level_order <- c(new_level_order, fact[unlist(out)])
+}
+
+prevalence_data_fruitITS <- prevalence_data_fruitITS |>
+  dplyr::mutate(Fruit_SampleType_Sample_size=factor(Fruit_SampleType_Sample_size, new_level_order))
+
+
+```
 
 ### Make plot Fruit_SampleType
 ```{r}
-p16S <- prevalence_data_fruit |>
-  dplyr::filter(Marker=="16S")|>
+p16S <- prevalence_data_fruit16S |>
   ggplot(aes(Fruit_SampleType_Sample_size, OTUname, fill= Frequency)) + 
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
-  geom_vline(xintercept=c(6.5, 18.5, 19.5), linetype=1, color="red", linewidth=1)
+  geom_vline(xintercept=c(1.5, 7.5, 19.5), linetype=1, color="red", linewidth=1)
 
-pITS <- prevalence_data_fruit |>
-  dplyr::filter(Marker=="ITS")|>
+pITS <- prevalence_data_fruitITS|>
   ggplot(aes(Fruit_SampleType_Sample_size, OTUname, fill= Frequency)) + 
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
-  geom_vline(xintercept=c(8.5, 20.5, 21.5), linetype=1, color="red", linewidth=1)
+  geom_vline(xintercept=c(1.5, 9.5, 21.5), linetype=1, color="red", linewidth=1)
 
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
