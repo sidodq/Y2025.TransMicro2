@@ -198,10 +198,10 @@ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
 panel
-ggsave(filename = "prevalence_fruit_sampletype_fruit_only.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 20, units = "cm")
+ggsave(filename = "prevalence_fruit_sampletype_fruit_only.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 30, units = "cm")
 ```
 
-# Samples with lifestages ("FIN_CH_CDP", "IST_ST_CIF", "LOM_CH_CDP", "MIL_ST_MDB", "VAR_BL_LOC")
+# 5 sites = samples with lifestages ("FIN_CH_CDP", "IST_ST_CIF", "LOM_CH_CDP", "MIL_ST_MDB", "VAR_BL_LOC")
 ## Taxa across all three fruits
 ### Compute frequency across all three fruits 
 ```{r}
@@ -283,6 +283,8 @@ freq_data_fruit70 <- freq_data_fruit |>
   dplyr::mutate(OTU_ID=as.numeric(OTU_ID)) |>
   dplyr::arrange(Marker, OTU_ID, FruitType)
 
+OTU5sites_perfruit <- freq_data_fruit70$Marker_OTU
+
 write.table(x=freq_data_fruit70, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "freq_OTU_perfruit_5sites.csv"), sep=";", row.names=FALSE)
 
 ```
@@ -355,7 +357,7 @@ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
 panel
-ggsave(filename = "prevalence_fruit_sampletype_5sites.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 25, units = "cm")
+ggsave(filename = "prevalence_fruit_sampletype_5sites.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 30, units = "cm")
 ```
 
 # Medium controls
@@ -383,7 +385,7 @@ write.table(x=freq_data_control70, file=file.path(here::here(), "data", "derived
 ```{r}
 
 prevalence_data_control <- freq_data_control |>
-  dplyr::filter(Marker_OTU%in%freq_data_control70$Marker_OTU)|>
+  dplyr::filter(Marker_OTU%in%freq_data_control70$Marker_OTU|Marker_OTU%in%OTU5sites_perfruit)|>
   dplyr::mutate(OTUname=paste(Genus, OTU, sep="_"))|>
   dplyr::mutate(SampleType_Fruit=paste(SampleType, FruitType, sep="_"))|>
   dplyr::mutate(Fruit_SampleType=paste(FruitType, SampleType, sep="_"))|>
@@ -448,5 +450,5 @@ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
 panel
-ggsave(filename = "prevalence_fruit_sampletype_control.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 20, units = "cm")
+ggsave(filename = "prevalence_fruit_sampletype_control.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 30, units = "cm")
 ```
