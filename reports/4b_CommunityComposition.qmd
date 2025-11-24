@@ -96,14 +96,15 @@ p16S <- prevalence_data |>
   ggplot(aes(SampleType_Sample_size, OTUname, fill= Frequency)) + 
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
-theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  guides(color = "none", fill = "none", linetype = "none")+labs(x = NULL, y = NULL)
 
 pITS <- prevalence_data |>
   dplyr::filter(Marker=="ITS")|>
   ggplot(aes(SampleType_Sample_size, OTUname, fill= Frequency)) + 
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
-theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+ guides(fill=guide_legend(title="Frequency accros biological replicates"))+labs(x = NULL, y = NULL)
 
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
@@ -161,14 +162,15 @@ p16S <- prevalence_data_fruit |>
   ggplot(aes(SampleType_Fruit_Sample_size, OTUname, fill= Frequency)) + 
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
-theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  guides(color = "none", fill = "none", linetype = "none")+labs(x = NULL, y = NULL)
 
 pITS <- prevalence_data_fruit |>
   dplyr::filter(Marker=="ITS")|>
   ggplot(aes(SampleType_Fruit_Sample_size, OTUname, fill= Frequency)) + 
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
-theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+ guides(fill=guide_legend(title="Frequency accros biological replicates"))+labs(x = NULL, y = NULL)
 
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
@@ -185,7 +187,8 @@ p16S <- prevalence_data_fruit |>
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
-  geom_vline(xintercept=c(1.5, 4.5), linetype=1, color="red", linewidth=1)
+  geom_vline(xintercept=c(1.5, 4.5), linetype=1, color="red", linewidth=1)+
+  guides(color = "none", fill = "none", linetype = "none")+labs(x = NULL, y = NULL)
 
 pITS <- prevalence_data_fruit |>
   dplyr::filter(Marker=="ITS")|>
@@ -193,7 +196,7 @@ pITS <- prevalence_data_fruit |>
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
-  geom_vline(xintercept=c(2.5, 5.5), linetype=1, color="red", linewidth=1)
+  geom_vline(xintercept=c(2.5, 5.5), linetype=1, color="red", linewidth=1)+ guides(fill=guide_legend(title="Frequency accros biological replicates"))+labs(x = NULL, y = NULL)
 
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
@@ -248,14 +251,16 @@ p16S <- prevalence_data |>
   ggplot(aes(SampleType_Sample_size, OTUname, fill= Frequency)) + 
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
-theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  guides(color = "none", fill = "none", linetype = "none")+labs(x = NULL, y = NULL)
+
 
 pITS <- prevalence_data |>
   dplyr::filter(Marker=="ITS")|>
   ggplot(aes(SampleType_Sample_size, OTUname, fill= Frequency)) + 
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
-theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+ guides(fill=guide_legend(title="Frequency accros biological replicates"))+labs(x = NULL, y = NULL)
 
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
@@ -320,14 +325,15 @@ p16S <- prevalence_data_fruit |>
   ggplot(aes(SampleType_Fruit_Sample_size, OTUname, fill= Frequency)) + 
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
-theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  guides(color = "none", fill = "none", linetype = "none")+labs(x = NULL, y = NULL)
 
 pITS <- prevalence_data_fruit |>
   dplyr::filter(Marker=="ITS")|>
   ggplot(aes(SampleType_Fruit_Sample_size, OTUname, fill= Frequency)) + 
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
-theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+ guides(fill=guide_legend(title="Frequency accros biological replicates"))+labs(x = NULL, y = NULL)
 
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
@@ -390,14 +396,15 @@ p16S <- prevalence_data_fruit16S |>
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
-  geom_vline(xintercept=c(1.5, 7.5, 14.5), linetype=1, color="red", linewidth=1)
+  geom_vline(xintercept=c(1.5, 7.5, 14.5), linetype=1, color="red", linewidth=1)+
+  guides(color = "none", fill = "none", linetype = "none")+labs(x = NULL, y = NULL)
 
 pITS <- prevalence_data_fruitITS|>
   ggplot(aes(Fruit_SampleType_Sample_size, OTUname, fill= Frequency)) + 
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
-  geom_vline(xintercept=c(1.5, 8.5, 15.5), linetype=1, color="red", linewidth=1)
+  geom_vline(xintercept=c(1.5, 8.5, 15.5), linetype=1, color="red", linewidth=1)+ guides(fill=guide_legend(title="Frequency accros biological replicates"))+labs(x = NULL, y = NULL)
 
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
@@ -457,7 +464,8 @@ p16S <- prevalence_data_control |>
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
-  geom_vline(xintercept=c(2.5, 4.5, 5.5), linetype=1, color="red", linewidth=1)
+  geom_vline(xintercept=c(2.5, 4.5, 5.5), linetype=1, color="red", linewidth=1)+
+  guides(color = "none", fill = "none", linetype = "none")+labs(x = NULL, y = NULL)
 
 pITS <- prevalence_data_control |>
   dplyr::filter(Marker=="ITS")|>
@@ -465,7 +473,7 @@ pITS <- prevalence_data_control |>
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
-  geom_vline(xintercept=c(3.5, 6.5, 7.5), linetype=1, color="red", linewidth=1)
+  geom_vline(xintercept=c(3.5, 6.5, 7.5), linetype=1, color="red", linewidth=1)+ guides(fill=guide_legend(title="Frequency accros biological replicates"))+labs(x = NULL, y = NULL)
 
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
@@ -525,7 +533,8 @@ p16S <- prevalence_data_control |>
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
-  geom_vline(xintercept=c(1.5, 6.5), linetype=1, color="red", linewidth=1)
+  geom_vline(xintercept=c(1.5, 6.5), linetype=1, color="red", linewidth=1)+
+  guides(color = "none", fill = "none", linetype = "none")+labs(x = NULL, y = NULL)
 
 pITS <- prevalence_data_control |>
   dplyr::filter(Marker=="ITS")|>
@@ -533,7 +542,7 @@ pITS <- prevalence_data_control |>
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
-  geom_vline(xintercept=c(1.5, 6.5), linetype=1, color="red", linewidth=1)
+  geom_vline(xintercept=c(1.5, 6.5), linetype=1, color="red", linewidth=1)+ guides(fill=guide_legend(title="Frequency accros biological replicates"))+labs(x = NULL, y = NULL)
 
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
