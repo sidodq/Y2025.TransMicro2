@@ -61,11 +61,11 @@ freq_data_perfruit <- data |>
 
 ## Select only fruits
 freq_data_fruit <- freq_data |>
-dplyr::filter(SampleType%in%c("Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days"))
+dplyr::filter(SampleType%in%c("Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
 
 freq_data_70 <- freq_data_fruit |>
   dplyr::filter(Frequency>0.7) |>
-  tidyr::separate(col = "OTU", into=c(NA, "OTU_ID"), sep="_",
+  tidyr::separate(col = "OTU", into=c(NA, "OTU_ID"), sep="_", 
   remove = FALSE) |>
   dplyr::mutate(OTU_ID=as.numeric(OTU_ID)) |>
   dplyr::arrange(Marker, OTU_ID) 
@@ -115,10 +115,9 @@ ggsave(filename = "prevalence_allfruits_fruit_only.jpg", path = file.path(here::
 ## Taxa per sampletype/fruit
 ### Select frequency per fruit 
 ```{r}
-
 ## Select only fruits
 freq_data_fruit <- freq_data_perfruit |>
-dplyr::filter(SampleType%in%c("Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days"))
+dplyr::filter(SampleType%in%c("Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days", "Artific_Inf_Fruits_5_6days"))
 
 freq_data_fruit70 <- freq_data_fruit |>
   dplyr::filter(Frequency>0.7) |>
@@ -128,7 +127,6 @@ freq_data_fruit70 <- freq_data_fruit |>
   dplyr::arrange(Marker, OTU_ID, FruitType)
 
 write.table(x=freq_data_fruit70, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "freq_OTU_perfruit_fruit_only.csv"), sep=";", row.names=FALSE)
-
 ```
 
 
