@@ -100,6 +100,17 @@ length(unique(metadata$ID_pool)) #nb of tot samples = 456
 # 2. Create a phyloseq object
 
 ```{r}
+# Taxonomy tables
+tax_16S <- taxo_16S %>% 
+  dplyr::left_join(atc_16S_nocontrol %>% select(observation_name, seed_sequence) , by = "observation_name") %>%
+  textshape::column_to_rownames("observation_name")
+tax_16S <- as.matrix(tax_16S)
+
+tax_ITS <- taxo_ITS %>% 
+  dplyr::left_join(atc_ITS_nocontrol %>% select(observation_name, seed_sequence) , by = "observation_name") %>%
+  textshape::column_to_rownames("observation_name")
+tax_ITS <- as.matrix(tax_ITS)
+
 # Abundance tables
 otu_16S <- atc_16S_nocontrol %>% 
   textshape::column_to_rownames("observation_name") %>% 
@@ -108,15 +119,6 @@ otu_16S <- atc_16S_nocontrol %>%
 otu_ITS <- atc_ITS_nocontrol %>% 
   textshape::column_to_rownames("observation_name") %>% 
   dplyr::mutate(seed_sequence = NULL) 
-
-# Taxonomy tables
-tax_16S <- taxo_16S %>% 
-  textshape::column_to_rownames("observation_name")
-tax_16S <- as.matrix(tax_16S)
-
-tax_ITS <- taxo_ITS %>% 
-  textshape::column_to_rownames("observation_name")
-tax_ITS <- as.matrix(tax_ITS)
 
 # Metadata
 mtd <- metadata %>%
@@ -147,7 +149,10 @@ names(phyloseq::sample_sums(ps_16S)[ phyloseq::sample_sums(ps_16S) == 0]) #sampl
 table_OTU_ITS <- phyloseq::otu_table(ps_ITS)
 table_OTU_ITS[rowSums(phyloseq::otu_table(ps_ITS)) == 0, ] # OTUs with no counts in any ITS samples
 names(phyloseq::sample_sums(ps_ITS)[ phyloseq::sample_sums(ps_ITS) == 0]) #samples with no reads
+```
 
+## Remove Wolbachia + conta
+```{r}
 # Remove Wolbachia
 ## List of Wolbachia clusters
 TAX_16S_df <- as.data.frame(TAX_16S)
@@ -163,16 +168,24 @@ sum(otu_df[wolbachia_rows, ], na.rm = TRUE) / sum(otu_df, na.rm = TRUE) *100 # P
 ps_16S <- prune_taxa(!(taxa_names(ps_16S) %in% wolbachia_rows), ps_16S)
 
 
-# Remove Lentihominibacter hominis cluster
-ps_16S <- prune_taxa(taxa_names(ps_16S) != "Cluster_12", ps_16S)
-ps_16S <- prune_taxa(taxa_names(ps_16S) != "Cluster_139", ps_16S) #unknown Genus + Species but same Family (Anaerovoracaceae)
+# Remove 16S conta
+Genus_conta_16S <- c("Lentihominibacter", "Cutibacterium", "Corynebacterium")
+Fam_conta_16S <- c("Anaerovoracaceae")
+
+taxa_to_remove_16S <- TAX_16S_df %>%
+  filter(Family %in% Fam_conta_16S | Genus %in% Genus_conta_16S) %>%
+  rownames()
+  
+write.xlsx( TAX_16S_df[taxa_to_remove_16S, ], file = file.path(here::here(), "data", "derived_data",  "2_RarefyData","Conta_clusters_16S.xlsx"), rowNames = TRUE) #export removed clusers
+  
 
 # Remove Malassezia clusters
 malas_taxa <- taxa_names(ps_ITS)[tax_table(ps_ITS)[, "Family"] == "Malasseziaceae"]
 length(malas_taxa) # 38 clusters
 ps_ITS <- prune_taxa(!(taxa_names(ps_ITS) %in% malas_taxa), ps_ITS)
+```
 
-
+```{r}
 # Distribution of the number of reads across samples
 sample_sums(ps_16S) #for each sample
 sum(sample_sums(ps_16S)) #total
