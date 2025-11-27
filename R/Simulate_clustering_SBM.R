@@ -77,11 +77,7 @@ Simulate_Clustering_SBM <- function(FB, NPERM, name) {
   }
 
   message("Running ", NPERM, " curveball permutations in parallel...")
-  perm_list <- future_lapply(
-    X = seq_len(NPERM),
-    FUN = Sim_one,
-    FB = FB_df
-  )
+  perm_list <- future_lapply(X = seq_len(NPERM), future.seed=TRUE, FUN = Sim_one, FB = FB_df)
 
   # perm_list is a list of NPERM matrices
   # Convert back to matrix 3D array if needed
@@ -99,27 +95,16 @@ Simulate_Clustering_SBM <- function(FB, NPERM, name) {
   }
 
   message("Running ", NPERM, " SBM fits in parallel...")
-  cluster_list <- future_lapply(perm_list, SBM_one)
+  cluster_list <- future_lapply(perm_list, future.seed=TRUE, SBM_one)
 
   # ---- STEP 3: Combine into dataframe ----
   simulated_clustering <- do.call(cbind, cluster_list)
   simulated_clustering <- as.data.frame(simulated_clustering)
 
   # ---- STEP 4: Export ----
-  out_file <- file.path(
-    here::here(),
-    "data", "derived_data", "5_SBMclustering",
-    name
-  )
+  out_file <- file.path(here::here(),"data", "derived_data", "5_SBMclustering", name)
 
-  write.table(
-    simulated_clustering,
-    file = out_file,
-    sep = "\t",
-    row.names = FALSE,
-    col.names = TRUE,
-    quote = FALSE
-  )
+  write.table(simulated_clustering, file = out_file,sep = "\t", row.names = FALSE,col.names = TRUE, quote = FALSE)
 
   message("Saved simulated clustering to: ", out_file)
 
