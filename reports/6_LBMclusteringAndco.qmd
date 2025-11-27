@@ -27,6 +27,8 @@ library(openxlsx)
 library(vegan)
 library(igraph)
 library(parallel)
+library(future)
+library(future.apply)
 devtools::load_all()
 ```
 
@@ -742,7 +744,17 @@ NPERM=100#set quite low, so that permutations do not take too long, only for pro
 # Import simulated clustering MPC
 netBin.config<-simulate(nullmodel(FB_16S_expe,"curveball"),nsim=NPERM)
 graph.bin.gut.config<-simulate(nullmodel(FB_16S_expe,"curveball"),nsim=NPERM)
+
 graph.bin.bpk.config<-simulate(nullmodel(FB_16S_expe,"curveball"),nsim=NPERM)
+
+
+plan(multisession, workers = parallel::detectCores() - 1)
+sim_fun <- function(i, FB) {
+  simulate(nullmodel(FB, "curveball"), nsim = 1)}
+
+netBin.config <- future_lapply(seq_len(NPERM), future.seed=TRUE, sim_fun, FB = FB_16S_expe)
+
+graph.bin.gut.config <- future_lapply(seq_len(NPERM), future.seed=TRUE, sim_fun,  FB = FB_16S_expe)
 ```
 
 ```{r}
@@ -810,37 +822,13 @@ simulated_clustering_expe_16S %>%
 
 simulated_nmi_expe_ITS_LS <- 
 simulated_clustering_expe_ITS %>% 
-  pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
-  group_by(Simulation) %>% 
-  summarise(., nmi_sim = compare(as.factor(Memberships), LS_vect_expe_ITS, method = "nmi"))
+  tidyr::pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
+  dplyr::group_by(Simulation) %>% 
+  dplyr::summarise(., nmi_sim = compare(as.factor(Memberships), LS_vect_expe_ITS, method = "nmi"))
 
 print(c("NMI =", nmi_obs_expe_16S_LifeStage, "P-value = ", 1 - ecdf(simulated_nmi_expe_16S_LS$nmi_sim)(nmi_obs_expe_16S_LifeStage)))
 print(c("NMI =", nmi_obs_expe_ITS_LifeStage, "P-value = ", 1 - ecdf(simulated_nmi_expe_ITS_LS$nmi_sim)(nmi_obs_expe_ITS_LifeStage)))
 
-#
-simulated_nmi_MPC_16S_Locality <- 
-simulated_clustering_MPC_16S %>% 
-  pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
-  group_by(Simulation) %>% 
-  summarise(., nmi_sim = compare(as.factor(Memberships), Locality_vect_MPC_16S, method = "nmi"))
-
-simulated_nmi_MPC_ITS_Fruit <- 
-simulated_clustering_MPC_ITS %>% 
-  pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
-  group_by(Simulation) %>% 
-  summarise(., nmi_sim = compare(as.factor(Memberships), Fruit_vect_MPC_ITS, method = "nmi"))
-
-simulated_nmi_MPC_ITS_Locality <- 
-simulated_clustering_MPC_ITS %>% 
-  pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
-  group_by(Simulation) %>% 
-  summarise(., nmi_sim = compare(as.factor(Memberships), Locality_vect_MPC_ITS, method = "nmi"))
-
-
-print(c("NMI =", nmi_obs_MPC_16S_Locality, "P-value = ", 1 - ecdf(simulated_nmi_MPC_16S_Locality$nmi_sim)(nmi_obs_MPC_16S_Locality)))
-
-print(c("NMI =", nmi_obs_MPC_ITS_Fruit, "P-value = ", 1 - ecdf(simulated_nmi_MPC_ITS_Fruit$nmi_sim)(nmi_obs_MPC_ITS_Fruit)))
-print(c("NMI =", nmi_obs_MPC_ITS_Locality, "P-value = ", 1 - ecdf(simulated_nmi_MPC_ITS_Locality$nmi_sim)(nmi_obs_MPC_ITS_Locality)))
 ```
 
 
