@@ -747,7 +747,7 @@ graph.bin.gut.config<-simulate(nullmodel(FB_16S_expe,"curveball"),nsim=NPERM)
 
 graph.bin.bpk.config<-simulate(nullmodel(FB_16S_expe,"curveball"),nsim=NPERM)
 
-
+# Parallelized version
 plan(multisession, workers = parallel::detectCores() - 1)
 sim_fun <- function(i, FB) {
   simulate(nullmodel(FB, "curveball"), nsim = 1)}
@@ -776,7 +776,6 @@ wholenetmod.genotype.nmi.config<-sapply(1:NPERM, function(x) compare(cle.config[
 
 
 ```{r}
-# 1. Table 1_bis : Exp. 1 MPC
 # Factors
 FT_vect_expe_16S <- as.factor(mtd_16S_expe$FruitType[match(rownames(FB_16S_expe), rownames(mtd_16S_expe))])
 FT_vect_expe_ITS <- as.factor(mtd_ITS_expe$FruitType[match(rownames(FB_ITS_expe), rownames(mtd_ITS_expe))])
