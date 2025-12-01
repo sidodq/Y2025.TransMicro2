@@ -42,7 +42,9 @@ color_FruitType <- c("BL" = "purple4", "CH" = "red4", "ST" = "red2")
 color_FruitSite <- c("na" ="grey", "FIN" = "skyblue", "IST" = "blue2" ,  "LOM" = "skyblue4", "MIL" = "deepskyblue", "VAR" = "dodgerblue", "THU" = "coral2")
 
 color_FruitVariety <- c("CDP" = "indianred", "HED" ="indianred1", "SUM" = "indianred4", "STA"="#CD2626", "SWE" = "firebrick1", "CIF" = "gold", "CIR" = "gold2", "DRE" = "lightgoldenrod1", "INF" = "yellow2", "MDB" = "yellow", "UNK" = "skyblue", "LOC"= "deepskyblue")
-  
+
+color_FruitSiteTypeVariety <- c("THU_BL_LOC" = "deepskyblue","THU_BL_UNK"="skyblue", "VAR_BL_LOC" = "dodgerblue", "THU_CH_HED"="indianred1", "THU_CH_SWE"= "firebrick1", "THU_ST_CIR"= "gold2", "THU_ST_MDB"= "yellow", "FIN_CH_CDP"= "indianred", "FIN_CH_SUM"="indianred4","LOM_CH_CDP"= "firebrick3", "LOM_CH_STA"="#CD2626","IST_ST_CIF"= "gold","IST_ST_DRE"= "lightgoldenrod3", "MIL_ST_INF"= "yellow2", "MIL_ST_MDB"= "khaki1")
+
 color_LifeStage <- c("na" ="grey",  "Mother" = "darkolivegreen4", "Larva"= "darkolivegreen2", "Pupa" = "darkorange2", "PupalCase"="#8B4500", "Daughter" ="goldenrod2")
 
 color_Pop <- c("na" = "grey", "CEC"="#C1FFC1", "FRA" = "seagreen3" )
@@ -481,8 +483,6 @@ title_plot <- "AlphaDiv_Expe_SampleType_FruitType2.png"
 
 
 # II. Beta diversity
-
-
 ## 1. Fruits 
 
 ### Subset data
@@ -500,22 +500,22 @@ ps_rare_16S_FruitsOnly <- Subset_physeq(ps_rare_16S_FruitsOnly, !(FruitType=="BL
 ##16S
 ordi_nmds_J_16S_Fruits <- phyloseq::ordinate(ps_rare_16S_FruitsOnly, method ="NMDS", distance ="jaccard") # stress =8.488021e-05
 
-# NMDS by FruitVariety
+# NMDS by FruitSiteVariety
 NMDS_J_16S_Fruits_Ellipses <- phyloseq::plot_ordination(physeq = ps_rare_16S_FruitsOnly, ordination = ordi_nmds_J_16S_Fruits) + 
   theme_bw() + 
-  geom_point(aes(fill = FruitVariety, shape = FruitType), size = 4) + 
+  geom_point(aes(fill = FruitSiteTypeVariety, shape = FruitType), size = 4) + 
   scale_shape_manual(values = c(BL = 21, CH = 22, ST = 24)) +
-  scale_fill_manual(values = color_FruitVariety) + 
-  stat_ellipse(aes(fill = FruitVariety, color = FruitVariety), geom = "polygon", alpha = 0.10, level = 0.95) + 
-  scale_color_manual(values = color_FruitVariety) + 
+  scale_fill_manual(values = color_FruitTypeVariety) + 
+  stat_ellipse(aes(fill = FruitSiteTypeVariety, color = FruitSiteTypeVariety), geom = "polygon", alpha = 0.10, level = 0.95) + 
+  scale_color_manual(values = color_FruitSiteTypeVariety) + 
   guides(
-    fill = guide_legend(override.aes = list(shape = 21, linetype = NULL, size = 5), title = "Fruit Variety", ncol = 1),
+    fill = guide_legend(override.aes = list(shape = 21, linetype = NULL, size = 5), title = "Fruit Sampling Site", ncol = 1),
     shape = guide_legend(title = "Fruit Type"),
     color = "none") + annotate("text", x = -3.0, y = 2.8, label = "A. Bacteria", hjust = 0, size = 6, fontface = "bold")
 
-NMDS_J_16S_Fruits_Ellipses$data$FruitVariety <- factor(NMDS_J_16S_Fruits_Ellipses$data$FruitVariety, levels = c("CDP", "HED", "STA", "SUM" , "SWE" , "CIF", "CIR", "DRE", "INF", "MDB", "LOC", "UNK")) # reorder 
+NMDS_J_16S_Fruits_Ellipses$data$FruitSiteTypeVariety <- factor(NMDS_J_16S_Fruits_Ellipses$data$FruitSiteTypeVariety, levels = c("THU_BL_UNK", "THU_CH_HED", "THU_CH_SWE", "FIN_CH_CDP", "FIN_CH_SUM", "LOM_CH_CDP", "LOM_CH_STA", "THU_ST_CIR", "THU_ST_MDB", "IST_ST_CIF", "IST_ST_DRE", "MIL_ST_INF", "MIL_ST_MDB" )) # reorder 
 
-title_plot <- "NMDS_16S_FruitType_FruitVariety_OutlierLess.png"
+title_plot <- "NMDS_16S_FruitType_FruitSiteTypeVariety_OutlierLess.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot),
                  NMDS_J_16S_Fruits_Ellipses, base_height = 20/cm(1),
                 base_width = 20/cm(1), dpi = 1200)
@@ -526,25 +526,25 @@ ordi_nmds_J_ITS_Fruits <- phyloseq::ordinate(ps_rare_ITS_FruitsOnly, method ="NM
 # plot with ellipses
 NMDS_J_ITS_Fruits_Ellipses <- phyloseq::plot_ordination(physeq = ps_rare_ITS_FruitsOnly, ordination = ordi_nmds_J_ITS_Fruits) + 
   theme_bw() + 
-  geom_point(aes(fill = FruitVariety, shape = FruitType), size = 4) + 
+  geom_point(aes(fill = FruitSiteTypeVariety, shape = FruitType), size = 4) + 
   scale_shape_manual(values = c(BL = 21, CH = 22, ST = 24)) +
-  scale_fill_manual(values = color_FruitVariety) + 
-  stat_ellipse(aes(fill = FruitVariety, color = FruitVariety), geom = "polygon", alpha = 0.10, level = 0.95) + 
-  scale_color_manual(values = color_FruitVariety) +
+  scale_fill_manual(values = color_FruitSiteTypeVariety) + 
+  stat_ellipse(aes(fill = FruitSiteTypeVariety, color = FruitSiteTypeVariety), geom = "polygon", alpha = 0.10, level = 0.95) + 
+  scale_color_manual(values = color_FruitSiteTypeVariety) +
   guides(
-    fill = guide_legend(override.aes = list(shape = 21, linetype = NULL, size = 5), title = "Fruit Variety", ncol = 1),
+    fill = guide_legend(override.aes = list(shape = 21, linetype = NULL, size = 5), title = "Fruit Sampling Site", ncol = 1),
     shape = guide_legend(title = "Fruit Type"),
     color = "none") + annotate("text", x = -2.8, y = 2.2, label = "B. Fungi", hjust = 0, size = 6, fontface = "bold")
 
-NMDS_J_ITS_Fruits_Ellipses$data$FruitVariety <- factor(NMDS_J_ITS_Fruits_Ellipses$data$FruitVariety, levels = c("CDP", "HED", "STA", "SUM" , "SWE" , "CIF", "CIR", "DRE", "INF", "MDB", "LOC", "UNK")) # reorder 
+NMDS_J_ITS_Fruits_Ellipses$data$FruitSiteTypeVariety <- factor(NMDS_J_ITS_Fruits_Ellipses$data$FruitSiteTypeVariety, levels = c("THU_BL_LOC" , "THU_BL_UNK", "VAR_BL_LOC", "THU_CH_HED", "THU_CH_SWE", "FIN_CH_CDP", "FIN_CH_SUM", "LOM_CH_CDP", "LOM_CH_STA", "THU_ST_CIR", "THU_ST_MDB", "IST_ST_CIF", "IST_ST_DRE", "MIL_ST_INF", "MIL_ST_MDB" )) # reorder 
 
-title_plot <- "NMDS_ITS_FruitType_FruitVariety.png"
+title_plot <- "NMDS_ITS_FruitType_FruitSiteTypeVariety.png"
  cowplot::save_plot(file =here::here("plots", "4_diversities", title_plot), NMDS_J_ITS_Fruits_Ellipses, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
  
 # Combined plot
 NMDS_Fruits_combined <- ( NMDS_J_16S_Fruits_Ellipses+theme(legend.position = "none") |NMDS_J_ITS_Fruits_Ellipses+theme(legend.position = "right")) + plot_layout(ncol = 2,  widths = c(1, 1),guides = "collect") 
 
-title_plot <- "NMDS_Fruits_combined.png"
+title_plot <- "NMDS_Fruits_wSites_combined.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot), NMDS_Fruits_combined, base_height = 20/cm(1),  base_width = 34/cm(1), dpi = 1200)
 ```
 
