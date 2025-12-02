@@ -528,11 +528,22 @@ ggsave(filename = "B_Expe_SampleType_FruitType_Site.jpg", plot = plot_16S_Expe_S
 
 
 # ITS (Family)
-plot_ITS_Expe_SampleTypeFruitTypeSite <- Make_composition_bar_plot_2(ps_ITS_rare_expe, "Fungi", "Family", 15, ~SampleType + FruitType+FruitSite, color_ITS)
+plot_ITS_Expe_SampleTypeFruitTypeSite <- Make_composition_bar_plot_2(ps_ITS_rare_expe, "Fungi", "Family", 15, ~SampleType + FruitType+FruitSite, color_ITS) 
+# + annotate("text",x = -Inf, y = Inf,label = "B. Fungi", hjust = -0.1, vjust = 1.3,  size = 5, fontface = "bold")
 
 plot_ITS_Expe_SampleTypeFruitTypeSite$data$SampleType <- factor(plot_ITS_Expe_SampleTypeFruitTypeSite$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "PupalCases","Daughters")) # reorder 
 
 ggsave(filename = "Y_Expe_SampleType_FruitType_Site.jpg", plot = plot_ITS_Expe_SampleTypeFruitTypeSite, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
+
+
+# Combined plot
+barPlot_combined <- 
+  (plot_16S_Expe_SampleTypeFruitTypeSite + labs(tag = "A. Bacteria")) /
+  (plot_ITS_Expe_SampleTypeFruitTypeSite + labs(tag = "B. Fungi")) +
+  plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 14, face = "bold"))
+
+title_plot <- "Expe_SampleType_FruitType_Site_combined.png"
+ cowplot::save_plot(file =here::here("plots", "3_CommunityComposition", title_plot), barPlot_combined, base_height = 20/cm(1),  base_width = 34/cm(1), dpi = 1200)
 ```
 
 ## 2. Heatmap
