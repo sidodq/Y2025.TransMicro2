@@ -540,10 +540,10 @@ ggsave(filename = "Y_Expe_SampleType_FruitType_Site.jpg", plot = plot_ITS_Expe_S
 barPlot_combined <- 
   (plot_16S_Expe_SampleTypeFruitTypeSite + labs(tag = "A. Bacteria")) /
   (plot_ITS_Expe_SampleTypeFruitTypeSite + labs(tag = "B. Fungi")) +
-  plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 14, face = "bold"))
+  plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
 
 title_plot <- "Expe_SampleType_FruitType_Site_combined.png"
- cowplot::save_plot(file =here::here("plots", "3_CommunityComposition", title_plot), barPlot_combined, base_height = 20/cm(1),  base_width = 34/cm(1), dpi = 1200)
+ cowplot::save_plot(file =here::here("plots", "3_CommunityComposition", title_plot), barPlot_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)
 ```
 
 ## 2. Heatmap

@@ -49,7 +49,7 @@ color_LifeStage <- c("na" ="grey",  "Mother" = "darkolivegreen4", "Larva"= "dark
 
 color_Pop <- c("na" = "grey", "CEC"="#C1FFC1", "FRA" = "seagreen3" )
 
-color_Expe <- c("na" ="grey","Fruits_0days" = "red3", "Aunts"="darkolivegreen", "Mothers" = "darkolivegreen3", "Fruits_5_6days" = "red4", "Larvae"= "green3", "Pupae" = "darkorange2", "PupalCases"="#8B4500", "Daughters" ="goldenrod2")
+color_Expe <- c("na" ="grey","Fruits_0days" = "red3", "Mothers_0days"="darkolivegreen", "Mothers_2days" = "darkolivegreen3", "Fruits_5_6days" = "red4", "Larvae"= "green3", "Pupae" = "darkorange2", "PupalCases"="#8B4500", "Daughters" ="goldenrod2")
 
 ```
 
@@ -315,7 +315,7 @@ metadata_AlphaDiv_16S_expe$SampleType <- metadata_AlphaDiv_16S_expe$SampleType %
     PupalCases = "G1_PupalCase_Fruits",
     Daughters = "G1_Adults_Fruits")
 
-desired_order <- c("Fruits_0days", "Aunts", "Mothers", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters")  
+desired_order <- c("Fruits_0days", "Mothers_0days", "Mothers_2days", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters")  
 metadata_AlphaDiv_16S_expe$SampleType <- factor(metadata_AlphaDiv_16S_expe$SampleType, levels = desired_order)
 
 
@@ -335,7 +335,7 @@ metadata_AlphaDiv_ITS_expe$SampleType <- metadata_AlphaDiv_ITS_expe$SampleType %
     PupalCases = "G1_PupalCase_Fruits",
     Daughters = "G1_Adults_Fruits")
 
-desired_order <- c("Fruits_0days", "Aunts", "Mothers", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters")  
+desired_order <- c("Fruits_0days", "Mothers_0days", "Mothers_2days", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters")  
 metadata_AlphaDiv_ITS_expe$SampleType <- factor(metadata_AlphaDiv_ITS_expe$SampleType, levels = desired_order)
 ```
 
@@ -343,47 +343,46 @@ metadata_AlphaDiv_ITS_expe$SampleType <- factor(metadata_AlphaDiv_ITS_expe$Sampl
 #### SampleType + Fruit Type
 ```{r}
 ## 16S
-Sha_ST_FT_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S_expe, "SampleType",  c("Aunts", "Fruits_0days", "Mothers",  "Larvae", "Fruits_5_6days" , "Pupae", "PupalCases", "Daughters"), "Shannon", color_FruitType, "FruitType")
+Sha_ST_FT_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S_expe, "SampleType",  c("Mothers_0days", "Fruits_0days", "Mothers_2days",  "Larvae", "Fruits_5_6days" , "Pupae", "PupalCases", "Daughters"), "Shannon", color_FruitType, "FruitType")
 
-Sha_ST_FT_16S$data$SampleType <- factor(Sha_ST_FT_16S$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Aunts", "Mothers", "Larvae", "Pupae", "PupalCases", "Daughters")) # reorder 
-
-
-ObsRich_ST_FT_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S_expe, "SampleType",  c("Aunts", "Fruits_0days", "Mothers",  "Larvae", "Fruits_5_6days" , "Pupae", "PupalCases", "Daughters"), "ObservedRichness" ,color_FruitType, "FruitType")
-
-ObsRich_ST_FT_16S$data$SampleType <- factor(ObsRich_ST_FT_16S$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Aunts", "Mothers", "Larvae", "Pupae", "PupalCases", "Daughters")) # reorder 
+Sha_ST_FT_16S$data$SampleType <- factor(Sha_ST_FT_16S$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "PupalCases", "Daughters")) # reorder 
 
 
-Chao1_ST_FT_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S_expe, "SampleType",  c("Aunts", "Fruits_0days", "Mothers",  "Larvae", "Fruits_5_6days" , "Pupae", "PupalCases", "Daughters"), "Chao1" ,color_FruitType, "FruitType")
+ObsRich_ST_FT_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S_expe, "SampleType",  c("Mothers_0days", "Fruits_0days", "Mothers_2days",  "Larvae", "Fruits_5_6days" , "Pupae", "PupalCases", "Daughters"), "ObservedRichness" ,color_FruitType, "FruitType")
 
-Chao1_ST_FT_16S$data$SampleType <- factor(Chao1_ST_FT_16S$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Aunts", "Mothers", "Larvae", "Pupae", "PupalCases", "Daughters")) # reorder 
+ObsRich_ST_FT_16S$data$SampleType <- factor(ObsRich_ST_FT_16S$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "PupalCases", "Daughters")) # reorder 
 
 
-invSimp_ST_FT_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S_expe, "SampleType",  c("Aunts", "Fruits_0days", "Mothers",  "Larvae", "Fruits_5_6days" , "Pupae", "PupalCases", "Daughters"), "InvSimpson" ,color_FruitType, "FruitType")
+Chao1_ST_FT_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S_expe, "SampleType",  c("Mothers_0days", "Fruits_0days", "Mothers_2days",  "Larvae", "Fruits_5_6days" , "Pupae", "PupalCases", "Daughters"), "Chao1" ,color_FruitType, "FruitType")
 
-invSimp_ST_FT_16S$data$SampleType <- factor(invSimp_ST_FT_16S$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Aunts", "Mothers", "Larvae", "Pupae", "PupalCases", "Daughters")) # reorder 
+Chao1_ST_FT_16S$data$SampleType <- factor(Chao1_ST_FT_16S$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "PupalCases", "Daughters")) # reorder 
+
+
+invSimp_ST_FT_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S_expe, "SampleType",  c("Mothers_0days", "Fruits_0days", "Mothers_2days",  "Larvae", "Fruits_5_6days" , "Pupae", "PupalCases", "Daughters"), "InvSimpson" ,color_FruitType, "FruitType")
+
+invSimp_ST_FT_16S$data$SampleType <- factor(invSimp_ST_FT_16S$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "PupalCases", "Daughters")) # reorder 
 
 
 
 ## ITS
-Sha_ST_FT_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS_expe, "SampleType",  c("Aunts", "Fruits_0days", "Mothers",  "Larvae", "Fruits_5_6days" , "Pupae", "PupalCases", "Daughters"), "Shannon" ,color_FruitType, "FruitType")
+Sha_ST_FT_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS_expe, "SampleType",  c("Mothers_0days", "Fruits_0days", "Mothers_2days",  "Larvae", "Fruits_5_6days" , "Pupae", "PupalCases", "Daughters"), "Shannon" ,color_FruitType, "FruitType")
 
-Sha_ST_FT_ITS$data$SampleType <- factor(Sha_ST_FT_ITS$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Aunts", "Mothers", "Larvae", "Pupae", "PupalCases", "Daughters")) # reorder 
-
-
-ObsRich_ST_FT_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS_expe, "SampleType",  c("Aunts", "Fruits_0days", "Mothers",  "Larvae", "Fruits_5_6days" , "Pupae", "PupalCases", "Daughters"), "ObservedRichness" ,color_FruitType, "FruitType")
-
-ObsRich_ST_FT_ITS$data$SampleType <- factor(ObsRich_ST_FT_ITS$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Aunts", "Mothers", "Larvae", "Pupae", "PupalCases", "Daughters")) # reorder 
+Sha_ST_FT_ITS$data$SampleType <- factor(Sha_ST_FT_ITS$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "PupalCases", "Daughters")) # reorder 
 
 
-Chao1_ST_FT_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS_expe, "SampleType",  c("Aunts", "Fruits_0days", "Mothers",  "Larvae", "Fruits_5_6days" , "Pupae", "PupalCases", "Daughters"), "Chao1" ,color_FruitType, "FruitType")
+ObsRich_ST_FT_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS_expe, "SampleType",  c("Mothers_0days", "Fruits_0days", "Mothers_2days",  "Larvae", "Fruits_5_6days" , "Pupae", "PupalCases", "Daughters"), "ObservedRichness" ,color_FruitType, "FruitType")
 
-Chao1_ST_FT_ITS$data$SampleType <- factor(Chao1_ST_FT_ITS$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Aunts", "Mothers", "Larvae", "Pupae", "PupalCases", "Daughters")) # reorder 
+ObsRich_ST_FT_ITS$data$SampleType <- factor(ObsRich_ST_FT_ITS$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "PupalCases", "Daughters")) # reorder 
 
 
-invSimp_ST_FT_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS_expe, "SampleType",  c("Aunts", "Fruits_0days", "Mothers",  "Larvae", "Fruits_5_6days" , "Pupae", "PupalCases", "Daughters"), "InvSimpson" ,color_FruitType, "FruitType")
+Chao1_ST_FT_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS_expe, "SampleType",  c("Mothers_0days", "Fruits_0days", "Mothers_2days",  "Larvae", "Fruits_5_6days" , "Pupae", "PupalCases", "Daughters"), "Chao1" ,color_FruitType, "FruitType")
 
-invSimp_ST_FT_ITS$data$SampleType <- factor(invSimp_ST_FT_ITS$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Aunts", "Mothers", "Larvae", "Pupae", "PupalCases", "Daughters")) # reorder
+Chao1_ST_FT_ITS$data$SampleType <- factor(Chao1_ST_FT_ITS$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "PupalCases", "Daughters")) # reorder 
 
+
+invSimp_ST_FT_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS_expe, "SampleType",  c("Mothers_0days", "Fruits_0days", "Mothers_2days",  "Larvae", "Fruits_5_6days" , "Pupae", "PupalCases", "Daughters"), "InvSimpson" ,color_FruitType, "FruitType")
+
+invSimp_ST_FT_ITS$data$SampleType <- factor(invSimp_ST_FT_ITS$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "PupalCases", "Daughters")) # reorder
 
 # ## Figure : combine 16S and ITS plots
 # F3_16S <- (ObsRich_ST_FT_16S + Chao1_ST_FT_16S + Sha_ST_FT_16S + invSimp_ST_FT_16S) +
@@ -741,7 +740,7 @@ sample_data(ps_16S_rare_expe)$SampleType <- sample_data(ps_16S_rare_expe)$Sample
     PupalCases = "G1_PupalCase_Fruits",
     Daughters = "G1_Adults_Fruits")
 
-desired_order <- c("Fruits_0days", "Aunts", "Mothers", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters")  
+desired_order <- c("Fruits_0days", "Mothers_0days", "Mothers_2days", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters")  
 sample_data(ps_16S_rare_expe)$SampleType <- factor(sample_data(ps_16S_rare_expe)$SampleType, levels = desired_order)
 
 
@@ -763,7 +762,7 @@ sample_data(ps_ITS_rare_expe)$SampleType <- sample_data(ps_ITS_rare_expe)$Sample
     PupalCases = "G1_PupalCase_Fruits",
     Daughters = "G1_Adults_Fruits")
 
-desired_order <- c("Fruits_0days", "Aunts", "Mothers", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters")  
+desired_order <- c("Fruits_0days", "Mothers_0days", "Mothers_2days", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters")  
 sample_data(ps_ITS_rare_expe)$SampleType <- factor(sample_data(ps_ITS_rare_expe)$SampleType, levels = desired_order)
 ```
 ### Pop x Sample Type NMDS
@@ -879,7 +878,7 @@ NMDS_J_16S_expe_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_expe,
   guides(
     fill = guide_legend(override.aes = list(shape = 21, linetype = NULL, size = 5), title = "Sample Type", ncol = 1),
     shape = guide_legend(title = "Fruit Type"), 
-    color = "none")+ annotate("text", x = -3.7, y = 2.9, label = "A. Bacteria", hjust = 0, size = 6, fontface = "bold")
+    color = "none")+ annotate("text", x = -3.7, y = 3.4, label = "A. Bacteria", hjust = 0, size = 6, fontface = "bold")
 
 title_plot <- "NMDS_16S_Expe_FruitType.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot), NMDS_J_16S_expe_Ellipses, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
@@ -926,7 +925,7 @@ NMDS_J_16S_expe_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_expe,
   guides(
     fill = guide_legend(override.aes = list(shape = 21, linetype = NULL, size = 5), title = "Sample Type", ncol = 1),
     shape = guide_legend(title = "Fruit Type"), 
-    color = "none")+ annotate("text", x = -3.7, y = 2.9, label = "A. Bacteria", hjust = 0, size = 6, fontface = "bold")
+    color = "none")+ annotate("text", x = -3.3, y = 3.3, label = "A. Bacteria", hjust = 0, size = 6, fontface = "bold")
 
 title_plot <- "NMDS_BC_16S_Expe_FruitType.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot), NMDS_J_16S_expe_Ellipses, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
@@ -991,7 +990,7 @@ NMDS_J_ITS_SampleType_EllipsesByFruit <- phyloseq::plot_ordination(physeq = ps_I
   guides(
     fill = guide_legend(override.aes = list(shape = 21, linetype = NULL, size = 5), title = "Sample Type", ncol = 1),
     shape = guide_legend(title = "Fruit Type"),
-    color = "none") 
+    color = "none") + annotate("text", x = -2.2, y = 1.5, label = "B. Fungi", hjust = 0, size = 6, fontface = "bold")
 
 title_plot <- "NMDS_ITS_Expe_SampleType_EllipseByFruit.png"
  cowplot::save_plot(file =here::here("plots", "4_diversities", title_plot),
@@ -999,9 +998,9 @@ title_plot <- "NMDS_ITS_Expe_SampleType_EllipseByFruit.png"
                 base_width = 20/cm(1), dpi = 1200)
  
 # Combined plot
-NMDS_combined_F <- (NMDS_J_16S_SampleType_EllipsesByFruit|NMDS_J_ITS_SampleType_EllipsesByFruit) + plot_layout(ncol = 2,  widths = c(1, 1),guides = "collect") &  theme(legend.position = "right")
+NMDS_combined_F <- (NMDS_J_16S_expe_Ellipses|NMDS_J_ITS_SampleType_EllipsesByFruit) + plot_layout(ncol = 2,  widths = c(1, 1),guides = "collect") &  theme(legend.position = "right")
 
-title_plot <- "NMDS_Expe_SampleType_EllipseByFruit_combined.png"
+title_plot <- "NMDS_Expe_SampleType_combined_Figure.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot), NMDS_combined_F, base_height = 20/cm(1),  base_width = 34/cm(1), dpi = 1200)
 ```
 
