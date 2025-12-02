@@ -997,6 +997,12 @@ title_plot <- "NMDS_ITS_Expe_SampleType_EllipseByFruit.png"
  cowplot::save_plot(file =here::here("plots", "4_diversities", title_plot),
                  NMDS_J_ITS_SampleType_EllipsesByFruit, base_height = 20/cm(1),
                 base_width = 20/cm(1), dpi = 1200)
+ 
+# Combined plot
+NMDS_combined_F <- (NMDS_J_16S_SampleType_EllipsesByFruit|NMDS_J_ITS_SampleType_EllipsesByFruit) + plot_layout(ncol = 2,  widths = c(1, 1),guides = "collect") &  theme(legend.position = "right")
+
+title_plot <- "NMDS_Expe_SampleType_EllipseByFruit_combined.png"
+ cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot), NMDS_combined_F, base_height = 20/cm(1),  base_width = 34/cm(1), dpi = 1200)
 ```
 
 #### b. Quantitative (Bray-Curtis index)
