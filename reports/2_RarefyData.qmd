@@ -100,6 +100,15 @@ length(unique(metadata$ID_pool)) #nb of tot samples = 456
 # 2. Create a phyloseq object
 
 ```{r}
+# Abundance tables
+otu_16S <- atc_16S_nocontrol %>% 
+  textshape::column_to_rownames("observation_name") %>% 
+  dplyr::mutate(seed_sequence = NULL)
+
+otu_ITS <- atc_ITS_nocontrol %>% 
+  textshape::column_to_rownames("observation_name") %>% 
+  dplyr::mutate(seed_sequence = NULL) 
+
 # Taxonomy tables
 tax_16S <- taxo_16S %>% 
   dplyr::left_join(atc_16S_nocontrol %>% select(observation_name, seed_sequence) , by = "observation_name") %>%
@@ -110,15 +119,6 @@ tax_ITS <- taxo_ITS %>%
   dplyr::left_join(atc_ITS_nocontrol %>% select(observation_name, seed_sequence) , by = "observation_name") %>%
   textshape::column_to_rownames("observation_name")
 tax_ITS <- as.matrix(tax_ITS)
-
-# Abundance tables
-otu_16S <- atc_16S_nocontrol %>% 
-  textshape::column_to_rownames("observation_name") %>% 
-  dplyr::mutate(seed_sequence = NULL)
-
-otu_ITS <- atc_ITS_nocontrol %>% 
-  textshape::column_to_rownames("observation_name") %>% 
-  dplyr::mutate(seed_sequence = NULL) 
 
 # Metadata
 mtd <- metadata %>%
@@ -291,22 +291,33 @@ sample_sums(ps_rare_ITS)[1:100]
 saveRDS(ps_rare_16S, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM1&2_ps_rare.rds"))
 saveRDS(ps_rare_ITS, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM1&2_ps_rare.rds"))
 
-write.table(otu_table(ps_rare_16S), file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM1&2_otu_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+otu_df_16S <- as.data.frame(otu_table(ps_rare_16S))
+otu_df_16S$observation_name <- rownames(otu_df_16S)
+otu_df_16S <- otu_df_16S %>% dplyr::relocate(observation_name)
+write.table(otu_df_16S, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM1&2_otu_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
-write.table(tax_table(ps_rare_16S), file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM1&2_tax_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+tax_df_16S <- as.data.frame(tax_table(ps_rare_16S))
+tax_df_16S$observation_name <- rownames(tax_df_16S)
+tax_df_16S <- tax_df_16S %>% dplyr::relocate(observation_name)
+write.table(tax_df_16S, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM1&2_tax_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
-metadata_16S_df <- as.data.frame(sample_data(ps_rare_16S))
+metadata_16S_df <- data.frame(sample_data(ps_rare_16S), check.names = FALSE)
 write.xlsx(metadata_16S_df, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ps_rare_16S_sample_data.xlsx"), rowNames = TRUE)
 
 out_rarefied_16S <- anti_join(mtd, metadata_16S_df, by ="ID_pool")
 write.xlsx(out_rarefied_16S, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "mtd_samples_outAfterRare_16S.xlsx"), rowNames = TRUE)
   
+otu_df_ITS <- as.data.frame(otu_table(ps_rare_ITS))
+otu_df_ITS$observation_name <- rownames(otu_df_ITS)
+otu_df_ITS <- otu_df_ITS %>% dplyr::relocate(observation_name)
+write.table(otu_df_ITS, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM1&2_otu_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
-write.table(otu_table(ps_rare_ITS), file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM1&2_otu_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+tax_df_ITS <- as.data.frame(tax_table(ps_rare_ITS))
+tax_df_ITS$observation_name <- rownames(tax_df_ITS)
+tax_df_ITS <- tax_df_ITS %>% dplyr::relocate(observation_name)
+write.table(tax_df_ITS,file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM1&2_tax_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
-write.table(tax_table(ps_rare_ITS), file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM1&2_tax_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
-
-metadata_ITS_df <- as.data.frame(sample_data(ps_rare_ITS))
+metadata_ITS_df <- data.frame(sample_data(ps_rare_ITS), check.names = FALSE)
 write.xlsx(metadata_ITS_df, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ps_rare_ITS_sample_data.xlsx"), rowNames = TRUE)
 
 out_rarefied_ITS <- anti_join(mtd, metadata_ITS_df, by ="ID_pool")
