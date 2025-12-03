@@ -382,12 +382,14 @@ plot_ITS_Family_SampleTypeFruitTypeSiteVariety$data$SampleType <- factor(plot_IT
 
 ggsave(filename = "Y_Abundance_SampleTYpe_FruitType_Site_Variety.jpg", plot = plot_ITS_Family_SampleTypeFruitTypeSiteVariety, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 
-# ITS (Genus)
-plot_ITS_SampleTypeFruitTypeSiteVariety_GENUS <- Make_composition_bar_plot_2(ps_rare_ITS_FruitsOnly, "Fungi", "Genus", 15, ~SampleType+FruitType+FruitSite+FruitVariety, color_ITS_genus)
+# Combined plot
+barPlot_fruits_combined <- 
+  (plot_16S_Family_SampleTypeFruitTypeSiteVariety + labs(tag = "A. Bacteria")) /
+  (plot_ITS_Family_SampleTypeFruitTypeSiteVariety + labs(tag = "B. Fungi")) +
+  plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
 
-plot_ITS_SampleTypeFruitTypeSiteVariety_GENUS$data$SampleType <- factor(plot_ITS_SampleTypeFruitTypeSiteVariety_GENUS$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days")) # reorder sample type 
-
-ggsave(filename = "Y_Abundance_SampleTYpe_FruitType_Site_Variety_GENUS.jpg", plot = plot_ITS_SampleTypeFruitTypeSiteVariety_GENUS, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
+title_plot <- "Abundance_SampleType_FruitType_Site_Variety_combined.png"
+ cowplot::save_plot(file =here::here("plots", "3_CommunityComposition", title_plot), barPlot_fruits_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)
 ```
 
 
