@@ -982,11 +982,11 @@ ps_rare_ITS_expe_reduced_ST <- prune_samples(
 ### All fruits
 ```{r}
 ### 16S ###
-taxa_by_type <- list(Aunts = A_sharedASVs_B, Fruits_0days= f_sharedASVs_B,  Mothers = M_sharedASVs_B, Larvae  = L_sharedASVs_B)
+taxa_by_type <- list(Mothers_0days = A_sharedASVs_B, Fruits_0days= f_sharedASVs_B,  Mothers_2days = M_sharedASVs_B, Larvae  = L_sharedASVs_B)
 
 sample_types <- unique(sample_data(ps_rare_16S_expe_reduced)$SampleType)
 
-color_LifeStage <- c("Aunts"  = "goldenrod2", "Fruits_0days"  = "darkolivegreen4","Mothers" = "darkorange2","Larvae"  = "darkolivegreen2")
+color_LifeStage <- c("Mothers_0days"  = "goldenrod2", "Fruits_0days"  = "darkolivegreen4","Mothers_2days" = "darkorange2","Larvae"  = "darkolivegreen2")
 
 SC_16S_SampleType <- ggVennDiagram(taxa_by_type, label = "count",label_alpha = 0,edge_size = 1,set_color = color_LifeStage) +
   scale_fill_gradient(low = "white", high = "grey") +
@@ -998,7 +998,7 @@ ggsave(here::here("plots", "3_CommunityComposition", "SharedCore_16S_SampleType.
 
 
 ### ITS ###
-taxa_by_type_Y <- list(Aunts = A_sharedASVs_Y, Fruits_0days= f_sharedASVs_Y,  Mothers = M_sharedASVs_Y, Larvae  = L_sharedASVs_Y)
+taxa_by_type_Y <- list(Mothers_0days = A_sharedASVs_Y, Fruits_0days= f_sharedASVs_Y,  Mothers_2days = M_sharedASVs_Y, Larvae  = L_sharedASVs_Y)
 
 SC_ITS_SampleType <- ggVennDiagram(taxa_by_type_Y, label = "count",label_alpha = 0,edge_size = 1,set_color = color_LifeStage) +
   scale_fill_gradient(low = "white", high = "grey") +
@@ -1018,9 +1018,9 @@ ggsave(here::here("plots", "3_CommunityComposition", "SharedCore_16S&ITS_SampleT
 ### BL
 ```{r}
 ### 16S ###
-taxa_by_type_B_BL <- list(Aunts = A_sharedASVs_B,  Mothers = M_sharedASVs_B_BL, Larvae  = L_sharedASVs_B_BL) # NO Fruits_0days
+taxa_by_type_B_BL <- list(Mothers_0days = A_sharedASVs_B,  Mothers_2days = M_sharedASVs_B_BL, Larvae  = L_sharedASVs_B_BL) # NO Fruits_0days
 
-color_LifeStage <- c("Aunts"  = "goldenrod2", "Mothers" = "darkorange2","Larvae"  = "darkolivegreen2")
+color_LifeStage <- c("Mothers_0days"  = "goldenrod2", "Mothers_2days" = "darkorange2","Larvae"  = "darkolivegreen2")
 
 SC_16S_SampleType_BL <- ggVennDiagram(taxa_by_type_B_BL, label = "count",label_alpha = 0,edge_size = 1,set_color = color_LifeStage) +
   scale_fill_gradient(low = "white", high = "grey") +
@@ -1032,9 +1032,9 @@ SC_16S_SampleType_BL <- ggVennDiagram(taxa_by_type_B_BL, label = "count",label_a
 
 
 ### ITS ###
-taxa_by_type_Y_BL <- list(Aunts = A_sharedASVs_Y, Fruits_0days= f_sharedASVs_Y_BL,  Mothers = M_sharedASVs_Y_BL, Larvae  = L_sharedASVs_Y_BL)
+taxa_by_type_Y_BL <- list(Mothers_0days = A_sharedASVs_Y, Fruits_0days= f_sharedASVs_Y_BL,  Mothers_2days = M_sharedASVs_Y_BL, Larvae  = L_sharedASVs_Y_BL)
 
-color_LifeStage <- c("Aunts"  = "goldenrod2", "Fruits_0days"  = "darkolivegreen4","Mothers" = "darkorange2","Larvae"  = "darkolivegreen2")
+color_LifeStage <- c("Mothers_0days"  = "goldenrod2", "Fruits_0days"  = "darkolivegreen4","Mothers_2days" = "darkorange2","Larvae"  = "darkolivegreen2")
 
 SC_ITS_SampleType_BL <- ggVennDiagram(taxa_by_type_Y_BL, label = "count",label_alpha = 0,edge_size = 1,set_color = color_LifeStage) +
   scale_fill_gradient(low = "white", high = "grey") +
@@ -1054,7 +1054,7 @@ ggsave(here::here("plots", "3_CommunityComposition", "SharedCore_16S&ITS_SampleT
 ### CH
 ```{r}
 ### 16S ###
-taxa_by_type_B_CH <- list(Aunts = A_sharedASVs_B,  Fruits_0days= f_sharedASVs_B_CH, Mothers = M_sharedASVs_B_CH, Larvae  = L_sharedASVs_B_CH) 
+taxa_by_type_B_CH <- list(Mothers_0days = A_sharedASVs_B,  Fruits_0days= f_sharedASVs_B_CH, Mothers_2days = M_sharedASVs_B_CH, Larvae  = L_sharedASVs_B_CH) 
 
 SC_16S_SampleType_CH <- ggVennDiagram(taxa_by_type_B_CH, label = "count",label_alpha = 0,edge_size = 1,set_color = color_LifeStage) +
   scale_fill_gradient(low = "white", high = "grey") +
@@ -1065,7 +1065,7 @@ SC_16S_SampleType_CH <- ggVennDiagram(taxa_by_type_B_CH, label = "count",label_a
 #   SC_16S_SampleType_CH,  width = 16, height = 12, units = "cm", dpi = 1200)
 
 ### ITS ###
-taxa_by_type_Y_CH <- list(Aunts = A_sharedASVs_Y, Fruits_0days= f_sharedASVs_Y_CH,  Mothers = M_sharedASVs_Y_CH, Larvae  = L_sharedASVs_Y_CH)
+taxa_by_type_Y_CH <- list(Mothers_0days = A_sharedASVs_Y, Fruits_0days= f_sharedASVs_Y_CH,  Mothers_2days = M_sharedASVs_Y_CH, Larvae  = L_sharedASVs_Y_CH)
 
 SC_ITS_SampleType_CH <- ggVennDiagram(taxa_by_type_Y_CH, label = "count",label_alpha = 0,edge_size = 1,set_color = color_LifeStage) +
   scale_fill_gradient(low = "white", high = "grey") +
@@ -1085,7 +1085,7 @@ ggsave(here::here("plots", "3_CommunityComposition", "SharedCore_16S&ITS_SampleT
 ### ST
 ```{r}
 ### 16S ###
-taxa_by_type_B_ST <- list(Aunts = A_sharedASVs_B,  Fruits_0days= f_sharedASVs_B_ST, Mothers = M_sharedASVs_B_ST, Larvae  = L_sharedASVs_B_ST) 
+taxa_by_type_B_ST <- list(Mothers_0days = A_sharedASVs_B,  Fruits_0days= f_sharedASVs_B_ST, Mothers_2days = M_sharedASVs_B_ST, Larvae  = L_sharedASVs_B_ST) 
 
 SC_16S_SampleType_ST <- ggVennDiagram(taxa_by_type_B_ST, label = "count",label_alpha = 0,edge_size = 1,set_color = color_LifeStage) +
   scale_fill_gradient(low = "white", high = "grey") +
@@ -1096,7 +1096,7 @@ SC_16S_SampleType_ST <- ggVennDiagram(taxa_by_type_B_ST, label = "count",label_a
 #   SC_16S_SampleType_ST,  width = 16, height = 12, units = "cm", dpi = 1200)
 
 ### ITS ###
-taxa_by_type_Y_ST <- list(Aunts = A_sharedASVs_Y, Fruits_0days= f_sharedASVs_Y_ST,  Mothers = M_sharedASVs_Y_ST, Larvae  = L_sharedASVs_Y_ST)
+taxa_by_type_Y_ST <- list(Mothers_0days = A_sharedASVs_Y, Fruits_0days= f_sharedASVs_Y_ST,  Mothers_2days = M_sharedASVs_Y_ST, Larvae  = L_sharedASVs_Y_ST)
 
 SC_ITS_SampleType_ST <- ggVennDiagram(taxa_by_type_Y_ST, label = "count",label_alpha = 0,edge_size = 1,set_color = color_LifeStage) +
   scale_fill_gradient(low = "white", high = "grey") +
