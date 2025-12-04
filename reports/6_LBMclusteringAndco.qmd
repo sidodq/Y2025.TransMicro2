@@ -26,6 +26,7 @@ library(ggalluvial)
 library(openxlsx)
 library(vegan)
 library(igraph)
+library(patchwork)
 library(parallel)
 library(future)
 library(future.apply)
@@ -451,6 +452,27 @@ SBM_16S_LS_FruitSite <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_LS, BF_m
 SBM_16S_LS_LifeStage <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_LS, BF_mat = BF_16S_LS, mtd = mtd_16S_LS, variable_name = "LifeStage", modality_string = c("Mothers_2days", "Larva", "Pupa", "Daughter", "PupalCase"), color_string = c("goldenrod2" , "darkolivegreen2","darkolivegreen4","darkorange2","#8B4500")) 
 
 SBM_16S_LS_Pop <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_LS, BF_mat = BF_16S_LS, mtd = mtd_16S_LS, variable_name = "Pop", modality_string = c("CEC", "FRA", "na"), color_string = c("#C1FFC1", "seagreen3",))
+
+
+# Represent the 2 factors (Fruit Type & Life Stage)   
+SBM_16S_LS_FruitType_LifeStage <- Order_Matrix_Plot(
+  SBMobject = SBM_bernoulli_16S_LS,
+  BF_mat = BF_16S_LS,
+  mtd = mtd_16S_LS,
+  variable_name = "FruitType",
+  modality_string = c("BL", "CH", "ST"),
+  color_string = c("purple4", "red4", "red2")) +
+  # Add another layer for LifeStage on top
+  geom_tile(
+    data = mtd_16S_LS,
+    aes(x = Sample, y = 0, color = SampleType),
+    inherit.aes = FALSE,
+    linewidth = 0.8) +
+  scale_color_manual(
+    values = c("Fruits_0days" = "red3", "Mothers_0days"="darkolivegreen", "Mothers_2days" = "darkolivegreen3", "Fruits_5_6days" = "red4", "Larvae"= "green3", "Pupae" = "darkorange2", "PupalCases"="#8B4500", "Daughters" ="goldenrod2")) + labs(color = "Life Stage", fill = "Fruit Type")
+
+title_plot <- "SBM_LS_16S_FruitType&SampleType.png"
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", title_plot), SBM_16S_LS_FruitType_LifeStage, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
 ```
 
 ```{r}
@@ -473,25 +495,41 @@ SBM_ITS_LS_LifeStage <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_ITS_LS, BF_m
 
 SBM_ITS_LS_Pop <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_ITS_LS, BF_mat = BF_ITS_LS, mtd = mtd_ITS_LS, variable_name = "Pop", modality_string = c("CEC", "FRA", "na"), color_string = c("#C1FFC1", "seagreen3",))
 
+
+# Represent the 2 factors (Fruit Type & Life Stage)   
+SBM_ITS_LS_FruitType_LifeStage <- Order_Matrix_Plot(
+  SBMobject = SBM_bernoulli_ITS_LS,
+  BF_mat = BF_ITS_LS,
+  mtd = mtd_ITS_LS,
+  variable_name = "FruitType",
+  modality_string = c("BL", "CH","ST"),
+  color_string = c("purple4", "red4","red2")) +
+  # Add another layer for LifeStage on top
+  geom_tile(
+    data = mtd_ITS_LS,
+    aes(x = Sample, y = 0, color = SampleType),
+    inherit.aes = FALSE,
+    linewidth = 0.8) +
+  scale_color_manual(
+    values = c("Fruits_0days" = "red3", "Mothers_0days"="darkolivegreen", "Mothers_2days" = "darkolivegreen3", "Fruits_5_6days" = "red4", "Larvae"= "green3", "Pupae" = "darkorange2", "PupalCases"="#8B4500", "Daughters" ="goldenrod2")) + labs(color = "Life Stage", fill = "Fruit Type")
+
+title_plot <- "SBM_LS_ITS_FruitType&SampleType.png"
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", title_plot), SBM_ITS_LS_FruitType_LifeStage, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
+
+# Combined SBM plots
+SBM_LS_combined <- 
+  (SBM_16S_LS_FruitType_LifeStage + labs(tag = "A. Bacteria")) /
+  (SBM_ITS_LS_FruitType_LifeStage + labs(tag = "B. Fungi")) +
+  plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
+
+title_plot <- "SBM_LS_FruitType&SampleType_combined.png"
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", title_plot), SBM_LS_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200) 
 ```
 
 ## NMI
 ```{r}
 NPERM=100#set quite low, so that permutations do not take too long, only for proof of principle, set to 10000 for serious comparisons
 
-# Simulated version (parallelized version)
-plan(multisession, workers = parallel::detectCores() - 1)
-sim_fun <- function(i, FB) {
-  simulate(nullmodel(FB, "curveball"), nsim = 1)}
-
-netBin.config_16S <- future_lapply(seq_len(NPERM), future.seed=TRUE, sim_fun, FB = FB_16S_LS)
-graph.bin.16S.config <- future_lapply(seq_len(NPERM), future.seed=TRUE, sim_fun,  FB = FB_16S_LS)
-
-netBin.config_ITS <- future_lapply(seq_len(NPERM), future.seed=TRUE, sim_fun, FB = FB_ITS_LS)
-graph.bin.ITS.config <- future_lapply(seq_len(NPERM), future.seed=TRUE, sim_fun,  FB = FB_ITS_LS)
-```
-
-```{r}
 # Factors
 FT_vect_LS_16S <- as.factor(mtd_16S_LS$FruitType[match(rownames(FB_16S_LS), rownames(mtd_16S_LS))])
 FT_vect_LS_ITS <- as.factor(mtd_ITS_LS$FruitType[match(rownames(FB_ITS_LS), rownames(mtd_ITS_LS))])
@@ -607,9 +645,123 @@ Alluvial_ITS_Fruits_LS_FruitType_LifeStage <- dataalluvial_ITS_LS_FruitType_Life
 
 ## CCA
 ```{r}
+analysis.function.2 <- function(incid, memb_obs, var1, var2, configs = NULL) {
+  
+  # Number of observations
+  n <- nrow(incid)
+
+  # response matrix (modules as dummies)
+  modules <- lme4::dummy(as.factor(memb_obs))
+
+  # Correct n (vegan does this internally but your F formula uses n - 1)
+  n <- n - 1
+
+  # ---- CCA MODELS ----
+  full     <- cca(modules ~ var1 + var2, na.action = na.omit)
+  cond1    <- cca(modules ~ var1 + Condition(var2), na.action = na.omit)
+  cond2    <- cca(modules ~ Condition(var1) + var2, na.action = na.omit)
+  marg1    <- cca(modules ~ var1, na.action = na.omit)
+  marg2    <- cca(modules ~ var2, na.action = na.omit)
+
+  # ---- FORMULAS ----
+  Forms <- c(
+    extractTerms(full),
+    extractTerms(cond1),
+    extractTerms(cond2),
+    extractTerms(marg1),
+    extractTerms(marg2)
+  )
+
+  # ---- F VALUES ----
+  F.full  <- full$CCA$tot.chi * (n - full$CCA$qrank) /
+    (full$CA$tot.chi * full$CCA$qrank)
+
+  F.cond1 <- cond1$CCA$tot.chi *
+    (n - cond1$CCA$qrank - cond1$pCCA$rank) /
+    (cond1$CA$tot.chi * cond1$CCA$qrank)
+
+  F.cond2 <- cond2$CCA$tot.chi *
+    (n - cond2$CCA$qrank - cond2$pCCA$rank) /
+    (cond2$CA$tot.chi * cond2$CCA$qrank)
+
+  F.marg1 <- marg1$CCA$tot.chi *
+    (n - marg1$CCA$qrank) /
+    (marg1$CA$tot.chi * marg1$CCA$qrank)
+
+  F.marg2 <- marg2$CCA$tot.chi *
+    (n - marg2$CCA$qrank) /
+    (marg2$CA$tot.chi * marg2$CCA$qrank)
+
+  Fvals <- c(F.full, F.cond1, F.cond2, F.marg1, F.marg2)
+
+  # ---- P VALUES (standard permutations) ----
+  P.full  <- anova(full,  permutations = how(nperm = NPERM - 1))$P[1]
+  P.cond1 <- anova(cond1, permutations = how(nperm = NPERM - 1))$P[1]
+  P.cond2 <- anova(cond2, permutations = how(nperm = NPERM - 1))$P[1]
+  P.marg1 <- anova(marg1, permutations = how(nperm = NPERM - 1))$P[1]
+  P.marg2 <- anova(marg2, permutations = how(nperm = NPERM - 1))$P[1]
+
+  Pvals <- c(P.full, P.cond1, P.cond2, P.marg1, P.marg2)
+
+  # ---- NULL vs CONFIGS ----
+  if (is.null(configs)) {
+    return(data.frame(
+      Formulas = Forms,
+      F = Fvals,
+      P = Pvals
+    ))
+  }
+
+  # configurations exist
+  depth <- dim(configs)[3]
+
+  # compute F on permuted incidence matrices
+  all.F <- sapply(
+    1:depth,
+    function(i) {
+      mat <- as.matrix(configs[,,i])
+      memb_sim <- cluster_leading_eigen(
+        graph_from_incidence_matrix(mat)
+      )$mem[1:nrow(mat)]
+
+      modules_sim <- dummy(as.factor(memb_sim))
+
+      full_s  <- cca(modules_sim ~ var1 + var2)
+      cond1_s <- cca(modules_sim ~ var1 + Condition(var2))
+      cond2_s <- cca(modules_sim ~ Condition(var1) + var2)
+      marg1_s <- cca(modules_sim ~ var1)
+      marg2_s <- cca(modules_sim ~ var2)
+
+      c(
+        onlyF(full_s , n),
+        onlyF(cond1_s, n),
+        onlyF(cond2_s, n),
+        onlyF(marg1_s, n),
+        onlyF(marg2_s, n)
+      )
+    }
+  )
+
+  # ECDF for each model
+  all.ecdf <- apply(all.F, 1, ecdf)
+
+  # P2: proportion of permuted F >= observed F
+  P2 <- sapply(1:5, function(j) 1 - all.ecdf[[j]](Fvals[j]))
+
+  return(data.frame(
+    Formulas = Forms,
+    F = Fvals,
+    P = Pvals,
+    P2 = P2
+  ))
+}
+```
+
+
+```{r}
 # 16S
 
-NPERM <- 10
+NPERM <- 100
 
 sim_list = list()
   
@@ -628,6 +780,28 @@ sim_list = list()
                          estimOptions = list(plot = T))
        memb_spl_sim <- LBM_sim$memberships$row ## Extract membership of the samples 
     })
+  
+# --- parallel plan ---
+# on Windows: multicore isn't allowed -> use multisession
+plan(multisession, workers = parallel::detectCores() - 1)
+
+# --- safely parallelize SBM estimation ---
+LBM.config <- future_lapply(1:NPERM, function(i) {
+
+  # extract simulated matrix
+  BF_sim <- netBin.config[, , i]
+  FB_sim <- t(BF_sim)
+
+  # run SBM (never use plot = TRUE in parallel!)
+  fit <- try(sbm::estimateBipartiteSBM(FB_sim, model = "bernoulli",estimOptions = list(plot = FALSE, verbosity = 0)),
+    silent = TRUE)
+
+  # error handling
+  if (inherits(fit, "try-error")) {
+    return(NA)}
+
+  # return row memberships
+  fit$memberships$row})
 ```
 
 ```{r}
@@ -651,10 +825,14 @@ varp_16S_LS$part
 #CCA with line randomization
 wholenetwork_cca_results_NULL_16S_LS <- analysis.function.alt2(incid=as.data.frame(FB_16S_LS), memb_obs=memb_spl_obs_16S_LS, var1=cca_data_16S_LS$FruitType, var2=cca_data_16S_LS$LifeStage, configs = NULL)
 
-#CCA with full randomization
-wholenetwork_cca_results_CONFIGS_16S_LS <- analysis.function.alt2(incid=as.data.frame(FB_16S_LS), memb_obs=memb_spl_obs_16S_LS, var1=cca_data_16S_LS$FruitType, var2=cca_data_16S_LS$LifeStage, configs = LBM.config)
-```
+LBM.config_array <- array(
+  unlist(LBM.config),
+  dim = c(nrow(LBM.config[[1]]), ncol(LBM.config[[1]]), length(LBM.config))
+)
 
+#CCA with full randomization
+wholenetwork_cca_results_CONFIGS_16S_LS <- analysis.function.alt2(incid=as.data.frame(FB_16S_LS), memb_obs=memb_spl_obs_16S_LS, var1=cca_data_16S_LS$FruitType, var2=cca_data_16S_LS$LifeStage, configs = LBM.config_array)
+```
 
 
 ```{r}
@@ -677,6 +855,28 @@ sim_list = list()
                          estimOptions = list(plot = T))
        memb_spl_sim <- LBM_sim$memberships$row ## Extract membership of the samples 
     })
+  
+# --- parallel plan ---
+# on Windows: multicore isn't allowed -> use multisession
+plan(multisession, workers = parallel::detectCores() - 1)
+
+# --- safely parallelize SBM estimation ---
+LBM.config <- future_lapply(1:NPERM, function(i) {
+
+  # extract simulated matrix
+  BF_sim <- netBin.config[, , i]
+  FB_sim <- t(BF_sim)
+
+  # run SBM (never use plot = TRUE in parallel!)
+  fit <- try(sbm::estimateBipartiteSBM(FB_sim, model = "bernoulli",estimOptions = list(plot = FALSE, verbosity = 0)),
+    silent = TRUE)
+
+  # error handling
+  if (inherits(fit, "try-error")) {
+    return(NA)}
+
+  # return row memberships
+  fit$memberships$row})
 ```
 
 ```{r}
@@ -698,7 +898,7 @@ varp_16S_LS$part
 wholenetwork_cca_results_NULL_ITS_LS <- analysis.function.alt2(incid=as.data.frame(FB_ITS_LS), memb_obs=memb_spl_obs_ITS_LS, var1=cca_data_ITS_LS$FruitType, var2=cca_data_ITS_LS$LifeStage, configs = NULL)
 
 #CCA with full randomization
-wholenetwork_cca_results_CONFIGS_ITS_LS <- analysis.function.alt2(incid=as.data.frame(FB_ITS_LS), memb_obs=memb_spl_obs_ITS_LS, var1=cca_data_ITS_LS$FruitType, var2=cca_data_ITS_LS$LifeStage, configs = LBM.config)
+wholenetwork_cca_results_CONFIGS_ITS_LS <- analysis.function.2(incid=as.data.frame(FB_ITS_LS), memb_obs=memb_spl_obs_ITS_LS, var1=cca_data_ITS_LS$FruitType, var2=cca_data_ITS_LS$LifeStage, configs = LBM.config)
 ```
 
 
