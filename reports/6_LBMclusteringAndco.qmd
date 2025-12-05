@@ -380,8 +380,8 @@ wholenetwork_cca_results_CONFIGS_FruitsOnly_ITS <- analysis.function.alt2(incid=
 ```{r}
 # 16S
 
-## Only Life Stage samples
-ps_16S_rare_LS <- Subset_physeq(ps_rare_16S, LifeStage !="na")
+## Only Life Stage samples : aunts + mothers + larvae + pupae + daughters
+ps_16S_rare_LS <- Subset_physeq(ps_rare_16S, SampleType %in% c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits"))
 
 ps_rare_16S_LS_bin = phyloseq::transform_sample_counts(ps_16S_rare_LS, function(x) 1*(x>0)) 
 
@@ -403,13 +403,27 @@ BF_16S_LS$Genus <- make.unique(BF_16S_LS$Genus, sep = "_")
 rownames(BF_16S_LS) <- BF_16S_LS$Genus 
 BF_16S_LS$Genus <- NULL
 FB_16S_LS <- t(BF_16S_LS)
+
+# rename + reorder Sample Type
+mtd_16S_LS$SampleType <- factor(mtd_16S_LS$SampleType)
+
+mtd_16S_LS$SampleType <- mtd_16S_LS$SampleType %>%
+  forcats::fct_recode(
+    Mothers_0days = "G0_Adults_0days",
+    Mothers_2days = "G0_Adults_Fruits_2days",
+    Larvae = "G1_Larvae_Fruits",
+    Pupae = "G1_Pupae_Fruits",
+    Daughters = "G1_Adults_Fruits")
+
+desired_order <- c("Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "Daughters")  
+mtd_16S_LS$SampleType <- factor(mtd_16S_LS$SampleType, levels = desired_order)
 ```
 
 ```{r}
 # ITS
 
-## Only Life Stage samples
-ps_ITS_rare_LS <- Subset_physeq(ps_rare_ITS, LifeStage !="na")
+## Only Life Stage samples : aunts + mothers + larvae + pupae + daughters
+ps_ITS_rare_LS <- Subset_physeq(ps_rare_ITS, SampleType %in% c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits"))
 ps_rare_ITS_LS_bin = phyloseq::transform_sample_counts(ps_ITS_rare_LS, function(x) 1*(x>0)) 
 
 mtd_ITS_LS <- data.frame(phyloseq::sample_data(ps_rare_ITS_LS_bin))
@@ -430,6 +444,19 @@ BF_ITS_LS$Genus <- make.unique(BF_ITS_LS$Genus, sep = "_")
 rownames(BF_ITS_LS) <- BF_ITS_LS$Genus 
 BF_ITS_LS$Genus <- NULL
 FB_ITS_LS <- t(BF_ITS_LS)
+
+# rename + reorder Sample Type
+mtd_ITS_LS$SampleType <- factor(mtd_ITS_LS$SampleType)
+
+mtd_ITS_LS$SampleType <- mtd_ITS_LS$SampleType %>%
+  forcats::fct_recode(
+    Mothers_0days = "G0_Adults_0days",
+    Mothers_2days = "G0_Adults_Fruits_2days",
+    Larvae = "G1_Larvae_Fruits",
+    Pupae = "G1_Pupae_Fruits",
+    Daughters = "G1_Adults_Fruits")
+
+mtd_ITS_LS$SampleType <- factor(mtd_ITS_LS$SampleType, levels = desired_order)
 ```
 
 ## SBM clustering
@@ -449,7 +476,7 @@ SBM_16S_LS_FruitType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_LS, BF_m
 
 SBM_16S_LS_FruitSite <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_LS, BF_mat = BF_16S_LS, mtd = mtd_16S_LS, variable_name = "FruitSite", modality_string = c("THU","FIN","LOM","IST","MIL","VAR"), color_string = c("skyblue","blue2","skyblue4","deepskyblue","coral2","dodgerblue"))
 
-SBM_16S_LS_LifeStage <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_LS, BF_mat = BF_16S_LS, mtd = mtd_16S_LS, variable_name = "LifeStage", modality_string = c("Mothers_2days", "Larva", "Pupa", "Daughter", "PupalCase"), color_string = c("goldenrod2" , "darkolivegreen2","darkolivegreen4","darkorange2","#8B4500")) 
+SBM_16S_LS_LifeStage <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_LS, BF_mat = BF_16S_LS, mtd = mtd_16S_LS, variable_name = "LifeStage", modality_string = c("Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "Daughter"), color_string = c("goldenrod2" , "darkolivegreen2","darkolivegreen4","darkorange2","#8B4500")) 
 
 SBM_16S_LS_Pop <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_LS, BF_mat = BF_16S_LS, mtd = mtd_16S_LS, variable_name = "Pop", modality_string = c("CEC", "FRA", "na"), color_string = c("#C1FFC1", "seagreen3",))
 
@@ -460,8 +487,8 @@ SBM_16S_LS_FruitType_LifeStage <- Order_Matrix_Plot(
   BF_mat = BF_16S_LS,
   mtd = mtd_16S_LS,
   variable_name = "FruitType",
-  modality_string = c("BL", "CH", "ST"),
-  color_string = c("purple4", "red4", "red2")) +
+  modality_string = c("BL", "CH", "na", "ST"),
+  color_string = c("purple4", "red4", "lightgrey", "red2")) +
   # Add another layer for LifeStage on top
   geom_tile(
     data = mtd_16S_LS,
@@ -469,7 +496,7 @@ SBM_16S_LS_FruitType_LifeStage <- Order_Matrix_Plot(
     inherit.aes = FALSE,
     linewidth = 0.8) +
   scale_color_manual(
-    values = c("Fruits_0days" = "red3", "Mothers_0days"="darkolivegreen", "Mothers_2days" = "darkolivegreen3", "Fruits_5_6days" = "red4", "Larvae"= "green3", "Pupae" = "darkorange2", "PupalCases"="#8B4500", "Daughters" ="goldenrod2")) + labs(color = "Life Stage", fill = "Fruit Type")
+    values = c("Mothers_0days"="darkolivegreen", "Mothers_2days" = "darkolivegreen3", "Larvae"= "green3", "Pupae" = "darkorange2", "Daughters" ="goldenrod2")) + labs(color = "Life Stage", fill = "Fruit Type")
 
 title_plot <- "SBM_LS_16S_FruitType&SampleType.png"
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", title_plot), SBM_16S_LS_FruitType_LifeStage, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
@@ -502,8 +529,8 @@ SBM_ITS_LS_FruitType_LifeStage <- Order_Matrix_Plot(
   BF_mat = BF_ITS_LS,
   mtd = mtd_ITS_LS,
   variable_name = "FruitType",
-  modality_string = c("BL", "CH","ST"),
-  color_string = c("purple4", "red4","red2")) +
+  modality_string = c("BL", "CH", "na", "ST"),
+  color_string = c("purple4", "red4","lightgrey","red2")) +
   # Add another layer for LifeStage on top
   geom_tile(
     data = mtd_ITS_LS,
@@ -511,7 +538,7 @@ SBM_ITS_LS_FruitType_LifeStage <- Order_Matrix_Plot(
     inherit.aes = FALSE,
     linewidth = 0.8) +
   scale_color_manual(
-    values = c("Fruits_0days" = "red3", "Mothers_0days"="darkolivegreen", "Mothers_2days" = "darkolivegreen3", "Fruits_5_6days" = "red4", "Larvae"= "green3", "Pupae" = "darkorange2", "PupalCases"="#8B4500", "Daughters" ="goldenrod2")) + labs(color = "Life Stage", fill = "Fruit Type")
+    values = c("Mothers_0days"="darkolivegreen", "Mothers_2days" = "darkolivegreen3", "Larvae"= "green3", "Pupae" = "darkorange2", "Daughters" ="goldenrod2")) + labs(color = "Life Stage", fill = "Fruit Type")
 
 title_plot <- "SBM_LS_ITS_FruitType&SampleType.png"
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", title_plot), SBM_ITS_LS_FruitType_LifeStage, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
@@ -520,7 +547,7 @@ title_plot <- "SBM_LS_ITS_FruitType&SampleType.png"
 SBM_LS_combined <- 
   (SBM_16S_LS_FruitType_LifeStage + labs(tag = "A. Bacteria")) /
   (SBM_ITS_LS_FruitType_LifeStage + labs(tag = "B. Fungi")) +
-  plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
+  plot_layout(ncol = 1, guides = "collect") & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
 
 title_plot <- "SBM_LS_FruitType&SampleType_combined.png"
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", title_plot), SBM_LS_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200) 
