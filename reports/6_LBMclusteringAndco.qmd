@@ -615,26 +615,26 @@ print(c("NMI =", nmi_obs_LS_ITS_LifeStage, "P-value = ", 1 - ecdf(simulated_nmi_
 # 16S
 
 ## Extract rows (samples) and columns (OTUs) for the alluvial plot
-memb_spl_obs_16S_LS <- LBM_bernoulli_16S_LS$memberships$row
-memb_otu_obs_16S_LS <- LBM_bernoulli_16S_LS$memberships$col
+memb_spl_obs_16S_LS <- SBM_bernoulli_16S_LS$memberships$row
+memb_otu_obs_16S_LS <- SBM_bernoulli_16S_LS$memberships$col
 
 ## Data for alluvial plot : Compute SampleSize, the number of samples for each FruitType, Lifestage and OTU membership
 dataalluvial_16S_LS_FruitType_LifeStage <- as.data.frame(table(sample_data(ps_rare_16S_LS_bin)$FruitType,
-      memb_spl_obs_16S_LS, sample_data(ps_rare_16S_LS_bin)$LifeStage))
+      memb_spl_obs_16S_LS, sample_data(ps_rare_16S_LS_bin)$SampleType))
 
-colnames(dataalluvial_16S_LS_FruitType_LifeStage) = c("FruitType", "Bacteria",  "LifeStage", "SampleSize") # change column names
+colnames(dataalluvial_16S_LS_FruitType_LifeStage) = c("FruitType", "Bacteria",  "SampleType", "SampleSize") # change column names
 
 # plot for fruits
 Alluvial_16S_Fruits_LS_FruitType_LifeStage <- dataalluvial_16S_LS_FruitType_LifeStage |>
   ggplot(aes(axis1 = FruitType,
              axis2 = Bacteria,
-             axis3 = LifeStage,
+             axis3 = SampleType,
              y = SampleSize)) +
   ggalluvial::geom_alluvium(aes(fill = FruitType), alpha = 0.6) +
   ggalluvial::geom_stratum(width = 0.4) +
   geom_text(stat = "stratum",
             aes(label = after_stat(stratum))) +
-  scale_x_discrete(limits = c("FruitType", "Bacteria", "Life stage"), expand = c(.2, .05)) +
+  scale_x_discrete(limits = c("Fruit", "Bacteria", "Life stage"), expand = c(.2, .05)) +
   scale_fill_manual(values = c("BL" = "purple4", "CH" = "red4","na" = "grey",  "ST" = "red2"),guide = "none") +
   theme_minimal()+
   theme(axis.text.x = element_text(size = 12, color = "black", face = "bold"))
@@ -644,26 +644,26 @@ Alluvial_16S_Fruits_LS_FruitType_LifeStage <- dataalluvial_16S_LS_FruitType_Life
 # ITS
 
 ## Extract rows (samples) and columns (OTUs) for the alluvial plot
-memb_spl_obs_ITS_LS <- LBM_bernoulli_ITS_LS$memberships$row
-memb_otu_obs_ITS_LS <- LBM_bernoulli_ITS_LS$memberships$col
+memb_spl_obs_ITS_LS <- SBM_bernoulli_ITS_LS$memberships$row
+memb_otu_obs_ITS_LS <- SBM_bernoulli_ITS_LS$memberships$col
 
 ## Data for alluvial plot : Compute SampleSize, the number of samples for each FruitType, Lifestage and OTU membership
 dataalluvial_ITS_LS_FruitType_LifeStage <- as.data.frame(table(sample_data(ps_rare_ITS_LS_bin)$FruitType,
-      memb_spl_obs_ITS_LS, sample_data(ps_rare_ITS_LS_bin)$LifeStage))
+      memb_spl_obs_ITS_LS, sample_data(ps_rare_ITS_LS_bin)$SampleType))
 
-colnames(dataalluvial_ITS_LS_FruitType_LifeStage) = c("FruitType", "Bacteria",  "LifeStage", "SampleSize") # change column names
+colnames(dataalluvial_ITS_LS_FruitType_LifeStage) = c("FruitType", "Bacteria",  "SampleType", "SampleSize") # change column names
 
 # plot for fruits
 Alluvial_ITS_Fruits_LS_FruitType_LifeStage <- dataalluvial_ITS_LS_FruitType_LifeStage |>
   ggplot(aes(axis1 = FruitType,
              axis2 = Bacteria,
-             axis3 = LifeStage,
+             axis3 = SampleType,
              y = SampleSize)) +
   ggalluvial::geom_alluvium(aes(fill = FruitType), alpha = 0.6) +
   ggalluvial::geom_stratum(width = 0.4) +
   geom_text(stat = "stratum",
             aes(label = after_stat(stratum))) +
-  scale_x_discrete(limits = c("FruitType", "Bacteria", "Life stage"), expand = c(.2, .05)) +
+  scale_x_discrete(limits = c("Fruit", "Fungi", "Life stage"), expand = c(.2, .05)) +
   scale_fill_manual(values = c("BL" = "purple4", "CH" = "red4","na" = "grey",  "ST" = "red2"),guide = "none") +
   theme_minimal()+
   theme(axis.text.x = element_text(size = 12, color = "black", face = "bold"))
