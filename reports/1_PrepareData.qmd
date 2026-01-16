@@ -20,7 +20,7 @@ devtools::load_all()
 library(dplyr)
 ```
 
-# 0. Distinguish run 1 from run 2
+# 0. Distinguish run 1, 2 and 3
 
 ```{r}
 # # 16S
@@ -36,7 +36,7 @@ library(dplyr)
 #   
 #   parts <- strsplit(fname, "-")[[1]] # Split by "-"
 #   
-#   if (length(parts) >= 4) {suffix <- ifelse(mod_year == "2024", "rn1",i felse(mod_year == "2025", "rn2", NA))
+#   if (length(parts) >= 4) {suffix <- ifelse(mod_year == "2024", "rn1",ifelse(mod_year == "2025", "rn2", NA))
 #     # Decide suffix
 #     
 #     if (!is.na(suffix)) {parts <- append(parts, suffix, after = 3) # Insert suffix after 3rd element
@@ -71,6 +71,57 @@ library(dplyr)
 #       new_fname <- paste(parts, collapse = "-")
 #       new_path <- file.path(dirname(f), new_fname)
 #       
+#       # Rename
+#       file.rename(f, new_path)
+#       cat("Renamed:", fname, "→", new_fname, "\n")}}}
+
+# # RUN 3
+# # 16S
+# folder3 <- file.path(here::here(), "data", "raw_data","repasse_n3_16S")
+# 
+# # List .fastq.gz files
+# files3 <- list.files(folder3 , pattern = "\\.fastq(\\.gz)?$", full.names = TRUE)
+# 
+# # Loop over files
+# for (f in files3) {mod_month <- format(file.info(f)$mtime, "%m") # Get modification month
+# 
+#   fname <- basename(f) # Extract file name only
+# 
+#   parts <- strsplit(fname, "-")[[1]] # Split by "-"
+# 
+#   if (length(parts) >= 4) {suffix <- ifelse(mod_month == "12", "rn3",NA) # Decide suffix
+# 
+#     if (!is.na(suffix)) {parts <- append(parts, suffix, after = 3) # Insert suffix after 3rd element
+# 
+#       # Rebuild new filename
+#       new_fname <- paste(parts, collapse = "-")
+#       new_path <- file.path(dirname(f), new_fname)
+# 
+#       # Rename
+#       file.rename(f, new_path)
+#       cat("Renamed:", fname, "→", new_fname, "\n")}}}
+# 
+# # ITS
+# folder4 <- file.path(here::here(), "data", "raw_data","repasse_n3_ITS")
+# 
+# # List .fastq.gz files
+# files4 <- list.files(folder4 , pattern = "\\.fastq(\\.gz)?$", full.names = TRUE)
+# 
+# # Loop over files
+# for (f in files4) {mod_month <- format(file.info(f)$mtime, "%m") # Get modification month
+# 
+#   fname <- basename(f) # Extract file name only
+# 
+#   parts <- strsplit(fname, "-")[[1]] # Split by "-"
+# 
+#   if (length(parts) >= 4) {suffix <- ifelse(mod_month == "12", "rn3",NA) # Decide suffix
+# 
+#     if (!is.na(suffix)) {parts <- append(parts, suffix, after = 3) # Insert suffix after 3rd element
+# 
+#       # Rebuild new filename
+#       new_fname <- paste(parts, collapse = "-")
+#       new_path <- file.path(dirname(f), new_fname)
+# 
 #       # Rename
 #       file.rename(f, new_path)
 #       cat("Renamed:", fname, "→", new_fname, "\n")}}}
