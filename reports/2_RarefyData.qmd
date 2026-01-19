@@ -20,6 +20,7 @@ devtools::load_all()
 library(dplyr)
 library(phyloseq)
 library(openxlsx)
+library(stringr)
 ```
 
 # 0. Intro
@@ -35,66 +36,49 @@ library(openxlsx)
 
 ```{r}
 # Import 16S Abundance table
-atc_16S <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "16S_TM1&2_abundance.tsv"), sep="\t",header=TRUE) 
-dim(atc_16S) # 3950 806
+atc_16S <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "16S_TM123_abundance.tsv"), sep="\t",header=TRUE) 
+dim(atc_16S) # 4615 720
 
 # Delete Controls and Undetermined
 atc_16S_nocontrol <- atc_16S %>% 
   dplyr::select(!(dplyr::contains("CT_") | 
                   dplyr::contains("NC_") |
                   dplyr::starts_with("Undetermined")))
-dim(atc_16S_nocontrol) # 3950 408
+dim(atc_16S_nocontrol) # 4615 336
 
 # Deletion of 16S- prefixes in sample names
 colnames(atc_16S_nocontrol) <- gsub("16S_", "", colnames(atc_16S_nocontrol))
 
 # Import ITS Abundance table
-atc_ITS <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "ITS_TM1&2_abundance.tsv"), sep="\t",header=TRUE)
-dim(atc_ITS) # 1514 605
+atc_ITS <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "ITS_TM123_abundance.tsv"), sep="\t",header=TRUE)
+dim(atc_ITS) # 1303 565
 
 # Delete Controls and Undetermined
 atc_ITS_nocontrol <- atc_ITS %>% 
   dplyr::select(!(dplyr::contains("CT_") | 
                   dplyr::contains("NC_") |
                   dplyr::starts_with("Undetermined")))
-dim(atc_ITS_nocontrol) # 1514 342
+dim(atc_ITS_nocontrol) # 1303 312
 
 # Deletion of ITS- prefixes in sample names
 colnames(atc_ITS_nocontrol) <- gsub("ITS_", "", colnames(atc_ITS_nocontrol))
 
 
 # Import 16S and ITS taxonomy tables
-taxo_16S <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "16S_TM1&2_taxonomy.tsv"),sep="\t",header=TRUE)
+taxo_16S <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "16S_TM123_taxonomy.tsv"),sep="\t",header=TRUE)
 
-taxo_ITS <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "ITS_TM1&2_taxonomy.tsv"),sep="\t",header=TRUE)
+taxo_ITS <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "ITS_TM123_taxonomy.tsv"),sep="\t",header=TRUE)
 
 
 # Import Metadata table
-metadata <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "TransMicro1&2_metadata.tsv"),sep="\t",header=TRUE)
+metadata <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "TransMicro123_metadata.tsv"),sep="\t",header=TRUE)
 
+samples_to_distinguish <- c("CT_INDEX_3_rn2", "MS_001_rn3", "MS_098_rn3", "MS_148_rn3", "MS_151_rn3", "MS_163_rn3", "MS_167_rn3", "MS_263_rn3")
 
-# Distinction between "CT_INDEX_3_rn2" samples
-metadata <- metadata %>% 
-  dplyr::mutate(
-    ID_pool = case_when(
-      ID_pool == "CT_INDEX_3" & Marker == "16S" ~ "CT_INDEX_3_16S",
-      ID_pool == "CT_INDEX_3" & Marker == "ITS" ~ "CT_INDEX_3_ITS",
-      TRUE ~ ID_pool))
+metadata <- add_marker_to_id(metadata, samples_to_distinguish)
 
-length(unique((metadata$ID_pool)[ metadata$Marker != "ITS"])) #nb of 16S samples = 428
-length(unique((metadata$ID_pool)[ metadata$Marker != "16S"])) #nb of ITS samples = 362
-
-# Remove run 1&2 distinction 
-metadata <- metadata %>% 
-  dplyr::mutate(ID_pool = sapply(ID_pool, Remove_last_two_chars_run)) %>% 
-  dplyr::select(-Marker, -Run) %>%
-  dplyr::group_by(ID_pool) %>%
-  dplyr::summarise(dplyr::across(
-    .cols = everything(),
-    .fns = ~ ifelse(length(unique(.x)) == 1, unique(.x), paste(unique(.x), collapse = ";"))
-  ), .groups = "drop")
-
-length(unique(metadata$ID_pool)) #nb of tot samples = 456
+length(unique((metadata$ID_pool)[ metadata$Marker != "ITS"])) #nb of 16S samples = 464
+length(unique((metadata$ID_pool)[ metadata$Marker != "16S"])) #nb of ITS samples = 374
 ```
 
 # 2. Create a phyloseq object
@@ -122,10 +106,16 @@ tax_ITS <- as.matrix(tax_ITS)
 
 # Metadata
 mtd <- metadata %>%
+  dplyr::mutate(ID_pool = sapply(ID_pool, Remove_last_two_chars_run)) %>% # Remove runs distinction (1, 2 or 3)
   dplyr::mutate(ID_pool_rowname = ID_pool) %>%
-   textshape::column_to_rownames("ID_pool_rowname")
+    dplyr::mutate(ID_pool_rowname = ID_pool) %>%
+  dplyr::select(-Marker, -Run) %>% 
+  dplyr::group_by(ID_pool) %>% 
+  dplyr::summarise(dplyr::across( .cols = everything(), .fns = ~ ifelse(length(unique(.x)) == 1, unique(.x), paste(unique(.x), collapse = ";")) ), .groups = "drop") %>% 
+  textshape::column_to_rownames("ID_pool_rowname")
+  
 
-write.table(mtd, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "TM1&2_reduced_metadata.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+write.table(mtd, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "TM123_reduced_metadata.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 #Transform into phyloseq compatible objects
 OTU_16S <- phyloseq::otu_table(otu_16S, taxa_are_rows = T)
@@ -134,12 +124,38 @@ TAX_16S <- phyloseq::tax_table(as.matrix(tax_16S))
 OTU_ITS <- phyloseq::otu_table(otu_ITS, taxa_are_rows = T)
 TAX_ITS <- phyloseq::tax_table(as.matrix(tax_ITS))
 
-MTD <- phyloseq::sample_data(as.data.frame(mtd))
+#MTD <- phyloseq::sample_data(as.data.frame(mtd))
+# # Build a phyloseq objects
+# ps_16S <- phyloseq::phyloseq(OTU_16S, TAX_16S, MTD)
+# ps_ITS <- phyloseq::phyloseq(OTU_ITS, TAX_ITS, MTD)
+
+ps_16S <- phyloseq(OTU_16S, TAX_16S, sample_data(mtd))
+ps_ITS <- phyloseq(OTU_ITS, TAX_ITS, sample_data(mtd))
+
+ps_16Sm <- merge_samples(ps_16S,group = "ID_pool",fun = sum)
+ps_ITSm <- merge_samples(ps_ITS,group = "ID_pool",fun = sum)
+
+sample_data(ps_16Sm) <- sample_data(ps_16S) %>%
+  as.data.frame() %>%
+  group_by(ID_pool) %>%
+  summarise(across(
+    everything(),
+    ~ ifelse(length(unique(.x)) == 1, unique(.x), NA)
+  )) %>%
+  tibble::column_to_rownames("ID_pool") %>%
+  sample_data()
+
+sample_data(ps_ITSm) <- sample_data(ps_ITS) %>%
+  as.data.frame() %>%
+  group_by(ID_pool) %>%
+  summarise(across(
+    everything(),
+    ~ ifelse(length(unique(.x)) == 1, unique(.x), NA)
+  )) %>%
+  tibble::column_to_rownames("ID_pool") %>%
+  sample_data()
 
 
-# Build a phyloseq objects
-ps_16S <- phyloseq::phyloseq(OTU_16S, TAX_16S, MTD)
-ps_ITS <- phyloseq::phyloseq(OTU_ITS, TAX_ITS, MTD)
 
 # Extract OTU abundance data from phyloseq objects
 table_OTU_16S <- phyloseq::otu_table(ps_16S)
@@ -190,6 +206,7 @@ taxa_to_remove_ITS <- TAX_ITS_df %>%
 write.xlsx( TAX_ITS_df[taxa_to_remove_ITS, ], file = file.path(here::here(), "data", "derived_data",  "2_RarefyData","Conta_clusters_ITS.xlsx"), rowNames = TRUE) #export removed clusers
 ```
 
+
 ```{r}
 # Distribution of the number of reads across samples
 sample_sums(ps_16S) #for each sample
@@ -222,7 +239,7 @@ Rarefactioncurve_16S <- phyloseq.extended::ggrare(ps_16S_filtered, step = 100, s
 
 # Make_rarefaction_curve2(phylo_object = ps_16S_filtered, x_intersection_line = 3000, plot_variable = "SampleType", color_variable = "SampleType", maxdepth=10000, logy=TRUE) # curves plotted for seq depth up to 10.000 reads per sample (17 types of samples)
 
-title_plot <- "16S_TM1&2_Rarefactioncurve.png"
+title_plot <- "16S_TM123_Rarefactioncurve.png"
   cowplot::save_plot(file =here::here("plots", "2_RarefyData", title_plot), Rarefactioncurve_16S, base_height = 35/cm(1), base_width = 60/cm(1), dpi = 1200)
 
 
@@ -232,14 +249,14 @@ Rarefactioncurve_ITS <- phyloseq.extended::ggrare(ps_ITS_filtered, step = 100, s
 
 # Make_rarefaction_curve(phylo_object = ps_ITS_filtered, x_intersection_line = 5000, variable = "SampleType", number_columns = 18 , color_variable = "SampleType", title ="ITS Rarefaction Curves", maxdepth=10000)
 
-title_plot <- "ITS_TM1&2_Rarefactioncurve.png"
+title_plot <- "ITS_TM123_Rarefactioncurve.png"
   cowplot::save_plot(file =here::here("plots", "2_RarefyData", title_plot), Rarefactioncurve_ITS, base_height = 35/cm(1),base_width = 60/cm(1), dpi = 1200)
   
 # make a combined plot
 RarefactionCurves <- ggpubr::ggarrange(Rarefactioncurve_16S, Rarefactioncurve_ITS,
                     labels = c("A. 16S", "B. ITS"), ncol = 2, nrow = 1, widths = c(1.4, 1.4), legend = "bottom", common.legend = TRUE)
 
-title_plot <- "RarefactionCurves_AllSamples.png"
+title_plot <- "RarefactionCurves_TM123_AllSamples.png"
  cowplot::save_plot(file =here::here("plots", "2_RarefyData", title_plot), RarefactionCurves, base_height = 30/cm(1), base_width = 60/cm(1), dpi = 1200)  
 ```
 
@@ -287,10 +304,11 @@ set.seed(1)
 ps_rare_ITS <- rarefy_even_depth(ps_ITS, sample.size = 5000) # 42 samples + 608 otus removed
 sample_sums(ps_rare_ITS)[1:100]
 
-# Export
+## Export
 saveRDS(ps_rare_16S, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM1&2_ps_rare.rds"))
 saveRDS(ps_rare_ITS, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM1&2_ps_rare.rds"))
 
+#16S
 otu_df_16S <- as.data.frame(otu_table(ps_rare_16S))
 otu_df_16S$observation_name <- rownames(otu_df_16S)
 otu_df_16S <- otu_df_16S %>% dplyr::relocate(observation_name)
@@ -306,7 +324,8 @@ write.xlsx(metadata_16S_df, file=file.path(here::here(), "data", "derived_data",
 
 out_rarefied_16S <- anti_join(mtd, metadata_16S_df, by ="ID_pool")
 write.xlsx(out_rarefied_16S, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "mtd_samples_outAfterRare_16S.xlsx"), rowNames = TRUE)
-  
+
+#ITS
 otu_df_ITS <- as.data.frame(otu_table(ps_rare_ITS))
 otu_df_ITS$observation_name <- rownames(otu_df_ITS)
 otu_df_ITS <- otu_df_ITS %>% dplyr::relocate(observation_name)
