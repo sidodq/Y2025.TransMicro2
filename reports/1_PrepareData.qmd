@@ -130,10 +130,10 @@ library(dplyr)
 # 1. Metadata Table
 
 ```{r}
-mt <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "MetadataforAnalyses_TransMicro12.csv"), sep=";",header=TRUE)
+mt <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "MetadataforAnalyses_TransMicro123.csv"), sep=";",header=TRUE)
 
 mt <- mt %>% 
-  dplyr::mutate(ID_pool = dplyr::case_when(Run == 1 ~ paste0(ID_pool, "_rn1"), Run == 2 ~ paste0(ID_pool, "_rn2"), TRUE ~ ID_pool))
+  dplyr::mutate(ID_pool = dplyr::case_when(Run == 1 ~ paste0(ID_pool, "_rn1"), Run == 2 ~ paste0(ID_pool, "_rn2"), Run == 3 ~ paste0(ID_pool, "_rn3"), TRUE ~ ID_pool))
 
 mt <- mt %>%
   dplyr::mutate(LifeStage = ifelse(ID_pool == "MS_066_rn2", "na", LifeStage),
@@ -144,14 +144,14 @@ mt <- mt %>%
   dplyr::mutate(Sample_Category = ifelse(Sample_Category == "All_stages_focal_Sites", "All_stages_Focal_Sites", Sample_Category))
 
 # Export
-write.table(mt, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "TransMicro1&2_metadata.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+write.table(mt, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "TransMicro123_metadata.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 ## Precision of the nb of samples
 mt_samples <- mt %>%
   dplyr::group_by(FrozenLifeStage, SampleType, N, Substrate, Pop, FruitSite, FruitSiteTypeVariety, DevFruit) %>%
   dplyr::summarise(SampleCount = dplyr::n(), .groups = "drop")
 
-write.csv(mt_samples, file = file.path(here::here(), "data", "derived_data", "1_PrepareData", "TM1&2_metadata_samples_data.csv"), row.names = FALSE, quote = FALSE)
+write.csv(mt_samples, file = file.path(here::here(), "data", "derived_data", "1_PrepareData", "TM123_metadata_samples_data.csv"), row.names = FALSE, quote = FALSE)
 ```
 
 # 2. Bacterial community
@@ -160,8 +160,8 @@ write.csv(mt_samples, file = file.path(here::here(), "data", "derived_data", "1_
 
 ### Import & Clean Multi-Affiliation Table
 ```{r}
-ma_16S <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "16S_TM1&2-[FROGS_BIOM_to_TSV__multi-affiliations.tsv].tsv"),sep="\t",header=TRUE)
-dim(ma_16S)# 169 416 lignes
+ma_16S <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "16S_TM123-[FROGS_BIOM_to_TSV__multi-affiliations.tsv].tsv"),sep="\t",header=TRUE)
+dim(ma_16S)# 181 347 lignes
 
 # Clean taxonomy of multi-affiliation table 
 taxo_16S_Multiaffiliation <- Define_multiaffiliation(multiaffiliation_table = ma_16S, thresh = 0.5) # filter the tax names with freq inf to 0,5 (within cluster) and assign a tax name (if 1 valid name) or multi/unknown (if multiple valid names)
@@ -169,7 +169,7 @@ taxo_16S_Multiaffiliation <- Define_multiaffiliation(multiaffiliation_table = ma
 
 ### Import & Clean Abundance Table
 ```{r}
-ab_16S <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "16S_TM1&2-[FROGS_BIOM_to_TSV__abundance.tsv].tsv"),sep="\t",header=TRUE)
+ab_16S <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "16S_TM123-[FROGS_BIOM_to_TSV__abundance.tsv].tsv"),sep="\t",header=TRUE)
 data.table::setnames(ab_16S, old = names(ab_16S), new = gsub("-", "_", names(ab_16S)))
 dim(ab_16S)
 
@@ -179,39 +179,39 @@ colnames(ab_16S)[colnames(ab_16S) == "16S_MS_0125_rn1_A"] <- "16S_MS_125_rn1_A"
 colnames(ab_16S)[colnames(ab_16S) == "16S_MS_0221_rn1_A"] <- "16S_MS_221_rn1_A"
 
 # Clean taxonomy
-ab_16S <- Clean_ab_table(abundance_table = ab_16S, remove_col = NULL) #Expected 7 pieces. Missing pieces filled with `NA` in 83 rows 
+ab_16S <- Clean_ab_table(abundance_table = ab_16S, remove_col = NULL) #Expected 7 pieces. Missing pieces filled with `NA` in 91 rows 
 ```
 
 ### Abundance table with multi-affiliation and chimeras removed
 ```{r}
 # New version of ab_16s : taxonomy with multi-affiliation and chimeras removed
-at_16S <- Combine_ab_multi_affi_tables_remove_chim(multi_affi_table = taxo_16S_Multiaffiliation, name = "TransMicro1&2_16S", abundance_table = ab_16S) # 1950 bimeras/6191 sequences, proportion = 0.31
+at_16S <- Combine_ab_multi_affi_tables_remove_chim(multi_affi_table = taxo_16S_Multiaffiliation, name = "TransMicro1-2-3_16S", abundance_table = ab_16S) # 2049 bimeras/6966 sequences, proportion = 0.29
 
-dim(at_16S) # 4241 clusters
+dim(at_16S) # 4917 clusters
 
 # Replaces the taxonomy not found with the taxonomy found manually in BLAST
 at_16S_no <- subset(at_16S, grepl("no;NA;NA;NA;NA;NA;NA", blast_taxonomy))# blast_taxonomy = "no;NA;NA;NA;NA;NA;NA" 
-at_16S_no$observation_name # 69 clusters
+at_16S_no$observation_name # 75 clusters
 
 # blast_taxonomy : no;NA;NA;NA;NA;NA;NA : add the taxonomy obtained by BLAST with NCBI (see 16S_TransMicro_Cluster_Blast.xlsx)
 at_16S[at_16S$observation_name == "Cluster_8", "seed_sequence"]
 at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_8")] <- "Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit"
 
-at_16S[at_16S$observation_name == "Cluster_12", "seed_sequence"]
-at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_12")] <- "Bacteria;Bacillota;Clostridia;Peptostreptococcales;Anaerovoracaceae;Lentihominibacter;Lentihominibacter hominis"
+at_16S[at_16S$observation_name == "Cluster_13", "seed_sequence"]
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_13")] <- "Bacteria;Bacillota;Clostridia;Peptostreptococcales;Anaerovoracaceae;Lentihominibacter;Lentihominibacter hominis"
 
-at_16S[at_16S$observation_name == "Cluster_31", "seed_sequence"]
-at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_31")] <- "Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit"
+at_16S[at_16S$observation_name == "Cluster_29", "seed_sequence"]
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_29")] <- "Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit"
 
-at_16S[at_16S$observation_name == "Cluster_170", "seed_sequence"]
-at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_170")] <- "Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit"
+at_16S[at_16S$observation_name == "Cluster_157", "seed_sequence"]
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_157")] <- "Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit"
 
-at_16S[at_16S$observation_name == "Cluster_182", "seed_sequence"]
-at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_182")] <- "Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit"
+at_16S[at_16S$observation_name == "Cluster_162", "seed_sequence"]
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_162")] <- "Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit"
 
-# Delete them
-at_16S <- at_16S %>%
-  dplyr::filter(blast_taxonomy != "no;NA;NA;NA;NA;NA;NA")
+# # Delete them
+# at_16S <- at_16S %>%
+#   dplyr::filter(blast_taxonomy != "no;NA;NA;NA;NA;NA;NA")
 
 # Split taxonomy
 at_16S <- at_16S %>% 
@@ -244,7 +244,7 @@ sample.size_16S <- abundance_table_16S %>%
 sample.size_16S
 
 # Export
-write.table(sample.size_16S, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "16S_TM1&2_Coverage_depth_per_Sample_Type.csv"), sep=";", row.names=FALSE, col.names=TRUE, quote=FALSE)
+write.table(sample.size_16S, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "16S_TM1-2-3_Coverage_depth_per_Sample_Type.csv"), sep=";", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 #Plot
 # Create a stacked bar plot of kingdom proportions by SampleType
@@ -263,7 +263,7 @@ prop_16S <- ggplot(sample.size_16S, aes(x = SampleType, y = prop_cov_depth, fill
     legend.position = "bottom"  )
 prop_16S
 
-title_plot <- "16S_TM1&2_CovDepth_Proportions.png"
+title_plot <- "16S_TM123_CovDepth_Proportions.png"
  cowplot::save_plot(file =here::here("plots", "1_PrepareData", title_plot),
                  prop_16S, base_height = 20/cm(1),
                 base_width = 25/cm(1), dpi = 1200)
@@ -271,14 +271,14 @@ title_plot <- "16S_TM1&2_CovDepth_Proportions.png"
 
 ### Delete clusters with Multi-affiliation, Plantae, Fungi and Unknown in Kingdom taxonomic rank
 ```{r}
-dim(at_16S) #4241 clusters
+dim(at_16S) #4917 clusters
 # blast_taxonomy : Unknown in Kingdom rank
 at_16S_Unknown <- at_16S[at_16S$Kingdom == "Unknown",]
 at_16S_Unknown$observation_name # 0 cluster 
 
 # blast_taxonomy : Multi-affiliation in Kingdom rank
 at_16S_Multiaffiliation <- at_16S[at_16S$Kingdom == "Multi-affiliation",]
-at_16S_Multiaffiliation$observation_name # 1 cluster : 2412
+at_16S_Multiaffiliation$observation_name # 1 cluster : 2629
 
 # blast_taxonomy : Fungi in Kingdom rank
 at_16S_Fungi <-  at_16S[at_16S$Kingdom == "Fungi",]
@@ -286,13 +286,13 @@ at_16S_Fungi$observation_name # 0 cluster
 
 # blast_taxonomy : Plantae in Kingdom rank
 at_16S_Plantae <-  at_16S[at_16S$Kingdom =="Plantae_Chl" |	at_16S$Kingdom =="Plantae_Mit",]
-at_16S_Plantae$observation_name # 290 clusters 
+at_16S_Plantae$observation_name # 302 clusters 
 
 # Delete these clusters
 at_16S <- at_16S  %>%
-  dplyr::slice(which(is.na(match(Kingdom, c("Plantae_Chl", "Plantae_Mit", "Fungi", "Multi-affiliation", "Unknown")))))
+  dplyr::slice(which(is.na(match(Kingdom, c("Plantae_Chl", "Plantae_Mit", "Fungi")))))# "Multi-affiliation", "Unknown"
 
-dim(at_16S) #3950 clusters
+dim(at_16S) #4615 clusters
 ```
 
 ### Replace "Multi-affiliation", "unidentified", "unknown species", "unknown genus", "unknown family", "unknown" by "Unknown" in the taxonomy
@@ -382,9 +382,9 @@ data_16S <- data_16S %>%
   dplyr::ungroup()
 ```
 
-### Merge run 1&2 replicas
+### Merge run replicas (run 1, 2 or 3)
 ```{r}
-# Apply the function Remove_last_two_chars in the abundance table (_rn1 or _rn2)
+# Apply the function Remove_last_two_chars in the abundance table (_rn1, 2 or 3)
 data_16S$Samples <- sapply(data_16S$Samples, Remove_last_two_chars_run)
 
 # Compute sum across the replicates
@@ -398,7 +398,7 @@ data_16S <- data_16S %>%
   tidyr::pivot_wider(names_from = Samples, values_from = SumCount)
 
 # Export
-write.table(data_16S, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "16S_TM1&2_abundance.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+write.table(data_16S, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "16S_TM123_abundance.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 ```
 
 ## 2.2. Taxonomy Table
@@ -409,7 +409,7 @@ tt_16S <- at_16S_TccTfafiltered %>%
 # check taxonomy with : table(tt_16S$Species) 
 
 # Export
-write.table(tt_16S, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "16S_TM1&2_taxonomy.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+write.table(tt_16S, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "16S_TM123_taxonomy.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 ```
 
 # 3. Fungal community
@@ -418,7 +418,7 @@ write.table(tt_16S, file=file.path(here::here(), "data", "derived_data", "1_Prep
 
 ### Import & Clean Abundance Table
 ```{r}
-ab_ITS <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "ITS_TM1&2-[FROGS_BIOM_to_TSV__abundance.tsv].tsv"),sep="\t",header=TRUE)
+ab_ITS <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "ITS_TM123-[FROGS_BIOM_to_TSV__abundance.tsv].tsv"),sep="\t",header=TRUE)
 dim(ab_ITS)
 
 # Clean taxonomy of abundance table
@@ -427,7 +427,7 @@ ab_ITS <- Clean_ab_table(abundance_table = ab_ITS, remove_col = NULL) #Expected 
 
 ### Import & Clean Multi-Affiliation Table
 ```{r}
-ma_ITS <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "ITS_TM1&2-[FROGS_BIOM_to_TSV__multi-affiliations.tsv].tsv"),sep="\t",header=TRUE)
+ma_ITS <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "ITS_TM123-[FROGS_BIOM_to_TSV__multi-affiliations.tsv].tsv"),sep="\t",header=TRUE)
 dim(ma_ITS)
 
 # Clean taxonomy of multi-affiliation table
@@ -438,12 +438,12 @@ dim(taxo_ITS_Multiaffiliation)
 
 ### Abundance Table : taxonomy with multi-affiliation and a new abundance file without chimeras
 ```{r}
-at_ITS <- Combine_ab_multi_affi_tables_remove_chim(multi_affi_table = taxo_ITS_Multiaffiliation, name = "TransMicro_ITS", abundance_table = ab_ITS) # 510 bimeras/2024 sequences, proportion = 0.25
+at_ITS <- Combine_ab_multi_affi_tables_remove_chim(multi_affi_table = taxo_ITS_Multiaffiliation, name = "TransMicro1-2-3_ITS", abundance_table = ab_ITS) # 510 bimeras/1813 sequences, proportion = 0.28
 dim(at_ITS) # 1514 clusters
 
 ## Replaces the taxonomy not found with the taxonomy but found manually in BLAST
 at_ITS_no <- subset(at_ITS, grepl("no;NA;NA;NA;NA;NA;NA", blast_taxonomy))
-at_ITS_no$observation_name # 261 clusters 
+at_ITS_no$observation_name # 211 clusters 
 
 # hist(sapply(at_ITS_no$seed_sequence, nchar))
 # sum(sapply(at_ITS_no$seed_sequence, nchar)>100)
@@ -455,28 +455,28 @@ at_ITS_no$observation_name # 261 clusters
 # at_ITS_no$seed_sequence[sapply(at_ITS_no$seed_sequence, nchar)>245 &sapply(at_ITS_no$seed_sequence, nchar)<254]
 
 # blast_taxonomy : no;NA;NA;NA;NA;NA;NA : add the taxonomy obtained by BLAST with NCBI (see ITS_TransMicro_Cluster_Blast.xlsx)
-at_ITS[at_ITS$observation_name == "Cluster_18", "seed_sequence"]
-at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_18")] <- "Fungi;Ascomycota;Pichiomycetes;Serinales;Metschnikowiaceae;Metschnikowia;Metschnikowia pulcherrima"
+at_ITS[at_ITS$observation_name == "Cluster_15", "seed_sequence"]
+at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_15")] <- "Fungi;Ascomycota;Pichiomycetes;Serinales;Metschnikowiaceae;Metschnikowia;Metschnikowia pulcherrima"
 
-at_ITS[at_ITS$observation_name == "Cluster_41", "seed_sequence"]
-at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_41")] <- "Fungi;Ascomycota;Pichiomycetes;Serinales;Metschnikowiaceae;Metschnikowia;Metschnikowia pulcherrima"
+at_ITS[at_ITS$observation_name == "Cluster_28", "seed_sequence"]
+at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_28")] <- "Fungi;Ascomycota;Pichiomycetes;Serinales;Metschnikowiaceae;Metschnikowia;Metschnikowia pulcherrima"
 
-at_ITS[at_ITS$observation_name == "Cluster_47", "seed_sequence"]
-at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_47")] <- "Fungi;Ascomycota;Pichiomycetes;Pichiales;Pichiaceae;Pichia;Unknown"
+at_ITS[at_ITS$observation_name == "Cluster_52", "seed_sequence"]
+at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_52")] <- "Fungi;Ascomycota;Pichiomycetes;Pichiales;Pichiaceae;Pichia;Unknown"
 
-at_ITS[at_ITS$observation_name == "Cluster_50", "seed_sequence"]
-at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_50")] <- "Fungi;Ascomycota;Pichiomycetes;Serinales;Metschnikowiaceae;Metschnikowia;Unknown"
+at_ITS[at_ITS$observation_name == "Cluster_57", "seed_sequence"]
+at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_57")] <- "Fungi;Ascomycota;Pichiomycetes;Serinales;Metschnikowiaceae;Metschnikowia;Unknown"
 
-# blast_taxonomy of big clusters with unknown after Kingdom 
-at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_4")] <- "Fungi;Ascomycota;Leotiomycetes;Helotiales;Sclerotiniaceae;Unknown;Unknown"
+# # blast_taxonomy of big clusters with unknown after Kingdom 
+# at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_4")] <- "Fungi;Ascomycota;Leotiomycetes;Helotiales;Sclerotiniaceae;Unknown;Unknown"
+# 
+# at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_5")] <- "Fungi;Ascomycota;Dothideomycetes;Cladosporiales;Cladosporiaceae;Cladosporium;Unknown"
+# 
+# at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_6")] <- "Fungi;Ascomycota;Leotiomycetes;Helotiales;Sclerotiniaceae;Unknown;Unknown"
 
-at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_5")] <- "Fungi;Ascomycota;Dothideomycetes;Cladosporiales;Cladosporiaceae;Cladosporium;Unknown"
-
-at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_6")] <- "Fungi;Ascomycota;Leotiomycetes;Helotiales;Sclerotiniaceae;Unknown;Unknown"
-
-# Delete them
-at_ITS <- at_ITS %>%
-  dplyr::filter(blast_taxonomy != "no;NA;NA;NA;NA;NA;NA" )
+# # Delete them
+# at_ITS <- at_ITS %>%
+#   dplyr::filter(blast_taxonomy != "no;NA;NA;NA;NA;NA;NA" )
 
 # Split taxonomy
 at_ITS[98, "blast_taxonomy"] <- gsub(";;", ";", at_ITS[98, "blast_taxonomy"])
@@ -517,7 +517,7 @@ sample.size_ITS <- abundance_table_ITS %>%
   dplyr::mutate(prop_cov_depth = round(cov_depth/sum(cov_depth), 2))
 
 # Export
-write.table(sample.size_ITS, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "ITS_TM1&2_Coverage_depth_per_Sample_Type.csv"), sep=";", row.names=FALSE, col.names=TRUE, quote=FALSE)
+write.table(sample.size_ITS, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "ITS_TM123_Coverage_depth_per_Sample_Type.csv"), sep=";", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 #Plot
 # Create a stacked bar plot of kingdom proportions by SampleType
@@ -535,7 +535,7 @@ ITS_prop <- ggplot(sample.size_ITS, aes(x = SampleType, y = prop_cov_depth, fill
     legend.title = element_blank(),
     legend.position = "bottom"  )
 
-title_plot <- "ITS_TM1&2_CovDepth_Proportions.png"
+title_plot <- "ITS_TM123_CovDepth_Proportions.png"
  cowplot::save_plot(file =here::here("plots","1_PrepareData", title_plot),
                  ITS_prop, base_height = 20/cm(1),
                 base_width = 25/cm(1), dpi = 1200)
@@ -562,13 +562,15 @@ at_ITS_Plantae$observation_name # no cluster
 
 # Delete these clusters
 at_ITS <- at_ITS  %>%
-  dplyr::slice(which(is.na(match(Kingdom, c("Plantae", "Plantae_Chl", "Plantae_Mit", "Bacteria", "Multi-affiliation", "Unknown")))))
+  dplyr::slice(which(is.na(match(Kingdom, c("Plantae", "Plantae_Chl", "Plantae_Mit", "Bacteria"))))) #, "Multi-affiliation", "Unknown"
 
 dim(at_ITS)
 ```
 
 ### Replace "Multi-affiliation", "unidentified", "unknown species", "unknown genus", "unknown family", "unknown" by "Unknown" in the taxonomy
 ```{r}
+replace_names <- c("Multi-affiliation", "unidentified", "unknown species", "unknown genus", "unknown family", "unknown")
+
 at_ITS <- at_ITS %>%
   dplyr::mutate(Kingdom = ifelse(Kingdom %in% replace_names, "Unknown", Kingdom),
          Phylum = ifelse(Phylum %in% replace_names, "Unknown", Phylum),
@@ -651,9 +653,9 @@ data_ITS <- data_ITS %>%
   dplyr::ungroup()
 ```
 
-### Merge run 1&2 replicas
+### Merge run replicas (1, 2, or 3)
 ```{r}
-# Apply the function Remove_last_two_chars in the abundance table (_rn1 or _rn2)
+# Apply the function Remove_last_two_chars in the abundance table (_rn1, 2 or 3)
 data_ITS$Samples <- sapply(data_ITS$Samples, Remove_last_two_chars_run)
 
 # Compute sum across the replicates
@@ -667,7 +669,7 @@ data_ITS <- data_ITS %>%
   tidyr::pivot_wider(names_from = Samples, values_from = SumCount)
 
 # Export
-write.table(data_ITS, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "ITS_TM1&2_abundance.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+write.table(data_ITS, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "ITS_TM123_abundance.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 ```
 
 # 3.2. Taxonomy Table
@@ -694,5 +696,5 @@ tt_clean_ITS <- tt_ITS %>%
                 )
 
 # Export
-write.table(tt_clean_ITS, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "ITS_TM1&2_taxonomy.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+write.table(tt_clean_ITS, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "ITS_TM123_taxonomy.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 ```
