@@ -158,13 +158,13 @@ sample_data(ps_ITSm) <- sample_data(ps_ITS) %>%
 
 
 # Extract OTU abundance data from phyloseq objects
-table_OTU_16S <- phyloseq::otu_table(ps_16S)
-table_OTU_16S[rowSums(phyloseq::otu_table(ps_16S)) == 0, ] # OTUs with no counts in any 16S samples
-names(phyloseq::sample_sums(ps_16S)[ phyloseq::sample_sums(ps_16S) == 0]) #samples with no reads
+table_OTU_16S <- phyloseq::otu_table(ps_16Sm)
+table_OTU_16S[rowSums(phyloseq::otu_table(ps_16Sm)) == 0, ] # OTUs with no counts in any 16S samples
+names(phyloseq::sample_sums(ps_16Sm)[ phyloseq::sample_sums(ps_16Sm) == 0]) #samples with no reads
 
-table_OTU_ITS <- phyloseq::otu_table(ps_ITS)
-table_OTU_ITS[rowSums(phyloseq::otu_table(ps_ITS)) == 0, ] # OTUs with no counts in any ITS samples
-names(phyloseq::sample_sums(ps_ITS)[ phyloseq::sample_sums(ps_ITS) == 0]) #samples with no reads
+table_OTU_ITS <- phyloseq::otu_table(ps_ITSm)
+table_OTU_ITS[rowSums(phyloseq::otu_table(ps_ITSm)) == 0, ] # OTUs with no counts in any ITS samples
+names(phyloseq::sample_sums(ps_ITSm)[ phyloseq::sample_sums(ps_ITSm) == 0]) #samples with no reads
 ```
 
 ## Remove Wolbachia + conta
@@ -175,13 +175,13 @@ TAX_16S_df <- as.data.frame(TAX_16S)
 wolbachia_rows <- rownames(TAX_16S_df[!is.na(TAX_16S_df$Genus) & TAX_16S_df$Genus == "Wolbachia", ])
 
 ## Relative abundance of Wolbachia accross the abundance of all the OTUs 
-otu_df <- as.data.frame(otu_table(ps_16S))
+otu_df <- as.data.frame(otu_table(ps_16Sm))
 otu_df[] <- lapply(otu_df, as.numeric)   # force all columns numeric
 
 sum(otu_df[wolbachia_rows, ], na.rm = TRUE) / sum(otu_df, na.rm = TRUE) *100 # Percentage of Wolbachia
 
 ## Remove
-ps_16S <- prune_taxa(!(taxa_names(ps_16S) %in% wolbachia_rows), ps_16S)
+ps_16Sm <- prune_taxa(!(taxa_names(ps_16Sm) %in% wolbachia_rows), ps_16Sm)
 
 
 # Remove 16S conta
@@ -209,25 +209,25 @@ write.xlsx( TAX_ITS_df[taxa_to_remove_ITS, ], file = file.path(here::here(), "da
 
 ```{r}
 # Distribution of the number of reads across samples
-sample_sums(ps_16S) #for each sample
-sum(sample_sums(ps_16S)) #total
-min(sample_sums(ps_16S)) #min
-max(sample_sums(ps_16S)) #max
-mean(sample_sums(ps_16S)) # mean 11111.32
+sample_sums(ps_16Sm) #for each sample
+sum(sample_sums(ps_16Sm)) #total
+min(sample_sums(ps_16Sm)) #min
+max(sample_sums(ps_16Sm)) #max
+mean(sample_sums(ps_16Sm)) # mean 11111.32
 
-sample_sums(ps_ITS) #for each sample
-sum(sample_sums(ps_ITS)) #total
-min(sample_sums(ps_ITS)) #min
-max(sample_sums(ps_ITS)) #max
-mean(sample_sums(ps_ITS)) # mean = 9913.682
+sample_sums(ps_ITSm) #for each sample
+sum(sample_sums(ps_ITSm)) #total
+min(sample_sums(ps_ITSm)) #min
+max(sample_sums(ps_ITSm)) #max
+mean(sample_sums(ps_ITSm)) # mean = 9913.682
 
 # Identify samples with a sum of abundances equal to zero
-zero_abundance_samples_16S <- names(sample_sums(ps_16S)[ sample_sums(ps_16S) == 0]) # 33 samples
-zero_abundance_samples_ITS <- names(sample_sums(ps_ITS)[ sample_sums(ps_ITS) == 0]) # 7 samples
+zero_abundance_samples_16S <- names(sample_sums(ps_16Sm)[ sample_sums(ps_16Sm) == 0]) # 33 samples
+zero_abundance_samples_ITS <- names(sample_sums(ps_ITSm)[ sample_sums(ps_ITSm) == 0]) # 7 samples
 
 # Remove samples with a sum of abundances equal to zero from the phyloseq object
-ps_16S_filtered <- subset_samples(ps_16S, !(sample_names(ps_16S) %in% zero_abundance_samples_16S))
-ps_ITS_filtered <- subset_samples(ps_ITS, !(sample_names(ps_ITS) %in% zero_abundance_samples_ITS))
+ps_16S_filtered <- subset_samples(ps_16Sm, !(sample_names(ps_16Sm) %in% zero_abundance_samples_16S))
+ps_ITS_filtered <- subset_samples(ps_ITSm, !(sample_names(ps_ITSm) %in% zero_abundance_samples_ITS))
 ```
 
 # 3. Rarefaction curve
@@ -297,27 +297,27 @@ title_plot <- "RarefactionCurves_Expe.png"
 ```{r}
 # Rarefy samples by discarding samples with fewer than 3.000 reads
 set.seed(1)                                         
-ps_rare_16S <- rarefy_even_depth(ps_16S, sample.size = 3000) # 105 samples + 3167 otus removed
+ps_rare_16S <- rarefy_even_depth(ps_16Sm, sample.size = 3000) # 105 samples + 3167 otus removed
 sample_sums(ps_rare_16S)[1:100]
 
 set.seed(1)                                         
-ps_rare_ITS <- rarefy_even_depth(ps_ITS, sample.size = 5000) # 42 samples + 608 otus removed
+ps_rare_ITS <- rarefy_even_depth(ps_ITSm, sample.size = 5000) # 42 samples + 608 otus removed
 sample_sums(ps_rare_ITS)[1:100]
 
 ## Export
-saveRDS(ps_rare_16S, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM1&2_ps_rare.rds"))
-saveRDS(ps_rare_ITS, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM1&2_ps_rare.rds"))
+saveRDS(ps_rare_16S, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_ps_rare.rds"))
+saveRDS(ps_rare_ITS, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_ps_rare.rds"))
 
 #16S
 otu_df_16S <- as.data.frame(otu_table(ps_rare_16S))
 otu_df_16S$observation_name <- rownames(otu_df_16S)
 otu_df_16S <- otu_df_16S %>% dplyr::relocate(observation_name)
-write.table(otu_df_16S, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM1&2_otu_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+write.table(otu_df_16S, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_otu_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 tax_df_16S <- as.data.frame(tax_table(ps_rare_16S))
 tax_df_16S$observation_name <- rownames(tax_df_16S)
 tax_df_16S <- tax_df_16S %>% dplyr::relocate(observation_name)
-write.table(tax_df_16S, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM1&2_tax_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+write.table(tax_df_16S, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_tax_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 metadata_16S_df <- data.frame(sample_data(ps_rare_16S), check.names = FALSE)
 write.xlsx(metadata_16S_df, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ps_rare_16S_sample_data.xlsx"), rowNames = TRUE)
@@ -329,12 +329,12 @@ write.xlsx(out_rarefied_16S, file=file.path(here::here(), "data", "derived_data"
 otu_df_ITS <- as.data.frame(otu_table(ps_rare_ITS))
 otu_df_ITS$observation_name <- rownames(otu_df_ITS)
 otu_df_ITS <- otu_df_ITS %>% dplyr::relocate(observation_name)
-write.table(otu_df_ITS, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM1&2_otu_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+write.table(otu_df_ITS, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_otu_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 tax_df_ITS <- as.data.frame(tax_table(ps_rare_ITS))
 tax_df_ITS$observation_name <- rownames(tax_df_ITS)
 tax_df_ITS <- tax_df_ITS %>% dplyr::relocate(observation_name)
-write.table(tax_df_ITS,file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM1&2_tax_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+write.table(tax_df_ITS,file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_tax_table_ps_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 metadata_ITS_df <- data.frame(sample_data(ps_rare_ITS), check.names = FALSE)
 write.xlsx(metadata_ITS_df, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ps_rare_ITS_sample_data.xlsx"), rowNames = TRUE)
