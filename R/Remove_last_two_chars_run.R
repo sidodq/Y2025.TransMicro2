@@ -16,10 +16,10 @@
 Remove_last_two_chars_run <- function(text) {
 
   # Step 1: if ends with _rnX_Y → swap to _Y_rnX
-  text <- gsub("_(rn[12])_([123])$", "_\\2_\\1", text)
+  text <- gsub("_(rn[123])_([123])$", "_\\2_\\1", text)
 
   # Step 2: remove trailing _rn1 or _rn2
-  text <- gsub("_(rn[12])$", "", text)
+  text <- gsub("_(rn[123])$", "", text)
 
   return(text)
 }
