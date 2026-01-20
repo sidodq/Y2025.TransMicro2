@@ -1,650 +1,762 @@
 observation_name	Kingdom	Phylum	Class	Order	Family	Genus	Species
 Cluster_1	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia kluyveri
-Cluster_10	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Saccharomycodaceae	Hanseniaspora	Unknown
-Cluster_100	Fungi	Basidiomycota	Wallemiomycetes	Wallemiales	Wallemiaceae	Wallemia	Unknown
-Cluster_1002	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Teratosphaeriaceae	Unknown	Unknown
-Cluster_1003	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Aspergillus	Unknown
-Cluster_10098	Fungi	Ascomycota	Sordariomycetes	Microascales	Unknown	Unknown	Unknown
-Cluster_1010	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Golovinomyces	Golovinomyces orontii
-Cluster_1014	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_1021	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Cordycipitaceae	Beauveria	Beauveria pseudobassiana
-Cluster_1022	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia terricola
-Cluster_1029	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma victoriae
-Cluster_1031	Fungi	Basidiomycota	Cystobasidiomycetes	Unknown	Unknown	Unknown	Unknown
-Cluster_104	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
-Cluster_1040	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Cladosporium aphidis
-Cluster_1041	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Pseudoophiobolus	Unknown
-Cluster_1042	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia gruessii
-Cluster_1044	Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Filobasidiaceae	Filobasidium	Unknown
-Cluster_1045	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Teratosphaeriaceae	Unknown	Unknown
-Cluster_1047	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia hydrangeae-macrophyllae
-Cluster_1049	Fungi	Ascomycota	Dipodascomycetes	Dipodascales	Dipodascaceae	Unknown	Unknown
-Cluster_1051	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_1058	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma taibaiensis
-Cluster_106	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
-Cluster_1061	Fungi	Basidiomycota	Tremellomycetes	Unknown	Unknown	Unknown	Unknown
-Cluster_1062	Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Unknown	Unknown	Unknown
-Cluster_1064	Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_1065	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Nectriaceae	Microcera	Microcera physciae
-Cluster_1072	Fungi	Rozellomycota	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_1074	Fungi	Basidiomycota	Agaricomycetes	Corticiales	Corticiaceae	Unknown	Unknown
-Cluster_1075	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Phanerochaetaceae	Phanerochaete	Phanerochaete livescens
-Cluster_1078	Fungi	Ascomycota	Lecanoromycetes	Ostropales	Stictidaceae	Unknown	Unknown
-Cluster_108	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Unknown
-Cluster_1082	Fungi	Basidiomycota	Agaricomycetes	Agaricales	Radulomycetaceae	Radulomyces	Radulomyces molaris
-Cluster_1084	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Melanommataceae	Praetumpfia	Praetumpfia obducens
-Cluster_1087	Fungi	Ascomycota	Dothideomycetes	Unknown	Unknown	Unknown	Unknown
-Cluster_1092	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Saccharomycetaceae	Saccharomyces	Saccharomyces cerevisiae
-Cluster_1094	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Unknown	Unknown	Unknown
-Cluster_1097	Fungi	Basidiomycota	Agaricomycetes	Russulales	Stereaceae	Unknown	Unknown
-Cluster_11	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia nakasei
-Cluster_1100	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Leptosphaeriaceae	Sphaerellopsis	Sphaerellopsis filum
-Cluster_1101	Fungi	Basidiomycota	Exobasidiomycetes	Exobasidiales	Unknown	Unknown	Unknown
-Cluster_1107	Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_1112	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Unknown	Unknown	Unknown
-Cluster_1116	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Didymosphaeriaceae	Montagnula	Unknown
-Cluster_112	Fungi	Ascomycota	Dipodascomycetes	Dipodascales	Dipodascaceae	Unknown	Unknown
-Cluster_1121	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Dioszegia	Dioszegia maotaiensis
-Cluster_1123	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Unknown	Unknown	Unknown
-Cluster_1124	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Lophiostomataceae	Lophiostoma	Unknown
-Cluster_1126	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pyrenochaetopsidaceae	Pyrenochaetopsis	Pyrenochaetopsis leptospora
-Cluster_113	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia mandshurica
-Cluster_1131	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Dacryobolaceae	Postia	Postia stiptica
-Cluster_1138	Fungi	Ascomycota	Sordariomycetes	Xylariales	Unknown	Unknown	Unknown
-Cluster_1139	Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora lycii
-Cluster_114	Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Unknown	Unknown	Unknown
-Cluster_1140	Fungi	Ascomycota	Eurotiomycetes	Chaetothyriales	Herpotrichiellaceae	Unknown	Unknown
-Cluster_1142	Fungi	Basidiomycota	Agaricomycetes	Agaricales	Psathyrellaceae	Candolleomyces	Unknown
-Cluster_115	Fungi	Basidiomycota	Malasseziomycetes	Malasseziales	Malasseziaceae	Malassezia	Malassezia restricta
-Cluster_1150	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Unknown
-Cluster_1153	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Torulaceae	Torula	Torula fici
-Cluster_1156	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Torulaceae	Torula	Torula hollandica
-Cluster_116	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Aspergillus	Unknown
-Cluster_1164	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Pyrenophora	Pyrenophora bromi
-Cluster_1166	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Debaryomycetaceae	Debaryomyces	Debaryomyces delbrueckii
-Cluster_1169	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_117	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
-Cluster_1170	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Meruliaceae	Phlebia	Phlebia rufa
-Cluster_1171	Fungi	Basidiomycota	Pucciniomycetes	Pucciniales	Unknown	Unknown	Unknown
-Cluster_1173	Fungi	Basidiomycota	Cystobasidiomycetes	Unknown	Symmetrosporaceae	Unknown	Unknown
-Cluster_1182	Fungi	Ascomycota	Dothideomycetes	Unknown	Unknown	Unknown	Unknown
-Cluster_1189	Fungi	Basidiomycota	Cystobasidiomycetes	Cystobasidiales	Cystobasidiaceae	Cystobasidium	Cystobasidium fimetarium
-Cluster_119	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Cladosporium halotolerans
-Cluster_1192	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Unknown	Unknown	Unknown
-Cluster_1194	Fungi	Ascomycota	Saccharomycetes	Ascoideales	Saccharomycopsidaceae	Saccharomycopsis	Saccharomycopsis crataegensis
-Cluster_1195	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Paraphoma	Paraphoma rhaphiolepidis
-Cluster_1196	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Cucurbitariaceae	Neocucurbitaria	Neocucurbitaria cava
-Cluster_1198	Fungi	Basidiomycota	Tremellomycetes	Unknown	Unknown	Unknown	Unknown
-Cluster_12	Fungi	Basidiomycota	Tremellomycetes	Trichosporonales	Trichosporonaceae	Cutaneotrichosporon	Cutaneotrichosporon curvatum
-Cluster_1203	Fungi	Basidiomycota	Cystobasidiomycetes	Buckleyzymales	Buckleyzymaceae	Buckleyzyma	Unknown
-Cluster_1208	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Leptosphaeriaceae	Sphaerellopsis	Sphaerellopsis macroconidialis
-Cluster_121	Fungi	Ascomycota	Taphrinomycetes	Taphrinales	Taphrinaceae	Taphrina	Taphrina wiesneri
-Cluster_1212	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Unknown
-Cluster_1216	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Unknown	Unknown	Unknown
-Cluster_1218	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia viticola
-Cluster_1222	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_1224	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia membranifaciens
-Cluster_1226	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Neomycosphaerella	Neomycosphaerella guibourtiae
-Cluster_123	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma victoriae
-Cluster_1230	Fungi	Basidiomycota	Agaricomycetes	Auriculariales	Auriculariaceae	Exidia	Exidia saccharina
-Cluster_1248	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Golovinomyces	Golovinomyces sonchicola
-Cluster_125	Fungi	Ascomycota	Dipodascomycetes	Dipodascales	Dipodascaceae	Geotrichum	Geotrichum silvicola
-Cluster_1262	Fungi	Basidiomycota	Agaricomycetes	Phallales	Phallaceae	Phallus	Phallus impudicus
-Cluster_1268	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Cryptococcaceae	Cryptococcus	Unknown
-Cluster_1271	Fungi	Ascomycota	Leotiomycetes	Helotiales	Unknown	Unknown	Unknown
-Cluster_1277	Fungi	Ascomycota	Dothideomycetes	Myriangiales	Endosporiaceae	Endosporium	Unknown
-Cluster_128	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia gruessii
-Cluster_1285	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Parastagonospora	Parastagonospora nodorum
-Cluster_129	Fungi	Ascomycota	Leotiomycetes	Helotiales	Sclerotiniaceae	Botrytis	Botrytis caroliniana
-Cluster_1292	Fungi	Basidiomycota	Agaricomycetes	Sebacinales	Serendipitaceae	Serendipita	Unknown
-Cluster_1293	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_13	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Unknown
-Cluster_130	Fungi	Basidiomycota	Tremellomycetes	Trichosporonales	Trichosporonaceae	Apiotrichum	Apiotrichum domesticum
-Cluster_1304	Fungi	Ascomycota	Dothideomycetes	Unknown	Unknown	Unknown	Unknown
-Cluster_1308	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia viticola
-Cluster_1309	Fungi	Basidiomycota	Microbotryomycetes	Leucosporidiales	Leucosporidiaceae	Leucosporidium	Leucosporidium creatinivorum
-Cluster_131	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
-Cluster_1311	Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora simulans
-Cluster_1326	Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Piskurozymaceae	Solicoccozyma	Solicoccozyma terrea
-Cluster_1329	Fungi	Basidiomycota	Agaricomycetes	Hymenochaetales	Schizoporaceae	Hyphodontia	Hyphodontia pallidula
-Cluster_1333	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Rhynchogastremaceae	Papiliotrema	Papiliotrema perniciosa
-Cluster_134	Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Filobasidiaceae	Filobasidium	Filobasidium chernovii
-Cluster_1340	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Torulaceae	Torula	Torula herbarum
-Cluster_1349	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma tephrensis
-Cluster_1351	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Unknown	Unknown	Unknown
-Cluster_1353	Fungi	Ascomycota	Eurotiomycetes	Chaetothyriales	Herpotrichiellaceae	Unknown	Unknown
-Cluster_1355	Fungi	Ascomycota	Eurotiomycetes	Chaetothyriales	Herpotrichiellaceae	Unknown	Unknown
-Cluster_1356	Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_1359	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Saccharomycetaceae	Saccharomyces	Saccharomyces cerevisiae
-Cluster_1363	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Chaetosphaeronema	Chaetosphaeronema achilleae
-Cluster_1368	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Teratosphaeriaceae	Xenoteratosphaeria	Xenoteratosphaeria jonkershoekensis
-Cluster_1376	Fungi	Basidiomycota	Agaricostilbomycetes	Agaricostilbales	Kondoaceae	Kondoa	Kondoa aeria
-Cluster_138	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
-Cluster_1387	Fungi	Ascomycota	Leotiomycetes	Helotiales	Sclerotiniaceae	Unknown	Unknown
-Cluster_1389	Fungi	Ascomycota	Eurotiomycetes	Chaetothyriales	Herpotrichiellaceae	Rhinocladiella	Unknown
-Cluster_1396	Fungi	Ascomycota	Dothideomycetes	Myriangiales	Myriangiaceae	Myriangium	Unknown
-Cluster_1397	Fungi	Ascomycota	Sordariomycetes	Glomerellales	Plectosphaerellaceae	Verticillium	Verticillium tricorpus
-Cluster_14	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Cladosporium herbarum
-Cluster_1403	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Irpicaceae	Byssomerulius	Byssomerulius corium
-Cluster_141	Fungi	Basidiomycota	Tremellomycetes	Cystofilobasidiales	Cystofilobasidiaceae	Cystofilobasidium	Cystofilobasidium macerans
-Cluster_1413	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Sarocladiaceae	Sarocladium	Unknown
-Cluster_1415	Fungi	Basidiomycota	Agaricomycetes	Agaricales	Psathyrellaceae	Coprinopsis	Coprinopsis filamentifera
+Cluster_10	Fungi	Ascomycota	Dipodascomycetes	Dipodascales	Dipodascaceae	Unknown	Unknown
+Cluster_100	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia rubicola
+Cluster_1001	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Cordycipitaceae	Simplicillium	Simplicillium lamellicola
+Cluster_1003	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Blumeria	Blumeria graminis
+Cluster_1005	Fungi	Ascomycota	Sordariomycetes	Diaporthales	Diaporthaceae	Diaporthe	Diaporthe cotoneastri
+Cluster_1006	Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Piskurozymaceae	Unknown	Unknown
+Cluster_101	Fungi	Ascomycota	Dothideomycetes	Dothideales	Dothideaceae	Dothiora	Dothiora prunorum
+Cluster_1012	Fungi	Basidiomycota	Wallemiomycetes	Wallemiales	Wallemiaceae	Wallemia	Wallemia hederae
+Cluster_1013	no	NA	NA	NA	NA	NA	NA
+Cluster_1015	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Aspergillus	Unknown
+Cluster_1016	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_1017	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Debaryomycetaceae	Meyerozyma	Meyerozyma guilliermondii
+Cluster_102	Fungi	Ascomycota	Dipodascomycetes	Dipodascales	Dipodascaceae	Geotrichum	Geotrichum candidum
+Cluster_1025	Fungi	Basidiomycota	Agaricostilbomycetes	Agaricostilbales	Kondoaceae	Bensingtonia	Unknown
+Cluster_1026	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_103	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Phaffomycetaceae	Wickerhamomyces	Wickerhamomyces pijperi
+Cluster_1032	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Teratosphaeriaceae	Unknown	Unknown
+Cluster_1033	no	NA	NA	NA	NA	NA	NA
+Cluster_1034	no	NA	NA	NA	NA	NA	NA
+Cluster_1039	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia terricola
+Cluster_104	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
+Cluster_1041	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Golovinomyces	Golovinomyces orontii
+Cluster_105	no	NA	NA	NA	NA	NA	NA
+Cluster_1051	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Cordycipitaceae	Beauveria	Beauveria pseudobassiana
+Cluster_1055	no	NA	NA	NA	NA	NA	NA
+Cluster_1057	no	NA	NA	NA	NA	NA	NA
+Cluster_106	Fungi	Basidiomycota	Tremellomycetes	Trichosporonales	Trichosporonaceae	Apiotrichum	Apiotrichum domesticum
+Cluster_1060	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Cladosporium aphidis
+Cluster_1061	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Pseudoophiobolus	Unknown
+Cluster_1062	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia gruessii
+Cluster_1063	Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Filobasidiaceae	Filobasidium	Unknown
+Cluster_1064	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Teratosphaeriaceae	Unknown	Unknown
+Cluster_1066	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia hydrangeae-macrophyllae
+Cluster_1068	Fungi	Ascomycota	Dipodascomycetes	Dipodascales	Dipodascaceae	Unknown	Unknown
+Cluster_107	no	NA	NA	NA	NA	NA	NA
+Cluster_10746	Fungi	Ascomycota	Leotiomycetes	Helotiales	Unknown	Unknown	Unknown
+Cluster_1077	Fungi	Basidiomycota	Tremellomycetes	Unknown	Unknown	Unknown	Unknown
+Cluster_1078	Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Unknown	Unknown	Unknown
+Cluster_108	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia hydrangeae-macrophyllae
+Cluster_1080	Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_1082	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Nectriaceae	Microcera	Microcera physciae
+Cluster_1088	Fungi	Rozellomycota	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_109	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_1090	Fungi	Basidiomycota	Agaricomycetes	Corticiales	Corticiaceae	Unknown	Unknown
+Cluster_1091	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Phanerochaetaceae	Phanerochaete	Phanerochaete livescens
+Cluster_1095	Fungi	Basidiomycota	Agaricomycetes	Agaricales	Radulomycetaceae	Radulomyces	Radulomyces molaris
+Cluster_1099	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma victoriae
+Cluster_11	Fungi	Basidiomycota	Tremellomycetes	Trichosporonales	Trichosporonaceae	Cutaneotrichosporon	Cutaneotrichosporon curvatum
+Cluster_1100	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_1101	Fungi	Basidiomycota	Cystobasidiomycetes	Unknown	Unknown	Unknown	Unknown
+Cluster_1104	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma taibaiensis
+Cluster_1105	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Unknown	Unknown	Unknown
+Cluster_1108	Fungi	Basidiomycota	Agaricomycetes	Russulales	Stereaceae	Unknown	Unknown
+Cluster_111	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
+Cluster_1111	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Leptosphaeriaceae	Sphaerellopsis	Sphaerellopsis filum
+Cluster_1112	Fungi	Basidiomycota	Exobasidiomycetes	Exobasidiales	Unknown	Unknown	Unknown
+Cluster_1115	Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_1116	Fungi	Ascomycota	Lecanoromycetes	Ostropales	Stictidaceae	Unknown	Unknown
+Cluster_112	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_1121	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Unknown	Unknown	Unknown
+Cluster_1125	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Melanommataceae	Praetumpfia	Praetumpfia obducens
+Cluster_1126	no	NA	NA	NA	NA	NA	NA
+Cluster_1128	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Dioszegia	Dioszegia maotaiensis
+Cluster_1129	Fungi	Ascomycota	Dothideomycetes	Unknown	Unknown	Unknown	Unknown
+Cluster_113	no	NA	NA	NA	NA	NA	NA
+Cluster_1131	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Unknown	Unknown	Unknown
+Cluster_1139	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Dacryobolaceae	Postia	Postia stiptica
+Cluster_1144	no	NA	NA	NA	NA	NA	NA
+Cluster_1146	Fungi	Ascomycota	Sordariomycetes	Xylariales	Unknown	Unknown	Unknown
+Cluster_1147	Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora lycii
+Cluster_1148	Fungi	Ascomycota	Eurotiomycetes	Chaetothyriales	Herpotrichiellaceae	Unknown	Unknown
+Cluster_116	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
+Cluster_1169	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Pyrenophora	Pyrenophora bromi
+Cluster_117	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_1171	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Debaryomycetaceae	Debaryomyces	Debaryomyces delbrueckii
+Cluster_1172	no	NA	NA	NA	NA	NA	NA
+Cluster_1177	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_1178	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Meruliaceae	Phlebia	Phlebia rufa
+Cluster_1179	Fungi	Basidiomycota	Pucciniomycetes	Pucciniales	Unknown	Unknown	Unknown
+Cluster_1181	Fungi	Basidiomycota	Cystobasidiomycetes	Unknown	Symmetrosporaceae	Unknown	Unknown
+Cluster_1182	Fungi	Basidiomycota	Agaricomycetes	Agaricales	Psathyrellaceae	Candolleomyces	Unknown
+Cluster_1187	no	NA	NA	NA	NA	NA	NA
+Cluster_119	Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Filobasidiaceae	Filobasidium	Filobasidium chernovii
+Cluster_1192	no	NA	NA	NA	NA	NA	NA
+Cluster_1193	no	NA	NA	NA	NA	NA	NA
+Cluster_1194	no	NA	NA	NA	NA	NA	NA
+Cluster_12	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia nakasei
+Cluster_120	Fungi	Basidiomycota	Tremellomycetes	Cystofilobasidiales	Cystofilobasidiaceae	Cystofilobasidium	Cystofilobasidium macerans
+Cluster_1201	Fungi	Basidiomycota	Cystobasidiomycetes	Cystobasidiales	Cystobasidiaceae	Cystobasidium	Cystobasidium fimetarium
+Cluster_1204	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Unknown	Unknown	Unknown
+Cluster_1205	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Torulaceae	Torula	Torula hollandica
+Cluster_1207	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Paraphoma	Paraphoma rhaphiolepidis
+Cluster_1208	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Cucurbitariaceae	Neocucurbitaria	Neocucurbitaria cava
+Cluster_1210	Fungi	Basidiomycota	Tremellomycetes	Unknown	Unknown	Unknown	Unknown
+Cluster_1211	no	NA	NA	NA	NA	NA	NA
+Cluster_1214	Fungi	Basidiomycota	Cystobasidiomycetes	Buckleyzymales	Buckleyzymaceae	Buckleyzyma	Unknown
+Cluster_1217	no	NA	NA	NA	NA	NA	NA
+Cluster_1218	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Leptosphaeriaceae	Sphaerellopsis	Sphaerellopsis macroconidialis
+Cluster_1222	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Unknown
+Cluster_1224	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Unknown	Unknown	Unknown
+Cluster_12240	no	NA	NA	NA	NA	NA	NA
+Cluster_1225	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia viticola
+Cluster_1226	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Torulaceae	Torula	Torula fici
+Cluster_123	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Unknown
+Cluster_1230	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia membranifaciens
+Cluster_1231	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Neomycosphaerella	Neomycosphaerella guibourtiae
+Cluster_1235	Fungi	Ascomycota	Saccharomycetes	Ascoideales	Saccharomycopsidaceae	Saccharomycopsis	Saccharomycopsis crataegensis
+Cluster_124	no	NA	NA	NA	NA	NA	NA
+Cluster_1257	no	NA	NA	NA	NA	NA	NA
+Cluster_126	Fungi	Ascomycota	Dipodascomycetes	Dipodascales	Dipodascaceae	Unknown	Unknown
+Cluster_1261	Fungi	Ascomycota	Dothideomycetes	Unknown	Unknown	Unknown	Unknown
+Cluster_1262	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Didymosphaeriaceae	Montagnula	Unknown
+Cluster_1266	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Unknown
+Cluster_127	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
+Cluster_1270	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Cryptococcaceae	Cryptococcus	Unknown
+Cluster_1271	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Lophiostomataceae	Lophiostoma	Unknown
+Cluster_1273	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_1275	Fungi	Ascomycota	Leotiomycetes	Helotiales	Unknown	Unknown	Unknown
+Cluster_1276	no	NA	NA	NA	NA	NA	NA
+Cluster_1279	Fungi	Ascomycota	Dothideomycetes	Myriangiales	Endosporiaceae	Endosporium	Unknown
+Cluster_128	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Aspergillus	Unknown
+Cluster_1281	no	NA	NA	NA	NA	NA	NA
+Cluster_1282	Fungi	Basidiomycota	Agaricomycetes	Auriculariales	Auriculariaceae	Exidia	Exidia saccharina
+Cluster_1287	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Parastagonospora	Parastagonospora nodorum
+Cluster_129	Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Unknown	Unknown	Unknown
+Cluster_1295	Fungi	Basidiomycota	Agaricomycetes	Sebacinales	Serendipitaceae	Serendipita	Unknown
+Cluster_1296	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_13	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_130	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Cladosporium halotolerans
+Cluster_1301	no	NA	NA	NA	NA	NA	NA
+Cluster_1311	Fungi	Basidiomycota	Agaricomycetes	Phallales	Phallaceae	Phallus	Phallus impudicus
+Cluster_1314	Fungi	Ascomycota	Dothideomycetes	Unknown	Unknown	Unknown	Unknown
+Cluster_1317	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia viticola
+Cluster_1319	Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora simulans
+Cluster_1325	no	NA	NA	NA	NA	NA	NA
+Cluster_1331	Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Piskurozymaceae	Solicoccozyma	Solicoccozyma terrea
+Cluster_1334	Fungi	Basidiomycota	Agaricomycetes	Hymenochaetales	Schizoporaceae	Hyphodontia	Hyphodontia pallidula
+Cluster_1337	no	NA	NA	NA	NA	NA	NA
+Cluster_1339	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Rhynchogastremaceae	Papiliotrema	Papiliotrema perniciosa
+Cluster_134	Fungi	Ascomycota	Taphrinomycetes	Taphrinales	Taphrinaceae	Taphrina	Taphrina wiesneri
+Cluster_1344	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Torulaceae	Torula	Torula herbarum
+Cluster_1348	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Golovinomyces	Golovinomyces sonchicola
+Cluster_1355	no	NA	NA	NA	NA	NA	NA
+Cluster_1356	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma tephrensis
+Cluster_1360	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Unknown	Unknown	Unknown
+Cluster_1361	Fungi	Ascomycota	Eurotiomycetes	Chaetothyriales	Herpotrichiellaceae	Unknown	Unknown
+Cluster_1363	Fungi	Ascomycota	Eurotiomycetes	Chaetothyriales	Herpotrichiellaceae	Unknown	Unknown
+Cluster_1364	Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_137	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma victoriae
+Cluster_1370	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Chaetosphaeronema	Chaetosphaeronema achilleae
+Cluster_1371	no	NA	NA	NA	NA	NA	NA
+Cluster_1372	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Teratosphaeriaceae	Xenoteratosphaeria	Xenoteratosphaeria jonkershoekensis
+Cluster_1378	Fungi	Basidiomycota	Agaricostilbomycetes	Agaricostilbales	Kondoaceae	Kondoa	Kondoa aeria
+Cluster_138	Fungi	Basidiomycota	Exobasidiomycetes	Microstromatales	Microstromataceae	Microstroma	Microstroma bacarum
+Cluster_1389	Fungi	Ascomycota	Leotiomycetes	Helotiales	Sclerotiniaceae	Unknown	Unknown
+Cluster_139	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia gruessii
+Cluster_1391	Fungi	Ascomycota	Eurotiomycetes	Chaetothyriales	Herpotrichiellaceae	Rhinocladiella	Unknown
+Cluster_1397	Fungi	Ascomycota	Dothideomycetes	Myriangiales	Myriangiaceae	Myriangium	Unknown
+Cluster_1398	Fungi	Ascomycota	Sordariomycetes	Glomerellales	Plectosphaerellaceae	Verticillium	Verticillium tricorpus
+Cluster_14	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Unknown
+Cluster_14040	Fungi	Ascomycota	Sordariomycetes	Microascales	Unknown	Unknown	Unknown
+Cluster_1408	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Irpicaceae	Byssomerulius	Byssomerulius corium
+Cluster_141	Fungi	Ascomycota	Dipodascomycetes	Dipodascales	Dipodascaceae	Geotrichum	Geotrichum silvicola
+Cluster_1414	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Sarocladiaceae	Sarocladium	Unknown
+Cluster_1417	Fungi	Basidiomycota	Agaricomycetes	Agaricales	Psathyrellaceae	Coprinopsis	Coprinopsis filamentifera
+Cluster_142	Fungi	Basidiomycota	Malasseziomycetes	Malasseziales	Malasseziaceae	Malassezia	Malassezia globosa
+Cluster_1424	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Cylindriaceae	Cylindrium	Cylindrium elongatum
+Cluster_143	Fungi	Ascomycota	Leotiomycetes	Helotiales	Sclerotiniaceae	Botrytis	Botrytis caroliniana
 Cluster_1431	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Sporormiaceae	Unknown	Unknown
 Cluster_1433	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_1436	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Neoerysiphe	Neoerysiphe galii
+Cluster_144	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
 Cluster_1440	Fungi	Ascomycota	Eurotiomycetes	Phaeomoniellales	Celotheliaceae	Minutiella	Minutiella pruni-avium
-Cluster_1446	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_1447	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Unknown	Unknown	Unknown
-Cluster_1449	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_1441	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Bionectriaceae	Acremonium	Unknown
+Cluster_1447	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_1450	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_1454	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Bionectriaceae	Geosmithia	Unknown
 Cluster_1457	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Polyporaceae	Daedaleopsis	Unknown
-Cluster_146	Fungi	Basidiomycota	Malasseziomycetes	Malasseziales	Malasseziaceae	Malassezia	Malassezia globosa
-Cluster_1462	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Clavicipitaceae	Claviceps	Claviceps arundinis
-Cluster_1464	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_147	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Unknown	Unknown	Unknown
+Cluster_1461	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Clavicipitaceae	Claviceps	Claviceps arundinis
+Cluster_1463	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_1470	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Cordycipitaceae	Beauveria	Beauveria bassiana
-Cluster_1471	Fungi	Basidiomycota	Pucciniomycetes	Pucciniales	Coleosporiaceae	Coleosporium	Coleosporium inulae
-Cluster_1477	Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora albobadia
-Cluster_148	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Stemphylium	Stemphylium globuliferum
-Cluster_1488	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Hannaella	Hannaella zeae
+Cluster_1472	Fungi	Basidiomycota	Pucciniomycetes	Pucciniales	Coleosporiaceae	Coleosporium	Coleosporium inulae
+Cluster_1473	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Acrocalymmaceae	Acrocalymma	Acrocalymma pterocarpi
+Cluster_1478	Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora albobadia
+Cluster_1479	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Unknown	Unknown	Unknown
+Cluster_148	no	NA	NA	NA	NA	NA	NA
+Cluster_1486	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Hannaella	Hannaella zeae
+Cluster_1490	no	NA	NA	NA	NA	NA	NA
 Cluster_1493	Fungi	Basidiomycota	Agaricomycetes	Cantharellales	Ceratobasidiaceae	Unknown	Unknown
-Cluster_1494	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Debaryomycetaceae	Debaryomyces	Debaryomyces prosopidis
-Cluster_1496	Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_1497	Fungi	Ascomycota	Sordariomycetes	Delonicicolales	Delonicicolaceae	Furfurella	Furfurella nigrescens
-Cluster_1498	Fungi	Ascomycota	Lecanoromycetes	Lecanorales	Ramalinaceae	Lecania	Lecania cyrtella
-Cluster_15	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
-Cluster_150	Fungi	Basidiomycota	Agaricomycetes	Cantharellales	Hydnaceae	Sistotrema	Unknown
-Cluster_1501	Fungi	Ascomycota	Dothideomycetes	Dothideales	Dothideaceae	Endoconidioma	Endoconidioma populi
-Cluster_1506	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Phyllactinia	Phyllactinia mali
-Cluster_1516	Fungi	Ascomycota	Dothideomycetes	Botryosphaeriales	Botryosphaeriaceae	Botryosphaeria	Botryosphaeria dothidea
-Cluster_152	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_1526	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium brevicompactum
-Cluster_1529	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium brevicompactum
-Cluster_1532	Fungi	Ascomycota	Sordariomycetes	Sordariales	Unknown	Unknown	Unknown
-Cluster_154	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Unknown	Unknown
-Cluster_1547	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia terricola
-Cluster_155	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma victoriae
-Cluster_1551	Fungi	Basidiomycota	Cystobasidiomycetes	Unknown	Unknown	Unknown	Unknown
-Cluster_1553	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Teratosphaeriaceae	Unknown	Unknown
-Cluster_1561	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Tremellaceae	Tremella	Unknown
-Cluster_1572	Fungi	Ascomycota	Sordariomycetes	Diaporthales	Gnomoniaceae	Unknown	Unknown
-Cluster_1578	Fungi	Mucoromycota	Mucoromycetes	Mucorales	Mucoraceae	Mucor	Mucor racemosus
-Cluster_1579	Fungi	Basidiomycota	Agaricomycetes	Corticiales	Corticiaceae	Corticium	Corticium meridioroseum
-Cluster_1581	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Alternaria cinerariae
-Cluster_1582	Fungi	Basidiomycota	Agaricostilbomycetes	Agaricostilbales	Kondoaceae	Bensingtonia	Unknown
-Cluster_1586	Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora lycii
-Cluster_159	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia gruessii
-Cluster_1597	Fungi	Basidiomycota	Tremellomycetes	Cystofilobasidiales	Mrakiaceae	Phaffia	Unknown
-Cluster_16	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium olsonii
-Cluster_160	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
+Cluster_1494	Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_1495	Fungi	Ascomycota	Sordariomycetes	Delonicicolales	Delonicicolaceae	Furfurella	Furfurella nigrescens
+Cluster_1496	Fungi	Ascomycota	Lecanoromycetes	Lecanorales	Ramalinaceae	Lecania	Lecania cyrtella
+Cluster_1498	no	NA	NA	NA	NA	NA	NA
+Cluster_15	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_1500	Fungi	Ascomycota	Dothideomycetes	Dothideales	Dothideaceae	Endoconidioma	Endoconidioma populi
+Cluster_1505	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Phyllactinia	Phyllactinia mali
+Cluster_1511	no	NA	NA	NA	NA	NA	NA
+Cluster_1515	Fungi	Ascomycota	Dothideomycetes	Botryosphaeriales	Botryosphaeriaceae	Botryosphaeria	Botryosphaeria dothidea
+Cluster_1525	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium brevicompactum
+Cluster_1528	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium brevicompactum
+Cluster_1531	Fungi	Ascomycota	Sordariomycetes	Sordariales	Unknown	Unknown	Unknown
+Cluster_155	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Phaeotremellaceae	Gelidatrema	Gelidatrema spencermartinsiae
+Cluster_1552	Fungi	Basidiomycota	Cystobasidiomycetes	Unknown	Unknown	Unknown	Unknown
+Cluster_1554	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Teratosphaeriaceae	Unknown	Unknown
+Cluster_1576	Fungi	Ascomycota	Sordariomycetes	Diaporthales	Gnomoniaceae	Unknown	Unknown
+Cluster_158	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Unknown	Unknown	Unknown
+Cluster_1581	Fungi	Mucoromycota	Mucoromycetes	Mucorales	Mucoraceae	Mucor	Mucor racemosus
+Cluster_1582	Fungi	Basidiomycota	Agaricomycetes	Corticiales	Corticiaceae	Corticium	Corticium meridioroseum
+Cluster_1584	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Alternaria cinerariae
+Cluster_1585	Fungi	Basidiomycota	Agaricostilbomycetes	Agaricostilbales	Kondoaceae	Bensingtonia	Unknown
+Cluster_1586	no	NA	NA	NA	NA	NA	NA
+Cluster_1589	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Debaryomycetaceae	Debaryomyces	Debaryomyces prosopidis
+Cluster_159	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Stemphylium	Stemphylium globuliferum
+Cluster_1598	Fungi	Basidiomycota	Tremellomycetes	Cystofilobasidiales	Mrakiaceae	Phaffia	Unknown
+Cluster_1599	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Cryptococcaceae	Cryptococcus	Unknown
+Cluster_16	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Cladosporium herbarum
 Cluster_1601	Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_1603	Fungi	Ascomycota	Leotiomycetes	Helotiales	Unknown	Unknown	Unknown
 Cluster_1607	Fungi	Ascomycota	Sordariomycetes	Xylariales	Diatrypaceae	Cryptosphaeria	Cryptosphaeria eunomia
+Cluster_1609	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Unknown	Unknown
+Cluster_162	Fungi	Basidiomycota	Agaricomycetes	Cantharellales	Hydnaceae	Sistotrema	Unknown
 Cluster_1621	Fungi	Basidiomycota	Cystobasidiomycetes	Unknown	Symmetrosporaceae	Unknown	Unknown
-Cluster_1626	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Steccherinaceae	Steccherinum	Steccherinum fimbriatum
-Cluster_163	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Rachicladosporium	Rachicladosporium cboliae
-Cluster_1633	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia kluyveri
-Cluster_1649	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Unknown	Unknown	Unknown
-Cluster_1652	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pyrenochaetopsidaceae	Pyrenochaetopsis	Pyrenochaetopsis leptospora
-Cluster_166	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium italicum
-Cluster_167	Fungi	Basidiomycota	Microbotryomycetes	Unknown	Unknown	Unknown	Unknown
-Cluster_1670	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Lophiostomataceae	Lophiostoma	Unknown
-Cluster_168	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Cryptococcaceae	Cryptococcus	Unknown
-Cluster_1683	Fungi	Ascomycota	Leotiomycetes	Helotiales	Lachnaceae	Lachnum	Unknown
-Cluster_1687	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_169	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Unknown	Unknown
-Cluster_1691	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia terricola
-Cluster_1696	Fungi	Ascomycota	Dipodascomycetes	Dipodascales	Dipodascaceae	Unknown	Unknown
-Cluster_17	Fungi	Ascomycota	Dipodascomycetes	Dipodascales	Dipodascaceae	Unknown	Unknown
-Cluster_170	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Phaeotremellaceae	Gelidatrema	Gelidatrema spencermartinsiae
-Cluster_1703	Fungi	Ascomycota	Sordariomycetes	Diaporthales	Diaporthaceae	Diaporthe	Unknown
-Cluster_171	Fungi	Basidiomycota	Agaricomycetes	Corticiales	Vuilleminiaceae	Vuilleminia	Unknown
-Cluster_1711	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Cryptococcaceae	Teunia	Teunia cuniculi
-Cluster_1712	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
-Cluster_1716	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Dioszegia	Dioszegia zsoltii
-Cluster_1722	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Teratosphaeriaceae	Devriesia	Unknown
-Cluster_173	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_1730	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_174	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium bialowiezense
-Cluster_1743	Fungi	Basidiomycota	Agaricomycetes	Agaricales	Cystostereaceae	Crustomyces	Crustomyces subabruptus
-Cluster_1745	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Alternaria brassicae
-Cluster_175	Fungi	Ascomycota	Taphrinomycetes	Taphrinales	Taphrinaceae	Taphrina	Unknown
-Cluster_1753	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Unknown	Unknown
-Cluster_1758	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_176	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Trichomonascaceae	Starmerella	Starmerella stellata
-Cluster_1776	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Meruliaceae	Scopuloides	Scopuloides leprosa
-Cluster_1779	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Cladosporium aphidis
-Cluster_1781	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Verrucocladosporium	Verrucocladosporium dirinae
-Cluster_1785	Fungi	Basidiomycota	Microbotryomycetes	Unknown	Colacogloeaceae	Unknown	Unknown
-Cluster_18	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_180	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_1807	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Alternaria cinerariae
-Cluster_181	Fungi	Mucoromycota	Mucoromycetes	Mucorales	Mucoraceae	Mucor	Mucor racemosus
-Cluster_1810	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_1825	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_183	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium adametzioides
-Cluster_1830	Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora pini
-Cluster_184	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Unknown	Unknown	Unknown
-Cluster_1844	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia vallisumbrosae
-Cluster_186	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Phaeotremellaceae	Gelidatrema	Unknown
-Cluster_1861	Fungi	Basidiomycota	Cystobasidiomycetes	Cystobasidiales	Cystobasidiaceae	Occultifur	Occultifur externus
-Cluster_187	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium chrysogenum
-Cluster_1870	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_1873	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_19	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Saccharomycodaceae	Hanseniaspora	Unknown
-Cluster_1900	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Golovinomyces	Golovinomyces montagnei
-Cluster_1902	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Graminopassalora	Graminopassalora graminis
-Cluster_191	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_1913	Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Sporidiobolaceae	Unknown	Unknown
-Cluster_1925	Fungi	Mucoromycota	Mucoromycetes	Mucorales	Mucoraceae	Mucor	Mucor circinelloides
-Cluster_193	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Cryptococcaceae	Cryptococcus	Cryptococcus watticus
-Cluster_1951	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_1956	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Niessliaceae	Niesslia	Unknown
-Cluster_196	Fungi	Ascomycota	Leotiomycetes	Helotiales	Lachnaceae	Lachnum	Unknown
-Cluster_197	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma heimaeyensis
+Cluster_1628	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Steccherinaceae	Steccherinum	Steccherinum fimbriatum
+Cluster_163	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_164	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia gruessii
+Cluster_1641	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia kluyveri
+Cluster_165	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Unknown	Unknown
+Cluster_1658	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Unknown	Unknown	Unknown
+Cluster_166	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma victoriae
+Cluster_1661	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pyrenochaetopsidaceae	Pyrenochaetopsis	Pyrenochaetopsis leptospora
+Cluster_1662	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Neosetophoma	Neosetophoma italica
+Cluster_1673	no	NA	NA	NA	NA	NA	NA
+Cluster_1677	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Tremellaceae	Tremella	Unknown
+Cluster_168	no	NA	NA	NA	NA	NA	NA
+Cluster_1680	no	NA	NA	NA	NA	NA	NA
+Cluster_1689	Fungi	Ascomycota	Leotiomycetes	Helotiales	Lachnaceae	Lachnum	Unknown
+Cluster_1699	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia terricola
+Cluster_17	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
+Cluster_1707	Fungi	Ascomycota	Sordariomycetes	Diaporthales	Diaporthaceae	Diaporthe	Unknown
+Cluster_1715	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Cryptococcaceae	Teunia	Teunia cuniculi
+Cluster_172	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Saccharomycetaceae	Saccharomyces	Saccharomyces cerevisiae
+Cluster_1724	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Septoriella	Septoriella muriformis
+Cluster_1725	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Teratosphaeriaceae	Devriesia	Unknown
+Cluster_1732	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_174	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Rachicladosporium	Rachicladosporium cboliae
+Cluster_1745	Fungi	Basidiomycota	Agaricomycetes	Agaricales	Cystostereaceae	Crustomyces	Crustomyces subabruptus
+Cluster_1747	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Alternaria brassicae
+Cluster_176	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Unknown	Unknown
+Cluster_1760	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_177	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium italicum
+Cluster_1778	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Meruliaceae	Scopuloides	Scopuloides leprosa
+Cluster_178	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Cryptococcaceae	Cryptococcus	Unknown
+Cluster_1781	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Cladosporium aphidis
+Cluster_1783	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Verrucocladosporium	Verrucocladosporium dirinae
+Cluster_179	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Unknown	Unknown	Unknown
+Cluster_18	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Saccharomycodaceae	Hanseniaspora	Unknown
+Cluster_180	Fungi	Basidiomycota	Microbotryomycetes	Unknown	Unknown	Unknown	Unknown
+Cluster_182	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_1821	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Alternaria cinerariae
+Cluster_1824	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_1837	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_184	Fungi	Basidiomycota	Agaricomycetes	Corticiales	Vuilleminiaceae	Vuilleminia	Unknown
+Cluster_1841	Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora pini
+Cluster_1852	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia vallisumbrosae
+Cluster_186	Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Filobasidiaceae	Filobasidium	Filobasidium oeirense
+Cluster_187	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium bialowiezense
+Cluster_1870	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Lophiostomataceae	Lophiostoma	Unknown
+Cluster_1871	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Unknown
+Cluster_1872	Fungi	Basidiomycota	Cystobasidiomycetes	Cystobasidiales	Cystobasidiaceae	Occultifur	Occultifur externus
+Cluster_188	Fungi	Ascomycota	Taphrinomycetes	Taphrinales	Taphrinaceae	Taphrina	Unknown
+Cluster_1880	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_1883	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_19	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium olsonii
+Cluster_192	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_1921	Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Sporidiobolaceae	Unknown	Unknown
+Cluster_1924	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Graminopassalora	Graminopassalora graminis
+Cluster_194	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Trichomonascaceae	Starmerella	Starmerella stellata
+Cluster_195	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium adametzioides
+Cluster_1962	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_1963	Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora lycii
+Cluster_1968	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Niessliaceae	Niesslia	Unknown
+Cluster_197	Fungi	Mucoromycota	Mucoromycetes	Mucorales	Mucoraceae	Mucor	Mucor racemosus
+Cluster_1983	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
+Cluster_199	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Unknown	Unknown	Unknown
 Cluster_2	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia kluyveri
-Cluster_20	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Unknown
-Cluster_2004	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_2008	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Unknown
-Cluster_201	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Debaryomycetaceae	Kurtzmaniella	Unknown
-Cluster_2010	Fungi	Mucoromycota	Mucoromycetes	Mucorales	Mucoraceae	Mucor	Mucor circinelloides
-Cluster_202	Fungi	Basidiomycota	Exobasidiomycetes	Microstromatales	Unknown	Unknown	Unknown
-Cluster_2029	Fungi	Ascomycota	Eurotiomycetes	Phaeomoniellales	Celotheliaceae	Minutiella	Unknown
-Cluster_203	Fungi	Mucoromycota	Mucoromycetes	Mucorales	Rhizopodaceae	Rhizopus	Rhizopus arrhizus
-Cluster_2033	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Pyrenophora	Pyrenophora lolii
-Cluster_206	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Hannaella	Hannaella luteola
-Cluster_2096	Fungi	Basidiomycota	Pucciniomycetes	Pucciniales	Pucciniaceae	Puccinia	Puccinia recondita
-Cluster_21	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_210	Fungi	Ascomycota	Taphrinomycetes	Taphrinales	Taphrinaceae	Taphrina	Taphrina carpini
-Cluster_211	Fungi	Basidiomycota	Microbotryomycetes	Unknown	Unknown	Unknown	Unknown
-Cluster_213	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma victoriae
-Cluster_2132	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_2139	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Leptospora	Unknown
-Cluster_214	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
-Cluster_2145	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_215	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia reukaufii
-Cluster_2154	Fungi	Basidiomycota	Pucciniomycetes	Pucciniales	Pucciniaceae	Puccinia	Puccinia cerinthes-agropyrina
-Cluster_2166	Fungi	Basidiomycota	Agaricomycetes	Cantharellales	Ceratobasidiaceae	Unknown	Unknown
-Cluster_219	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia unterseheri
-Cluster_22	Fungi	Mucoromycota	Mucoromycetes	Mucorales	Mucoraceae	Mucor	Mucor racemosus
-Cluster_220	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Aspergillus	Aspergillus ruber
-Cluster_2218	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Golovinomyces	Golovinomyces montagnei
-Cluster_224	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Cladosporium entadae
-Cluster_2258	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Bipolaris	Bipolaris eleusines
-Cluster_226	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia gruessii
-Cluster_227	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
-Cluster_228	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Didymosphaeriaceae	Montagnula	Montagnula scabiosae
-Cluster_229	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma tephrensis
-Cluster_23	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
-Cluster_232	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_2322	Fungi	Ascomycota	Sordariomycetes	Diaporthales	Unknown	Unknown	Unknown
-Cluster_234	Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora simulans
-Cluster_2353	Fungi	Basidiomycota	Agaricomycetes	Agaricales	Mycenaceae	Mycena	Mycena vitilis
-Cluster_237	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Unknown
-Cluster_239	Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Filobasidiaceae	Filobasidium	Filobasidium oeirense
-Cluster_2397	Fungi	Basidiomycota	Pucciniomycetes	Pucciniales	Coleosporiaceae	Coleosporium	Coleosporium inulae
-Cluster_240	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Unknown
-Cluster_241	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia reukaufii
-Cluster_242	Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_244	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Rhynchogastremaceae	Papiliotrema	Papiliotrema frias
-Cluster_246	Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Filobasidiaceae	Filobasidium	Filobasidium oeirense
-Cluster_248	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia hydrangeae-macrophyllae
-Cluster_249	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Dioszegia	Unknown
-Cluster_25	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Phaffomycetaceae	Wickerhamomyces	Wickerhamomyces pijperi
-Cluster_251	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
-Cluster_252	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Unknown
-Cluster_253	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
-Cluster_256	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Unknown
-Cluster_257	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
-Cluster_259	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Unknown	Unknown	Unknown
-Cluster_26	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia leonuri
-Cluster_261	Fungi	Ascomycota	Dothideomycetes	Neophaeothecales	Neophaeothecaceae	Nothophaeotheca	Nothophaeotheca mirabibensis
-Cluster_264	Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora lycii
-Cluster_265	Fungi	Ascomycota	Dothideomycetes	Dothideales	Saccotheciaceae	Aureobasidium	Unknown
-Cluster_267	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
-Cluster_268	Fungi	Basidiomycota	Malasseziomycetes	Malasseziales	Malasseziaceae	Malassezia	Unknown
-Cluster_27	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
-Cluster_270	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia reukaufii
-Cluster_271	Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Sporidiobolaceae	Sporobolomyces	Sporobolomyces reniformis
-Cluster_272	Fungi	Ascomycota	Saccharomycetes	Ascoideales	Saccharomycopsidaceae	Saccharomycopsis	Saccharomycopsis crataegensis
-Cluster_276	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Cladosporium succulentum
-Cluster_277	Fungi	Basidiomycota	Tremellomycetes	Cystofilobasidiales	Cystofilobasidiaceae	Cystofilobasidium	Cystofilobasidium macerans
-Cluster_278	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Blumeria	Blumeria graminis
-Cluster_279	Fungi	Basidiomycota	Cystobasidiomycetes	Buckleyzymales	Buckleyzymaceae	Buckleyzyma	Unknown
-Cluster_2793	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Unknown	Unknown	Unknown
-Cluster_28	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium brevicompactum
-Cluster_280	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Debaryomycetaceae	Meyerozyma	Meyerozyma guilliermondii
-Cluster_281	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma tephrensis
-Cluster_283	Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Sporidiobolaceae	Sporobolomyces	Sporobolomyces roseus
-Cluster_2831	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Unknown
-Cluster_286	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Alternaria metachromatica
-Cluster_287	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Tremellaceae	Unknown	Unknown
-Cluster_29	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_291	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Unknown	Unknown
-Cluster_294	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Unknown	Unknown	Unknown
-Cluster_295	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_297	Fungi	Basidiomycota	Agaricomycetes	Russulales	Stereaceae	Stereum	Stereum hirsutum
-Cluster_2991	Fungi	Ascomycota	Dothideomycetes	Dothideales	Dothideaceae	Endoconidioma	Endoconidioma populi
+Cluster_20	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_200	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Phaeotremellaceae	Gelidatrema	Unknown
+Cluster_201	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_2015	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_2018	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Unknown
+Cluster_2019	Fungi	Mucoromycota	Mucoromycetes	Mucorales	Mucoraceae	Mucor	Mucor circinelloides
+Cluster_202	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium chrysogenum
+Cluster_203	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Saccharomycetaceae	Saccharomyces	Saccharomyces cerevisiae
+Cluster_2032	Fungi	Basidiomycota	Agaricomycetes	Auriculariales	Auriculariaceae	Heteroradulum	Heteroradulum deglubens
+Cluster_2035	Fungi	Ascomycota	Eurotiomycetes	Phaeomoniellales	Celotheliaceae	Minutiella	Unknown
+Cluster_2039	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Pyrenophora	Pyrenophora lolii
+Cluster_208	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Cryptococcaceae	Cryptococcus	Cryptococcus watticus
+Cluster_209	Fungi	Ascomycota	Leotiomycetes	Helotiales	Lachnaceae	Lachnum	Unknown
+Cluster_21	Fungi	Ascomycota	Dipodascomycetes	Dipodascales	Dipodascaceae	Unknown	Unknown
+Cluster_2102	Fungi	Basidiomycota	Pucciniomycetes	Pucciniales	Pucciniaceae	Puccinia	Puccinia recondita
+Cluster_212	no	NA	NA	NA	NA	NA	NA
+Cluster_2136	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_214	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma heimaeyensis
+Cluster_2143	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Leptospora	Unknown
+Cluster_2149	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_215	Fungi	Basidiomycota	Exobasidiomycetes	Microstromatales	Unknown	Unknown	Unknown
+Cluster_216	no	NA	NA	NA	NA	NA	NA
+Cluster_217	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Aspergillus	Aspergillus ruber
+Cluster_218	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Hannaella	Hannaella luteola
+Cluster_22	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Unknown
+Cluster_221	Fungi	Mucoromycota	Mucoromycetes	Mucorales	Rhizopodaceae	Rhizopus	Rhizopus arrhizus
+Cluster_222	Fungi	Basidiomycota	Microbotryomycetes	Unknown	Unknown	Unknown	Unknown
+Cluster_223	Fungi	Ascomycota	Taphrinomycetes	Taphrinales	Taphrinaceae	Taphrina	Taphrina carpini
+Cluster_2282	Fungi	Basidiomycota	Pucciniomycetes	Pucciniales	Pucciniaceae	Puccinia	Puccinia cerinthes-agropyrina
+Cluster_2285	Fungi	Basidiomycota	Microbotryomycetes	Unknown	Colacogloeaceae	Unknown	Unknown
+Cluster_229	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia reukaufii
+Cluster_2291	Fungi	Basidiomycota	Agaricomycetes	Cantharellales	Ceratobasidiaceae	Unknown	Unknown
+Cluster_23	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Polyporaceae	Trametes	Trametes versicolor
+Cluster_231	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma victoriae
+Cluster_232	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia kudriavzevii
+Cluster_233	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
+Cluster_2336	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Golovinomyces	Golovinomyces montagnei
+Cluster_2350	Fungi	Basidiomycota	Pucciniomycetes	Pucciniales	Unknown	Unknown	Unknown
+Cluster_2356	no	NA	NA	NA	NA	NA	NA
+Cluster_237	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia unterseheri
+Cluster_2374	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Bipolaris	Bipolaris eleusines
+Cluster_2375	no	NA	NA	NA	NA	NA	NA
+Cluster_24	Fungi	Mucoromycota	Mucoromycetes	Mucorales	Mucoraceae	Mucor	Mucor racemosus
+Cluster_240	no	NA	NA	NA	NA	NA	NA
+Cluster_242	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
+Cluster_243	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia gruessii
+Cluster_2431	Fungi	Ascomycota	Sordariomycetes	Diaporthales	Unknown	Unknown	Unknown
+Cluster_244	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Didymosphaeriaceae	Montagnula	Montagnula scabiosae
+Cluster_245	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Cladosporium entadae
+Cluster_2460	Fungi	Basidiomycota	Agaricomycetes	Agaricales	Mycenaceae	Mycena	Mycena vitilis
+Cluster_248	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
+Cluster_249	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma tephrensis
+Cluster_2501	Fungi	Basidiomycota	Pucciniomycetes	Pucciniales	Coleosporiaceae	Coleosporium	Coleosporium inulae
+Cluster_251	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_252	Fungi	Basidiomycota	Malasseziomycetes	Malasseziales	Malasseziaceae	Malassezia	Malassezia restricta
+Cluster_257	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Dioszegia	Unknown
+Cluster_258	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia reukaufii
+Cluster_259	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Unknown
+Cluster_26	Fungi	Basidiomycota	Malasseziomycetes	Malasseziales	Malasseziaceae	Malassezia	Unknown
+Cluster_260	Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_261	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Rhynchogastremaceae	Papiliotrema	Papiliotrema frias
+Cluster_2627	no	NA	NA	NA	NA	NA	NA
+Cluster_263	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Unknown
+Cluster_264	Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora simulans
+Cluster_2647	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Golovinomyces	Golovinomyces montagnei
+Cluster_2661	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Graminopassalora	Graminopassalora graminis
+Cluster_267	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Unknown
+Cluster_2679	no	NA	NA	NA	NA	NA	NA
+Cluster_268	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
+Cluster_269	Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Filobasidiaceae	Filobasidium	Filobasidium oeirense
+Cluster_27	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
+Cluster_271	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia kudriavzevii
+Cluster_272	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia hydrangeae-macrophyllae
+Cluster_274	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
+Cluster_276	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Unknown
+Cluster_279	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Unknown	Unknown
+Cluster_28	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_280	Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora lycii
+Cluster_281	Fungi	Basidiomycota	Cystobasidiomycetes	Unknown	Symmetrosporaceae	Unknown	Unknown
+Cluster_282	no	NA	NA	NA	NA	NA	NA
+Cluster_283	Fungi	Ascomycota	Dothideomycetes	Neophaeothecales	Neophaeothecaceae	Nothophaeotheca	Nothophaeotheca mirabibensis
+Cluster_284	Fungi	Ascomycota	Dothideomycetes	Dothideales	Saccotheciaceae	Aureobasidium	Unknown
+Cluster_285	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia reukaufii
+Cluster_2863	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Unknown	Unknown	Unknown
+Cluster_287	Fungi	Basidiomycota	Malasseziomycetes	Malasseziales	Malasseziaceae	Malassezia	Unknown
+Cluster_2875	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Dioszegia	Dioszegia zsoltii
+Cluster_288	no	NA	NA	NA	NA	NA	NA
+Cluster_2883	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Didymellaceae	Neodidymelliopsis	Neodidymelliopsis cannabis
+Cluster_2884	no	NA	NA	NA	NA	NA	NA
+Cluster_289	Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Sporidiobolaceae	Sporobolomyces	Sporobolomyces reniformis
+Cluster_2898	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Unknown
+Cluster_29	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Phaffomycetaceae	Wickerhamomyces	Wickerhamomyces pijperi
+Cluster_291	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
+Cluster_292	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Blumeria	Blumeria graminis
+Cluster_294	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Debaryomycetaceae	Meyerozyma	Meyerozyma guilliermondii
+Cluster_295	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Cladosporium succulentum
+Cluster_296	Fungi	Basidiomycota	Cystobasidiomycetes	Buckleyzymales	Buckleyzymaceae	Buckleyzyma	Unknown
+Cluster_297	Fungi	Basidiomycota	Tremellomycetes	Cystofilobasidiales	Cystofilobasidiaceae	Cystofilobasidium	Cystofilobasidium macerans
+Cluster_299	Fungi	Ascomycota	Saccharomycetes	Ascoideales	Saccharomycopsidaceae	Saccharomycopsis	Saccharomycopsis crataegensis
 Cluster_3	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia terricola
-Cluster_30	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
-Cluster_303	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Dioszegia	Dioszegia crocea
-Cluster_304	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_305	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_3064	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Parapyrenochaetaceae	Parapyrenochaeta	Parapyrenochaeta protearum
-Cluster_307	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Unknown	Unknown
-Cluster_308	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium citrinum
-Cluster_309	Fungi	Ascomycota	Leotiomycetes	Helotiales	Sclerotiniaceae	Unknown	Unknown
-Cluster_31	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
-Cluster_310	Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora simulans
-Cluster_3119	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Sarocladiaceae	Sarocladium	Sarocladium dejongiae
-Cluster_312	Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Filobasidiaceae	Filobasidium	Filobasidium oeirense
-Cluster_3165	Fungi	Basidiomycota	Agaricomycetes	Hymenochaetales	Schizoporaceae	Lyomyces	Lyomyces sambuci
-Cluster_317	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Rhynchogastremaceae	Papiliotrema	Papiliotrema horticola
-Cluster_318	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia eucalypti
-Cluster_3205	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_323	Fungi	Ascomycota	Sordariomycetes	Amphisphaeriales	Sporocadaceae	Bartalinia	Bartalinia robillardoides
-Cluster_324	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleraceae	Genolevuria	Unknown
-Cluster_326	Fungi	Ascomycota	Leotiomycetes	Rhytismatales	Unknown	Unknown	Unknown
-Cluster_3267	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_328	Fungi	Basidiomycota	Tremellomycetes	Cystofilobasidiales	Mrakiaceae	Udeniomyces	Udeniomyces kanasensis
-Cluster_329	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
-Cluster_33	Fungi	Basidiomycota	Malasseziomycetes	Malasseziales	Malasseziaceae	Malassezia	Unknown
-Cluster_330	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_332	Fungi	Basidiomycota	Tremellomycetes	Cystofilobasidiales	Cystofilobasidiaceae	Cystofilobasidium	Cystofilobasidium infirmominiatum
-Cluster_336	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
-Cluster_34	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Phaffomycetaceae	Wickerhamomyces	Wickerhamomyces pijperi
-Cluster_340	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
-Cluster_341	Fungi	Basidiomycota	Agaricomycetes	Corticiales	Vuilleminiaceae	Vuilleminia	Unknown
-Cluster_3421	Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Sporidiobolaceae	Rhodotorula	Unknown
-Cluster_343	Fungi	Basidiomycota	Cystobasidiomycetes	Unknown	Symmetrosporaceae	Unknown	Unknown
-Cluster_344	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia rubicola
-Cluster_3476	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Rachicladosporium	Rachicladosporium cboliae
-Cluster_3488	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Curvularia	Curvularia portulacae
+Cluster_30	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium brevicompactum
+Cluster_300	Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Sporidiobolaceae	Sporobolomyces	Sporobolomyces roseus
+Cluster_303	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Alternaria metachromatica
+Cluster_3036	Fungi	Ascomycota	Dothideomycetes	Dothideales	Dothideaceae	Endoconidioma	Endoconidioma populi
+Cluster_305	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma tephrensis
+Cluster_31	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia leonuri
+Cluster_3108	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Parapyrenochaetaceae	Parapyrenochaeta	Parapyrenochaeta protearum
+Cluster_311	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Unknown	Unknown	Unknown
+Cluster_312	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Tremellaceae	Unknown	Unknown
+Cluster_313	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_314	no	NA	NA	NA	NA	NA	NA
+Cluster_316	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Dioszegia	Dioszegia crocea
+Cluster_3162	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Sarocladiaceae	Sarocladium	Sarocladium dejongiae
+Cluster_317	no	NA	NA	NA	NA	NA	NA
+Cluster_318	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_319	Fungi	Basidiomycota	Agaricomycetes	Russulales	Stereaceae	Stereum	Stereum hirsutum
+Cluster_32	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_3208	Fungi	Basidiomycota	Agaricomycetes	Hymenochaetales	Schizoporaceae	Lyomyces	Lyomyces sambuci
+Cluster_322	Fungi	Ascomycota	Leotiomycetes	Helotiales	Sclerotiniaceae	Unknown	Unknown
+Cluster_323	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_3248	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_326	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Unknown	Unknown
+Cluster_3261	Fungi	Basidiomycota	Pucciniomycetes	Pucciniales	Pucciniaceae	Puccinia	Puccinia recondita
+Cluster_328	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium citrinum
+Cluster_33	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_330	Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Filobasidiaceae	Filobasidium	Filobasidium oeirense
+Cluster_331	Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora simulans
+Cluster_3311	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_336	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Rhynchogastremaceae	Papiliotrema	Papiliotrema horticola
+Cluster_34	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
+Cluster_340	no	NA	NA	NA	NA	NA	NA
+Cluster_341	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia eucalypti
+Cluster_347	Fungi	Ascomycota	Leotiomycetes	Rhytismatales	Unknown	Unknown	Unknown
+Cluster_349	Fungi	Ascomycota	Sordariomycetes	Amphisphaeriales	Sporocadaceae	Bartalinia	Bartalinia robillardoides
 Cluster_35	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_350	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Dothidotthiaceae	Unknown	Unknown
-Cluster_351	Fungi	Basidiomycota	Tremellomycetes	Cystofilobasidiales	Mrakiaceae	Itersonilia	Itersonilia pannonica
-Cluster_354	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia kudriavzevii
-Cluster_3574	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Stemphylium	Unknown
-Cluster_3579	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Bipolaris	Bipolaris eleusines
+Cluster_350	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_351	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleraceae	Genolevuria	Unknown
+Cluster_352	Fungi	Basidiomycota	Tremellomycetes	Cystofilobasidiales	Mrakiaceae	Udeniomyces	Udeniomyces kanasensis
+Cluster_353	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
+Cluster_3550	Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Sporidiobolaceae	Rhodotorula	Unknown
+Cluster_3562	no	NA	NA	NA	NA	NA	NA
+Cluster_358	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
+Cluster_3586	Fungi	Ascomycota	Laboulbeniomycetes	Pyxidiophorales	Pyxidiophoraceae	Pyxidiophora	Pyxidiophora arvernensis
+Cluster_3589	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Alternaria infectoria
 Cluster_36	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
-Cluster_361	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia eucalypti
-Cluster_3617	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium madriti
-Cluster_3646	Fungi	Basidiomycota	Agaricomycetes	Hymenochaetales	Schizoporaceae	Hyphodontia	Hyphodontia tropica
-Cluster_367	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_3695	Fungi	Ascomycota	Dothideomycetes	Kirschsteiniotheliales	Kirschsteiniotheliaceae	Kirschsteiniothelia	Kirschsteiniothelia aethiops
-Cluster_37	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Podosphaera	Unknown
-Cluster_371	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_375	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Unknown	Unknown	Unknown
-Cluster_379	Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Unknown	Unknown	Unknown
-Cluster_38	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_385	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Dioszegia	Dioszegia fristingensis
-Cluster_387	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Saccharomycodaceae	Hanseniaspora	Hanseniaspora osmophila
-Cluster_389	Fungi	Basidiomycota	Cystobasidiomycetes	Cystobasidiales	Cystobasidiaceae	Cystobasidium	Cystobasidium pinicola
-Cluster_39	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_391	Fungi	Basidiomycota	Cystobasidiomycetes	Buckleyzymales	Buckleyzymaceae	Buckleyzyma	Unknown
-Cluster_393	Fungi	Mucoromycota	Mucoromycetes	Mucorales	Mucoraceae	Mucor	Mucor circinelloides
-Cluster_394	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia reukaufii
-Cluster_395	Fungi	Ascomycota	Eurotiomycetes	Phaeomoniellales	Celotheliaceae	Minutiella	Unknown
-Cluster_3955	Fungi	Ascomycota	Leotiomycetes	Helotiales	Helotiaceae	Scytalidium	Scytalidium lignicola
-Cluster_396	Fungi	Ascomycota	Eurotiomycetes	Phaeomoniellales	Celotheliaceae	Minutiella	Minutiella pruni-avium
-Cluster_3989	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium brevicompactum
-Cluster_399	Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Sporidiobolaceae	Sporobolomyces	Unknown
-Cluster_4	Fungi	Ascomycota	Leotiomycetes	Helotiales	Sclerotiniaceae	Unknown	Unknown
-Cluster_40	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Phaffomycetaceae	Wickerhamomyces	Wickerhamomyces pijperi
-Cluster_401	Fungi	Ascomycota	Sordariomycetes	Diaporthales	Gnomoniaceae	Gnomoniopsis	Gnomoniopsis fructicola
-Cluster_402	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia hydrangeae-macrophyllae
-Cluster_406	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_4069	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium brevicompactum
-Cluster_407	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_408	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
-Cluster_409	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_41	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_410	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Podosphaera	Podosphaera lini
-Cluster_4151	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Unknown	Unknown
-Cluster_419	Fungi	Basidiomycota	Tremellomycetes	Cystofilobasidiales	Mrakiaceae	Itersonilia	Itersonilia perplexans
-Cluster_42	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
-Cluster_420	Fungi	Basidiomycota	Malasseziomycetes	Malasseziales	Malasseziaceae	Malassezia	Malassezia restricta
-Cluster_423	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_424	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Didymellaceae	Neoascochyta	Neoascochyta exitialis
-Cluster_427	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Leptospora	Leptospora clematidis
-Cluster_43	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_430	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia hydrangeae-macrophyllae
-Cluster_432	Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_434	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_435	Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Filobasidiaceae	Unknown	Unknown
-Cluster_437	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Dioszegia	Dioszegia hungarica
-Cluster_44	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_442	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_445	Fungi	Ascomycota	Dipodascomycetes	Dipodascales	Dipodascaceae	Geotrichum	Geotrichum candidum
-Cluster_448	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Bipolaris	Bipolaris cynodontis
-Cluster_449	Fungi	Basidiomycota	Agaricomycetes	Cantharellales	Hydnaceae	Sistotrema	Unknown
-Cluster_450	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Phanerochaetaceae	Bjerkandera	Unknown
-Cluster_454	Fungi	Basidiomycota	Agaricomycetes	Cantharellales	Ceratobasidiaceae	Rhizoctonia	Rhizoctonia bicornis
-Cluster_455	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia gruessii
-Cluster_456	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma globispora
-Cluster_46	Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Filobasidiaceae	Filobasidium	Filobasidium wieringae
-Cluster_463	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_47	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Unknown
-Cluster_471	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_472	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Saccharomycetaceae	Saccharomyces	Saccharomyces cerevisiae
-Cluster_476	Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora lycii
-Cluster_48	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Polyporaceae	Trametes	Trametes versicolor
-Cluster_483	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_485	Fungi	Basidiomycota	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_49	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_490	Fungi	Basidiomycota	Wallemiomycetes	Wallemiales	Wallemiaceae	Wallemia	Wallemia canadensis
-Cluster_492	Fungi	Basidiomycota	Agaricomycetes	Agaricales	Unknown	Unknown	Unknown
-Cluster_493	Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Filobasidiaceae	Naganishia	Naganishia diffluens
-Cluster_494	Fungi	Basidiomycota	Exobasidiomycetes	Microstromatales	Microstromataceae	Microstroma	Microstroma bacarum
-Cluster_495	Fungi	Basidiomycota	Agaricomycetes	Hymenochaetales	Schizoporaceae	Xylodon	Xylodon flaviporus
-Cluster_498	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Ganodermataceae	Ganoderma	Ganoderma adspersum
-Cluster_5	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Unknown
-Cluster_50	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
-Cluster_51	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia gruessii
-Cluster_511	Fungi	Ascomycota	Leotiomycetes	Leotiales	Tympanidaceae	Collophorina	Collophorina badensis
-Cluster_512	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_515	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Teratosphaeriaceae	Constantinomyces	Constantinomyces macerans
-Cluster_519	Fungi	Basidiomycota	Cystobasidiomycetes	Cystobasidiales	Cystobasidiaceae	Cystobasidium	Cystobasidium minutum
-Cluster_520	Fungi	Ascomycota	Taphrinomycetes	Taphrinales	Taphrinaceae	Taphrina	Taphrina caerulescens
-Cluster_521	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_522	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_524	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Saccharomycetaceae	Saccharomyces	Saccharomyces cerevisiae
-Cluster_525	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
-Cluster_526	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Polyporaceae	Coriolopsis	Coriolopsis gallica
+Cluster_3605	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Rachicladosporium	Rachicladosporium cboliae
+Cluster_3617	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Curvularia	Curvularia portulacae
+Cluster_362	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
+Cluster_363	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Alternaria armoraciae
+Cluster_364	Fungi	Basidiomycota	Tremellomycetes	Cystofilobasidiales	Cystofilobasidiaceae	Cystofilobasidium	Cystofilobasidium infirmominiatum
+Cluster_365	Fungi	Basidiomycota	Agaricomycetes	Corticiales	Vuilleminiaceae	Vuilleminia	Unknown
+Cluster_368	no	NA	NA	NA	NA	NA	NA
+Cluster_37	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_370	Fungi	Basidiomycota	Tremellomycetes	Cystofilobasidiales	Mrakiaceae	Itersonilia	Itersonilia pannonica
+Cluster_3700	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Stemphylium	Unknown
+Cluster_3704	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Bipolaris	Bipolaris eleusines
+Cluster_371	no	NA	NA	NA	NA	NA	NA
+Cluster_3741	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium madriti
+Cluster_375	no	NA	NA	NA	NA	NA	NA
+Cluster_3766	no	NA	NA	NA	NA	NA	NA
+Cluster_3768	Fungi	Basidiomycota	Agaricomycetes	Hymenochaetales	Schizoporaceae	Hyphodontia	Hyphodontia tropica
+Cluster_379	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia rubicola
+Cluster_38	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
+Cluster_380	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Dothidotthiaceae	Unknown	Unknown
+Cluster_3813	Fungi	Ascomycota	Dothideomycetes	Kirschsteiniotheliales	Kirschsteiniotheliaceae	Kirschsteiniothelia	Kirschsteiniothelia aethiops
+Cluster_386	no	NA	NA	NA	NA	NA	NA
+Cluster_3871	no	NA	NA	NA	NA	NA	NA
+Cluster_388	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia eucalypti
+Cluster_39	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Phaffomycetaceae	Wickerhamomyces	Wickerhamomyces pijperi
+Cluster_391	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_394	no	NA	NA	NA	NA	NA	NA
+Cluster_399	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Unknown	Unknown	Unknown
+Cluster_4	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_400	no	NA	NA	NA	NA	NA	NA
+Cluster_401	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Dioszegia	Dioszegia fristingensis
+Cluster_404	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Saccharomycodaceae	Hanseniaspora	Hanseniaspora osmophila
+Cluster_408	Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Unknown	Unknown	Unknown
+Cluster_409	Fungi	Basidiomycota	Cystobasidiomycetes	Cystobasidiales	Cystobasidiaceae	Cystobasidium	Cystobasidium pinicola
+Cluster_41	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Podosphaera	Unknown
+Cluster_412	Fungi	Basidiomycota	Cystobasidiomycetes	Buckleyzymales	Buckleyzymaceae	Buckleyzyma	Unknown
+Cluster_415	Fungi	Ascomycota	Eurotiomycetes	Phaeomoniellales	Celotheliaceae	Minutiella	Unknown
+Cluster_416	Fungi	Ascomycota	Eurotiomycetes	Phaeomoniellales	Celotheliaceae	Minutiella	Minutiella pruni-avium
+Cluster_4168	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium brevicompactum
+Cluster_418	no	NA	NA	NA	NA	NA	NA
+Cluster_419	Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Sporidiobolaceae	Sporobolomyces	Unknown
+Cluster_42	Fungi	Basidiomycota	Malasseziomycetes	Malasseziales	Malasseziaceae	Malassezia	Malassezia restricta
+Cluster_422	Fungi	Mucoromycota	Mucoromycetes	Mucorales	Mucoraceae	Mucor	Mucor circinelloides
+Cluster_423	no	NA	NA	NA	NA	NA	NA
+Cluster_424	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia hydrangeae-macrophyllae
+Cluster_4248	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Unknown	Unknown
+Cluster_425	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia reukaufii
+Cluster_426	no	NA	NA	NA	NA	NA	NA
+Cluster_427	Fungi	Ascomycota	Sordariomycetes	Diaporthales	Gnomoniaceae	Gnomoniopsis	Gnomoniopsis fructicola
+Cluster_43	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
+Cluster_430	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
+Cluster_431	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_433	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Podosphaera	Podosphaera lini
+Cluster_436	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_438	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_44	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Phaffomycetaceae	Wickerhamomyces	Wickerhamomyces pijperi
+Cluster_443	Fungi	Basidiomycota	Tremellomycetes	Cystofilobasidiales	Mrakiaceae	Itersonilia	Itersonilia perplexans
+Cluster_445	Fungi	Basidiomycota	Tremellomycetes	Cystofilobasidiales	Cystofilobasidiaceae	Cystofilobasidium	Cystofilobasidium macerans
+Cluster_448	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_449	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Didymellaceae	Neoascochyta	Neoascochyta exitialis
+Cluster_45	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
+Cluster_456	no	NA	NA	NA	NA	NA	NA
+Cluster_458	Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_46	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_460	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Leptospora	Leptospora clematidis
+Cluster_463	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia hydrangeae-macrophyllae
+Cluster_465	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_466	Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Filobasidiaceae	Unknown	Unknown
+Cluster_471	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Phanerochaetaceae	Bjerkandera	Unknown
+Cluster_472	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Dioszegia	Dioszegia hungarica
+Cluster_473	Fungi	Ascomycota	Dipodascomycetes	Dipodascales	Dipodascaceae	Geotrichum	Geotrichum candidum
+Cluster_474	Fungi	Basidiomycota	Agaricomycetes	Cantharellales	Ceratobasidiaceae	Rhizoctonia	Rhizoctonia bicornis
+Cluster_476	no	NA	NA	NA	NA	NA	NA
+Cluster_477	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_478	Fungi	Basidiomycota	Agaricomycetes	Cantharellales	Hydnaceae	Sistotrema	Unknown
+Cluster_48	Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Sporidiobolaceae	Rhodotorula	Rhodotorula mucilaginosa
+Cluster_482	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma globispora
+Cluster_486	no	NA	NA	NA	NA	NA	NA
+Cluster_487	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Bipolaris	Bipolaris cynodontis
+Cluster_488	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_49	Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Filobasidiaceae	Filobasidium	Filobasidium wieringae
+Cluster_498	no	NA	NA	NA	NA	NA	NA
+Cluster_499	Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora lycii
+Cluster_5	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_50	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
+Cluster_504	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_51	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_510	Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Filobasidiaceae	Naganishia	Naganishia diffluens
+Cluster_511	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_512	no	NA	NA	NA	NA	NA	NA
+Cluster_513	Fungi	Basidiomycota	Wallemiomycetes	Wallemiales	Wallemiaceae	Wallemia	Wallemia canadensis
+Cluster_515	Fungi	Basidiomycota	Agaricomycetes	Agaricales	Unknown	Unknown	Unknown
+Cluster_516	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Ganodermataceae	Ganoderma	Ganoderma adspersum
+Cluster_52	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Unknown
+Cluster_526	Fungi	Ascomycota	Leotiomycetes	Leotiales	Tympanidaceae	Collophorina	Collophorina badensis
+Cluster_527	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_53	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_534	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Parastagonospora	Parastagonospora nodorum
+Cluster_530	Fungi	Basidiomycota	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_535	Fungi	Basidiomycota	Agaricomycetes	Hymenochaetales	Schizoporaceae	Xylodon	Xylodon flaviporus
+Cluster_539	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Teratosphaeriaceae	Constantinomyces	Constantinomyces macerans
 Cluster_54	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
-Cluster_541	Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_542	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Bipolaris	Bipolaris sorokiniana
-Cluster_5428	Fungi	Ascomycota	Leotiomycetes	Helotiales	Unknown	Unknown	Unknown
-Cluster_544	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_546	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Trichocomaceae	Talaromyces	Talaromyces albobiverticillius
-Cluster_549	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_55	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_550	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
-Cluster_551	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Trichomonascaceae	Starmerella	Starmerella stellata
-Cluster_552	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia gruessii
-Cluster_554	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Phaeosphaeria	Unknown
-Cluster_559	Fungi	Ascomycota	Leotiomycetes	Helotiales	Discinellaceae	Naevala	Naevala perexigua
-Cluster_56	Fungi	Basidiomycota	Malasseziomycetes	Malasseziales	Malasseziaceae	Malassezia	Malassezia restricta
-Cluster_561	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Cercospora	Unknown
-Cluster_562	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Bionectriaceae	Acremonium	Acremonium sclerotigenum
-Cluster_564	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_568	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Unknown	Unknown	Unknown
-Cluster_569	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Cryptococcaceae	Kwoniella	Unknown
-Cluster_57	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_570	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Nectriaceae	Fusarium	Fusarium equiseti
-Cluster_573	Fungi	Ascomycota	Sordariomycetes	Xylariales	Zygosporiaceae	Zygosporium	Zygosporium mycophilum
-Cluster_583	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia kudriavzevii
-Cluster_584	Fungi	Ascomycota	Eurotiomycetes	Phaeomoniellales	Celotheliaceae	Phaeomoniella	Unknown
-Cluster_585	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Italica	Italica achilleae
-Cluster_587	Fungi	Basidiomycota	Agaricomycetes	Hymenochaetales	Schizoporaceae	Schizopora	Schizopora paradoxa
-Cluster_589	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Blumeria	Blumeria graminis
+Cluster_540	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_543	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Polyporaceae	Coriolopsis	Coriolopsis gallica
+Cluster_544	Fungi	Ascomycota	Taphrinomycetes	Taphrinales	Taphrinaceae	Taphrina	Taphrina caerulescens
+Cluster_545	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
+Cluster_55	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_552	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Parastagonospora	Parastagonospora nodorum
+Cluster_553	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_557	Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_56	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia gruessii
+Cluster_560	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_562	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Trichocomaceae	Talaromyces	Talaromyces albobiverticillius
+Cluster_563	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_564	no	NA	NA	NA	NA	NA	NA
+Cluster_565	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Phaeosphaeria	Unknown
+Cluster_567	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Trichomonascaceae	Starmerella	Starmerella stellata
+Cluster_57	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
+Cluster_571	Fungi	Ascomycota	Leotiomycetes	Helotiales	Discinellaceae	Naevala	Naevala perexigua
+Cluster_576	no	NA	NA	NA	NA	NA	NA
+Cluster_577	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Bipolaris	Bipolaris sorokiniana
+Cluster_578	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
+Cluster_579	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Bionectriaceae	Acremonium	Acremonium sclerotigenum
+Cluster_58	no	NA	NA	NA	NA	NA	NA
+Cluster_585	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia gruessii
+Cluster_588	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Nectriaceae	Fusarium	Fusarium equiseti
 Cluster_59	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_591	Fungi	Ascomycota	Leotiomycetes	Helotiales	Ploettnerulaceae	Cadophora	Unknown
-Cluster_592	Fungi	Ascomycota	Leotiomycetes	Thelebolales	Pseudeurotiaceae	Unknown	Unknown
-Cluster_598	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_6	Fungi	Ascomycota	Leotiomycetes	Helotiales	Sclerotiniaceae	Unknown	Unknown
-Cluster_60	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
-Cluster_603	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia reukaufii
-Cluster_606	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Unknown	Unknown	Unknown
-Cluster_607	Fungi	Ascomycota	Lecanoromycetes	Lecanorales	Parmeliaceae	Flavoparmelia	Flavoparmelia soredians
-Cluster_61	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia vanudenii
-Cluster_610	Fungi	Basidiomycota	Cystobasidiomycetes	Unknown	Unknown	Unknown	Unknown
-Cluster_613	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Rhynchogastremaceae	Papiliotrema	Unknown
-Cluster_615	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Alternaria cinerariae
-Cluster_616	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_617	Fungi	Basidiomycota	Exobasidiomycetes	Entylomatales	Entylomataceae	Tilletiopsis	Tilletiopsis washingtonensis
-Cluster_62	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_623	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Teratosphaeriaceae	Acrodontium	Acrodontium pigmentosum
-Cluster_624	Fungi	Ascomycota	Leotiomycetes	Thelebolales	Pseudeurotiaceae	Unknown	Unknown
-Cluster_625	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Podosphaera	Podosphaera leucotricha
-Cluster_627	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Dioszegia	Unknown
-Cluster_628	Fungi	Ascomycota	Sordariomycetes	Diaporthales	Gnomoniaceae	Gnomoniopsis	Gnomoniopsis idaeicola
-Cluster_629	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_632	Fungi	Mucoromycota	Mucoromycetes	Mucorales	Mucoraceae	Mucor	Mucor circinelloides
-Cluster_633	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Pyrenophora	Unknown
-Cluster_637	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Lophiostomataceae	Neovaginatispora	Neovaginatispora aquadulcis
+Cluster_593	no	NA	NA	NA	NA	NA	NA
+Cluster_594	Fungi	Basidiomycota	Cystobasidiomycetes	Cystobasidiales	Cystobasidiaceae	Cystobasidium	Cystobasidium minutum
+Cluster_595	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Unknown	Unknown	Unknown
+Cluster_596	Fungi	Ascomycota	Eurotiomycetes	Phaeomoniellales	Celotheliaceae	Phaeomoniella	Unknown
+Cluster_597	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Cryptococcaceae	Kwoniella	Unknown
+Cluster_598	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Italica	Italica achilleae
+Cluster_6	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_60	Fungi	Basidiomycota	Malasseziomycetes	Malasseziales	Malasseziaceae	Malassezia	Malassezia restricta
+Cluster_602	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Cercospora	Unknown
+Cluster_603	Fungi	Ascomycota	Sordariomycetes	Xylariales	Zygosporiaceae	Zygosporium	Zygosporium mycophilum
+Cluster_604	no	NA	NA	NA	NA	NA	NA
+Cluster_605	Fungi	Basidiomycota	Agaricomycetes	Hymenochaetales	Schizoporaceae	Schizopora	Schizopora paradoxa
+Cluster_608	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Blumeria	Blumeria graminis
+Cluster_61	no	NA	NA	NA	NA	NA	NA
+Cluster_612	Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_614	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_615	Fungi	Ascomycota	Leotiomycetes	Helotiales	Ploettnerulaceae	Cadophora	Unknown
+Cluster_617	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia reukaufii
+Cluster_618	no	NA	NA	NA	NA	NA	NA
+Cluster_619	no	NA	NA	NA	NA	NA	NA
+Cluster_620	Fungi	Ascomycota	Lecanoromycetes	Lecanorales	Parmeliaceae	Flavoparmelia	Flavoparmelia soredians
+Cluster_626	Fungi	Basidiomycota	Cystobasidiomycetes	Unknown	Unknown	Unknown	Unknown
+Cluster_627	Fungi	Ascomycota	Leotiomycetes	Thelebolales	Pseudeurotiaceae	Unknown	Unknown
+Cluster_628	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Unknown	Unknown	Unknown
+Cluster_63	no	NA	NA	NA	NA	NA	NA
+Cluster_631	Fungi	Ascomycota	Leotiomycetes	Thelebolales	Pseudeurotiaceae	Unknown	Unknown
+Cluster_632	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Podosphaera	Podosphaera leucotricha
+Cluster_633	Fungi	Basidiomycota	Exobasidiomycetes	Entylomatales	Entylomataceae	Tilletiopsis	Tilletiopsis washingtonensis
+Cluster_637	no	NA	NA	NA	NA	NA	NA
+Cluster_639	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_64	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_643	Fungi	Ascomycota	Sordariomycetes	Xylariales	Hansfordiaceae	Hansfordia	Hansfordia pulvinata
-Cluster_647	Fungi	Ascomycota	Sordariomycetes	Glomerellales	Glomerellaceae	Colletotrichum	Colletotrichum scovillei
-Cluster_649	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_654	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Unknown
-Cluster_656	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Blumeria	Blumeria graminis
-Cluster_66	Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Sporidiobolaceae	Rhodotorula	Rhodotorula mucilaginosa
-Cluster_660	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Dothidotthiaceae	Mycocentrospora	Unknown
-Cluster_665	Fungi	Basidiomycota	Exobasidiomycetes	Exobasidiales	Brachybasidiaceae	Meira	Unknown
-Cluster_666	Fungi	Basidiomycota	Agaricomycetes	Hymenochaetales	Hymenochaetaceae	Fuscoporia	Fuscoporia ferruginosa
-Cluster_669	Fungi	Ascomycota	Leotiomycetes	Helotiales	Sclerotiniaceae	Sclerotinia	Sclerotinia tetraspora
-Cluster_67	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_670	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia terricola
-Cluster_674	Fungi	Basidiomycota	Agaricomycetes	Agaricales	Psathyrellaceae	Candolleomyces	Candolleomyces candolleanus
-Cluster_675	Fungi	Basidiomycota	Microbotryomycetes	Unknown	Unknown	Unknown	Unknown
-Cluster_679	Fungi	Ascomycota	Sordariomycetes	Diaporthales	Diaporthaceae	Diaporthe	Diaporthe cynaroidis
-Cluster_686	Fungi	Ascomycota	Taphrinomycetes	Taphrinales	Taphrinaceae	Taphrina	Taphrina pruni
-Cluster_687	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_688	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium spathulatum
-Cluster_69	Fungi	Ascomycota	Saccharomycetes	Ascoideales	Saccharomycopsidaceae	Saccharomycopsis	Saccharomycopsis crataegensis
-Cluster_7	Fungi	Ascomycota	Dothideomycetes	Dothideales	Saccotheciaceae	Aureobasidium	Aureobasidium pullulans
-Cluster_70	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
-Cluster_700	Fungi	Ascomycota	Taphrinomycetes	Taphrinales	Taphrinaceae	Taphrina	Taphrina deformans
-Cluster_702	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Trichomonascaceae	Starmerella	Starmerella magnoliae
-Cluster_703	Fungi	Basidiomycota	Cystobasidiomycetes	Unknown	Symmetrosporaceae	Unknown	Unknown
-Cluster_704	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia kluyveri
-Cluster_705	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Didymellaceae	Neoascochyta	Neoascochyta tardicrescens
-Cluster_708	Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora meridionalis
-Cluster_710	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Cryptococcaceae	Kwoniella	Unknown
-Cluster_713	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Unknown	Unknown	Unknown
-Cluster_715	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_724	Fungi	Ascomycota	Leotiomycetes	Helotiales	Mollisiaceae	Mollisia	Mollisia ligni
-Cluster_725	Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_727	Fungi	Ascomycota	Sordariomycetes	Glomerellales	Glomerellaceae	Colletotrichum	Colletotrichum fuscum
-Cluster_729	Fungi	Basidiomycota	Microbotryomycetes	Leucosporidiales	Unknown	Unknown	Unknown
-Cluster_73	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
-Cluster_733	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
-Cluster_734	Fungi	Basidiomycota	Tremellomycetes	Unknown	Unknown	Unknown	Unknown
-Cluster_739	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_740	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Saccharomycetaceae	Lachancea	Lachancea thermotolerans
-Cluster_75	Fungi	Ascomycota	Leotiomycetes	Unknown	Unknown	Unknown	Unknown
-Cluster_751	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
-Cluster_752	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_758	Fungi	Basidiomycota	Cystobasidiomycetes	Unknown	Symmetrosporaceae	Unknown	Unknown
-Cluster_76	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia gruessii
-Cluster_762	Fungi	Basidiomycota	Cystobasidiomycetes	Cystobasidiales	Cystobasidiaceae	Cystobasidium	Cystobasidium slooffiae
-Cluster_763	Fungi	Ascomycota	Dothideomycetes	Dothideales	Dothideaceae	Dothiora	Unknown
-Cluster_764	Fungi	Ascomycota	Leotiomycetes	Leotiales	Tympanidaceae	Collophorina	Collophorina neorubra
-Cluster_773	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_777	Fungi	Ascomycota	Sordariomycetes	Glomerellales	Plectosphaerellaceae	Gibellulopsis	Gibellulopsis fusca
-Cluster_778	Fungi	Basidiomycota	Exobasidiomycetes	Exobasidiales	Brachybasidiaceae	Meira	Meira geulakonigae
-Cluster_779	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Periconiaceae	Periconia	Periconia chimonanthi
-Cluster_780	Fungi	Basidiomycota	Tremellomycetes	Unknown	Unknown	Unknown	Unknown
-Cluster_784	Fungi	Ascomycota	Lecanoromycetes	Lecanorales	Parmeliaceae	Hypogymnia	Hypogymnia tubulosa
-Cluster_787	Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_79	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
-Cluster_791	Fungi	Ascomycota	Taphrinomycetes	Taphrinales	Taphrinaceae	Taphrina	Taphrina kruchii
-Cluster_795	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_796	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Dematiopleospora	Dematiopleospora salsolae
-Cluster_7982	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma foliicola
-Cluster_8	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
-Cluster_800	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Alternaria armoraciae
-Cluster_802	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Nectriaceae	Fusarium	Fusarium proliferatum
-Cluster_805	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Septoria	Septoria glycinicola
-Cluster_808	Fungi	Ascomycota	Sordariomycetes	Amphisphaeriales	Sporocadaceae	Sporocadus	Sporocadus biseptatus
-Cluster_809	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_81	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_810	Fungi	Ascomycota	Sordariomycetes	Amphisphaeriales	Amphisphaeriaceae	Unknown	Unknown
-Cluster_816	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma victoriae
-Cluster_818	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia sporocuriosa
-Cluster_821	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Golovinomyces	Golovinomyces artemisiae
-Cluster_824	Fungi	Ascomycota	Dothideomycetes	Capnodiales	Unknown	Unknown	Unknown
-Cluster_826	Fungi	Ascomycota	Taphrinomycetes	Taphrinales	Taphrinaceae	Taphrina	Unknown
-Cluster_829	Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Sporidiobolaceae	Rhodosporidiobolus	Rhodosporidiobolus colostri
-Cluster_831	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Rhynchogastremaceae	Papiliotrema	Unknown
-Cluster_836	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Irpicaceae	Byssomerulius	Byssomerulius corium
-Cluster_839	Fungi	Ascomycota	Dothideomycetes	Unknown	Unknown	Unknown	Unknown
-Cluster_84	Fungi	Mucoromycota	Mucoromycetes	Mucorales	Mucoraceae	Mucor	Unknown
-Cluster_845	Fungi	Ascomycota	Leotiomycetes	Helotiales	Helotiaceae	Scytalidium	Scytalidium lignicola
-Cluster_848	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Paraophiobolus	Paraophiobolus arundinis
-Cluster_85	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Cladosporium succulentum
-Cluster_851	Fungi	Basidiomycota	Tremellomycetes	Cystofilobasidiales	Cystofilobasidiaceae	Cystofilobasidium	Cystofilobasidium macerans
-Cluster_853	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Cercospora	Unknown
-Cluster_855	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
-Cluster_858	Fungi	Basidiomycota	Agaricomycetes	Corticiales	Vuilleminiaceae	Vuilleminia	Unknown
-Cluster_86	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
-Cluster_860	Fungi	Basidiomycota	Agaricostilbomycetes	Agaricostilbales	Kondoaceae	Kondoa	Kondoa yuccicola
-Cluster_862	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Nectriaceae	Fusarium	Unknown
-Cluster_867	Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_868	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Cryptococcaceae	Kwoniella	Kwoniella shivajii
-Cluster_87	Fungi	Ascomycota	Dothideomycetes	Dothideales	Dothideaceae	Dothiora	Dothiora prunorum
-Cluster_872	Fungi	Basidiomycota	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_873	Fungi	Basidiomycota	Agaricomycetes	Hymenochaetales	Schizoporaceae	Xylodon	Xylodon erastii
-Cluster_876	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_878	Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora meridionalis
-Cluster_880	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Unknown
-Cluster_881	Fungi	Ascomycota	Sordariomycetes	Amphisphaeriales	Sporocadaceae	Sporocadus	Sporocadus rosigena
-Cluster_884	Fungi	Basidiomycota	Agaricomycetes	Agaricales	Psathyrellaceae	Coprinellus	Coprinellus brevisetulosus
-Cluster_885	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma victoriae
+Cluster_645	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Dioszegia	Unknown
+Cluster_646	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Pyrenophora	Unknown
+Cluster_648	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_65	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_652	Fungi	Ascomycota	Sordariomycetes	Diaporthales	Gnomoniaceae	Gnomoniopsis	Gnomoniopsis idaeicola
+Cluster_653	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Rhynchogastremaceae	Papiliotrema	Unknown
+Cluster_655	no	NA	NA	NA	NA	NA	NA
+Cluster_656	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Alternaria cinerariae
+Cluster_66	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_662	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Lophiostomataceae	Neovaginatispora	Neovaginatispora aquadulcis
+Cluster_663	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Teratosphaeriaceae	Acrodontium	Acrodontium pigmentosum
+Cluster_665	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_67	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia vanudenii
+Cluster_670	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Blumeria	Blumeria graminis
+Cluster_671	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Dothidotthiaceae	Mycocentrospora	Unknown
+Cluster_672	Fungi	Ascomycota	Sordariomycetes	Glomerellales	Glomerellaceae	Colletotrichum	Colletotrichum scovillei
+Cluster_673	Fungi	Mucoromycota	Mucoromycetes	Mucorales	Mucoraceae	Mucor	Mucor circinelloides
+Cluster_676	Fungi	Ascomycota	Sordariomycetes	Xylariales	Hansfordiaceae	Hansfordia	Hansfordia pulvinata
+Cluster_677	Fungi	Basidiomycota	Exobasidiomycetes	Exobasidiales	Brachybasidiaceae	Meira	Unknown
+Cluster_678	Fungi	Basidiomycota	Agaricomycetes	Hymenochaetales	Hymenochaetaceae	Fuscoporia	Fuscoporia ferruginosa
+Cluster_68	no	NA	NA	NA	NA	NA	NA
+Cluster_682	no	NA	NA	NA	NA	NA	NA
+Cluster_683	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Unknown
+Cluster_686	Fungi	Ascomycota	Sordariomycetes	Diaporthales	Diaporthaceae	Diaporthe	Diaporthe cynaroidis
+Cluster_687	Fungi	Ascomycota	Sordariomycetes	Amphisphaeriales	Amphisphaeriaceae	Unknown	Unknown
+Cluster_69	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
+Cluster_694	Fungi	Basidiomycota	Microbotryomycetes	Unknown	Unknown	Unknown	Unknown
+Cluster_695	Fungi	Ascomycota	Taphrinomycetes	Taphrinales	Taphrinaceae	Taphrina	Taphrina pruni
+Cluster_696	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_699	Fungi	Ascomycota	Leotiomycetes	Helotiales	Sclerotiniaceae	Sclerotinia	Sclerotinia tetraspora
+Cluster_7	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Saccharomycodaceae	Hanseniaspora	Unknown
+Cluster_700	Fungi	Basidiomycota	Agaricomycetes	Agaricales	Psathyrellaceae	Candolleomyces	Candolleomyces candolleanus
+Cluster_701	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia terricola
+Cluster_705	Fungi	Ascomycota	Taphrinomycetes	Taphrinales	Taphrinaceae	Taphrina	Taphrina deformans
+Cluster_708	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium spathulatum
+Cluster_71	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Saccharomycetaceae	Saccharomyces	Saccharomyces cerevisiae
+Cluster_713	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Didymellaceae	Neoascochyta	Neoascochyta tardicrescens
+Cluster_715	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_72	no	NA	NA	NA	NA	NA	NA
+Cluster_722	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Cryptococcaceae	Kwoniella	Unknown
+Cluster_725	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Trichomonascaceae	Starmerella	Starmerella magnoliae
+Cluster_726	no	NA	NA	NA	NA	NA	NA
+Cluster_727	Fungi	Basidiomycota	Cystobasidiomycetes	Unknown	Symmetrosporaceae	Unknown	Unknown
+Cluster_729	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia kluyveri
+Cluster_73	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_735	no	NA	NA	NA	NA	NA	NA
+Cluster_738	Fungi	Ascomycota	Leotiomycetes	Helotiales	Mollisiaceae	Mollisia	Mollisia ligni
+Cluster_739	Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_741	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Unknown	Unknown	Unknown
+Cluster_742	Fungi	Ascomycota	Sordariomycetes	Glomerellales	Glomerellaceae	Colletotrichum	Colletotrichum fuscum
+Cluster_744	no	NA	NA	NA	NA	NA	NA
+Cluster_746	Fungi	Basidiomycota	Microbotryomycetes	Leucosporidiales	Unknown	Unknown	Unknown
+Cluster_749	Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora meridionalis
+Cluster_751	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
+Cluster_752	Fungi	Basidiomycota	Tremellomycetes	Unknown	Unknown	Unknown	Unknown
+Cluster_760	no	NA	NA	NA	NA	NA	NA
+Cluster_762	no	NA	NA	NA	NA	NA	NA
+Cluster_763	no	NA	NA	NA	NA	NA	NA
+Cluster_764	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
+Cluster_765	no	NA	NA	NA	NA	NA	NA
+Cluster_766	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_769	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_77	no	NA	NA	NA	NA	NA	NA
+Cluster_770	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Saccharomycetaceae	Lachancea	Lachancea thermotolerans
+Cluster_774	Fungi	Basidiomycota	Cystobasidiomycetes	Unknown	Symmetrosporaceae	Unknown	Unknown
+Cluster_775	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_776	Fungi	Basidiomycota	Cystobasidiomycetes	Cystobasidiales	Cystobasidiaceae	Cystobasidium	Cystobasidium slooffiae
+Cluster_777	no	NA	NA	NA	NA	NA	NA
+Cluster_778	Fungi	Ascomycota	Dothideomycetes	Dothideales	Dothideaceae	Dothiora	Unknown
+Cluster_779	Fungi	Ascomycota	Leotiomycetes	Leotiales	Tympanidaceae	Collophorina	Collophorina neorubra
+Cluster_78	Fungi	Ascomycota	Saccharomycetes	Ascoideales	Saccharomycopsidaceae	Saccharomycopsis	Saccharomycopsis crataegensis
+Cluster_785	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Rhynchogastremaceae	Papiliotrema	Unknown
+Cluster_787	no	NA	NA	NA	NA	NA	NA
+Cluster_79	Fungi	Basidiomycota	Wallemiomycetes	Wallemiales	Wallemiaceae	Wallemia	Unknown
+Cluster_793	Fungi	Ascomycota	Taphrinomycetes	Taphrinales	Taphrinaceae	Taphrina	Taphrina kruchii
+Cluster_795	Fungi	Ascomycota	Sordariomycetes	Glomerellales	Plectosphaerellaceae	Gibellulopsis	Gibellulopsis fusca
+Cluster_796	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_797	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Periconiaceae	Periconia	Periconia chimonanthi
+Cluster_798	Fungi	Basidiomycota	Tremellomycetes	Unknown	Unknown	Unknown	Unknown
+Cluster_8	Fungi	Ascomycota	Dothideomycetes	Dothideales	Saccotheciaceae	Aureobasidium	Aureobasidium pullulans
+Cluster_80	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
+Cluster_803	no	NA	NA	NA	NA	NA	NA
+Cluster_804	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Dematiopleospora	Dematiopleospora salsolae
+Cluster_805	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Neosetophoma	Unknown
+Cluster_806	Fungi	Basidiomycota	Agaricomycetes	Cantharellales	Unknown	Unknown	Unknown
+Cluster_81	Fungi	Ascomycota	Leotiomycetes	Unknown	Unknown	Unknown	Unknown
+Cluster_810	no	NA	NA	NA	NA	NA	NA
+Cluster_814	Fungi	Ascomycota	Lecanoromycetes	Lecanorales	Parmeliaceae	Hypogymnia	Hypogymnia tubulosa
+Cluster_815	no	NA	NA	NA	NA	NA	NA
+Cluster_818	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_819	Fungi	Basidiomycota	Exobasidiomycetes	Exobasidiales	Brachybasidiaceae	Meira	Meira geulakonigae
+Cluster_82	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
+Cluster_823	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Septoria	Septoria glycinicola
+Cluster_827	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma victoriae
+Cluster_829	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia sporocuriosa
+Cluster_83	no	NA	NA	NA	NA	NA	NA
+Cluster_830	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Nectriaceae	Fusarium	Fusarium proliferatum
+Cluster_833	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Golovinomyces	Golovinomyces artemisiae
+Cluster_837	no	NA	NA	NA	NA	NA	NA
+Cluster_839	no	NA	NA	NA	NA	NA	NA
+Cluster_840	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_841	Fungi	Ascomycota	Sordariomycetes	Amphisphaeriales	Sporocadaceae	Sporocadus	Sporocadus biseptatus
+Cluster_845	Fungi	Basidiomycota	Agaricomycetes	Polyporales	Irpicaceae	Byssomerulius	Byssomerulius corium
+Cluster_848	Fungi	Ascomycota	Dothideomycetes	Unknown	Unknown	Unknown	Unknown
+Cluster_849	Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_85	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia gruessii
+Cluster_850	no	NA	NA	NA	NA	NA	NA
+Cluster_854	Fungi	Ascomycota	Leotiomycetes	Helotiales	Helotiaceae	Scytalidium	Scytalidium lignicola
+Cluster_858	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Paraophiobolus	Paraophiobolus arundinis
+Cluster_862	no	NA	NA	NA	NA	NA	NA
+Cluster_863	Fungi	Ascomycota	Taphrinomycetes	Taphrinales	Taphrinaceae	Taphrina	Unknown
+Cluster_867	Fungi	Ascomycota	Dothideomycetes	Capnodiales	Unknown	Unknown	Unknown
+Cluster_869	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
+Cluster_87	no	NA	NA	NA	NA	NA	NA
+Cluster_871	no	NA	NA	NA	NA	NA	NA
+Cluster_872	Fungi	Basidiomycota	Agaricomycetes	Corticiales	Vuilleminiaceae	Vuilleminia	Unknown
+Cluster_873	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Cercospora	Unknown
+Cluster_875	no	NA	NA	NA	NA	NA	NA
+Cluster_877	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Nectriaceae	Fusarium	Unknown
+Cluster_88	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
+Cluster_880	Fungi	Ascomycota	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_884	Fungi	Basidiomycota	Agaricomycetes	Hymenochaetales	Schizoporaceae	Xylodon	Xylodon erastii
+Cluster_886	Fungi	Basidiomycota	Agaricostilbomycetes	Agaricostilbales	Kondoaceae	Kondoa	Kondoa yuccicola
 Cluster_888	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_89	Fungi	Ascomycota	Dipodascomycetes	Dipodascales	Dipodascaceae	Geotrichum	Geotrichum candidum
-Cluster_894	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Bionectriaceae	Acremonium	Acremonium pilosum
-Cluster_899	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Stemphylium	Stemphylium globuliferum
-Cluster_9	Fungi	Ascomycota	Dipodascomycetes	Dipodascales	Dipodascaceae	Unknown	Unknown
-Cluster_900	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Bionectriaceae	Acremonium	Unknown
-Cluster_901	Fungi	Ascomycota	Candelariomycetes	Candelariales	Candelariaceae	Opeltiella	Opeltiella rubrisoli
-Cluster_902	Fungi	Basidiomycota	Agaricomycetes	Agaricales	Psathyrellaceae	Hormographiella	Hormographiella verticillata
-Cluster_904	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Lophiostomataceae	Lophiostoma	Lophiostoma rosae
-Cluster_909	Fungi	Ascomycota	Orbiliomycetes	Orbiliales	Orbiliaceae	Unknown	Unknown
-Cluster_91	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
-Cluster_914	Fungi	Basidiomycota	Exobasidiomycetes	Microstromatales	Microstromataceae	Microstroma	Microstroma bacarum
-Cluster_92	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia hydrangeae-macrophyllae
-Cluster_922	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Unknown	Unknown	Unknown
-Cluster_925	Fungi	Ascomycota	Dothideomycetes	Dothideales	Dothideaceae	Endoconidioma	Endoconidioma populi
-Cluster_927	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Cryptococcaceae	Cryptococcus	Unknown
-Cluster_93	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_932	Fungi	Basidiomycota	Agaricomycetes	Agaricales	Omphalotaceae	Rhodocollybia	Unknown
-Cluster_936	Fungi	Ascomycota	Dothideomycetes	Venturiales	Venturiaceae	Unknown	Unknown
-Cluster_938	Fungi	Ascomycota	Sordariomycetes	Xylariales	Zygosporiaceae	Zygosporium	Zygosporium mycophilum
-Cluster_939	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Alternaria infectoria
-Cluster_941	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Golovinomyces	Golovinomyces montagnei
-Cluster_942	Fungi	Basidiomycota	Agaricostilbomycetes	Agaricostilbales	Kondoaceae	Kondoa	Kondoa cylindrica
-Cluster_944	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_95	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia rubicola
-Cluster_955	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_956	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Phaeosphaeria	Unknown
-Cluster_958	Fungi	Basidiomycota	Agaricostilbomycetes	Agaricostilbales	Kondoaceae	Bensingtonia	Unknown
-Cluster_965	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Alternaria infectoria
-Cluster_967	Fungi	Basidiomycota	Agaricostilbomycetes	Agaricostilbales	Kondoaceae	Kondoa	Kondoa cylindrica
-Cluster_97	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Phaffomycetaceae	Wickerhamomyces	Wickerhamomyces pijperi
-Cluster_972	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Teratosphaeriaceae	Catenulostroma	Catenulostroma hermanusense
-Cluster_974	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_978	Fungi	Mucoromycota	Mucoromycetes	Mucorales	Mucoraceae	Mucor	Mucor hiemalis
-Cluster_979	Fungi	Ascomycota	Sordariomycetes	Diaporthales	Diaporthaceae	Diaporthe	Diaporthe cotoneastri
-Cluster_98	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
-Cluster_980	Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Piskurozymaceae	Unknown	Unknown
-Cluster_984	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Unknown
-Cluster_985	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
-Cluster_986	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Debaryomycetaceae	Meyerozyma	Meyerozyma guilliermondii
-Cluster_989	Fungi	Ascomycota	Leotiomycetes	Helotiales	Sclerotiniaceae	Unknown	Unknown
-Cluster_991	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Cordycipitaceae	Simplicillium	Simplicillium lamellicola
-Cluster_993	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Blumeria	Blumeria graminis
-Cluster_997	Fungi	Basidiomycota	Wallemiomycetes	Wallemiales	Wallemiaceae	Wallemia	Wallemia hederae
+Cluster_89	no	NA	NA	NA	NA	NA	NA
+Cluster_891	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Cryptococcaceae	Kwoniella	Kwoniella shivajii
+Cluster_895	no	NA	NA	NA	NA	NA	NA
+Cluster_897	Fungi	Basidiomycota	Agaricomycetes	Agaricales	Psathyrellaceae	Coprinellus	Coprinellus brevisetulosus
+Cluster_898	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma victoriae
+Cluster_9	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
+Cluster_901	Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Sporidiobolaceae	Rhodosporidiobolus	Rhodosporidiobolus colostri
+Cluster_905	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Bionectriaceae	Acremonium	Acremonium pilosum
+Cluster_907	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Stemphylium	Stemphylium globuliferum
+Cluster_908	Fungi	Ascomycota	Sordariomycetes	Hypocreales	Bionectriaceae	Acremonium	Unknown
+Cluster_909	Fungi	Ascomycota	Candelariomycetes	Candelariales	Candelariaceae	Opeltiella	Opeltiella rubrisoli
+Cluster_91	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Debaryomycetaceae	Kurtzmaniella	Unknown
+Cluster_910	Fungi	Basidiomycota	Agaricomycetes	Agaricales	Psathyrellaceae	Hormographiella	Hormographiella verticillata
+Cluster_912	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_913	no	NA	NA	NA	NA	NA	NA
+Cluster_915	Fungi	Basidiomycota	Agaricomycetes	Russulales	Peniophoraceae	Peniophora	Peniophora meridionalis
+Cluster_918	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Unknown
+Cluster_92	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_921	Fungi	Ascomycota	Orbiliomycetes	Orbiliales	Orbiliaceae	Unknown	Unknown
+Cluster_928	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Lophiostomataceae	Lophiostoma	Lophiostoma rosae
+Cluster_93	no	NA	NA	NA	NA	NA	NA
+Cluster_937	Fungi	Ascomycota	Sordariomycetes	Amphisphaeriales	Sporocadaceae	Sporocadus	Sporocadus rosigena
+Cluster_942	Fungi	Ascomycota	Dothideomycetes	Dothideales	Dothideaceae	Endoconidioma	Endoconidioma populi
+Cluster_945	no	NA	NA	NA	NA	NA	NA
+Cluster_946	Fungi	Basidiomycota	Exobasidiomycetes	Microstromatales	Microstromataceae	Microstroma	Microstroma bacarum
+Cluster_95	no	NA	NA	NA	NA	NA	NA
+Cluster_951	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Golovinomyces	Golovinomyces montagnei
+Cluster_952	Fungi	Basidiomycota	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_954	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Unknown	Unknown	Unknown
+Cluster_957	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_959	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Cryptococcaceae	Cryptococcus	Unknown
+Cluster_96	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
+Cluster_961	Fungi	Basidiomycota	Agaricomycetes	Agaricales	Omphalotaceae	Rhodocollybia	Unknown
+Cluster_964	no	NA	NA	NA	NA	NA	NA
+Cluster_965	Fungi	Ascomycota	Dothideomycetes	Venturiales	Venturiaceae	Unknown	Unknown
+Cluster_966	Fungi	Ascomycota	Sordariomycetes	Xylariales	Zygosporiaceae	Zygosporium	Zygosporium mycophilum
+Cluster_967	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Alternaria infectoria
+Cluster_970	Fungi	Basidiomycota	Agaricostilbomycetes	Agaricostilbales	Kondoaceae	Kondoa	Kondoa cylindrica
+Cluster_972	no	NA	NA	NA	NA	NA	NA
+Cluster_973	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_974	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Phaeosphaeriaceae	Phaeosphaeria	Unknown
+Cluster_975	no	NA	NA	NA	NA	NA	NA
+Cluster_98	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Cladosporium succulentum
+Cluster_983	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Alternaria infectoria
+Cluster_985	Fungi	Basidiomycota	Agaricostilbomycetes	Agaricostilbales	Kondoaceae	Kondoa	Kondoa cylindrica
+Cluster_987	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Teratosphaeriaceae	Catenulostroma	Catenulostroma hermanusense
+Cluster_989	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_99	Fungi	Mucoromycota	Mucoromycetes	Mucorales	Mucoraceae	Mucor	Unknown
+Cluster_994	Fungi	Mucoromycota	Mucoromycetes	Mucorales	Mucoraceae	Mucor	Mucor hiemalis
+Cluster_999	Fungi	Ascomycota	Leotiomycetes	Helotiales	Sclerotiniaceae	Unknown	Unknown
