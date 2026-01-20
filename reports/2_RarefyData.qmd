@@ -170,18 +170,16 @@ names(phyloseq::sample_sums(ps_ITSm)[ phyloseq::sample_sums(ps_ITSm) == 0]) #sam
 ## Remove Wolbachia + conta
 ```{r}
 # Remove Wolbachia
-## List of Wolbachia clusters
-TAX_16S_df <- as.data.frame(TAX_16S)
-wolbachia_rows <- rownames(TAX_16S_df[!is.na(TAX_16S_df$Genus) & TAX_16S_df$Genus == "Wolbachia", ])
+tax_ps <- as.data.frame(tax_table(ps_16Sm))
 
-## Relative abundance of Wolbachia accross the abundance of all the OTUs 
-otu_df <- as.data.frame(otu_table(ps_16Sm))
-otu_df[] <- lapply(otu_df, as.numeric)   # force all columns numeric
+wolbachia_taxa <- rownames(tax_ps[!is.na(tax_ps$Genus) & tax_ps$Genus == "Wolbachia", ]) # List of Wolbachia clusters
 
-sum(otu_df[wolbachia_rows, ], na.rm = TRUE) / sum(otu_df, na.rm = TRUE) *100 # Percentage of Wolbachia
+otu_ps <- as.data.frame(otu_table(ps_16Sm))
+if (!taxa_are_rows(ps_16Sm)) otu_ps <- t(otu_ps)
 
-## Remove
-ps_16Sm <- prune_taxa(!(taxa_names(ps_16Sm) %in% wolbachia_rows), ps_16Sm)
+sum(otu_ps[wolbachia_taxa, , drop = FALSE]) / sum(otu_ps) * 100 ## Relative abundance of Wolbachia = 16.76 %
+
+ps_16Sm <- prune_taxa(!(taxa_names(ps_16Sm) %in% wolbachia_taxa), ps_16Sm) ## Remove
 
 
 # Remove 16S conta
