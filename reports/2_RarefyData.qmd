@@ -51,14 +51,14 @@ colnames(atc_16S_nocontrol) <- gsub("16S_", "", colnames(atc_16S_nocontrol))
 
 # Import ITS Abundance table
 atc_ITS <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "ITS_TM123_abundance.tsv"), sep="\t",header=TRUE)
-dim(atc_ITS) # 1303 565
+dim(atc_ITS) # 1303 553
 
 # Delete Controls and Undetermined
 atc_ITS_nocontrol <- atc_ITS %>% 
   dplyr::select(!(dplyr::contains("CT_") | 
                   dplyr::contains("NC_") |
                   dplyr::starts_with("Undetermined")))
-dim(atc_ITS_nocontrol) # 1303 312
+dim(atc_ITS_nocontrol) # 1303 300
 
 # Deletion of ITS- prefixes in sample names
 colnames(atc_ITS_nocontrol) <- gsub("ITS_", "", colnames(atc_ITS_nocontrol))
@@ -224,7 +224,7 @@ max(sample_sums(ps_ITSm)) #max
 mean(sample_sums(ps_ITSm)) # mean = 9913.682
 
 # Identify samples with a sum of abundances equal to zero
-zero_abundance_samples_16S <- names(sample_sums(ps_16Sm)[ sample_sums(ps_16Sm) == 0]) # 33 samples
+zero_abundance_samples_16S <- names(sample_sums(ps_16Sm)[ sample_sums(ps_16Sm) == 0]) # 49 samples
 zero_abundance_samples_ITS <- names(sample_sums(ps_ITSm)[ sample_sums(ps_ITSm) == 0]) # 7 samples
 
 # Remove samples with a sum of abundances equal to zero from the phyloseq object
