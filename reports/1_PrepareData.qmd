@@ -209,9 +209,39 @@ at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_157")] <- "Plant
 at_16S[at_16S$observation_name == "Cluster_162", "seed_sequence"]
 at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_162")] <- "Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit"
 
-# # Delete them
-# at_16S <- at_16S %>%
-#   dplyr::filter(blast_taxonomy != "no;NA;NA;NA;NA;NA;NA")
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_218")] <- "Bacteria;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_220")] <- "Bacteria;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_255")] <- "Bacteria;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_331")] <- "Fungi;Basidiomycota;Malasseziomycetes;Malasseziales;Malasseziaceae;Malassezia;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_388")] <- "Bacteria;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_402")] <- "Fungi;Mucoromycota;Mucoromycetes;Mucorales;Mucorineae;Mucoraceae;Mucor;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_466")] <- "Bacteria;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_515")] <- "Bacteria;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_553")] <- "Bacteria;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_572")] <- "Fungi;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_611")] <- "Bacteria;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_617")] <- "Fungi;Mucoromycota;Mucoromycetes;Mucorales;Mucorineae;Mucoraceae;Mucor;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_698")] <- "Fungi;Ascomycota;Taphrinomycetes;Taphrinales;Taphrinaceae;Taphrina;Unkown"
+ 
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_755")] <- "Bacteria;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown"
+
+at_16S[at_16S$observation_name == "Cluster_984", "seed_sequence"] #Unknown
+
+# Rename the left clusters as "Unknown" (cluster nb sup. to 1000)
+at_16S <- at_16S %>%
+  dplyr::mutate(blast_taxonomy = ifelse(blast_taxonomy == "no;NA;NA;NA;NA;NA;NA", "Unknown;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown", blast_taxonomy))
 
 # Split taxonomy
 at_16S <- at_16S %>% 
@@ -282,7 +312,7 @@ at_16S_Multiaffiliation$observation_name # 1 cluster : 2629
 
 # blast_taxonomy : Fungi in Kingdom rank
 at_16S_Fungi <-  at_16S[at_16S$Kingdom == "Fungi",]
-at_16S_Fungi$observation_name # 0 cluster
+at_16S_Fungi$observation_name # 5 clusters
 
 # blast_taxonomy : Plantae in Kingdom rank
 at_16S_Plantae <-  at_16S[at_16S$Kingdom =="Plantae_Chl" |	at_16S$Kingdom =="Plantae_Mit",]
@@ -292,7 +322,7 @@ at_16S_Plantae$observation_name # 302 clusters
 at_16S <- at_16S  %>%
   dplyr::slice(which(is.na(match(Kingdom, c("Plantae_Chl", "Plantae_Mit", "Fungi")))))# "Multi-affiliation", "Unknown"
 
-dim(at_16S) #4615 clusters
+dim(at_16S) #4610 clusters
 ```
 
 ### Replace "Multi-affiliation", "unidentified", "unknown species", "unknown genus", "unknown family", "unknown" by "Unknown" in the taxonomy
@@ -422,7 +452,7 @@ ab_ITS <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "IT
 dim(ab_ITS)
 
 # Clean taxonomy of abundance table
-ab_ITS <- Clean_ab_table(abundance_table = ab_ITS, remove_col = NULL) #Expected 7 pieces. Missing pieces filled with `NA` in 340 rows
+ab_ITS <- Clean_ab_table(abundance_table = ab_ITS, remove_col = NULL) #Expected 7 pieces. Missing pieces filled with `NA` in 294 rows
 ```
 
 ### Import & Clean Multi-Affiliation Table
@@ -439,7 +469,7 @@ dim(taxo_ITS_Multiaffiliation)
 ### Abundance Table : taxonomy with multi-affiliation and a new abundance file without chimeras
 ```{r}
 at_ITS <- Combine_ab_multi_affi_tables_remove_chim(multi_affi_table = taxo_ITS_Multiaffiliation, name = "TransMicro1-2-3_ITS", abundance_table = ab_ITS) # 510 bimeras/1813 sequences, proportion = 0.28
-dim(at_ITS) # 1514 clusters
+dim(at_ITS) # 1303 clusters
 
 ## Replaces the taxonomy not found with the taxonomy but found manually in BLAST
 at_ITS_no <- subset(at_ITS, grepl("no;NA;NA;NA;NA;NA;NA", blast_taxonomy))
@@ -474,9 +504,9 @@ at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_57")] <- "Fungi;
 # 
 # at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_6")] <- "Fungi;Ascomycota;Leotiomycetes;Helotiales;Sclerotiniaceae;Unknown;Unknown"
 
-# # Delete them
-# at_ITS <- at_ITS %>%
-#   dplyr::filter(blast_taxonomy != "no;NA;NA;NA;NA;NA;NA" )
+# Rename the left clusters as "Unknown" 
+at_ITS <- at_ITS %>%
+  dplyr::mutate(blast_taxonomy = ifelse(blast_taxonomy == "no;NA;NA;NA;NA;NA;NA", "Unknown;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown", blast_taxonomy))
 
 # Split taxonomy
 at_ITS[98, "blast_taxonomy"] <- gsub(";;", ";", at_ITS[98, "blast_taxonomy"])

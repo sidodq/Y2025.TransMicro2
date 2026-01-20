@@ -4,11 +4,11 @@ Aunt,G0_Adults_0days,5,na,FRA,na,na,na,6
 Bleached_AuntFly,G0_Adults_0days,5,na,CEC,na,na,na,7
 Bleached_AuntFly,G0_Adults_0days,5,na,FRA,na,na,na,4
 DaughterFly,G1_Adults_Fruits,1,Fruit,CEC,FIN,FIN_CH_CDP,ST,1
-DaughterFly,G1_Adults_Fruits,2,Fruit,CEC,FIN,FIN_CH_CDP,BL,5
+DaughterFly,G1_Adults_Fruits,2,Fruit,CEC,FIN,FIN_CH_CDP,BL,4
 DaughterFly,G1_Adults_Fruits,2,Fruit,CEC,IST,IST_ST_CIF,CH,2
 DaughterFly,G1_Adults_Fruits,2,Fruit,FRA,FIN,FIN_CH_CDP,CH,4
 DaughterFly,G1_Adults_Fruits,3,Fruit,CEC,FIN,FIN_CH_CDP,CH,1
-DaughterFly,G1_Adults_Fruits,3,Fruit,CEC,IST,IST_ST_CIF,BL,2
+DaughterFly,G1_Adults_Fruits,3,Fruit,CEC,IST,IST_ST_CIF,BL,3
 DaughterFly,G1_Adults_Fruits,3,Fruit,CEC,VAR,VAR_BL_LOC,BL,3
 DaughterFly,G1_Adults_Fruits,3,Fruit,CEC,VAR,VAR_BL_LOC,CH,2
 DaughterFly,G1_Adults_Fruits,3,Fruit,CEC,VAR,VAR_BL_LOC,ST,3
