@@ -200,8 +200,8 @@ color_prev_B <- c(
 # Load data
 
 ```{r}
-ps_rare_16S <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM1&2_ps_rare.rds"))
-ps_rare_ITS <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM1&2_ps_rare.rds"))
+ps_rare_16S <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_ps_rare.rds"))
+ps_rare_ITS <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_ps_rare.rds"))
 
 # Make data fit for plot
 B = phyloseq::psmelt(ps_rare_16S) 
@@ -210,7 +210,7 @@ B = phyloseq::psmelt(ps_rare_16S)
 B$LifeStage <- factor(B$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter", "na"))
 B$FruitType <- factor(B$FruitType, levels = c("BL", "CH", "ST", "na"))
 
-# write.table(x=B, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_melt.csv"), row.names=FALSE, quote=FALSE, sep=";")
+write.table(x=B, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_melt_TM123.csv"), row.names=FALSE, quote=FALSE, sep=";")
 
 
 L = phyloseq::psmelt(ps_rare_ITS)
@@ -218,7 +218,7 @@ L = phyloseq::psmelt(ps_rare_ITS)
 L$LifeStage <- factor(L$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter", "na"))
 L$FruitType <- factor(L$FruitType, levels = c("BL", "CH", "ST", "na"))
 
-# write.table(x=L, file=file.path(here::here(),"data", "derived_data", "3_CommunityComposition", "ITS_melt.csv"), row.names=FALSE, quote=FALSE, sep=";")
+write.table(x=L, file=file.path(here::here(),"data", "derived_data", "3_CommunityComposition", "ITS_melt_TM123.csv"), row.names=FALSE, quote=FALSE, sep=";")
 ```
 
 ``` {r}
@@ -233,7 +233,7 @@ tax$Family <- ifelse(
   as.character(tax$Family))
 
 tax_table(ps_rare_16S) <- as.matrix(tax) # Put it back into the phyloseq object
-write.table(tax_table(ps_rare_16S), file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_TM1&2_tax_table_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+write.table(tax_table(ps_rare_16S), file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_TM123_tax_table_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 
 tax <- as.data.frame(tax_table(ps_rare_ITS)) # Extract taxonomy table as a data frame
@@ -245,7 +245,7 @@ tax$Family <- ifelse(
   as.character(tax$Family))
 
 tax_table(ps_rare_ITS) <- as.matrix(tax) # Put it back into the phyloseq object
-write.table(tax_table(ps_rare_ITS), file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "ITS_TM1&2_tax_table_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+write.table(tax_table(ps_rare_ITS), file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "ITS_TM123_tax_table_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 ```
 
 ``` {r}
@@ -260,7 +260,7 @@ tax$Genus <- ifelse(
   as.character(tax$Genus))
 
 tax_table(ps_rare_16S) <- as.matrix(tax) # Put it back into the phyloseq object
-write.table(tax_table(ps_rare_16S), file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_TM1&2_tax_table_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+write.table(tax_table(ps_rare_16S), file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_TM123_tax_table_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 
 tax <- as.data.frame(tax_table(ps_rare_ITS)) # Extract taxonomy table as a data frame
@@ -272,7 +272,7 @@ tax$Genus <- ifelse(
   as.character(tax$Genus))
 
 tax_table(ps_rare_ITS) <- as.matrix(tax) # Put it back into the phyloseq object
-write.table(tax_table(ps_rare_ITS), file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "ITS_TM1&2_tax_table_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+write.table(tax_table(ps_rare_ITS), file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "ITS_TM123_tax_table_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 ```
 
 # I. Composition (abundance)
