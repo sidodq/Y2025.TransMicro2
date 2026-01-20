@@ -193,7 +193,9 @@ taxa_to_remove_16S <- TAX_16S_df %>%
   rownames()
   
 write.xlsx( TAX_16S_df[taxa_to_remove_16S, ], file = file.path(here::here(), "data", "derived_data",  "2_RarefyData","Conta_clusters_16S.xlsx"), rowNames = TRUE) #export removed clusers
-  
+
+ps_16Sm <- prune_taxa(!(taxa_names(ps_16Sm) %in% taxa_to_remove_16S),ps_16Sm)
+
 
 # Remove ITS conta
 Fam_conta_ITS <- c("Malasseziaceae")
@@ -204,6 +206,8 @@ taxa_to_remove_ITS <- TAX_ITS_df %>%
   rownames()
   
 write.xlsx( TAX_ITS_df[taxa_to_remove_ITS, ], file = file.path(here::here(), "data", "derived_data",  "2_RarefyData","Conta_clusters_ITS.xlsx"), rowNames = TRUE) #export removed clusers
+
+ps_ITSm <- prune_taxa(!(taxa_names(ps_ITSm) %in% taxa_to_remove_ITS),ps_ITSm)
 ```
 
 
