@@ -1,0 +1,379 @@
+---
+title: "TransMicro data analysis - Community Composition Analysis"
+author: "Marie Lapègue, Nicolas Rode, Sido Dunis-Quarré"
+date: "`r format(Sys.Date(), '%d-%B-%Y')`"
+format:
+  html:
+    toc: true
+    toc-location: left
+    number-sections: true
+    embed-resources: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+devtools::load_all()
+
+library(lme4)
+library(phyloseq)
+library(phyloseq.extended)
+library(ggh4x)
+library("ggplot2")
+library(patchwork)
+library(ggpubr)
+library(ggplot2)
+library(ggrepel)
+library(purrr)
+library(rlang)
+library(eulerr)
+library(microbiome)
+library(microbiomeutilities)
+library(plotly)
+library(VennDiagram)
+library(grid)
+library(ggVennDiagram)
+library(cowplot)
+```
+
+# Color Sets
+
+```{r}
+# # Get abundance collapsed at Family level
+# ps_family <- tax_glom(ps_rare_16S_FruitsOnly, taxrank = "Family")
+# # Transform to relative abundances (optional, depending on what you mean by "more abundant")
+# ps_family_rel <- transform_sample_counts(ps_family, function(x) x / sum(x))
+# # Convert to long data.frame
+# df_family <- psmelt(ps_family_rel)
+# # Summarize abundance across all samples
+# top_families <- df_family %>%
+#   group_by(Family) %>%
+#   summarise(TotalAbundance = sum(Abundance, na.rm = TRUE)) %>%
+#   arrange(desc(TotalAbundance)) %>%
+#   slice_head(n = 30)
+
+# using the code above 
+color_ITS <- c(
+  "Pichiaceae" ="#FF69B4",
+  "Metschnikowiaceae" = "#FFC0CB",
+  "Unknown" = "#c49c94",
+  "Saccharomycodaceae" = "#F4A460", 
+  "Saccotheciaceae" = "#00FFFF",
+  "Cladosporiaceae" = "#A0522D",
+  "Dipodascaceae"="#B22222",
+  "Aspergillaceae"  = "#40E0D0",
+  "Phaffomycetaceae"= "#008080",
+  "Mucoraceae"  = "#FF00FF", 
+  "Pleosporaceae" = "#000080",
+  "Filobasidiaceae" = "#6B8E23",
+  "Erysiphaceae" = "#FFFF00",
+  "Trichosporonaceae" ="#FF4600",
+  "Bulleribasidiaceae" = "#008000",
+  "Taphrinaceae" = "#4682B4",  
+  "Saccharomycopsidaceae" = "#00FF7F",
+  "Mycosphaerellaceae" = "#c206bf",
+  "Malasseziaceae" = "#808000",
+  "Dothideaceae" = "#E6E6FA",  
+  "Sclerotiniaceae"="#800080",    
+  "Vuilleminiaceae" = "#806000",
+  "Sporidiobolaceae" =  "#D2691E",
+  "Phaeotremellaceae" =  "#7FFFD4",
+  "Cryptococcaceae"= "#FFD700",
+  "Cystofilobasidiaceae" = "#800000",
+  "Rhizopodaceae"  = "#4169E1",
+  "Hydnaceae " ="#b3b304",
+  "Wallemiaceae"=  "#008B8B",   
+  "Trichomonascaceae" ="#008053",
+  "Other" = "grey60",
+  "Unknown_4" = "grey70",
+  "Unknown_5" = "grey75",
+  "Unknown_51" = "grey90",
+  "Unknown_66" = "grey80",
+  "Unknown_62" = "grey80",
+  "Unknown_55" = "grey85",
+  "Unknown_27" = "grey90",
+  "Unknown_79" = "grey95")
+  
+# # Get abundance collapsed at Family level
+# ps_genus <- tax_glom(ps_rare_ITS_FruitsOnly, taxrank = "Genus")
+# # Transform to relative abundances (optional, depending on what you mean by "more abundant")
+# ps_genus_rel <- transform_sample_counts(ps_genus, function(x) x / sum(x))
+# # Convert to long data.frame
+# df_genus <- psmelt(ps_genus_rel)
+# # Summarize abundance across all samples
+# top_genuses <- df_genus %>%
+#   group_by(Genus) %>%
+#   summarise(TotalAbundance = sum(Abundance, na.rm = TRUE)) %>%
+#   arrange(desc(TotalAbundance)) %>%
+#   slice_head(n = 30) %>% 
+#   print (n=30)
+
+color_ITS_genus <- c(
+"Other" = "grey60",
+"Unknown_4" = "grey70",
+  "Unknown_6" = "grey85",
+  "Unknown_62" = "grey80",
+  "Unknown_9" = "grey75",
+  "Unknown_55" = "grey90",
+"Pichia" = "#FF69B4",   
+ "Cladosporium" = "#A0522D",   
+ "Metschnikowia" = "#FFC0CB",  
+ "Hanseniaspora"   = "#F4A460",   
+"Aureobasidium"  = "#E6E6FA", 
+"Penicillium"="#008053",
+ "Alternaria"="darkslategray1",                 
+"Podosphaera" = "#FFFF00",           
+"Wickerhamomyces" = "#008080",
+"Filobasidium" = "#6B8E23",
+"Taphrina"= "#4682B4",
+"Vishniacozyma " = "#008000", 
+"Dothiora" = "#F0FFFF",              
+"Ramularia"  = "#c206bf",              
+"Mucor"= "#FF00FF", 
+"Rhodotorula" =  "#D2691E",    
+"Cystofilobasidium" = "#800000",
+"Geotrichum " =  "dodgerblue3",
+"Cryptococcus"= "#FFD700",   
+"Rachicladosporium" = "#D2691E",        
+"Stemphylium" = "#000080",              
+"Saccharomycopsis" = "#00FF7F",  
+"Malassezia"  = "#808000",     
+"Blumeria" =  "#FFEC8B",  
+"Dioszegia"  = "chartreuse2", 
+"Starmerella" = "hotpink1" ,
+"Minutiella" ="lightsalmon2",
+"Montagnula " ="#A4D3EE",
+"Buckleyzyma " = "mediumpurple1")
+
+# use "unique(tax_table(S_ps_rare_16S)[, "Family"])" to get the names
+color_16S <- c(
+  "Acetobacteraceae" = "#17becf",
+  "Erwiniaceae" = "#aec7e8",  
+  "Lactobacillaceae" = "#32CD32", 
+  "Enterobacteriaceae"= "#f7b6d2",
+  "Moraxellaceae"  = "#0000FF",
+  "Oxalobacteraceae" = "#98df8a", 
+  "Pseudomonadaceae" = "#ff9896", 
+  "Rhodanobacteraceae"= "#ffbb78",
+  "Yersiniaceae" = "#FF6961",
+  "Morganellaceae"= "#e377c2",
+  "Bacillaceae" = "#bcbd22",
+  "Corynebacteriaceae" = "#ba4e4e",
+  "Sphingomonadaceae"="#c5b0d5",
+  "Lysobacteraceae" = "#4169E1",
+  "Flavobacteriaceae"= "#FFF900",
+  "Burkholderiaceae" = "#B03060", 
+  "Planococcaceae" = "#8c564b", 
+  "Thermaceae" =  "#CC3333",
+  "Chitinophagaceae" ="#98FB98",
+  "Hymenobacteraceae" =  "#9467bd",
+  "Beijerinckiaceae" = "#50C878",
+  "Sphingobacteriaceae"= "#FFA500",
+  "Streptococcaceae" = "#FF1493",
+  "Prevotellaceae" = "#00FA9A",  
+  "Paracoccaceae" = "#FF4500",
+  "Pasteurellaceae" = "#98F5FF",
+  "Micrococcaceae" = "cyan4",
+  "Myxococcaceae" = "#1E90FF",
+  "Propionibacteriaceae "="#BFEFFF",
+  "Comamonadaceae" = "#7AC5CD",
+  "Other" = "grey70",
+  "Unknown_16" = "grey80",
+  "Unknown_21"= "grey90")
+
+color_prev_B <- c(
+   "Acetobacteraceae" = "#17becf",  
+   "Erwiniaceae" = "#aec7e8",
+   "Aeromonadaceae"  = "#9467bd",
+   "Anaerovoracaceae" = "#2ca02c",
+   "Lactobacillaceae" = "#32CD32", 
+   "Oxalobacteraceae"  = "#98df8a",
+   "Unknown"       = "#4B0082",
+   "Planococcaceae"   = "#8c564b",  
+   "Enterobacteriaceae"= "#f7b6d2",
+   "Rhodanobacteraceae" = "#ffbb78",
+   "Morganellaceae"  = "#e377c2",
+   "Moraxellaceae"  = "#0000FF",
+   "Bacillaceae"  = "#bcbd22",
+   "Pseudomonadaceae"  = "#ff9896", 
+   "Sphingomonadaceae"="#c5b0d5")
+```
+
+# Load data
+
+```{r}
+ps_rare_16S <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_ps_rare.rds"))
+ps_rare_ITS <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_ps_rare.rds"))
+
+# Make data fit for plot
+B = phyloseq::psmelt(ps_rare_16S) 
+# Possible to focus on a reduced dataset ex. B = subset_taxa(S_ps_rare_16S, Genus == "Chlamydiae")
+
+B$LifeStage <- factor(B$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter", "na"))
+B$FruitType <- factor(B$FruitType, levels = c("BL", "CH", "ST", "na"))
+
+write.table(x=B, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_melt_TM123.csv"), row.names=FALSE, quote=FALSE, sep=";")
+
+
+L = phyloseq::psmelt(ps_rare_ITS)
+
+L$LifeStage <- factor(L$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter", "na"))
+L$FruitType <- factor(L$FruitType, levels = c("BL", "CH", "ST", "na"))
+
+write.table(x=L, file=file.path(here::here(),"data", "derived_data", "3_CommunityComposition", "ITS_melt_TM123.csv"), row.names=FALSE, quote=FALSE, sep=";")
+```
+
+# I. Composition (abundance)
+
+## 1. Bar plots
+
+### a. Dataset 1 (indiv + host fruits)
+```{r}
+ps_rare_16S_Dataset_1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_ps_rare_Dataset_1.rds"))
+ps_rare_ITS_Dataset_1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_ps_rare_Dataset_1.rds"))
+
+# Distinguish "Unknown" families & genus by numbering them with their corresponding cluster number
+ps_rare_16S_Dataset_1 <- fix_unknown_taxa(phyloseq_object = ps_rare_16S_Dataset_1, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_TM123_tax_table_rare.tsv"))
+
+ps_rare_ITS_Dataset_1 <- fix_unknown_taxa(phyloseq_object = ps_rare_ITS_Dataset_1, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "ITS_TM123_tax_table_rare.tsv"))
+```
+
+```{r}
+# Filter data (exclude Nat_Uninf_Fruits_5_6days)
+ps_16S_rare_expe <- Subset_physeq(ps_rare_16S_Dataset_1, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
+
+# rename + reorder Sample Type
+sample_data(ps_16S_rare_expe)$SampleType <- factor(sample_data(ps_16S_rare_expe)$SampleType)
+
+sample_data(ps_16S_rare_expe)$SampleType <- sample_data(ps_16S_rare_expe)$SampleType %>%
+  forcats::fct_recode(
+    Mothers_0days = "G0_Adults_0days",
+    Mothers_2days = "G0_Adults_Fruits_2days",
+    Larvae = "G1_Larvae_Fruits",
+    Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
+    Pupae = "G1_Pupae_Fruits",
+    PupalCases = "G1_PupalCase_Fruits",
+    Daughters = "G1_Adults_Fruits")
+
+desired_order <- c("Fruits_0days", "Mothers_0days", "Mothers_2days", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters")  
+sample_data(ps_16S_rare_expe)$SampleType <- factor(sample_data(ps_16S_rare_expe)$SampleType, levels = desired_order)
+
+
+ps_ITS_rare_expe <- Subset_physeq(ps_rare_ITS_Dataset_1, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
+
+# rename + reorder Sample Type
+sample_data(ps_ITS_rare_expe)$SampleType <- factor(sample_data(ps_ITS_rare_expe)$SampleType)
+
+sample_data(ps_ITS_rare_expe)$SampleType <- sample_data(ps_ITS_rare_expe)$SampleType %>%
+  forcats::fct_recode(
+    Mothers_0days = "G0_Adults_0days",
+    Mothers_2days = "G0_Adults_Fruits_2days",
+    Larvae = "G1_Larvae_Fruits",
+    Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
+    Pupae = "G1_Pupae_Fruits",
+    PupalCases = "G1_PupalCase_Fruits",
+    Daughters = "G1_Adults_Fruits")
+
+sample_data(ps_ITS_rare_expe)$SampleType <- factor(sample_data(ps_ITS_rare_expe)$SampleType, levels = desired_order)
+```
+
+```{r}
+#### Bar plots : SampleType x FruitType x Site 
+
+# 16S (Family)
+plot_16S_Expe_SampleTypeFruitTypeSite <- Make_composition_bar_plot_2(ps_16S_rare_expe, "Bacteria", "Family", 15, ~SampleType + FruitType+FruitSite, color_16S)
+
+plot_16S_Expe_SampleTypeFruitTypeSite$data$SampleType <- factor(plot_16S_Expe_SampleTypeFruitTypeSite$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "PupalCases","Daughters")) # reorder 
+
+plot_16S_Expe_SampleTypeFruitTypeSite$data <-
+  plot_16S_Expe_SampleTypeFruitTypeSite$data %>%
+  dplyr::group_by(Sample) %>%
+  dplyr::mutate(Abundance = Abundance / sum(Abundance)) %>%
+  dplyr::ungroup()
+
+ggsave(filename = "B_Expe_SampleType_FruitType_Site.jpg", plot = plot_16S_Expe_SampleTypeFruitTypeSite, path = file.path(here::here(), "plots", "3_CommunityComposition", "Dataset_1"), width = 29.7, height = 21, units = "cm")
+
+
+# ITS (Family)
+plot_ITS_Expe_SampleTypeFruitTypeSite <- Make_composition_bar_plot_2(ps_ITS_rare_expe, "Fungi", "Family", 15, ~SampleType + FruitType+FruitSite, color_ITS) 
+# + annotate("text",x = -Inf, y = Inf,label = "B. Fungi", hjust = -0.1, vjust = 1.3,  size = 5, fontface = "bold")
+
+plot_ITS_Expe_SampleTypeFruitTypeSite$data$SampleType <- factor(plot_ITS_Expe_SampleTypeFruitTypeSite$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "PupalCases","Daughters")) # reorder 
+
+plot_ITS_Expe_SampleTypeFruitTypeSite$data <-
+  plot_ITS_Expe_SampleTypeFruitTypeSite$data %>%
+  dplyr::group_by(Sample) %>%
+  dplyr::mutate(Abundance = Abundance / sum(Abundance)) %>%
+  dplyr::ungroup()
+
+ggsave(filename = "Y_Expe_SampleType_FruitType_Site.jpg", plot = plot_ITS_Expe_SampleTypeFruitTypeSite, path = file.path(here::here(), "plots", "3_CommunityComposition", "Dataset_1"), width = 29.7, height = 21, units = "cm")
+
+
+# Combined plot
+barPlot_combined <- 
+  (plot_16S_Expe_SampleTypeFruitTypeSite + labs(tag = "A. Bacteria")) /
+  (plot_ITS_Expe_SampleTypeFruitTypeSite + labs(tag = "B. Fungi")) +
+  plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
+
+title_plot <- "Expe_SampleType_FruitType_Site_combined.png"
+ cowplot::save_plot(file =here::here("plots", "3_CommunityComposition", "Dataset_1", title_plot), barPlot_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)
+```
+
+
+
+### b. Dataset 2 (fruits batch 1 & 2)
+```{r}
+ps_rare_16S_Dataset_2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_ps_rare_Dataset_2.rds"))
+ps_rare_ITS_Dataset_2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_ps_rare_Dataset_2.rds"))
+
+# Distinguish "Unknown" families & genus by numbering
+ps_rare_16S_Dataset_2 <- fix_unknown_taxa(phyloseq_object = ps_rare_16S_Dataset_2, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_TM123_tax_table_rare.tsv"))
+
+ps_rare_ITS_Dataset_2 <- fix_unknown_taxa(phyloseq_object = ps_rare_ITS_Dataset_2, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "ITS_TM123_tax_table_rare.tsv"))
+```
+
+``` {r}
+## Bar plots ; SampleType x FruitType x Site x Variety
+
+# 16S (Family)
+plot_16S_Family_SampleTypeFruitTypeSiteVariety <- Make_composition_bar_plot_2(ps_rare_16S_Dataset_2, "Bacteria", "Family", 15, ~SampleType + FruitType+FruitSite+FruitVariety, color_16S)
+
+plot_16S_Family_SampleTypeFruitTypeSiteVariety$data$SampleType <- factor(plot_16S_Family_SampleTypeFruitTypeSiteVariety$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days")) # reorder sample type 
+
+plot_16S_Family_SampleTypeFruitTypeSiteVariety$data <-
+  plot_16S_Family_SampleTypeFruitTypeSiteVariety$data %>%
+  dplyr::group_by(Sample) %>%
+  dplyr::mutate(Abundance = Abundance / sum(Abundance)) %>%
+  dplyr::ungroup()
+
+ggsave(filename = "B_Abundance_SampleType_FruitType_Site_Variety.jpg", plot = plot_16S_Family_SampleTypeFruitTypeSiteVariety, path = file.path(here::here(), "plots", "3_CommunityComposition", "Dataset_2"), width = 29.7, height = 21, units = "cm")
+
+
+# ITS (Family)
+plot_ITS_Family_SampleTypeFruitTypeSiteVariety <- Make_composition_bar_plot_2(ps_rare_ITS_Dataset_2, "Fungi", "Family", 15, ~SampleType+FruitType+FruitSite+FruitVariety, color_ITS)
+
+plot_ITS_Family_SampleTypeFruitTypeSiteVariety$data$SampleType <- factor(plot_ITS_Family_SampleTypeFruitTypeSiteVariety$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days")) # reorder sample type 
+
+plot_ITS_Family_SampleTypeFruitTypeSiteVariety$data <-
+  plot_ITS_Family_SampleTypeFruitTypeSiteVariety$data %>%
+  dplyr::group_by(Sample) %>%
+  dplyr::mutate(Abundance = Abundance / sum(Abundance)) %>%
+  dplyr::ungroup()
+
+ggsave(filename = "Y_Abundance_SampleTYpe_FruitType_Site_Variety.jpg", plot = plot_ITS_Family_SampleTypeFruitTypeSiteVariety, path = file.path(here::here(), "plots", "3_CommunityComposition", "Dataset_2"), width = 29.7, height = 21, units = "cm")
+
+
+# Combined plot
+barPlot_fruits_combined <- 
+  (plot_16S_Family_SampleTypeFruitTypeSiteVariety + labs(tag = "A. Bacteria")) /
+  (plot_ITS_Family_SampleTypeFruitTypeSiteVariety + labs(tag = "B. Fungi")) +
+  plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
+
+title_plot <- "Abundance_SampleType_FruitType_Site_Variety_combined.png"
+ cowplot::save_plot(file =here::here("plots", "3_CommunityComposition", "Dataset_2", title_plot), barPlot_fruits_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)
+```
+
+
+## 2. Heatmap
