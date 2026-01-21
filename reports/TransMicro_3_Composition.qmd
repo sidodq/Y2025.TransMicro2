@@ -37,8 +37,8 @@ library(grid)
 library(ggVennDiagram)
 library(cowplot)
 ```
-
-# Color Sets
+# COMPOSITION
+# 1. Color Sets
 
 ```{r}
 # # Get abundance collapsed at Family level
@@ -201,7 +201,7 @@ color_prev_B <- c(
    "Sphingomonadaceae"="#c5b0d5")
 ```
 
-# Load data
+# 2. Load data
 
 ```{r}
 ps_rare_16S <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_ps_rare.rds"))
@@ -225,11 +225,10 @@ L$FruitType <- factor(L$FruitType, levels = c("BL", "CH", "ST", "na"))
 write.table(x=L, file=file.path(here::here(),"data", "derived_data", "3_CommunityComposition", "ITS_melt_TM123.csv"), row.names=FALSE, quote=FALSE, sep=";")
 ```
 
-# I. Composition (abundance)
 
-## 1. Bar plots
+# 3. Bar plots (abundance)
 
-### a. Dataset 1 (indiv + host fruits)
+## a. Dataset 1 (indiv + host fruits)
 ```{r}
 ps_rare_16S_Dataset_1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_ps_rare_Dataset_1.rds"))
 ps_rare_ITS_Dataset_1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_ps_rare_Dataset_1.rds"))
@@ -323,7 +322,7 @@ title_plot <- "Expe_SampleType_FruitType_Site_combined.png"
 
 
 
-### b. Dataset 2 (fruits batch 1 & 2)
+## b. Dataset 2 (fruits batch 1 & 2)
 ```{r}
 ps_rare_16S_Dataset_2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_ps_rare_Dataset_2.rds"))
 ps_rare_ITS_Dataset_2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_ps_rare_Dataset_2.rds"))
@@ -376,4 +375,9 @@ title_plot <- "Abundance_SampleType_FruitType_Site_Variety_combined.png"
 ```
 
 
-## 2. Heatmap
+# 4. Heatmap (core)
+## a. Dataset 1 
+```{r}
+
+```
+
