@@ -87,6 +87,8 @@ color_ITS <- c(
   "Other" = "grey60",
   "Unknown_4" = "grey70",
   "Unknown_5" = "grey75",
+  "Unknown_51" = "grey90",
+  "Unknown_66" = "grey80",
   "Unknown_62" = "grey80",
   "Unknown_55" = "grey85",
   "Unknown_27" = "grey90",
