@@ -22,12 +22,12 @@ devtools::load_all()
 ## Load melted data
 ```{r}
 ##Issue with sample MS_204 (I guess there was an extra ";" in the text of one of the columns)
-data16S <- tidyr::as_tibble(read.table(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_melt_without_MS_204.csv"), header=TRUE, sep=";"))|>
+data16S <- tidyr::as_tibble(read.table(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_melt_TM123.csv"), header=TRUE, sep=";"))|>
 dplyr::mutate(Marker="16S")
 head(data16S)
 
 ##Issue with sample MS_204 (I guess there was an extra ";" in the text of one of the columns)
-dataITS <- tidyr::as_tibble(read.table(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "ITS_melt_without_MS_204.csv"), header=TRUE, sep=";"))|>
+dataITS <- tidyr::as_tibble(read.table(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "ITS_melt_TM123.csv"), header=TRUE, sep=";"))|>
 dplyr::mutate(Marker="ITS")
 
 data <- dplyr::bind_rows(data16S, dataITS)
@@ -50,7 +50,6 @@ freq_data_perfruit <- data |>
   dplyr::summarise(Frequency = mean(present), Sample_size=dplyr::n())|>
   dplyr::ungroup()|>
   dplyr::mutate(Marker_OTU=paste(Marker, OTU, sep="_"))
-
 
 ```
   
@@ -185,7 +184,7 @@ p16S <- prevalence_data_fruit |>
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
-  geom_vline(xintercept=c(1.5, 4.5), linetype=1, color="red", linewidth=1)+
+  geom_vline(xintercept=c(2.5, 6.5), linetype=1, color="red", linewidth=1)+
   guides(color = "none", fill = "none", linetype = "none")+labs(x = NULL, y = NULL)
 
 pITS <- prevalence_data_fruit |>
@@ -194,12 +193,12 @@ pITS <- prevalence_data_fruit |>
   geom_tile()+
 scale_fill_gradient(low="white", high="blue") +
 theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
-  geom_vline(xintercept=c(2.5, 5.5), linetype=1, color="red", linewidth=1)+ guides(fill=guide_legend(title="Frequency accros biological replicates"))+labs(x = NULL, y = NULL)
+  geom_vline(xintercept=c(3.5, 7.5), linetype=1, color="red", linewidth=1)+ guides(fill=guide_legend(title="Frequency accros biological replicates"))+labs(x = NULL, y = NULL)
 
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
 panel
-ggsave(filename = "prevalence_fruit_sampletype_fruit_only.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 30, units = "cm")
+ggsave(filename = "prevalence_fruit_sampletype_fruit_only_TM123.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 30, units = "cm")
 ```
 
 # 5 sites = samples with lifestages ("FIN_CH_CDP", "IST_ST_CIF", "LOM_CH_CDP", "MIL_ST_MDB", "VAR_BL_LOC")
@@ -407,7 +406,7 @@ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
 panel <- p16S + pITS+
   patchwork::plot_annotation(tag_levels = "A")
 panel
-ggsave(filename = "prevalence_fruit_sampletype_5sites.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 30, units = "cm")
+ggsave(filename = "prevalence_fruit_sampletype_5sites_TM123.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 30, units = "cm")
 ```
 
 # Medium controls
