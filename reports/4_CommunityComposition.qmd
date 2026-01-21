@@ -495,6 +495,12 @@ plot_16S_Expe_SampleTypeFruitTypeSite <- Make_composition_bar_plot_2(ps_16S_rare
 
 plot_16S_Expe_SampleTypeFruitTypeSite$data$SampleType <- factor(plot_16S_Expe_SampleTypeFruitTypeSite$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "PupalCases","Daughters")) # reorder 
 
+plot_16S_Expe_SampleTypeFruitTypeSite$data <-
+  plot_16S_Expe_SampleTypeFruitTypeSite$data %>%
+  dplyr::group_by(Sample) %>%
+  dplyr::mutate(Abundance = Abundance / sum(Abundance)) %>%
+  dplyr::ungroup()
+
 ggsave(filename = "B_Expe_SampleType_FruitType_Site.jpg", plot = plot_16S_Expe_SampleTypeFruitTypeSite, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 
 
@@ -503,6 +509,12 @@ plot_ITS_Expe_SampleTypeFruitTypeSite <- Make_composition_bar_plot_2(ps_ITS_rare
 # + annotate("text",x = -Inf, y = Inf,label = "B. Fungi", hjust = -0.1, vjust = 1.3,  size = 5, fontface = "bold")
 
 plot_ITS_Expe_SampleTypeFruitTypeSite$data$SampleType <- factor(plot_ITS_Expe_SampleTypeFruitTypeSite$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "PupalCases","Daughters")) # reorder 
+
+plot_ITS_Expe_SampleTypeFruitTypeSite$data <-
+  plot_ITS_Expe_SampleTypeFruitTypeSite$data %>%
+  dplyr::group_by(Sample) %>%
+  dplyr::mutate(Abundance = Abundance / sum(Abundance)) %>%
+  dplyr::ungroup()
 
 ggsave(filename = "Y_Expe_SampleType_FruitType_Site.jpg", plot = plot_ITS_Expe_SampleTypeFruitTypeSite, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 
