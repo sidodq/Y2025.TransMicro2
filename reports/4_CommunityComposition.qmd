@@ -221,58 +221,12 @@ L$FruitType <- factor(L$FruitType, levels = c("BL", "CH", "ST", "na"))
 write.table(x=L, file=file.path(here::here(),"data", "derived_data", "3_CommunityComposition", "ITS_melt_TM123.csv"), row.names=FALSE, quote=FALSE, sep=";")
 ```
 
+# Distinguish "Unknown" families & genus by numbering
 ``` {r}
-# Distinguish "Unknown" families by numeroting them with their corresponding cluster number
+# Distinguish "Unknown" families & genus by numbering them with their corresponding cluster number
+ps_rare_16S <- fix_unknown_taxa(phyloseq_object = ps_rare_16S, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_TM123_tax_table_rare.tsv"))
 
-tax <- as.data.frame(tax_table(ps_rare_16S)) # Extract taxonomy table as a data frame
-otu_names <- rownames(tax) # Extract OTU names
-
-tax$Family <- ifelse(
-  tax$Family == "Unknown",
-  paste0("Unknown_", sub("Cluster_", "", otu_names)), # Add suffix with cluster number if Family == "Unknown"
-  as.character(tax$Family))
-
-tax_table(ps_rare_16S) <- as.matrix(tax) # Put it back into the phyloseq object
-write.table(tax_table(ps_rare_16S), file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_TM123_tax_table_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
-
-
-tax <- as.data.frame(tax_table(ps_rare_ITS)) # Extract taxonomy table as a data frame
-otu_names <- rownames(tax) # Extract OTU names
-
-tax$Family <- ifelse(
-  tax$Family == "Unknown",
-  paste0("Unknown_", sub("Cluster_", "", otu_names)), # Add suffix with cluster number if Family == "Unknown"
-  as.character(tax$Family))
-
-tax_table(ps_rare_ITS) <- as.matrix(tax) # Put it back into the phyloseq object
-write.table(tax_table(ps_rare_ITS), file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "ITS_TM123_tax_table_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
-```
-
-``` {r}
-# Distinguish "Unknown" GENUS by numeroting them with their corresponding cluster number
-
-tax <- as.data.frame(tax_table(ps_rare_16S)) # Extract taxonomy table as a data frame
-otu_names <- rownames(tax) # Extract OTU names
-
-tax$Genus <- ifelse(
-  tax$Genus == "Unknown",
-  paste0("Unknown_", sub("Cluster_", "", otu_names)), # Add suffix with cluster number if Family == "Unknown"
-  as.character(tax$Genus))
-
-tax_table(ps_rare_16S) <- as.matrix(tax) # Put it back into the phyloseq object
-write.table(tax_table(ps_rare_16S), file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_TM123_tax_table_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
-
-
-tax <- as.data.frame(tax_table(ps_rare_ITS)) # Extract taxonomy table as a data frame
-otu_names <- rownames(tax) # Extract OTU names
-
-tax$Genus <- ifelse(
-  tax$Genus == "Unknown",
-  paste0("Unknown_", sub("Cluster_", "", otu_names)), # Add suffix with cluster number if Family == "Unknown"
-  as.character(tax$Genus))
-
-tax_table(ps_rare_ITS) <- as.matrix(tax) # Put it back into the phyloseq object
-write.table(tax_table(ps_rare_ITS), file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "ITS_TM123_tax_table_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+ps_rare_ITS <- fix_unknown_taxa(phyloseq_object = ps_rare_ITS, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "ITS_TM123_tax_table_rare.tsv"))
 ```
 
 # I. Composition (abundance)
