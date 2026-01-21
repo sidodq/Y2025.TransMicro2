@@ -328,6 +328,12 @@ plot_16S_Family_SampleTypeFruitTypeSiteVariety <- Make_composition_bar_plot_2(ps
 
 plot_16S_Family_SampleTypeFruitTypeSiteVariety$data$SampleType <- factor(plot_16S_Family_SampleTypeFruitTypeSiteVariety$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days")) # reorder sample type 
 
+plot_16S_Family_SampleTypeFruitTypeSiteVariety$data <-
+  plot_16S_Family_SampleTypeFruitTypeSiteVariety$data %>%
+  dplyr::group_by(Sample) %>%
+  dplyr::mutate(Abundance = Abundance / sum(Abundance)) %>%
+  dplyr::ungroup()
+
 ggsave(filename = "B_Abundance_SampleType_FruitType_Site_Variety.jpg", plot = plot_16S_Family_SampleTypeFruitTypeSiteVariety, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
 
 
@@ -336,7 +342,14 @@ plot_ITS_Family_SampleTypeFruitTypeSiteVariety <- Make_composition_bar_plot_2(ps
 
 plot_ITS_Family_SampleTypeFruitTypeSiteVariety$data$SampleType <- factor(plot_ITS_Family_SampleTypeFruitTypeSiteVariety$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days")) # reorder sample type 
 
+plot_ITS_Family_SampleTypeFruitTypeSiteVariety$data <-
+  plot_ITS_Family_SampleTypeFruitTypeSiteVariety$data %>%
+  dplyr::group_by(Sample) %>%
+  dplyr::mutate(Abundance = Abundance / sum(Abundance)) %>%
+  dplyr::ungroup()
+
 ggsave(filename = "Y_Abundance_SampleTYpe_FruitType_Site_Variety.jpg", plot = plot_ITS_Family_SampleTypeFruitTypeSiteVariety, path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 29.7, height = 21, units = "cm")
+
 
 # Combined plot
 barPlot_fruits_combined <- 
