@@ -1,5 +1,5 @@
 ---
-title: "TransMicro data analysis (full)"
+title: "TransMicro data analysis - Rarefy Data"
 author: "Marie Lapègue, Nicolas Rode, Sido Dunis-Quarré"
 date: "`r format(Sys.Date(), '%d-%B-%Y')`"
 format:
@@ -22,6 +22,7 @@ library(phyloseq)
 library(openxlsx)
 library(stringr)
 ```
+
 # RAREFY DATA
 
 # 1. Import Data
@@ -160,6 +161,7 @@ names(phyloseq::sample_sums(ps_ITSm)[ phyloseq::sample_sums(ps_ITSm) == 0]) #sam
 ```
 
 ## Remove Wolbachia + conta
+
 ```{r}
 # Remove Wolbachia
 tax_ps <- as.data.frame(tax_table(ps_16Sm))
@@ -200,7 +202,6 @@ write.xlsx( TAX_ITS_df[taxa_to_remove_ITS, ], file = file.path(here::here(), "da
 ps_ITSm <- prune_taxa(!(taxa_names(ps_ITSm) %in% taxa_to_remove_ITS),ps_ITSm)
 ```
 
-
 ```{r}
 # Distribution of the number of reads across samples
 sample_sums(ps_16Sm) #for each sample
@@ -225,7 +226,9 @@ ps_ITS_filtered <- subset_samples(ps_ITSm, !(sample_names(ps_ITSm) %in% zero_abu
 ```
 
 # 3. Rarefaction curve
+
 ## a. All samples
+
 ```{r}
 Rarefactioncurve_16S <- phyloseq.extended::ggrare(ps_16S_filtered, step = 100, se = FALSE, color = "SampleType", label = "ID_pool") +
   geom_vline(xintercept = 3000, linetype = "dashed") +
@@ -255,6 +258,7 @@ title_plot <- "RarefactionCurves_TM123_AllSamples.png"
 ```
 
 ## b. Expe samples
+
 ```{r}
 # Filter data
 ps_16S_filt_expe <- Subset_physeq(ps_16S_filtered, Sample_Category == "All_stages_Focal_Sites")
@@ -343,12 +347,16 @@ write.xlsx(out_rarefied_ITS, file=file.path(here::here(), "data", "derived_data"
 ## Dataset 1 : fruits Batch 1 + individuals Batch 1
 
 # Filter samples by abundance (>0) and type (fruits and suzu at all stages from "Focal_Sites")
-ps_16S_rare_Dataset_1 <- subset_samples(ps_rare_16S, Sample_Category == "All_stages_Focal_Sites") #exclude indiv. naturally infesting + naturally infested fruits, if want to include use -> grepl("Focal_Sites", Sample_Category)) 
+ps_16S_rare_Dataset_1 <- subset_samples(ps_rare_16S, Sample_Category %in% c("All_stages_Focal_Sites", "All_stages_focal_Sites")) #exclude indiv. naturally infesting + naturally infested fruits, if want to include use -> grepl("Focal_Sites", Sample_Category)) 
 ps_16S_rare_Dataset_1 <- prune_taxa(taxa_sums(ps_16S_rare_Dataset_1)>0, ps_16S_rare_Dataset_1)
 
 
-ps_ITS_rare_Dataset_1 <- subset_samples(ps_rare_16S, Sample_Category == "All_stages_Focal_Sites")
-ps_ITS_rare_Dataset_1 <- prune_taxa(taxa_sums(ps_16S_rare_Dataset_1)>0, ps_16S_rare_Dataset_1)
+ps_ITS_rare_Dataset_1 <- subset_samples(ps_rare_ITS, Sample_Category %in% c("All_stages_Focal_Sites", "All_stages_focal_Sites"))
+ps_ITS_rare_Dataset_1 <- prune_taxa(taxa_sums(ps_ITS_rare_Dataset_1)>0, ps_ITS_rare_Dataset_1)
+
+## Export
+saveRDS(ps_16S_rare_Dataset_1, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_ps_rare_Dataset_1.rds"))
+saveRDS(ps_ITS_rare_Dataset_1, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_ps_rare_Dataset_1.rds"))
 ```
 
 ```{r}
@@ -360,4 +368,8 @@ ps_16S_rare_Dataset_2 <- prune_taxa(taxa_sums(ps_16S_rare_Dataset_2)>0,ps_16S_ra
 
 ps_ITS_rare_Dataset_2 <- subset_samples(ps_rare_ITS, SampleType %in% c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days"))
 ps_ITS_rare_Dataset_2 <- prune_taxa(taxa_sums(ps_ITS_rare_Dataset_2)>0,ps_ITS_rare_Dataset_2)
+
+## Export
+saveRDS(ps_16S_rare_Dataset_2, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_ps_rare_Dataset_2.rds"))
+saveRDS(ps_ITS_rare_Dataset_2, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_ps_rare_Dataset_2.rds"))
 ```
