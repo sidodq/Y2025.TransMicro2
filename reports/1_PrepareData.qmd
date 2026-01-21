@@ -497,12 +497,12 @@ at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_52")] <- "Fungi;
 at_ITS[at_ITS$observation_name == "Cluster_57", "seed_sequence"]
 at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_57")] <- "Fungi;Ascomycota;Pichiomycetes;Serinales;Metschnikowiaceae;Metschnikowia;Unknown"
 
-# # blast_taxonomy of big clusters with unknown after Kingdom 
-# at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_4")] <- "Fungi;Ascomycota;Leotiomycetes;Helotiales;Sclerotiniaceae;Unknown;Unknown"
-# 
-# at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_5")] <- "Fungi;Ascomycota;Dothideomycetes;Cladosporiales;Cladosporiaceae;Cladosporium;Unknown"
-# 
-# at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_6")] <- "Fungi;Ascomycota;Leotiomycetes;Helotiales;Sclerotiniaceae;Unknown;Unknown"
+# blast_taxonomy of big clusters with unknown after Kingdom
+at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_4")] <- "Fungi;Ascomycota;Leotiomycetes;Helotiales;Sclerotiniaceae;Unknown;Unknown"
+
+at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_5")] <- "Fungi;Ascomycota;Dothideomycetes;Cladosporiales;Cladosporiaceae;Cladosporium;Unknown"
+
+at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_6")] <- "Fungi;Ascomycota;Leotiomycetes;Helotiales;Sclerotiniaceae;Unknown;Unknown"
 
 # Rename the left clusters as "Unknown" 
 at_ITS <- at_ITS %>%
