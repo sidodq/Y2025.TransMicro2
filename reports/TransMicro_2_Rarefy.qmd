@@ -72,6 +72,8 @@ metadata <- add_marker_to_id(metadata, samples_to_distinguish)
 
 length(unique((metadata$ID_pool)[ metadata$Marker != "ITS"])) #nb of 16S samples = 464
 length(unique((metadata$ID_pool)[ metadata$Marker != "16S"])) #nb of ITS samples = 374
+
+write.table(metadata, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "TM123_metadata.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 ```
 
 # 2. Create a phyloseq object
