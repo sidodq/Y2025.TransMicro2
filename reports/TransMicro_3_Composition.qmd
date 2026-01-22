@@ -15,7 +15,6 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
-devtools::load_all()
 
 library(lme4)
 library(phyloseq)
@@ -36,6 +35,8 @@ library(VennDiagram)
 library(grid)
 library(ggVennDiagram)
 library(cowplot)
+
+devtools::load_all()
 ```
 # COMPOSITION
 # 1. Color Sets
@@ -233,17 +234,10 @@ write.table(x=L, file=file.path(here::here(),"data", "derived_data", "3_Communit
 ps_rare_16S_Dataset_1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_ps_rare_Dataset_1.rds"))
 ps_rare_ITS_Dataset_1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_ps_rare_Dataset_1.rds"))
 
-# Distinguish "Unknown" families & genus by numbering them with their corresponding cluster number
-ps_rare_16S_Dataset_1 <- fix_unknown_taxa(phyloseq_object = ps_rare_16S_Dataset_1, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_TM123_tax_table_rare.tsv"))
-
-ps_rare_ITS_Dataset_1 <- fix_unknown_taxa(phyloseq_object = ps_rare_ITS_Dataset_1, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "ITS_TM123_tax_table_rare.tsv"))
-```
-
-```{r}
 # Filter data (exclude Nat_Uninf_Fruits_5_6days)
 ps_16S_rare_expe <- Subset_physeq(ps_rare_16S_Dataset_1, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
 
-# rename + reorder Sample Type
+# 16S : rename + reorder Sample Type
 sample_data(ps_16S_rare_expe)$SampleType <- factor(sample_data(ps_16S_rare_expe)$SampleType)
 
 sample_data(ps_16S_rare_expe)$SampleType <- sample_data(ps_16S_rare_expe)$SampleType %>%
@@ -262,7 +256,7 @@ sample_data(ps_16S_rare_expe)$SampleType <- factor(sample_data(ps_16S_rare_expe)
 
 ps_ITS_rare_expe <- Subset_physeq(ps_rare_ITS_Dataset_1, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
 
-# rename + reorder Sample Type
+# ITS : rename + reorder Sample Type
 sample_data(ps_ITS_rare_expe)$SampleType <- factor(sample_data(ps_ITS_rare_expe)$SampleType)
 
 sample_data(ps_ITS_rare_expe)$SampleType <- sample_data(ps_ITS_rare_expe)$SampleType %>%
@@ -276,6 +270,16 @@ sample_data(ps_ITS_rare_expe)$SampleType <- sample_data(ps_ITS_rare_expe)$Sample
     Daughters = "G1_Adults_Fruits")
 
 sample_data(ps_ITS_rare_expe)$SampleType <- factor(sample_data(ps_ITS_rare_expe)$SampleType, levels = desired_order)
+
+# Distinguish "Unknown" families & genus by numbering them with their corresponding cluster number
+ps_rare_16S_Dataset_1 <- fix_unknown_taxa(phyloseq_object = ps_rare_16S_Dataset_1, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_TM123_tax_table_rare.tsv"))
+
+ps_rare_ITS_Dataset_1 <- fix_unknown_taxa(phyloseq_object = ps_rare_ITS_Dataset_1, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "ITS_TM123_tax_table_rare.tsv"))
+
+
+## Export
+saveRDS(ps_rare_16S_Dataset_1, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1",  "ps_rare_16S_dataset_1.rds"))
+saveRDS(ps_rare_ITS_Dataset_1, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1",  "ps_rare_ITS_dataset_1.rds"))
 ```
 
 ```{r}
@@ -377,7 +381,303 @@ title_plot <- "Abundance_SampleType_FruitType_Site_Variety_combined.png"
 
 # 4. Heatmap (core)
 ## a. Dataset 1 
+
 ```{r}
+## Load melted data
+
+## 16S
+B_dataset_1 = phyloseq::psmelt(ps_rare_16S_Dataset_1) 
+
+B_dataset_1$LifeStage <- factor(B_dataset_1$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter", "na"))
+B_dataset_1$FruitType <- factor(B_dataset_1$FruitType, levels = c("BL", "CH", "ST", "na"))
+
+write.table(x=B_dataset_1, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition","Dataset_1", "16S_melt_dataset_1.csv"), row.names=FALSE, quote=FALSE, sep=";")
+
+data16S_d1 <- tidyr::as_tibble(read.table(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition","Dataset_1", "16S_melt_dataset_1.csv"), header=TRUE, sep=";"))|>
+dplyr::mutate(Marker="16S")
+
+
+## ITS
+Y_dataset_1 = phyloseq::psmelt(ps_rare_ITS_Dataset_1) 
+
+Y_dataset_1$LifeStage <- factor(Y_dataset_1$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter", "na"))
+Y_dataset_1$FruitType <- factor(Y_dataset_1$FruitType, levels = c("BL", "CH", "ST", "na"))
+
+write.table(x=Y_dataset_1, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition","Dataset_1", "ITS_melt_dataset_1.csv"), row.names=FALSE, quote=FALSE, sep=";")
+
+dataITS_d1 <- tidyr::as_tibble(read.table(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition","Dataset_1", "ITS_melt_dataset_1.csv"), header=TRUE, sep=";"))|>
+dplyr::mutate(Marker="ITS")
+
+
+## Join both melted datasets 
+data_d1 <- dplyr::bind_rows(data16S_d1, dataITS_d1)
+```
+
+```{r}
+## Compute frequency
+
+## OTU present or absent
+data_d1 <- data_d1 |>
+dplyr::mutate(present=dplyr::if_else(Abundance>0, 1, 0))
+
+## Compute frequency per type of sample
+freq_data_d1 <- data_d1  |>
+  dplyr::group_by(Marker, SampleType, OTU, Family, Genus, Species) |>
+  dplyr::summarise(Frequency = mean(present), Sample_size=dplyr::n())|>
+  dplyr::ungroup()|>
+  dplyr::mutate(Marker_OTU=paste(Marker, OTU, sep="_"))
+
+
+## Compute frequency per type of sample and fruit
+freq_data_perfruit_d1 <- data_d1 |>
+  dplyr::group_by(Marker, FruitType, SampleType, OTU, Family, Genus, Species) |>
+  dplyr::summarise(Frequency = mean(present), Sample_size=dplyr::n())|>
+  dplyr::ungroup()|>
+  dplyr::mutate(Marker_OTU=paste(Marker, OTU, sep="_"))
 
 ```
 
+```{r}
+## Compute frequency per fruit 
+
+# Compare only samples with life stages available
+freq_data_fruit_d1 <- data_d1 |>
+dplyr::filter(FruitSiteTypeVariety%in%c("FIN_CH_CDP", "IST_ST_CIF", "LOM_CH_CDP", "MIL_ST_MDB", "VAR_BL_LOC")|SampleType=="G0_Adults_0days") |>
+  dplyr::group_by(Marker, FruitType, SampleType, OTU, Family, Genus, Species) |>
+  dplyr::summarise(Frequency = mean(present), Sample_size=dplyr::n())|>
+  dplyr::ungroup()|>
+  dplyr::mutate(Marker_OTU=paste(Marker, OTU, sep="_"))
+
+freq_data_fruit70_d1 <- freq_data_fruit_d1 |>
+  dplyr::filter(Frequency>0.7) |>
+  tidyr::separate(col = "OTU", into=c(NA, "OTU_ID"), sep="_",
+  remove = FALSE) |>
+  dplyr::mutate(OTU_ID=as.numeric(OTU_ID)) |>
+  dplyr::arrange(Marker, OTU_ID, FruitType)
+
+OTU5sites_perfruit_d1 <- freq_data_fruit70_d1$Marker_OTU
+
+write.table(x=freq_data_fruit70_d1, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1",  "freq_OTU_perfruit_5sites_dataset_1.csv"), sep=";", row.names=FALSE)
+```
+
+
+```{r}
+## Prevalence per fruit type
+
+prevalence_data_fruit_d1 <- freq_data_fruit_d1 |>
+    dplyr::filter(Marker_OTU%in%freq_data_fruit70_d1$Marker_OTU)|>
+  dplyr::filter(SampleType%in%c("G0_Adults_0days","Fruits_0days","Artific_Inf_Fruits_5_6days","G0_Adults_Fruits_2days","G1_Larvae_Fruits","G1_Pupae_Fruits","G1_PupalCase_Fruits","G1_Adults_Fruits"))|>
+  dplyr::mutate(OTUname=paste(Genus, OTU, sep="_"))|>
+  dplyr::mutate(SampleType_Fruit=paste(SampleType, FruitType, sep="_"))|>
+  dplyr::mutate(Fruit_SampleType=paste(FruitType, SampleType, sep="_"))|>
+  dplyr::mutate(SampleType_Fruit_Sample_size=paste0(SampleType_Fruit, " (n=",Sample_size, ")"))|>
+  dplyr::mutate(Fruit_SampleType_Sample_size=paste0(Fruit_SampleType, " (n=", Sample_size, ")"))|>
+  dplyr::select(Marker, OTUname, OTU, SampleType, SampleType_Fruit, Fruit_SampleType, SampleType_Fruit_Sample_size, FruitType, Fruit_SampleType_Sample_size, Frequency)
+
+prevalence_data_fruit_wide_d1 <- prevalence_data_fruit_d1  |>
+  dplyr::select(-SampleType) |>
+    dplyr::select(-FruitType) |>
+  dplyr::select(-Fruit_SampleType) |>
+    dplyr::select(-SampleType_Fruit_Sample_size) |>
+  dplyr::select(-Fruit_SampleType_Sample_size) |>
+  tidyr::pivot_wider(names_from = SampleType_Fruit, values_from = Frequency)
+
+write.table(x=prevalence_data_fruit_wide_d1, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1", "prevalence_data_perfruit_5sites_dataset_1.csv"), sep=";", row.names=FALSE)
+```
+
+
+```{r}
+# Relevel Fruit_SampleType_Sample_size
+
+## 16S
+
+## Order we want
+lev <- c("G0_Adults_0days","G0_Adults_Fruits_2days","Fruits_0days","Artific_Inf_Fruits_5_6days","G1_Larvae_Fruits","G1_Pupae_Fruits","G1_PupalCase_Fruits","G1_Adults_Fruits")
+
+prevalence_data_fruit16S_d1 <- prevalence_data_fruit_d1 |>
+  dplyr::filter(Marker=="16S")|>
+  dplyr::mutate(Fruit_SampleType_Sample_size=factor(Fruit_SampleType_Sample_size))
+
+fact <- levels(prevalence_data_fruit16S_d1$Fruit_SampleType_Sample_size)
+## Extract levels in the right order
+new_level_order <- fact[grep("na", fact, value = FALSE)]
+for (fruit_i in c("BL", "CH", "ST")){
+  out <- setNames(sapply(paste(fruit_i,lev, sep="_"), function(x) grep(x, fact, value = FALSE)), lev)
+new_level_order <- c(new_level_order, fact[unlist(out)])
+}
+
+prevalence_data_fruit16S_d1 <- prevalence_data_fruit16S_d1 |>
+  dplyr::mutate(Fruit_SampleType_Sample_size=factor(Fruit_SampleType_Sample_size, new_level_order))
+
+
+## ITS
+
+## Order we want
+lev <- c("G0_Adults_0days","G0_Adults_Fruits_2days","Fruits_0days","Artific_Inf_Fruits_5_6days","G1_Larvae_Fruits","G1_Pupae_Fruits","G1_PupalCase_Fruits","G1_Adults_Fruits")
+
+prevalence_data_fruitITS_d1 <- prevalence_data_fruit_d1 |>
+  dplyr::filter(Marker=="ITS")|>
+  dplyr::mutate(Fruit_SampleType_Sample_size=factor(Fruit_SampleType_Sample_size))
+
+fact <- levels(prevalence_data_fruitITS_d1$Fruit_SampleType_Sample_size)
+## Extract levels in the right order
+new_level_order <- fact[grep("na", fact, value = FALSE)]
+for (fruit_i in c("BL", "CH", "ST")){
+  out <- setNames(sapply(paste(fruit_i,lev, sep="_"), function(x) grep(x, fact, value = FALSE)), lev)
+new_level_order <- c(new_level_order, fact[unlist(out)])
+}
+
+prevalence_data_fruitITS_d1 <- prevalence_data_fruitITS_d1 |>
+  dplyr::mutate(Fruit_SampleType_Sample_size=factor(Fruit_SampleType_Sample_size, new_level_order))
+
+```
+
+```{r}
+## Make plot Fruit_SampleType
+
+p16S_d1 <- prevalence_data_fruit16S_d1 |>
+  ggplot(aes(Fruit_SampleType_Sample_size, OTUname, fill= Frequency)) + 
+  geom_tile()+
+scale_fill_gradient(low="white", high="blue") +
+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  geom_vline(xintercept=c(1.5, 7.5, 14.5), linetype=1, color="red", linewidth=1)+
+  guides(color = "none", fill = "none", linetype = "none")+labs(x = NULL, y = NULL)
+
+pITS_d1 <- prevalence_data_fruitITS_d1|>
+  ggplot(aes(Fruit_SampleType_Sample_size, OTUname, fill= Frequency)) + 
+  geom_tile()+
+scale_fill_gradient(low="white", high="blue") +
+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  geom_vline(xintercept=c(1.5, 8.5, 15.5), linetype=1, color="red", linewidth=1)+ guides(fill=guide_legend(title="Frequency accros biological replicates"))+labs(x = NULL, y = NULL)
+
+prev_d1 <- p16S_d1 + pITS_d1 + patchwork::plot_annotation(tag_levels = "A")
+
+ggsave(filename = "prevalence_fruit_sampletype_5sites_dataset_1.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition", "Dataset_1"), width = 30, height = 30, units = "cm")
+```
+
+
+## b. Dataset 2
+```{r}
+## Load melted data
+
+## 16S
+B_Dataset_2 = phyloseq::psmelt(ps_rare_16S_Dataset_2) 
+
+B_Dataset_2$LifeStage <- factor(B_Dataset_2$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter", "na"))
+B_Dataset_2$FruitType <- factor(B_Dataset_2$FruitType, levels = c("BL", "CH", "ST", "na"))
+
+write.table(x=B_Dataset_2, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition","Dataset_2", "16S_melt_Dataset_2.csv"), row.names=FALSE, quote=FALSE, sep=";")
+
+data16S_d2 <- tidyr::as_tibble(read.table(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition","Dataset_2", "16S_melt_Dataset_2.csv"), header=TRUE, sep=";"))|>
+dplyr::mutate(Marker="16S")
+
+
+## ITS
+Y_Dataset_2 = phyloseq::psmelt(ps_rare_ITS_Dataset_2) 
+
+Y_Dataset_2$LifeStage <- factor(Y_Dataset_2$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter", "na"))
+Y_Dataset_2$FruitType <- factor(Y_Dataset_2$FruitType, levels = c("BL", "CH", "ST", "na"))
+
+write.table(x=Y_Dataset_2, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition","Dataset_2", "ITS_melt_Dataset_2.csv"), row.names=FALSE, quote=FALSE, sep=";")
+
+dataITS_d2 <- tidyr::as_tibble(read.table(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition","Dataset_2", "ITS_melt_Dataset_2.csv"), header=TRUE, sep=";"))|>
+dplyr::mutate(Marker="ITS")
+
+
+## Join both melted datasets 
+data_d2 <- dplyr::bind_rows(data16S_d2, dataITS_d2)
+
+```
+
+```{r}
+## Compute frequency
+
+# OTU present or absent
+data_d2 <- data_d2 |>
+dplyr::mutate(present=dplyr::if_else(Abundance>0, 1, 0))
+
+# Compute frequency per type of sample
+freq_data_d2 <- data_d2  |>
+  dplyr::group_by(Marker, SampleType, OTU, Family, Genus, Species) |>
+  dplyr::summarise(Frequency = mean(present), Sample_size=dplyr::n())|>
+  dplyr::ungroup()|>
+  dplyr::mutate(Marker_OTU=paste(Marker, OTU, sep="_"))
+
+
+# Compute frequency per type of sample and fruit
+freq_data_perfruit_d2 <- data_d2 |>
+  dplyr::group_by(Marker, FruitType, SampleType, OTU, Family, Genus, Species) |>
+  dplyr::summarise(Frequency = mean(present), Sample_size=dplyr::n())|>
+  dplyr::ungroup()|>
+  dplyr::mutate(Marker_OTU=paste(Marker, OTU, sep="_"))
+
+```
+
+
+```{r}
+## Taxa per sampletype/fruit
+### Select frequency per fruit 
+
+## Select only 4 fruit types
+freq_data_fruit_d2 <- freq_data_perfruit_d2 |>
+dplyr::filter(SampleType%in%c("Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Fruits_0days", "Artific_Inf_Fruits_5_6days"))
+
+freq_data_fruit70_d2 <- freq_data_fruit_d2 |>
+  dplyr::filter(Frequency>0.7) |>
+  tidyr::separate(col = "OTU", into=c(NA, "OTU_ID"), sep="_",
+  remove = FALSE) |>
+  dplyr::mutate(OTU_ID=as.numeric(OTU_ID)) |>
+  dplyr::arrange(Marker, OTU_ID, FruitType)
+
+write.table(x=freq_data_fruit70_d2, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2", "freq_OTU_perfruit_fruit_only_dataset_2.csv"), sep=";", row.names=FALSE)
+```
+
+
+```{r}
+### Prevalence per fruit type
+
+prevalence_data_fruit_d2 <- freq_data_fruit_d2 |>
+    dplyr::filter(Marker_OTU%in%freq_data_fruit70_d2$Marker_OTU)|>
+  dplyr::mutate(OTUname=paste(Genus, OTU, sep="_"))|>
+  dplyr::mutate(SampleType_Fruit=paste(SampleType, FruitType, sep="_"))|>
+  dplyr::mutate(Fruit_SampleType=paste(FruitType, SampleType, sep="_"))|>
+  dplyr::mutate(SampleType_Fruit_Sample_size=paste0(SampleType_Fruit, " (n=",Sample_size, ")"))|>
+  dplyr::mutate(Fruit_SampleType_Sample_size=paste0(Fruit_SampleType, " (n=", Sample_size, ")"))|>
+  dplyr::select(Marker, OTUname, OTU, SampleType, SampleType_Fruit, Fruit_SampleType, SampleType_Fruit_Sample_size, FruitType, Fruit_SampleType_Sample_size, Frequency)
+
+prevalence_data_fruit_wide_d2 <- prevalence_data_fruit_d2  |>
+  dplyr::select(-SampleType) |>
+    dplyr::select(-FruitType) |>
+  dplyr::select(-Fruit_SampleType) |>
+    dplyr::select(-SampleType_Fruit_Sample_size) |>
+  dplyr::select(-Fruit_SampleType_Sample_size) |>
+  tidyr::pivot_wider(names_from = SampleType_Fruit, values_from = Frequency)
+
+write.table(x=prevalence_data_fruit_wide_d2, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2", "prevalence_data_perfruit_fruit_only_d2.csv"), sep=";", row.names=FALSE)
+```
+
+
+```{r}
+### Make plot Fruit_SampleType
+
+p16S_d2 <- prevalence_data_fruit_d2 |>
+  dplyr::filter(Marker=="16S")|>
+  ggplot(aes(Fruit_SampleType_Sample_size, OTUname, fill= Frequency)) + 
+  geom_tile()+
+scale_fill_gradient(low="white", high="blue") +
+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  geom_vline(xintercept=c(2.5, 6.5), linetype=1, color="red", linewidth=1)+
+  guides(color = "none", fill = "none", linetype = "none")+labs(x = NULL, y = NULL)
+
+pITS_d2 <- prevalence_data_fruit_d2 |>
+  dplyr::filter(Marker=="ITS")|>
+  ggplot(aes(Fruit_SampleType_Sample_size, OTUname, fill= Frequency)) + 
+  geom_tile()+
+scale_fill_gradient(low="white", high="blue") +
+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  geom_vline(xintercept=c(3.5, 7.5), linetype=1, color="red", linewidth=1)+ guides(fill=guide_legend(title="Frequency accros biological replicates"))+labs(x = NULL, y = NULL)
+
+prev_d2 <- p16S_d2 + pITS_d2 + patchwork::plot_annotation(tag_levels = "A")
+
+ggsave(filename = "prevalence_fruit_sampletype_fruit_only_d2.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition", "Dataset_2"), width = 30, height = 30, units = "cm")
+```
