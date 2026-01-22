@@ -74,4 +74,4 @@ fix_unknown_taxa <- function(phyloseq_object, ranks, outfile) {
 #   as.character(tax$Genus))
 #
 # tax_table(ps_rare_ITS) <- as.matrix(tax) # Put it back into the phyloseq object
-write.table(tax_table(ps_rare_ITS), file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "ITS_TM123_tax_table_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+#write.table(tax_table(ps_rare_ITS), file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "ITS_TM123_tax_table_rare.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
