@@ -235,12 +235,12 @@ ps_rare_16S_Dataset_1 <- readRDS(file=file.path(here::here(), "data", "derived_d
 ps_rare_ITS_Dataset_1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_ps_rare_Dataset_1.rds"))
 
 # Filter data (exclude Nat_Uninf_Fruits_5_6days)
-ps_16S_rare_expe <- Subset_physeq(ps_rare_16S_Dataset_1, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
+ps_16S_rare_expe_D1 <- Subset_physeq(ps_rare_16S_Dataset_1, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
 
 # 16S : rename + reorder Sample Type
-sample_data(ps_16S_rare_expe)$SampleType <- factor(sample_data(ps_16S_rare_expe)$SampleType)
+sample_data(ps_16S_rare_expe_D1)$SampleType <- factor(sample_data(ps_16S_rare_expe_D1)$SampleType)
 
-sample_data(ps_16S_rare_expe)$SampleType <- sample_data(ps_16S_rare_expe)$SampleType %>%
+sample_data(ps_16S_rare_expe_D1)$SampleType <- sample_data(ps_16S_rare_expe_D1)$SampleType %>%
   forcats::fct_recode(
     Mothers_0days = "G0_Adults_0days",
     Mothers_2days = "G0_Adults_Fruits_2days",
@@ -251,15 +251,15 @@ sample_data(ps_16S_rare_expe)$SampleType <- sample_data(ps_16S_rare_expe)$Sample
     Daughters = "G1_Adults_Fruits")
 
 desired_order <- c("Fruits_0days", "Mothers_0days", "Mothers_2days", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters")  
-sample_data(ps_16S_rare_expe)$SampleType <- factor(sample_data(ps_16S_rare_expe)$SampleType, levels = desired_order)
+sample_data(ps_16S_rare_expe_D1)$SampleType <- factor(sample_data(ps_16S_rare_expe_D1)$SampleType, levels = desired_order)
 
 
-ps_ITS_rare_expe <- Subset_physeq(ps_rare_ITS_Dataset_1, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
+ps_ITS_rare_expe_D1 <- Subset_physeq(ps_rare_ITS_Dataset_1, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
 
 # ITS : rename + reorder Sample Type
-sample_data(ps_ITS_rare_expe)$SampleType <- factor(sample_data(ps_ITS_rare_expe)$SampleType)
+sample_data(ps_ITS_rare_expe_D1)$SampleType <- factor(sample_data(ps_ITS_rare_expe_D1)$SampleType)
 
-sample_data(ps_ITS_rare_expe)$SampleType <- sample_data(ps_ITS_rare_expe)$SampleType %>%
+sample_data(ps_ITS_rare_expe_D1)$SampleType <- sample_data(ps_ITS_rare_expe_D1)$SampleType %>%
   forcats::fct_recode(
     Mothers_0days = "G0_Adults_0days",
     Mothers_2days = "G0_Adults_Fruits_2days",
@@ -269,24 +269,24 @@ sample_data(ps_ITS_rare_expe)$SampleType <- sample_data(ps_ITS_rare_expe)$Sample
     PupalCases = "G1_PupalCase_Fruits",
     Daughters = "G1_Adults_Fruits")
 
-sample_data(ps_ITS_rare_expe)$SampleType <- factor(sample_data(ps_ITS_rare_expe)$SampleType, levels = desired_order)
+sample_data(ps_ITS_rare_expe_D1)$SampleType <- factor(sample_data(ps_ITS_rare_expe_D1)$SampleType, levels = desired_order)
 
 # Distinguish "Unknown" families & genus by numbering them with their corresponding cluster number
-ps_rare_16S_Dataset_1 <- fix_unknown_taxa(phyloseq_object = ps_rare_16S_Dataset_1, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_TM123_tax_table_rare.tsv"))
+ps_16S_rare_expe_D1 <- fix_unknown_taxa(phyloseq_object = ps_16S_rare_expe_D1, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1", "16S_tax_table_rare_expe_D1.tsv"))
 
-ps_rare_ITS_Dataset_1 <- fix_unknown_taxa(phyloseq_object = ps_rare_ITS_Dataset_1, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "ITS_TM123_tax_table_rare.tsv"))
+ps_ITS_rare_expe_D1 <- fix_unknown_taxa(phyloseq_object = ps_ITS_rare_expe_D1, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1", "ITS_tax_table_rare_expe_D1.tsv"))
 
 
 ## Export
-saveRDS(ps_rare_16S_Dataset_1, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1",  "ps_rare_16S_dataset_1.rds"))
-saveRDS(ps_rare_ITS_Dataset_1, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1",  "ps_rare_ITS_dataset_1.rds"))
+saveRDS(ps_16S_rare_expe_D1, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1",  "ps_16S_rare_expe_D1.rds"))
+saveRDS(ps_ITS_rare_expe_D1, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1",  "ps_ITS_rare_expe_D1.rds"))
 ```
 
 ```{r}
-#### Bar plots : SampleType x FruitType x Site 
+## Bar plots : SampleType x FruitType x Site 
 
 # 16S (Family)
-plot_16S_Expe_SampleTypeFruitTypeSite <- Make_composition_bar_plot_2(ps_16S_rare_expe, "Bacteria", "Family", 15, ~SampleType + FruitType+FruitSite, color_16S)
+plot_16S_Expe_SampleTypeFruitTypeSite <- Make_composition_bar_plot_2(ps_16S_rare_expe_D1, "Bacteria", "Family", 15, ~SampleType + FruitType+FruitSite, color_16S)
 
 plot_16S_Expe_SampleTypeFruitTypeSite$data$SampleType <- factor(plot_16S_Expe_SampleTypeFruitTypeSite$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "PupalCases","Daughters")) # reorder 
 
@@ -300,8 +300,7 @@ ggsave(filename = "B_Expe_SampleType_FruitType_Site.jpg", plot = plot_16S_Expe_S
 
 
 # ITS (Family)
-plot_ITS_Expe_SampleTypeFruitTypeSite <- Make_composition_bar_plot_2(ps_ITS_rare_expe, "Fungi", "Family", 15, ~SampleType + FruitType+FruitSite, color_ITS) 
-# + annotate("text",x = -Inf, y = Inf,label = "B. Fungi", hjust = -0.1, vjust = 1.3,  size = 5, fontface = "bold")
+plot_ITS_Expe_SampleTypeFruitTypeSite <- Make_composition_bar_plot_2(ps_ITS_rare_expe_D1, "Fungi", "Family", 15, ~SampleType + FruitType+FruitSite, color_ITS) 
 
 plot_ITS_Expe_SampleTypeFruitTypeSite$data$SampleType <- factor(plot_ITS_Expe_SampleTypeFruitTypeSite$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "PupalCases","Daughters")) # reorder 
 
@@ -332,9 +331,9 @@ ps_rare_16S_Dataset_2 <- readRDS(file=file.path(here::here(), "data", "derived_d
 ps_rare_ITS_Dataset_2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_ps_rare_Dataset_2.rds"))
 
 # Distinguish "Unknown" families & genus by numbering
-ps_rare_16S_Dataset_2 <- fix_unknown_taxa(phyloseq_object = ps_rare_16S_Dataset_2, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_TM123_tax_table_rare.tsv"))
+ps_rare_16S_Dataset_2 <- fix_unknown_taxa(phyloseq_object = ps_rare_16S_Dataset_2, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2", "16S_tax_table_rare_D2.tsv"))
 
-ps_rare_ITS_Dataset_2 <- fix_unknown_taxa(phyloseq_object = ps_rare_ITS_Dataset_2, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "ITS_TM123_tax_table_rare.tsv"))
+ps_rare_ITS_Dataset_2 <- fix_unknown_taxa(phyloseq_object = ps_rare_ITS_Dataset_2, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2", "ITS_tax_table_rare_D2.tsv"))
 ```
 
 ``` {r}
@@ -380,32 +379,32 @@ title_plot <- "Abundance_SampleType_FruitType_Site_Variety_combined.png"
 
 
 # 4. Heatmap (core)
-## a. Dataset 1 
+## a. Dataset 1 expe
 
 ```{r}
 ## Load melted data
 
 ## 16S
-B_dataset_1 = phyloseq::psmelt(ps_rare_16S_Dataset_1) 
+B_dataset_1 = phyloseq::psmelt(ps_16S_rare_expe_D1) 
 
 B_dataset_1$LifeStage <- factor(B_dataset_1$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter", "na"))
 B_dataset_1$FruitType <- factor(B_dataset_1$FruitType, levels = c("BL", "CH", "ST", "na"))
 
-write.table(x=B_dataset_1, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition","Dataset_1", "16S_melt_dataset_1.csv"), row.names=FALSE, quote=FALSE, sep=";")
+write.table(x=B_dataset_1, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition","Dataset_1", "16S_expe_melt_dataset_1.csv"), row.names=FALSE, quote=FALSE, sep=";")
 
-data16S_d1 <- tidyr::as_tibble(read.table(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition","Dataset_1", "16S_melt_dataset_1.csv"), header=TRUE, sep=";"))|>
+data16S_d1 <- tidyr::as_tibble(read.table(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition","Dataset_1", "16S_expe_melt_dataset_1.csv"), header=TRUE, sep=";"))|>
 dplyr::mutate(Marker="16S")
 
 
 ## ITS
-Y_dataset_1 = phyloseq::psmelt(ps_rare_ITS_Dataset_1) 
+Y_dataset_1 = phyloseq::psmelt(ps_ITS_rare_expe_D1) 
 
 Y_dataset_1$LifeStage <- factor(Y_dataset_1$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter", "na"))
 Y_dataset_1$FruitType <- factor(Y_dataset_1$FruitType, levels = c("BL", "CH", "ST", "na"))
 
-write.table(x=Y_dataset_1, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition","Dataset_1", "ITS_melt_dataset_1.csv"), row.names=FALSE, quote=FALSE, sep=";")
+write.table(x=Y_dataset_1, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition","Dataset_1", "ITS_expe_melt_dataset_1.csv"), row.names=FALSE, quote=FALSE, sep=";")
 
-dataITS_d1 <- tidyr::as_tibble(read.table(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition","Dataset_1", "ITS_melt_dataset_1.csv"), header=TRUE, sep=";"))|>
+dataITS_d1 <- tidyr::as_tibble(read.table(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition","Dataset_1", "ITS_expe_melt_dataset_1.csv"), header=TRUE, sep=";"))|>
 dplyr::mutate(Marker="ITS")
 
 
@@ -427,7 +426,6 @@ freq_data_d1 <- data_d1  |>
   dplyr::ungroup()|>
   dplyr::mutate(Marker_OTU=paste(Marker, OTU, sep="_"))
 
-
 ## Compute frequency per type of sample and fruit
 freq_data_perfruit_d1 <- data_d1 |>
   dplyr::group_by(Marker, FruitType, SampleType, OTU, Family, Genus, Species) |>
@@ -442,7 +440,7 @@ freq_data_perfruit_d1 <- data_d1 |>
 
 # Compare only samples with life stages available
 freq_data_fruit_d1 <- data_d1 |>
-dplyr::filter(FruitSiteTypeVariety%in%c("FIN_CH_CDP", "IST_ST_CIF", "LOM_CH_CDP", "MIL_ST_MDB", "VAR_BL_LOC")|SampleType=="G0_Adults_0days") |>
+dplyr::filter(FruitSiteTypeVariety%in%c("FIN_CH_CDP", "IST_ST_CIF", "LOM_CH_CDP", "MIL_ST_MDB", "VAR_BL_LOC")|SampleType=="Mothers_0days") |>
   dplyr::group_by(Marker, FruitType, SampleType, OTU, Family, Genus, Species) |>
   dplyr::summarise(Frequency = mean(present), Sample_size=dplyr::n())|>
   dplyr::ungroup()|>
@@ -466,7 +464,7 @@ write.table(x=freq_data_fruit70_d1, file=file.path(here::here(), "data", "derive
 
 prevalence_data_fruit_d1 <- freq_data_fruit_d1 |>
     dplyr::filter(Marker_OTU%in%freq_data_fruit70_d1$Marker_OTU)|>
-  dplyr::filter(SampleType%in%c("G0_Adults_0days","Fruits_0days","Artific_Inf_Fruits_5_6days","G0_Adults_Fruits_2days","G1_Larvae_Fruits","G1_Pupae_Fruits","G1_PupalCase_Fruits","G1_Adults_Fruits"))|>
+  dplyr::filter(SampleType%in%c("Mothers_0days","Fruits_0days","Fruits_5_6days","Mothers_2days","Larvae","Pupae","PupalCases","Daughters"))|>
   dplyr::mutate(OTUname=paste(Genus, OTU, sep="_"))|>
   dplyr::mutate(SampleType_Fruit=paste(SampleType, FruitType, sep="_"))|>
   dplyr::mutate(Fruit_SampleType=paste(FruitType, SampleType, sep="_"))|>
@@ -492,7 +490,7 @@ write.table(x=prevalence_data_fruit_wide_d1, file=file.path(here::here(), "data"
 ## 16S
 
 ## Order we want
-lev <- c("G0_Adults_0days","G0_Adults_Fruits_2days","Fruits_0days","Artific_Inf_Fruits_5_6days","G1_Larvae_Fruits","G1_Pupae_Fruits","G1_PupalCase_Fruits","G1_Adults_Fruits")
+lev <- c("Mothers_0days","Fruits_0days","Fruits_5_6days","Mothers_2days","Larvae","Pupae","PupalCases","Daughters")
 
 prevalence_data_fruit16S_d1 <- prevalence_data_fruit_d1 |>
   dplyr::filter(Marker=="16S")|>
@@ -513,7 +511,7 @@ prevalence_data_fruit16S_d1 <- prevalence_data_fruit16S_d1 |>
 ## ITS
 
 ## Order we want
-lev <- c("G0_Adults_0days","G0_Adults_Fruits_2days","Fruits_0days","Artific_Inf_Fruits_5_6days","G1_Larvae_Fruits","G1_Pupae_Fruits","G1_PupalCase_Fruits","G1_Adults_Fruits")
+lev <- c("Mothers_0days","Fruits_0days","Fruits_5_6days","Mothers_2days","Larvae","Pupae","PupalCases","Daughters")
 
 prevalence_data_fruitITS_d1 <- prevalence_data_fruit_d1 |>
   dplyr::filter(Marker=="ITS")|>
