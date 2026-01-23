@@ -151,7 +151,6 @@ sample_data(ps_ITSm) <- sample_data(ps_ITS) %>%
   sample_data()
 
 
-
 # Extract OTU abundance data from phyloseq objects
 table_OTU_16S <- phyloseq::otu_table(ps_16Sm)
 table_OTU_16S[rowSums(phyloseq::otu_table(ps_16Sm)) == 0, ] # OTUs with no counts in any 16S samples
@@ -162,7 +161,7 @@ table_OTU_ITS[rowSums(phyloseq::otu_table(ps_ITSm)) == 0, ] # OTUs with no count
 names(phyloseq::sample_sums(ps_ITSm)[ phyloseq::sample_sums(ps_ITSm) == 0]) #samples with no reads
 ```
 
-## Remove Wolbachia + conta
+# 3. Remove conta.
 
 ```{r}
 # Remove Wolbachia
@@ -202,7 +201,57 @@ taxa_to_remove_ITS <- TAX_ITS_df %>%
 write.xlsx( TAX_ITS_df[taxa_to_remove_ITS, ], file = file.path(here::here(), "data", "derived_data",  "2_RarefyData","Conta_clusters_ITS.xlsx"), rowNames = TRUE) #export removed clusers
 
 ps_ITSm <- prune_taxa(!(taxa_names(ps_ITSm) %in% taxa_to_remove_ITS),ps_ITSm)
+
+
+# Export
+saveRDS(ps_16Sm, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_ps_contaRemoved.rds"))
+saveRDS(ps_ITSm, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_ps_contaRemoved.rds"))
 ```
+
+# 4. Remove low-depth samples
+
+```{r}
+
+
+
+
+```
+
+# 5. Distinguish datasets
+
+```{r}
+## Dataset 1 : fruits Batch 1 + individuals Batch 1
+
+# Filter samples by abundance (>0) and type (fruits and suzu at all stages from "Focal_Sites")
+ps_16S_rare_Dataset_1 <- subset_samples(ps_rare_16S, Sample_Category %in% c("All_stages_Focal_Sites", "All_stages_focal_Sites")) #exclude indiv. naturally infesting + naturally infested fruits, if want to include use -> grepl("Focal_Sites", Sample_Category)) 
+ps_16S_rare_Dataset_1 <- prune_taxa(taxa_sums(ps_16S_rare_Dataset_1)>0, ps_16S_rare_Dataset_1)
+
+
+ps_ITS_rare_Dataset_1 <- subset_samples(ps_rare_ITS, Sample_Category %in% c("All_stages_Focal_Sites", "All_stages_focal_Sites"))
+ps_ITS_rare_Dataset_1 <- prune_taxa(taxa_sums(ps_ITS_rare_Dataset_1)>0, ps_ITS_rare_Dataset_1)
+
+## Export
+saveRDS(ps_16S_rare_Dataset_1, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_ps_rare_Dataset_1.rds"))
+saveRDS(ps_ITS_rare_Dataset_1, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_ps_rare_Dataset_1.rds"))
+```
+
+```{r}
+## Dataset 2 : fruits Batch 1 + fruits Batch 2 (supp. mat.)
+
+ps_16S_rare_Dataset_2 <- subset_samples(ps_rare_16S, SampleType %in% c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days"))
+ps_16S_rare_Dataset_2 <- prune_taxa(taxa_sums(ps_16S_rare_Dataset_2)>0,ps_16S_rare_Dataset_2) 
+
+
+ps_ITS_rare_Dataset_2 <- subset_samples(ps_rare_ITS, SampleType %in% c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days"))
+ps_ITS_rare_Dataset_2 <- prune_taxa(taxa_sums(ps_ITS_rare_Dataset_2)>0,ps_ITS_rare_Dataset_2)
+
+## Export
+saveRDS(ps_16S_rare_Dataset_2, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_ps_rare_Dataset_2.rds"))
+saveRDS(ps_ITS_rare_Dataset_2, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_ps_rare_Dataset_2.rds"))
+```
+
+
+# 6. Filter ASVs
 
 ```{r}
 # Distribution of the number of reads across samples
@@ -227,9 +276,10 @@ ps_16S_filtered <- subset_samples(ps_16Sm, !(sample_names(ps_16Sm) %in% zero_abu
 ps_ITS_filtered <- subset_samples(ps_ITSm, !(sample_names(ps_ITSm) %in% zero_abundance_samples_ITS))
 ```
 
-# 3. Rarefaction curve
+# 7. Rarefy 
+## a. Rarefaction curves
 
-## a. All samples
+### All samples
 
 ```{r}
 Rarefactioncurve_16S <- phyloseq.extended::ggrare(ps_16S_filtered, step = 100, se = FALSE, color = "SampleType", label = "ID_pool") +
@@ -259,7 +309,7 @@ title_plot <- "RarefactionCurves_TM123_AllSamples.png"
  cowplot::save_plot(file =here::here("plots", "2_RarefyData", title_plot), RarefactionCurves, base_height = 30/cm(1), base_width = 60/cm(1), dpi = 1200)  
 ```
 
-## b. Expe samples
+### Expe samples
 
 ```{r}
 # Filter data
@@ -292,7 +342,7 @@ title_plot <- "RarefactionCurves_Expe.png"
  cowplot::save_plot(file =here::here("plots", "2_RarefyData", title_plot), RarefactionCurves_Expe, base_height = 30/cm(1), base_width = 60/cm(1), dpi = 1200)    
 ```
 
-# 4. Rarefy data
+## b. Rarefy data
 
 ```{r}
 # Rarefy samples by discarding samples with fewer than 3.000 reads
@@ -343,35 +393,3 @@ out_rarefied_ITS <- anti_join(mtd, metadata_ITS_df, by ="ID_pool")
 write.xlsx(out_rarefied_ITS, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "mtd_samples_outAfterRare_ITS.xlsx"), rowNames = TRUE)
 ```
 
-# 5. Select data
-
-```{r}
-## Dataset 1 : fruits Batch 1 + individuals Batch 1
-
-# Filter samples by abundance (>0) and type (fruits and suzu at all stages from "Focal_Sites")
-ps_16S_rare_Dataset_1 <- subset_samples(ps_rare_16S, Sample_Category %in% c("All_stages_Focal_Sites", "All_stages_focal_Sites")) #exclude indiv. naturally infesting + naturally infested fruits, if want to include use -> grepl("Focal_Sites", Sample_Category)) 
-ps_16S_rare_Dataset_1 <- prune_taxa(taxa_sums(ps_16S_rare_Dataset_1)>0, ps_16S_rare_Dataset_1)
-
-
-ps_ITS_rare_Dataset_1 <- subset_samples(ps_rare_ITS, Sample_Category %in% c("All_stages_Focal_Sites", "All_stages_focal_Sites"))
-ps_ITS_rare_Dataset_1 <- prune_taxa(taxa_sums(ps_ITS_rare_Dataset_1)>0, ps_ITS_rare_Dataset_1)
-
-## Export
-saveRDS(ps_16S_rare_Dataset_1, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_ps_rare_Dataset_1.rds"))
-saveRDS(ps_ITS_rare_Dataset_1, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_ps_rare_Dataset_1.rds"))
-```
-
-```{r}
-## Dataset 2 : fruits Batch 1 + fruits Batch 2 (supp. mat.)
-
-ps_16S_rare_Dataset_2 <- subset_samples(ps_rare_16S, SampleType %in% c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days"))
-ps_16S_rare_Dataset_2 <- prune_taxa(taxa_sums(ps_16S_rare_Dataset_2)>0,ps_16S_rare_Dataset_2) 
-
-
-ps_ITS_rare_Dataset_2 <- subset_samples(ps_rare_ITS, SampleType %in% c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days"))
-ps_ITS_rare_Dataset_2 <- prune_taxa(taxa_sums(ps_ITS_rare_Dataset_2)>0,ps_ITS_rare_Dataset_2)
-
-## Export
-saveRDS(ps_16S_rare_Dataset_2, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_ps_rare_Dataset_2.rds"))
-saveRDS(ps_ITS_rare_Dataset_2, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_ps_rare_Dataset_2.rds"))
-```
