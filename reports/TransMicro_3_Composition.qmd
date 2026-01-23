@@ -202,32 +202,7 @@ color_prev_B <- c(
    "Sphingomonadaceae"="#c5b0d5")
 ```
 
-# 2. Load data
-
-```{r}
-ps_rare_16S <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_ps_rare.rds"))
-ps_rare_ITS <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_ps_rare.rds"))
-
-# Make data fit for plot
-B = phyloseq::psmelt(ps_rare_16S) 
-# Possible to focus on a reduced dataset ex. B = subset_taxa(S_ps_rare_16S, Genus == "Chlamydiae")
-
-B$LifeStage <- factor(B$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter", "na"))
-B$FruitType <- factor(B$FruitType, levels = c("BL", "CH", "ST", "na"))
-
-write.table(x=B, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_melt_TM123.csv"), row.names=FALSE, quote=FALSE, sep=";")
-
-
-L = phyloseq::psmelt(ps_rare_ITS)
-
-L$LifeStage <- factor(L$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter", "na"))
-L$FruitType <- factor(L$FruitType, levels = c("BL", "CH", "ST", "na"))
-
-write.table(x=L, file=file.path(here::here(),"data", "derived_data", "3_CommunityComposition", "ITS_melt_TM123.csv"), row.names=FALSE, quote=FALSE, sep=";")
-```
-
-
-# 3. Bar plots (abundance)
+# 2. Bar plots (abundance)
 
 ## a. Dataset 1 (indiv + host fruits)
 ```{r}
@@ -334,6 +309,10 @@ ps_rare_ITS_Dataset_2 <- readRDS(file=file.path(here::here(), "data", "derived_d
 ps_rare_16S_Dataset_2 <- fix_unknown_taxa(phyloseq_object = ps_rare_16S_Dataset_2, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2", "16S_tax_table_rare_D2.tsv"))
 
 ps_rare_ITS_Dataset_2 <- fix_unknown_taxa(phyloseq_object = ps_rare_ITS_Dataset_2, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2", "ITS_tax_table_rare_D2.tsv"))
+
+## Export
+saveRDS(ps_rare_16S_Dataset_2, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2",  "ps_rare_16S_Dataset_2.rds"))
+saveRDS(ps_rare_ITS_Dataset_2, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2",  "ps_rare_ITS_Dataset_2.rds"))
 ```
 
 ``` {r}
@@ -378,7 +357,7 @@ title_plot <- "Abundance_SampleType_FruitType_Site_Variety_combined.png"
 ```
 
 
-# 4. Heatmap (core)
+# 3. Heatmap (core)
 ## a. Dataset 1 expe
 
 ```{r}
