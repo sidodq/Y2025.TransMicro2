@@ -224,8 +224,8 @@ ps_ITSm_sq <- ps_ITSm %>%
   prune_samples(sample_sums(.) >= 250, .) %>%
   prune_taxa(taxa_sums(.) > 0, .)
 
-sum_physeq_clean(ps_16Sm, ps_16Sm_sq) # filtered : 20% of samples + 77.8% of ASVs
-sum_physeq_clean(ps_ITSm, ps_ITSm_sq) # filtered : 4.03% of samples + 36.2% of ASVs
+sum_physeq_clean(ps_16Sm, ps_16Sm_sq) # filtered : 20% of samples + 77.8% of ASVs + 0.03 % of reads
+sum_physeq_clean(ps_ITSm, ps_ITSm_sq) # filtered : 4.03% of samples + 36.2% of ASVs + 0.005 % of reads
 
 # Export
 saveRDS(ps_16Sm_sq, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_ps_contaRemoved_lowDepthFiltered.rds"))
@@ -270,6 +270,103 @@ saveRDS(ps_ITS_cl_Dataset_2, file=file.path(here::here(), "data", "derived_data"
 
 
 # 6. Filter ASVs
+## Dataset 1
+```{r}
+ps_16S_cl_Dataset_1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "16S_ps_cleaned_Dataset_1.rds"))
+ps_ITS_cl_Dataset_1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "ITS_ps_cleaned_Dataset_1.rds"))
+
+ps_16S_filt_Dataset_1 <- filter_phyloseq_by_prevalence(ps_16S_cl_Dataset_1)
+
+```
+
+
+
+```{r}
+# Load and melt physeq object
+
+
+
+
+## 16S
+B_cl_dataset_1 = phyloseq::psmelt(ps_16S_cl_Dataset_1) 
+
+B_cl_dataset_1$LifeStage <- factor(B_cl_dataset_1$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter", "na"))
+B_cl_dataset_1$FruitType <- factor(B_cl_dataset_1$FruitType, levels = c("BL", "CH", "ST", "na"))
+
+write.table(x=B_cl_dataset_1, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "16S_cleaned_melt_dataset_1.csv"), row.names=FALSE, quote=FALSE, sep=";")
+
+data16S_cl_d1 <- tidyr::as_tibble(read.table(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "16S_cleaned_melt_dataset_1.csv"), header=TRUE, sep=";"))|>
+dplyr::mutate(Marker="16S")
+
+
+## ITS
+Y_cl_dataset_1 = phyloseq::psmelt(ps_16S_cl_Dataset_1) 
+
+Y_cl_dataset_1$LifeStage <- factor(Y_cl_dataset_1$LifeStage, levels = c("Mother", "Larva", "Pupa", "PupalCase","Daughter", "na"))
+Y_cl_dataset_1$FruitType <- factor(Y_cl_dataset_1$FruitType, levels = c("BL", "CH", "ST", "na"))
+
+write.table(x=Y_cl_dataset_1, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "ITS_cleaned_melt_dataset_1.csv"), row.names=FALSE, quote=FALSE, sep=";")
+
+dataITS_cl_d1 <- tidyr::as_tibble(read.table(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "ITS_cleaned_melt_dataset_1.csv"), header=TRUE, sep=";"))|>
+dplyr::mutate(Marker="ITS")
+
+
+## Join both melted datasets 
+data_cl_d1 <- dplyr::bind_rows(data16S_cl_d1, dataITS_cl_d1)
+```
+
+```{r}
+# Compute frequency
+
+## OTU present or absent
+data_cl_d1 <- data_cl_d1 |>
+dplyr::mutate(present=dplyr::if_else(Abundance>0, 1, 0))
+
+## Compute frequency per type of sample and fruit
+freq_data_cl_d1 <- data_cl_d1 |>
+  dplyr::group_by(Marker, FruitType, SampleType, OTU, Family, Genus, Species) |>
+  dplyr::summarise(Frequency = mean(present), Sample_size=dplyr::n())|>
+  dplyr::ungroup()|>
+  dplyr::mutate(Marker_OTU=paste(Marker, OTU, sep="_"))
+
+freq_data_cl_d1_70 <- freq_data_cl_d1 |>
+  dplyr::filter(Frequency>0.7) |>
+  tidyr::separate(col = "OTU", into=c(NA, "OTU_ID"), sep="_",
+  remove = FALSE) |>
+  dplyr::mutate(OTU_ID=as.numeric(OTU_ID)) |>
+  dplyr::arrange(Marker, OTU_ID, FruitType)
+
+```
+
+```{r}
+# Identify ASVs to keep per Marker × SampleType × FruitType
+ASVs_to_keep <- freq_data_cl_d1 %>%
+  dplyr::filter(Frequency >= 0.7) %>%
+  dplyr::select(Marker, SampleType, FruitType, OTU) %>%
+  dplyr::distinct()
+
+# Filter melted dataset
+data_cl_d1_filtered <- data_cl_d1 %>%
+  dplyr::inner_join(ASVs_to_keep,
+                    by = c("Marker", "SampleType", "FruitType", "OTU"))
+
+```
+
+```{r}
+
+```
+
+
+
+```{r}
+# Dataset 2
+
+ps_16S_cl_Dataset_2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "16S_ps_cleaned_Dataset_2.rds"))
+ps_ITS_cl_Dataset_2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "ITS_ps_cleaned_Dataset_2.rds"))
+
+```
+
+
 
 ```{r}
 # Distribution of the number of reads across samples
