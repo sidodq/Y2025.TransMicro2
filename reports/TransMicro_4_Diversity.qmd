@@ -43,21 +43,13 @@ metadata <- data.table::fread(file=file.path(here::here(), "data", "derived_data
 
 # 2. Color Sets
 ```{r}
-color_SampleType <- hue_pal()(17)
-
 # using " unique(S_metadata$FruitType)" 
 color_FruitType <- c("BL" = "purple4", "CH" = "red4", "ST" = "red2")
 
 # using cold colors for batch 1 sites, warm for batch 2
-color_FruitSite <- c("na" ="grey", "FIN" = "skyblue", "IST" = "blue2" ,  "LOM" = "skyblue4", "MIL" = "deepskyblue", "VAR" = "dodgerblue", "THU" = "coral2")
-
 color_FruitVariety <- c("CDP" = "indianred", "HED" ="indianred1", "SUM" = "indianred4", "STA"="#CD2626", "SWE" = "firebrick1", "CIF" = "gold", "CIR" = "gold2", "DRE" = "lightgoldenrod1", "INF" = "yellow2", "MDB" = "yellow", "UNK" = "skyblue", "LOC"= "deepskyblue")
 
 color_FruitSiteTypeVariety <- c("THU_BL_LOC" = "deepskyblue","THU_BL_UNK"="skyblue", "VAR_BL_LOC" = "dodgerblue", "THU_CH_HED"="indianred1", "THU_CH_SWE"= "firebrick1", "THU_ST_CIR"= "gold2", "THU_ST_MDB"= "yellow", "FIN_CH_CDP"= "indianred", "FIN_CH_SUM"="indianred4","LOM_CH_CDP"= "firebrick3", "LOM_CH_STA"="#CD2626","IST_ST_CIF"= "gold","IST_ST_DRE"= "lightgoldenrod3", "MIL_ST_INF"= "yellow2", "MIL_ST_MDB"= "khaki1")
-
-color_LifeStage <- c("na" ="grey",  "Mothers_2days" = "darkolivegreen4", "Larva"= "darkolivegreen2", "Pupa" = "darkorange2", "PupalCase"="#8B4500", "Daughter" ="goldenrod2")
-
-color_Pop <- c("na" = "grey", "CEC"="#C1FFC1", "FRA" = "seagreen3" )
 
 color_Expe <- c("na" ="grey","Fruits_0days" = "red3", "Mothers_0days"="darkolivegreen", "Mothers_2days" = "darkolivegreen3", "Fruits_5_6days" = "red4", "Larvae"= "green3", "Pupae" = "darkorange2", "PupalCases"="#8B4500", "Daughters" ="goldenrod2")
 
