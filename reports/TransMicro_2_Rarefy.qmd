@@ -178,6 +178,7 @@ ps_16Sm <- prune_taxa(!(taxa_names(ps_16Sm) %in% wolbachia_taxa), ps_16Sm) ## Re
 
 
 # Remove 16S conta
+TAX_16S_df <- as.data.frame(TAX_16S)
 Genus_conta_16S <- c("Lentihominibacter", "Cutibacterium", "Corynebacterium")
 Fam_conta_16S <- c("Anaerovoracaceae")
 
@@ -211,43 +212,60 @@ saveRDS(ps_ITSm, file=file.path(here::here(), "data", "derived_data", "2_RarefyD
 # 4. Remove low-depth samples
 
 ```{r}
+ps_16Sm <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_ps_contaRemoved.rds"))
+ps_ITSm <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_ps_contaRemoved.rds"))
 
+#threshold for min. reads per sample at 250
+ps_16Sm_sq <- ps_16Sm %>%
+  prune_samples(sample_sums(.) >= 250, .) %>%
+  prune_taxa(taxa_sums(.) > 0, .)
 
+ps_ITSm_sq <- ps_ITSm %>%
+  prune_samples(sample_sums(.) >= 250, .) %>%
+  prune_taxa(taxa_sums(.) > 0, .)
 
+sum_physeq_clean(ps_16Sm, ps_16Sm_sq) # filtered : 20% of samples + 77.8% of ASVs
+sum_physeq_clean(ps_ITSm, ps_ITSm_sq) # filtered : 4.03% of samples + 36.2% of ASVs
 
+# Export
+saveRDS(ps_16Sm_sq, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_ps_contaRemoved_lowDepthFiltered.rds"))
+saveRDS(ps_ITSm_sq, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_ps_contaRemoved_lowDepthFiltered.rds"))
 ```
 
 # 5. Distinguish datasets
 
 ```{r}
+ps_16Sm_sq <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_ps_contaRemoved_lowDepthFiltered.rds"))
+ps_ITSm_sq <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_ps_contaRemoved_lowDepthFiltered.rds"))
+
 ## Dataset 1 : fruits Batch 1 + individuals Batch 1
 
 # Filter samples by abundance (>0) and type (fruits and suzu at all stages from "Focal_Sites")
-ps_16S_rare_Dataset_1 <- subset_samples(ps_rare_16S, Sample_Category %in% c("All_stages_Focal_Sites", "All_stages_focal_Sites")) #exclude indiv. naturally infesting + naturally infested fruits, if want to include use -> grepl("Focal_Sites", Sample_Category)) 
-ps_16S_rare_Dataset_1 <- prune_taxa(taxa_sums(ps_16S_rare_Dataset_1)>0, ps_16S_rare_Dataset_1)
+ps_16S_cl_Dataset_1 <- subset_samples(ps_16Sm_sq, Sample_Category %in% c("All_stages_Focal_Sites", "All_stages_focal_Sites")) #exclude indiv. naturally infesting + naturally infested fruits, if want to include use -> grepl("Focal_Sites", Sample_Category)) 
+ps_16S_cl_Dataset_1 <- prune_taxa(taxa_sums(ps_16S_cl_Dataset_1)>0, ps_16S_cl_Dataset_1)
 
 
-ps_ITS_rare_Dataset_1 <- subset_samples(ps_rare_ITS, Sample_Category %in% c("All_stages_Focal_Sites", "All_stages_focal_Sites"))
-ps_ITS_rare_Dataset_1 <- prune_taxa(taxa_sums(ps_ITS_rare_Dataset_1)>0, ps_ITS_rare_Dataset_1)
+ps_ITS_cl_Dataset_1 <- subset_samples(ps_ITSm_sq, Sample_Category %in% c("All_stages_Focal_Sites", "All_stages_focal_Sites"))
+ps_ITS_cl_Dataset_1 <- prune_taxa(taxa_sums(ps_ITS_cl_Dataset_1)>0, ps_ITS_cl_Dataset_1)
 
-## Export
-saveRDS(ps_16S_rare_Dataset_1, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_ps_rare_Dataset_1.rds"))
-saveRDS(ps_ITS_rare_Dataset_1, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_ps_rare_Dataset_1.rds"))
-```
+# Export
+saveRDS(ps_16S_cl_Dataset_1, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "16S_ps_cleaned_Dataset_1.rds"))
+saveRDS(ps_ITS_cl_Dataset_1, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "ITS_ps_cleaned_Dataset_1.rds"))
 
-```{r}
+
+
 ## Dataset 2 : fruits Batch 1 + fruits Batch 2 (supp. mat.)
 
-ps_16S_rare_Dataset_2 <- subset_samples(ps_rare_16S, SampleType %in% c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days"))
-ps_16S_rare_Dataset_2 <- prune_taxa(taxa_sums(ps_16S_rare_Dataset_2)>0,ps_16S_rare_Dataset_2) 
+ps_16S_cl_Dataset_2 <- subset_samples(ps_16Sm_sq, SampleType %in% c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days"))
+ps_16S_cl_Dataset_2 <- prune_taxa(taxa_sums(ps_16S_cl_Dataset_2)>0,ps_16S_cl_Dataset_2) 
 
 
-ps_ITS_rare_Dataset_2 <- subset_samples(ps_rare_ITS, SampleType %in% c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days"))
-ps_ITS_rare_Dataset_2 <- prune_taxa(taxa_sums(ps_ITS_rare_Dataset_2)>0,ps_ITS_rare_Dataset_2)
+ps_ITS_cl_Dataset_2 <- subset_samples(ps_ITSm_sq, SampleType %in% c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days"))
+ps_ITS_cl_Dataset_2 <- prune_taxa(taxa_sums(ps_ITS_cl_Dataset_2)>0,ps_ITS_cl_Dataset_2)
 
 ## Export
-saveRDS(ps_16S_rare_Dataset_2, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_ps_rare_Dataset_2.rds"))
-saveRDS(ps_ITS_rare_Dataset_2, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_ps_rare_Dataset_2.rds"))
+saveRDS(ps_16S_cl_Dataset_2, file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "16S_ps_cleaned_Dataset_2.rds"))
+saveRDS(ps_ITS_cl_Dataset_2, file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "ITS_ps_cleaned_Dataset_2.rds"))
 ```
 
 
