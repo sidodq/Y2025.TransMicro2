@@ -240,8 +240,9 @@ ps_ITSm_sq <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_Ra
 
 ## Dataset 1 : fruits Batch 1 + individuals Batch 1
 
+
 # Filter samples by abundance (>0) and type (fruits and suzu at all stages from "Focal_Sites")
-ps_16S_cl_Dataset_1 <- subset_samples(ps_16Sm_sq, Sample_Category %in% c("All_stages_Focal_Sites", "All_stages_focal_Sites")) #exclude indiv. naturally infesting + naturally infested fruits, if want to include use -> grepl("Focal_Sites", Sample_Category)) 
+ps_16S_cl_Dataset_1 <- subset_samples(ps_16Sm_sq, Sample_Category %in% c("All_stages_Focal_Sites", "All_stages_focal_Sites")) #exclude indiv. naturally infesting + naturally infested fruits, if want to include use -> grepl("Focal_Sites", Sample_Category))
 ps_16S_cl_Dataset_1 <- prune_taxa(taxa_sums(ps_16S_cl_Dataset_1)>0, ps_16S_cl_Dataset_1)
 
 

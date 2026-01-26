@@ -56,145 +56,259 @@ color_Expe <- c("na" ="grey","Fruits_0days" = "red3", "Mothers_0days"="darkolive
 
 ```
 
-# 2. Load data 
+# 2. Prepare data 
+
+## Dataset 1 (indiv. + host fruits)
+
+### 16S
 ```{r}
-metadata <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "TM123_metadata.tsv"),sep="\t",header=TRUE)
 
-ps_16S_rare_expe_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1",  "ps_16S_rare_expe_D1.rds"))
-ps_ITS_rare_expe_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1",  "ps_ITS_rare_expe_D1.rds"))
+ps_rare_16S_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1", "16S_ps_rare_D1.rds"))
 
-ps_16S_rare_D2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2",  "ps_rare_16S_Dataset_2.rds"))
-ps_ITS_rare_D2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2",  "ps_rare_ITS_Dataset_2.rds"))
+# Filter data (exclude Nat_Uninf_Fruits_5_6days)
+ps_16S_rare_expe_D1 <- Subset_physeq(ps_rare_16S_D1, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
+
+# Rename + reorder Sample Type
+sample_data(ps_16S_rare_expe_D1)$SampleType <- factor(sample_data(ps_16S_rare_expe_D1)$SampleType)
+
+sample_data(ps_16S_rare_expe_D1)$SampleType <- sample_data(ps_16S_rare_expe_D1)$SampleType %>%
+  forcats::fct_recode(
+    Mothers_0days = "G0_Adults_0days",
+    Mothers_2days = "G0_Adults_Fruits_2days",
+    Larvae = "G1_Larvae_Fruits",
+    Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
+    Pupae = "G1_Pupae_Fruits",
+    PupalCases = "G1_PupalCase_Fruits",
+    Daughters = "G1_Adults_Fruits")
+
+desired_order <- c("Fruits_0days", "Mothers_0days", "Mothers_2days", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters")  
+sample_data(ps_16S_rare_expe_D1)$SampleType <- factor(sample_data(ps_16S_rare_expe_D1)$SampleType, levels = desired_order)
+
+
+# counts -> presence/absence (binary table)
+ps_rare_16S_D1_bin = phyloseq::transform_sample_counts(ps_16S_rare_expe_D1, function(x) 1*(x>0)) 
+
+## Extract metadata
+mtd_D1_16S <- data.frame(phyloseq::sample_data(ps_rare_16S_D1_bin))
+mtd_D1_16S <- mtd_D1_16S %>%
+  dplyr::rename(Sample = ID_pool)
+
+## Extract taxonomy table
+df_taxo_D1_16S = as.data.frame(tax_table(ps_rare_16S_D1_bin))
+df_taxo_D1_16S$tax_ID = rownames(df_taxo_D1_16S)
+
+## Extract table with presence/absence
+df_reads_D1_16S = as.data.frame(otu_table(ps_rare_16S_D1_bin)) 
+df_reads_D1_16S <- t(df_reads_D1_16S)
+df_reads_D1_16S = as.data.frame(df_reads_D1_16S)
+df_reads_D1_16S$tax_ID = rownames(df_reads_D1_16S)
+## Merge table with presence/absence and taxonomy
+df_wide_D1_16S <- dplyr::left_join(df_taxo_D1_16S, df_reads_D1_16S, by = "tax_ID") #merge the two (suppr "Species" column)
+df_wide_D1_16S$Species <- NULL
+
+## Remove taxonomy other than Genus
+BF_D1_16S <- df_wide_D1_16S[, c(6,8:dim(df_wide_D1_16S)[2])] #subset + genus as row names + sample names as column names + transposematrix
+BF_D1_16S$Genus <- make.unique(BF_D1_16S$Genus, sep = "_")
+rownames(BF_D1_16S) <- BF_D1_16S$Genus 
+BF_D1_16S$Genus <- NULL
+colnames(BF_D1_16S) <- mtd_D1_16S$Sample[match(colnames(BF_D1_16S), mtd_D1_16S$Sample)]
+## Transpose matrix
+FB_D1_16S <- t(BF_D1_16S)
+```
+
+
+
+### ITS
+``` {r}
+ps_rare_ITS_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1", "ITS_ps_rare_D1.rds"))
+
+ps_ITS_rare_expe_D1 <- Subset_physeq(ps_rare_ITS_D1, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
+
+# ITS : rename + reorder Sample Type
+sample_data(ps_ITS_rare_expe_D1)$SampleType <- factor(sample_data(ps_ITS_rare_expe_D1)$SampleType)
+
+sample_data(ps_ITS_rare_expe_D1)$SampleType <- sample_data(ps_ITS_rare_expe_D1)$SampleType %>%
+  forcats::fct_recode(
+    Mothers_0days = "G0_Adults_0days",
+    Mothers_2days = "G0_Adults_Fruits_2days",
+    Larvae = "G1_Larvae_Fruits",
+    Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
+    Pupae = "G1_Pupae_Fruits",
+    PupalCases = "G1_PupalCase_Fruits",
+    Daughters = "G1_Adults_Fruits")
+
+sample_data(ps_ITS_rare_expe_D1)$SampleType <- factor(sample_data(ps_ITS_rare_expe_D1)$SampleType, levels = desired_order)
+
+
+# counts -> presence/absence (binary table)
+ps_rare_ITS_D1_bin <- phyloseq::transform_sample_counts(ps_ITS_rare_expe_D1, function(x) 1*(x>0)) 
+
+## Extract metadata
+mtd_D1_ITS <- data.frame(phyloseq::sample_data(ps_rare_ITS_D1_bin))
+mtd_D1_ITS <- mtd_D1_ITS %>%
+  dplyr::rename(Sample = ID_pool)
+
+## Extract taxonomy table
+df_taxo_D1_ITS = as.data.frame(tax_table(ps_rare_ITS_D1_bin))
+df_taxo_D1_ITS$tax_ID = rownames(df_taxo_D1_ITS)
+
+## Extract table with presence/absence
+df_reads_D1_ITS = as.data.frame(otu_table(ps_rare_ITS_D1_bin)) 
+df_reads_D1_ITS <- t(df_reads_D1_ITS)
+df_reads_D1_ITS = as.data.frame(df_reads_D1_ITS)
+df_reads_D1_ITS$tax_ID = rownames(df_reads_D1_ITS)
+
+## Merge table with presence/absence and taxonomy
+df_wide_D1_ITS = dplyr::left_join(df_taxo_D1_ITS, df_reads_D1_ITS, by = "tax_ID") #merge the two (suppr "Species" column)
+df_wide_D1_ITS$Species <- NULL
+
+## Remove taxonomy other than Genus
+BF_D1_ITS <- df_wide_D1_ITS[, c(6,8:dim(df_wide_D1_ITS)[2])] #subset + genus as row names + sample names as column names + transposematrix
+BF_D1_ITS$Genus <- make.unique(BF_D1_ITS$Genus, sep = "_")
+rownames(BF_D1_ITS) <- BF_D1_ITS$Genus 
+BF_D1_ITS$Genus <- NULL
+colnames(BF_D1_ITS) <- mtd_D1_ITS$Sample[match(colnames(BF_D1_ITS), mtd_D1_ITS$Sample)]
+## Transpose matrix
+FB_D1_ITS <- t(BF_D1_ITS)
+```
+
+
+## Dataset 2 (fruits)
+
+### 16S
+```{r}
+ps_rare_16S_D2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "16S_ps_rare_D2.rds"))
+
+ps_rare_ITS_D2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "ITS_ps_rare_D2.rds"))
+
+# 16S
+ps_rare_16S_D2_bin = phyloseq::transform_sample_counts(ps_rare_16S_D2, function(x) 1*(x>0)) # counts -> presence/absence (binary table)
+
+## Extract metadata
+mtd_D2_16S <- data.frame(phyloseq::sample_data(ps_rare_16S_D2_bin))
+mtd_D2_16S <- mtd_D2_16S %>%
+  dplyr::rename(Sample = ID_pool)
+
+## Extract taxonomy table
+df_taxo_D2_16S = as.data.frame(tax_table(ps_rare_16S_D2_bin))
+df_taxo_D2_16S$tax_ID = rownames(df_taxo_D2_16S)
+
+## Extract table with presence/absence
+df_reads_D2_16S = as.data.frame(otu_table(ps_rare_16S_D2_bin)) 
+df_reads_D2_16S <- t(df_reads_D2_16S)
+df_reads_D2_16S = as.data.frame(df_reads_D2_16S)
+df_reads_D2_16S$tax_ID = rownames(df_reads_D2_16S)
+
+## Merge table with presence/absence and taxonomy
+df_wide_D2_16S = dplyr::left_join(df_taxo_D2_16S, df_reads_D2_16S, by = "tax_ID") #merge the two (suppr "Species" column)
+df_wide_D2_16S$Species <- NULL
+
+## Remove taxonomy other than Genus
+BF_D2_16S <- df_wide_D2_16S[, c(6,8:dim(df_wide_D2_16S)[2])] #subset + genus as row names + sample names as column names + transposematrix
+BF_D2_16S$Genus <- make.unique(BF_D2_16S$Genus, sep = "_")
+rownames(BF_D2_16S) <- BF_D2_16S$Genus 
+BF_D2_16S$Genus <- NULL
+colnames(BF_D2_16S) <- mtd_D2_16S$Sample[match(colnames(BF_D2_16S), mtd_D2_16S$Sample)]
+## Transpose matrix
+FB_D2_16S <- t(BF_D2_16S)
+```
+
+
+### ITS
+```{r}
+ps_rare_ITS_D2_bin = phyloseq::transform_sample_counts(ps_rare_ITS_D2, function(x) 1*(x>0)) # counts -> presence/absence (binary table)
+
+## Extract metadata
+mtd_D2_ITS <- data.frame(phyloseq::sample_data(ps_rare_ITS_D2_bin))
+mtd_D2_ITS <- mtd_D2_ITS %>%
+  dplyr::rename(Sample = ID_pool)
+
+## Extract taxonomy table
+df_taxo_D2_ITS = as.data.frame(tax_table(ps_rare_ITS_D2_bin))
+df_taxo_D2_ITS$tax_ID = rownames(df_taxo_D2_ITS)
+
+## Extract table with presence/absence
+df_reads_D2_ITS = as.data.frame(otu_table(ps_rare_ITS_D2_bin)) 
+df_reads_D2_ITS <- t(df_reads_D2_ITS)
+df_reads_D2_ITS = as.data.frame(df_reads_D2_ITS)
+df_reads_D2_ITS$tax_ID = rownames(df_reads_D2_ITS)
+
+## Merge table with presence/absence and taxonomy
+df_wide_D2_ITS = dplyr::left_join(df_taxo_D2_ITS, df_reads_D2_ITS, by = "tax_ID") #merge the two (suppr "Species" column)
+df_wide_D2_ITS$Species <- NULL
+
+## Remove taxonomy other than Genus
+BF_D2_ITS <- df_wide_D2_ITS[, c(6,8:dim(df_wide_D2_ITS)[2])] #subset + genus as row names + sample names as column names + transposematrix
+BF_D2_ITS$Genus <- make.unique(BF_D2_ITS$Genus, sep = "_")
+rownames(BF_D2_ITS) <- BF_D2_ITS$Genus 
+BF_D2_ITS$Genus <- NULL
+colnames(BF_D2_ITS) <- mtd_D2_ITS$Sample[match(colnames(BF_D2_ITS), mtd_D2_ITS$Sample)]
+## Transpose matrix
+FB_D2_ITS <- t(BF_D2_ITS)
+```
+
+#3. SBM clustering
+
+## Dataset 1
+
+### 16S 
+
+```{r}
+
+SBM_bernoulli_16S_D1 <-  as.matrix(FB_D1_16S) %>%
+  sbm::estimateBipartiteSBM(model = 'bernoulli')
+
+memb_spl_obs_16S_D1 <- SBM_bernoulli_16S_D1$memberships$row
+memb_otu_obs_16S_D1 <- SBM_bernoulli_16S_D1$memberships$col
+
+SBM_bernoulli_16S_D1$storedModels %>% dplyr::arrange(ICL)
+
+SBM_16S_D1_FruitType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_D1, BF_mat = BF_D1_16S, mtd = mtd_D1_16S, variable_name = "FruitType", modality_string = c("BL", "CH", "na", "ST"), color_string = c("purple4", "red4", "grey", "red2"))
+
+title_plot <- "SBM_D1_16S_FruitType.png"
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_16S_D1_FruitType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
+
+
+
+
+SBM_16S_D1_FruitSite <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_D1, BF_mat = BF_D1_16S, mtd = mtd_D1_16S, variable_name = "FruitSite", modality_string = c("THU","FIN","LOM","IST","MIL","VAR"), color_string = c("skyblue","blue2","skyblue4","deepskyblue","coral2","dodgerblue"))
+
+SBM_16S_D1_LifeStage <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_D1, BF_mat = BF_D1_16S, mtd = mtd_D1_16S, variable_name = "LifeStage", modality_string = c("Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "Daughter"), color_string = c("goldenrod2" , "darkolivegreen2","darkolivegreen4","darkorange2","#8B4500")) 
+
+```
+
+### ITS 
+```{r}
+SBM_bernoulli_ITS_D1 <-  as.matrix(FB_D1_ITS) %>%
+    sbm::estimateBipartiteSBM(model = 'bernoulli')
+
+memb_spl_obs_ITS_D1 <- SBM_bernoulli_ITS_D1$memberships$row
+memb_otu_obs_ITS_D1 <- SBM_bernoulli_ITS_D1$memberships$col
+
+SBM_bernoulli_ITS_D1$storedModels %>% dplyr::arrange(ICL)
+
+
+SBM_ITS_expe_FruitType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_ITS_D1, BF_mat = BF_D1_ITS, mtd = mtd_D1_ITS, variable_name = "FruitType", modality_string = c("BL", "CH", "na","ST"), color_string = c("purple4", "red4", "grey","red2"))
+
+title_plot <- "SBM_D1_ITS_FruitType.png"
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_ITS_expe_FruitType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
+
+# SBM_16S_expe_FruitSite <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_expe, BF_mat = BF_16S_expe, mtd = mtd_16S_expe, variable_name = "FruitSite", modality_string = c("THU","FIN","LOM","IST","MIL","VAR","na"), color_string = c("skyblue","blue2","skyblue4","deepskyblue","grey", "coral2","dodgerblue"))
+
+SBM_ITS_expe_SampleType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_ITS_expe, BF_mat = BF_ITS_expe, mtd = mtd_ITS_expe, variable_name = "SampleType", modality_string = c("Fruits_0days", "Mothers_0days", "Mothers_2days", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters"), color_string = color_Expe <- c("red3", "darkolivegreen", "darkolivegreen3", "red4", "green3", "darkorange2", "#8B4500", "goldenrod2")) 
+
+title_plot <- "SBM_Expe_ITS_SampletType.png"
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", title_plot), SBM_ITS_expe_SampleType, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
 ```
 
 ```{r}
+# Combined SBM plots
+SBM_expe_combined <- 
+  (SBM_16S_expe_FruitType_LifeStage + labs(tag = "A. Bacteria")) /
+  (SBM_ITS_expe_FruitType_LifeStage + labs(tag = "B. Fungi")) +
+  plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
 
-get_otu_asv_by_sample <- function(ps) {
-  otu <- as(otu_table(ps), "matrix")
-  if (!taxa_are_rows(ps)) {
-    otu <- t(otu)
-  }
-  otu
-}
-
-# compute otu's prevalence
-compute_prevalence <- function(ps) {
-  otu <- get_otu_asv_by_sample(ps)
-  rowMeans(otu > 0)
-}
-
-
-# calculate reads and asv loss thresholds
-evaluate_filter <- function(ps, prev_cutoff) {
-
-  otu <- get_otu_asv_by_sample(ps)
-
-  prev <- rowMeans(otu > 0)
-  keep_taxa <- prev >= prev_cutoff
-
-  if (!any(keep_taxa)) {
-    return(
-      tibble::tibble(
-        prev_cutoff = prev_cutoff,
-        frac_ASVs_removed  = 1,
-        frac_reads_removed = 1
-      )
-    )
-  }
-
-  reads_before <- sum(otu)
-  reads_after  <- sum(otu[keep_taxa, , drop = FALSE])
-
-  tibble::tibble(
-    prev_cutoff = prev_cutoff,
-    frac_ASVs_removed  = 1 - mean(keep_taxa),
-    frac_reads_removed = 1 - reads_after / reads_before
-  )
-}
-
-
-
-# function to clean physeq object
-clean_phyloseq_ASVs <- function(
-  ps,
-  min_reads = 250,
-  max_frac_reads_removed = 0.20,
-  max_frac_ASVs_removed  = 0.40,
-  prevalence_grid = seq(0.1, 1, by = 0.01)
-) {
-
-  ## 1️⃣ Drop low-depth samples
-  ps <- prune_samples(sample_sums(ps) >= min_reads, ps)
-
-  ## Safety
-  if (nsamples(ps) == 0)
-    stop("No samples left after read-depth filtering.")
-
-  ## 2️⃣ Evaluate prevalence cutoffs
-  eval_tbl <- purrr::map_dfr(
-    prevalence_grid,
-    ~ evaluate_filter(ps, .x)
-  )
-
-  ## 3️⃣ Keep only valid thresholds
-  valid <- eval_tbl %>%
-    dplyr::filter(
-      frac_reads_removed <= max_frac_reads_removed,
-      frac_ASVs_removed  <= max_frac_ASVs_removed
-    )
-
-  if (nrow(valid) == 0)
-    stop("No prevalence threshold satisfies the constraints.")
-
-  ## 4️⃣ Pick the *most stringent* valid cutoff
-  best_prev <- max(valid$prev_cutoff)
-
-  ## 5️⃣ Apply it
-  prev <- compute_prevalence(ps)
-  ps_clean <- prune_taxa(prev >= best_prev, ps)
-
-  ## 6️⃣ Report
-  message("Chosen prevalence cutoff: ", round(best_prev, 2))
-  message("Reads removed: ",
-          scales::percent(valid$frac_reads_removed[valid$prev_cutoff == best_prev]))
-  message("ASVs removed: ",
-          scales::percent(valid$frac_ASVs_removed[valid$prev_cutoff == best_prev]))
-
-  return(ps_clean)
-}
-
-#test on ps_16S_rare_expe_D1
-cleaned_ps_16S_rare_expe_D1 <- clean_phyloseq_ASVs(ps = ps_16S_rare_expe_D1,
-  min_reads = 250,
-  max_frac_reads_removed = 0.20,
-  max_frac_ASVs_removed  = 0.40,
-  prevalence_grid = seq(0.1, 1, by = 0.01)
-)
-
-eval_tbl %>%
-  tidyr::pivot_longer(
-    cols = starts_with("frac"),
-    names_to = "metric",
-    values_to = "value"
-  ) %>%
-  ggplot2::ggplot(aes(prev_cutoff, value, color = metric)) +
-  ggplot2::geom_line() +
-  ggplot2::geom_hline(yintercept = c(0.2, 0.4), linetype = "dashed") +
-  ggplot2::labs(
-    x = "Prevalence cutoff",
-    y = "Fraction removed"
-  )
-
-
-
-eval_tbl <- purrr::map_dfr(
-  prevalence_grid,
-  ~ evaluate_filter(ps_16S_rare_expe_D1, .x)
-)
-
-eval_tbl
-print(eval_tbl,n=91)
-
+title_plot <- "SBM_Expe_FruitType&SampleType_combined.png"
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", title_plot), SBM_expe_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200) 
 ```
-
 
