@@ -3,8 +3,8 @@
 #' @description
 #'filter phyloseq object by suppressing ASVs with less than 70 % of prevalence per SampleType x Fruit
 #'
-#' @param ps phyloseq object
-#' @param prev_thresh = 0.7
+#' @param physeq phyloseq object
+#' @param prevalence = 0.7
 #' @param group_cols = c("SampleType", "FruitType")
 #'
 #'
@@ -47,7 +47,13 @@ filter_phyloseq_prevalence <- function(physeq, group_cols = c("SampleType", "Fru
 
   taxa_keep <- unique(prev$OTU)
 
-  phyloseq::prune_taxa(taxa_keep, physeq)
+    # Apply ASV filter
+  physeq2 <- phyloseq::prune_taxa(taxa_keep, physeq)
+
+  # Remove empty samples
+  physeq2 <- phyloseq::prune_samples(sample_sums(physeq2) > 0, physeq2)
+
+  return(physeq2)
 }
 
 #'
