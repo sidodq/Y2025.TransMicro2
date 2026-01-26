@@ -471,4 +471,3 @@ write.table(tax_df_ITS, file=file.path(here::here(), "data", "derived_data", "2_
 metadata_ITS_df <- data.frame(sample_data(ps_rare_ITS_D2), check.names = FALSE)
 write.xlsx(metadata_ITS_df, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_2", "ps_rare_ITS_sample_data_D2.xlsx"), rowNames = TRUE)
 ```
-
