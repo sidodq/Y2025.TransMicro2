@@ -185,6 +185,7 @@ ps_16Sm <- prune_taxa(!(taxa_names(ps_16Sm) %in% wolbachia_taxa), ps_16Sm) ## Re
 # Remove 16S conta
 Genus_conta_16S <- c("Lentihominibacter", "Cutibacterium", "Corynebacterium")
 Fam_conta_16S <- c("Anaerovoracaceae")
+TAX_16S_df <- as.data.frame(TAX_16S)
 
 taxa_to_remove_16S <- TAX_16S_df %>%
   filter(Family %in% Fam_conta_16S | Genus %in% Genus_conta_16S) %>%
