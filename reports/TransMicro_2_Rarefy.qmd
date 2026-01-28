@@ -127,10 +127,10 @@ TAX_ITS <- phyloseq::tax_table(as.matrix(tax_ITS))
 ps_16S <- phyloseq(OTU_16S, TAX_16S, sample_data(mtd))
 ps_ITS <- phyloseq(OTU_ITS, TAX_ITS, sample_data(mtd))
 
-ps_16Sm <- merge_samples(ps_16S,group = "ID_pool",fun = sum)
-ps_ITSm <- merge_samples(ps_ITS,group = "ID_pool",fun = sum)
+ps_16S_raw <- merge_samples(ps_16S,group = "ID_pool",fun = sum)
+ps_ITS_raw <- merge_samples(ps_ITS,group = "ID_pool",fun = sum)
 
-sample_data(ps_16Sm) <- sample_data(ps_16S) %>%
+sample_data(ps_16S_raw) <- sample_data(ps_16S) %>%
   as.data.frame() %>%
   group_by(ID_pool) %>%
   summarise(across(
@@ -140,7 +140,7 @@ sample_data(ps_16Sm) <- sample_data(ps_16S) %>%
   tibble::column_to_rownames("ID_pool") %>%
   sample_data()
 
-sample_data(ps_ITSm) <- sample_data(ps_ITS) %>%
+sample_data(ps_ITS_raw) <- sample_data(ps_ITS) %>%
   as.data.frame() %>%
   group_by(ID_pool) %>%
   summarise(across(
@@ -151,30 +151,27 @@ sample_data(ps_ITSm) <- sample_data(ps_ITS) %>%
   sample_data()
 
 
-# Extract OTU abundance data from phyloseq objects
-table_OTU_16S <- phyloseq::otu_table(ps_16Sm)
-table_OTU_16S[rowSums(phyloseq::otu_table(ps_16Sm)) == 0, ] # OTUs with no counts in any 16S samples
-names(phyloseq::sample_sums(ps_16Sm)[ phyloseq::sample_sums(ps_16Sm) == 0]) #samples with no reads
-
-table_OTU_ITS <- phyloseq::otu_table(ps_ITSm)
-table_OTU_ITS[rowSums(phyloseq::otu_table(ps_ITSm)) == 0, ] # OTUs with no counts in any ITS samples
-names(phyloseq::sample_sums(ps_ITSm)[ phyloseq::sample_sums(ps_ITSm) == 0]) #samples with no reads
+# Export
+saveRDS(ps_16S_raw, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_ps_raw.rds"))
+saveRDS(ps_ITS_raw, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_ps_raw.rds"))
 ```
 
 # 3. Remove conta.
 
 ```{r}
+ps_16S_raw <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_ps_raw.rds"))
+ps_ITS_raw <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_ps_raw.rds"))
 # Remove Wolbachia
-tax_ps <- as.data.frame(tax_table(ps_16Sm))
+tax_ps <- as.data.frame(tax_table(ps_16S_raw ))
 
 wolbachia_taxa <- rownames(tax_ps[!is.na(tax_ps$Genus) & tax_ps$Genus == "Wolbachia", ]) # List of Wolbachia clusters
 
-otu_ps <- as.data.frame(otu_table(ps_16Sm))
-if (!taxa_are_rows(ps_16Sm)) otu_ps <- t(otu_ps)
+otu_ps <- as.data.frame(otu_table(ps_16S_raw))
+if (!taxa_are_rows(ps_16S_raw )) otu_ps <- t(otu_ps)
 
 sum(otu_ps[wolbachia_taxa, , drop = FALSE]) / sum(otu_ps) * 100 ## Relative abundance of Wolbachia = 16.76 %
 
-ps_16Sm <- prune_taxa(!(taxa_names(ps_16Sm) %in% wolbachia_taxa), ps_16Sm) ## Remove
+ps_16Sm <- prune_taxa(!(taxa_names(ps_16S_raw ) %in% wolbachia_taxa), ps_16S_raw ) ## Remove
 
 
 # Remove 16S conta
@@ -201,8 +198,11 @@ taxa_to_remove_ITS <- TAX_ITS_df %>%
   
 write.xlsx( TAX_ITS_df[taxa_to_remove_ITS, ], file = file.path(here::here(), "data", "derived_data",  "2_RarefyData","Conta_clusters_ITS.xlsx"), rowNames = TRUE) #export removed clusers
 
-ps_ITSm <- prune_taxa(!(taxa_names(ps_ITSm) %in% taxa_to_remove_ITS),ps_ITSm)
+ps_ITSm <- prune_taxa(!(taxa_names(ps_ITS_raw) %in% taxa_to_remove_ITS),ps_ITS_raw)
 
+# Infos
+sum_physeq_clean(ps_16S_raw , ps_16Sm) # filtered : 0% of samples + 3.6% of ASVs + 20.0 % of reads
+sum_physeq_clean(ps_ITS_raw , ps_ITSm) # filtered : 0% of samples + 2.92% of ASVs + 0.622 % of reads
 
 # Export
 saveRDS(ps_16Sm, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_ps_contaRemoved.rds"))
