@@ -1,0 +1,15 @@
+---
+title: "TransMicro data analysis - Prepare Data"
+author: "Marie Lapègue, Nicolas Rode, Sido Dunis-Quarré"
+date: "`r format(Sys.Date(), '%d-%B-%Y')`"
+format:
+  html:
+    toc: true
+    toc-location: left
+    number-sections: true
+    embed-resources: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
