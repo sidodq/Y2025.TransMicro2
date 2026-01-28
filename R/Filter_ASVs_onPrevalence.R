@@ -9,7 +9,7 @@
 #'
 #'
 #' @export
-filter_phyloseq_prevalence <- function(physeq, group_cols = c("SampleType", "FruitType"), prevalence = 0.7) {
+filter_phyloseq_prevalence <- function(physeq, group_cols = c("SampleType", "FruitType"), prevalence) {
 
   stopifnot(inherits(physeq, "phyloseq"))
 

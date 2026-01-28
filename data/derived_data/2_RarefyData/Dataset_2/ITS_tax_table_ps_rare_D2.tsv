@@ -2,9 +2,12 @@ observation_name	Kingdom	Phylum	Class	Order	Family	Genus	Species
 Cluster_1	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia kluyveri
 Cluster_100	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia rubicola
 Cluster_101	Fungi	Ascomycota	Dothideomycetes	Dothideales	Dothideaceae	Dothiora	Dothiora prunorum
+Cluster_103	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Phaffomycetaceae	Wickerhamomyces	Wickerhamomyces pijperi
 Cluster_108	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia hydrangeae-macrophyllae
+Cluster_109	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_112	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
 Cluster_116	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
+Cluster_12	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia nakasei
 Cluster_123	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Unknown
 Cluster_127	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
 Cluster_13	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
@@ -16,23 +19,39 @@ Cluster_159	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Stemphyl
 Cluster_16	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Cladosporium herbarum
 Cluster_163	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_165	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Unknown	Unknown
+Cluster_166	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma victoriae
 Cluster_17	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
 Cluster_174	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Rachicladosporium	Rachicladosporium cboliae
+Cluster_176	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Unknown	Unknown
+Cluster_179	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Unknown	Unknown	Unknown
 Cluster_18	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Saccharomycodaceae	Hanseniaspora	Unknown
 Cluster_180	Fungi	Basidiomycota	Microbotryomycetes	Unknown	Unknown	Unknown	Unknown
+Cluster_182	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_187	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium bialowiezense
+Cluster_188	Fungi	Ascomycota	Taphrinomycetes	Taphrinales	Taphrinaceae	Taphrina	Unknown
+Cluster_194	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Trichomonascaceae	Starmerella	Starmerella stellata
+Cluster_2	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia kluyveri
 Cluster_20	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_209	Fungi	Ascomycota	Leotiomycetes	Helotiales	Lachnaceae	Lachnum	Unknown
 Cluster_214	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma heimaeyensis
+Cluster_215	Fungi	Basidiomycota	Exobasidiomycetes	Microstromatales	Unknown	Unknown	Unknown
 Cluster_22	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Unknown
 Cluster_223	Fungi	Ascomycota	Taphrinomycetes	Taphrinales	Taphrinaceae	Taphrina	Taphrina carpini
+Cluster_231	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma victoriae
 Cluster_240	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_242	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
 Cluster_245	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Cladosporium entadae
+Cluster_249	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Vishniacozyma tephrensis
 Cluster_257	Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Dioszegia	Unknown
 Cluster_259	Fungi	Ascomycota	Dothideomycetes	Pleosporales	Pleosporaceae	Alternaria	Unknown
 Cluster_267	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Unknown
 Cluster_27	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
+Cluster_272	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia hydrangeae-macrophyllae
 Cluster_274	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
 Cluster_28	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_281	Fungi	Basidiomycota	Cystobasidiomycetes	Unknown	Symmetrosporaceae	Unknown	Unknown
+Cluster_289	Fungi	Basidiomycota	Microbotryomycetes	Sporidiobolales	Sporidiobolaceae	Sporobolomyces	Sporobolomyces reniformis
+Cluster_29	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Phaffomycetaceae	Wickerhamomyces	Wickerhamomyces pijperi
 Cluster_295	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Cladosporium succulentum
 Cluster_3	Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia terricola
 Cluster_30	Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium brevicompactum
@@ -41,26 +60,34 @@ Cluster_31	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschniko
 Cluster_317	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_32	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
 Cluster_33	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_34	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown	Unknown	Unknown
 Cluster_340	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_341	Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia eucalypti
 Cluster_35	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
 Cluster_37	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
 Cluster_371	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_379	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia rubicola
 Cluster_38	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
+Cluster_39	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Phaffomycetaceae	Wickerhamomyces	Wickerhamomyces pijperi
+Cluster_391	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_4	Fungi	Ascomycota	Leotiomycetes	Helotiales	Sclerotiniaceae	Unknown	Unknown
 Cluster_41	Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Podosphaera	Unknown
+Cluster_422	Fungi	Mucoromycota	Mucoromycetes	Mucorales	Mucoraceae	Mucor	Mucor circinelloides
 Cluster_423	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_44	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Phaffomycetaceae	Wickerhamomyces	Wickerhamomyces pijperi
 Cluster_46	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
 Cluster_49	Fungi	Basidiomycota	Tremellomycetes	Filobasidiales	Filobasidiaceae	Filobasidium	Filobasidium wieringae
 Cluster_5	Fungi	Ascomycota	Dothideomycetes	Cladosporiales	Cladosporiaceae	Cladosporium	Unknown
 Cluster_51	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_53	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_540	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_55	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
 Cluster_57	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
 Cluster_576	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_58	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_59	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
 Cluster_6	Fungi	Ascomycota	Leotiomycetes	Helotiales	Sclerotiniaceae	Unknown	Unknown
+Cluster_615	Fungi	Ascomycota	Leotiomycetes	Helotiales	Ploettnerulaceae	Cadophora	Unknown
 Cluster_64	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
 Cluster_66	Fungi	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_67	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia vanudenii
@@ -68,8 +95,11 @@ Cluster_68	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_7	Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Saccharomycodaceae	Hanseniaspora	Unknown
 Cluster_72	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_73	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_744	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_769	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Cluster_78	Fungi	Ascomycota	Saccharomycetes	Ascoideales	Saccharomycopsidaceae	Saccharomycopsis	Saccharomycopsis crataegensis
 Cluster_8	Fungi	Ascomycota	Dothideomycetes	Dothideales	Saccotheciaceae	Aureobasidium	Aureobasidium pullulans
+Cluster_81	Fungi	Ascomycota	Leotiomycetes	Unknown	Unknown	Unknown	Unknown
 Cluster_85	Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia gruessii
 Cluster_87	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_89	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown

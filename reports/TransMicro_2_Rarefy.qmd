@@ -215,16 +215,16 @@ saveRDS(ps_ITSm, file=file.path(here::here(), "data", "derived_data", "2_RarefyD
 ps_16Sm <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_ps_contaRemoved.rds"))
 ps_ITSm <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_ps_contaRemoved.rds"))
 
-#threshold for min. reads per sample at 250
+#threshold for min. reads per sample at 150 for 16S & 250 for ITS
 ps_16Sm_sq <- ps_16Sm %>%
-  prune_samples(sample_sums(.) >= 250, .) %>%
+  prune_samples(sample_sums(.) >= 150, .) %>%
   prune_taxa(taxa_sums(.) > 0, .)
 
 ps_ITSm_sq <- ps_ITSm %>%
   prune_samples(sample_sums(.) >= 250, .) %>%
   prune_taxa(taxa_sums(.) > 0, .)
 
-sum_physeq_clean(ps_16Sm, ps_16Sm_sq) # filtered : 20% of samples + 77.8% of ASVs + 0.03 % of reads
+sum_physeq_clean(ps_16Sm, ps_16Sm_sq) # filtered : 18.8% of samples + 77.8% of ASVs + 0.008 % of reads
 sum_physeq_clean(ps_ITSm, ps_ITSm_sq) # filtered : 4.03% of samples + 36.2% of ASVs + 0.005 % of reads
 
 # Export
@@ -275,14 +275,12 @@ saveRDS(ps_ITS_cl_Dataset_2, file=file.path(here::here(), "data", "derived_data"
 ps_16S_cl_Dataset_1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "16S_ps_cleaned_Dataset_1.rds"))
 ps_ITS_cl_Dataset_1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "ITS_ps_cleaned_Dataset_1.rds"))
 
-ps_16S_filt_Dataset_1 <- filter_phyloseq_prevalence(ps_16S_cl_Dataset_1)
-ps_ITS_filt_Dataset_1 <- filter_phyloseq_prevalence(ps_ITS_cl_Dataset_1)
+ps_16S_filt_Dataset_1 <- filter_phyloseq_prevalence(ps_16S_cl_Dataset_1, prevalence = 0.6)
+ps_ITS_filt_Dataset_1 <- filter_phyloseq_prevalence(ps_ITS_cl_Dataset_1, prevalence = 0.6)
 
 # Filter on ASVs prevalence per sample + samples with null abundance 
-sum_physeq_clean(ps_16S_cl_Dataset_1, ps_16S_filt_Dataset_1) 
-# filtered : 2.84% of samples + 95.2% of ASVs + 14.2 % of reads
-sum_physeq_clean(ps_ITS_cl_Dataset_1, ps_ITS_filt_Dataset_1) 
-# filtered : 0% of samples + 76.8% of ASVs + 10.1 % of reads
+sum_physeq_clean(ps_16S_cl_Dataset_1, ps_16S_filt_Dataset_1) # filtered : 1.40% of samples + 90.4% of ASVs + 6.24 % of reads
+sum_physeq_clean(ps_ITS_cl_Dataset_1, ps_ITS_filt_Dataset_1) # filtered : 0% of samples + 75.5% of ASVs + 7.22 % of reads
 
 # Add the row names in 'ID_pool' column
 sample_data(ps_16S_filt_Dataset_1)$ID_pool <- sample_names(ps_16S_filt_Dataset_1)
@@ -300,11 +298,11 @@ saveRDS(ps_ITS_filt_Dataset_1, file=file.path(here::here(), "data", "derived_dat
 ps_16S_cl_Dataset_2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "16S_ps_cleaned_Dataset_2.rds"))
 ps_ITS_cl_Dataset_2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "ITS_ps_cleaned_Dataset_2.rds"))
 
-ps_16S_filt_Dataset_2 <- filter_phyloseq_prevalence(ps_16S_cl_Dataset_2)
-ps_ITS_filt_Dataset_2 <- filter_phyloseq_prevalence(ps_ITS_cl_Dataset_2)
+ps_16S_filt_Dataset_2 <- filter_phyloseq_prevalence(ps_16S_cl_Dataset_2, prevalence = 0.6)
+ps_ITS_filt_Dataset_2 <- filter_phyloseq_prevalence(ps_ITS_cl_Dataset_2, prevalence = 0.6)
 
-sum_physeq_clean(ps_16S_cl_Dataset_2, ps_16S_filt_Dataset_2) # filtered : 9.86% of samples + 98.9% of ASVs + 26.8 % of reads
-sum_physeq_clean(ps_ITS_cl_Dataset_2, ps_ITS_filt_Dataset_2) # filtered : 0% of samples + 89.1% of ASVs + 17.7 % of reads
+sum_physeq_clean(ps_16S_cl_Dataset_2, ps_16S_filt_Dataset_2) # filtered : 4.23% of samples + 96.0% of ASVs + 10.9 % of reads
+sum_physeq_clean(ps_ITS_cl_Dataset_2, ps_ITS_filt_Dataset_2) # filtered : 0% of samples + 84.9% of ASVs + 8.84 % of reads
 
 # Add the row names in 'ID_pool' column
 sample_data(ps_16S_filt_Dataset_2)$ID_pool <- sample_names(ps_16S_filt_Dataset_2)
@@ -328,7 +326,7 @@ ps_ITS_filt_Dataset_1 <- readRDS(file=file.path(here::here(), "data", "derived_d
 
 # Plots
 Rarefactioncurve_16S_D1 <- phyloseq.extended::ggrare(ps_16S_filt_Dataset_1, step = 100, se = FALSE, color = "SampleType", label = "ID_pool") +
-  geom_vline(xintercept = 3000, linetype = "dashed") + scale_y_continuous(trans = "log10", name = "Species Richness (log10)") + xlim(0, 7000)  +  theme_bw()
+  geom_vline(xintercept = 3000, linetype = "dashed") + scale_y_continuous(trans = "log10", name = "Species Richness (log10)") + xlim(0, 10000)  +  theme_bw()
 
 title_plot <- "16S_D1_Rarefactioncurve.png"
   cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1" , title_plot), Rarefactioncurve_16S_D1, base_height = 35/cm(1), base_width = 60/cm(1), dpi = 1200)
@@ -388,11 +386,14 @@ title_plot <- "RarefactionCurves_D2.png"
 
 # Rarefy samples by discarding samples with fewer than 3.000 reads
 set.seed(1)                                         
-ps_rare_16S_D1 <- rarefy_even_depth(ps_16S_filt_Dataset_1, sample.size = 3000) # 29 samples + 5 ASVs removed
+ps_rare_16S_D1 <- rarefy_even_depth(ps_16S_filt_Dataset_1, sample.size = 3000) 
 
 set.seed(1)                                         
 ps_rare_ITS_D1 <- rarefy_even_depth(ps_ITS_filt_Dataset_1, sample.size = 5000) # 13 samples + 5 ASVs removed
 
+# Infos on loss
+sum_physeq_clean(ps_16S_filt_Dataset_1, ps_rare_16S_D1) # filtered : 14.2% of samples (20) + 0% of ASVs + 80 % of reads
+sum_physeq_clean(ps_ITS_filt_Dataset_1, ps_rare_ITS_D1) # filtered : 6.86% of samples (12) + 0% of ASVs + 63.3 % of reads
 
 ## Export
 saveRDS(ps_rare_16S_D1, file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1", "16S_ps_rare_D1.rds"))
@@ -438,6 +439,9 @@ ps_rare_16S_D2 <- rarefy_even_depth(ps_16S_filt_Dataset_2, sample.size = 3000) #
 set.seed(1)                                         
 ps_rare_ITS_D2 <- rarefy_even_depth(ps_ITS_filt_Dataset_2, sample.size = 5000) # 4 samples removed
 
+# Infos on loss
+sum_physeq_clean(ps_16S_filt_Dataset_2, ps_rare_16S_D2) # filtered : 14.7% of samples (10) + 16.7% of ASVs (6) + 93.7 % of reads
+sum_physeq_clean(ps_ITS_filt_Dataset_2, ps_rare_ITS_D2) # filtered : 3.26% of samples (3) + 0% of ASVs + 59 % of reads
 
 ## Export
 saveRDS(ps_rare_16S_D2, file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "16S_ps_rare_D2.rds"))
