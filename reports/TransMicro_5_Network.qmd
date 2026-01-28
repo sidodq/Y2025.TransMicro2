@@ -34,25 +34,7 @@ devtools::load_all()
 
 # NETWORK ANALYSIS
 
-# 1. Color Sets
-```{r}
-# using " unique(S_metadata$FruitType)" 
-color_FruitType <- c("BL" = "purple4", "CH" = "red4","na" = "grey",  "ST" = "red2")
-
-color_FruitSite <- c("THU" = "coral2", "FIN"="skyblue", "LOM"="skyblue4", "IST"="blue2", "MIL"="deepskyblue", "VAR"="dodgerblue")
-
-# using cold colors for batch 1 sites, warm for batch 2
-color_FruitSite1 <- c("na" ="grey", "FIN" = "skyblue", "IST" = "blue2" ,  "LOM" = "skyblue4", "MIL" = "deepskyblue", "VAR" = "dodgerblue", "THU" = "coral2")
-
-color_FruitVariety <- c("CDP" = "indianred", "HED" ="indianred1", "SUM" = "indianred4", "STA"="#CD2626", "SWE" = "firebrick1", "CIF" = "gold", "CIR" = "gold2", "DRE" = "lightgoldenrod1", "INF" = "yellow2", "MDB" = "yellow", "UNK" = "skyblue", "LOC"= "deepskyblue")
-
-color_LifeStage <- c("na" ="grey",  "Mothers_2days" = "darkolivegreen4", "Larva"= "darkolivegreen2", "Pupa" = "darkorange2", "PupalCase"="#8B4500", "Daughter" ="goldenrod2")
-
-color_Expe <- c("na" ="grey","Fruits_0days" = "red3", "Mothers_0days"="darkolivegreen", "Mothers_2days" = "darkolivegreen3", "Fruits_5_6days" = "red4", "Larvae"= "green3", "Pupae" = "darkorange2", "PupalCases"="#8B4500", "Daughters" ="goldenrod2")
-
-```
-
-# 2. Prepare data 
+# 1. Prepare data 
 
 ## Dataset 1 (indiv. + host fruits)
 
@@ -243,7 +225,7 @@ colnames(BF_D2_ITS) <- mtd_D2_ITS$Sample[match(colnames(BF_D2_ITS), mtd_D2_ITS$S
 FB_D2_ITS <- t(BF_D2_ITS)
 ```
 
-#3. SBM clustering
+#2. SBM clustering
 
 ## Dataset 1
 
@@ -266,10 +248,10 @@ title_plot <- "SBM_D1_16S_FruitType.png"
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_16S_D1_FruitType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
 
 
-SBM_16S_D1_LifeStage <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_D1, BF_mat = BF_D1_16S, mtd = mtd_D1_16S, variable_name = "SampleType", modality_string = c("na","Fruits_0days", "Mothers_0days", "Mothers_2days", "Fruits_5_6days", "Larvae", "Pupae", "PupalCases", "Daughters"), color_string = c("goldenrod2", "red3","red4","green3","darkolivegreen","darkolivegreen3","darkorange2","#8B4500")) 
+SBM_16S_D1_SampleType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_D1, BF_mat = BF_D1_16S, mtd = mtd_D1_16S, variable_name = "SampleType", modality_string = c("na","Fruits_0days", "Mothers_0days", "Mothers_2days", "Fruits_5_6days", "Larvae", "Pupae", "PupalCases", "Daughters"), color_string = c("goldenrod2", "red3","red4","green3","darkolivegreen","darkolivegreen3","darkorange2","#8B4500")) 
 
 title_plot <- "SBM_D1_16S_SampleType.png"
- cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_16S_D1_LifeStage, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_16S_D1_SampleType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
 ```
 
 ### ITS 
@@ -308,7 +290,7 @@ title_plot <- "SBM_D1_FruitType_combined.png"
  
  
 SBM_expe_SampleType_combined <- 
-  (SBM_16S_D1_LifeStage + labs(tag = "A. Bacteria")) /
+  (SBM_16S_D1_SampleType + labs(tag = "A. Bacteria")) /
   (SBM_ITS_expe_SampleType + labs(tag = "B. Fungi")) +
   plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
 
@@ -317,13 +299,13 @@ title_plot <- "SBM_D1_SampleType_combined.png"
 ```
 
 
-# 16S
+# alluvial plot 16S
 ```{r}
 ## Extract rows (samples) and columns (OTUs) for the alluvial plot
 memb_spl_obs_16S_D1 <- SBM_bernoulli_16S_D1$memberships$row
 memb_otu_obs_16S_D1 <- SBM_bernoulli_16S_D1$memberships$col
 
-## Data for alluvial plot : Compute SampleSize, the number of samples for each FruitType, Lifestage and OTU membership
+## Data for alluvial plot : Compute SampleSize, the number of samples for each FruitType, SampleType and OTU membership
 dataalluvial_16S_expe_FruitType_SampleType <- as.data.frame(table(sample_data(ps_rare_16S_expe_bin)$FruitType,
       memb_spl_obs_16S_expe, sample_data(ps_rare_16S_expe_bin)$SampleType))
 
@@ -425,19 +407,18 @@ title_plot <- "SBM_D2_SampleType_combined.png"
 ```
 
 
-#4. NMI
+#3. NMI
 
 ## Dataset 1
 
-### 16S
 ```{r}
-NPERM=100#set quite low, so that permutations do not take too long, only for proof of principle, set to 10000 for serious comparisons
+NPERM=10#set quite low, so that permutations do not take too long, only for proof of principle, set to 10000 for serious comparisons
 
-# Import simulated clustering MPC
-netBin.config<-simulate(nullmodel(FB_D1_16S,"curveball"),nsim=NPERM)
-graph.bin.gut.config<-simulate(nullmodel(FB_D1_16S,"curveball"),nsim=NPERM)
-
-graph.bin.bpk.config<-simulate(nullmodel(FB_D1_16S,"curveball"),nsim=NPERM)
+# # Import simulated clustering MPC
+# netBin.config<-simulate(nullmodel(FB_D1_16S,"curveball"),nsim=NPERM)
+# graph.bin.gut.config<-simulate(nullmodel(FB_D1_16S,"curveball"),nsim=NPERM)
+# 
+# graph.bin.bpk.config<-simulate(nullmodel(FB_D1_16S,"curveball"),nsim=NPERM)
 
 # Parallelized version
 plan(multisession, workers = parallel::detectCores() - 1)
@@ -456,15 +437,15 @@ graph.bin.ITSe.config <- future_lapply(seq_len(NPERM), future.seed=TRUE, sim_fun
 FT_vect_D1_16S <- as.factor(mtd_D1_16S$FruitType[match(rownames(FB_D1_16S), rownames(mtd_D1_16S))])
 FT_vect_D1_ITS <- as.factor(mtd_D1_ITS$FruitType[match(rownames(FB_D1_ITS), rownames(mtd_D1_ITS))])
 
-LS_vect_D1_16S <- as.factor(mtd_D1_16S$LifeStage[match(rownames(FB_D1_16S), rownames(mtd_D1_16S))])
-LS_vect_D1_ITS <- as.factor(mtd_D1_ITS$LifeStage[match(rownames(FB_D1_ITS), rownames(mtd_D1_ITS))])
+ST_vect_D1_16S <- as.factor(mtd_D1_16S$SampleType[match(rownames(FB_D1_16S), rownames(mtd_D1_16S))])
+ST_vect_D1_ITS <- as.factor(mtd_D1_ITS$SampleType[match(rownames(FB_D1_ITS), rownames(mtd_D1_ITS))])
 
 # Observed
 nmi_obs_expe_16S_FruitType <- compare(as.factor(memb_spl_obs_16S_D1), FT_vect_D1_16S, method = "nmi")
 nmi_obs_expe_ITS_FruitType <- compare(as.factor(memb_spl_obs_ITS_D1), FT_vect_D1_ITS, method = "nmi")
 
-nmi_obs_expe_16S_LifeStage <- compare(as.factor(memb_spl_obs_16S_D1), LS_vect_D1_16S, method = "nmi")
-nmi_obs_expe_ITS_LifeStage <- compare(as.factor(memb_spl_obs_ITS_D1), LS_vect_D1_ITS, method = "nmi")
+nmi_obs_expe_16S_SampleType <- compare(as.factor(memb_spl_obs_16S_D1), ST_vect_D1_16S, method = "nmi")
+nmi_obs_expe_ITS_SampleType <- compare(as.factor(memb_spl_obs_ITS_D1), ST_vect_D1_ITS, method = "nmi")
 
 ## Simulated clustering
 simulated_clustering_expe_16S <- Simulate_Clustering_SBM(FB = FB_D1_16S, NPERM, name = "simulated_clustering_D1_16S.tsv")
@@ -488,21 +469,21 @@ print(c("NMI =", nmi_obs_expe_16S_FruitType, "P-value = ", 1 - ecdf(simulated_nm
 print(c("NMI =", nmi_obs_expe_ITS_FruitType, "P-value = ", 1 - ecdf(simulated_nmi_expe_ITS_FT$nmi_sim)(nmi_obs_expe_ITS_FruitType)))
 
 
-# Life Stage
-simulated_nmi_expe_16S_LS <- 
+# Sample Type (Life Stage)
+simulated_nmi_expe_16S_ST <- 
 simulated_clustering_expe_16S %>% 
   tidyr::pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
   dplyr::group_by(Simulation) %>% 
-  dplyr::summarise(., nmi_sim = compare(as.factor(Memberships), LS_vect_D1_16S, method = "nmi"))
+  dplyr::summarise(., nmi_sim = compare(as.factor(Memberships), ST_vect_D1_16S, method = "nmi"))
 
-simulated_nmi_expe_ITS_LS <- 
+simulated_nmi_expe_ITS_ST <- 
 simulated_clustering_expe_ITS %>% 
   tidyr::pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
   dplyr::group_by(Simulation) %>% 
-  dplyr::summarise(., nmi_sim = compare(as.factor(Memberships), LS_vect_D1_ITS, method = "nmi"))
+  dplyr::summarise(., nmi_sim = compare(as.factor(Memberships), ST_vect_D1_ITS, method = "nmi"))
 
-print(c("NMI =", nmi_obs_expe_16S_LifeStage, "P-value = ", 1 - ecdf(simulated_nmi_expe_16S_LS$nmi_sim)(nmi_obs_expe_16S_LifeStage)))
-print(c("NMI =", nmi_obs_expe_ITS_LifeStage, "P-value = ", 1 - ecdf(simulated_nmi_expe_ITS_LS$nmi_sim)(nmi_obs_expe_ITS_LifeStage)))
+print(c("NMI =", nmi_obs_expe_16S_SampleType, "P-value = ", 1 - ecdf(simulated_nmi_expe_16S_ST$nmi_sim)(nmi_obs_expe_16S_SampleType)))
+print(c("NMI =", nmi_obs_expe_ITS_SampleType, "P-value = ", 1 - ecdf(simulated_nmi_expe_ITS_ST$nmi_sim)(nmi_obs_expe_ITS_SampleType)))
 
 ```
 
@@ -536,26 +517,26 @@ sim_list = list()
 ```{r}
 # Factors
 FruitType_vect_16S_D1 <- as.factor(mtd_D1_16S$FruitType[match(rownames(FB_D1_16S), mtd_D1_16S$Sample)])
-LifeStage_vect_16S_D1 <- as.factor(mtd_D1_16S$LifeStage[match(rownames(FB_D1_16S), mtd_D1_16S$Sample)])
+SampleType_vect_16S_D1 <- as.factor(mtd_D1_16S$SampleType[match(rownames(FB_D1_16S), mtd_D1_16S$Sample)])
 
 ## Create a matrix with samples as rows and group asigned by the latent block model as column
 dummyMod_16S_D1 <- lme4::dummy(as.factor(memb_spl_obs_16S_D1), levelsToKeep = levels(as.factor(memb_spl_obs_16S_D1)))
 
 ## Creates dataframe with the two variables of interest
 cca_data_16S_D1 <- data.frame("FruitType" = as.factor(FruitType_vect_16S_D1),
-    "LifeStage" = as.factor(LifeStage_vect_16S_D1))
+    "SampleType" = as.factor(SampleType_vect_16S_D1))
 
 ## Partition the variation of the community matrix
-varp_16S_D1 <- vegan::varpart(dummyMod_16S_D1, cca_data_16S_D1$FruitType, cca_data_16S_D1$LifeStage, chisquare = T)
+varp_16S_D1 <- vegan::varpart(dummyMod_16S_D1, cca_data_16S_D1$FruitType, cca_data_16S_D1$SampleType, chisquare = T)
 varp_16S_expe$part
 
 #CCA with line randomization
-wholenetwork_cca_results_NULL_16S_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_16), memb_obs=memb_spl_obs_16S_D1, var1=cca_data_16S_D1$FruitType, var2=cca_data_16S_D1$LifeStage, configs = NULL)
+wholenetwork_cca_results_NULL_16S_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_16), memb_obs=memb_spl_obs_16S_D1, var1=cca_data_16S_D1$FruitType, var2=cca_data_16S_D1$SampleType, configs = NULL)
 
 write.xlsx(wholenetwork_cca_results_NULL_16S_D1, file=here::here("plots", "5_LBM&co", "Dataset_1"), rowNames = TRUE)
 
 #CCA with full randomization
-wholenetwork_cca_results_CONFIGS_16S_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_16S), memb_obs=memb_spl_obs_16S_D1, var1=cca_data_16S_D1$FruitType, var2=cca_data_16S_D1$LifeStage, configs = LBM.config)
+wholenetwork_cca_results_CONFIGS_16S_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_16S), memb_obs=memb_spl_obs_16S_D1, var1=cca_data_16S_D1$FruitType, var2=cca_data_16S_D1$SampleType, configs = LBM.config)
 ```
 
 
@@ -585,26 +566,26 @@ sim_list = list()
 ```{r}
 # Factors
 FruitType_vect_ITS_D1 <- as.factor(mtd_D1_ITS$FruitType[match(rownames(FB_D1_ITS), mtd_D1_ITS$Sample)])
-LifeStage_vect_ITS_D1 <- as.factor(mtd_D1_ITS$LifeStage[match(rownames(FB_D1_ITS), mtd_D1_ITS$Sample)])
+SampleType_vect_ITS_D1 <- as.factor(mtd_D1_ITS$SampleType[match(rownames(FB_D1_ITS), mtd_D1_ITS$Sample)])
 
 ## Create a matrix with samples as rows and group asigned by the latent block model as column
 dummyMod_ITS_D1 <- lme4::dummy(as.factor(memb_spl_obs_ITS_D1), levelsToKeep = levels(as.factor(memb_spl_obs_ITS_D1)))
 
 ## Creates dataframe with the two variables of interest
 cca_data_ITS_D1 <- data.frame("FruitType" = as.factor(FruitType_vect_ITS_D1),
-    "LifeStage" = as.factor(LifeStage_vect_ITS_D1))
+    "SampleType" = as.factor(SampleType_vect_ITS_D1))
 
 ## Partition the variation of the community matrix
-varp_ITS_D1 <- vegan::varpart(dummyMod_ITS_D1, cca_data_ITS_D1$FruitType, cca_data_ITS_D1$LifeStage, chisquare = T)
+varp_ITS_D1 <- vegan::varpart(dummyMod_ITS_D1, cca_data_ITS_D1$FruitType, cca_data_ITS_D1$SampleType, chisquare = T)
 varp_ITS_D1$part
 
 #CCA with line randomization
-wholenetwork_cca_results_NULL_ITS_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_ITS), memb_obs=memb_spl_obs_ITS_D1, var1=cca_data_ITS_D1$FruitType, var2=cca_data_ITS_D1$LifeStage, configs = NULL)
+wholenetwork_cca_results_NULL_ITS_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_ITS), memb_obs=memb_spl_obs_ITS_D1, var1=cca_data_ITS_D1$FruitType, var2=cca_data_ITS_D1$SampleType, configs = NULL)
 
 write.xlsx(wholenetwork_cca_results_NULL_ITS_D1, file=here::here("plots", "5_SBM&co", "Dataset_1", "CCA_NULL_ITS_D1.xlsx"), rowNames = TRUE)
 
 #CCA with full randomization
-wholenetwork_cca_results_CONFIGS_ITS_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_ITS), memb_obs=memb_spl_obs_ITS_D1, var1=cca_data_ITS_D1$FruitType, var2=cca_data_ITS_D1$LifeStage, configs = LBM.config)
+wholenetwork_cca_results_CONFIGS_ITS_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_ITS), memb_obs=memb_spl_obs_ITS_D1, var1=cca_data_ITS_D1$FruitType, var2=cca_data_ITS_D1$SampleType, configs = LBM.config)
 
 write.xlsx(wholenetwork_cca_results_CONFIGS_ITS_D1, file=here::here("plots", "5_SBM&co", "Dataset_1", "CCA_CONFIGS_ITS_D1.xlsx"), rowNames = TRUE)
 ```
