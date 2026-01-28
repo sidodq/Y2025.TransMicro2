@@ -13,3 +13,130 @@ editor_options:
   chunk_output_type: console
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+devtools::load_all()
+
+library(dplyr)
+```
+#PREPARE DATA
+
+# 1. Metadata
+```{r}
+mt <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "MetadataforAnalyses_TransMicro123.csv"), sep=";",header=TRUE)
+
+mt <- mt %>% 
+  dplyr::mutate(ID_pool = dplyr::case_when(Run == 1 ~ paste0(ID_pool, "_rn1"), Run == 2 ~ paste0(ID_pool, "_rn2"), Run == 3 ~ paste0(ID_pool, "_rn3"), TRUE ~ ID_pool))
+
+mt <- mt %>%
+  dplyr::mutate(LifeStage = ifelse(ID_pool == "MS_066_rn2", "na", LifeStage),
+    Transmission = ifelse(ID_pool == "MS_066_rn2", "Fruits_5_6days", Transmission))
+
+# f -> F 
+mt <- mt %>%
+  dplyr::mutate(Sample_Category = ifelse(Sample_Category == "All_stages_focal_Sites", "All_stages_Focal_Sites", Sample_Category))
+
+# Export
+write.table(mt, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "TransMicro123_metadata.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+
+## Precision of the nb of samples
+mt_samples <- mt %>%
+  dplyr::group_by(FrozenLifeStage, SampleType, N, Substrate, Pop, FruitSite, FruitSiteTypeVariety, DevFruit) %>%
+  dplyr::summarise(SampleCount = dplyr::n(), .groups = "drop")
+
+write.csv(mt_samples, file = file.path(here::here(), "data", "derived_data", "1_PrepareData", "TM123_metadata_samples_data.csv"), row.names = FALSE, quote = FALSE)
+```
+
+# 2. Bacteria
+
+## 2.1. Abundance table
+
+### Import & Clean Multi-Affiliation Table
+```{r}
+ma_16S <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "16S_TM123-[FROGS_BIOM_to_TSV__multi-affiliations.tsv].tsv"),sep="\t",header=TRUE)
+dim(ma_16S)# 181 347 lignes
+
+# Clean taxonomy of multi-affiliation table 
+taxo_16S_Multiaffiliation <- Define_multiaffiliation(multiaffiliation_table = ma_16S, thresh = 0.5) # filter the tax names with freq inf to 0,5 (within cluster) and assign a tax name (if 1 valid name) or multi/unknown (if multiple valid names)
+```
+
+### Import & Clean Abundance Table
+```{r}
+ab_16S <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "16S_TM123-[FROGS_BIOM_to_TSV__abundance.tsv].tsv"),sep="\t",header=TRUE)
+data.table::setnames(ab_16S, old = names(ab_16S), new = gsub("-", "_", names(ab_16S)))
+dim(ab_16S)
+
+# Correct errors on sample names
+colnames(ab_16S)[colnames(ab_16S) == "16S_MS_0100_rn1_A"] <- "16S_MS_100_rn1_A"
+colnames(ab_16S)[colnames(ab_16S) == "16S_MS_0125_rn1_A"] <- "16S_MS_125_rn1_A"
+colnames(ab_16S)[colnames(ab_16S) == "16S_MS_0221_rn1_A"] <- "16S_MS_221_rn1_A"
+
+# Clean taxonomy
+ab_16S <- Clean_ab_table(abundance_table = ab_16S, remove_col = NULL) #Expected 7 pieces. Missing pieces filled with `NA` in 91 rows 
+```
+
+### Abundance table with multi-affiliation and chimeras removed
+```{r}
+# New version of ab_16s : taxonomy with multi-affiliation and chimeras removed
+at_16S <- Combine_ab_multi_affi_tables_remove_chim(multi_affi_table = taxo_16S_Multiaffiliation, name = "TransMicro1-2-3_16S", abundance_table = ab_16S) # 2049 bimeras/6966 sequences, proportion = 0.29
+
+dim(at_16S) # 4917 clusters
+
+# Replaces the taxonomy not found with the taxonomy found manually in BLAST
+at_16S_no <- subset(at_16S, grepl("no;NA;NA;NA;NA;NA;NA", blast_taxonomy))# blast_taxonomy = "no;NA;NA;NA;NA;NA;NA" 
+at_16S_no$observation_name # 75 clusters
+
+# blast_taxonomy : no;NA;NA;NA;NA;NA;NA : add the taxonomy obtained by BLAST with NCBI (see 16S_TransMicro_Cluster_Blast.xlsx)
+at_16S[at_16S$observation_name == "Cluster_8", "seed_sequence"]
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_8")] <- "Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit"
+
+at_16S[at_16S$observation_name == "Cluster_13", "seed_sequence"]
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_13")] <- "Bacteria;Bacillota;Clostridia;Peptostreptococcales;Anaerovoracaceae;Lentihominibacter;Lentihominibacter hominis"
+
+at_16S[at_16S$observation_name == "Cluster_29", "seed_sequence"]
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_29")] <- "Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit"
+
+at_16S[at_16S$observation_name == "Cluster_157", "seed_sequence"]
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_157")] <- "Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit"
+
+at_16S[at_16S$observation_name == "Cluster_162", "seed_sequence"]
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_162")] <- "Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit;Plantae_Mit"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_218")] <- "Bacteria;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_220")] <- "Bacteria;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_255")] <- "Bacteria;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_331")] <- "Fungi;Basidiomycota;Malasseziomycetes;Malasseziales;Malasseziaceae;Malassezia;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_388")] <- "Bacteria;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_402")] <- "Fungi;Mucoromycota;Mucoromycetes;Mucorales;Mucorineae;Mucoraceae;Mucor;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_466")] <- "Bacteria;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_515")] <- "Bacteria;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_553")] <- "Bacteria;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_572")] <- "Fungi;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_611")] <- "Bacteria;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_617")] <- "Fungi;Mucoromycota;Mucoromycetes;Mucorales;Mucorineae;Mucoraceae;Mucor;Unknown"
+
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_698")] <- "Fungi;Ascomycota;Taphrinomycetes;Taphrinales;Taphrinaceae;Taphrina;Unkown"
+ 
+at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_755")] <- "Bacteria;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown"
+
+at_16S[at_16S$observation_name == "Cluster_984", "seed_sequence"] #Unknown
+
+# Rename the left clusters as "Unknown" (cluster nb sup. to 1000)
+at_16S <- at_16S %>%
+  dplyr::mutate(blast_taxonomy = ifelse(blast_taxonomy == "no;NA;NA;NA;NA;NA;NA", "Unknown;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown", blast_taxonomy))
+
+# Split taxonomy
+at_16S <- at_16S %>% 
+  tidyr::separate(col=blast_taxonomy, into=c("Kingdom","Phylum", "Class", "Order", "Family", "Genus", "Species"), sep=";", remove=FALSE)
+```
