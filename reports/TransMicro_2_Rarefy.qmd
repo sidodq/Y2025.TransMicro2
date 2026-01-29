@@ -217,7 +217,7 @@ ps_ITSm <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_Raref
 
 #threshold for min. reads per sample at 150 for 16S & 250 for ITS
 ps_16Sm_sq <- ps_16Sm %>%
-  prune_samples(sample_sums(.) >= 150, .) %>%
+  prune_samples(sample_sums(.) >= 0, .) %>%
   prune_taxa(taxa_sums(.) > 0, .)
 
 ps_ITSm_sq <- ps_ITSm %>%
@@ -226,7 +226,10 @@ ps_ITSm_sq <- ps_ITSm %>%
 
 sum_physeq_clean(ps_16Sm, ps_16Sm_sq) # filtered : 18.8% of samples + 77.8% of ASVs + 0.008 % of reads
 sum_physeq_clean(ps_ITSm, ps_ITSm_sq) # filtered : 4.03% of samples + 36.2% of ASVs + 0.005 % of reads
+```
 
+
+```{r}
 # Export
 saveRDS(ps_16Sm_sq, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_ps_contaRemoved_lowDepthFiltered.rds"))
 saveRDS(ps_ITSm_sq, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_ps_contaRemoved_lowDepthFiltered.rds"))

@@ -955,6 +955,8 @@ df_wide_16S_expe = dplyr::left_join(df_taxo_16S_expe, df_reads_16S_expe, by = "t
 df_wide_16S_expe$Species <- NULL
 
 BF_16S_expe <- df_wide_16S_expe[, c(6,8:dim(df_wide_16S_expe)[2])]
+
+BF_16S_expe$Genus[is.na(BF_16S_expe$Genus)] <- "Unknown"
 BF_16S_expe$Genus <- make.unique(BF_16S_expe$Genus, sep = "_")
 rownames(BF_16S_expe) <- BF_16S_expe$Genus 
 BF_16S_expe$Genus <- NULL
