@@ -32,7 +32,6 @@ library(future)
 library(future.apply)
 devtools::load_all()
 ```
-
 # NETWORK ANALYSIS
 
 # 1. Prepare data
@@ -45,8 +44,8 @@ devtools::load_all()
 
 ps_rare_16S_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1", "16S_ps_rare_D1.rds"))
 
-# Filter data (exclude Nat_Uninf_Fruits_5_6days)
-ps_16S_rare_expe_D1 <- Subset_physeq(ps_rare_16S_D1, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
+# Filter data (exclude fruits & pupal cases - only indiv.)
+ps_16S_rare_expe_D1 <- Subset_physeq(ps_rare_16S_D1, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits")) #,"G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
 
 # Rename + reorder Sample Type
 sample_data(ps_16S_rare_expe_D1)$SampleType <- factor(sample_data(ps_16S_rare_expe_D1)$SampleType)
@@ -56,12 +55,10 @@ sample_data(ps_16S_rare_expe_D1)$SampleType <- sample_data(ps_16S_rare_expe_D1)$
     Mothers_0days = "G0_Adults_0days",
     Mothers_2days = "G0_Adults_Fruits_2days",
     Larvae = "G1_Larvae_Fruits",
-    Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
     Pupae = "G1_Pupae_Fruits",
-    PupalCases = "G1_PupalCase_Fruits",
-    Daughters = "G1_Adults_Fruits")
+    Daughters = "G1_Adults_Fruits") #PupalCases = "G1_PupalCase_Fruits", Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
 
-desired_order <- c("Fruits_0days", "Mothers_0days", "Mothers_2days", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters")  
+desired_order <- c( "Mothers_0days", "Mothers_2days", "Larvae", "Pupae","Daughters") #"Fruits_0days", "Fruits_5_6days", "PupalCases",
 sample_data(ps_16S_rare_expe_D1)$SampleType <- factor(sample_data(ps_16S_rare_expe_D1)$SampleType, levels = desired_order)
 
 
@@ -101,7 +98,7 @@ FB_D1_16S <- t(BF_D1_16S)
 ```{r}
 ps_rare_ITS_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1", "ITS_ps_rare_D1.rds"))
 
-ps_ITS_rare_expe_D1 <- Subset_physeq(ps_rare_ITS_D1, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
+ps_ITS_rare_expe_D1 <- Subset_physeq(ps_rare_ITS_D1, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits")) #,"G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
 
 # ITS : rename + reorder Sample Type
 sample_data(ps_ITS_rare_expe_D1)$SampleType <- factor(sample_data(ps_ITS_rare_expe_D1)$SampleType)
@@ -111,10 +108,8 @@ sample_data(ps_ITS_rare_expe_D1)$SampleType <- sample_data(ps_ITS_rare_expe_D1)$
     Mothers_0days = "G0_Adults_0days",
     Mothers_2days = "G0_Adults_Fruits_2days",
     Larvae = "G1_Larvae_Fruits",
-    Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
     Pupae = "G1_Pupae_Fruits",
-    PupalCases = "G1_PupalCase_Fruits",
-    Daughters = "G1_Adults_Fruits")
+    Daughters = "G1_Adults_Fruits") #PupalCases = "G1_PupalCase_Fruits", Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
 
 sample_data(ps_ITS_rare_expe_D1)$SampleType <- factor(sample_data(ps_ITS_rare_expe_D1)$SampleType, levels = desired_order)
 
@@ -241,7 +236,7 @@ memb_spl_obs_16S_D1 <- SBM_bernoulli_16S_D1$memberships$row
 memb_otu_obs_16S_D1 <- SBM_bernoulli_16S_D1$memberships$col
 
 SBM_bernoulli_16S_D1$storedModels %>% dplyr::arrange(ICL)
-
+ 
 #Plots
 SBM_16S_D1_FruitType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_D1, BF_mat = BF_D1_16S, mtd = mtd_D1_16S, variable_name = "FruitType", modality_string = c("BL", "CH", "na", "ST"), color_string = c("purple4", "red4", "grey", "red2"))
 
