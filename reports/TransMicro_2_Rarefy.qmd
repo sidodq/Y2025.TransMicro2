@@ -154,6 +154,19 @@ sample_data(ps_ITS_raw) <- sample_data(ps_ITS) %>%
 # Export
 saveRDS(ps_16S_raw, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_ps_raw.rds"))
 saveRDS(ps_ITS_raw, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_ps_raw.rds"))
+
+
+# Plot tot. ASVs abundances per sample
+df_16S <- data.frame(reads = taxa_sums(ps_16S))
+
+df_ITS <- data.frame(reads = taxa_sums(ps_ITS))
+
+ggplot(df_ITS, aes(x = reads)) +
+  geom_histogram(bins = 50, fill = "white", color="black") +
+  scale_x_log10() +
+  theme_bw() +
+  labs(x = "Tot. reads per ASV (log10)", y = "Count of ASVs")
+
 ```
 
 # 3. Remove conta.
