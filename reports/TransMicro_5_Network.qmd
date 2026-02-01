@@ -42,7 +42,7 @@ devtools::load_all()
 
 ```{r}
 
-ps_rare_16S_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1", "16S_ps_rare_D1.rds"))
+ps_rare_16S_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1", "16S_ps_rare_NF_D1.rds"))
 
 # Filter data (exclude fruits & pupal cases - only indiv.)
 ps_16S_rare_expe_D1 <- Subset_physeq(ps_rare_16S_D1, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits")) #,"G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
@@ -96,7 +96,7 @@ FB_D1_16S <- t(BF_D1_16S)
 ### ITS
 
 ```{r}
-ps_rare_ITS_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1", "ITS_ps_rare_D1.rds"))
+ps_rare_ITS_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1", "ITS_ps_rare_NF_D1.rds"))
 
 ps_ITS_rare_expe_D1 <- Subset_physeq(ps_rare_ITS_D1, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits")) #,"G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
 
@@ -151,9 +151,9 @@ FB_D1_ITS <- t(BF_D1_ITS)
 ### 16S
 
 ```{r}
-ps_rare_16S_D2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "16S_ps_rare_D2.rds"))
+ps_rare_16S_D2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "16S_ps_rare_NF_D2.rds"))
 
-ps_rare_ITS_D2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "ITS_ps_rare_D2.rds"))
+ps_rare_ITS_D2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "ITS_ps_rare_NF_D2.rds"))
 
 # 16S
 ps_rare_16S_D2_bin = phyloseq::transform_sample_counts(ps_rare_16S_D2, function(x) 1*(x>0)) # counts -> presence/absence (binary table)
@@ -240,13 +240,13 @@ SBM_bernoulli_16S_D1$storedModels %>% dplyr::arrange(ICL)
 #Plots
 SBM_16S_D1_FruitType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_D1, BF_mat = BF_D1_16S, mtd = mtd_D1_16S, variable_name = "FruitType", modality_string = c("BL", "CH", "na", "ST"), color_string = c("purple4", "red4", "grey", "red2"))
 
-title_plot <- "SBM_D1_16S_FruitType.png"
+title_plot <- "SBM_NF_D1_16S_FruitType.png"
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_16S_D1_FruitType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
 
 
 SBM_16S_D1_SampleType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_D1, BF_mat = BF_D1_16S, mtd = mtd_D1_16S, variable_name = "SampleType", modality_string = c("na","Fruits_0days", "Mothers_0days", "Mothers_2days", "Fruits_5_6days", "Larvae", "Pupae", "PupalCases", "Daughters"), color_string = c("goldenrod2", "red3","red4","green3","darkolivegreen","darkolivegreen3","darkorange2","#8B4500")) 
 
-title_plot <- "SBM_D1_16S_SampleType.png"
+title_plot <- "SBM_NF_D1_16S_SampleType.png"
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_16S_D1_SampleType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
 ```
 
@@ -265,13 +265,13 @@ SBM_bernoulli_ITS_D1$storedModels %>% dplyr::arrange(ICL)
 # Plot
 SBM_ITS_expe_FruitType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_ITS_D1, BF_mat = BF_D1_ITS, mtd = mtd_D1_ITS, variable_name = "FruitType", modality_string = c("BL", "CH", "na","ST"), color_string = c("purple4", "red4", "grey","red2"))
 
-title_plot <- "SBM_D1_ITS_FruitType.png"
+title_plot <- "SBM_NF_D1_ITS_FruitType.png"
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_ITS_expe_FruitType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
 
 
 SBM_ITS_expe_SampleType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_ITS_D1, BF_mat = BF_D1_ITS, mtd = mtd_D1_ITS, variable_name = "SampleType", modality_string = c("na","Fruits_0days", "Mothers_0days", "Mothers_2days", "Fruits_5_6days", "Larvae", "Pupae", "PupalCases", "Daughters"), color_string = c("goldenrod2", "red3","red4","green3","darkolivegreen","darkolivegreen3","darkorange2","#8B4500")) 
 
-title_plot <- "SBM_Expe_ITS_SampletType.png"
+title_plot <- "SBM_NF_D1_ITS_SampletType.png"
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_ITS_expe_SampleType, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
 ```
 
@@ -282,7 +282,7 @@ SBM_expe_FruitType_combined <-
   (SBM_ITS_expe_FruitType + labs(tag = "B. Fungi")) +
   plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
 
-title_plot <- "SBM_D1_FruitType_combined.png"
+title_plot <- "SBM_NF_D1_FruitType_combined.png"
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_expe_FruitType_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200) 
  
  
@@ -291,7 +291,7 @@ SBM_expe_SampleType_combined <-
   (SBM_ITS_expe_SampleType + labs(tag = "B. Fungi")) +
   plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
 
-title_plot <- "SBM_D1_SampleType_combined.png"
+title_plot <- "SBM_NF_D1_SampleType_combined.png"
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_expe_SampleType_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)  
 ```
 
@@ -346,13 +346,13 @@ SBM_bernoulli_16S_D2$storedModels %>% dplyr::arrange(ICL)
 #Plots
 SBM_16S_D2_FruitType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_D2, BF_mat = BF_D2_16S, mtd = mtd_D2_16S, variable_name = "FruitType", modality_string = c("BL", "CH", "ST"), color_string = c("purple4", "red4", "red2"))
 
-title_plot <- "SBM_D2_16S_FruitType.png"
+title_plot <- "SBM_NF_D2_16S_FruitType.png"
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_2", title_plot), SBM_16S_D2_FruitType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
 
 
 SBM_16S_D2_FruitSite <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_D2, BF_mat = BF_D2_16S, mtd = mtd_D2_16S, variable_name = "FruitSite", modality_string = c("THU", "FIN","LOM","IST","MIL","VAR"), color_string = c("coral2","skyblue","skyblue4","blue2","deepskyblue","dodgerblue"))
 
-title_plot <- "SBM_D2_16S_FruitSite.png"
+title_plot <- "SBM_NF_D2_16S_FruitSite.png"
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_2", title_plot), SBM_16S_D2_FruitSite, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
  
 ```
@@ -372,13 +372,13 @@ SBM_bernoulli_ITS_D2$storedModels %>% dplyr::arrange(ICL)
 #Plots
 SBM_ITS_D2_FruitType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_ITS_D2, BF_mat = BF_D2_ITS, mtd = mtd_D2_ITS, variable_name = "FruitType", modality_string = c("BL", "CH", "ST"), color_string = c("purple4", "red4", "red2"))
 
-title_plot <- "SBM_D2_ITS_FruitType.png"
+title_plot <- "SBM_NF_D2_ITS_FruitType.png"
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_2", title_plot), SBM_ITS_D2_FruitType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
 
 
 SBM_ITS_D2_FruitSite <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_ITS_D2, BF_mat = BF_D2_ITS, mtd = mtd_D2_ITS, variable_name = "FruitSite", modality_string = c("THU", "FIN","LOM","IST","MIL","VAR"), color_string = c("coral2","skyblue","skyblue4","blue2","deepskyblue","dodgerblue"))
 
-title_plot <- "SBM_D2_ITS_FruitSite.png"
+title_plot <- "SBM_NF_D2_ITS_FruitSite.png"
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_2", title_plot), SBM_ITS_D2_FruitSite, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
 ```
 
@@ -389,7 +389,7 @@ SBM_expe_FruitType_combined <-
   (SBM_ITS_expe_FruitType + labs(tag = "B. Fungi")) +
   plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
 
-title_plot <- "SBM_D1_FruitType_combined.png"
+title_plot <- "SBM_NF_D1_FruitType_combined.png"
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_expe_FruitType_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200) 
  
  
@@ -398,7 +398,7 @@ SBM_D2_SampleType_combined <-
   (SBM_ITS_D2_FruitType + labs(tag = "B. Fungi")) +
   plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
 
-title_plot <- "SBM_D2_SampleType_combined.png"
+title_plot <- "SBM_NF_D2_SampleType_combined.png"
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_2", title_plot), SBM_D2_SampleType_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)  
 ```
 
@@ -527,9 +527,9 @@ varp_16S_D1 <- vegan::varpart(dummyMod_16S_D1, cca_data_16S_D1$FruitType, cca_da
 varp_16S_expe$part
 
 #CCA with line randomization
-wholenetwork_cca_results_NULL_16S_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_16), memb_obs=memb_spl_obs_16S_D1, var1=cca_data_16S_D1$FruitType, var2=cca_data_16S_D1$SampleType, configs = NULL)
+wholenetwork_cca_results_NULL_16S_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_16S), memb_obs=memb_spl_obs_16S_D1, var1=cca_data_16S_D1$FruitType, var2=cca_data_16S_D1$SampleType, configs = NULL)
 
-write.xlsx(wholenetwork_cca_results_NULL_16S_D1, file=here::here("plots", "5_LBM&co", "Dataset_1"), rowNames = TRUE)
+write.xlsx(wholenetwork_cca_results_NULL_16S_D1, file=here::here("plots", "5_SBM&co", "Dataset_1"), rowNames = TRUE)
 
 #CCA with full randomization
 wholenetwork_cca_results_CONFIGS_16S_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_16S), memb_obs=memb_spl_obs_16S_D1, var1=cca_data_16S_D1$FruitType, var2=cca_data_16S_D1$SampleType, configs = LBM.config)
