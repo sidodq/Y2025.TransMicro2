@@ -16,10 +16,12 @@ editor_options:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 devtools::load_all()
+#remotes::install_github("mahendra-mariadassou/phyloseq-extended", ref = "dev")
 
+library(phyloseq.extended)
 library(dplyr)
 ```
-#PREPARE DATA
+#PREPARE DATA = TO FINISH
 
 # 1. Metadata
 
