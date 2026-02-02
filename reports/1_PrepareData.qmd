@@ -159,6 +159,7 @@ write.csv(mt_samples, file = file.path(here::here(), "data", "derived_data", "1_
 ## 2.1. Abundance table
 
 ### Import & Clean Multi-Affiliation Table
+
 ```{r}
 ma_16S <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "16S_TM123-[FROGS_BIOM_to_TSV__multi-affiliations.tsv].tsv"),sep="\t",header=TRUE)
 dim(ma_16S)# 181 347 lignes
@@ -168,6 +169,7 @@ taxo_16S_Multiaffiliation <- Define_multiaffiliation(multiaffiliation_table = ma
 ```
 
 ### Import & Clean Abundance Table
+
 ```{r}
 ab_16S <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "16S_TM123-[FROGS_BIOM_to_TSV__abundance.tsv].tsv"),sep="\t",header=TRUE)
 data.table::setnames(ab_16S, old = names(ab_16S), new = gsub("-", "_", names(ab_16S)))
@@ -183,6 +185,7 @@ ab_16S <- Clean_ab_table(abundance_table = ab_16S, remove_col = NULL) #Expected 
 ```
 
 ### Abundance table with multi-affiliation and chimeras removed
+
 ```{r}
 # New version of ab_16s : taxonomy with multi-affiliation and chimeras removed
 at_16S <- Combine_ab_multi_affi_tables_remove_chim(multi_affi_table = taxo_16S_Multiaffiliation, name = "TransMicro1-2-3_16S", abundance_table = ab_16S) # 2049 bimeras/6966 sequences, proportion = 0.29
@@ -249,6 +252,7 @@ at_16S <- at_16S %>%
 ```
 
 ### Compute coverage depth for each type of sample
+
 ```{r}
 # Subset dataset (filter controls) and transpose it to have sample on rows
 at_16S
@@ -300,6 +304,7 @@ title_plot <- "16S_TM123_CovDepth_Proportions.png"
 ```
 
 ### Delete clusters with Multi-affiliation, Plantae, Fungi and Unknown in Kingdom taxonomic rank
+
 ```{r}
 dim(at_16S) #4917 clusters
 # blast_taxonomy : Unknown in Kingdom rank
@@ -326,6 +331,7 @@ dim(at_16S) #4610 clusters
 ```
 
 ### Replace "Multi-affiliation", "unidentified", "unknown species", "unknown genus", "unknown family", "unknown" by "Unknown" in the taxonomy
+
 ```{r}
 replace_names <- c("Multi-affiliation", "unidentified", "unknown species", "unknown genus", "unknown family", "unknown")
 
@@ -343,6 +349,7 @@ at_16S$Genus2 <- paste0(at_16S$Genus, rownames(at_16S))
 ```
 
 ### Filter abundance table
+
 ```{r}
 # Select columns
 at_16S <- at_16S %>%
@@ -356,6 +363,7 @@ dim(at_16S_Controls) #3950 clusters
 ```
 
 ### TCC : Filter abundances based on negative controls
+
 ```{r}
 at_16S_Controls_Negatives <- at_16S_Controls %>% 
   dplyr::select(contains("Genus2") |contains("_EXT_")|contains("_PCR_") | contains("NC_")| contains("INDEX_"))
@@ -381,6 +389,7 @@ dim(at_16S_Tccfiltered)
 ```
 
 ### TFA : Filter abundances based on number of sequences on the flow cell
+
 ```{r}
 Rfa <- 0.0001
 
@@ -392,6 +401,7 @@ dim(at_16S_TccTfafiltered)
 ```
 
 ### Merge PCR replicas
+
 ```{r}
 # Remove some columns
 data_16S <- at_16S_TccTfafiltered %>%
@@ -405,7 +415,7 @@ data_16S <- data_16S %>%
 # Apply the function Remove_last_two_chars in the abundance table (remove -A or -B distinction)
 data_16S$Samples <- sapply(data_16S$Barcode, Remove_last_two_chars)
 
-# Compute sum across the replicates
+# Set ASV abundance to zero if not present in at least 1 replicate 
 data_16S <- data_16S %>% 
   dplyr::group_by(observation_name, seed_sequence, Samples) %>% 
   dplyr::summarise(SumCount = ifelse(sum(count == 0)>=1, 0, round(sum(count)))) %>% 
@@ -413,6 +423,7 @@ data_16S <- data_16S %>%
 ```
 
 ### Merge run replicas (run 1, 2 or 3)
+
 ```{r}
 # Apply the function Remove_last_two_chars in the abundance table (_rn1, 2 or 3)
 data_16S$Samples <- sapply(data_16S$Samples, Remove_last_two_chars_run)
@@ -432,6 +443,7 @@ write.table(data_16S, file=file.path(here::here(), "data", "derived_data", "1_Pr
 ```
 
 ## 2.2. Taxonomy Table
+
 ```{r}
 tt_16S <- at_16S_TccTfafiltered %>%
   dplyr::select(observation_name, Kingdom, Phylum, Class, Order, Family, Genus, Species)
@@ -447,6 +459,7 @@ write.table(tt_16S, file=file.path(here::here(), "data", "derived_data", "1_Prep
 ## 3.1. Abundance table
 
 ### Import & Clean Abundance Table
+
 ```{r}
 ab_ITS <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "ITS_TM123-[FROGS_BIOM_to_TSV__abundance.tsv].tsv"),sep="\t",header=TRUE)
 dim(ab_ITS)
@@ -456,6 +469,7 @@ ab_ITS <- Clean_ab_table(abundance_table = ab_ITS, remove_col = NULL) #Expected 
 ```
 
 ### Import & Clean Multi-Affiliation Table
+
 ```{r}
 ma_ITS <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "ITS_TM123-[FROGS_BIOM_to_TSV__multi-affiliations.tsv].tsv"),sep="\t",header=TRUE)
 dim(ma_ITS)
@@ -467,6 +481,7 @@ dim(taxo_ITS_Multiaffiliation)
 ```
 
 ### Abundance Table : taxonomy with multi-affiliation and a new abundance file without chimeras
+
 ```{r}
 at_ITS <- Combine_ab_multi_affi_tables_remove_chim(multi_affi_table = taxo_ITS_Multiaffiliation, name = "TransMicro1-2-3_ITS", abundance_table = ab_ITS) # 510 bimeras/1813 sequences, proportion = 0.28
 dim(at_ITS) # 1303 clusters
@@ -572,6 +587,7 @@ title_plot <- "ITS_TM123_CovDepth_Proportions.png"
 ```
 
 ### Delete clusters with Multi-affiliation, Plantae, Bacteria and Unknown in taxonomic rank Kingdom
+
 ```{r}
 dim(at_ITS)
 # blast_taxonomy : Unknown in Kingdom rank
@@ -598,6 +614,7 @@ dim(at_ITS)
 ```
 
 ### Replace "Multi-affiliation", "unidentified", "unknown species", "unknown genus", "unknown family", "unknown" by "Unknown" in the taxonomy
+
 ```{r}
 replace_names <- c("Multi-affiliation", "unidentified", "unknown species", "unknown genus", "unknown family", "unknown")
 
@@ -615,6 +632,7 @@ at_ITS$Genus2 <- paste0(at_ITS$Genus, rownames(at_ITS))
 ```
 
 ### Filter abundance table
+
 ```{r}
 # Select columns
 at_ITS <- at_ITS %>%
@@ -652,6 +670,7 @@ at_ITS_Tccfiltered <- at_ITS %>%
 ```
 
 ### TFA : Filter abundances based on number of sequences on the flow cell
+
 ```{r}
 Rfa <- 0.0001
 
@@ -663,6 +682,7 @@ at_ITS_TccTfafiltered <- at_ITS %>%
 ```
 
 ### Merge PCR replicas
+
 ```{r}
 # Remove some columns
 data_ITS <- at_ITS_TccTfafiltered %>%
@@ -676,7 +696,7 @@ data_ITS <- data_ITS %>%
 # Apply the function Remove_last_two_chars in the abundance table (_A or _B)
 data_ITS$Samples <- sapply(data_ITS$Barcode, Remove_last_two_chars)
 
-# Compute sum across the replicates
+# Set ASV abundance to zero if not present in at least 1 replicate 
 data_ITS <- data_ITS %>% 
   dplyr::group_by(observation_name, seed_sequence, Samples) %>% 
   dplyr::summarise(SumCount = ifelse(sum(count == 0)>=1, 0, round(sum(count)))) %>% 
@@ -684,6 +704,7 @@ data_ITS <- data_ITS %>%
 ```
 
 ### Merge run replicas (1, 2, or 3)
+
 ```{r}
 # Apply the function Remove_last_two_chars in the abundance table (_rn1, 2 or 3)
 data_ITS$Samples <- sapply(data_ITS$Samples, Remove_last_two_chars_run)
@@ -703,6 +724,7 @@ write.table(data_ITS, file=file.path(here::here(), "data", "derived_data", "1_Pr
 ```
 
 # 3.2. Taxonomy Table
+
 ```{r}
 tt_ITS <- at_ITS_TccTfafiltered %>%
   dplyr::select(observation_name, Kingdom, Phylum, Class, Order, Family, Genus, Species)
