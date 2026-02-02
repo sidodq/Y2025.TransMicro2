@@ -540,7 +540,7 @@ cca_data_16S_D1 <- data.frame("FruitType" = as.factor(FruitType_vect_16S_D1),
 
 ## Partition the variation of the community matrix
 varp_16S_D1 <- vegan::varpart(dummyMod_16S_D1, cca_data_16S_D1$FruitType, cca_data_16S_D1$SampleType, chisquare = T)
-varp_16S_expe$part
+varp_16S_D1$part
 
 #CCA with line randomization
 wholenetwork_cca_results_NULL_16S_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_16S), memb_obs=memb_spl_obs_16S_D1, var1=cca_data_16S_D1$FruitType, var2=cca_data_16S_D1$SampleType, configs = NULL)
