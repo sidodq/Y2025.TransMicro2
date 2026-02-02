@@ -19,9 +19,11 @@ devtools::load_all()
 
 library(dplyr)
 ```
+
 #PREPARE DATA
 
 # 1. Metadata
+
 ```{r}
 mt <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "MetadataforAnalyses_TransMicro123.csv"), sep=";",header=TRUE)
 
@@ -52,6 +54,7 @@ write.csv(mt_samples, file = file.path(here::here(), "data", "derived_data", "1_
 ## 2.1. Abundance table
 
 ### Import & Clean Multi-Affiliation Table
+
 ```{r}
 ma_16S <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "16S_TM123-[FROGS_BIOM_to_TSV__multi-affiliations.tsv].tsv"),sep="\t",header=TRUE)
 dim(ma_16S)# 181 347 lignes
@@ -64,6 +67,7 @@ write.table(taxo_16S_Multiaffiliation, file=file.path(here::here(), "data", "der
 ```
 
 ### Import & Clean Abundance Table
+
 ```{r}
 ab_16S <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "16S_TM123-[FROGS_BIOM_to_TSV__abundance.tsv].tsv"),sep="\t",header=TRUE)
 data.table::setnames(ab_16S, old = names(ab_16S), new = gsub("-", "_", names(ab_16S)))
@@ -82,6 +86,7 @@ write.table(ab_16S, file=file.path(here::here(), "data", "derived_data", "1_Prep
 ```
 
 ### Abundance table with multi-affiliation and chimeras removed
+
 ```{r}
 #Load tables
 taxo_16S_Multiaffiliation <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "TransMicro123_multiAfTable_cleaned.tsv"), sep="\t", header=TRUE)
@@ -157,6 +162,7 @@ write.table(at_16S, file=file.path(here::here(), "data", "derived_data", "1_Prep
 ```
 
 ### Compute coverage depth for each type of sample
+
 ```{r}
 at_16S <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "TransMicro123_TaxTable_cleaned.tsv"), sep="\t", header=TRUE)
 
@@ -208,7 +214,8 @@ title_plot <- "16S_TM123_CovDepth_Proportions.png"
                 base_width = 25/cm(1), dpi = 1200)
 ```
 
-### Delete clusters with Plantae & Fungi Kingdoms 
+### Delete clusters with Plantae & Fungi Kingdoms
+
 ```{r}
 at_16S <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "TransMicro123_TaxTable_cleaned.tsv"), sep="\t", header=TRUE)
 
@@ -257,7 +264,9 @@ at_16S$Genus2 <- paste0(at_16S$Genus, rownames(at_16S))
 # Export
 write.table(at_16S, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "TransMicro123_TaxTable_cleaned2.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 ```
+
 ### Filter abundance table
+
 ```{r}
 at_16S <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "TransMicro123_TaxTable_cleaned2.tsv"), sep="\t", header=TRUE)
 
@@ -273,6 +282,7 @@ dim(at_16S_Controls) #478 clusters (489 - 11)
 ```
 
 ### TCC : Filter abundances based on negative controls
+
 ```{r}
 at_16S_Controls_Negatives <- at_16S_Controls %>% 
   dplyr::select(contains("Genus2") |contains("_EXT_")|contains("_PCR_") | contains("NC_")| contains("INDEX_"))
@@ -301,6 +311,7 @@ write.table(at_16S, file=file.path(here::here(), "data", "derived_data", "1_Prep
 ```
 
 ### TFA : Filter abundances based on number of sequences on the flow cell
+
 ```{r}
 Rfa <- 0.0001
 
@@ -312,6 +323,7 @@ dim(at_16S_TccTfafiltered)
 ```
 
 ### Merge PCR replicas
+
 ```{r}
 # Remove some columns
 data_16S <- at_16S_TccTfafiltered %>%
@@ -333,6 +345,7 @@ data_16S <- data_16S %>%
 ```
 
 ### Merge run replicas (run 1, 2 or 3)
+
 ```{r}
 # Apply the function Remove_last_two_chars in the abundance table (_rn1, 2 or 3)
 data_16S$Samples <- sapply(data_16S$Samples, Remove_last_two_chars_run)
@@ -350,7 +363,9 @@ data_16S <- data_16S %>%
 # Export
 write.table(data_16S, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "16S_TM123_abundance.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 ```
+
 ## 2.2. Taxonomy Table
+
 ```{r}
 tt_16S <- at_16S_TccTfafiltered %>%
   dplyr::select(observation_name, Kingdom, Phylum, Class, Order, Family, Genus, Species)

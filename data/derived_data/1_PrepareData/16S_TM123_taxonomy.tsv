@@ -130,8 +130,8 @@ Cluster_209	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobac
 Cluster_211	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Moraxellaceae	Psychrobacter	Psychrobacter sanguinis
 Cluster_216	Bacteria	Bacillota	Bacilli	Mycoplasmatales	Mycoplasmataceae	Eperythrozoon	Haemobartonella muris
 Cluster_217	Bacteria	Bacteroidota	Bacteroidia	Sphingobacteriales	Sphingobacteriaceae	Pedobacter	Unknown
-Cluster_218	no	NA	NA	NA	NA	NA	NA
-Cluster_220	no	NA	NA	NA	NA	NA	NA
+Cluster_218	Bacteria	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_220	Bacteria	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_222	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Moraxellaceae	Acinetobacter	Unknown
 Cluster_223	Bacteria	Bacteroidota	Bacteroidia	Bacteroidales	Dysgonomonadaceae	Proteiniphilum	Unknown
 Cluster_224	Bacteria	Bacillota	Bacilli	Staphylococcales	Gemellaceae	Gemella	Unknown
@@ -148,7 +148,7 @@ Cluster_241	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Microbacteriace
 Cluster_244	Bacteria	Pseudomonadota	Alphaproteobacteria	Rickettsiales	Anaplasmataceae	Ehrlichia	Unknown
 Cluster_247	Bacteria	Bacillota	Bacilli	Bacillales	Planococcaceae	Planococcus	Unknown
 Cluster_252	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Unknown
-Cluster_255	no	NA	NA	NA	NA	NA	NA
+Cluster_255	Bacteria	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_256	Bacteria	Bacteroidota	Bacteroidia	Cytophagales	Hymenobacteraceae	Hymenobacter	Unknown
 Cluster_258	Bacteria	Bacillota	Bacilli	Mycoplasmatales	Mycoplasmataceae	Eperythrozoon	Haemobartonella muris
 Cluster_259	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Yersiniaceae	Unknown	Unknown
@@ -189,7 +189,6 @@ Cluster_324	Bacteria	Pseudomonadota	Gammaproteobacteria	Lysobacterales	Lysobacte
 Cluster_325	Bacteria	Bacillota	Bacilli	Staphylococcales	Staphylococcaceae	Jeotgalicoccus	Jeotgalicoccus pinnipedialis
 Cluster_327	Bacteria	Bacteroidota	Bacteroidia	Flavobacteriales	Flavobacteriaceae	Flavobacterium	Unknown
 Cluster_328	Bacteria	Pseudomonadota	Alphaproteobacteria	Caulobacterales	Caulobacteraceae	Brevundimonas	Unknown
-Cluster_331	no	NA	NA	NA	NA	NA	NA
 Cluster_332	Bacteria	Actinomycetota	Actinobacteria	Frankiales	Geodermatophilaceae	Blastococcus	Unknown
 Cluster_335	Bacteria	Pseudomonadota	Alphaproteobacteria	Sphingomonadales	Sphingomonadaceae	Sphingobium	Unknown
 Cluster_337	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Erwiniaceae	Unknown	Unknown
@@ -201,7 +200,7 @@ Cluster_346	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Yersini
 Cluster_347	Bacteria	Pseudomonadota	Gammaproteobacteria	Lysobacterales	Lysobacteraceae	SN	Unknown
 Cluster_348	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Gluconobacter	Unknown
 Cluster_350	Bacteria	Bacteroidota	Bacteroidia	Cytophagales	Hymenobacteraceae	Hymenobacter	Hymenobacter rutilus
-Cluster_352	no	NA	NA	NA	NA	NA	NA
+Cluster_352	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_353	Bacteria	Bacillota	Clostridia	Peptostreptococcales-Tissierellales	Family	Anaerococcus	Unknown
 Cluster_356	Bacteria	Actinomycetota	Actinobacteria	Mycobacteriales	Corynebacteriaceae	Corynebacterium	Corynebacterium aurimucosum
 Cluster_357	Bacteria	Pseudomonadota	Alphaproteobacteria	Sphingomonadales	Sphingomonadaceae	Sphingomonas	Unknown
@@ -221,7 +220,7 @@ Cluster_383	Bacteria	Bacteroidota	Bacteroidia	Sphingobacteriales	Sphingobacteria
 Cluster_384	Bacteria	Myxococcota	Myxococcia	Myxococcales	Myxococcaceae	Unknown	Unknown
 Cluster_386	Bacteria	Actinomycetota	Actinobacteria	Frankiales	Geodermatophilaceae	Unknown	Unknown
 Cluster_387	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Micrococcaceae	Unknown	Unknown
-Cluster_388	no	NA	NA	NA	NA	NA	NA
+Cluster_388	Bacteria	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_390	Bacteria	Pseudomonadota	Alphaproteobacteria	Hyphomicrobiales	Beijerinckiaceae	Microvirga	Unknown
 Cluster_391	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Unknown
 Cluster_392	Bacteria	Bacteroidota	Bacteroidia	Bacteroidales	Porphyromonadaceae	Porphyromonas	Unknown
@@ -229,7 +228,6 @@ Cluster_393	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Comamona
 Cluster_397	Bacteria	Bacteroidota	Bacteroidia	Cytophagales	Hymenobacteraceae	Hymenobacter	Unknown
 Cluster_399	Bacteria	Campylobacterota	Campylobacteria	Campylobacterales	Helicobacteraceae	Helicobacter	Unknown
 Cluster_400	Bacteria	Actinomycetota	Actinobacteria	Mycobacteriales	Corynebacteriaceae	Corynebacterium	Unknown
-Cluster_402	no	NA	NA	NA	NA	NA	NA
 Cluster_405	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Roseomonas	Unknown
 Cluster_406	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Micrococcaceae	Kocuria	Unknown
 Cluster_407	Bacteria	Myxococcota	Myxococcia	Myxococcales	Myxococcaceae	POB-	Unknown
@@ -263,7 +261,7 @@ Cluster_459	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Cellvibr
 Cluster_460	Bacteria	Pseudomonadota	Alphaproteobacteria	Sphingomonadales	Sphingomonadaceae	Sphingomonas	Unknown
 Cluster_461	Bacteria	Actinomycetota	Actinobacteria	Frankiales	Geodermatophilaceae	Klenkia	Unknown
 Cluster_462	Bacteria	Actinomycetota	Actinobacteria	Mycobacteriales	Corynebacteriaceae	Corynebacterium	Unknown
-Cluster_466	no	NA	NA	NA	NA	NA	NA
+Cluster_466	Bacteria	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_467	Bacteria	Fusobacteriota	Fusobacteriia	Fusobacteriales	Leptotrichiaceae	Pseudoleptotrichia	Unknown
 Cluster_470	Bacteria	Bacteroidota	Bacteroidia	Sphingobacteriales	Sphingobacteriaceae	Mucilaginibacter	Unknown
 Cluster_471	Bacteria	Pseudomonadota	Alphaproteobacteria	Hyphomicrobiales	Beijerinckiaceae	Methylorubrum	Unknown
@@ -291,7 +289,7 @@ Cluster_510	Bacteria	Bacteroidota	Bacteroidia	Bacteroidales	Muribaculaceae	Unkno
 Cluster_512	Bacteria	Bacteroidota	Bacteroidia	Bacteroidales	Prevotellaceae	Prevotella	Prevotella intermedia
 Cluster_513	Bacteria	Bacteroidota	Bacteroidia	Cytophagales	Hymenobacteraceae	Hymenobacter	Unknown
 Cluster_514	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Cellulomonadaceae	Cellulomonas	Unknown
-Cluster_515	no	NA	NA	NA	NA	NA	NA
+Cluster_515	Bacteria	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_516	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Orbaceae	Unknown	Unknown
 Cluster_517	Bacteria	Actinomycetota	Actinobacteria	Propionibacteriales	Nocardioidaceae	Nocardioides	Unknown
 Cluster_518	Bacteria	Pseudomonadota	Alphaproteobacteria	Sphingomonadales	Sphingomonadaceae	Novosphingobium	Unknown
@@ -312,7 +310,7 @@ Cluster_542	Bacteria	Actinomycetota	Actinobacteria	Actinomycetales	Actinomycetac
 Cluster_546	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Micrococcaceae	Rothia	Unknown
 Cluster_549	Bacteria	Bacteroidota	Bacteroidia	Sphingobacteriales	Sphingobacteriaceae	Pedobacter	Unknown
 Cluster_552	Bacteria	Actinomycetota	Actinobacteria	Mycobacteriales	Corynebacteriaceae	Corynebacterium	Unknown
-Cluster_553	no	NA	NA	NA	NA	NA	NA
+Cluster_553	Bacteria	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_554	Bacteria	Acidobacteriota	Acidobacteriae	Bryobacterales	Bryobacteraceae	Bryobacter	Unknown
 Cluster_556	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Micrococcaceae	Kocuria	Unknown
 Cluster_557	Bacteria	Pseudomonadota	Alphaproteobacteria	Azospirillales	Azospirillaceae	Skermanella	Unknown
@@ -322,7 +320,6 @@ Cluster_561	Bacteria	Chloroflexota	Chloroflexia	Thermomicrobiales	JG-KF-CM	Unkno
 Cluster_566	Bacteria	Bacteroidota	Bacteroidia	Flavobacteriales	Weeksellaceae	Chryseobacterium	Chryseobacterium hispanicum
 Cluster_567	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Acetobacter	Unknown
 Cluster_569	Bacteria	Chloroflexota	TK	unknown order	Unknown	Unknown	Unknown
-Cluster_572	no	NA	NA	NA	NA	NA	NA
 Cluster_573	Bacteria	Bacillota	Bacilli	Bacillales	Planococcaceae	Planococcus	Unknown
 Cluster_574	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Micrococcaceae	Rothia	Unknown
 Cluster_577	Bacteria	Bacteroidota	Bacteroidia	Flavobacteriales	Weeksellaceae	Chryseobacterium	Unknown
@@ -340,9 +337,8 @@ Cluster_606	Bacteria	Pseudomonadota	Alphaproteobacteria	Sphingomonadales	Sphingo
 Cluster_607	Bacteria	Bacteroidota	Bacteroidia	Sphingobacteriales	Sphingobacteriaceae	Pedobacter	Unknown
 Cluster_609	Bacteria	Bacillota	Bacilli	Bacillales	Bacillaceae	Geobacillus	Unknown
 Cluster_610	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Comamonadaceae	Pseudorhodoferax	Unknown
-Cluster_611	no	NA	NA	NA	NA	NA	NA
+Cluster_611	Bacteria	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_614	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Erwiniaceae	Unknown	Unknown
-Cluster_617	no	NA	NA	NA	NA	NA	NA
 Cluster_618	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Marinobacteraceae	Marinobacter	Unknown
 Cluster_619	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Neisseriaceae	Snodgrassella	Unknown
 Cluster_620	Bacteria	Bacteroidota	Bacteroidia	Sphingobacteriales	Sphingobacteriaceae	Pedobacter	Unknown
@@ -387,7 +383,6 @@ Cluster_690	Bacteria	Pseudomonadota	Gammaproteobacteria	Lysobacterales	Lysobacte
 Cluster_691	Bacteria	Actinomycetota	Rubrobacteria	Rubrobacterales	Rubrobacteriaceae	Rubrobacter	Unknown
 Cluster_693	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Unknown
 Cluster_695	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Micrococcaceae	Kocuria	Rothia kristinae
-Cluster_698	no	NA	NA	NA	NA	NA	NA
 Cluster_700	Bacteria	Pseudomonadota	Alphaproteobacteria	Sphingomonadales	Sphingomonadaceae	Novosphingobium	Unknown
 Cluster_703	Bacteria	Actinomycetota	Actinobacteria	Mycobacteriales	Nocardiaceae	Gordonia	Unknown
 Cluster_705	Bacteria	Pseudomonadota	Alphaproteobacteria	Rhodobacterales	Paracoccaceae	Amaricoccus	Unknown
@@ -420,7 +415,7 @@ Cluster_750	Bacteria	Planctomycetota	Planctomycetes	Isosphaerales	Isosphaeraceae
 Cluster_752	Bacteria	Bacteroidota	Bacteroidia	Flavobacteriales	Weeksellaceae	Daejeonia	Unknown
 Cluster_753	Bacteria	Deinococcota	Deinococci	Deinococcales	Trueperaceae	Truepera	Unknown
 Cluster_754	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Micrococcaceae	Arthrobacter	Unknown
-Cluster_755	no	NA	NA	NA	NA	NA	NA
+Cluster_755	Bacteria	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_756	Bacteria	Acidobacteriota	Vicinamibacteria	Vicinamibacterales	Unknown	Unknown	Unknown
 Cluster_759	Bacteria	Pseudomonadota	Alphaproteobacteria	Rickettsiales	Anaplasmataceae	Wolbachia	Unknown
 Cluster_760	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Gluconobacter	Gluconobacter japonicus
@@ -536,7 +531,7 @@ Cluster_977	Bacteria	Fusobacteriota	Fusobacteriia	Fusobacteriales	Fusobacteriace
 Cluster_978	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Oxalobacteraceae	Massilia	Unknown
 Cluster_979	Bacteria	Bacillota	Bacilli	Bacillales	Bacillaceae	Unknown	Unknown
 Cluster_981	Bacteria	Actinomycetota	Thermoleophilia	Solirubrobacterales	Solirubrobacteraceae	Baekduia	Unknown
-Cluster_984	no	NA	NA	NA	NA	NA	NA
+Cluster_984	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_985	Bacteria	Bacillota	Clostridia	Oscillospirales	Ruminococcaceae	Ruminococcus	Unknown
 Cluster_986	Bacteria	Pseudomonadota	Gammaproteobacteria	Lysobacterales	Lysobacteraceae	Stenotrophomonas	Unknown
 Cluster_988	Bacteria	Bacillota	Negativicutes	Veillonellales-Selenomonadales	Sporomusaceae	Anaerospora	Unknown
@@ -598,7 +593,7 @@ Cluster_1091	Bacteria	Actinomycetota	Thermoleophilia	Solirubrobacterales	-	Unkno
 Cluster_1092	Bacteria	Actinomycetota	Actinobacteria	Mycobacteriales	Nocardiaceae	Rhodococcus	Unknown
 Cluster_1094	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Moraxellaceae	Acinetobacter	Unknown
 Cluster_1096	Bacteria	Bacillota	Bacilli	Bacillales	Bacillaceae	Alkalicoccobacillus	Bacillus plakortidis
-Cluster_1098	no	NA	NA	NA	NA	NA	NA
+Cluster_1098	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_1099	Bacteria	Chloroflexota	Anaerolineae	Caldilineales	Caldilineaceae	Unknown	Unknown
 Cluster_1102	Bacteria	Pseudomonadota	Alphaproteobacteria	Sphingomonadales	Sphingomonadaceae	Unknown	Unknown
 Cluster_1103	Bacteria	Myxococcota	Polyangiia	Polyangiales	BIrii	Unknown	Unknown
@@ -646,7 +641,7 @@ Cluster_1187	Bacteria	Bacillota	Clostridia	Clostridiales	Clostridiaceae	Clostrid
 Cluster_1190	Bacteria	Bacteroidota	Bacteroidia	Chitinophagales	Chitinophagaceae	Parasegetibacter	Unknown
 Cluster_1191	Bacteria	Spirochaetota	Spirochaetia	Spirochaetales	Spirochaetaceae	Treponema	Unknown
 Cluster_1192	Bacteria	Bacteroidota	Bacteroidia	Flavobacteriales	Flavobacteriaceae	Flavobacterium	Flavobacterium rivuli
-Cluster_1195	no	NA	NA	NA	NA	NA	NA
+Cluster_1195	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_1196	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Brevibacteriaceae	Brevibacterium	Brevibacterium daeguense
 Cluster_1198	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Enterobacteriaceae	Unknown	Unknown
 Cluster_1199	Bacteria	Actinomycetota	Thermoleophilia	Solirubrobacterales	-	Unknown	Unknown
@@ -669,7 +664,7 @@ Cluster_1232	Bacteria	Actinomycetota	Actinobacteria	Pseudonocardiales	Pseudonoca
 Cluster_1233	Bacteria	Pseudomonadota	Gammaproteobacteria	Lysobacterales	Lysobacteraceae	Luteimonas	Unknown
 Cluster_1235	Bacteria	Bacteroidota	Bacteroidia	Flavobacteriales	Weeksellaceae	Chryseobacterium	Unknown
 Cluster_1237	Bacteria	Bacteroidota	Bacteroidia	Bacteroidales	Muribaculaceae	Unknown	Unknown
-Cluster_1238	no	NA	NA	NA	NA	NA	NA
+Cluster_1238	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_1244	Bacteria	Bacteroidota	Bacteroidia	Bacteroidales	Dysgonomonadaceae	Dysgonomonas	Unknown
 Cluster_1247	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Unknown	Acetobacter thailandicus
 Cluster_1252	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Moraxellaceae	Acinetobacter	Unknown
@@ -799,7 +794,7 @@ Cluster_1509	Bacteria	Bacteroidota	Bacteroidia	Flavobacteriales	Flavobacteriacea
 Cluster_1511	Bacteria	Pseudomonadota	Alphaproteobacteria	Sphingomonadales	Sphingomonadaceae	Sphingobium	Unknown
 Cluster_1514	Bacteria	Bacteroidota	Bacteroidia	Flavobacteriales	Weeksellaceae	Chryseobacterium	Chryseobacterium hispanicum
 Cluster_1515	Bacteria	Pseudomonadota	Alphaproteobacteria	Hyphomicrobiales	Beijerinckiaceae	Unknown	Unknown
-Cluster_1516	no	NA	NA	NA	NA	NA	NA
+Cluster_1516	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_1517	Bacteria	Thermotogota	Thermotogae	Thermotogales	Fervidobacteriaceae	Fervidobacterium	Unknown
 Cluster_1520	Bacteria	Deinococcota	Deinococci	Thermales	Thermaceae	Thermus	Unknown
 Cluster_1521	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Promicromonosporaceae	Cellulosimicrobium	Unknown
@@ -916,7 +911,7 @@ Cluster_1758	Bacteria	Pseudomonadota	Alphaproteobacteria	Hyphomicrobiales	Devosi
 Cluster_1759	Bacteria	Pseudomonadota	Alphaproteobacteria	Hyphomicrobiales	Devosiaceae	Devosia	Unknown
 Cluster_1760	Bacteria	Bacillota	Clostridia	Peptostreptococcales-Tissierellales	Peptostreptococcaceae	Peptoclostridium	Unknown
 Cluster_1761	Bacteria	Pseudomonadota	Gammaproteobacteria	Lysobacterales	Lysobacteraceae	Xanthomonas	Unknown
-Cluster_1768	no	NA	NA	NA	NA	NA	NA
+Cluster_1768	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_1778	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Tanticharoenia	Tanticharoenia sakaeratensis
 Cluster_1779	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Moraxellaceae	Acinetobacter	Unknown
 Cluster_1782	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Microbacteriaceae	Unknown	Unknown
@@ -985,7 +980,7 @@ Cluster_1917	Bacteria	Pseudomonadota	Alphaproteobacteria	Sphingomonadales	Sphing
 Cluster_1920	Bacteria	Bacteroidota	Bacteroidia	Cytophagales	Spirosomataceae	Dyadobacter	Unknown
 Cluster_1922	Bacteria	Bacteroidota	Bacteroidia	Flavobacteriales	Weeksellaceae	Cloacibacterium	Unknown
 Cluster_1926	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Sutterellaceae	Turicimonas	Unknown
-Cluster_1928	no	NA	NA	NA	NA	NA	NA
+Cluster_1928	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_1929	Bacteria	Bacteroidota	Bacteroidia	Bacteroidales	Rikenellaceae	Alistipes	Alistipes finegoldii
 Cluster_1935	Bacteria	Pseudomonadota	Alphaproteobacteria	Caulobacterales	Caulobacteraceae	Brevundimonas	Unknown
 Cluster_1937	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Erwiniaceae	Phaseolibacter	Unknown
@@ -994,7 +989,7 @@ Cluster_1940	Bacteria	Actinomycetota	Actinobacteria	Frankiales	Geodermatophilace
 Cluster_1942	Bacteria	Actinomycetota	Actinobacteria	Bifidobacteriales	Bifidobacteriaceae	Gardnerella	Gardnerella vaginalis
 Cluster_1945	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Micrococcaceae	Kocuria	Unknown
 Cluster_1947	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Moraxellaceae	Acinetobacter	Unknown
-Cluster_1953	no	NA	NA	NA	NA	NA	NA
+Cluster_1953	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_1955	Bacteria	Bacillota	Clostridia	Oscillospirales	Ruminococcaceae	Ruminococcus	Unknown
 Cluster_1959	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Alcaligenaceae	Unknown	Unknown
 Cluster_1960	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Unknown	Unknown
@@ -1110,7 +1105,7 @@ Cluster_2210	Bacteria	Pseudomonadota	Alphaproteobacteria	Hyphomicrobiales	Devosi
 Cluster_2211	Bacteria	Actinomycetota	Thermoleophilia	Solirubrobacterales	-	Unknown	Unknown
 Cluster_2212	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Erwiniaceae	Unknown	Unknown
 Cluster_2215	Bacteria	Pseudomonadota	Alphaproteobacteria	Hyphomicrobiales	Beijerinckiaceae	Unknown	Unknown
-Cluster_2217	no	NA	NA	NA	NA	NA	NA
+Cluster_2217	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_2219	Bacteria	Pseudomonadota	Alphaproteobacteria	Hyphomicrobiales	Beijerinckiaceae	Methylobacterium	Unknown
 Cluster_2220	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Moraxellaceae	Acinetobacter	Unknown
 Cluster_2222	Bacteria	Verrucomicrobiota	Verrucomicrobiia	Chthoniobacterales	Xiphinematobacteraceae	Xiphinematobacter	Unknown
@@ -1201,7 +1196,7 @@ Cluster_2419	Bacteria	Bacteroidota	Bacteroidia	Chitinophagales	Chitinophagaceae	
 Cluster_2422	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Enterobacteriaceae	Unknown	Unknown
 Cluster_2425	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Promicromonosporaceae	Promicromonospora	Unknown
 Cluster_2428	Bacteria	Bacillota	Bacilli	Thermicanales	Thermicanaceae	Thermicanus	Unknown
-Cluster_2429	no	NA	NA	NA	NA	NA	NA
+Cluster_2429	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_2431	Bacteria	Bacteroidota	Bacteroidia	Flavobacteriales	Flavobacteriaceae	Flavobacterium	Unknown
 Cluster_2432	Bacteria	Bacteroidota	Bacteroidia	Cytophagales	Hymenobacteraceae	Adhaeribacter	Unknown
 Cluster_2435	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Methylophilaceae	Methylophilus	Unknown
@@ -1291,7 +1286,7 @@ Cluster_2602	Bacteria	Pseudomonadota	Alphaproteobacteria	Sphingomonadales	Sphing
 Cluster_2603	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Oxalobacteraceae	Massilia	Unknown
 Cluster_2605	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Unknown	Unknown	Unknown
 Cluster_2606	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Oxalobacteraceae	Massilia	Unknown
-Cluster_2607	no	NA	NA	NA	NA	NA	NA
+Cluster_2607	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_2608	Bacteria	Bacteroidota	Bacteroidia	Sphingobacteriales	Sphingobacteriaceae	Pedobacter	Unknown
 Cluster_2609	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Enterobacteriaceae	Unknown	Unknown
 Cluster_2610	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Moraxellaceae	Acinetobacter	Unknown
@@ -1307,7 +1302,7 @@ Cluster_2621	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetoba
 Cluster_2622	Bacteria	Pseudomonadota	Alphaproteobacteria	Rickettsiales	Anaplasmataceae	Wolbachia	Unknown
 Cluster_2626	Bacteria	Pseudomonadota	Alphaproteobacteria	Rhodobacterales	Paracoccaceae	Paracoccus	Unknown
 Cluster_2627	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Yersiniaceae	Serratia	Serratia symbiotica
-Cluster_2628	no	NA	NA	NA	NA	NA	NA
+Cluster_2628	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_2629	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_2630	Bacteria	Bacillota	Bacilli	Lactobacillales	Lactobacillaceae	Fructilactobacillus	Unknown
 Cluster_2631	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Moraxellaceae	Acinetobacter	Unknown
@@ -1319,7 +1314,7 @@ Cluster_2638	Bacteria	Bacillota	Bacilli	Bacillales	Planococcaceae	Lysinibacillus
 Cluster_2639	Bacteria	Cyanobacteriota	Cyanobacteriia	Cyanobacteriales	Chroococcidiopsaceae	Unknown	Unknown
 Cluster_2640	Bacteria	Bacteroidota	Bacteroidia	Cytophagales	Amoebophilaceae	Cardinium	Unknown
 Cluster_2641	Bacteria	Bacillota	Bacilli	Lactobacillales	Listeriaceae	Listeria	Unknown
-Cluster_2642	no	NA	NA	NA	NA	NA	NA
+Cluster_2642	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_2643	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Unknown	Unknown
 Cluster_2644	Bacteria	Actinomycetota	Actinobacteria	Propionibacteriales	Nocardioidaceae	Nocardioides	Unknown
 Cluster_2646	Bacteria	Pseudomonadota	Gammaproteobacteria	Lysobacterales	Rhodanobacteraceae	Luteibacter	Unknown
@@ -1338,8 +1333,8 @@ Cluster_2675	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Bogoriellaceae
 Cluster_2679	Bacteria	Pseudomonadota	Alphaproteobacteria	Rhodobacterales	Paracoccaceae	Unknown	Unknown
 Cluster_2680	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Unknown	Unknown
 Cluster_2683	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Unknown
-Cluster_2685	no	NA	NA	NA	NA	NA	NA
-Cluster_2688	no	NA	NA	NA	NA	NA	NA
+Cluster_2685	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_2688	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_2691	Bacteria	Actinomycetota	Actinobacteria	Propionibacteriales	Nocardioidaceae	Nocardioides	Unknown
 Cluster_2692	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Morganellaceae	Hamiltonella	Unknown
 Cluster_2693	Bacteria	Actinomycetota	Actinobacteria	Pseudonocardiales	Pseudonocardiaceae	Saccharopolyspora	Saccharopolyspora rectivirgula
@@ -1433,7 +1428,7 @@ Cluster_2877	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Burkhol
 Cluster_2878	Bacteria	Cyanobacteriota	Cyanobacteriia	Cyanobacteriales	Chroococcidiopsaceae	Unknown	Unknown
 Cluster_2881	Bacteria	Bacteroidota	Bacteroidia	Sphingobacteriales	Sphingobacteriaceae	Mucilaginibacter	Unknown
 Cluster_2884	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Marinobacteraceae	Marinobacter	Unknown
-Cluster_2887	no	NA	NA	NA	NA	NA	NA
+Cluster_2887	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_2889	Bacteria	Pseudomonadota	Gammaproteobacteria	Lysobacterales	Lysobacteraceae	Xanthomonas	Unknown
 Cluster_2890	Bacteria	Pseudomonadota	Alphaproteobacteria	Hyphomicrobiales	Beijerinckiaceae	Methylobacterium	Unknown
 Cluster_2894	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Alteromonadaceae	Rheinheimera	Unknown
@@ -1444,7 +1439,7 @@ Cluster_2900	Bacteria	Bacillota	Clostridia	Oscillospirales	Ethanoligenenaceae	Et
 Cluster_2902	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Brevibacteriaceae	Brevibacterium	Brevibacterium ravenspurgense
 Cluster_2903	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Microbacteriaceae	Microbacterium	Unknown
 Cluster_2904	Bacteria	Pseudomonadota	Alphaproteobacteria	Sphingomonadales	Sphingomonadaceae	Sphingomonas	Unknown
-Cluster_2905	no	NA	NA	NA	NA	NA	NA
+Cluster_2905	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_2911	Bacteria	Bacillota	Bacilli	Paenibacillales	Paenibacillaceae	Paenibacillus	Unknown
 Cluster_2912	Bacteria	Bacteroidota	Bacteroidia	Cytophagales	Spirosomataceae	Sandaracinomonas	Unknown
 Cluster_2914	Bacteria	Bacteroidota	Bacteroidia	Cytophagales	Hymenobacteraceae	Hymenobacter	Siccationidurans soli
@@ -1479,7 +1474,7 @@ Cluster_2967	Bacteria	Bacillota	Bacilli	Lactobacillales	Lactobacillaceae	Pedioco
 Cluster_2969	Bacteria	Pseudomonadota	Alphaproteobacteria	Hyphomicrobiales	Rhizobiaceae	Aureimonas	Unknown
 Cluster_2971	Bacteria	Bacillota	Clostridia	Oscillospirales	Oscillospiraceae	Colidextribacter	Unknown
 Cluster_2973	Bacteria	Bacillota	Clostridia	Lachnospirales	Lachnospiraceae	Unknown	Unknown
-Cluster_2974	no	NA	NA	NA	NA	NA	NA
+Cluster_2974	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_2975	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Methylophilaceae	Unknown	Unknown
 Cluster_2976	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Erwiniaceae	Unknown	Unknown
 Cluster_2977	Bacteria	Actinomycetota	Actinobacteria	Kineosporiales	Kineosporiaceae	Quadrisphaera	Unknown
@@ -1540,7 +1535,7 @@ Cluster_3087	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Cellvib
 Cluster_3091	Bacteria	Bacteroidota	Bacteroidia	Flavobacteriales	Flavobacteriaceae	Flavobacterium	Unknown
 Cluster_3093	Bacteria	Chloroflexota	Chloroflexia	Thermomicrobiales	JG-KF-CM	Unknown	Unknown
 Cluster_3094	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Comamonadaceae	Unknown	Unknown
-Cluster_3096	no	NA	NA	NA	NA	NA	NA
+Cluster_3096	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_3099	Bacteria	Pseudomonadota	Gammaproteobacteria	Lysobacterales	Lysobacteraceae	Stenotrophomonas	Unknown
 Cluster_3100	Bacteria	Chloroflexota	TK	unknown order	Unknown	Unknown	Unknown
 Cluster_3105	Bacteria	Pseudomonadota	Alphaproteobacteria	Sphingomonadales	Sphingomonadaceae	Sphingomonas	Unknown
@@ -1581,7 +1576,7 @@ Cluster_3169	Bacteria	Bacteroidota	Bacteroidia	Flavobacteriales	Weeksellaceae	Ch
 Cluster_3170	Bacteria	Pseudomonadota	Alphaproteobacteria	Rhodobacterales	Paracoccaceae	Paracoccus	Unknown
 Cluster_3171	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Moraxellaceae	Alkanindiges	Unknown
 Cluster_3175	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Micrococcaceae	Acaricomes	Acaricomes phytoseiuli
-Cluster_3176	no	NA	NA	NA	NA	NA	NA
+Cluster_3176	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_3177	Bacteria	Bacteroidota	Bacteroidia	Flavobacteriales	Flavobacteriaceae	Flavobacterium	Unknown
 Cluster_3179	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Comamonadaceae	Variovorax	Unknown
 Cluster_3183	Bacteria	Pseudomonadota	Alphaproteobacteria	Hyphomicrobiales	Beijerinckiaceae	Methylorubrum	Methylorubrum aminovorans
@@ -1595,7 +1590,7 @@ Cluster_3204	Bacteria	Bacteroidota	Bacteroidia	Bacteroidales	Bacteroidaceae	Bact
 Cluster_3205	Bacteria	Bacillota	Clostridia	Lachnospirales	Lachnospiraceae	Blautia	Unknown
 Cluster_3209	Bacteria	Fusobacteriota	Fusobacteriia	Fusobacteriales	Leptotrichiaceae	Streptobacillus	Unknown
 Cluster_3211	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Acetobacter	Unknown
-Cluster_3212	no	NA	NA	NA	NA	NA	NA
+Cluster_3212	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_3213	Bacteria	Bacillota	Clostridia	Lachnospirales	Lachnospiraceae	Unknown	Unknown
 Cluster_3214	Bacteria	Bacteroidota	Bacteroidia	Bacteroidales	Bacteroidaceae	Bacteroides	Unknown
 Cluster_3215	Bacteria	Bacteroidota	Bacteroidia	Bacteroidales	Rikenellaceae	Alistipes	Unknown
@@ -1647,7 +1642,7 @@ Cluster_3323	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Intrasporangia
 Cluster_3324	Bacteria	Bacteroidota	Bacteroidia	Sphingobacteriales	Sphingobacteriaceae	Pedobacter	Unknown
 Cluster_3327	Bacteria	Pseudomonadota	Alphaproteobacteria	Hyphomicrobiales	Beijerinckiaceae	Methylobacterium	Unknown
 Cluster_3332	Bacteria	Actinomycetota	Actinobacteria	Mycobacteriales	Corynebacteriaceae	Corynebacterium	Corynebacterium kroppenstedtii
-Cluster_3337	no	NA	NA	NA	NA	NA	NA
+Cluster_3337	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_3339	Bacteria	Pseudomonadota	Alphaproteobacteria	Hyphomicrobiales	Rhizobiaceae	Rhizobium	Unknown
 Cluster_3341	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Comamonadaceae	Unknown	Unknown
 Cluster_3342	Bacteria	Actinomycetota	Actinobacteria	Propionibacteriales	Nocardioidaceae	Nocardioides	Unknown
@@ -1760,7 +1755,7 @@ Cluster_3542	Bacteria	Bacillota	Bacilli	Bacillales	Planococcaceae	Unknown	Unknow
 Cluster_3543	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Acidiphilium	Unknown
 Cluster_3545	Bacteria	Pseudomonadota	Alphaproteobacteria	Hyphomicrobiales	Beijerinckiaceae	Methylobacterium	Unknown
 Cluster_3549	Bacteria	Bacteroidota	Bacteroidia	Cytophagales	Hymenobacteraceae	Hymenobacter	Unknown
-Cluster_3550	no	NA	NA	NA	NA	NA	NA
+Cluster_3550	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_3552	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Enterobacteriaceae	Enterobacter	Unknown
 Cluster_3554	Bacteria	Bacillota	Bacilli	Lactobacillales	Enterococcaceae	Enterococcus	Unknown
 Cluster_3555	Bacteria	Bacteroidota	Bacteroidia	Cytophagales	Spirosomataceae	Unknown	Unknown
@@ -2034,7 +2029,7 @@ Cluster_4199	Bacteria	Pseudomonadota	Gammaproteobacteria	Lysobacterales	Lysobact
 Cluster_4203	Bacteria	Actinomycetota	Actinobacteria	Mycobacteriales	Corynebacteriaceae	Corynebacterium	Corynebacterium kroppenstedtii
 Cluster_4204	Bacteria	Bacillota	Bacilli	Bacillales	Planococcaceae	Unknown	Unknown
 Cluster_4208	Bacteria	Pseudomonadota	Alphaproteobacteria	Hyphomicrobiales	Beijerinckiaceae	Methylobacterium	Unknown
-Cluster_4210	no	NA	NA	NA	NA	NA	NA
+Cluster_4210	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_4211	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Cellvibrionaceae	Cellvibrio	Unknown
 Cluster_4213	Bacteria	Bacteroidota	Bacteroidia	Cytophagales	Hymenobacteraceae	Hymenobacter	Unknown
 Cluster_4216	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Microbacteriaceae	Rathayibacter	Unknown
@@ -2081,7 +2076,7 @@ Cluster_4294	Bacteria	Actinomycetota	Rubrobacteria	Rubrobacterales	Rubrobacteria
 Cluster_4296	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Microbacteriaceae	Unknown	Unknown
 Cluster_4297	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Oxalobacteraceae	Unknown	Unknown
 Cluster_4301	Bacteria	Bacillota	Clostridia	Lachnospirales	Lachnospiraceae	Roseburia	Unknown
-Cluster_4302	no	NA	NA	NA	NA	NA	NA
+Cluster_4302	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_4304	Bacteria	Bacillota	Bacilli	Lactobacillales	Lactobacillaceae	Unknown	Unknown
 Cluster_4306	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Acetobacter	Unknown
 Cluster_4307	Bacteria	Bacillota	Bacilli	Bacillales	Bacillaceae	Lederbergia	Unknown
@@ -2110,7 +2105,7 @@ Cluster_4352	Bacteria	Bacteroidota	Bacteroidia	Bacteroidales	Bacteroidaceae	Bact
 Cluster_4353	Bacteria	Bacillota	Clostridia	Lachnospirales	Lachnospiraceae	Lachnoclostridium	Unknown
 Cluster_4354	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Unknown
 Cluster_4356	Bacteria	Pseudomonadota	Alphaproteobacteria	Rickettsiales	Anaplasmataceae	Wolbachia	Unknown
-Cluster_4359	no	NA	NA	NA	NA	NA	NA
+Cluster_4359	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_4366	Bacteria	Bacteroidota	Bacteroidia	Bacteroidales	Muribaculaceae	Unknown	Unknown
 Cluster_4367	Bacteria	Bacillota	Clostridia	Lachnospirales	Lachnospiraceae	Lachnospiraceae	Unknown
 Cluster_4369	Bacteria	Myxococcota	Myxococcia	Myxococcales	Myxococcaceae	POB-	Unknown
@@ -2190,7 +2185,7 @@ Cluster_4517	Bacteria	Pseudomonadota	Alphaproteobacteria	Hyphomicrobiales	Beijer
 Cluster_4521	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas aeruginosa
 Cluster_4524	Bacteria	Bacillota	Bacilli	Lactobacillales	Enterococcaceae	Enterococcus	Unknown
 Cluster_4527	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Neisseriaceae	Unknown	Unknown
-Cluster_4529	no	NA	NA	NA	NA	NA	NA
+Cluster_4529	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_4536	Bacteria	Actinomycetota	Thermoleophilia	Gaiellales	Unknown	Unknown	Unknown
 Cluster_4537	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Comamonadaceae	Rhizobacter	Unknown
 Cluster_4538	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Erwiniaceae	Unknown	Unknown
@@ -2236,7 +2231,7 @@ Cluster_4665	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Erwini
 Cluster_4668	Bacteria	Bacillota	Bacilli	Bacillales	Bacillaceae	Bacillus	Unknown
 Cluster_4670	Bacteria	Pseudomonadota	Alphaproteobacteria	Sphingomonadales	Sphingomonadaceae	Sphingomonas	Unknown
 Cluster_4675	Bacteria	Bacillota	Bacilli	Erysipelotrichales	Erysipelatoclostridiaceae	Catenibacterium	Unknown
-Cluster_4677	no	NA	NA	NA	NA	NA	NA
+Cluster_4677	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_4680	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Cellvibrionaceae	Cellvibrio	Cellvibrio gandavensis
 Cluster_4683	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Intrasporangiaceae	Arsenicicoccus	Arsenicicoccus bolidensis
 Cluster_4684	Bacteria	Pseudomonadota	Alphaproteobacteria	Hyphomicrobiales	Xanthobacteraceae	Unknown	Unknown
@@ -2268,7 +2263,7 @@ Cluster_4752	Bacteria	Pseudomonadota	Gammaproteobacteria	Lysobacterales	Lysobact
 Cluster_4753	Bacteria	Pseudomonadota	Gammaproteobacteria	Lysobacterales	Lysobacteraceae	Xanthomonas	Unknown
 Cluster_4757	Bacteria	Bacteroidota	Bacteroidia	Flavobacteriales	Weeksellaceae	Chryseobacterium	Chryseobacterium hispanicum
 Cluster_4758	Bacteria	Pseudomonadota	Gammaproteobacteria	Lysobacterales	Lysobacteraceae	Stenotrophomonas	Unknown
-Cluster_4763	no	NA	NA	NA	NA	NA	NA
+Cluster_4763	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_4764	Bacteria	Pseudomonadota	Gammaproteobacteria	Lysobacterales	Lysobacteraceae	Luteimonas	Unknown
 Cluster_4768	Bacteria	Bacillota	Bacilli	Lactobacillales	Carnobacteriaceae	Atopostipes	Unknown
 Cluster_4770	Bacteria	Pseudomonadota	Alphaproteobacteria	Hyphomicrobiales	Xanthobacteraceae	Unknown	Unknown
@@ -2318,7 +2313,7 @@ Cluster_4903	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Microbacteriac
 Cluster_4914	Bacteria	Pseudomonadota	Alphaproteobacteria	Hyphomicrobiales	Beijerinckiaceae	Methylobacterium	Unknown
 Cluster_4915	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Pasteurellaceae	Haemophilus	Unknown
 Cluster_4917	Bacteria	Pseudomonadota	Gammaproteobacteria	Lysobacterales	Lysobacteraceae	Unknown	Unknown
-Cluster_4919	no	NA	NA	NA	NA	NA	NA
+Cluster_4919	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_4922	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Comamonadaceae	Variovorax	Unknown
 Cluster_4925	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Moraxellaceae	Enhydrobacter	Unknown
 Cluster_4927	Bacteria	Actinomycetota	Actinobacteria	Mycobacteriales	Corynebacteriaceae	Corynebacterium	Unknown
@@ -2347,7 +2342,7 @@ Cluster_4971	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetoba
 Cluster_4974	Bacteria	Actinomycetota	Actinobacteria	Frankiales	Unknown	Unknown	Unknown
 Cluster_4975	Bacteria	Cyanobacteriota	Cyanobacteriia	Cyanobacteriales	Nostocaceae	Nostoc	Unknown
 Cluster_4976	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Enterobacteriaceae	Unknown	Unknown
-Cluster_4979	no	NA	NA	NA	NA	NA	NA
+Cluster_4979	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_4980	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Erwiniaceae	Pantoea	Pantoea agglomerans
 Cluster_4981	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Oxalobacteraceae	Massilia	Unknown
 Cluster_4982	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Oxalobacteraceae	Massilia	Unknown
@@ -2362,7 +2357,7 @@ Cluster_5007	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Moraxel
 Cluster_5008	Bacteria	Pseudomonadota	Alphaproteobacteria	Hyphomicrobiales	Beijerinckiaceae	Methylobacterium	Unknown
 Cluster_5010	Bacteria	Pseudomonadota	Alphaproteobacteria	Sphingomonadales	Sphingomonadaceae	Sphingomonas	Unknown
 Cluster_5011	Bacteria	Bacillota	Clostridia	Lachnospirales	Lachnospiraceae	Lachnospiraceae	Unknown
-Cluster_5012	no	NA	NA	NA	NA	NA	NA
+Cluster_5012	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_5013	Bacteria	Pseudomonadota	Alphaproteobacteria	Rickettsiales	Anaplasmataceae	Wolbachia	Unknown
 Cluster_5018	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Unknown	Unknown
 Cluster_5021	Bacteria	Bacillota	Clostridia	Lachnospirales	Lachnospiraceae	Unknown	Unknown
@@ -2407,7 +2402,7 @@ Cluster_5092	Bacteria	Bacteroidota	Bacteroidia	Bacteroidales	Prevotellaceae	Prev
 Cluster_5093	Bacteria	Bacillota	Clostridia	Oscillospirales	Oscillospiraceae	Unknown	Unknown
 Cluster_5094	Bacteria	Bacillota	Bacilli	Bacillales	Planococcaceae	Planococcus	Unknown
 Cluster_5098	Bacteria	Bacteroidota	Bacteroidia	Bacteroidales	Marinifilaceae	Odoribacter	Unknown
-Cluster_5101	no	NA	NA	NA	NA	NA	NA
+Cluster_5101	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_5104	Bacteria	Pseudomonadota	Alphaproteobacteria	Sphingomonadales	Sphingomonadaceae	Sphingomonas	Unknown
 Cluster_5106	Bacteria	Verrucomicrobiota	Verrucomicrobiia	Pedosphaerales	Pedosphaeraceae	DEV	Unknown
 Cluster_5107	Bacteria	Bacillota	Bacilli	Mycoplasmatales	Mycoplasmataceae	Eperythrozoon	Unknown
@@ -2443,7 +2438,7 @@ Cluster_5169	Bacteria	Bacillota	Bacilli	Bacillales	Planococcaceae	Lysinibacillus
 Cluster_5170	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Unknown	Unknown
 Cluster_5172	Bacteria	Fusobacteriota	Fusobacteriia	Fusobacteriales	Leptotrichiaceae	Pseudoleptotrichia	Unknown
 Cluster_5174	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Moraxellaceae	Acinetobacter	Unknown
-Cluster_5175	no	NA	NA	NA	NA	NA	NA
+Cluster_5175	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_5180	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas aeruginosa
 Cluster_5181	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Morganellaceae	Arsenophonus	Unknown
 Cluster_5183	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Unknown	Unknown	Unknown
@@ -2455,7 +2450,7 @@ Cluster_5194	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetoba
 Cluster_5195	Bacteria	Bacillota	Bacilli	Bacillales	Bacillaceae	Bacillus	Bacillus licheniformis
 Cluster_5196	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Gluconobacter	Unknown
 Cluster_5205	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Unknown	Unknown	Unknown
-Cluster_5208	no	NA	NA	NA	NA	NA	NA
+Cluster_5208	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_5210	Bacteria	Bacillota	Clostridia	Lachnospirales	Lachnospiraceae	Enterocloster	Unknown
 Cluster_5211	Bacteria	Actinomycetota	Actinobacteria	Propionibacteriales	Nocardioidaceae	Nocardioides	Unknown
 Cluster_5212	Bacteria	Bacillota	Bacilli	Bacillales	Bacillaceae	Bacillus	Unknown
@@ -2484,7 +2479,7 @@ Cluster_5258	Bacteria	Bacillota	Bacilli	Bacillales	Bacillaceae	Bacillus	Unknown
 Cluster_5259	Bacteria	Bacillota	Clostridia	Oscillospirales	Ruminococcaceae	Acutalibacter	Unknown
 Cluster_5263	Bacteria	Bacillota	Bacilli	Bacillales	Bacillaceae	Bacillus	Bacillus licheniformis
 Cluster_5266	Bacteria	Pseudomonadota	Alphaproteobacteria	Rhodobacterales	Paracoccaceae	Paracoccus	Paracoccus denitrificans
-Cluster_5267	no	NA	NA	NA	NA	NA	NA
+Cluster_5267	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_5269	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Erwiniaceae	Phaseolibacter	Unknown
 Cluster_5273	Bacteria	Bacillota	Bacilli	Lactobacillales	Listeriaceae	Listeria	Unknown
 Cluster_5276	Bacteria	Bacillota	Bacilli	Lactobacillales	Listeriaceae	Listeria	Unknown
@@ -2510,7 +2505,7 @@ Cluster_5330	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetoba
 Cluster_5332	Bacteria	Pseudomonadota	Alphaproteobacteria	Rickettsiales	Anaplasmataceae	Wolbachia	Unknown
 Cluster_5336	Bacteria	Bacillota	Bacilli	Bacillales	Bacillaceae	Niallia	Unknown
 Cluster_5342	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Pectobacteriaceae	Brenneria	Brenneria alni
-Cluster_5344	no	NA	NA	NA	NA	NA	NA
+Cluster_5344	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_5348	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Acetobacter	Unknown
 Cluster_5349	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Unknown
 Cluster_5351	Bacteria	Bacillota	Bacilli	Lactobacillales	Lactobacillaceae	Limosilactobacillus	Lactobacillus fermentum
@@ -2604,7 +2599,7 @@ Cluster_5658	Bacteria	Actinomycetota	Actinobacteria	Mycobacteriales	Corynebacter
 Cluster_5660	Bacteria	Bacteroidota	Bacteroidia	Cytophagales	Hymenobacteraceae	Hymenobacter	Unknown
 Cluster_5663	Bacteria	Cyanobacteriota	Cyanobacteriia	Cyanobacteriales	Chroococcidiopsaceae	Unknown	Unknown
 Cluster_5672	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Enterobacteriaceae	Unknown	Unknown
-Cluster_5673	no	NA	NA	NA	NA	NA	NA
+Cluster_5673	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_5674	Bacteria	Pseudomonadota	Alphaproteobacteria	Sphingomonadales	Sphingomonadaceae	Sphingomonas	Unknown
 Cluster_5675	Bacteria	Actinomycetota	Actinobacteria	Propionibacteriales	Propionibacteriaceae	Cutibacterium	Unknown
 Cluster_5679	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Burkholderiaceae	Robbsia	Unknown
@@ -2681,7 +2676,7 @@ Cluster_5965	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Erwini
 Cluster_5972	Bacteria	Cyanobacteriota	Cyanobacteriia	Cyanobacteriales	Chroococcidiopsaceae	Unknown	Unknown
 Cluster_5978	Bacteria	Pseudomonadota	Alphaproteobacteria	Sphingomonadales	Sphingomonadaceae	Sphingomonas	Unknown
 Cluster_5979	Bacteria	Bacillota	Bacilli	Staphylococcales	Staphylococcaceae	Staphylococcus	Unknown
-Cluster_5981	no	NA	NA	NA	NA	NA	NA
+Cluster_5981	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_5988	Bacteria	Pseudomonadota	Alphaproteobacteria	Hyphomicrobiales	Rhizobiaceae	Daeguia	Daeguia caeni
 Cluster_5990	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Acidiphilium	Unknown
 Cluster_5992	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Unknown	Unknown	Unknown
@@ -2880,7 +2875,7 @@ Cluster_6670	Bacteria	Bacillota	Clostridia	Lachnospirales	Lachnospiraceae	Lachno
 Cluster_6677	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Moraxellaceae	Acinetobacter	Unknown
 Cluster_6679	Bacteria	Bacillota	Clostridia	Lachnospirales	Lachnospiraceae	Lachnospiraceae	Unknown
 Cluster_6688	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Neisseriaceae	Unknown	Unknown
-Cluster_6691	no	NA	NA	NA	NA	NA	NA
+Cluster_6691	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_6694	Bacteria	Bacteroidota	Bacteroidia	Bacteroidales	Muribaculaceae	Unknown	Unknown
 Cluster_6696	Bacteria	Bacillota	Bacilli	Staphylococcales	Staphylococcaceae	Macrococcus	Unknown
 Cluster_6698	Bacteria	Deferribacterota	Deferribacteres	Deferribacterales	Deferribacteraceae	Mucispirillum	Mucispirillum schaedleri
@@ -2911,7 +2906,7 @@ Cluster_6797	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Moraxel
 Cluster_6801	Bacteria	Bacillota	Clostridia	Lachnospirales	Lachnospiraceae	Lachnoclostridium	Unknown
 Cluster_6804	Bacteria	Bacillota	Clostridia	Oscillospirales	Oscillospiraceae	Oscillibacter	Unknown
 Cluster_6808	Bacteria	Bacillota	Bacilli	Lactobacillales	Lactobacillaceae	Levilactobacillus	Unknown
-Cluster_6818	no	NA	NA	NA	NA	NA	NA
+Cluster_6818	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_6821	Bacteria	Actinomycetota	Actinobacteria	Mycobacteriales	Corynebacteriaceae	Corynebacterium	Corynebacterium aurimucosum
 Cluster_6825	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Unknown	Unknown	Unknown
 Cluster_6829	Bacteria	Bacillota	Clostridia	Oscillospirales	Oscillospiraceae	Oscillibacter	Unknown
@@ -2929,7 +2924,7 @@ Cluster_6876	Bacteria	Pseudomonadota	Alphaproteobacteria	Rickettsiales	Anaplasma
 Cluster_6887	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Pseudomonas thivervalensis
 Cluster_6891	Bacteria	Pseudomonadota	Alphaproteobacteria	Rickettsiales	Anaplasmataceae	Wolbachia	Unknown
 Cluster_6894	Bacteria	Gemmatimonadota	Gemmatimonadia	Gemmatimonadales	Gemmatimonadaceae	Roseisolibacter	Unknown
-Cluster_6895	no	NA	NA	NA	NA	NA	NA
+Cluster_6895	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_6897	Bacteria	Actinomycetota	Actinobacteria	Mycobacteriales	Mycobacteriaceae	Mycobacterium	Unknown
 Cluster_6898	Bacteria	Actinomycetota	Actinobacteria	Propionibacteriales	Nocardioidaceae	Nocardioides	Unknown
 Cluster_6899	Bacteria	Bacillota	Clostridia	Oscillospirales	Oscillospiraceae	Oscillibacter	Unknown
@@ -2959,7 +2954,7 @@ Cluster_6983	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Moraxel
 Cluster_6985	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Micrococcaceae	Kocuria	Unknown
 Cluster_6996	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Unknown	Unknown
 Cluster_6998	Bacteria	Bacteroidota	Bacteroidia	Bacteroidales	Bacteroidaceae	Bacteroides	Unknown
-Cluster_7003	no	NA	NA	NA	NA	NA	NA
+Cluster_7003	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_7005	Bacteria	Bacillota	Bacilli	Lactobacillales	Listeriaceae	Listeria	Unknown
 Cluster_7006	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Acetobacter	Unknown
 Cluster_7016	Bacteria	Myxococcota	Myxococcia	Myxococcales	Myxococcaceae	POB-	Unknown
@@ -3605,7 +3600,7 @@ Cluster_12167	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Unkno
 Cluster_12174	Bacteria	Pseudomonadota	Alphaproteobacteria	Sphingomonadales	Sphingomonadaceae	Sphingomonas	Unknown
 Cluster_12194	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Comamonadaceae	Unknown	Acidovorax valerianellae
 Cluster_12196	Bacteria	Actinomycetota	Actinobacteria	Micrococcales	Microbacteriaceae	Schumannella	Unknown
-Cluster_12202	no	NA	NA	NA	NA	NA	NA
+Cluster_12202	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_12203	Bacteria	Bacillota	Bacilli	Lactobacillales	Listeriaceae	Listeria	Unknown
 Cluster_12223	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Yersiniaceae	Unknown	Unknown
 Cluster_12226	Bacteria	Bacillota	Bacilli	Staphylococcales	Staphylococcaceae	Staphylococcus	Unknown
@@ -3675,13 +3670,13 @@ Cluster_12625	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Oxalob
 Cluster_12629	Bacteria	Cyanobacteriota	Cyanobacteriia	Cyanobacteriales	Chroococcidiopsaceae	Aliterella	Unknown
 Cluster_12631	Bacteria	Bacillota	Clostridia	Lachnospirales	Lachnospiraceae	Unknown	Unknown
 Cluster_12635	Bacteria	Bacillota	Clostridia	Lachnospirales	Lachnospiraceae	Tyzzerella	Unknown
-Cluster_12640	no	NA	NA	NA	NA	NA	NA
+Cluster_12640	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_12641	Bacteria	Pseudomonadota	Alphaproteobacteria	Rickettsiales	Anaplasmataceae	Wolbachia	Unknown
 Cluster_12646	Bacteria	Bacteroidota	Bacteroidia	Bacteroidales	Muribaculaceae	Unknown	Unknown
-Cluster_12648	no	NA	NA	NA	NA	NA	NA
+Cluster_12648	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_12650	Bacteria	Bacillota	Clostridia	Lachnospirales	Lachnospiraceae	Lachnospiraceae	Unknown
 Cluster_12660	Bacteria	Bacillota	Clostridia	Oscillospirales	Oscillospiraceae	Unknown	Unknown
-Cluster_12666	no	NA	NA	NA	NA	NA	NA
+Cluster_12666	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_12672	Bacteria	Bacillota	Clostridia	Peptostreptococcales-Tissierellales	Anaerovoracaceae	Unknown	Unknown
 Cluster_12676	Bacteria	Pseudomonadota	Alphaproteobacteria	Rickettsiales	Anaplasmataceae	Wolbachia	Unknown
 Cluster_12684	Bacteria	Bacillota	Clostridia	Oscillospirales	Oscillospiraceae	Unknown	Unknown
@@ -3716,8 +3711,8 @@ Cluster_12858	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Erwin
 Cluster_12874	Bacteria	Bacteroidota	Bacteroidia	Bacteroidales	Bacteroidaceae	Bacteroides	Unknown
 Cluster_12879	Bacteria	Bacillota	Clostridia	Lachnospirales	Lachnospiraceae	Unknown	Unknown
 Cluster_12887	Bacteria	Bacteroidota	Bacteroidia	Bacteroidales	Muribaculaceae	Unknown	Unknown
-Cluster_12888	no	NA	NA	NA	NA	NA	NA
-Cluster_12898	no	NA	NA	NA	NA	NA	NA
+Cluster_12888	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
+Cluster_12898	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_12910	Bacteria	Bacillota	Clostridia	Oscillospirales	Oscillospiraceae	Colidextribacter	Unknown
 Cluster_12914	Bacteria	Bacteroidota	Bacteroidia	Bacteroidales	Muribaculaceae	Unknown	Unknown
 Cluster_12915	Bacteria	Bacillota	Bacilli	Lactobacillales	Lactobacillaceae	Lactobacillus	Unknown
@@ -3772,7 +3767,7 @@ Cluster_13242	Bacteria	Bacillota	Clostridia	Lachnospirales	Lachnospiraceae	Unkno
 Cluster_13260	Bacteria	Bacillota	Clostridia	Lachnospirales	Lachnospiraceae	Lachnospiraceae	Unknown
 Cluster_13277	Bacteria	Bacillota	Bacilli	Lactobacillales	Lactobacillaceae	Fructilactobacillus	Unknown
 Cluster_13286	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Moraxellaceae	Moraxella	Unknown
-Cluster_13297	no	NA	NA	NA	NA	NA	NA
+Cluster_13297	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_13307	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Methylophilaceae	Unknown	Unknown
 Cluster_13320	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Morganellaceae	Buchnera	Buchnera aphidicola
 Cluster_13323	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Erwiniaceae	Erwinia	Unknown
@@ -3792,7 +3787,7 @@ Cluster_13378	Bacteria	Pseudomonadota	Alphaproteobacteria	Hyphomicrobiales	Beije
 Cluster_13382	Bacteria	Pseudomonadota	Alphaproteobacteria	Sphingomonadales	Sphingomonadaceae	Sphingomonas	Unknown
 Cluster_13383	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Gluconobacter	Unknown
 Cluster_13401	Bacteria	Bacillota	Bacilli	Staphylococcales	Staphylococcaceae	Staphylococcus	Unknown
-Cluster_13406	no	NA	NA	NA	NA	NA	NA
+Cluster_13406	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_13410	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Acetobacter	Unknown
 Cluster_13412	Bacteria	Pseudomonadota	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_13416	Bacteria	Bacillota	Bacilli	Bacillales	Bacillaceae	Bacillus	Unknown
@@ -3830,7 +3825,7 @@ Cluster_13583	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Erwin
 Cluster_13588	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Gluconobacter	Gluconobacter japonicus
 Cluster_13593	Bacteria	Pseudomonadota	Alphaproteobacteria	Rhodobacterales	Paracoccaceae	Paracoccus	Unknown
 Cluster_13599	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Swingsia	Swingsia samuiensis
-Cluster_13606	no	NA	NA	NA	NA	NA	NA
+Cluster_13606	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_13607	Bacteria	Pseudomonadota	Alphaproteobacteria	Paracaedibacterales	Paracaedibacteraceae	Paracaedibacter	Paracaedibacter symbiosus
 Cluster_13611	Bacteria	Pseudomonadota	Gammaproteobacteria	Lysobacterales	Rhodanobacteraceae	Unknown	Unknown
 Cluster_13615	Bacteria	Bacillota	Bacilli	Bacillales	Bacillaceae	Gottfriedia	Unknown
@@ -4049,7 +4044,7 @@ Cluster_15476	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Unkno
 Cluster_15519	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Roseomonas	Roseomonas genomospecies
 Cluster_15533	Bacteria	Acidobacteriota	Vicinamibacteria	Vicinamibacterales	Vicinamibacteraceae	Unknown	Unknown
 Cluster_15538	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Yersiniaceae	Serratia	Unknown
-Cluster_15540	no	NA	NA	NA	NA	NA	NA
+Cluster_15540	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_15555	Bacteria	Pseudomonadota	Gammaproteobacteria	Lysobacterales	Lysobacteraceae	Xanthomonas	Unknown
 Cluster_15575	Bacteria	Actinomycetota	Thermoleophilia	Solirubrobacterales	Solirubrobacteraceae	Solirubrobacter	Unknown
 Cluster_15576	Bacteria	Bacteroidota	Bacteroidia	Cytophagales	Hymenobacteraceae	Hymenobacter	Unknown
@@ -4079,7 +4074,7 @@ Cluster_15952	Bacteria	Bacillota	Bacilli	Lactobacillales	Lactobacillaceae	Weisse
 Cluster_15978	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Comamonadaceae	Unknown	Mitsuaria chitosanitabida
 Cluster_15983	Bacteria	Pseudomonadota	Alphaproteobacteria	Acetobacterales	Acetobacteraceae	Unknown	Unknown
 Cluster_15993	Bacteria	Bacillota	Clostridia	unknown order	Unknown	Unknown	Unknown
-Cluster_16036	no	NA	NA	NA	NA	NA	NA
+Cluster_16036	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_16070	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Pseudomonadaceae	Pseudomonas	Unknown
 Cluster_16080	Bacteria	Actinomycetota	Actinobacteria	Mycobacteriales	Corynebacteriaceae	Corynebacterium	Unknown
 Cluster_16082	Bacteria	Actinomycetota	Actinobacteria	Propionibacteriales	Nocardioidaceae	Aeromicrobium	Unknown
@@ -4217,7 +4212,7 @@ Cluster_17721	Bacteria	Bacteroidota	Bacteroidia	Flavobacteriales	Flavobacteriace
 Cluster_17762	Bacteria	Pseudomonadota	Gammaproteobacteria	Enterobacterales	Unknown	Unknown	Unknown
 Cluster_17763	Bacteria	Bacillota	Bacilli	Lactobacillales	Carnobacteriaceae	Carnobacterium	Unknown
 Cluster_17764	Bacteria	Pseudomonadota	Gammaproteobacteria	Burkholderiales	Oxalobacteraceae	Massilia	Unknown
-Cluster_17774	no	NA	NA	NA	NA	NA	NA
+Cluster_17774	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown	Unknown
 Cluster_17794	Bacteria	Pseudomonadota	Alphaproteobacteria	Rhodobacterales	Paracoccaceae	Paracoccus	Unknown
 Cluster_17804	Bacteria	Pseudomonadota	Gammaproteobacteria	Pseudomonadales	Moraxellaceae	Enhydrobacter	Unknown
 Cluster_17807	Bacteria	Bacillota	Negativicutes	Veillonellales-Selenomonadales	Veillonellaceae	Veillonella	Unknown
