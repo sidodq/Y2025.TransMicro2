@@ -19,7 +19,6 @@ devtools::load_all()
 
 library(dplyr)
 ```
-
 #PREPARE DATA
 
 # 1. Metadata
@@ -86,7 +85,6 @@ write.table(ab_16S, file=file.path(here::here(), "data", "derived_data", "1_Prep
 ```
 
 ### Abundance table with multi-affiliation and chimeras removed
-
 ```{r}
 #Load tables
 taxo_16S_Multiaffiliation <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "TransMicro123_multiAfTable_cleaned.tsv"), sep="\t", header=TRUE)
@@ -214,8 +212,8 @@ title_plot <- "16S_TM123_CovDepth_Proportions.png"
                 base_width = 25/cm(1), dpi = 1200)
 ```
 
-### Delete clusters with Plantae & Fungi Kingdoms
 
+### Delete clusters with Plantae & Fungi Kingdoms 
 ```{r}
 at_16S <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "TransMicro123_TaxTable_cleaned.tsv"), sep="\t", header=TRUE)
 
@@ -266,7 +264,6 @@ write.table(at_16S, file=file.path(here::here(), "data", "derived_data", "1_Prep
 ```
 
 ### Filter abundance table
-
 ```{r}
 at_16S <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "TransMicro123_TaxTable_cleaned2.tsv"), sep="\t", header=TRUE)
 
@@ -282,7 +279,6 @@ dim(at_16S_Controls) #478 clusters (489 - 11)
 ```
 
 ### TCC : Filter abundances based on negative controls
-
 ```{r}
 at_16S_Controls_Negatives <- at_16S_Controls %>% 
   dplyr::select(contains("Genus2") |contains("_EXT_")|contains("_PCR_") | contains("NC_")| contains("INDEX_"))

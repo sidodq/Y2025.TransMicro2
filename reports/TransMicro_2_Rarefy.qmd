@@ -166,7 +166,6 @@ ggplot(df_ITS, aes(x = reads)) +
   scale_x_log10() +
   theme_bw() +
   labs(x = "Tot. reads per ASV (log10)", y = "Count of ASVs")
-
 ```
 
 # 3. Remove conta.
@@ -308,6 +307,7 @@ saveRDS(ps_16S_filt_Dataset_1, file=file.path(here::here(), "data", "derived_dat
 saveRDS(ps_ITS_filt_Dataset_1, file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1", "ITS_ps_cleaned_NOTfiltered_Dataset_1.rds"))
 ```
 
+
 ```{r}
 # Dataset 2
 
@@ -334,7 +334,6 @@ saveRDS(ps_ITS_filt_Dataset_2, file=file.path(here::here(), "data", "derived_dat
 ```
 
 # 7. Rarefaction curves
-
 ```{r}
 ## Rarefaction curves
 
@@ -349,14 +348,15 @@ Rarefactioncurve_16S_D1 <- phyloseq.extended::ggrare(ps_16S_filt_Dataset_1, step
   geom_vline(xintercept = 3000, linetype = "dashed") + scale_y_continuous(trans = "log10", name = "Species Richness (log10)") + xlim(0, 10000)  +  theme_bw()
 
 title_plot <- "16S_D1_NOTfiltered_Rarefactioncurve.png"
+
   cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1" , title_plot), Rarefactioncurve_16S_D1, base_height = 35/cm(1), base_width = 60/cm(1), dpi = 1200)
 
 
 Rarefactioncurve_ITS_D1 <- phyloseq.extended::ggrare(ps_ITS_filt_Dataset_1, step = 100, se = FALSE, color = "SampleType", label = "ID_pool") +
   geom_vline(xintercept = 5000, linetype = "dashed") + scale_y_continuous(trans = "log10", name = "Species Richness (log10)") +  xlim(0, 10000) +  theme_bw()
 
-
 title_plot <- "ITS_D1_NOTfiltered_Rarefactioncurve.png"
+
   cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1", title_plot), Rarefactioncurve_ITS_D1, base_height = 35/cm(1),base_width = 60/cm(1), dpi = 1200)
 
     
@@ -374,7 +374,6 @@ ps_16S_filt_Dataset_2 <- readRDS(file=file.path(here::here(), "data", "derived_d
 
 ps_ITS_filt_Dataset_2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "ITS_ps_cleaned_NOTfiltered_Dataset_2.rds"))
 
-
 # Plots
 Rarefactioncurve_16S_D2 <- phyloseq.extended::ggrare(ps_16S_filt_Dataset_2, step = 100, se = FALSE, color = "SampleType", label = "ID_pool") +
   geom_vline(xintercept = 3000, linetype = "dashed") + scale_y_continuous(trans = "log10", name = "Species Richness (log10)") + xlim(0, 10000)  +  theme_bw()
@@ -385,8 +384,8 @@ title_plot <- "16S_D2_NOTfiltered_Rarefactioncurve.png"
 
 Rarefactioncurve_ITS_D2 <- phyloseq.extended::ggrare(ps_ITS_filt_Dataset_2, step = 100, se = FALSE, color = "SampleType", label = "ID_pool") + xlim(0, 10000) + geom_vline(xintercept = 5000, linetype = "dashed") + scale_y_continuous(trans = "log10", name = "Species Richness (log10)") + theme_bw()
 
-
 title_plot <- "ITS_D2_NOTfiltered_Rarefactioncurve.png"
+
   cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_2", title_plot), Rarefactioncurve_ITS_D2, base_height = 35/cm(1),base_width = 60/cm(1), dpi = 1200)
 
     
@@ -394,6 +393,7 @@ title_plot <- "ITS_D2_NOTfiltered_Rarefactioncurve.png"
 RarefactionCurves_D2 <- ggpubr::ggarrange(Rarefactioncurve_16S_D2, Rarefactioncurve_ITS_D2, labels = c("A. 16S", "B. ITS"), ncol = 2, nrow = 1, widths = c(1.4, 1.4), legend = "bottom", common.legend = TRUE)
 
 title_plot <- "RarefactionCurves_NOTfiltered_D2.png"
+
  cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_2", title_plot), RarefactionCurves_D2, base_height = 30/cm(1), base_width = 60/cm(1), dpi = 1200)
 
 ```
@@ -422,11 +422,13 @@ saveRDS(ps_rare_ITS_D1, file=file.path(here::here(), "data", "derived_data", "2_
 otu_df_16S <- as.data.frame(otu_table(ps_rare_16S_D1))
 otu_df_16S$observation_name <- rownames(otu_df_16S)
 otu_df_16S <- otu_df_16S %>% dplyr::relocate(observation_name)
+
 write.table(otu_df_16S, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1",  "16S_otu_table_ps_rare_NF_D1.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 tax_df_16S <- as.data.frame(tax_table(ps_rare_16S_D1))
 tax_df_16S$observation_name <- rownames(tax_df_16S)
 tax_df_16S <- tax_df_16S %>% dplyr::relocate(observation_name)
+
 write.table(tax_df_16S, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "16S_tax_table_ps_rare_NF_D1.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 metadata_16S_df <- data.frame(sample_data(ps_rare_16S_D1), check.names = FALSE)
@@ -438,6 +440,7 @@ otu_df_ITS <- as.data.frame(otu_table(ps_rare_ITS_D1))
 otu_df_ITS$observation_name <- rownames(otu_df_ITS)
 otu_df_ITS <- otu_df_ITS %>% dplyr::relocate(observation_name)
 write.table(otu_df_ITS, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1",  "ITS_otu_table_ps_rare_NF_D1.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
+
 
 tax_df_ITS <- as.data.frame(tax_table(ps_rare_ITS_D1))
 tax_df_ITS$observation_name <- rownames(tax_df_ITS)
@@ -472,9 +475,11 @@ otu_df_16S$observation_name <- rownames(otu_df_16S)
 otu_df_16S <- otu_df_16S %>% dplyr::relocate(observation_name)
 write.table(otu_df_16S, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_2",  "16S_otu_table_ps_rare_NF_D2.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
+
 tax_df_16S <- as.data.frame(tax_table(ps_rare_16S_D2))
 tax_df_16S$observation_name <- rownames(tax_df_16S)
 tax_df_16S <- tax_df_16S %>% dplyr::relocate(observation_name)
+
 write.table(tax_df_16S, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_2", "16S_tax_table_ps_rare_NF_D2.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 metadata_16S_df <- data.frame(sample_data(ps_rare_16S_D2), check.names = FALSE)
@@ -485,6 +490,7 @@ write.xlsx(metadata_16S_df, file=file.path(here::here(), "data", "derived_data",
 otu_df_ITS <- as.data.frame(otu_table(ps_rare_ITS_D2))
 otu_df_ITS$observation_name <- rownames(otu_df_ITS)
 otu_df_ITS <- otu_df_ITS %>% dplyr::relocate(observation_name)
+
 write.table(otu_df_ITS, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_2",  "ITS_otu_table_ps_rare_NF_D2.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 
 tax_df_ITS <- as.data.frame(tax_table(ps_rare_ITS_D2))
