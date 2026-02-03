@@ -64,49 +64,105 @@
 #' @export
 Simulate_Clustering_SBM <- function(FB, NPERM, name) {
 
-  plan(multisession, workers = parallel::detectCores() - 1)
-
-  # Convert FB once (avoid making many copies in memory)
-  FB_df <- as.data.frame(FB)
-
-  # ---- STEP 1: parallel simulation ----
-  Sim_one <- function(i, FB)
-  {
-    # One permutation only
+  # ---- Worker functions FIRST ----
+  Sim_one <- function(i, FB) {
     simulate(nullmodel(FB, "curveball"), nsim = 1)[,,1]
   }
 
-  message("Running ", NPERM, " curveball permutations in parallel...")
-  perm_list <- future_lapply(X = seq_len(NPERM), future.seed=TRUE, FUN = Sim_one, FB = FB_df)
-
-  # perm_list is a list of NPERM matrices
-  # Convert back to matrix 3D array if needed
-  # OR keep list (better for parallel SBM)
-
-  # ---- STEP 2: parallel SBM estimation ----
-  SBM_one <- function(mat)
-  {
+  SBM_one <- function(mat) {
     fit <- estimateBipartiteSBM(
       as.matrix(mat),
-      model = 'bernoulli',
+      model = "bernoulli",
       estimOptions = list(verbosity = 0, plot = FALSE)
     )
-    return(fit$memberships$row)
+    fit$memberships$row
   }
 
+  environment(Sim_one) <- baseenv()
+  environment(SBM_one) <- baseenv()
+
+  # ---- Now create large objects ----
+  FB_df <- as.data.frame(FB)
+
+  message("Running ", NPERM, " curveball permutations in parallel...")
+  perm_list <- future_lapply(
+    X = seq_len(NPERM),
+    FUN = Sim_one,
+    FB = FB_df,
+    future.seed = TRUE
+  )
+
   message("Running ", NPERM, " SBM fits in parallel...")
-  cluster_list <- future_lapply(perm_list, future.seed=TRUE, SBM_one)
+  cluster_list <- future_lapply(
+    X = perm_list,
+    FUN = SBM_one,
+    future.seed = TRUE
+  )
 
-  # ---- STEP 3: Combine into dataframe ----
-  simulated_clustering <- do.call(cbind, cluster_list)
-  simulated_clustering <- as.data.frame(simulated_clustering)
+  simulated_clustering <- as.data.frame(do.call(cbind, cluster_list))
 
-  # ---- STEP 4: Export ----
-  out_file <- file.path(here::here(),"data", "derived_data", "5_SBMclustering", name)
+  out_file <- file.path(
+    here::here(), "data", "derived_data", "5_SBMclustering", name
+  )
 
-  write.table(simulated_clustering, file = out_file,sep = "\t", row.names = FALSE,col.names = TRUE, quote = FALSE)
+  write.table(
+    simulated_clustering,
+    file = out_file,
+    sep = "\t",
+    row.names = FALSE,
+    col.names = TRUE,
+    quote = FALSE
+  )
 
   message("Saved simulated clustering to: ", out_file)
-
-  return(simulated_clustering)
+  simulated_clustering
 }
+
+
+
+
+# Simulate_Clustering_SBM <- function(FB, NPERM, name) {
+#
+#     # Convert FB once (avoid making many copies in memory)
+#   FB_df <- as.data.frame(FB)
+#
+#   # ---- STEP 1: parallel simulation ----
+#   Sim_one <- function(i, FB)
+#   {
+#     # One permutation only
+#     simulate(nullmodel(FB, "curveball"), nsim = 1)[,,1]
+#   }
+#
+#   message("Running ", NPERM, " curveball permutations in parallel...")
+#   perm_list <- future_lapply(X = seq_len(NPERM), future.seed=TRUE, FUN = Sim_one, FB = FB_df)
+#
+#   # perm_list is a list of NPERM matrices
+#   # Convert back to matrix 3D array if needed
+#   # OR keep list (better for parallel SBM)
+#
+#   # ---- STEP 2: parallel SBM estimation ----
+#   SBM_one <- function(mat)
+#   {
+#     fit <- estimateBipartiteSBM(
+#       as.matrix(mat),
+#       model = 'bernoulli',
+#       estimOptions = list(verbosity = 0, plot = FALSE)
+#     )
+#     return(fit$memberships$row)
+#   }
+#
+#   message("Running ", NPERM, " SBM fits in parallel...")
+#   cluster_list <- future_lapply(perm_list, future.seed=TRUE, SBM_one)
+#
+#   # ---- STEP 3: Combine into dataframe ----
+#   simulated_clustering <- as.data.frame(do.call(cbind, cluster_list))
+#
+#   # ---- STEP 4: Export ----
+#   out_file <- file.path(here::here(),"data", "derived_data", "5_SBMclustering", name)
+#
+#   write.table(simulated_clustering, file = out_file,sep = "\t", row.names = FALSE,col.names = TRUE, quote = FALSE)
+#
+#   message("Saved simulated clustering to: ", out_file)
+#
+#   return(simulated_clustering)
+# }
