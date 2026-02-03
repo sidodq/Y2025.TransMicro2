@@ -34,6 +34,7 @@ devtools::load_all()
 ```
 
 # Color Sets
+
 ```{r}
 color_SampleType <- hue_pal()(17)
 
@@ -56,6 +57,7 @@ color_Expe <- c("na" ="grey","Fruits_0days" = "red3", "Mothers_0days"="darkolive
 ```
 
 # Load data
+
 ```{r}
 ps_rare_16S <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM1&2_ps_rare.rds"))
 ps_rare_ITS <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM1&2_ps_rare.rds"))
@@ -63,8 +65,10 @@ ps_rare_ITS <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_R
 metadata <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "TM1&2_metadata.tsv"),sep="\t",header=TRUE)
 ```
 
-# 1.Fruits 
+# 1.Fruits
+
 ## Prepare data
+
 ```{r}
 ########
 # 16S #
@@ -137,6 +141,7 @@ FB_FruitsOnly_ITS <- t(BF_FruitsOnly_ITS)
 ```
 
 ## SBM clustering
+
 ```{r}
 ########
 # 16S #
@@ -201,6 +206,7 @@ title_plot <- "SBM_FruitsOnly_ITS_FruitVariety.png"
 ```
 
 ## Alluvial plot
+
 ```{r, eval=FALSE}
 
 # 16S
@@ -279,6 +285,7 @@ title_plot <- "AlluvialPlot_FruitsOnly_FruitTYpe_ITS.jpg"
 ```
 
 ## CCA
+
 ```{r}
 ### Null model
 
@@ -376,7 +383,9 @@ wholenetwork_cca_results_CONFIGS_FruitsOnly_ITS <- analysis.function.alt2(incid=
 ```
 
 # 2. Individuals
+
 ## Prepare data
+
 ```{r}
 # 16S
 
@@ -460,6 +469,7 @@ mtd_ITS_LS$SampleType <- factor(mtd_ITS_LS$SampleType, levels = desired_order)
 ```
 
 ## SBM clustering
+
 ```{r}
 ########
 # 16S #
@@ -554,6 +564,7 @@ title_plot <- "SBM_LS_FruitType&SampleType_combined.png"
 ```
 
 ## NMI
+
 ```{r}
 NPERM=100#set quite low, so that permutations do not take too long, only for proof of principle, set to 10000 for serious comparisons
 
@@ -611,6 +622,7 @@ print(c("NMI =", nmi_obs_LS_ITS_LifeStage, "P-value = ", 1 - ecdf(simulated_nmi_
 ```
 
 ## Alluvial plot
+
 ```{r}
 # 16S
 
@@ -669,8 +681,8 @@ Alluvial_ITS_Fruits_LS_FruitType_LifeStage <- dataalluvial_ITS_LS_FruitType_Life
   theme(axis.text.x = element_text(size = 12, color = "black", face = "bold"))
 ```
 
-
 ## CCA
+
 ```{r}
 analysis.function.2 <- function(incid, memb_obs, var1, var2, configs = NULL) {
   
@@ -784,7 +796,6 @@ analysis.function.2 <- function(incid, memb_obs, var1, var2, configs = NULL) {
 }
 ```
 
-
 ```{r}
 # 16S
 
@@ -861,7 +872,6 @@ LBM.config_array <- array(
 wholenetwork_cca_results_CONFIGS_16S_LS <- analysis.function.alt2(incid=as.data.frame(FB_16S_LS), memb_obs=memb_spl_obs_16S_LS, var1=cca_data_16S_LS$FruitType, var2=cca_data_16S_LS$LifeStage, configs = LBM.config_array)
 ```
 
-
 ```{r}
 # ITS
 
@@ -928,11 +938,10 @@ wholenetwork_cca_results_NULL_ITS_LS <- analysis.function.alt2(incid=as.data.fra
 wholenetwork_cca_results_CONFIGS_ITS_LS <- analysis.function.2(incid=as.data.frame(FB_ITS_LS), memb_obs=memb_spl_obs_ITS_LS, var1=cca_data_ITS_LS$FruitType, var2=cca_data_ITS_LS$LifeStage, configs = LBM.config)
 ```
 
-
-
 # 3. Indiv + Aunts + HostFruit
 
 ## Prepare data
+
 ```{r}
 # Filter data
 ps_16S_rare_expe <- Subset_physeq(ps_rare_16S, Sample_Category == "All_stages_Focal_Sites")
@@ -1035,6 +1044,7 @@ mtd_ITS_expe$SampleType <- factor(mtd_ITS_expe$SampleType, levels = desired_orde
 ```
 
 ## SBM clustering
+
 ```{r}
 ########
 # 16S #
@@ -1138,6 +1148,7 @@ title_plot <- "SBM_Expe_FruitType&SampleType_combined.png"
 ```
 
 ## NMI
+
 ```{r}
 NPERM=100#set quite low, so that permutations do not take too long, only for proof of principle, set to 10000 for serious comparisons
 
@@ -1175,7 +1186,6 @@ compare(netData$mod.cle,netData$Genotype,method="nmi")#NMI of comparison with Ge
 wholenetmod.genotype.nmi.config<-sapply(1:NPERM, function(x) compare(cle.config[,x],netData$Genotype,method="nmi"))
 1-ecdf(wholenetmod.genotype.nmi.config)(compare(netData$mod.cle,netData$Genotype,method="nmi"))#p-value of comparison with Genotype
 ```
-
 
 ```{r}
 # Factors
@@ -1233,6 +1243,7 @@ print(c("NMI =", nmi_obs_expe_ITS_LifeStage, "P-value = ", 1 - ecdf(simulated_nm
 ```
 
 ## Alluvial plot
+
 ```{r}
 # 16S
 
@@ -1298,8 +1309,8 @@ title_plot <- "AlluvialPlot_Expe_FruitTYpe_SampleType_ITS.jpg"
 
 ```
 
-
 ## CCA
+
 ```{r}
 # 16S
 
@@ -1351,8 +1362,6 @@ write.xlsx(wholenetwork_cca_results_NULL_16S_expe, file=here::here("plots", "5_L
 wholenetwork_cca_results_CONFIGS_16S_expe <- analysis.function.alt2(incid=as.data.frame(FB_16S_expe), memb_obs=memb_spl_obs_16S_expe, var1=cca_data_16S_expe$FruitType, var2=cca_data_16S_expe$LifeStage, configs = LBM.config)
 ```
 
-
-
 ```{r}
 # ITS
 
@@ -1400,17 +1409,20 @@ write.xlsx(wholenetwork_cca_results_NULL_ITS_expe, file=here::here("plots", "5_L
 wholenetwork_cca_results_CONFIGS_ITS_expe <- analysis.function.alt2(incid=as.data.frame(FB_ITS_expe), memb_obs=memb_spl_obs_ITS_expe, var1=cca_data_ITS_expe$FruitType, var2=cca_data_ITS_expe$LifeStage, configs = LBM.config)
 ```
 
-
-
-
 <!-- ```{r} -->
+
 <!-- ######## -->
+
 <!-- # 16S # -->
+
 <!-- ######## -->
+
 <!-- LBM_bernoulli_16S <-  as.matrix(FB_16S) %>% -->
+
 <!--     sbm::estimateBipartiteSBM(model = 'bernoulli') -->
 
 <!-- memb_spl_obs_16S <- LBM_bernoulli_16S$memberships$row -->
+
 <!-- memb_otu_obs_16S <- LBM_bernoulli_16S$memberships$col -->
 
 <!-- LBM_bernoulli_16S$storedModels %>% dplyr::arrange(ICL) -->
@@ -1424,15 +1436,19 @@ wholenetwork_cca_results_CONFIGS_ITS_expe <- analysis.function.alt2(incid=as.dat
 <!-- LBM_16S_LifeStage <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S, BF_mat = BF_16S, mtd = mtd_16S, color_variable = "LifeStage", variable_name = "LifeStage", modality_string = c("na",  "Mothers_2days", "Larva", "Pupa", "Daughter", "PupalCase"), color_string = c("grey","darkolivegreen4", "darkolivegreen2", "darkorange2", "goldenrod2" ,"#8B4500")) -->
 
 <!-- LBM_16S_Pop <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S, BF_mat = BF_16S, mtd = mtd_16S, color_variable = "Pop", variable_name = "Pop", modality_string = c("na", "CEC", "FRA"), color_string = c("grey", "#C1FFC1", "seagreen3")) -->
+
 <!-- ``` -->
 
-
 <!-- ```{r} -->
+
 <!-- # only LS samples -->
+
 <!-- LBM_bernoulli_16S_LS <-  as.matrix(FB_16S_LS) %>% -->
+
 <!--     sbm::estimateBipartiteSBM(model = 'bernoulli') -->
 
 <!-- memb_spl_obs_16S_LS <- LBM_bernoulli_16S_LS$memberships$row -->
+
 <!-- memb_otu_obs_16S_LS <- LBM_bernoulli_16S_LS$memberships$col -->
 
 <!-- LBM_bernoulli_16S_LS$storedModels %>% dplyr::arrange(ICL) -->
@@ -1440,27 +1456,37 @@ wholenetwork_cca_results_CONFIGS_ITS_expe <- analysis.function.alt2(incid=as.dat
 <!-- LBM_16S_FruitType_LS <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S_LS, BF_mat = BF_16S_LS, mtd = mtd_16S_LS, color_variable = "FruitType", variable_name = "FruitType", modality_string = c("BL", "CH", "ST"), color_string = c("purple4", "red4","red2")) -->
 
 <!-- title_plot <- "LBM_FruitType_LS_16S.jpg" -->
-<!--  cowplot::save_plot(file =here::here("plots", "5_LBM&co", title_plot), -->
-<!--                  LBM_16S_FruitType_LS, base_height = 40/cm(1), -->
-<!--                 base_width = 40/cm(1), dpi = 1200) -->
 
+<!--  cowplot::save_plot(file =here::here("plots", "5_LBM&co", title_plot), -->
+
+<!--                  LBM_16S_FruitType_LS, base_height = 40/cm(1), -->
+
+<!--                 base_width = 40/cm(1), dpi = 1200) -->
 
 <!-- LBM_16S_LifeStage_LS <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_16S_LS, BF_mat = BF_16S_LS, mtd = mtd_16S_LS, color_variable = "LifeStage", variable_name = "LifeStage", modality_string = c("na",  "Mothers_2days", "Larva", "Pupa", "Daughter", "PupalCase"), color_string = c("grey","darkolivegreen4", "darkolivegreen2", "darkorange2", "goldenrod2" ,"#8B4500")) -->
 
 <!-- title_plot <- "LBM_LifeStage_LS_16S.jpg" -->
+
 <!--  cowplot::save_plot(file =here::here("plots", "5_LBM&co", title_plot), LBM_16S_LifeStage_LS, base_height = 40/cm(1), base_width = 40/cm(1), dpi = 1200) -->
+
 <!-- ``` -->
 
 <!-- ### ITS -->
+
 <!-- ```{r} -->
+
 <!-- ######## -->
+
 <!-- # ITS # -->
+
 <!-- ######## -->
 
 <!-- LBM_bernoulli_ITS <-  as.matrix(FB_ITS) %>% -->
+
 <!--     sbm::estimateBipartiteSBM(model = 'bernoulli') -->
 
 <!-- memb_spl_obs_ITS <- LBM_bernoulli_ITS$memberships$row -->
+
 <!-- memb_otu_obs_ITS <- LBM_bernoulli_ITS$memberships$col -->
 
 <!-- LBM_bernoulli_ITS$storedModels %>% dplyr::arrange(ICL) -->
@@ -1473,22 +1499,26 @@ wholenetwork_cca_results_CONFIGS_ITS_expe <- analysis.function.alt2(incid=as.dat
 
 <!-- LBM_ITS_Pop <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_ITS, BF_mat = BF_ITS, mtd = mtd_ITS, color_variable = "Pop", variable_name = "Pop", modality_string = c("na", "CEC", "FRA"), color_string = c("grey", "#C1FFC1", "seagreen3")) -->
 
-
-
 <!-- LBM_FruitType <- ggpubr::ggarrange(LBM_16S_FruitType, LBM_ITS_FruitType, -->
+
 <!--                     labels = c("A. 16S", "B. ITS"), ncol = 2, nrow = 1, widths = c(1.4, 1.4), legend = "bottom", common.legend = TRUE) -->
 
 <!-- title_plot <- "LBM_FruitType.png" -->
+
 <!--  cowplot::save_plot(file =here::here("plots", "5_LBM&co", title_plot), -->
+
 <!--                  LBM_FruitType, base_height = 30/cm(1), -->
+
 <!--                 base_width = 60/cm(1), dpi = 1200) -->
 
-
 <!-- # only LS samples -->
+
 <!-- LBM_bernoulli_ITS_LS <-  as.matrix(FB_ITS_LS) %>% -->
+
 <!--     sbm::estimateBipartiteSBM(model = 'bernoulli') -->
 
 <!-- memb_spl_obs_ITS_LS <- LBM_bernoulli_ITS_LS$memberships$row -->
+
 <!-- memb_otu_obs_ITS_LS <- LBM_bernoulli_ITS_LS$memberships$col -->
 
 <!-- LBM_bernoulli_ITS_LS$storedModels %>% dplyr::arrange(ICL) -->
@@ -1496,64 +1526,101 @@ wholenetwork_cca_results_CONFIGS_ITS_expe <- analysis.function.alt2(incid=as.dat
 <!-- LBM_ITS_FruitType_LS <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_ITS_LS, BF_mat = BF_ITS_LS, mtd = mtd_ITS_LS, color_variable = "FruitType", variable_name = "FruitType", modality_string = c("BL", "CH", "ST"), color_string = c("purple4", "red4","red2"))  -->
 
 <!-- # manually re-order blocks -->
+
 <!-- # newdat <- data.frame(old_row=1:6, new_row=c(1, 2, 4 , 3, 6, 5)) -->
+
 <!-- #  -->
+
 <!-- # newdat <- data.frame(old_row=1:6, new_row=c(1, 2, 4 , 3, 5, 6)) -->
 
 <!-- # newdat <- data.frame(old_row=1:6, new_row=c(1, 2, 4 , 6, 3, 5)) -->
+
 <!-- # newdat <- data.frame(old_row=1:6, new_row=c(1, 2, 4, 6, 5, 3)) -->
+
 <!-- #data.frame(LBM_bernoulli_ITS_LS$memberships$row, mtd_ITS_LS$FruitType[match(colnames(BF_mat), mtd_ITS_LS$Sample)]) -->
 
 <!-- # data.frame(LBM_bernoulli_ITS_LS$memberships$row, newrows) -->
+
 <!-- # newrows <- newdat$new_row[match(LBM_bernoulli_ITS_LS$memberships$row, newdat$old_row)] -->
+
 <!-- #  -->
+
 <!-- # LBM_ITS_FruitType_LS2 <- Order_Matrix_Plot2(SBMobject = LBM_bernoulli_ITS_LS, BF_mat = BF_ITS_LS, mtd = mtd_ITS_LS, color_variable = "FruitType", variable_name = "FruitType", modality_string = c("BL", "CH", "ST"), color_string = c("purple4", "red4","red2"), new_rows=newrows)  -->
+
 <!-- #  -->
+
 <!-- title_plot <- "LBM_FruitType_LS_ITS.jpg" -->
+
 <!--  cowplot::save_plot(file =here::here("plots", "5_LBM&co", title_plot), -->
+
 <!--                  LBM_ITS_FruitType_LS, base_height = 40/cm(1), -->
+
 <!--                 base_width = 50/cm(1), dpi = 1200) -->
 
 <!-- LBM_ITS_LifeStage_LS2 <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_ITS_LS, BF_mat = BF_ITS_LS, mtd = mtd_ITS_LS, color_variable = "LifeStage", variable_name = "LifeStage", modality_string = c("Daughter","Larva", "Mothers_2days","na", "Pupa", "PupalCase"), color_string = c("grey", "darkorange2","tan1", "goldenrod2", "darkolivegreen2", "darkolivegreen4")) -->
 
 <!-- title_plot <- "LBM_LifeStage_LS_ITS.jpg" -->
+
 <!--  cowplot::save_plot(file =here::here("plots", "5_LBM&co", title_plot), -->
+
 <!--                  LBM_ITS_LifeStage_LS2, base_height = 40/cm(1), -->
+
 <!--                 base_width = 50/cm(1), dpi = 1200) -->
+
 <!-- ``` -->
 
-
 <!-- ## ITS -->
+
 <!-- ### Fruit type and life stage -->
 
 <!-- ```{r} -->
+
 <!-- ## Extract rows (samples) and columns (OTUs) for the alluvial plot -->
+
 <!-- memb_spl_obs_ITS <- LBM_bernoulli_ITS$memberships$row -->
+
 <!-- memb_otu_obs_ITS <- LBM_bernoulli_ITS$memberships$col -->
 
 <!-- ## Data for alluvial plot : Compute SampleSize, the number of samples for each FruitType, Lifestage and OTU membership -->
 
-
 <!-- dataalluvial_ITS_fruits_lifestage <- as.data.frame(table( -->
+
 <!--       sample_data(ps_rare_ITS_bin)$FruitType, -->
+
 <!--       memb_spl_obs_ITS, sample_data(ps_rare_ITS_bin)$LifeStage)) -->
 
 <!-- # change column names -->
+
 <!-- colnames(dataalluvial_ITS_fruits_lifestage) = c("FruitType", "Gut_fungi",  "LifeStage", "SampleSize") -->
 
 <!-- # plot for fruits -->
+
 <!-- Alluvial_ITS_Fruits_LifeStage <- dataalluvial_ITS_fruits_lifestage |> -->
+
 <!--   ggplot(aes(axis1 = FruitType, -->
+
 <!--              axis2 = Gut_fungi, -->
+
 <!--              axis3 = LifeStage, -->
+
 <!--              y = SampleSize)) + -->
+
 <!--   ggalluvial::geom_alluvium(aes(fill = FruitType), alpha = 0.6) + -->
+
 <!--   ggalluvial::geom_stratum(width = 0.4) + -->
+
 <!--   geom_text(stat = "stratum", -->
+
 <!--             aes(label = after_stat(stratum))) + -->
+
 <!--   scale_x_discrete(limits = c("FruitType", "Gut fungi", "Life stage"), expand = c(.2, .05)) + -->
+
 <!--   scale_fill_manual(values = c("BL" = "purple4", "CH" = "red4","na" = "grey",  "ST" = "red2"),guide = "none") + -->
+
 <!--   ggtitle("ITS_Fruits_LifeStages") + -->
+
 <!--   theme_minimal()+ -->
+
 <!--   theme(axis.text.x = element_text(size = 12, color = "black", face = "bold")) -->
+
 <!-- Alluvial_ITS_Fruits_LifeStage -->

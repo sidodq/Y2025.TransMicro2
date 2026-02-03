@@ -44,7 +44,7 @@ devtools::load_all()
 ps_rare_16S_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1", "16S_ps_rare_NF_D1.rds"))
 
 # Filter data (exclude fruits & mothers before egg laying & pupal cases)
-ps_16S_rare_expe_D1 <- Subset_physeq(ps_rare_16S_D1, SampleType %in%  c("G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits")) #,"G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
+ps_16S_rare_expe_D1 <- Subset_physeq(ps_rare_16S_D1, SampleType %in%  c("G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits")) #"G0_Adults_0days","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
 
 # Rename + reorder Sample Type
 sample_data(ps_16S_rare_expe_D1)$SampleType <- factor(sample_data(ps_16S_rare_expe_D1)$SampleType)
@@ -54,9 +54,9 @@ sample_data(ps_16S_rare_expe_D1)$SampleType <- sample_data(ps_16S_rare_expe_D1)$
     Mothers_2days = "G0_Adults_Fruits_2days",
     Larvae = "G1_Larvae_Fruits",
     Pupae = "G1_Pupae_Fruits",
-    Daughters = "G1_Adults_Fruits") # Mothers_0days = "G0_Adults_0days",PupalCases = "G1_PupalCase_Fruits", Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
+    Daughters = "G1_Adults_Fruits") #  Mothers_0days = "G0_Adults_0days", PupalCases = "G1_PupalCase_Fruits", Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
 
-desired_order <- c( "Mothers_2days", "Larvae", "Pupae","Daughters") #"Mothers_0days", "Fruits_0days", "Fruits_5_6days", "PupalCases",
+desired_order <- c("Mothers_2days", "Larvae", "Pupae","Daughters") #"Mothers_0days",Fruits_0days", "Fruits_5_6days", "PupalCases",
 
 sample_data(ps_16S_rare_expe_D1)$SampleType <- factor(sample_data(ps_16S_rare_expe_D1)$SampleType, levels = desired_order)
 
@@ -97,7 +97,7 @@ FB_D1_16S <- t(BF_D1_16S)
 ```{r}
 ps_rare_ITS_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1", "ITS_ps_rare_NF_D1.rds"))
 
-ps_ITS_rare_expe_D1 <- Subset_physeq(ps_rare_ITS_D1, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits")) #,"G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
+ps_ITS_rare_expe_D1 <- Subset_physeq(ps_rare_ITS_D1, SampleType %in%  c("G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits")) #"G0_Adults_0days", ,"G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
 
 
 # ITS : rename + reorder Sample Type
@@ -105,11 +105,11 @@ sample_data(ps_ITS_rare_expe_D1)$SampleType <- factor(sample_data(ps_ITS_rare_ex
 
 sample_data(ps_ITS_rare_expe_D1)$SampleType <- sample_data(ps_ITS_rare_expe_D1)$SampleType %>%
   forcats::fct_recode(
-    Mothers_0days = "G0_Adults_0days",
+    
     Mothers_2days = "G0_Adults_Fruits_2days",
     Larvae = "G1_Larvae_Fruits",
     Pupae = "G1_Pupae_Fruits",
-    Daughters = "G1_Adults_Fruits") #PupalCases = "G1_PupalCase_Fruits", Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
+    Daughters = "G1_Adults_Fruits") #Mothers_0days = "G0_Adults_0days", PupalCases = "G1_PupalCase_Fruits", Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
 
 sample_data(ps_ITS_rare_expe_D1)$SampleType <- factor(sample_data(ps_ITS_rare_expe_D1)$SampleType, levels = desired_order)
 
@@ -238,18 +238,18 @@ memb_otu_obs_16S_D1 <- SBM_bernoulli_16S_D1$memberships$col
 SBM_bernoulli_16S_D1$storedModels %>% dplyr::arrange(ICL)
  
 #Plots
-SBM_16S_D1_FruitType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_D1, BF_mat = BF_D1_16S, mtd = mtd_D1_16S, variable_name = "FruitType", modality_string = c("BL", "CH",  "ST"), color_string = c("purple4", "red4",  "red2")) #"na","grey",
+SBM_16S_D1_FruitType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_D1, BF_mat = BF_D1_16S, mtd = mtd_D1_16S, variable_name = "FruitType", modality_string = c("BL", "CH", "ST"), color_string = c("purple4", "red4","red2")) #"na","grey",  
 
 title_plot <- "SBM_NF_D1_16S_FruitType.png"
 
- cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_16S_D1_FruitType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
+cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_16S_D1_FruitType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
 
 
-SBM_16S_D1_SampleType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_D1, BF_mat = BF_D1_16S, mtd = mtd_D1_16S, variable_name = "SampleType", modality_string = c("na","Fruits_0days", "Mothers_0days", "Mothers_2days", "Fruits_5_6days", "Larvae", "Pupae", "PupalCases", "Daughters"), color_string = c("goldenrod2", "red3","red4","green3","darkolivegreen","darkolivegreen3","darkorange2","#8B4500")) 
+SBM_16S_D1_SampleType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_16S_D1, BF_mat = BF_D1_16S, mtd = mtd_D1_16S, variable_name = "SampleType", modality_string = c( "Mothers_2days",  "Larvae", "Pupae",  "Daughters"), color_string = c( "red3","goldenrod2","green3","#8B4500"))  #"na","Mothers_0days","red4","Fruits_0days", "Fruits_5_6days","PupalCases","darkorange2""darkolivegreen","darkolivegreen3",,))
 
 title_plot <- "SBM_NF_D1_16S_SampleType.png"
 
- cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_16S_D1_SampleType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
+cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_16S_D1_SampleType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
 ```
 
 ### ITS
@@ -265,7 +265,7 @@ memb_otu_obs_ITS_D1 <- SBM_bernoulli_ITS_D1$memberships$col
 SBM_bernoulli_ITS_D1$storedModels %>% dplyr::arrange(ICL)
 
 # Plot
-SBM_ITS_expe_FruitType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_ITS_D1, BF_mat = BF_D1_ITS, mtd = mtd_D1_ITS, variable_name = "FruitType", modality_string = c("BL", "CH", "na","ST"), color_string = c("purple4", "red4", "grey","red2"))
+SBM_ITS_expe_FruitType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_ITS_D1, BF_mat = BF_D1_ITS, mtd = mtd_D1_ITS, variable_name = "FruitType", modality_string = c("BL", "CH", "ST"), color_string = c("purple4", "red4", "red2")) 
 
 
 title_plot <- "SBM_NF_D1_ITS_FruitType.png"
@@ -273,7 +273,7 @@ title_plot <- "SBM_NF_D1_ITS_FruitType.png"
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_ITS_expe_FruitType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
 
 
-SBM_ITS_expe_SampleType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_ITS_D1, BF_mat = BF_D1_ITS, mtd = mtd_D1_ITS, variable_name = "SampleType", modality_string = c("na","Fruits_0days", "Mothers_0days", "Mothers_2days", "Fruits_5_6days", "Larvae", "Pupae", "PupalCases", "Daughters"), color_string = c("goldenrod2", "red3","red4","green3","darkolivegreen","darkolivegreen3","darkorange2","#8B4500")) 
+SBM_ITS_expe_SampleType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_ITS_D1, BF_mat = BF_D1_ITS, mtd = mtd_D1_ITS, variable_name = "SampleType", modality_string = c( "Mothers_2days",  "Larvae", "Pupae",  "Daughters"), color_string = c( "red3","goldenrod2","green3","#8B4500"))
 
 
 title_plot <- "SBM_NF_D1_ITS_SampletType.png"
@@ -422,7 +422,7 @@ title_plot <- "SBM_NF_D2_SampleType_combined.png"
 ## Dataset 1
 
 ```{r}
-NPERM=10#set quite low, so that permutations do not take too long, only for proof of principle, set to 10000 for serious comparisons
+NPERM=10000#set quite low, so that permutations do not take too long, only for proof of principle, set to 10000 for serious comparisons
 
 # # Import simulated clustering MPC
 # netBin.config<-simulate(nullmodel(FB_D1_16S,"curveball"),nsim=NPERM)
@@ -458,6 +458,8 @@ nmi_obs_expe_16S_SampleType <- compare(as.factor(memb_spl_obs_16S_D1), ST_vect_D
 nmi_obs_expe_ITS_SampleType <- compare(as.factor(memb_spl_obs_ITS_D1), ST_vect_D1_ITS, method = "nmi")
 
 ## Simulated clustering
+plan(multisession, workers = parallel::detectCores() - 1)
+
 simulated_clustering_expe_16S <- Simulate_Clustering_SBM(FB = FB_D1_16S, NPERM, name = "simulated_clustering_D1_16S.tsv")
 simulated_clustering_expe_ITS <- Simulate_Clustering_SBM(FB = FB_D1_ITS, NPERM, name = "simulated_clustering_D1_ITS.tsv")
 
