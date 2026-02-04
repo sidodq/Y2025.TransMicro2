@@ -41,25 +41,7 @@ devtools::load_all()
 ### 16S
 
 ```{r}
-ps_rare_16S_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1", "16S_ps_rare_NF_D1.rds"))
-
-# Filter data (exclude fruits & mothers before egg laying & pupal cases)
-ps_16S_rare_expe_D1 <- Subset_physeq(ps_rare_16S_D1, SampleType %in%  c("G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits")) #"G0_Adults_0days","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
-
-# Rename + reorder Sample Type
-sample_data(ps_16S_rare_expe_D1)$SampleType <- factor(sample_data(ps_16S_rare_expe_D1)$SampleType)
-
-sample_data(ps_16S_rare_expe_D1)$SampleType <- sample_data(ps_16S_rare_expe_D1)$SampleType %>%
-  forcats::fct_recode(
-    Mothers_2days = "G0_Adults_Fruits_2days",
-    Larvae = "G1_Larvae_Fruits",
-    Pupae = "G1_Pupae_Fruits",
-    Daughters = "G1_Adults_Fruits") #  Mothers_0days = "G0_Adults_0days", PupalCases = "G1_PupalCase_Fruits", Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
-
-desired_order <- c("Mothers_2days", "Larvae", "Pupae","Daughters") #"Mothers_0days",Fruits_0days", "Fruits_5_6days", "PupalCases",
-
-sample_data(ps_16S_rare_expe_D1)$SampleType <- factor(sample_data(ps_16S_rare_expe_D1)$SampleType, levels = desired_order)
-
+ps_16S_rare_expe_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1",  "ps_16S_rare_expe_D1.rds"))
 
 # counts -> presence/absence (binary table)
 ps_rare_16S_D1_bin = phyloseq::transform_sample_counts(ps_16S_rare_expe_D1, function(x) 1*(x>0)) 
@@ -95,24 +77,7 @@ FB_D1_16S <- t(BF_D1_16S)
 ### ITS
 
 ```{r}
-ps_rare_ITS_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1", "ITS_ps_rare_NF_D1.rds"))
-
-ps_ITS_rare_expe_D1 <- Subset_physeq(ps_rare_ITS_D1, SampleType %in%  c("G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits")) #"G0_Adults_0days", ,"G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
-
-
-# ITS : rename + reorder Sample Type
-sample_data(ps_ITS_rare_expe_D1)$SampleType <- factor(sample_data(ps_ITS_rare_expe_D1)$SampleType)
-
-sample_data(ps_ITS_rare_expe_D1)$SampleType <- sample_data(ps_ITS_rare_expe_D1)$SampleType %>%
-  forcats::fct_recode(
-    
-    Mothers_2days = "G0_Adults_Fruits_2days",
-    Larvae = "G1_Larvae_Fruits",
-    Pupae = "G1_Pupae_Fruits",
-    Daughters = "G1_Adults_Fruits") #Mothers_0days = "G0_Adults_0days", PupalCases = "G1_PupalCase_Fruits", Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
-
-sample_data(ps_ITS_rare_expe_D1)$SampleType <- factor(sample_data(ps_ITS_rare_expe_D1)$SampleType, levels = desired_order)
-
+ps_ITS_rare_expe_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1",  "ps_ITS_rare_expe_D1.rds"))
 
 # counts -> presence/absence (binary table)
 ps_rare_ITS_D1_bin <- phyloseq::transform_sample_counts(ps_ITS_rare_expe_D1, function(x) 1*(x>0)) 
