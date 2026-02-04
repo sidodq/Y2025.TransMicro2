@@ -28,17 +28,15 @@ library(ggrepel)
 library(purrr)
 library(rlang)
 library(eulerr)
-library(microbiome)
-library(microbiomeutilities)
 library(plotly)
-library(VennDiagram)
 library(grid)
-library(ggVennDiagram)
 library(cowplot)
 
 devtools::load_all()
 ```
+
 # COMPOSITION
+
 # 1. Color Sets
 
 ```{r}
@@ -205,44 +203,44 @@ color_prev_B <- c(
 # 2. Bar plots (abundance)
 
 ## a. Dataset 1 (indiv + host fruits)
+
 ```{r}
-ps_rare_16S_Dataset_1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_ps_rare_Dataset_1.rds"))
-ps_rare_ITS_Dataset_1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_ps_rare_Dataset_1.rds"))
+ps_rare_16S_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1", "16S_ps_rare_NF_D1.rds"))
 
-# Filter data (exclude Nat_Uninf_Fruits_5_6days)
-ps_16S_rare_expe_D1 <- Subset_physeq(ps_rare_16S_Dataset_1, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
+# Filter data (exclude fruits & mothers before egg laying & pupal cases)
+ps_16S_rare_expe_D1 <- Subset_physeq(ps_rare_16S_D1, SampleType %in%  c("G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits"))
 
-# 16S : rename + reorder Sample Type
+# Rename + reorder Sample Type
 sample_data(ps_16S_rare_expe_D1)$SampleType <- factor(sample_data(ps_16S_rare_expe_D1)$SampleType)
 
 sample_data(ps_16S_rare_expe_D1)$SampleType <- sample_data(ps_16S_rare_expe_D1)$SampleType %>%
   forcats::fct_recode(
-    Mothers_0days = "G0_Adults_0days",
     Mothers_2days = "G0_Adults_Fruits_2days",
     Larvae = "G1_Larvae_Fruits",
-    Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
     Pupae = "G1_Pupae_Fruits",
-    PupalCases = "G1_PupalCase_Fruits",
-    Daughters = "G1_Adults_Fruits")
+    Daughters = "G1_Adults_Fruits") 
 
-desired_order <- c("Fruits_0days", "Mothers_0days", "Mothers_2days", "Larvae", "Fruits_5_6days", "Pupae", "PupalCases", "Daughters")  
+desired_order <- c("Mothers_2days", "Larvae", "Pupae","Daughters")
+
 sample_data(ps_16S_rare_expe_D1)$SampleType <- factor(sample_data(ps_16S_rare_expe_D1)$SampleType, levels = desired_order)
 
 
-ps_ITS_rare_expe_D1 <- Subset_physeq(ps_rare_ITS_Dataset_1, SampleType %in%  c("G0_Adults_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits","G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
+
+ps_rare_ITS_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "ITS_ps_rare_NF_D1.rds"))
+
+ps_ITS_rare_expe_D1 <- Subset_physeq(ps_rare_ITS_D1, SampleType %in%  c("G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits")) #"G0_Adults_0days", ,"G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
+
 
 # ITS : rename + reorder Sample Type
 sample_data(ps_ITS_rare_expe_D1)$SampleType <- factor(sample_data(ps_ITS_rare_expe_D1)$SampleType)
 
 sample_data(ps_ITS_rare_expe_D1)$SampleType <- sample_data(ps_ITS_rare_expe_D1)$SampleType %>%
   forcats::fct_recode(
-    Mothers_0days = "G0_Adults_0days",
+    
     Mothers_2days = "G0_Adults_Fruits_2days",
     Larvae = "G1_Larvae_Fruits",
-    Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
     Pupae = "G1_Pupae_Fruits",
-    PupalCases = "G1_PupalCase_Fruits",
-    Daughters = "G1_Adults_Fruits")
+    Daughters = "G1_Adults_Fruits") #Mothers_0days = "G0_Adults_0days", PupalCases = "G1_PupalCase_Fruits", Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
 
 sample_data(ps_ITS_rare_expe_D1)$SampleType <- factor(sample_data(ps_ITS_rare_expe_D1)$SampleType, levels = desired_order)
 
@@ -298,9 +296,8 @@ title_plot <- "Expe_SampleType_FruitType_Site_combined.png"
  cowplot::save_plot(file =here::here("plots", "3_CommunityComposition", "Dataset_1", title_plot), barPlot_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)
 ```
 
-
-
 ## b. Dataset 2 (fruits batch 1 & 2)
+
 ```{r}
 ps_rare_16S_Dataset_2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_ps_rare_Dataset_2.rds"))
 ps_rare_ITS_Dataset_2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_ps_rare_Dataset_2.rds"))
@@ -315,7 +312,7 @@ saveRDS(ps_rare_16S_Dataset_2, file=file.path(here::here(), "data", "derived_dat
 saveRDS(ps_rare_ITS_Dataset_2, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2",  "ps_rare_ITS_Dataset_2.rds"))
 ```
 
-``` {r}
+```{r}
 ## Bar plots ; SampleType x FruitType x Site x Variety
 
 # 16S (Family)
@@ -356,8 +353,8 @@ title_plot <- "Abundance_SampleType_FruitType_Site_Variety_combined.png"
  cowplot::save_plot(file =here::here("plots", "3_CommunityComposition", "Dataset_2", title_plot), barPlot_fruits_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)
 ```
 
-
 # 3. Heatmap (core)
+
 ## a. Dataset 1 expe
 
 ```{r}
@@ -437,7 +434,6 @@ OTU5sites_perfruit_d1 <- freq_data_fruit70_d1$Marker_OTU
 write.table(x=freq_data_fruit70_d1, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1",  "freq_OTU_perfruit_5sites_dataset_1.csv"), sep=";", row.names=FALSE)
 ```
 
-
 ```{r}
 ## Prevalence per fruit type
 
@@ -461,7 +457,6 @@ prevalence_data_fruit_wide_d1 <- prevalence_data_fruit_d1  |>
 
 write.table(x=prevalence_data_fruit_wide_d1, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1", "prevalence_data_perfruit_5sites_dataset_1.csv"), sep=";", row.names=FALSE)
 ```
-
 
 ```{r}
 # Relevel Fruit_SampleType_Sample_size
@@ -532,8 +527,8 @@ prev_d1 <- p16S_d1 + pITS_d1 + patchwork::plot_annotation(tag_levels = "A")
 ggsave(filename = "prevalence_fruit_sampletype_5sites_dataset_1.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition", "Dataset_1"), width = 30, height = 30, units = "cm")
 ```
 
-
 ## b. Dataset 2
+
 ```{r}
 ## Load melted data
 
@@ -590,7 +585,6 @@ freq_data_perfruit_d2 <- data_d2 |>
 
 ```
 
-
 ```{r}
 ## Taxa per sampletype/fruit
 ### Select frequency per fruit 
@@ -608,7 +602,6 @@ freq_data_fruit70_d2 <- freq_data_fruit_d2 |>
 
 write.table(x=freq_data_fruit70_d2, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2", "freq_OTU_perfruit_fruit_only_dataset_2.csv"), sep=";", row.names=FALSE)
 ```
-
 
 ```{r}
 ### Prevalence per fruit type
@@ -632,7 +625,6 @@ prevalence_data_fruit_wide_d2 <- prevalence_data_fruit_d2  |>
 
 write.table(x=prevalence_data_fruit_wide_d2, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2", "prevalence_data_perfruit_fruit_only_d2.csv"), sep=";", row.names=FALSE)
 ```
-
 
 ```{r}
 ### Make plot Fruit_SampleType
