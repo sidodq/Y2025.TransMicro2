@@ -205,42 +205,44 @@ color_prev_B <- c(
 ## a. Dataset 1 (indiv + host fruits)
 
 ```{r}
+# 16S
 ps_rare_16S_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1", "16S_ps_rare_NF_D1.rds"))
 
-# Filter data (exclude fruits & mothers before egg laying & pupal cases)
-ps_16S_rare_expe_D1 <- Subset_physeq(ps_rare_16S_D1, SampleType %in%  c("G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits"))
+# Filter data (exclude fruits ctl & pupal cases)
+ps_16S_rare_expe_D1 <- Subset_physeq(ps_rare_16S_D1, SampleType %in%  c("G0_Adults_0days", "Fruits_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "Artific_Inf_Fruits_5_6days", "G1_Pupae_Fruits", "G1_Adults_Fruits"))
 
 # Rename + reorder Sample Type
 sample_data(ps_16S_rare_expe_D1)$SampleType <- factor(sample_data(ps_16S_rare_expe_D1)$SampleType)
 
 sample_data(ps_16S_rare_expe_D1)$SampleType <- sample_data(ps_16S_rare_expe_D1)$SampleType %>%
   forcats::fct_recode(
+    Mothers_0days = "G0_Adults_0days",
+    Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
     Mothers_2days = "G0_Adults_Fruits_2days",
     Larvae = "G1_Larvae_Fruits",
     Pupae = "G1_Pupae_Fruits",
     Daughters = "G1_Adults_Fruits") 
 
-desired_order <- c("Mothers_2days", "Larvae", "Pupae","Daughters")
+desired_order <- c("Mothers_0days", "Fruits_0days", "Mothers_2days", "Larvae", "Fruits_5_6days", "Pupae","Daughters")
 
 sample_data(ps_16S_rare_expe_D1)$SampleType <- factor(sample_data(ps_16S_rare_expe_D1)$SampleType, levels = desired_order)
 
 
-
+# ITS
 ps_rare_ITS_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "ITS_ps_rare_NF_D1.rds"))
 
-ps_ITS_rare_expe_D1 <- Subset_physeq(ps_rare_ITS_D1, SampleType %in%  c("G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits")) #"G0_Adults_0days", ,"G1_PupalCase_Fruits", "Artific_Inf_Fruits_5_6days", "Fruits_0days"))
+ps_ITS_rare_expe_D1 <- Subset_physeq(ps_rare_ITS_D1, SampleType %in%  c("G0_Adults_0days", "Fruits_0days", "G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "Artific_Inf_Fruits_5_6days", "G1_Pupae_Fruits", "G1_Adults_Fruits"))
 
-
-# ITS : rename + reorder Sample Type
 sample_data(ps_ITS_rare_expe_D1)$SampleType <- factor(sample_data(ps_ITS_rare_expe_D1)$SampleType)
 
 sample_data(ps_ITS_rare_expe_D1)$SampleType <- sample_data(ps_ITS_rare_expe_D1)$SampleType %>%
   forcats::fct_recode(
-    
+    Mothers_0days = "G0_Adults_0days",
+    Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
     Mothers_2days = "G0_Adults_Fruits_2days",
     Larvae = "G1_Larvae_Fruits",
     Pupae = "G1_Pupae_Fruits",
-    Daughters = "G1_Adults_Fruits") #Mothers_0days = "G0_Adults_0days", PupalCases = "G1_PupalCase_Fruits", Fruits_5_6days = "Artific_Inf_Fruits_5_6days",
+    Daughters = "G1_Adults_Fruits")
 
 sample_data(ps_ITS_rare_expe_D1)$SampleType <- factor(sample_data(ps_ITS_rare_expe_D1)$SampleType, levels = desired_order)
 

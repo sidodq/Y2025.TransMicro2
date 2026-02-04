@@ -43,6 +43,9 @@ devtools::load_all()
 ```{r}
 ps_16S_rare_expe_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1",  "ps_16S_rare_expe_D1.rds"))
 
+# Filter data (exclude mothers 0 days & host fruits)
+ps_16S_rare_expe_D1 <- Subset_physeq(ps_16S_rare_expe_D1, SampleType %in%  c("G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits"))
+
 # counts -> presence/absence (binary table)
 ps_rare_16S_D1_bin = phyloseq::transform_sample_counts(ps_16S_rare_expe_D1, function(x) 1*(x>0)) 
 
@@ -78,6 +81,9 @@ FB_D1_16S <- t(BF_D1_16S)
 
 ```{r}
 ps_ITS_rare_expe_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1",  "ps_ITS_rare_expe_D1.rds"))
+
+# Filter data (exclude mothers 0 days & host fruits)
+ps_ITS_rare_expe_D1 <- Subset_physeq(ps_ITS_rare_expe_D1, SampleType %in%  c("G0_Adults_Fruits_2days", "G1_Larvae_Fruits", "G1_Pupae_Fruits", "G1_Adults_Fruits"))
 
 # counts -> presence/absence (binary table)
 ps_rare_ITS_D1_bin <- phyloseq::transform_sample_counts(ps_ITS_rare_expe_D1, function(x) 1*(x>0)) 
