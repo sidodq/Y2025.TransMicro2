@@ -301,13 +301,13 @@ title_plot <- "Expe_SampleType_FruitType_Site_combined.png"
 ## b. Dataset 2 (fruits batch 1 & 2)
 
 ```{r}
-ps_rare_16S_Dataset_2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_TM123_ps_rare_Dataset_2.rds"))
-ps_rare_ITS_Dataset_2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_TM123_ps_rare_Dataset_2.rds"))
+ps_rare_16S_D2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "16S_ps_rare_NF_D2.rds"))
+ps_rare_ITS_D2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_2", "ITS_ps_rare_NF_D2.rds"))
 
 # Distinguish "Unknown" families & genus by numbering
-ps_rare_16S_Dataset_2 <- fix_unknown_taxa(phyloseq_object = ps_rare_16S_Dataset_2, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2", "16S_tax_table_rare_D2.tsv"))
+ps_rare_16S_Dataset_2 <- fix_unknown_taxa(phyloseq_object = ps_rare_16S_D2, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2", "16S_tax_table_rare_D2.tsv"))
 
-ps_rare_ITS_Dataset_2 <- fix_unknown_taxa(phyloseq_object = ps_rare_ITS_Dataset_2, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2", "ITS_tax_table_rare_D2.tsv"))
+ps_rare_ITS_Dataset_2 <- fix_unknown_taxa(phyloseq_object = ps_rare_ITS_D2, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2", "ITS_tax_table_rare_D2.tsv"))
 
 ## Export
 saveRDS(ps_rare_16S_Dataset_2, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2",  "ps_rare_16S_Dataset_2.rds"))
@@ -466,7 +466,7 @@ write.table(x=prevalence_data_fruit_wide_d1, file=file.path(here::here(), "data"
 ## 16S
 
 ## Order we want
-lev <- c("Mothers_0days","Fruits_0days","Fruits_5_6days","Mothers_2days","Larvae","Pupae","PupalCases","Daughters")
+lev <- c("Mothers_0days","Fruits_0days","Fruits_5_6days","Mothers_2days","Larvae","Pupae","Daughters")
 
 prevalence_data_fruit16S_d1 <- prevalence_data_fruit_d1 |>
   dplyr::filter(Marker=="16S")|>
@@ -487,7 +487,7 @@ prevalence_data_fruit16S_d1 <- prevalence_data_fruit16S_d1 |>
 ## ITS
 
 ## Order we want
-lev <- c("Mothers_0days","Fruits_0days","Fruits_5_6days","Mothers_2days","Larvae","Pupae","PupalCases","Daughters")
+lev <- c("Mothers_0days","Fruits_0days","Fruits_5_6days","Mothers_2days","Larvae","Pupae","Daughters")
 
 prevalence_data_fruitITS_d1 <- prevalence_data_fruit_d1 |>
   dplyr::filter(Marker=="ITS")|>
