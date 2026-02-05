@@ -9,7 +9,7 @@
 #'
 #' @export
 Save_ps_as_xls <- function(ps, folder_path) {
-  ps = ps_rare_16S_D1
+
   ps_name <- deparse(substitute(ps))
 
   otu_df <- as.data.frame(otu_table(ps))
