@@ -9,27 +9,18 @@
 #' @export
 Charge_xl_to_ps <- function(ps_name, folder_path) {
 
-  #Charge
   otu_path <- file.path(folder_path, paste0(ps_name, "_otu_table.xlsx"))
   otu <- read.xlsx(xlsxFile=otu_path, rowNames = TRUE)
-
-  rownames(otu) <- otu$observation_name
-  otu$observation_name <- NULL
   otu[] <- lapply(otu, as.numeric)
-  otu_mat <- t(as.matrix(otu))
+  otu_mat <- as.matrix(otu)
 
   OTU <- phyloseq::otu_table(otu_mat, taxa_are_rows = TRUE)
-
 
 
   tax_path <- file.path(folder_path, paste0(ps_name, "_tax_table.xlsx"))
   tax <- read.xlsx(xlsxFile=tax_path, rowNames = TRUE)
 
-  rownames(tax) <- tax$observation_name
-  tax$observation_name <- NULL
-
   TAX <- phyloseq::tax_table(as.matrix(tax))
-
 
 
   mtd_path <- file.path(folder_path, paste0(ps_name, "_mtd_table.xlsx"))
