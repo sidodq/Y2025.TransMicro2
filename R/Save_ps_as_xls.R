@@ -4,12 +4,12 @@
 #' Function to export physeq object as readable excel docs (data, otu & tax tables)
 #'
 #' @param ps phyloseq object
-#' @param file_path here::here() path to the FOLDER where to save the files
+#' @param folder_path here::here() path to the FOLDER where to save the files
 #'
 #'
 #' @export
 Save_ps_as_xls <- function(ps, folder_path) {
-
+  ps = ps_rare_16S_D1
   ps_name <- deparse(substitute(ps))
 
   otu_df <- as.data.frame(otu_table(ps))
@@ -36,5 +36,5 @@ Save_ps_as_xls <- function(ps, folder_path) {
 
   mtd_file <- file.path(folder_path, paste0(ps_name, "_mtd_table.xlsx"))
 
-  write.xlsx(tax_df, file= mtd_file, rowNames = TRUE)
+  write.xlsx(metadata_df, file= mtd_file, rowNames = TRUE)
 }
