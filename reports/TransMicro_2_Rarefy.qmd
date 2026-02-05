@@ -155,26 +155,29 @@ sample_data(ps_ITS_raw) <- sample_data(ps_ITS) %>%
 saveRDS(ps_16S_raw, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_ps_raw.rds"))
 saveRDS(ps_ITS_raw, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_ps_raw.rds"))
 
+Save_ps_as_xls(ps_16S_raw, folder_path=file.path(here::here(), "data", "derived_data", "2_RarefyData"))
+Save_ps_as_xls(ps_ITS_raw, folder_path=file.path(here::here(), "data", "derived_data", "2_RarefyData"))
 
-# Plot tot. ASVs abundances per sample
-df_16S <- data.frame(reads = taxa_sums(ps_16S))
-
-df_ITS <- data.frame(reads = taxa_sums(ps_ITS))
-
-ggplot(df_ITS, aes(x = reads)) +
-  geom_histogram(bins = 50, fill = "white", color="black") +
-  scale_x_log10() +
-  theme_bw() +
-  labs(x = "Tot. reads per ASV (log10)", y = "Count of ASVs")
+# # Plot tot. ASVs abundances per sample
+# df_16S <- data.frame(reads = taxa_sums(ps_16S_raw))
+# 
+# df_ITS <- data.frame(reads = taxa_sums(ps_ITS_raw))
+# 
+# ggplot(df_ITS, aes(x = reads)) +
+#   geom_histogram(bins = 50, fill = "white", color="black") +
+#   scale_x_log10() +
+#   theme_bw() +
+#   labs(x = "Tot. reads per ASV (log10)", y = "Count of ASVs")
 ```
 
 # 3. Remove conta.
 
 ```{r}
-ps_16S_raw <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_ps_raw.rds"))
-ps_ITS_raw <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_ps_raw.rds"))
+ps_16S_raw <- Charge_xl_to_ps("ps_16S_raw", folder_path=file.path(here::here(), "data", "derived_data", "2_RarefyData"))
+ps_ITS_raw <- Charge_xl_to_ps("ps_ITS_raw", folder_path=file.path(here::here(), "data", "derived_data", "2_RarefyData"))
+
 # Remove Wolbachia
-tax_ps <- as.data.frame(tax_table(ps_16S_raw ))
+tax_ps <- as.data.frame(tax_table(ps_16S_raw))
 
 wolbachia_taxa <- rownames(tax_ps[!is.na(tax_ps$Genus) & tax_ps$Genus == "Wolbachia", ]) # 59 Wolbachia clusters
 
@@ -197,7 +200,7 @@ taxa_to_remove_16S <- TAX_16S_df %>%
   
 write.xlsx( TAX_16S_df[taxa_to_remove_16S, ], file = file.path(here::here(), "data", "derived_data",  "2_RarefyData","Conta_clusters_16S.xlsx"), rowNames = TRUE) #export removed clusers
 
-ps_16Sm <- prune_taxa(!(taxa_names(ps_16Sm) %in% taxa_to_remove_16S),ps_16Sm)
+ps_16S_contaRm <- prune_taxa(!(taxa_names(ps_16Sm) %in% taxa_to_remove_16S),ps_16Sm)
 
 
 # Remove ITS conta
@@ -210,48 +213,48 @@ taxa_to_remove_ITS <- TAX_ITS_df %>%
   
 write.xlsx( TAX_ITS_df[taxa_to_remove_ITS, ], file = file.path(here::here(), "data", "derived_data",  "2_RarefyData","Conta_clusters_ITS.xlsx"), rowNames = TRUE) #export removed clusers
 
-ps_ITSm <- prune_taxa(!(taxa_names(ps_ITS_raw) %in% taxa_to_remove_ITS),ps_ITS_raw)
+ps_ITS_contaRm <- prune_taxa(!(taxa_names(ps_ITS_raw) %in% taxa_to_remove_ITS),ps_ITS_raw)
 
 # Infos
-sum_physeq_clean(ps_16S_raw , ps_16Sm) # filtered : 0% of samples + 3.6% of ASVs + 43.1 % of reads
-sum_physeq_clean(ps_ITS_raw , ps_ITSm) # filtered : 0% of samples + 2.92% of ASVs + 0.622 % of reads
+sum_physeq_clean(ps_16S_raw , ps_16S_contaRm) # filtered : 0% of samples + 3.6% of ASVs + 43.1 % of reads
+sum_physeq_clean(ps_ITS_raw , ps_ITS_contaRm) # filtered : 0% of samples + 2.92% of ASVs + 0.622 % of reads
 
 # Export
-saveRDS(ps_16Sm, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_ps_contaRemoved.rds"))
-saveRDS(ps_ITSm, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_ps_contaRemoved.rds"))
+Save_ps_as_xls(ps_16S_contaRm, folder_path=file.path(here::here(), "data", "derived_data", "2_RarefyData"))
+Save_ps_as_xls(ps_ITS_contaRm, folder_path=file.path(here::here(), "data", "derived_data", "2_RarefyData"))
 ```
 
-# 4. Remove low-depth samples
 
+# 4. Remove 0reads samples and absent ASVs
 ```{r}
-ps_16Sm <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_ps_contaRemoved.rds"))
-ps_ITSm <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_ps_contaRemoved.rds"))
+ps_16S_contaRm <- Charge_xl_to_ps("ps_16S_contaRm", folder_path=file.path(here::here(), "data", "derived_data", "2_RarefyData"))
+ps_ITS_contaRm <- Charge_xl_to_ps("ps_ITS_contaRm", folder_path=file.path(here::here(), "data", "derived_data", "2_RarefyData"))
 
 #threshold for min. reads per sample at 150 for 16S & 250 for ITS
-ps_16Sm_sq <- ps_16Sm %>%
+ps_16Sm_sq <- ps_16S_contaRm %>%
   prune_samples(sample_sums(.) > 0, .) %>% # remove samples with zeros reads
   prune_taxa(taxa_sums(.) > 0, .) # remove taxa absent in all samples
 
-ps_ITSm_sq <- ps_ITSm %>%
+ps_ITSm_sq <- ps_ITS_contaRm %>%
   prune_samples(sample_sums(.) > 0, .) %>%
   prune_taxa(taxa_sums(.) > 0, .)
 
-sum_physeq_clean(ps_16Sm, ps_16Sm_sq) # filtered : 16.4% of samples + 77.7% of ASVs + 0 % of reads
-sum_physeq_clean(ps_ITSm, ps_ITSm_sq) # filtered : 3.36% of samples + 36.1% of ASVs + 0 % of reads
+sum_physeq_clean(ps_16S_contaRm, ps_16Sm_sq) # filtered : 16.4% of samples + 77.7% of ASVs + 0 % of reads
+sum_physeq_clean(ps_ITS_contaRm, ps_ITSm_sq) # filtered : 3.36% of samples + 36.1% of ASVs + 0 % of reads
 
 # Export
-saveRDS(ps_16Sm_sq, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_ps_contaRemoved_lowDepthFiltered.rds"))
-saveRDS(ps_ITSm_sq, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_ps_contaRemoved_lowDepthFiltered.rds"))
+Save_ps_as_xls(ps_16Sm_sq, file.path(here::here(), "data", "derived_data", "2_RarefyData"))
+Save_ps_as_xls(ps_ITSm_sq, file.path(here::here(), "data", "derived_data", "2_RarefyData"))
 ```
 
 # 5. Distinguish datasets
 
 ```{r}
-ps_16Sm_sq <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "16S_ps_contaRemoved_lowDepthFiltered.rds"))
-ps_ITSm_sq <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "ITS_ps_contaRemoved_lowDepthFiltered.rds"))
+ps_16Sm_sq <- Charge_xl_to_ps("ps_16Sm_sq", file.path(here::here(), "data", "derived_data", "2_RarefyData"))
+ps_ITSm_sq <- Charge_xl_to_ps("ps_ITSm_sq", file.path(here::here(), "data", "derived_data", "2_RarefyData"))
+
 
 ## Dataset 1 : fruits Batch 1 + individuals Batch 1
-
 
 # Filter samples by abundance (>0) and type (fruits and suzu at all stages from "Focal_Sites")
 ps_16S_cl_Dataset_1 <- subset_samples(ps_16Sm_sq, Sample_Category %in% c("All_stages_Focal_Sites", "All_stages_focal_Sites")) #exclude indiv. naturally infesting + naturally infested fruits, if want to include use -> grepl("Focal_Sites", Sample_Category))
@@ -262,8 +265,8 @@ ps_ITS_cl_Dataset_1 <- subset_samples(ps_ITSm_sq, Sample_Category %in% c("All_st
 ps_ITS_cl_Dataset_1 <- prune_taxa(taxa_sums(ps_ITS_cl_Dataset_1)>0, ps_ITS_cl_Dataset_1)
 
 # Export
-saveRDS(ps_16S_cl_Dataset_1, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "16S_ps_cleaned_Dataset_1.rds"))
-saveRDS(ps_ITS_cl_Dataset_1, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "ITS_ps_cleaned_Dataset_1.rds"))
+Save_ps_as_xls(ps_16S_cl_Dataset_1, file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1"))
+Save_ps_as_xls(ps_ITS_cl_Dataset_1, file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1"))
 
 
 
@@ -277,22 +280,25 @@ ps_ITS_cl_Dataset_2 <- subset_samples(ps_ITSm_sq, SampleType %in% c("Fruits_0day
 ps_ITS_cl_Dataset_2 <- prune_taxa(taxa_sums(ps_ITS_cl_Dataset_2)>0,ps_ITS_cl_Dataset_2)
 
 ## Export
-saveRDS(ps_16S_cl_Dataset_2, file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "16S_ps_cleaned_Dataset_2.rds"))
-saveRDS(ps_ITS_cl_Dataset_2, file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "ITS_ps_cleaned_Dataset_2.rds"))
+Save_ps_as_xls(ps_16S_cl_Dataset_2, file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_2"))
+Save_ps_as_xls(ps_ITS_cl_Dataset_2, file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_2"))
+
 ```
 
 # 6. Filter ASVs
 
 ```{r}
-ps_16S_cl_Dataset_1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "16S_ps_cleaned_Dataset_1.rds"))
-ps_ITS_cl_Dataset_1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "ITS_ps_cleaned_Dataset_1.rds"))
+# Dataset 1
 
-# ps_16S_filt_Dataset_1 <- filter_phyloseq_prevalence(ps_16S_cl_Dataset_1, prevalence = 0.6)
-# ps_ITS_filt_Dataset_1 <- filter_phyloseq_prevalence(ps_ITS_cl_Dataset_1, prevalence = 0.6)
+ps_16S_cl_Dataset_1 <- Charge_xl_to_ps("ps_16S_cl_Dataset_1", file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1"))
+ps_ITS_cl_Dataset_1 <- Charge_xl_to_ps("ps_ITS_cl_Dataset_1", file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1"))
 
-#without filtering on prevalence
-ps_16S_filt_Dataset_1 <- ps_16S_cl_Dataset_1
-ps_ITS_filt_Dataset_1 <- ps_ITS_cl_Dataset_1
+ps_16S_filt_Dataset_1 <- filter_phyloseq_prevalence(ps_16S_cl_Dataset_1, prevalence = 0.7)
+ps_ITS_filt_Dataset_1 <- filter_phyloseq_prevalence(ps_ITS_cl_Dataset_1, prevalence = 0.7)
+
+# #without filtering on prevalence
+# ps_16S_filt_Dataset_1 <- ps_16S_cl_Dataset_1
+# ps_ITS_filt_Dataset_1 <- ps_ITS_cl_Dataset_1
 
 # Filter on ASVs prevalence per sample + samples with null abundance 
 sum_physeq_clean(ps_16S_cl_Dataset_1, ps_16S_filt_Dataset_1) # filtered : 1.40% of samples + 90.4% of ASVs + 6.24 % of reads
@@ -303,34 +309,29 @@ sample_data(ps_16S_filt_Dataset_1)$ID_pool <- sample_names(ps_16S_filt_Dataset_1
 sample_data(ps_ITS_filt_Dataset_1)$ID_pool <- sample_names(ps_ITS_filt_Dataset_1)
 
 ## Export
-saveRDS(ps_16S_filt_Dataset_1, file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1", "16S_ps_cleaned_NOTfiltered_Dataset_1.rds"))
-saveRDS(ps_ITS_filt_Dataset_1, file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1", "ITS_ps_cleaned_NOTfiltered_Dataset_1.rds"))
-```
+Save_ps_as_xls(ps_16S_filt_Dataset_1, file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1"))
+Save_ps_as_xls(ps_ITS_filt_Dataset_1, file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1"))
 
 
-```{r}
+
 # Dataset 2
 
-ps_16S_cl_Dataset_2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "16S_ps_cleaned_Dataset_2.rds"))
-ps_ITS_cl_Dataset_2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "ITS_ps_cleaned_Dataset_2.rds"))
+ps_16S_cl_Dataset_2 <- Charge_xl_to_ps("ps_16S_cl_Dataset_2", file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_2"))
+ps_ITS_cl_Dataset_2 <- Charge_xl_to_ps("ps_ITS_cl_Dataset_2", file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_2"))
 
-# ps_16S_filt_Dataset_2 <- filter_phyloseq_prevalence(ps_16S_cl_Dataset_2, prevalence = 0.6)
-# ps_ITS_filt_Dataset_2 <- filter_phyloseq_prevalence(ps_ITS_cl_Dataset_2, prevalence = 0.6)
+ps_16S_filt_Dataset_2 <- filter_phyloseq_prevalence(ps_16S_cl_Dataset_2, prevalence = 0.7)
+ps_ITS_filt_Dataset_2 <- filter_phyloseq_prevalence(ps_ITS_cl_Dataset_2, prevalence = 0.7)
 
-#without filtering on prevalence
-ps_16S_filt_Dataset_2 <- ps_16S_cl_Dataset_2
-ps_ITS_filt_Dataset_2 <- ps_ITS_cl_Dataset_2
-
-sum_physeq_clean(ps_16S_cl_Dataset_2, ps_16S_filt_Dataset_2) # filtered : 4.23% of samples + 96.0% of ASVs + 10.9 % of reads
-sum_physeq_clean(ps_ITS_cl_Dataset_2, ps_ITS_filt_Dataset_2) # filtered : 0% of samples + 84.9% of ASVs + 8.84 % of reads
+sum_physeq_clean(ps_16S_cl_Dataset_2, ps_16S_filt_Dataset_2) # filtered : 18.4% of samples + 98.8% of ASVs + 26.8 % of reads
+sum_physeq_clean(ps_ITS_cl_Dataset_2, ps_ITS_filt_Dataset_2) # filtered : 0% of samples + 89.1% of ASVs + 17.7 % of reads
 
 # Add the row names in 'ID_pool' column
 sample_data(ps_16S_filt_Dataset_2)$ID_pool <- sample_names(ps_16S_filt_Dataset_2)
 sample_data(ps_ITS_filt_Dataset_2)$ID_pool <- sample_names(ps_ITS_filt_Dataset_2)
 
 ## Export
-saveRDS(ps_16S_filt_Dataset_2, file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "16S_ps_cleaned_NOTfiltered_Dataset_2.rds"))
-saveRDS(ps_ITS_filt_Dataset_2, file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "ITS_ps_cleaned_NOTfiltered_Dataset_2.rds"))
+Save_ps_as_xls(ps_16S_filt_Dataset_2, file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2"))
+Save_ps_as_xls(ps_ITS_filt_Dataset_2, file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2"))
 ```
 
 # 7. Rarefaction curves
@@ -338,24 +339,24 @@ saveRDS(ps_ITS_filt_Dataset_2, file=file.path(here::here(), "data", "derived_dat
 ## Rarefaction curves
 
 # Dataset 1
-ps_16S_filt_Dataset_1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1", "16S_ps_cleaned_NOTfiltered_Dataset_1.rds"))
+ps_16S_filt_Dataset_1 <- Charge_xl_to_ps("ps_16S_filt_Dataset_1", file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1"))
 
-ps_ITS_filt_Dataset_1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1", "ITS_ps_cleaned_NOTfiltered_Dataset_1.rds"))
+ps_ITS_filt_Dataset_1 <- Charge_xl_to_ps("ps_ITS_filt_Dataset_1", file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1"))
 
 
 # Plots
 Rarefactioncurve_16S_D1 <- phyloseq.extended::ggrare(ps_16S_filt_Dataset_1, step = 100, se = FALSE, color = "SampleType", label = "ID_pool") +
   geom_vline(xintercept = 3000, linetype = "dashed") + scale_y_continuous(trans = "log10", name = "Species Richness (log10)") + xlim(0, 10000)  +  theme_bw()
 
-title_plot <- "16S_D1_NOTfiltered_Rarefactioncurve.png"
+title_plot <- "16S_D1_Rarefactioncurve.png"
 
-  cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1" , title_plot), Rarefactioncurve_16S_D1, base_height = 35/cm(1), base_width = 60/cm(1), dpi = 1200)
+cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1" , title_plot), Rarefactioncurve_16S_D1, base_height = 35/cm(1), base_width = 60/cm(1), dpi = 1200)
 
 
 Rarefactioncurve_ITS_D1 <- phyloseq.extended::ggrare(ps_ITS_filt_Dataset_1, step = 100, se = FALSE, color = "SampleType", label = "ID_pool") +
   geom_vline(xintercept = 5000, linetype = "dashed") + scale_y_continuous(trans = "log10", name = "Species Richness (log10)") +  xlim(0, 10000) +  theme_bw()
 
-title_plot <- "ITS_D1_NOTfiltered_Rarefactioncurve.png"
+title_plot <- "ITS_D1_Rarefactioncurve.png"
 
   cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1", title_plot), Rarefactioncurve_ITS_D1, base_height = 35/cm(1),base_width = 60/cm(1), dpi = 1200)
 
@@ -364,27 +365,27 @@ title_plot <- "ITS_D1_NOTfiltered_Rarefactioncurve.png"
 RarefactionCurves_D1 <- ggpubr::ggarrange(Rarefactioncurve_16S_D1, Rarefactioncurve_ITS_D1,
                     labels = c("A. 16S", "B. ITS"), ncol = 2, nrow = 1, widths = c(1.4, 1.4), legend = "bottom", common.legend = TRUE)
 
-title_plot <- "RarefactionCurves_NOTfiltered_D1.png"
+title_plot <- "RarefactionCurves_D1.png"
  cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1", title_plot), RarefactionCurves_D1, base_height = 30/cm(1), base_width = 60/cm(1), dpi = 1200)  
 ```
 
 ```{r}
 # Dataset 2
-ps_16S_filt_Dataset_2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "16S_ps_cleaned_NOTfiltered_Dataset_2.rds"))
+ps_16S_filt_Dataset_2 <- Charge_xl_to_ps("ps_16S_filt_Dataset_2", file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2"))
 
-ps_ITS_filt_Dataset_2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "ITS_ps_cleaned_NOTfiltered_Dataset_2.rds"))
+ps_ITS_filt_Dataset_2 <- Charge_xl_to_ps("ps_ITS_filt_Dataset_2", file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2"))
 
 # Plots
 Rarefactioncurve_16S_D2 <- phyloseq.extended::ggrare(ps_16S_filt_Dataset_2, step = 100, se = FALSE, color = "SampleType", label = "ID_pool") +
   geom_vline(xintercept = 3000, linetype = "dashed") + scale_y_continuous(trans = "log10", name = "Species Richness (log10)") + xlim(0, 10000)  +  theme_bw()
 
-title_plot <- "16S_D2_NOTfiltered_Rarefactioncurve.png"
+title_plot <- "16S_D2_Rarefactioncurve.png"
   cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_2" , title_plot), Rarefactioncurve_16S_D2, base_height = 35/cm(1), base_width = 60/cm(1), dpi = 1200)
 
 
 Rarefactioncurve_ITS_D2 <- phyloseq.extended::ggrare(ps_ITS_filt_Dataset_2, step = 100, se = FALSE, color = "SampleType", label = "ID_pool") + xlim(0, 10000) + geom_vline(xintercept = 5000, linetype = "dashed") + scale_y_continuous(trans = "log10", name = "Species Richness (log10)") + theme_bw()
 
-title_plot <- "ITS_D2_NOTfiltered_Rarefactioncurve.png"
+title_plot <- "ITS_D2_Rarefactioncurve.png"
 
   cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_2", title_plot), Rarefactioncurve_ITS_D2, base_height = 35/cm(1),base_width = 60/cm(1), dpi = 1200)
 
@@ -392,10 +393,9 @@ title_plot <- "ITS_D2_NOTfiltered_Rarefactioncurve.png"
 # Combined plot
 RarefactionCurves_D2 <- ggpubr::ggarrange(Rarefactioncurve_16S_D2, Rarefactioncurve_ITS_D2, labels = c("A. 16S", "B. ITS"), ncol = 2, nrow = 1, widths = c(1.4, 1.4), legend = "bottom", common.legend = TRUE)
 
-title_plot <- "RarefactionCurves_NOTfiltered_D2.png"
+title_plot <- "RarefactionCurves_D2.png"
 
  cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_2", title_plot), RarefactionCurves_D2, base_height = 30/cm(1), base_width = 60/cm(1), dpi = 1200)
-
 ```
 
 # 8. Rarefy data
@@ -411,44 +411,12 @@ set.seed(1)
 ps_rare_ITS_D1 <- rarefy_even_depth(ps_ITS_filt_Dataset_1, sample.size = 5000)
 
 # Infos on loss
-sum_physeq_clean(ps_16S_filt_Dataset_1, ps_rare_16S_D1) # filtered : 14.2% of samples (20) + 0% of ASVs + 80 % of reads
-sum_physeq_clean(ps_ITS_filt_Dataset_1, ps_rare_ITS_D1) # filtered : 6.86% of samples (12) + 0% of ASVs + 63.3 % of reads
+sum_physeq_clean(ps_16S_filt_Dataset_1, ps_rare_16S_D1) # filtered : 22.9% of samples (32) + 7.14% of ASVs + 81.2 % of reads
+sum_physeq_clean(ps_ITS_filt_Dataset_1, ps_rare_ITS_D1) # filtered : 7.43% of samples (13) + 0% of ASVs + 62.4 % of reads
 
 ## Export
-saveRDS(ps_rare_16S_D1, file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1", "16S_ps_rare_NF_D1.rds"))
-saveRDS(ps_rare_ITS_D1, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "ITS_ps_rare_NF_D1.rds"))
-
-#16S
-otu_df_16S <- as.data.frame(otu_table(ps_rare_16S_D1))
-otu_df_16S$observation_name <- rownames(otu_df_16S)
-otu_df_16S <- otu_df_16S %>% dplyr::relocate(observation_name)
-
-write.table(otu_df_16S, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1",  "16S_otu_table_ps_rare_NF_D1.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
-
-tax_df_16S <- as.data.frame(tax_table(ps_rare_16S_D1))
-tax_df_16S$observation_name <- rownames(tax_df_16S)
-tax_df_16S <- tax_df_16S %>% dplyr::relocate(observation_name)
-
-write.table(tax_df_16S, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "16S_tax_table_ps_rare_NF_D1.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
-
-metadata_16S_df <- data.frame(sample_data(ps_rare_16S_D1), check.names = FALSE)
-write.xlsx(metadata_16S_df, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "ps_rare_16S_sample_data_NF_D1.xlsx"), rowNames = TRUE)
-
-
-#ITS
-otu_df_ITS <- as.data.frame(otu_table(ps_rare_ITS_D1))
-otu_df_ITS$observation_name <- rownames(otu_df_ITS)
-otu_df_ITS <- otu_df_ITS %>% dplyr::relocate(observation_name)
-write.table(otu_df_ITS, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1",  "ITS_otu_table_ps_rare_NF_D1.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
-
-
-tax_df_ITS <- as.data.frame(tax_table(ps_rare_ITS_D1))
-tax_df_ITS$observation_name <- rownames(tax_df_ITS)
-tax_df_ITS <- tax_df_ITS %>% dplyr::relocate(observation_name)
-write.table(tax_df_ITS, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "ITS_tax_table_ps_rare_NF_D1.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
-
-metadata_ITS_df <- data.frame(sample_data(ps_rare_ITS_D1), check.names = FALSE)
-write.xlsx(metadata_ITS_df, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "ps_rare_ITS_sample_data_NF_D1.xlsx"), rowNames = TRUE)
+Save_ps_as_xls(ps_rare_16S_D1, folder_path=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1")) 
+Save_ps_as_xls(ps_rare_ITS_D1, folder_path=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1")) 
 ```
 
 ```{r}
@@ -462,42 +430,10 @@ set.seed(1)
 ps_rare_ITS_D2 <- rarefy_even_depth(ps_ITS_filt_Dataset_2, sample.size = 5000)
 
 # Infos on loss
-sum_physeq_clean(ps_16S_filt_Dataset_2, ps_rare_16S_D2) # filtered : 14.7% of samples (10) + 16.7% of ASVs (6) + 93.7 % of reads
-sum_physeq_clean(ps_ITS_filt_Dataset_2, ps_rare_ITS_D2) # filtered : 3.26% of samples (3) + 0% of ASVs + 59 % of reads
+sum_physeq_clean(ps_16S_filt_Dataset_2, ps_rare_16S_D2) # filtered : 12.9% of samples (10) + 0% of ASVs (6) + 92.9 % of reads
+sum_physeq_clean(ps_ITS_filt_Dataset_2, ps_rare_ITS_D2) # filtered : 4.35% of samples (3) + 0% of ASVs + 55.1 % of reads
 
 ## Export
-saveRDS(ps_rare_16S_D2, file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "16S_ps_rare_NF_D2.rds"))
-saveRDS(ps_rare_ITS_D2, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_2", "ITS_ps_rare_NF_D2.rds"))
-
-#16S
-otu_df_16S <- as.data.frame(otu_table(ps_rare_16S_D2))
-otu_df_16S$observation_name <- rownames(otu_df_16S)
-otu_df_16S <- otu_df_16S %>% dplyr::relocate(observation_name)
-write.table(otu_df_16S, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_2",  "16S_otu_table_ps_rare_NF_D2.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
-
-
-tax_df_16S <- as.data.frame(tax_table(ps_rare_16S_D2))
-tax_df_16S$observation_name <- rownames(tax_df_16S)
-tax_df_16S <- tax_df_16S %>% dplyr::relocate(observation_name)
-
-write.table(tax_df_16S, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_2", "16S_tax_table_ps_rare_NF_D2.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
-
-metadata_16S_df <- data.frame(sample_data(ps_rare_16S_D2), check.names = FALSE)
-write.xlsx(metadata_16S_df, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_2", "ps_rare_16S_sample_data_NF_D2.xlsx"), rowNames = TRUE)
-
-
-#ITS
-otu_df_ITS <- as.data.frame(otu_table(ps_rare_ITS_D2))
-otu_df_ITS$observation_name <- rownames(otu_df_ITS)
-otu_df_ITS <- otu_df_ITS %>% dplyr::relocate(observation_name)
-
-write.table(otu_df_ITS, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_2",  "ITS_otu_table_ps_rare_NF_D2.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
-
-tax_df_ITS <- as.data.frame(tax_table(ps_rare_ITS_D2))
-tax_df_ITS$observation_name <- rownames(tax_df_ITS)
-tax_df_ITS <- tax_df_ITS %>% dplyr::relocate(observation_name)
-write.table(tax_df_ITS, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_2", "ITS_tax_table_ps_rare_NF_D2.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
-
-metadata_ITS_df <- data.frame(sample_data(ps_rare_ITS_D2), check.names = FALSE)
-write.xlsx(metadata_ITS_df, file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_2", "ps_rare_ITS_sample_data_NF_D2.xlsx"), rowNames = TRUE)
+Save_ps_as_xls(ps_rare_16S_D2, folder_path=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_2")) 
+Save_ps_as_xls(ps_rare_ITS_D2, folder_path=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_2")) 
 ```
