@@ -206,6 +206,9 @@ color_prev_B <- c(
 
 ```{r}
 # 16S
+ps_rare_16S_D1 <- Charge_xl_to_ps("ps_rare_16S_D1", folder_path = file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1"))
+
+
 ps_rare_16S_D1 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1", "16S_ps_rare_NF_D1.rds"))
 
 # Filter data (exclude fruits ctl & pupal cases)
