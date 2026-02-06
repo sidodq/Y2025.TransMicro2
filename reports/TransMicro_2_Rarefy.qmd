@@ -301,8 +301,8 @@ ps_ITS_filt_Dataset_1 <- filter_phyloseq_prevalence(ps_ITS_cl_Dataset_1, prevale
 # ps_ITS_filt_Dataset_1 <- ps_ITS_cl_Dataset_1
 
 # Filter on ASVs prevalence per sample + samples with null abundance 
-sum_physeq_clean(ps_16S_cl_Dataset_1, ps_16S_filt_Dataset_1) # filtered : 1.40% of samples + 90.4% of ASVs + 6.24 % of reads
-sum_physeq_clean(ps_ITS_cl_Dataset_1, ps_ITS_filt_Dataset_1) # filtered : 0% of samples + 75.5% of ASVs + 7.22 % of reads
+sum_physeq_clean(ps_16S_cl_Dataset_1, ps_16S_filt_Dataset_1) # filtered : 5.41% of samples + 93.9% of ASVs + 16.5 % of reads
+sum_physeq_clean(ps_ITS_cl_Dataset_1, ps_ITS_filt_Dataset_1) # filtered : 0% of samples + 76.8% of ASVs + 10.1 % of reads
 
 # Add the row names in 'ID_pool' column
 sample_data(ps_16S_filt_Dataset_1)$ID_pool <- sample_names(ps_16S_filt_Dataset_1)
