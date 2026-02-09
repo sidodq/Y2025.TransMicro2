@@ -350,10 +350,10 @@ ggsave(filename = "B_Abundance_SampleType_FruitType_Site_Variety_F70.jpg", plot 
 
 
 # ITS (Family)
-tax_table(ps_ITS_rare_expe_D1)[ "Cluster_66", "Family" ] <- "Cladosporiaceae"
-tax_table(ps_ITS_rare_expe_D1)[ "Cluster_66", "Order" ] <- "Cladosporiales"
-tax_table(ps_ITS_rare_expe_D1)[ "Cluster_66", "Class" ] <- "Dothideomycetes"
-tax_table(ps_ITS_rare_expe_D1)[ "Cluster_66", "Phylum" ] <- "Ascomycota"
+tax_table(ps_rare_ITS_Dataset_2)[ "Cluster_66", "Family" ] <- "Cladosporiaceae"
+tax_table(ps_rare_ITS_Dataset_2)[ "Cluster_66", "Order" ] <- "Cladosporiales"
+tax_table(ps_rare_ITS_Dataset_2)[ "Cluster_66", "Class" ] <- "Dothideomycetes"
+tax_table(ps_rare_ITS_Dataset_2)[ "Cluster_66", "Phylum" ] <- "Ascomycota"
 
 plot_ITS_Family_SampleTypeFruitTypeSiteVariety <- Make_composition_bar_plot_2(ps_rare_ITS_Dataset_2, "Fungi", "Family", 15, ~SampleType+FruitType+FruitSite+FruitVariety, color_ITS)
 
