@@ -35,7 +35,19 @@ devtools::load_all()
 ```{r}
 # D1 expe
 ps_16S_rare_expe_D1 <- Charge_xl_to_ps("ps_16S_rare_expe_D1", folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1"))
+
+# Filter data (exclude mothers 0days)
+ps_16S_rare_expe_D1 <- Subset_physeq(ps_16S_rare_expe_D1, SampleType %in%  c("Fruits_0days", "Mothers_2days", "Fruits_5_6days","Larvae","Pupae" ,"Daughters"))
+
 ps_ITS_rare_expe_D1 <- Charge_xl_to_ps("ps_ITS_rare_expe_D1", folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1"))
+
+# Filter data (exclude mothers 0days)
+ps_ITS_rare_expe_D1 <- Subset_physeq(ps_ITS_rare_expe_D1, SampleType %in%  c("Fruits_0days", "Mothers_2days", "Fruits_5_6days","Larvae","Pupae" ,"Daughters"))
+
+## Export
+Save_ps_as_xls(ps_16S_rare_expe_D1, folder_path=file.path(here::here(), "data", "derived_data", "4_Diversities")) 
+Save_ps_as_xls(ps_ITS_rare_expe_D1, folder_path=file.path(here::here(), "data", "derived_data", "4_Diversities"))
+
 
 # D2
 ps_16S_rare_D2 <- Charge_xl_to_ps("ps_rare_16S_Dataset_2", folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2"))
@@ -49,13 +61,14 @@ metadata <- data.table::fread(file=file.path(here::here(), "data", "derived_data
 ```{r}
 # using " unique(S_metadata$FruitType)" 
 color_FruitType <- c("BL" = "purple4", "CH" = "red4", "ST" = "red2")
+color_FruitType2 <- c("CH" = "red4", "ST" = "red2")
 
 # using cold colors for batch 1 sites, warm for batch 2
 color_FruitVariety <- c("CDP" = "indianred", "HED" ="indianred1", "SUM" = "indianred4", "STA"="#CD2626", "SWE" = "firebrick1", "CIF" = "gold", "CIR" = "gold2", "DRE" = "lightgoldenrod1", "INF" = "yellow2", "MDB" = "yellow", "UNK" = "skyblue", "LOC"= "deepskyblue")
 
 color_FruitSiteTypeVariety <- c("THU_BL_LOC" = "deepskyblue","THU_BL_UNK"="skyblue", "VAR_BL_LOC" = "dodgerblue", "THU_CH_HED"="indianred1", "THU_CH_SWE"= "firebrick1", "THU_ST_CIR"= "gold2", "THU_ST_MDB"= "yellow", "FIN_CH_CDP"= "indianred", "FIN_CH_SUM"="indianred4","LOM_CH_CDP"= "firebrick3", "LOM_CH_STA"="#CD2626","IST_ST_CIF"= "gold","IST_ST_DRE"= "lightgoldenrod3", "MIL_ST_INF"= "yellow2", "MIL_ST_MDB"= "khaki1")
 
-color_Expe <- c("na" ="grey","Fruits_0days" = "red3", "Mothers_0days"="darkolivegreen", "Mothers_2days" = "darkolivegreen3", "Fruits_5_6days" = "red4", "Larvae"= "green3", "Pupae" = "darkorange2", "PupalCases"="#8B4500", "Daughters" ="goldenrod2")
+color_Expe <- c("Fruits_0days" = "red3", "Mothers_0days"="darkolivegreen", "Mothers_2days" = "darkolivegreen3", "Fruits_5_6days" = "red4", "Larvae"= "green3", "Pupae" = "darkorange2", "PupalCases"="#8B4500", "Daughters" ="goldenrod2")
 
 ```
 
@@ -112,11 +125,6 @@ Chao1_ST_FT_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S_d1, "SampleT
 Chao1_ST_FT_16S$data$SampleType <- factor(Chao1_ST_FT_16S$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "PupalCases", "Daughters")) # reorder 
 
 
-# invSimp_ST_FT_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S_d1, "SampleType",  c("Mothers_0days", "Fruits_0days", "Mothers_2days",  "Larvae", "Fruits_5_6days" , "Pupae", "PupalCases", "Daughters"), "InvSimpson" ,color_FruitType, "FruitType")
-# 
-# invSimp_ST_FT_16S$data$SampleType <- factor(invSimp_ST_FT_16S$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "PupalCases", "Daughters")) # reorder 
-
-
 
 ## ITS
 Sha_ST_FT_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS_d1, "SampleType",  c("Mothers_0days", "Fruits_0days", "Mothers_2days",  "Larvae", "Fruits_5_6days" , "Pupae", "PupalCases", "Daughters"), "Shannon" ,color_FruitType, "FruitType")
@@ -134,39 +142,113 @@ Chao1_ST_FT_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS_d1, "SampleT
 Chao1_ST_FT_ITS$data$SampleType <- factor(Chao1_ST_FT_ITS$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "PupalCases", "Daughters")) # reorder 
 
 
-# invSimp_ST_FT_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS_d1, "SampleType",  c("Mothers_0days", "Fruits_0days", "Mothers_2days",  "Larvae", "Fruits_5_6days" , "Pupae", "PupalCases", "Daughters"), "InvSimpson" ,color_FruitType, "FruitType")
-# 
-# invSimp_ST_FT_ITS$data$SampleType <- factor(invSimp_ST_FT_ITS$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "PupalCases", "Daughters")) # reorder
-
 
 ## Figure 2 : combine + no InvSimp + color by Fruit
 F3_2_16S <- (ObsRich_ST_FT_16S + Chao1_ST_FT_16S + Sha_ST_FT_16S) +
-  plot_layout(ncol = 3, guides = "collect") & theme(axis.text.x = element_blank(),axis.title.x = element_blank())
+  plot_layout(ncol = 3, guides = "collect") + theme(axis.text.x = element_blank(), axis.title.x = element_blank(), axis.text.y = element_blank()) & theme(legend.position = "none")
 
 F3_2_ITS <- (ObsRich_ST_FT_ITS + Chao1_ST_FT_ITS + Sha_ST_FT_ITS) +
-  plot_layout(ncol = 3, guides = "collect", axes = "collect_x", axis_titles = "collect_x")
+  plot_layout(ncol = 3, guides = "collect", axes = "collect_x", axis_titles = "collect_x") & theme(legend.position = "bottom")
 
 label_A <- wrap_elements(full = grid::textGrob("A. BACTERIA", gp = grid::gpar(fontsize = 14, fontface = "bold"), x = 0, hjust = 0))
 label_B <- wrap_elements(full = grid::textGrob("B. FUNGI", gp = grid::gpar(fontsize = 14, fontface = "bold"), x = 0, hjust = 0))
 
 # Final plot
-F3_2_combined <- (label_A / F3_2_16S / label_B / F3_2_ITS) + plot_layout(heights = c(0.05, 1, 0.05, 1),guides = "collect",ncol = 1) & theme(legend.position = "bottom")
+F3_2_combined <- (label_A / F3_2_16S / label_B / F3_2_ITS) + plot_layout(heights = c(0.05, 1, 0.05, 1),ncol = 1) 
 
 title_plot <- "AlphaDiv_Expe_SampleType_FruitType2_F70.png"
- cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot), F3_2_combined, base_height = 29.7/cm(1),base_width = 42/cm(1), dpi = 1200)
+ cowplot::save_plot(file =here::here("plots", "4_Diversities", "Dataset_1", title_plot), F3_2_combined, base_height = 29.7/cm(1),base_width = 42/cm(1), dpi = 1200)
 ```
 
-## D2 : TO DO
+## D2 
+```{r}
+ps_16S_rare_D2 <- Charge_xl_to_ps("ps_rare_16S_Dataset_2", folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2"))
+ps_ITS_rare_D2 <- Charge_xl_to_ps("ps_rare_ITS_Dataset_2", folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2"))
+# Index calculation
+
+# 16S
+AlphaDiv_16S_d2 <- estimate_richness(ps_16S_rare_D2)
+
+metadata_AlphaDiv_16S_d2 <- data.frame(AlphaDiv_16S_d2, sample_data(ps_16S_rare_D2), check.names=TRUE)
+
+metadata_AlphaDiv_16S_d2 <- metadata_AlphaDiv_16S_d2 %>% 
+  dplyr::rename(ObservedRichness = Observed)
+
+df_AlphaDiv_16S_d2 <- data.frame(phyloseq::sample_data(AlphaDiv_16S_d2))
+
+
+# ITS
+AlphaDiv_ITS_d2 <- estimate_richness(ps_ITS_rare_D2)
+
+metadata_AlphaDiv_ITS_d2 <- data.frame(AlphaDiv_ITS_d2, sample_data(ps_ITS_rare_D2), check.names=TRUE)
+
+metadata_AlphaDiv_ITS_d2 <- metadata_AlphaDiv_ITS_d2 %>% 
+  dplyr::rename(ObservedRichness = Observed)
+
+df_AlphaDiv_ITS_d2 <- data.frame(phyloseq::sample_data(AlphaDiv_ITS_d2))
+```
+
+
+```{r}
+## 16S
+Sha_ST_FT_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S_d2, "SampleType",  c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days"), "Shannon", color_FruitType2, "FruitType")
+
+Sha_ST_FT_16S$data$SampleType <- factor(Sha_ST_FT_16S$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days")) # reorder 
+
+
+ObsRich_ST_FT_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S_d2, "SampleType",  c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days"), "ObservedRichness" ,color_FruitType2, "FruitType")
+
+ObsRich_ST_FT_16S$data$SampleType <- factor(ObsRich_ST_FT_16S$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days")) # reorder 
+
+
+Chao1_ST_FT_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S_d2, "SampleType",  c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days"), "Chao1" ,color_FruitType2, "FruitType")
+
+Chao1_ST_FT_16S$data$SampleType <- factor(Chao1_ST_FT_16S$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days")) # reorder 
+
+
+## ITS
+Sha_ST_FT_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS_d2, "SampleType",  c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days"), "Shannon" ,color_FruitType, "FruitType")
+
+Sha_ST_FT_ITS$data$SampleType <- factor(Sha_ST_FT_ITS$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days")) # reorder 
+
+
+ObsRich_ST_FT_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS_d2, "SampleType",  c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days"), "ObservedRichness" ,color_FruitType, "FruitType")
+
+ObsRich_ST_FT_ITS$data$SampleType <- factor(ObsRich_ST_FT_ITS$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days")) # reorder 
+
+
+Chao1_ST_FT_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS_d2, "SampleType",  c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days"), "Chao1" ,color_FruitType, "FruitType")
+
+Chao1_ST_FT_ITS$data$SampleType <- factor(Chao1_ST_FT_ITS$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days")) # reorder 
+
+
+
+## Figure 2 : combine + no InvSimp + color by Fruit
+F3_2_16S <- (ObsRich_ST_FT_16S + Chao1_ST_FT_16S + Sha_ST_FT_16S) +
+  plot_layout(ncol = 3, guides = "collect") & theme(axis.text.x = element_blank(), axis.title.x = element_blank(), axis.text.y = element_blank()) & theme(legend.position = "none")
+
+F3_2_ITS <- (ObsRich_ST_FT_ITS + Chao1_ST_FT_ITS + Sha_ST_FT_ITS) +
+  plot_layout(ncol = 3, guides = "collect", axes = "collect_x", axis_titles = "collect_x") & theme(legend.position = "bottom")
+
+label_A <- wrap_elements(full = grid::textGrob("A. BACTERIA", gp = grid::gpar(fontsize = 14, fontface = "bold"), x = 0, hjust = 0))
+label_B <- wrap_elements(full = grid::textGrob("B. FUNGI", gp = grid::gpar(fontsize = 14, fontface = "bold"), x = 0, hjust = 0))
+
+# Final plot
+F3_2_combined <- (label_A / F3_2_16S / label_B / F3_2_ITS) + plot_layout(heights = c(0.05, 1, 0.05, 1),ncol = 1) 
+
+title_plot <- "AlphaDiv_Expe_SampleType_FruitType2_F70.png"
+ cowplot::save_plot(file =here::here("plots", "4_Diversities", "Dataset_2", title_plot), F3_2_combined, base_height = 29.7/cm(1),base_width = 42/cm(1), dpi = 1200)
+```
 
 # 4. Beta div. (NMDS)
 
-## Dataset 1
+## D1
 
 ```{r}
 ## Fruit Type x Sample Type NMDS
 ## Qualitative (Jaccard index)
 
-ordi_nmds_J_16S_expe_D1 <- phyloseq::ordinate(ps_16S_rare_expe_D1, method ="NMDS", distance ="jaccard") # stress = 0.08096039 
+ordi_nmds_J_16S_expe_D1 <- phyloseq::ordinate(ps_16S_rare_expe_D1, method ="NMDS", distance ="jaccard") # stress = 0.08117842 
 
 # plot with ellipses
 NMDS_J_16S_expe_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_expe_D1, ordination = ordi_nmds_J_16S_expe_D1) + 
@@ -179,7 +261,7 @@ NMDS_J_16S_expe_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_expe_
   guides(
     fill = guide_legend(override.aes = list(shape = 21, linetype = NULL, size = 5), title = "Sample Type", ncol = 1),
     shape = guide_legend(title = "Fruit Type"), 
-    color = "none")+ annotate("text", x = -3.7, y = 3.4, label = "A. Bacteria", hjust = 0, size = 6, fontface = "bold")
+    color = "none")+ annotate("text", x = -3.8, y = 5.6, label = "A. Bacteria", hjust = 0, size = 6, fontface = "bold")
 
 title_plot <- "NMDS_16S_Expe_D1_FruitType_F70.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", "Dataset_1", title_plot), NMDS_J_16S_expe_Ellipses, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
@@ -191,7 +273,7 @@ ps_ITS_rare_expe_D1_w <- prune_samples(
   !sample_names(ps_ITS_rare_expe_D1) %in% c("MS_264", "MS_003"),
   ps_ITS_rare_expe_D1)
  
-ordi_nmds_J_ITS_expe_D1_w <- phyloseq::ordinate(ps_ITS_rare_expe_D1_w, method ="NMDS", distance ="jaccard") # 0.1577372
+ordi_nmds_J_ITS_expe_D1_w <- phyloseq::ordinate(ps_ITS_rare_expe_D1_w, method ="NMDS", distance ="jaccard") # 0.1577372 
 
 # plot ITS with ellipses by Fruit Type
 NMDS_J_ITS_SampleType_EllipsesByFruit <- phyloseq::plot_ordination(physeq = ps_ITS_rare_expe_D1_w, ordination = ordi_nmds_J_ITS_expe_D1_w) + 
@@ -204,7 +286,7 @@ NMDS_J_ITS_SampleType_EllipsesByFruit <- phyloseq::plot_ordination(physeq = ps_I
   guides(
     fill = guide_legend(override.aes = list(shape = 21, linetype = NULL, size = 5), title = "Sample Type", ncol = 1),
     shape = guide_legend(title = "Fruit Type"),
-    color = "none") + annotate("text", x = -2.2, y = 1.5, label = "B. Fungi", hjust = 0, size = 6, fontface = "bold")
+    color = "none") + annotate("text", x = -3.6, y = 2.1, label = "B. Fungi", hjust = 0, size = 6, fontface = "bold")
 
 title_plot <- "NMDS_ITS_Expe_D1_SampleType_EllipseByFruit_F70.png"
  cowplot::save_plot(file =here::here("plots", "4_diversities", "Dataset_1", title_plot), NMDS_J_ITS_SampleType_EllipsesByFruit, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
