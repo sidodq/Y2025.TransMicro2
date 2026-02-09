@@ -224,7 +224,7 @@ title_plot <- "NMDS_Expe_D1_SampleType_combined_F70.png"
 ordi_nmds_B_16S_expe_D1 <- phyloseq::ordinate(ps_16S_rare_expe_D1, method ="NMDS", distance ="bray") # stress = 0.08117841 
 
 # plot with ellipses
-NMDS_J_16S_expe_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_expe_D1, ordination = ordi_nmds_B_16S_expe_D1) +
+NMDS_BC_16S_expe_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_expe_D1, ordination = ordi_nmds_B_16S_expe_D1) +
   theme_bw() +
   geom_point(aes(fill = SampleType, shape = FruitType), size = 4) +
   scale_shape_manual(values = c(BL = 21, CH = 22, ST = 24, na = 23)) +
@@ -234,10 +234,10 @@ NMDS_J_16S_expe_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_expe_
   guides(
     fill = guide_legend(override.aes = list(shape = 21, linetype = NULL, size = 5), title = "Sample Type", ncol = 1),
     shape = guide_legend(title = "Fruit Type"),
-    color = "none")+ annotate("text", x = -3.3, y = 3.3, label = "A. Bacteria", hjust = 0, size = 6, fontface = "bold")
+    color = "none")+ annotate("text", x = -3.3, y = 4.2, label = "A. Bacteria", hjust = 0, size = 6, fontface = "bold")
 
 title_plot <- "NMDS_BC_16S_Expe_D1_FruitType_F70.png"
- cowplot::save_plot(file =here::here("plots", "4_Diversities", "Dataset_1", title_plot), NMDS_J_16S_expe_Ellipses, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
+ cowplot::save_plot(file =here::here("plots", "4_Diversities", "Dataset_1", title_plot), NMDS_BC_16S_expe_Ellipses, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
 
 
 ## ITS (without 2 outlier samples)
@@ -252,12 +252,17 @@ NMDS_B_ITS_SampleType_EllipsesByFruit <- phyloseq::plot_ordination(physeq = ps_I
   stat_ellipse(aes(fill = FruitType), geom = "polygon", alpha = 0.10, level = 0.95) +
   scale_color_manual(values = color_Expe) +
   guides(
-    fill = guide_legend(override.aes = list(shape = 21, linetype = NULL, size = 5), title = "Sample Type", ncol = 1),
-    shape = guide_legend(title = "Fruit Type"),
-    color = "none")
+    fill = guide_legend(override.aes = list(shape = 21, linetype = NULL, size = 5), title = "Sample Type", ncol = 1), shape = guide_legend(title = "Fruit Type"),
+    color = "none") + annotate("text", x = -2.5, y = 1.8, label = "B. Fungi", hjust = 0, size = 6, fontface = "bold")
 
 title_plot <- "NMDS_BC_ITS_Expe_SampleType_EllipseByFruit_wD1_F70.png"
  cowplot::save_plot(file =here::here("plots", "4_diversities", "Dataset_1", title_plot), NMDS_B_ITS_SampleType_EllipsesByFruit, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
+ 
+# Combined plot
+NMDS_BC_D1_combined <- (NMDS_BC_16S_expe_Ellipses + theme(legend.position = "none") |NMDS_B_ITS_SampleType_EllipsesByFruit + theme(legend.position = "right")) + plot_layout(ncol = 2, widths = c(1, 1))
+
+title_plot <- "NMDS_BC_D2_combined_F70.png"
+ cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot), NMDS_BC_D2_combined, base_height = 20/cm(1),  base_width = 34/cm(1), dpi = 1200)
 ```
 
 ## Dataset 2
