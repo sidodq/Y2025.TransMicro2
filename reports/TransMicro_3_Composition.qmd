@@ -202,6 +202,8 @@ color_prev_B <- c(
 ```
 
 # 2. Data sets
+## D1 (indiv + host fruits)
+
 ```{r}
 # 16S
 ps_rare_16S_D1 <- Charge_xl_to_ps("ps_rare_16S_D1", folder_path = file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1"))
@@ -255,9 +257,12 @@ Save_ps_as_xls(ps_16S_rare_expe_D1, folder_path=file.path(here::here(), "data", 
 Save_ps_as_xls(ps_ITS_rare_expe_D1, folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1"))
 ```
 
+## D2 (fruits batch 1 & 2)
+
 ```{r}
-ps_rare_16S_D2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "16S_ps_rare_NF_D2.rds"))
-ps_rare_ITS_D2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_2", "ITS_ps_rare_NF_D2.rds"))
+ps_rare_16S_D2 <- Charge_xl_to_ps("ps_rare_16S_D2", folder_path = file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2"))
+
+ps_rare_ITS_D2 <- Charge_xl_to_ps("ps_rare_ITS_D2", folder_path = file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2"))
 
 # Distinguish "Unknown" families & genus by numbering
 ps_rare_16S_Dataset_2 <- fix_unknown_taxa(phyloseq_object = ps_rare_16S_D2, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2", "16S_tax_table_rare_D2.tsv"))
@@ -265,14 +270,14 @@ ps_rare_16S_Dataset_2 <- fix_unknown_taxa(phyloseq_object = ps_rare_16S_D2, rank
 ps_rare_ITS_Dataset_2 <- fix_unknown_taxa(phyloseq_object = ps_rare_ITS_D2, ranks = c("Family", "Genus"), outfile = file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2", "ITS_tax_table_rare_D2.tsv"))
 
 ## Export
-saveRDS(ps_rare_16S_Dataset_2, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2",  "ps_rare_16S_Dataset_2.rds"))
-saveRDS(ps_rare_ITS_Dataset_2, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2",  "ps_rare_ITS_Dataset_2.rds"))
+Save_ps_as_xls(ps_rare_16S_Dataset_2, folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2")) 
+Save_ps_as_xls(ps_rare_ITS_Dataset_2, folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2")) 
 ```
 
 
 #3. Bar plots (abundance)
 
-## a. Dataset 1 (indiv + host fruits)
+## D1 
 
 ```{r}
 ## Bar plots : SampleType x FruitType x Site 
@@ -316,13 +321,14 @@ title_plot <- "Expe_SampleType_FruitType_Site_combined_F70.png"
  cowplot::save_plot(file =here::here("plots", "3_CommunityComposition", "Dataset_1", title_plot), barPlot_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)
 ```
 
-## b. Dataset 2 (fruits batch 1 & 2)
+## D2
 
 ```{r}
 ## Bar plots ; SampleType x FruitType x Site x Variety
+tax_table(ps_rare_16S_Dataset_2)[ "Cluster_16", "Family" ] <- "Erwiniaceae"
 
 # 16S (Family)
-plot_16S_Family_SampleTypeFruitTypeSiteVariety <- Make_composition_bar_plot_2(ps_rare_16S_Dataset_2, "Bacteria", "Family", 15, ~SampleType + FruitType+FruitSite+FruitVariety, color_16S)
+plot_16S_Family_SampleTypeFruitTypeSiteVariety <- Make_composition_bar_plot_2(ps_rare_16S_Dataset_2, "Bacteria", "Family", 10, ~SampleType + FruitType+FruitSite+FruitVariety, color_16S)
 
 plot_16S_Family_SampleTypeFruitTypeSiteVariety$data$SampleType <- factor(plot_16S_Family_SampleTypeFruitTypeSiteVariety$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days")) # reorder sample type 
 
@@ -332,7 +338,7 @@ plot_16S_Family_SampleTypeFruitTypeSiteVariety$data <-
   dplyr::mutate(Abundance = Abundance / sum(Abundance)) %>%
   dplyr::ungroup()
 
-ggsave(filename = "B_Abundance_SampleType_FruitType_Site_Variety.jpg", plot = plot_16S_Family_SampleTypeFruitTypeSiteVariety, path = file.path(here::here(), "plots", "3_CommunityComposition", "Dataset_2"), width = 29.7, height = 21, units = "cm")
+ggsave(filename = "B_Abundance_SampleType_FruitType_Site_Variety_F70.jpg", plot = plot_16S_Family_SampleTypeFruitTypeSiteVariety, path = file.path(here::here(), "plots", "3_CommunityComposition", "Dataset_2"), width = 29.7, height = 21, units = "cm")
 
 
 # ITS (Family)
@@ -346,7 +352,7 @@ plot_ITS_Family_SampleTypeFruitTypeSiteVariety$data <-
   dplyr::mutate(Abundance = Abundance / sum(Abundance)) %>%
   dplyr::ungroup()
 
-ggsave(filename = "Y_Abundance_SampleTYpe_FruitType_Site_Variety.jpg", plot = plot_ITS_Family_SampleTypeFruitTypeSiteVariety, path = file.path(here::here(), "plots", "3_CommunityComposition", "Dataset_2"), width = 29.7, height = 21, units = "cm")
+ggsave(filename = "Y_Abundance_SampleTYpe_FruitType_Site_Variety_F70.jpg", plot = plot_ITS_Family_SampleTypeFruitTypeSiteVariety, path = file.path(here::here(), "plots", "3_CommunityComposition", "Dataset_2"), width = 29.7, height = 21, units = "cm")
 
 
 # Combined plot
@@ -355,13 +361,13 @@ barPlot_fruits_combined <-
   (plot_ITS_Family_SampleTypeFruitTypeSiteVariety + labs(tag = "B. Fungi")) +
   plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
 
-title_plot <- "Abundance_SampleType_FruitType_Site_Variety_combined.png"
+title_plot <- "Abundance_SampleType_FruitType_Site_Variety_combined_F70.png"
  cowplot::save_plot(file =here::here("plots", "3_CommunityComposition", "Dataset_2", title_plot), barPlot_fruits_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)
 ```
 
 # 3. Heatmap (core)
 
-## a. Dataset 1 expe
+## D1
 
 ```{r}
 ## Load melted data
@@ -533,7 +539,7 @@ prev_d1 <- p16S_d1 + pITS_d1 + patchwork::plot_annotation(tag_levels = "A")
 ggsave(filename = "prevalence_fruit_sampletype_5sites_dataset_1.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition", "Dataset_1"), width = 30, height = 30, units = "cm")
 ```
 
-## b. Dataset 2
+## D2
 
 ```{r}
 ## Load melted data
