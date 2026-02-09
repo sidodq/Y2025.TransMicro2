@@ -61,9 +61,11 @@ color_Expe <- c("na" ="grey","Fruits_0days" = "red3", "Mothers_0days"="darkolive
 
 # 3. Alpha div. (Box plots)
 
-## Index calculation
+## D1
 
 ```{r}
+# Index calculation
+
 # 16S
 AlphaDiv_16S_d1 <- estimate_richness(ps_16S_rare_expe_D1)
 
@@ -86,9 +88,12 @@ metadata_AlphaDiv_ITS_d1 <- metadata_AlphaDiv_ITS_d1 %>%
 df_AlphaDiv_ITS_d1 <- data.frame(phyloseq::sample_data(AlphaDiv_ITS_d1))
 ```
 
-## Plot
+
 
 ```{r}
+# Plot
+
+
 ### SampleType x Fruit Type
 
 ## 16S
@@ -147,9 +152,11 @@ label_B <- wrap_elements(full = grid::textGrob("B. FUNGI", gp = grid::gpar(fonts
 # Final plot
 F3_2_combined <- (label_A / F3_2_16S / label_B / F3_2_ITS) + plot_layout(heights = c(0.05, 1, 0.05, 1),guides = "collect",ncol = 1) & theme(legend.position = "bottom")
 
-title_plot <- "AlphaDiv_Expe_SampleType_FruitType2.png"
+title_plot <- "AlphaDiv_Expe_SampleType_FruitType2_F70.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot), F3_2_combined, base_height = 29.7/cm(1),base_width = 42/cm(1), dpi = 1200)
 ```
+
+## D2 : TO DO
 
 # 4. Beta div. (NMDS)
 
@@ -159,7 +166,7 @@ title_plot <- "AlphaDiv_Expe_SampleType_FruitType2.png"
 ## Fruit Type x Sample Type NMDS
 ## Qualitative (Jaccard index)
 
-ordi_nmds_J_16S_expe_D1 <- phyloseq::ordinate(ps_16S_rare_expe_D1, method ="NMDS", distance ="jaccard") # stress = 0.1559278
+ordi_nmds_J_16S_expe_D1 <- phyloseq::ordinate(ps_16S_rare_expe_D1, method ="NMDS", distance ="jaccard") # stress = 0.08096039 
 
 # plot with ellipses
 NMDS_J_16S_expe_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_expe_D1, ordination = ordi_nmds_J_16S_expe_D1) + 
@@ -174,15 +181,17 @@ NMDS_J_16S_expe_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_expe_
     shape = guide_legend(title = "Fruit Type"), 
     color = "none")+ annotate("text", x = -3.7, y = 3.4, label = "A. Bacteria", hjust = 0, size = 6, fontface = "bold")
 
-title_plot <- "NMDS_16S_Expe_D1_FruitType.png"
+title_plot <- "NMDS_16S_Expe_D1_FruitType_F70.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", "Dataset_1", title_plot), NMDS_J_16S_expe_Ellipses, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
 
+ 
+ 
 # supp. 2 mothers0days outlier samples
 ps_ITS_rare_expe_D1_w <- prune_samples(
   !sample_names(ps_ITS_rare_expe_D1) %in% c("MS_264", "MS_003"),
   ps_ITS_rare_expe_D1)
  
-ordi_nmds_J_ITS_expe_D1_w <- phyloseq::ordinate(ps_ITS_rare_expe_D1_w, method ="NMDS", distance ="jaccard")
+ordi_nmds_J_ITS_expe_D1_w <- phyloseq::ordinate(ps_ITS_rare_expe_D1_w, method ="NMDS", distance ="jaccard") # 0.1577372
 
 # plot ITS with ellipses by Fruit Type
 NMDS_J_ITS_SampleType_EllipsesByFruit <- phyloseq::plot_ordination(physeq = ps_ITS_rare_expe_D1_w, ordination = ordi_nmds_J_ITS_expe_D1_w) + 
@@ -197,21 +206,22 @@ NMDS_J_ITS_SampleType_EllipsesByFruit <- phyloseq::plot_ordination(physeq = ps_I
     shape = guide_legend(title = "Fruit Type"),
     color = "none") + annotate("text", x = -2.2, y = 1.5, label = "B. Fungi", hjust = 0, size = 6, fontface = "bold")
 
-title_plot <- "NMDS_ITS_Expe_D1_SampleType_EllipseByFruit.png"
+title_plot <- "NMDS_ITS_Expe_D1_SampleType_EllipseByFruit_F70.png"
  cowplot::save_plot(file =here::here("plots", "4_diversities", "Dataset_1", title_plot), NMDS_J_ITS_SampleType_EllipsesByFruit, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
  
 # Combined plot
 NMDS_combined_F <- (NMDS_J_16S_expe_Ellipses|NMDS_J_ITS_SampleType_EllipsesByFruit) + plot_layout(ncol = 2,  widths = c(1, 1),guides = "collect") &  theme(legend.position = "right")
 
-title_plot <- "NMDS_Expe_D1_SampleType_combined_Figure.png"
+title_plot <- "NMDS_Expe_D1_SampleType_combined_F70.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", "Dataset_1", title_plot), NMDS_combined_F, base_height = 20/cm(1),  base_width = 34/cm(1), dpi = 1200)
 ```
 
 ```{r}
-## Fruit Type x Sample Type NMDS
-## Quantitative : Bray-Curtis index
+## Quantitative : BRAY-CURTIS INDEX
 
-ordi_nmds_B_16S_expe_D1 <- phyloseq::ordinate(ps_16S_rare_expe_D1, method ="NMDS", distance ="bray") # stress = 0.1547381
+## Fruit Type x Sample Type NMDS
+
+ordi_nmds_B_16S_expe_D1 <- phyloseq::ordinate(ps_16S_rare_expe_D1, method ="NMDS", distance ="bray") # stress = 0.08117841 
 
 # plot with ellipses
 NMDS_J_16S_expe_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_expe_D1, ordination = ordi_nmds_B_16S_expe_D1) +
@@ -226,12 +236,12 @@ NMDS_J_16S_expe_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_expe_
     shape = guide_legend(title = "Fruit Type"),
     color = "none")+ annotate("text", x = -3.3, y = 3.3, label = "A. Bacteria", hjust = 0, size = 6, fontface = "bold")
 
-title_plot <- "NMDS_BC_16S_Expe_D1_FruitType.png"
+title_plot <- "NMDS_BC_16S_Expe_D1_FruitType_F70.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", "Dataset_1", title_plot), NMDS_J_16S_expe_Ellipses, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
 
 
 ## ITS (without 2 outlier samples)
-ordi_nmds_B_ITS_expe_D1_w <- phyloseq::ordinate(ps_ITS_rare_expe_D1_w, method ="NMDS", distance ="bray") # stress = 0.1082358
+ordi_nmds_B_ITS_expe_D1_w <- phyloseq::ordinate(ps_ITS_rare_expe_D1_w, method ="NMDS", distance ="bray") # stress = 0.1577372
  
 # plot with ellipses by Fruit Type
 NMDS_B_ITS_SampleType_EllipsesByFruit <- phyloseq::plot_ordination(physeq = ps_ITS_rare_expe_D1_w, ordination = ordi_nmds_B_ITS_expe_D1_w) +
@@ -246,7 +256,7 @@ NMDS_B_ITS_SampleType_EllipsesByFruit <- phyloseq::plot_ordination(physeq = ps_I
     shape = guide_legend(title = "Fruit Type"),
     color = "none")
 
-title_plot <- "NMDS_BC_ITS_Expe_SampleType_EllipseByFruit_wD1.png"
+title_plot <- "NMDS_BC_ITS_Expe_SampleType_EllipseByFruit_wD1_F70.png"
  cowplot::save_plot(file =here::here("plots", "4_diversities", "Dataset_1", title_plot), NMDS_B_ITS_SampleType_EllipsesByFruit, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
 ```
 
@@ -254,13 +264,13 @@ title_plot <- "NMDS_BC_ITS_Expe_SampleType_EllipseByFruit_wD1.png"
 
 ```{r}
 ## Fruit Type x Variety NMDS (Jaccard index)
-ps_16S_rare_D2_w <- Subset_physeq(ps_16S_rare_D2 , !(FruitType=="BL" & FruitVariety=="LOC"))
+# ps_16S_rare_D2_w <- Subset_physeq(ps_16S_rare_D2 , !(FruitType=="BL" & FruitVariety=="LOC")) => no need, already 
 
 ##16S
-ordi_nmds_J_16S_D2 <- phyloseq::ordinate(ps_16S_rare_D2_w , method ="NMDS", distance ="jaccard") # stress = 0.1710534
+ordi_nmds_J_16S_D2 <- phyloseq::ordinate(ps_16S_rare_D2 , method ="NMDS", distance ="jaccard") # stress = 0.1710534
 
 # NMDS by FruitSiteVariety
-NMDS_J_16S_Fruits_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_D2_w, ordination = ordi_nmds_J_16S_D2) + 
+NMDS_J_16S_Fruits_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_D2, ordination = ordi_nmds_J_16S_D2) + 
   theme_bw() + 
   geom_point(aes(fill = FruitSiteTypeVariety, shape = FruitType), size = 4) + 
   scale_shape_manual(values = c(BL = 21, CH = 22, ST = 24)) +
@@ -274,13 +284,11 @@ NMDS_J_16S_Fruits_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_D2_
 
 NMDS_J_16S_Fruits_Ellipses$data$FruitSiteTypeVariety <- factor(NMDS_J_16S_Fruits_Ellipses$data$FruitSiteTypeVariety, levels = c("THU_BL_UNK", "THU_CH_HED", "THU_CH_SWE", "FIN_CH_CDP", "FIN_CH_SUM", "LOM_CH_CDP", "LOM_CH_STA", "THU_ST_CIR", "THU_ST_MDB", "IST_ST_CIF", "IST_ST_DRE", "MIL_ST_INF", "MIL_ST_MDB" )) # reorder 
 
-title_plot <- "NMDS_16S_FruitType_FruitSiteTypeVariety_D2_OutlierLess.png"
- cowplot::save_plot(file =here::here("plots", "4_Diversities", "Dataset_2", title_plot),
-                 NMDS_J_16S_Fruits_Ellipses, base_height = 20/cm(1),
-                base_width = 20/cm(1), dpi = 1200)
+title_plot <- "NMDS_16S_FruitType_FruitSiteTypeVariety_D2_OutlierLess_F70.png"
+ cowplot::save_plot(file =here::here("plots", "4_Diversities", "Dataset_2", title_plot), NMDS_J_16S_Fruits_Ellipses, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
 
 ## ITS 
-ordi_nmds_J_ITS_D2 <- phyloseq::ordinate(ps_ITS_rare_D2, method ="NMDS", distance ="jaccard") # stress = 0.2134817
+ordi_nmds_J_ITS_D2 <- phyloseq::ordinate(ps_ITS_rare_D2, method ="NMDS", distance ="jaccard") # stress = 0.1705755 
 
 # plot with ellipses
 NMDS_J_ITS_Fruits_Ellipses <- phyloseq::plot_ordination(physeq = ps_ITS_rare_D2, ordination = ordi_nmds_J_ITS_D2) + 
@@ -297,23 +305,23 @@ NMDS_J_ITS_Fruits_Ellipses <- phyloseq::plot_ordination(physeq = ps_ITS_rare_D2,
 
 NMDS_J_ITS_Fruits_Ellipses$data$FruitSiteTypeVariety <- factor(NMDS_J_ITS_Fruits_Ellipses$data$FruitSiteTypeVariety, levels = c("THU_BL_LOC" , "THU_BL_UNK", "VAR_BL_LOC", "THU_CH_HED", "THU_CH_SWE", "FIN_CH_CDP", "FIN_CH_SUM", "LOM_CH_CDP", "LOM_CH_STA", "THU_ST_CIR", "THU_ST_MDB", "IST_ST_CIF", "IST_ST_DRE", "MIL_ST_INF", "MIL_ST_MDB" )) # reorder 
 
-title_plot <- "NMDS_ITS_FruitType_FruitSiteTypeVariety_D2.png"
+title_plot <- "NMDS_ITS_FruitType_FruitSiteTypeVariety_D2_F70.png"
  cowplot::save_plot(file =here::here("plots", "4_diversities", "Dataset_2", title_plot), NMDS_J_ITS_Fruits_Ellipses, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
  
 # Combined plot
 NMDS_D2_combined <- ( NMDS_J_16S_Fruits_Ellipses+theme(legend.position = "none") |NMDS_J_ITS_Fruits_Ellipses+theme(legend.position = "right")) + plot_layout(ncol = 2,  widths = c(1, 1),guides = "collect") 
 
-title_plot <- "NMDS_D2_wSites_combined.png"
+title_plot <- "NMDS_D2_wSites_combined_F70.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", "Dataset_2", title_plot), NMDS_D2_combined, base_height = 20/cm(1),  base_width = 34/cm(1), dpi = 1200)
 ```
 
 ```{r}
 ## Fruit Type x Variety NMDS (Bray-Curtis index)
 
-ordi_nmds_B_16S_D2_w <- phyloseq::ordinate(ps_16S_rare_D2_w, method ="NMDS", distance ="bray") # stress = 0.1710535
+ordi_nmds_B_16S_D2 <- phyloseq::ordinate(ps_16S_rare_D2, method ="NMDS", distance ="bray") # stress = 0.1265952
 
 # NMDS by FruitVariety (without BL_LOC)
-NMDS_B_16S_Fruits_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_D2_w, ordination = ordi_nmds_B_16S_D2_w) + 
+NMDS_B_16S_Fruits_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_D2, ordination = ordi_nmds_B_16S_D2) + 
   theme_bw() + 
   geom_point(aes(fill = FruitVariety, shape = FruitType), size = 4) + 
   scale_shape_manual(values = c(BL = 21, CH = 22, ST = 24)) +
@@ -327,12 +335,12 @@ NMDS_B_16S_Fruits_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_D2_
 
 NMDS_B_16S_Fruits_Ellipses$data$FruitVariety <- factor(NMDS_B_16S_Fruits_Ellipses$data$FruitVariety, levels = c("CDP", "HED", "STA", "SUM" , "SWE" , "CIF", "CIR", "DRE", "INF", "MDB", "LOC", "UNK")) # reorder 
 
-title_plot <- "NMDS_BC_16S_FruitType_FruitVariety_D2_OutlierLess.png"
+title_plot <- "NMDS_BC_16S_FruitType_FruitVariety_D2_OutlierLess_F70.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", "Dataset_2", title_plot), NMDS_B_16S_Fruits_Ellipses, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
  
  
 ## ITS 
-ordi_nmds_B_ITS_D2 <- phyloseq::ordinate(ps_ITS_rare_D2, method ="NMDS", distance ="bray") # stress = 0.2134816
+ordi_nmds_B_ITS_D2 <- phyloseq::ordinate(ps_ITS_rare_D2, method ="NMDS", distance ="bray") # stress = 0.1705755 
 
 # plot with ellipses
 NMDS_B_ITS_Fruits_Ellipses <- phyloseq::plot_ordination(physeq = ps_ITS_rare_D2, ordination = ordi_nmds_B_ITS_D2) + 
@@ -349,12 +357,12 @@ NMDS_B_ITS_Fruits_Ellipses <- phyloseq::plot_ordination(physeq = ps_ITS_rare_D2,
 
 NMDS_B_ITS_Fruits_Ellipses$data$FruitVariety <- factor(NMDS_B_ITS_Fruits_Ellipses$data$FruitVariety, levels = c("CDP", "HED", "STA", "SUM" , "SWE" , "CIF", "CIR", "DRE", "INF", "MDB", "LOC", "UNK")) # reorder 
 
-title_plot <- "NMDS_BC_ITS_FruitType_FruitVariety_D2.png"
+title_plot <- "NMDS_BC_ITS_FruitType_FruitVariety_D2_F70.png"
  cowplot::save_plot(file =here::here("plots", "4_diversities", "Dataset_2", title_plot), NMDS_B_ITS_Fruits_Ellipses, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
  
 # Combined plot
 NMDS_BC_D2_combined <- (NMDS_B_16S_Fruits_Ellipses + theme(legend.position = "none") |NMDS_B_ITS_Fruits_Ellipses + theme(legend.position = "right")) + plot_layout(ncol = 2, widths = c(1, 1))
 
-title_plot <- "NMDS_BC_D2_combined.png"
+title_plot <- "NMDS_BC_D2_combined_F70.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", title_plot), NMDS_BC_D2_combined, base_height = 20/cm(1),  base_width = 34/cm(1), dpi = 1200)
 ```
