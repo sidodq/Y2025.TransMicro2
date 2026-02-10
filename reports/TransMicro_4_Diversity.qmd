@@ -26,6 +26,8 @@ library(ggpubr)
 library(forcats)
 library(patchwork)
 library(openxlsx)
+library(rstatix)
+library(dplyr)
 devtools::load_all()
 ```
 
@@ -89,6 +91,37 @@ metadata_AlphaDiv_16S_d1 <- metadata_AlphaDiv_16S_d1 %>%
 
 df_AlphaDiv_16S_d1 <- data.frame(phyloseq::sample_data(AlphaDiv_16S_d1))
 
+# Test if significant between fruit types within sample type
+df <- metadata_AlphaDiv_16S_d1 %>%
+  dplyr::select(Shannon, SampleType, FruitType) %>%
+  dplyr::filter(!is.na(FruitType))
+
+kw_results <- df %>%
+  group_by(SampleType) %>%
+  filter(dplyr::n_distinct(FruitType) > 1) %>%   
+  kruskal_test(Shannon ~ FruitType)
+
+kw_results
+
+pairwise_results <- df %>%
+  group_by(SampleType) %>%
+  filter(dplyr::n_distinct(FruitType) > 1) %>% 
+  pairwise_wilcox_test(Shannon ~ FruitType, p.adjust.method = "BH")
+
+pairwise_results
+
+
+
+test_alpha_by_sampletype <- function(df, index) {
+  df %>%
+    group_by(SampleType) %>%
+    kruskal_test(as.formula(paste(index, "~ FruitType")))
+}
+
+test_alpha_by_sampletype(metadata_AlphaDiv_16S_d1, "ObservedRichness")
+test_alpha_by_sampletype(metadata_AlphaDiv_16S_d1, "Chao1")
+test_alpha_by_sampletype(metadata_AlphaDiv_ITS_d1, "Shannon")
+
 
 # ITS
 AlphaDiv_ITS_d1 <- estimate_richness(ps_ITS_rare_expe_D1)
@@ -99,6 +132,7 @@ metadata_AlphaDiv_ITS_d1 <- metadata_AlphaDiv_ITS_d1 %>%
   dplyr::rename(ObservedRichness = Observed)
 
 df_AlphaDiv_ITS_d1 <- data.frame(phyloseq::sample_data(AlphaDiv_ITS_d1))
+
 ```
 
 
@@ -112,6 +146,23 @@ df_AlphaDiv_ITS_d1 <- data.frame(phyloseq::sample_data(AlphaDiv_ITS_d1))
 Sha_ST_FT_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S_d1, "SampleType",  c("Mothers_0days", "Fruits_0days", "Mothers_2days",  "Larvae", "Fruits_5_6days" , "Pupae", "PupalCases", "Daughters"), "Shannon", color_FruitType, "FruitType")
 
 Sha_ST_FT_16S$data$SampleType <- factor(Sha_ST_FT_16S$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "PupalCases", "Daughters")) # reorder 
+
+stat_test <- df %>%
+  group_by(SampleType) %>%
+  filter(dplyr::n_distinct(FruitType) > 1) %>% 
+  pairwise_wilcox_test(Shannon ~ FruitType) %>%
+  adjust_pvalue(method = "BH") %>%
+  add_significance("p.adj")
+
+stat_test <- stat_test %>%
+  add_y_position(fun = "max", step.increase = 0.05)
+
+head(stat_test)
+
+Sha_ST_FT_16S +
+  stat_pvalue_manual(stat_test, label = "p.adj.signif", tip.length = 0, hide.ns = TRUE)
+
+
 
 
 ObsRich_ST_FT_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S_d1, "SampleType",  c("Mothers_0days", "Fruits_0days", "Mothers_2days",  "Larvae", "Fruits_5_6days" , "Pupae", "PupalCases", "Daughters"), "ObservedRichness" ,color_FruitType, "FruitType")
@@ -158,6 +209,8 @@ F3_2_combined <- (label_A / F3_2_16S / label_B / F3_2_ITS) + plot_layout(heights
 title_plot <- "AlphaDiv_Expe_SampleType_FruitType2_F70.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", "Dataset_1", title_plot), F3_2_combined, base_height = 29.7/cm(1),base_width = 42/cm(1), dpi = 1200)
 ```
+
+
 
 ## D2 
 ```{r}
