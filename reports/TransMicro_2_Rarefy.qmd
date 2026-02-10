@@ -242,6 +242,15 @@ ps_ITSm_sq <- ps_ITS_contaRm %>%
 sum_physeq_clean(ps_16S_contaRm, ps_16Sm_sq) # filtered : 16.4% of samples + 77.7% of ASVs + 0 % of reads
 sum_physeq_clean(ps_ITS_contaRm, ps_ITSm_sq) # filtered : 3.36% of samples + 36.1% of ASVs + 0 % of reads
 
+# Manually correct taxo
+# 16S
+tax_table(ps_16S_contaRm)[ "Cluster_20", "Genus" ] <- "Acetobacter"
+tax_table(ps_16S_contaRm)[ "Cluster_5", "Genus" ] <- "Tatumella"
+tax_table(ps_16S_contaRm)[ "Cluster_6", "Genus" ] <- "Gluconobacter"
+tax_table(ps_16S_contaRm)[ "Cluster_7", "Genus" ] <- "Acetobacter"
+tax_table(ps_16S_contaRm)[ "Cluster_9", "Genus" ] <- "Acetobacter"
+tax_table(ps_16S_contaRm)[ "Cluster_337", "Genus" ] <- "Tatumella"
+
 # Export
 Save_ps_as_xls(ps_16Sm_sq, file.path(here::here(), "data", "derived_data", "2_RarefyData"))
 Save_ps_as_xls(ps_ITSm_sq, file.path(here::here(), "data", "derived_data", "2_RarefyData"))
