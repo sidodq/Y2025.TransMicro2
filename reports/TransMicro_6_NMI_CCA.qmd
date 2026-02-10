@@ -1,0 +1,327 @@
+---
+title: "TransMicro data analysis - Network Analysis (NMI & CCA)"
+author: "Marie Lapègue, Nicolas Rode, Sido Dunis-Quarré"
+date: "`r format(Sys.Date(), '%d-%B-%Y')`"
+format:
+  html:
+    toc: true
+    toc-location: left
+    number-sections: true
+    embed-resources: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(scales)
+library(phyloseq)
+library(listenv)
+library(parallelly)
+library(future)
+library(future.apply)
+library(sbm)
+library(ggalluvial)
+library(openxlsx)
+library(vegan)
+library(igraph)
+library(patchwork)
+library(parallel)
+library(future)
+library(future.apply)
+devtools::load_all()
+```
+# NETWORK ANALYSIS : NMI & CCA
+
+#3. NMI
+
+## Dataset 1
+
+```{r}
+NPERM=10000#set quite low, so that permutations do not take too long, only for proof of principle, set to 10000 for serious comparisons
+
+# # Import simulated clustering MPC
+# netBin.config<-simulate(nullmodel(FB_D1_16S,"curveball"),nsim=NPERM)
+# graph.bin.gut.config<-simulate(nullmodel(FB_D1_16S,"curveball"),nsim=NPERM)
+# 
+# graph.bin.bpk.config<-simulate(nullmodel(FB_D1_16S,"curveball"),nsim=NPERM)
+
+# Parallelized version
+plan(multisession, workers = parallel::detectCores() - 1)
+sim_fun <- function(i, FB) {
+  simulate(nullmodel(FB, "curveball"), nsim = 1)}
+
+netBin.config <- future_lapply(seq_len(NPERM), future.seed=TRUE, sim_fun, FB = FB_D1_16S)
+graph.bin.gut.config <- future_lapply(seq_len(NPERM), future.seed=TRUE, sim_fun,  FB = FB_D1_16S)
+
+netBin.config.ITS <- future_lapply(seq_len(NPERM), future.seed=TRUE, sim_fun, FB = FB_D1_ITS)
+graph.bin.ITSe.config <- future_lapply(seq_len(NPERM), future.seed=TRUE, sim_fun,  FB = FB_D1_ITS)
+```
+
+```{r}
+# Factors
+FT_vect_D1_16S <- as.factor(mtd_D1_16S$FruitType[match(rownames(FB_D1_16S), rownames(mtd_D1_16S))])
+FT_vect_D1_ITS <- as.factor(mtd_D1_ITS$FruitType[match(rownames(FB_D1_ITS), rownames(mtd_D1_ITS))])
+
+ST_vect_D1_16S <- as.factor(mtd_D1_16S$SampleType[match(rownames(FB_D1_16S), rownames(mtd_D1_16S))])
+ST_vect_D1_ITS <- as.factor(mtd_D1_ITS$SampleType[match(rownames(FB_D1_ITS), rownames(mtd_D1_ITS))])
+
+# Observed
+nmi_obs_expe_16S_FruitType <- compare(as.factor(memb_spl_obs_16S_D1), FT_vect_D1_16S, method = "nmi")
+nmi_obs_expe_ITS_FruitType <- compare(as.factor(memb_spl_obs_ITS_D1), FT_vect_D1_ITS, method = "nmi")
+
+nmi_obs_expe_16S_SampleType <- compare(as.factor(memb_spl_obs_16S_D1), ST_vect_D1_16S, method = "nmi")
+nmi_obs_expe_ITS_SampleType <- compare(as.factor(memb_spl_obs_ITS_D1), ST_vect_D1_ITS, method = "nmi")
+
+## Simulated clustering
+plan(multisession, workers = parallel::detectCores() - 1)
+
+simulated_clustering_expe_16S <- Simulate_Clustering_SBM(FB = FB_D1_16S, NPERM, name = "simulated_clustering_D1_16S.tsv")
+simulated_clustering_expe_ITS <- Simulate_Clustering_SBM(FB = FB_D1_ITS, NPERM, name = "simulated_clustering_D1_ITS.tsv")
+
+# Simulated NMI
+# Fruit Type
+simulated_nmi_expe_16S_FT <- 
+simulated_clustering_expe_16S %>% 
+  tidyr::pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
+  dplyr::group_by(Simulation) %>% 
+  dplyr::summarise(., nmi_sim = compare(as.factor(Memberships), FT_vect_D1_16S, method = "nmi"))
+
+simulated_nmi_expe_ITS_FT <- 
+simulated_clustering_expe_ITS %>% 
+  tidyr::pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
+  dplyr::group_by(Simulation) %>% 
+  dplyr::summarise(., nmi_sim = compare(as.factor(Memberships), FT_vect_D1_ITS, method = "nmi"))
+
+print(c("NMI =", nmi_obs_expe_16S_FruitType, "P-value = ", 1 - ecdf(simulated_nmi_expe_16S_FT$nmi_sim)(nmi_obs_expe_16S_FruitType)))
+print(c("NMI =", nmi_obs_expe_ITS_FruitType, "P-value = ", 1 - ecdf(simulated_nmi_expe_ITS_FT$nmi_sim)(nmi_obs_expe_ITS_FruitType)))
+
+
+# Sample Type (Life Stage)
+simulated_nmi_expe_16S_ST <- 
+simulated_clustering_expe_16S %>% 
+  tidyr::pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
+  dplyr::group_by(Simulation) %>% 
+  dplyr::summarise(., nmi_sim = compare(as.factor(Memberships), ST_vect_D1_16S, method = "nmi"))
+
+simulated_nmi_expe_ITS_ST <- 
+simulated_clustering_expe_ITS %>% 
+  tidyr::pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
+  dplyr::group_by(Simulation) %>% 
+  dplyr::summarise(., nmi_sim = compare(as.factor(Memberships), ST_vect_D1_ITS, method = "nmi"))
+
+print(c("NMI =", nmi_obs_expe_16S_SampleType, "P-value = ", 1 - ecdf(simulated_nmi_expe_16S_ST$nmi_sim)(nmi_obs_expe_16S_SampleType)))
+print(c("NMI =", nmi_obs_expe_ITS_SampleType, "P-value = ", 1 - ecdf(simulated_nmi_expe_ITS_ST$nmi_sim)(nmi_obs_expe_ITS_SampleType)))
+
+```
+
+#4. CCA
+
+## Dataset 1
+
+### 16S
+
+```{r}
+NPERM <- 10
+
+sim_list = list()
+  
+#for each rarefied matrix
+  sim_mat <- BF_D1_16S
+  #produce NPERM simulated graphs
+  netBin.config <-
+    simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
+
+  LBM.config <-
+    sapply(1:NPERM, function(i) {
+      BF_sim <- netBin.config[, , i]
+      FB_sim <- t(BF_sim)
+      LBM_sim <-as.matrix(FB_sim) %>%
+    sbm::estimateBipartiteSBM(model = 'bernoulli',
+                         estimOptions = list(plot = T))
+       memb_spl_sim <- LBM_sim$memberships$row ## Extract membership of the samples 
+    })
+```
+
+```{r}
+# Factors
+FruitType_vect_16S_D1 <- as.factor(mtd_D1_16S$FruitType[match(rownames(FB_D1_16S), mtd_D1_16S$Sample)])
+SampleType_vect_16S_D1 <- as.factor(mtd_D1_16S$SampleType[match(rownames(FB_D1_16S), mtd_D1_16S$Sample)])
+
+## Create a matrix with samples as rows and group asigned by the latent block model as column
+dummyMod_16S_D1 <- lme4::dummy(as.factor(memb_spl_obs_16S_D1), levelsToKeep = levels(as.factor(memb_spl_obs_16S_D1)))
+
+## Creates dataframe with the two variables of interest
+cca_data_16S_D1 <- data.frame("FruitType" = as.factor(FruitType_vect_16S_D1),
+    "SampleType" = as.factor(SampleType_vect_16S_D1))
+
+## Partition the variation of the community matrix
+varp_16S_D1 <- vegan::varpart(dummyMod_16S_D1, cca_data_16S_D1$FruitType, cca_data_16S_D1$SampleType, chisquare = T)
+varp_16S_D1$part
+
+#CCA with line randomization
+wholenetwork_cca_results_NULL_16S_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_16S), memb_obs=memb_spl_obs_16S_D1, var1=cca_data_16S_D1$FruitType, var2=cca_data_16S_D1$SampleType, configs = NULL)
+
+write.xlsx(wholenetwork_cca_results_NULL_16S_D1, file=here::here("plots", "5_SBM&co", "Dataset_1"), rowNames = TRUE)
+
+#CCA with full randomization
+wholenetwork_cca_results_CONFIGS_16S_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_16S), memb_obs=memb_spl_obs_16S_D1, var1=cca_data_16S_D1$FruitType, var2=cca_data_16S_D1$SampleType, configs = LBM.config)
+```
+
+### ITS
+
+```{r}
+NPERM <- 10
+
+sim_list = list()
+  
+#for each rarefied matrix
+  sim_mat <- BF_D1_ITS
+  #produce NPERM simulated graphs
+  netBin.config <-
+    simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
+
+  LBM.config <-
+    sapply(1:NPERM, function(i) {
+      BF_sim <- netBin.config[, , i]
+      FB_sim <- t(BF_sim)
+      LBM_sim <-as.matrix(FB_sim) %>%
+    sbm::estimateBipartiteSBM(model = 'bernoulli',
+                         estimOptions = list(plot = T))
+       memb_spl_sim <- LBM_sim$memberships$row ## Extract membership of the samples 
+    })
+```
+
+```{r}
+# Factors
+FruitType_vect_ITS_D1 <- as.factor(mtd_D1_ITS$FruitType[match(rownames(FB_D1_ITS), mtd_D1_ITS$Sample)])
+SampleType_vect_ITS_D1 <- as.factor(mtd_D1_ITS$SampleType[match(rownames(FB_D1_ITS), mtd_D1_ITS$Sample)])
+
+## Create a matrix with samples as rows and group asigned by the latent block model as column
+dummyMod_ITS_D1 <- lme4::dummy(as.factor(memb_spl_obs_ITS_D1), levelsToKeep = levels(as.factor(memb_spl_obs_ITS_D1)))
+
+## Creates dataframe with the two variables of interest
+cca_data_ITS_D1 <- data.frame("FruitType" = as.factor(FruitType_vect_ITS_D1),
+    "SampleType" = as.factor(SampleType_vect_ITS_D1))
+
+## Partition the variation of the community matrix
+varp_ITS_D1 <- vegan::varpart(dummyMod_ITS_D1, cca_data_ITS_D1$FruitType, cca_data_ITS_D1$SampleType, chisquare = T)
+varp_ITS_D1$part
+
+#CCA with line randomization
+wholenetwork_cca_results_NULL_ITS_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_ITS), memb_obs=memb_spl_obs_ITS_D1, var1=cca_data_ITS_D1$FruitType, var2=cca_data_ITS_D1$SampleType, configs = NULL)
+
+write.xlsx(wholenetwork_cca_results_NULL_ITS_D1, file=here::here("plots", "5_SBM&co", "Dataset_1", "CCA_NULL_ITS_D1.xlsx"), rowNames = TRUE)
+
+#CCA with full randomization
+wholenetwork_cca_results_CONFIGS_ITS_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_ITS), memb_obs=memb_spl_obs_ITS_D1, var1=cca_data_ITS_D1$FruitType, var2=cca_data_ITS_D1$SampleType, configs = LBM.config)
+
+write.xlsx(wholenetwork_cca_results_CONFIGS_ITS_D1, file=here::here("plots", "5_SBM&co", "Dataset_1", "CCA_CONFIGS_ITS_D1.xlsx"), rowNames = TRUE)
+```
+
+## Dataset 2
+
+### 16S
+
+```{r}
+NPERM <- 10
+
+sim_list = list()
+  
+#for each rarefied matrix
+  sim_mat <- BF_D2_16S
+  #produce NPERM simulated graphs
+  netBin.config <-
+    simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
+
+  LBM.config <-
+    sapply(1:NPERM, function(i) {
+      BF_sim <- netBin.config[, , i]
+      FB_sim <- t(BF_sim)
+      LBM_sim <-as.matrix(FB_sim) %>%
+    sbm::estimateBipartiteSBM(model = 'bernoulli',
+                         estimOptions = list(plot = T))
+       memb_spl_sim <- LBM_sim$memberships$row ## Extract membership of the samples 
+    })
+```
+
+```{r}
+# Factors
+FruitType_vect_16S_D2 <- as.factor(mtd_D2_16S$FruitType[match(rownames(FB_D2_16S), mtd_D2_16S$Sample)])
+
+FruitSite_vect_16S_D2 <- as.factor(mtd_D2_16S$FruitSite[match(rownames(FB_D2_16S), mtd_D2_16S$Sample)])
+
+## Create a matrix with samples as rows and group asigned by the latent block model as column
+dummyMod_16S_D2 <- lme4::dummy(as.factor(memb_spl_obs_16S_D2), levelsToKeep = levels(as.factor(memb_spl_obs_16S_D2)))
+
+## Creates dataframe with the two variables of interest
+cca_data_16S_D2 <- data.frame("FruitType" = as.factor(FruitType_vect_16S_D2),
+    "FruitSite" = as.factor(FruitSite_vect_16S_D2))
+
+## Partition the variation of the community matrix
+varp_16S_D2 <- vegan::varpart(dummyMod_16S_D2, cca_data_16S_D2$FruitType, cca_data_16S_D2$FruitSite, chisquare = T)
+varp_16S_D2$part
+
+#CCA with line randomization
+wholenetwork_cca_results_NULL_16S_D2 <- analysis.function.alt2(incid=as.data.frame(FB_D2_16S), memb_obs=memb_spl_obs_16S_D2, var1=cca_data_16S_D2$FruitType, var2=cca_data_16S_D2$FruitSite, configs = NULL)
+
+write.xlsx(wholenetwork_cca_results_NULL_16S_D2, file=here::here("plots", "5_SBM&co", "Dataset_2", "CCA_NULL_16S_D2.xlsx"), rowNames = TRUE)
+
+#CCA with full randomization
+wholenetwork_cca_results_CONFIGS_16S_D2 <- analysis.function.alt2(incid=as.data.frame(FB_D2_16S), memb_obs=memb_spl_obs_16S_D2, var1=cca_data_16S_D2$FruitType, var2=cca_data_16S_D2$FruitSite, configs = LBM.config)
+
+write.xlsx(wholenetwork_cca_results_CONFIGS_16S_D2, file=here::here("plots", "5_SBM&co", "Dataset_2", "CCA_CONFIGS_16S_D2.xlsx"), rowNames = TRUE)
+```
+
+### ITS
+
+```{r}
+NPERM <- 10
+
+sim_list = list()
+  
+#for each rarefied matrix
+  sim_mat <- BF_D2_ITS
+  #produce NPERM simulated graphs
+  netBin.config <-
+    simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
+
+  LBM.config <-
+    sapply(1:NPERM, function(i) {
+      BF_sim <- netBin.config[, , i]
+      FB_sim <- t(BF_sim)
+      LBM_sim <-as.matrix(FB_sim) %>%
+    sbm::estimateBipartiteSBM(model = 'bernoulli',
+                         estimOptions = list(plot = T))
+       memb_spl_sim <- LBM_sim$memberships$row ## Extract membership of the samples 
+    })
+```
+
+```{r}
+# Factors
+FruitType_vect_ITS_D2 <- as.factor(mtd_D2_ITS$FruitType[match(rownames(FB_D2_ITS), mtd_D2_ITS$Sample)])
+FruitSite_vect_ITS_D2 <- as.factor(mtd_D2_ITS$FruitSite[match(rownames(FB_D2_ITS), mtd_D2_ITS$Sample)])
+
+## Create a matrix with samples as rows and group asigned by the latent block model as column
+dummyMod_ITS_D2 <- lme4::dummy(as.factor(memb_spl_obs_ITS_D2), levelsToKeep = levels(as.factor(memb_spl_obs_ITS_D2)))
+
+## Creates dataframe with the two variables of interest
+cca_data_ITS_D2 <- data.frame("FruitType" = as.factor(FruitType_vect_ITS_D2),
+    "FruitSite" = as.factor(FruitSite_vect_ITS_D2))
+
+## Partition the variation of the community matrix
+varp_ITS_D2 <- vegan::varpart(dummyMod_ITS_D2, cca_data_ITS_D2$FruitType, cca_data_ITS_D2$FruitSite, chisquare = T)
+varp_ITS_D2$part
+
+#CCA with line randomization
+wholenetwork_cca_results_NULL_ITS_D2 <- analysis.function.alt2(incid=as.data.frame(FB_D2_ITS), memb_obs=memb_spl_obs_ITS_D2, var1=cca_data_ITS_D2$FruitType, var2=cca_data_ITS_D2$FruitSite, configs = NULL)
+
+write.xlsx(wholenetwork_cca_results_NULL_ITS_D2, file=here::here("plots", "5_SBM&co", "Dataset_2", "CCA_NULL_ITS_D2.xlsx"), rowNames = TRUE)
+
+#CCA with full randomization
+wholenetwork_cca_results_CONFIGS_ITS_D2 <- analysis.function.alt2(incid=as.data.frame(FB_D2_ITS), memb_obs=memb_spl_obs_ITS_D2, var1=cca_data_ITS_D2$FruitType, var2=cca_data_ITS_D2$FruitSite, configs = LBM.config)
+
+write.xlsx(wholenetwork_cca_results_CONFIGS_ITS_D2, file=here::here("plots", "5_SBM&co", "Dataset_2", "CCA_CONFIGS_ITS_D2.xlsx"), rowNames = TRUE)
+```
+
