@@ -18,7 +18,7 @@
 
 #'
 #' @export
-Order_Matrix_Plot <- function(SBMobject, BF_mat, mtd, modality_string, variable_name, color_string) {
+Order_Matrix_Plot <- function(SBMobject, BF_mat, mtd, modality_string, variable_name, color_string, legend_name) {
   ## Use presence/absence table with OTU as rows and samples as columns
   df = as.data.frame(BF_mat)
   df$taxon = rownames(df)
@@ -102,7 +102,7 @@ Order_Matrix_Plot <- function(SBMobject, BF_mat, mtd, modality_string, variable_
       yintercept = 0.5 + cumsum(table(SBMobject$memberships$col))[-length(table(SBMobject$memberships$col))],
       color = "black",
       linewidth = 2
-    ) + labs(fill = variable_name)
+    ) + labs(fill = legend_name)
 
 
   return(mat)
