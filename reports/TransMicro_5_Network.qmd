@@ -60,7 +60,6 @@ df_taxo_D1_16S$tax_ID = rownames(df_taxo_D1_16S)
 
 ## Extract table with presence/absence
 df_reads_D1_16S = as.data.frame(otu_table(ps_rare_16S_D1_bin)) 
-df_reads_D1_16S <- t(df_reads_D1_16S)
 df_reads_D1_16S = as.data.frame(df_reads_D1_16S)
 df_reads_D1_16S$tax_ID = rownames(df_reads_D1_16S)
 ## Merge table with presence/absence and taxonomy
@@ -99,7 +98,6 @@ df_taxo_D1_ITS$tax_ID = rownames(df_taxo_D1_ITS)
 
 ## Extract table with presence/absence
 df_reads_D1_ITS = as.data.frame(otu_table(ps_rare_ITS_D1_bin)) 
-df_reads_D1_ITS <- t(df_reads_D1_ITS)
 df_reads_D1_ITS = as.data.frame(df_reads_D1_ITS)
 df_reads_D1_ITS$tax_ID = rownames(df_reads_D1_ITS)
 
@@ -122,9 +120,9 @@ FB_D1_ITS <- t(BF_D1_ITS)
 ### 16S
 
 ```{r}
-ps_rare_16S_D2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "16S_ps_rare_NF_D2.rds"))
+ps_16S_rare_D2 <- Charge_xl_to_ps("ps_rare_16S_Dataset_2", folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2"))
 
-ps_rare_ITS_D2 <- readRDS(file=file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2", "ITS_ps_rare_NF_D2.rds"))
+ps_ITS_rare_D2 <- Charge_xl_to_ps("ps_rare_ITS_Dataset_2", folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2"))
 
 # 16S
 ps_rare_16S_D2_bin = phyloseq::transform_sample_counts(ps_rare_16S_D2, function(x) 1*(x>0)) # counts -> presence/absence (binary table)
@@ -132,7 +130,7 @@ ps_rare_16S_D2_bin = phyloseq::transform_sample_counts(ps_rare_16S_D2, function(
 ## Extract metadata
 mtd_D2_16S <- data.frame(phyloseq::sample_data(ps_rare_16S_D2_bin))
 mtd_D2_16S <- mtd_D2_16S %>%
-  dplyr::rename(Sample = ID_pool)
+  tibble::rownames_to_column("Sample")
 
 ## Extract taxonomy table
 df_taxo_D2_16S = as.data.frame(tax_table(ps_rare_16S_D2_bin))
@@ -140,7 +138,6 @@ df_taxo_D2_16S$tax_ID = rownames(df_taxo_D2_16S)
 
 ## Extract table with presence/absence
 df_reads_D2_16S = as.data.frame(otu_table(ps_rare_16S_D2_bin)) 
-df_reads_D2_16S <- t(df_reads_D2_16S)
 df_reads_D2_16S = as.data.frame(df_reads_D2_16S)
 df_reads_D2_16S$tax_ID = rownames(df_reads_D2_16S)
 
@@ -166,7 +163,7 @@ ps_rare_ITS_D2_bin = phyloseq::transform_sample_counts(ps_rare_ITS_D2, function(
 ## Extract metadata
 mtd_D2_ITS <- data.frame(phyloseq::sample_data(ps_rare_ITS_D2_bin))
 mtd_D2_ITS <- mtd_D2_ITS %>%
-  dplyr::rename(Sample = ID_pool)
+  tibble::rownames_to_column("Sample")
 
 ## Extract taxonomy table
 df_taxo_D2_ITS = as.data.frame(tax_table(ps_rare_ITS_D2_bin))
@@ -174,7 +171,6 @@ df_taxo_D2_ITS$tax_ID = rownames(df_taxo_D2_ITS)
 
 ## Extract table with presence/absence
 df_reads_D2_ITS = as.data.frame(otu_table(ps_rare_ITS_D2_bin)) 
-df_reads_D2_ITS <- t(df_reads_D2_ITS)
 df_reads_D2_ITS = as.data.frame(df_reads_D2_ITS)
 df_reads_D2_ITS$tax_ID = rownames(df_reads_D2_ITS)
 
