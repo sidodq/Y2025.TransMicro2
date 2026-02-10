@@ -2,12 +2,14 @@ Kingdom	Phylum	Class	Order	Family	Genus	Species
 Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia kluyveri
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia rubicola
 Fungi	Ascomycota	Dothideomycetes	Dothideales	Dothideaceae	Dothiora	Dothiora prunorum
+Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Phaffomycetaceae	Wickerhamomyces	Wickerhamomyces pijperi
 Unknown	Unknown	Unknown	Unknown	Unknown_105	Unknown_105	Unknown
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
 Unknown	Unknown	Unknown	Unknown	Unknown_113	Unknown_113	Unknown
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia nakasei
 Fungi	Basidiomycota	Tremellomycetes	Tremellales	Bulleribasidiaceae	Vishniacozyma	Unknown
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Unknown
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
@@ -26,6 +28,7 @@ Fungi	Basidiomycota	Tremellomycetes	Tremellales	Cryptococcaceae	Cryptococcus	Unk
 Fungi	Basidiomycota	Tremellomycetes	Tremellales	Unknown_179	Unknown_179	Unknown
 Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Saccharomycodaceae	Hanseniaspora	Unknown
 Fungi	Unknown	Unknown	Unknown	Unknown_182	Unknown_182	Unknown
+Fungi	Ascomycota	Eurotiomycetes	Eurotiales	Aspergillaceae	Penicillium	Penicillium bialowiezense
 Fungi	Ascomycota	Taphrinomycetes	Taphrinales	Taphrinaceae	Taphrina	Unknown
 Fungi	Ascomycota	Pichiomycetes	Pichiales	Pichiaceae	Pichia	Pichia kluyveri
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
@@ -54,6 +57,7 @@ Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschn
 Unknown	Unknown	Unknown	Unknown	Unknown_317	Unknown_317	Unknown
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
+Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown_34	Unknown_34	Unknown
 Unknown	Unknown	Unknown	Unknown	Unknown_340	Unknown_340	Unknown
 Fungi	Ascomycota	Dothideomycetes	Mycosphaerellales	Mycosphaerellaceae	Ramularia	Ramularia eucalypti
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
@@ -66,6 +70,7 @@ Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Phaffomycetaceae	Wickerhamomy
 Fungi	Unknown	Unknown	Unknown	Unknown_391	Unknown_391	Unknown
 Fungi	Ascomycota	Leotiomycetes	Helotiales	Sclerotiniaceae	Unknown_4	Unknown
 Fungi	Ascomycota	Leotiomycetes	Helotiales	Erysiphaceae	Podosphaera	Unknown
+Fungi	Mucoromycota	Mucoromycetes	Mucorales	Mucoraceae	Mucor	Mucor circinelloides
 Unknown	Unknown	Unknown	Unknown	Unknown_423	Unknown_423	Unknown
 Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Phaffomycetaceae	Wickerhamomyces	Wickerhamomyces pijperi
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
@@ -95,6 +100,7 @@ Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschn
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia pulcherrima
 Fungi	Ascomycota	Dothideomycetes	Dothideales	Saccotheciaceae	Aureobasidium	Aureobasidium pullulans
 Fungi	Ascomycota	Pichiomycetes	Serinales	Metschnikowiaceae	Metschnikowia	Metschnikowia chrysoperlae
+Unknown	Unknown	Unknown	Unknown	Unknown_83	Unknown_83	Unknown
 Unknown	Unknown	Unknown	Unknown	Unknown_87	Unknown_87	Unknown
 Fungi	Ascomycota	Saccharomycetes	Saccharomycetales	Unknown_88	Unknown_88	Unknown
 Unknown	Unknown	Unknown	Unknown	Unknown_89	Unknown_89	Unknown
