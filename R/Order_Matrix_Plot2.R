@@ -2,54 +2,64 @@
 #'
 #' @param SBMobject BipartiteSBM object
 #' @param BF_mat binary matrix
-#' @param variable the variable included in the SBM object
+#' @param mtd the corresponding metadata (samples info)
 #' @param varibale_name name of the variable for colouring the squares
 #' @param modality_string modalities of the variable to colour the squares displayed in the legend
 #' @param color_string character string with colours for each mode of the variable
+#' @param legend_name explicit legend title
 #'
-#' @description
-#' Creation of a heatmap with samples in y and OTUs in x. A white square represents the absence of the OTU in the sample. A coloured square represents the presence of the OTU in the sample. Samples and OTUs are grouped according to the membership provided by the Latent Block Model. The colour of the squares is defined according to an environmental variable that can be chosen.
-#'
-#' @return
-#' It's a "ggplot" class object.
-#'
-#' @examples
-#' LBM_16S_MPC3_Fruit <- Order_Matrix_Plot(SBMobject = LBM_bernoulli_MPC3_16S, BF_mat = BF_MPC3_16S, color_variable = "Fruit", varibale_name = "Fruit", modality_string = c("Blackberry", "Cherry", "Strawberry"), color_string = Color_Fruit)
-
 #'
 #' @export
-Order_Matrix_Plot2 <- function(SBMobject, BF_mat, mtd, color_variable, modality_string, variable_name, color_string, new_rows) {
-
+Order_Matrix_Plot2 <- function(SBMobject, BF_mat, mtd, modality_string, variable_name, color_string,legend_name) {
+  ## Use presence/absence table with OTU as rows and samples as columns
   df = as.data.frame(BF_mat)
   df$taxon = rownames(df)
+  ## Transform to long format
   df_long <-
     tidyr::pivot_longer(df,
                         cols = names(df)[-(dim(BF_mat)[[2]]+1)],
                         names_to = "Sample",
                         values_to = "PresenceAbsence")
+  ## Add information from metadata
   df_long <- dplyr::left_join(df_long, mtd, by = "Sample")
 
+  ## Number of blocks for rows (samples) and columns (OTUs)
   Qrow <- SBMobject$nbBlocks["row"][[1]]
   Qcol <- SBMobject$nbBlocks["col"][[1]]
 
+  ## Assign OTU cluster (from 1 to Qcol) to each OTU
   df_tax_cluster = data.frame(taxon = rownames(BF_mat),
                               tax_cluster = SBMobject$memberships$col)
   df_long <- dplyr::left_join(df_long, df_tax_cluster, by = "taxon")
 
-  df_long <- df_long %>% dplyr::arrange(tax_cluster)
+  ## Order dataset per tax_cluster
+  df_long <- df_long |>
+    dplyr::arrange(tax_cluster)
+
+  ## Order OTU names by tax_cluster
   correct_taxon_order <- unique(df_long$taxon)
 
+  ## Assign sample cluster (from 1 to Qrow) to each sample
   df_spl_cluster = data.frame(Sample = colnames(BF_mat),
-                              spl_cluster = new_rows)
+                              spl_cluster = SBMobject$memberships$row)
+
   df_long <- dplyr::left_join(df_long, df_spl_cluster, by = "Sample")
 
-  df_long <- df_long %>% dplyr::arrange(spl_cluster)
-  correct_sample_order <- unique(df_long$Sample)
-  print(df_long$FruitType[df_long$FruitType!="BL"])
-  df_long[[color_variable]] <- factor(df_long[[color_variable]])
+  ## Order dataset per sample_cluster
+  df_long <- df_long |>
+    dplyr::arrange(spl_cluster)
+  ## Order sample names by FRUIT TYPE (here bc Qrow = 1)
+  correct_sample_order <- unique(df_long$FruitType)
 
-  df_long$color_bin <- factor(ifelse(df_long$PresenceAbsence==0, 0, paste(df_long$PresenceAbsence, df_long[[color_variable]], sep = "_")))
-  levels(df_long$color_bin) <- c("", modality_string)
+  ## Convert column of interest as factor
+  df_long[[variable_name]] <- factor(df_long[[variable_name]])
+
+  ## Ass color to each level of the factor of interest
+  df_long$color_bin <- factor(ifelse(df_long$PresenceAbsence==0, 0, paste(df_long$PresenceAbsence, df_long[[variable_name]], sep = "_")))
+  # levels(df_long$color_bin) <- c("", modality_string)
+  df_long$color_bin <- ifelse(df_long$color_bin == "0", "", sub("^..", "", df_long$color_bin))
+  df_long$color_bin <- factor(df_long$color_bin)
+
   heatmap_color_bin <- c("white", color_string)
 
   df_long$PresenceAbsence <- as.factor(df_long$PresenceAbsence)
@@ -76,7 +86,7 @@ Order_Matrix_Plot2 <- function(SBMobject, BF_mat, mtd, color_variable, modality_
     scale_y_discrete(name = "ASV", limits = correct_taxon_order) +
     scale_x_discrete(name = "Sample", limits = correct_sample_order) +
     geom_vline(
-      xintercept = 0.5 + cumsum(table(new_rows))[-length(table(new_rows))],
+      xintercept = 0.5 + cumsum(table(SBMobject$memberships$row))[-length(table(SBMobject$memberships$row))],
       color = "black",
       linewidth = 2
     ) +
@@ -84,7 +94,7 @@ Order_Matrix_Plot2 <- function(SBMobject, BF_mat, mtd, color_variable, modality_
       yintercept = 0.5 + cumsum(table(SBMobject$memberships$col))[-length(table(SBMobject$memberships$col))],
       color = "black",
       linewidth = 2
-    ) + labs(fill = variable_name)
+    ) + labs(fill = legend_name)
 
 
   return(mat)

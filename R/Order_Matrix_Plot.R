@@ -6,6 +6,7 @@
 #' @param varibale_name name of the variable for colouring the squares
 #' @param modality_string modalities of the variable to colour the squares displayed in the legend
 #' @param color_string character string with colours for each mode of the variable
+#' @param legend_name explicit legend title
 #'
 #' @description
 #' Creation of a heatmap with samples in y and OTUs in x. A white square represents the absence of the OTU in the sample. A coloured square represents the presence of the OTU in the sample. Samples and OTUs are grouped according to the membership provided by the Latent Block Model. The colour of the squares is defined according to an environmental variable that can be chosen.
@@ -18,7 +19,7 @@
 
 #'
 #' @export
-Order_Matrix_Plot <- function(SBMobject, BF_mat, mtd, modality_string, variable_name, color_string, legend_name) {
+Order_Matrix_Plot <- function(SBMobject, BF_mat, mtd, modality_string, variable_name, color_string,legend_name) {
   ## Use presence/absence table with OTU as rows and samples as columns
   df = as.data.frame(BF_mat)
   df$taxon = rownames(df)
