@@ -41,20 +41,6 @@ devtools::load_all()
 # 1. Color Sets
 
 ```{r}
-# # Get abundance collapsed at Family level
-# ps_family <- tax_glom(ps_rare_16S_FruitsOnly, taxrank = "Family")
-# # Transform to relative abundances (optional, depending on what you mean by "more abundant")
-# ps_family_rel <- transform_sample_counts(ps_family, function(x) x / sum(x))
-# # Convert to long data.frame
-# df_family <- psmelt(ps_family_rel)
-# # Summarize abundance across all samples
-# top_families <- df_family %>%
-#   group_by(Family) %>%
-#   summarise(TotalAbundance = sum(Abundance, na.rm = TRUE)) %>%
-#   arrange(desc(TotalAbundance)) %>%
-#   slice_head(n = 30)
-
-# using the code above 
 color_ITS <- c(
   "Pichiaceae" ="#FF69B4",
   "Metschnikowiaceae" = "#FFC0CB",
@@ -95,57 +81,7 @@ color_ITS <- c(
   "Unknown_55" = "grey85",
   "Unknown_27" = "grey90",
   "Unknown_79" = "grey95")
-  
-# # Get abundance collapsed at Family level
-# ps_genus <- tax_glom(ps_rare_ITS_FruitsOnly, taxrank = "Genus")
-# # Transform to relative abundances (optional, depending on what you mean by "more abundant")
-# ps_genus_rel <- transform_sample_counts(ps_genus, function(x) x / sum(x))
-# # Convert to long data.frame
-# df_genus <- psmelt(ps_genus_rel)
-# # Summarize abundance across all samples
-# top_genuses <- df_genus %>%
-#   group_by(Genus) %>%
-#   summarise(TotalAbundance = sum(Abundance, na.rm = TRUE)) %>%
-#   arrange(desc(TotalAbundance)) %>%
-#   slice_head(n = 30) %>% 
-#   print (n=30)
 
-color_ITS_genus <- c(
-"Other" = "grey60",
-"Unknown_4" = "grey70",
-  "Unknown_6" = "grey85",
-  "Unknown_62" = "grey80",
-  "Unknown_9" = "grey75",
-  "Unknown_55" = "grey90",
-"Pichia" = "#FF69B4",   
- "Cladosporium" = "#A0522D",   
- "Metschnikowia" = "#FFC0CB",  
- "Hanseniaspora"   = "#F4A460",   
-"Aureobasidium"  = "#E6E6FA", 
-"Penicillium"="#008053",
- "Alternaria"="darkslategray1",                 
-"Podosphaera" = "#FFFF00",           
-"Wickerhamomyces" = "#008080",
-"Filobasidium" = "#6B8E23",
-"Taphrina"= "#4682B4",
-"Vishniacozyma " = "#008000", 
-"Dothiora" = "#F0FFFF",              
-"Ramularia"  = "#c206bf",              
-"Mucor"= "#FF00FF", 
-"Rhodotorula" =  "#D2691E",    
-"Cystofilobasidium" = "#800000",
-"Geotrichum " =  "dodgerblue3",
-"Cryptococcus"= "#FFD700",   
-"Rachicladosporium" = "#D2691E",        
-"Stemphylium" = "#000080",              
-"Saccharomycopsis" = "#00FF7F",  
-"Malassezia"  = "#808000",     
-"Blumeria" =  "#FFEC8B",  
-"Dioszegia"  = "chartreuse2", 
-"Starmerella" = "hotpink1" ,
-"Minutiella" ="lightsalmon2",
-"Montagnula " ="#A4D3EE",
-"Buckleyzyma " = "mediumpurple1")
 
 # use "unique(tax_table(S_ps_rare_16S)[, "Family"])" to get the names
 color_16S <- c(
