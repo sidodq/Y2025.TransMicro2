@@ -303,7 +303,7 @@ ps_16S_cl_Dataset_1 <- Charge_xl_to_ps("ps_16S_cl_Dataset_1", file.path(here::he
 ps_ITS_cl_Dataset_1 <- Charge_xl_to_ps("ps_ITS_cl_Dataset_1", file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1"))
 
 ps_16S_filt_Dataset_1 <- filter_phyloseq_prevalence(ps_16S_cl_Dataset_1, prevalence = 0.7)
-ps_ITS_filt_Dataset_1 <- filter_phyloseq_prevalence(ps_ITS_cl_Dataset_1, prevalence = 0.6)
+ps_ITS_filt_Dataset_1 <- filter_phyloseq_prevalence(ps_ITS_cl_Dataset_1, prevalence = 0.7)
 
 # #without filtering on prevalence
 # ps_16S_filt_Dataset_1 <- ps_16S_cl_Dataset_1
