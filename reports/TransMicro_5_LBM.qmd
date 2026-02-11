@@ -384,21 +384,21 @@ SBM_bernoulli_ITS_D2$storedModels %>% dplyr::arrange(ICL)
 #Plots
 SBM_ITS_D2_FruitType <- Order_Matrix_Plot5(SBMobject = SBM_bernoulli_ITS_D2, BF_mat = BF_D2_ITS, mtd = mtd_D2_ITS, variable_name = "FruitType", modality_string = c("BL", "CH", "ST"), color_string = c("purple4", "red4", "red2"), legend_name = "Fruit of Origin")
 
-title_plot <- "SBM_D2_ITS_FruitType_order1.png"
+title_plot <- "SBM_D2_ITS_FruitType_order2.png"
 
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_2", title_plot), SBM_ITS_D2_FruitType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
 
 
-SBM_ITS_D2_SampleType <- Order_Matrix_Plot6(SBMobject = SBM_bernoulli_ITS_D2, BF_mat = BF_D2_ITS, mtd = mtd_D2_ITS, variable_name = "SampleType", modality_string = c("Nat_Uninf_Fruits_5_6days", "Fruits_0days" , "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days" ), color_string = c("darkolivegreen", "darkolivegreen3", "darkolivegreen2", "seagreen3"), legend_name = "Type of Sample")
+SBM_ITS_D2_SampleType <- Order_Matrix_Plot5(SBMobject = SBM_bernoulli_ITS_D2, BF_mat = BF_D2_ITS, mtd = mtd_D2_ITS, variable_name = "SampleType", modality_string = c("Nat_Uninf_Fruits_5_6days", "Fruits_0days" , "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days" ), color_string = c("darkolivegreen", "darkolivegreen3", "darkolivegreen2", "seagreen3"), legend_name = "Type of Sample")
 
-title_plot <- "SBM_D2_ITS_SampletType_order1.png"
+title_plot <- "SBM_D2_ITS_SampletType_order2.png"
 
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_2", title_plot), SBM_ITS_D2_SampleType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
  
  
-SBM_ITS_D2_FruitSite <- Order_Matrix_Plot6(SBMobject = SBM_bernoulli_ITS_D2, BF_mat = BF_D2_ITS, mtd = mtd_D2_ITS, variable_name = "FruitSite", modality_string = c("THU", "FIN","LOM","IST","MIL","VAR"), color_string = c("coral2","skyblue","skyblue4","blue2","deepskyblue","dodgerblue"), legend_name = "Fruit Sampling Site")
+SBM_ITS_D2_FruitSite <- Order_Matrix_Plot5(SBMobject = SBM_bernoulli_ITS_D2, BF_mat = BF_D2_ITS, mtd = mtd_D2_ITS, variable_name = "FruitSite", modality_string = c("THU", "FIN","LOM","IST","MIL","VAR"), color_string = c("coral2","skyblue","skyblue4","blue2","deepskyblue","dodgerblue"), legend_name = "Fruit Sampling Site")
 
-title_plot <- "SBM_D2_ITS_FruitSite_order1.png"
+title_plot <- "SBM_D2_ITS_FruitSite_order2.png"
 
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_2", title_plot), SBM_ITS_D2_FruitSite, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
 ```
