@@ -271,9 +271,9 @@ title_plot <- "SBM_D1_ITS_SampletType_order3.png"
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_ITS_expe_SampleType, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
  
  
-SBM_ITS_expe_FruitSite <- Order_Matrix_Plot4(SBMobject = SBM_bernoulli_ITS_D1, BF_mat = BF_D1_ITS, mtd = mtd_D1_ITS, variable_name = "FruitSite", modality_string = c("THU","FIN","LOM","IST","MIL","VAR"), color_string = c("skyblue","blue2","skyblue4","deepskyblue","coral2","dodgerblue"), legend_name = "Fruit Sampling Site")
+SBM_ITS_expe_FruitSite <- Order_Matrix_Plot4(SBMobject = SBM_bernoulli_ITS_D1, BF_mat = BF_D1_ITS, mtd = mtd_D1_ITS, variable_name = "FruitSite", modality_string = c("na", "VAR", "LOM", "FIN", "IST", "MIL") , color_string = c("blue2", "deepskyblue","skyblue4","coral2","grey","dodgerblue"), legend_name = "Fruit Sampling Site")
 
-title_plot <- "SBM_D1_ITS_FruitSite_order1.png"
+title_plot <- "SBM_D1_ITS_FruitSite_order3.png"
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_ITS_expe_FruitSite, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
 ```
 
