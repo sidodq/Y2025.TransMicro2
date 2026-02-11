@@ -51,6 +51,7 @@ Order_Matrix_Plot2 <- function(SBMobject, BF_mat, mtd, modality_string, variable
   ## Order sample names by FRUIT TYPE (here bc Qrow = 1)
   correct_sample_order <- unique(df_long$FruitType)
 
+
   ## Convert column of interest as factor
   df_long[[variable_name]] <- factor(df_long[[variable_name]])
 
