@@ -244,12 +244,12 @@ sum_physeq_clean(ps_ITS_contaRm, ps_ITSm_sq) # filtered : 3.36% of samples + 36.
 
 # Manually correct taxo
 # 16S
-tax_table(ps_16S_contaRm)[ "Cluster_20", "Genus" ] <- "Acetobacter"
-tax_table(ps_16S_contaRm)[ "Cluster_5", "Genus" ] <- "Tatumella"
-tax_table(ps_16S_contaRm)[ "Cluster_6", "Genus" ] <- "Gluconobacter"
-tax_table(ps_16S_contaRm)[ "Cluster_7", "Genus" ] <- "Acetobacter"
-tax_table(ps_16S_contaRm)[ "Cluster_9", "Genus" ] <- "Acetobacter"
-tax_table(ps_16S_contaRm)[ "Cluster_337", "Genus" ] <- "Tatumella"
+tax_table(ps_16Sm_sq)[ "Cluster_20", "Genus" ] <- "Acetobacter"
+tax_table(ps_16Sm_sq)[ "Cluster_5", "Genus" ] <- "Tatumella"
+tax_table(ps_16Sm_sq)[ "Cluster_6", "Genus" ] <- "Gluconobacter"
+tax_table(ps_16Sm_sq)[ "Cluster_7", "Genus" ] <- "Acetobacter"
+tax_table(ps_16Sm_sq)[ "Cluster_9", "Genus" ] <- "Acetobacter"
+tax_table(ps_16Sm_sq)[ "Cluster_337", "Genus" ] <- "Tatumella"
 
 # Export
 Save_ps_as_xls(ps_16Sm_sq, file.path(here::here(), "data", "derived_data", "2_RarefyData"))
@@ -305,9 +305,6 @@ ps_ITS_cl_Dataset_1 <- Charge_xl_to_ps("ps_ITS_cl_Dataset_1", file.path(here::he
 ps_16S_filt_Dataset_1 <- filter_phyloseq_prevalence(ps_16S_cl_Dataset_1, prevalence = 0.7)
 ps_ITS_filt_Dataset_1 <- filter_phyloseq_prevalence(ps_ITS_cl_Dataset_1, prevalence = 0.7)
 
-# #without filtering on prevalence
-# ps_16S_filt_Dataset_1 <- ps_16S_cl_Dataset_1
-# ps_ITS_filt_Dataset_1 <- ps_ITS_cl_Dataset_1
 
 # Filter on ASVs prevalence per sample + samples with null abundance 
 sum_physeq_clean(ps_16S_cl_Dataset_1, ps_16S_filt_Dataset_1) # filtered : 5.41% of samples + 93.9% of ASVs + 16.5 % of reads
