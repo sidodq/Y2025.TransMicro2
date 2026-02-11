@@ -220,14 +220,14 @@ SBM_bernoulli_16S_D1$storedModels %>% dplyr::arrange(ICL)
 #Plots
 SBM_16S_D1_FruitType <- Order_Matrix_Plot2(SBMobject = SBM_bernoulli_16S_D1, BF_mat = BF_D1_16S, mtd = mtd_D1_16S, variable_name = "FruitType", modality_string = c("BL", "CH","na", "ST"), color_string = c("purple4", "red4","grey", "red2"), legend_name = "Fruit of Origin") #"na","grey",  
 
-title_plot <- "SBM_NF_D1_16S_FruitType_ordered.png"
+title_plot <- "SBM_D1_16S_FruitType_ordered.png"
 
 cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_16S_D1_FruitType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
 
 
 SBM_16S_D1_SampleType <- Order_Matrix_Plot2(SBMobject = SBM_bernoulli_16S_D1, BF_mat = BF_D1_16S, mtd = mtd_D1_16S, variable_name = "SampleType", modality_string = c( "Mothers_0days","Mothers_2days",  "Larvae", "Pupae",  "Daughters"), color_string = c( "goldenrod2", "#8B4500","red2", "red3","darkorange2"), legend_name = "Type of Sample")   
 
-title_plot <- "SBM_NF_D1_16S_SampleTypeordered.png"
+title_plot <- "SBM_D1_16S_SampleTypeordered.png"
 
 cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_16S_D1_SampleType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
 ```
@@ -248,18 +248,18 @@ memb_otu_obs_ITS_D1 <- SBM_bernoulli_ITS_D1$memberships$col
 SBM_bernoulli_ITS_D1$storedModels %>% dplyr::arrange(ICL)
 
 # Plot
-SBM_ITS_expe_FruitType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_ITS_D1, BF_mat = BF_D1_ITS, mtd = mtd_D1_ITS, variable_name = "FruitType", modality_string = c("BL", "CH", "ST"), color_string = c("purple4", "red4", "red2"), legend_name = "Fruit of Origin") 
+SBM_ITS_expe_FruitType <- Order_Matrix_Plot3(SBMobject = SBM_bernoulli_ITS_D1, BF_mat = BF_D1_ITS, mtd = mtd_D1_ITS, variable_name = "FruitType", modality_string = c("BL","CH","na",  "ST"), color_string = c("purple4", "red4","grey", "red2"), legend_name = "Fruit of Origin") 
 
 
-title_plot <- "SBM_NF_D1_ITS_FruitType.png"
+title_plot <- "SBM_D1_ITS_FruitType_order3.png"
 
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_ITS_expe_FruitType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
 
 
-SBM_ITS_expe_SampleType <- Order_Matrix_Plot(SBMobject = SBM_bernoulli_ITS_D1, BF_mat = BF_D1_ITS, mtd = mtd_D1_ITS, variable_name = "SampleType", modality_string = c( "Mothers_2days",  "Larvae", "Pupae",  "Daughters"), color_string = c( "red3","goldenrod2","green3","#8B4500"), legend_name = "Type of Sample")
+SBM_ITS_expe_SampleType <- Order_Matrix_Plot4(SBMobject = SBM_bernoulli_ITS_D1, BF_mat = BF_D1_ITS, mtd = mtd_D1_ITS, variable_name = "SampleType", modality_string = c("Moters_0days", "Mothers_2days",  "Larvae", "Pupae",  "Daughters"), color_string = c("goldenrod2", "#8B4500","red2", "red3","darkorange2"), legend_name = "Type of Sample")
 
 
-title_plot <- "SBM_NF_D1_ITS_SampletType.png"
+title_plot <- "SBM_D1_ITS_SampletType_order3.png"
 
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_ITS_expe_SampleType, base_height = 21/cm(1),  base_width = 29.7/cm(1), dpi = 1200)
 ```
