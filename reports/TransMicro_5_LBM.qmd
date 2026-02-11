@@ -1,5 +1,5 @@
 ---
-title: "TransMicro data analysis - Network Analysis (tests on µbial com.)"
+title: "TransMicro data analysis - LBM (network analysis on µbial com.)"
 author: "Marie Lapègue, Nicolas Rode, Sido Dunis-Quarré"
 date: "`r format(Sys.Date(), '%d-%B-%Y')`"
 format:
@@ -32,19 +32,20 @@ library(future)
 library(future.apply)
 devtools::load_all()
 ```
+
 # LBM
 
 # 1. Prepare data
 
-## Dataset 1
-
-### 16S
+## D1
 
 ```{r}
-ps_16S_rare_expe_D1 <- Charge_xl_to_ps("ps_16S_rare_expe_D1", folder_path=file.path(here::here(), "data", "derived_data", "4_Diversities"))
+### 16S
 
-# Filter data (exclude mothers 0 days & host fruits)
-ps_16S_rare_expe_D1 <- Subset_physeq(ps_16S_rare_expe_D1, SampleType %in%  c("Mothers_2days", "Larvae","Pupae","Daughters"))
+ps_16S_rare_expe_D1 <- Charge_xl_to_ps("ps_16S_rare_expe_D1", folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1"))
+
+# Filter data (exclude host fruits)
+ps_16S_rare_expe_D1 <- Subset_physeq(ps_16S_rare_expe_D1, SampleType %in%  c("Mothers_0days", "Mothers_2days", "Larvae","Pupae","Daughters"))
 
 # counts -> presence/absence (binary table)
 ps_rare_16S_D1_bin = phyloseq::transform_sample_counts(ps_16S_rare_expe_D1, function(x) 1*(x>0)) 
@@ -74,15 +75,18 @@ BF_D1_16S$Genus <- NULL
 colnames(BF_D1_16S) <- mtd_D1_16S$Sample[match(colnames(BF_D1_16S), mtd_D1_16S$Sample)]
 ## Transpose matrix
 FB_D1_16S <- t(BF_D1_16S)
+## Export
+write.csv(FB_D1_16S, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "FB_D1_16S.csv"), row.names = TRUE)
 ```
 
-### ITS
 
 ```{r}
-ps_ITS_rare_expe_D1 <- Charge_xl_to_ps("ps_ITS_rare_expe_D1", folder_path=file.path(here::here(), "data", "derived_data", "4_Diversities"))
+### ITS
 
-# Filter data (exclude mothers 0 days & host fruits)
-ps_ITS_rare_expe_D1 <- Subset_physeq(ps_ITS_rare_expe_D1, SampleType %in%  c("Mothers_2days", "Larvae","Pupae","Daughters"))
+ps_ITS_rare_expe_D1 <- Charge_xl_to_ps("ps_ITS_rare_expe_D1", folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1"))
+
+# Filter data (exclude host fruits)
+ps_ITS_rare_expe_D1 <- Subset_physeq(ps_ITS_rare_expe_D1, SampleType %in%  c("Mothers_0days", "Mothers_2days", "Larvae","Pupae","Daughters"))
 
 # counts -> presence/absence (binary table)
 ps_rare_ITS_D1_bin <- phyloseq::transform_sample_counts(ps_ITS_rare_expe_D1, function(x) 1*(x>0)) 
@@ -113,18 +117,19 @@ BF_D1_ITS$Genus <- NULL
 colnames(BF_D1_ITS) <- mtd_D1_ITS$Sample[match(colnames(BF_D1_ITS), mtd_D1_ITS$Sample)]
 ## Transpose matrix
 FB_D1_ITS <- t(BF_D1_ITS)
+## Export
+write.csv(FB_D1_ITS, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "FB_D1_ITS.csv"), row.names = TRUE)
 ```
 
-## Dataset 2 (fruits)
-
-### 16S
+## D2
 
 ```{r}
+### 16S
+
 ps_16S_rare_D2 <- Charge_xl_to_ps("ps_rare_16S_Dataset_2", folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2"))
 
 ps_ITS_rare_D2 <- Charge_xl_to_ps("ps_rare_ITS_Dataset_2", folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2"))
 
-# 16S
 ps_rare_16S_D2_bin = phyloseq::transform_sample_counts(ps_rare_16S_D2, function(x) 1*(x>0)) # counts -> presence/absence (binary table)
 
 ## Extract metadata
@@ -153,11 +158,14 @@ BF_D2_16S$Genus <- NULL
 colnames(BF_D2_16S) <- mtd_D2_16S$Sample[match(colnames(BF_D2_16S), mtd_D2_16S$Sample)]
 ## Transpose matrix
 FB_D2_16S <- t(BF_D2_16S)
+## Export
+write.csv(FB_D2_16S, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_2", "FB_D2_16S.csv"), row.names = TRUE)
 ```
 
-### ITS
 
 ```{r}
+### ITS
+
 ps_rare_ITS_D2_bin = phyloseq::transform_sample_counts(ps_rare_ITS_D2, function(x) 1*(x>0)) # counts -> presence/absence (binary table)
 
 ## Extract metadata
@@ -186,15 +194,20 @@ BF_D2_ITS$Genus <- NULL
 colnames(BF_D2_ITS) <- mtd_D2_ITS$Sample[match(colnames(BF_D2_ITS), mtd_D2_ITS$Sample)]
 ## Transpose matrix
 FB_D2_ITS <- t(BF_D2_ITS)
+##Export
+write.csv(FB_D2_ITS, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_2", "FB_D2_ITS.csv"), row.names = TRUE)
 ```
 
-#2. SBM clustering
+#2. LBM clustering
 
-## Dataset 1
+## D1
 
 ### 16S
 
 ```{r}
+#Charge matrix
+FB_D1_16S <- read.csv(file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "FB_D1_16S.csv"),header=TRUE, sep=",", row.names = 1)
+
 #LBM calculation
 SBM_bernoulli_16S_D1 <-  as.matrix(FB_D1_16S) %>%
   sbm::estimateBipartiteSBM(model = 'bernoulli')
@@ -205,7 +218,7 @@ memb_otu_obs_16S_D1 <- SBM_bernoulli_16S_D1$memberships$col
 SBM_bernoulli_16S_D1$storedModels %>% dplyr::arrange(ICL)
  
 #Plots
-SBM_16S_D1_FruitType <- Order_Matrix_Plot2(SBMobject = SBM_bernoulli_16S_D1, BF_mat = BF_D1_16S, mtd = mtd_D1_16S, variable_name = "FruitType", modality_string = c("BL", "CH", "ST"), color_string = c("purple4", "red4","red2"), legend_name = "Fruit of Origin") #"na","grey",  
+SBM_16S_D1_FruitType <- Order_Matrix_Plot2(SBMobject = SBM_bernoulli_16S_D1, BF_mat = BF_D1_16S, mtd = mtd_D1_16S, variable_name = "FruitType", modality_string = c("BL", "CH","na", "ST"), color_string = c("purple4", "red4","grey", "red2"), legend_name = "Fruit of Origin") #"na","grey",  
 
 title_plot <- "SBM_NF_D1_16S_FruitType_ordered.png"
 
@@ -307,7 +320,7 @@ title_plot <- "AlluvialPlot_Expe_FruitTYpe_SampleType_16S.jpg"
  
 ```
 
-## Dataset 2
+## D2
 
 ### 16S
 
