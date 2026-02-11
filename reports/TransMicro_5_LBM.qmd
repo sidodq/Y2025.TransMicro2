@@ -225,12 +225,9 @@ title_plot <- "SBM_NF_D1_16S_FruitType_ordered.png"
 cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_16S_D1_FruitType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
 
 
-SBM_16S_D1_SampleType <- Order_Matrix_Plot2(SBMobject = SBM_bernoulli_16S_D1, BF_mat = BF_D1_16S, mtd = mtd_D1_16S, variable_name = "SampleType", modality_string = c( "Mothers_2days",  "Larvae", "Pupae",  "Daughters"), color_string = c( "red3","goldenrod2","green3","#8B4500"), legend_name = "Type of Sample")  #"na","Mothers_0days","red4","Fruits_0days", "Fruits_5_6days","PupalCases","darkorange2""darkolivegreen","darkolivegreen3",,))
+SBM_16S_D1_SampleType <- Order_Matrix_Plot2(SBMobject = SBM_bernoulli_16S_D1, BF_mat = BF_D1_16S, mtd = mtd_D1_16S, variable_name = "SampleType", modality_string = c( "Mothers_0days","Mothers_2days",  "Larvae", "Pupae",  "Daughters"), color_string = c( "goldenrod2", "#8B4500","red2", "red3","darkorange2"), legend_name = "Type of Sample")   
 
-color_Expe <- c("Fruits_0days"="darkolivegreen3", "Mothers_2days"= "Fruits_5_6days"="darkolivegreen", "Larvae"= "Pupae"=           "Daughters"=)
-"goldenrod2", "#8B4500","red3","darkorange2", 
-
-title_plot <- "SBM_NF_D1_16S_SampleType.png"
+title_plot <- "SBM_NF_D1_16S_SampleTypeordered.png"
 
 cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_16S_D1_SampleType, base_height = 20/cm(1),  base_width = 40/cm(1), dpi = 1200)
 ```
@@ -238,6 +235,9 @@ cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot
 ### ITS
 
 ```{r}
+#Charge matrix
+FB_D1_ITS <- read.csv(file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "FB_D1_ITS.csv"),header=TRUE, sep=",", row.names = 1)
+
 # LBM calculation
 SBM_bernoulli_ITS_D1 <-  as.matrix(FB_D1_ITS) %>%
     sbm::estimateBipartiteSBM(model = 'bernoulli')

@@ -49,7 +49,11 @@ Order_Matrix_Plot2 <- function(SBMobject, BF_mat, mtd, modality_string, variable
   df_long <- df_long |>
     dplyr::arrange(spl_cluster)
   ## Order sample names by FRUIT TYPE (here bc Qrow = 1)
-  correct_sample_order <- unique(df_long$FruitType)
+  correct_sample_order <- df_long %>%
+    dplyr::distinct(Sample, FruitType, spl_cluster) %>%
+    dplyr::arrange(spl_cluster, FruitType) %>%
+    dplyr::pull(Sample)
+
 
   ## Convert column of interest as factor
   df_long[[variable_name]] <- factor(df_long[[variable_name]])
