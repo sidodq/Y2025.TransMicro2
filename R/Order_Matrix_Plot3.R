@@ -55,7 +55,7 @@ Order_Matrix_Plot3 <- function(SBMobject, BF_mat, mtd, modality_string, variable
   df_long <- dplyr::left_join(df_long, df_spl_cluster, by = "Sample")
 
   ## Order dataset per sample_cluster
-  df_long$spl_cluster <- factor(df_long$spl_cluster, levels = c(1, 4, 5, 3, 2))
+  df_long$spl_cluster <- factor(df_long$spl_cluster, levels = c(1, 4, 2, 5, 3))
 
   df_long <- df_long |>
     dplyr::arrange(spl_cluster)
