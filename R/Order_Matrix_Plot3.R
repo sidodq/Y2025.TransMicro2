@@ -42,6 +42,8 @@ Order_Matrix_Plot3 <- function(SBMobject, BF_mat, mtd, modality_string, variable
   df_long <- dplyr::left_join(df_long, df_tax_cluster, by = "taxon")
 
   ## Order dataset per tax_cluster
+  df_long$tax_cluster <- factor(df_long$tax_cluster, levels = c(4,3,1,2,5))
+
   df_long <- df_long |>
     dplyr::arrange(tax_cluster)
 
@@ -55,7 +57,7 @@ Order_Matrix_Plot3 <- function(SBMobject, BF_mat, mtd, modality_string, variable
   df_long <- dplyr::left_join(df_long, df_spl_cluster, by = "Sample")
 
   ## Order dataset per sample_cluster
-  df_long$spl_cluster <- factor(df_long$spl_cluster, levels = c(1, 4, 2, 5, 3))
+  df_long$spl_cluster <- factor(df_long$spl_cluster, levels = c(1, 2))
 
   df_long <- df_long |>
     dplyr::arrange(spl_cluster)
@@ -85,6 +87,15 @@ Order_Matrix_Plot3 <- function(SBMobject, BF_mat, mtd, modality_string, variable
   # Compute separator positions
   block_positions <- 0.5 + cumsum(block_sizes)[-length(block_sizes)]
 
+  # Compute block sizes AFTER reordering (ASV)
+  b_sizes <- df_long |>
+    dplyr::distinct(taxon, tax_cluster) |>
+    dplyr::count(tax_cluster) |>
+    dplyr::arrange(tax_cluster) |>
+    dplyr::pull(n)
+
+  # Compute separator positions
+  asv_positions <- 0.5 + cumsum(b_sizes)[-length(b_sizes)]
 
   mat <- ggplot(df_long, aes(
     x = Sample,
@@ -113,7 +124,7 @@ Order_Matrix_Plot3 <- function(SBMobject, BF_mat, mtd, modality_string, variable
       linewidth = 2
     ) +
     geom_hline(
-      yintercept = 0.5 + cumsum(table(SBMobject$memberships$col))[-length(table(SBMobject$memberships$col))],
+      yintercept = asv_positions,
       color = "black",
       linewidth = 2
     ) + labs(fill = legend_name)

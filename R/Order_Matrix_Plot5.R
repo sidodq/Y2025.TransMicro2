@@ -42,7 +42,7 @@ Order_Matrix_Plot5 <- function(SBMobject, BF_mat, mtd, modality_string, variable
   df_long <- dplyr::left_join(df_long, df_tax_cluster, by = "taxon")
 
   ## Order dataset per tax_cluster
-  df_long$tax_cluster <- factor(df_long$tax_cluster, levels = c(1,3,5,2,6,4,7,8))
+  df_long$tax_cluster <- factor(df_long$tax_cluster, levels = c(1,2,3,4,5,6,7,8))
 
   df_long <- df_long |>
     dplyr::arrange(tax_cluster)
