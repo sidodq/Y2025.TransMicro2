@@ -41,7 +41,7 @@ devtools::load_all()
 ### ITS
 
 ```{r}
-NPERM=10000#set quite low, so that permutations do not take too long, only for proof of principle, set to 10000 for serious comparisons
+NPERM=10 #000#set quite low, so that permutations do not take too long, only for proof of principle, set to 10000 for serious comparisons
 
 # # Import simulated clustering MPC
 # netBin.config<-simulate(nullmodel(FB_D1_16S,"curveball"),nsim=NPERM)
@@ -53,9 +53,6 @@ NPERM=10000#set quite low, so that permutations do not take too long, only for p
 plan(multisession, workers = parallel::detectCores() - 1)
 sim_fun <- function(i, FB) {
   simulate(nullmodel(FB, "curveball"), nsim = 1)}
-
-netBin.config <- future_lapply(seq_len(NPERM), future.seed=TRUE, sim_fun, FB = FB_D1_16S)
-graph.bin.gut.config <- future_lapply(seq_len(NPERM), future.seed=TRUE, sim_fun,  FB = FB_D1_16S)
 
 #Charge matrix
 FB_D1_ITS <- read.csv(file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "FB_D1_ITS.csv"),header=TRUE, sep=",", row.names = 1)
