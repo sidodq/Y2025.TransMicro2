@@ -429,8 +429,8 @@ title_plot <- "SBM_NF_D1_FruitType_combined.png"
  
  
 SBM_D2_SampleType_combined <- 
-  (SBM_16S_D2_FruitType + labs(tag = "A. Bacteria")) /
-  (SBM_ITS_D2_FruitType + labs(tag = "B. Fungi")) +
+  (SBM_16S_D2_SampleType + labs(tag = "A. Bacteria")) /
+  (SBM_ITS_D2_SampleType + labs(tag = "B. Fungi")) +
   plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
 
 title_plot <- "SBM_NF_D2_SampleType_combined.png"
