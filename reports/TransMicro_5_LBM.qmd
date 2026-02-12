@@ -280,11 +280,9 @@ title_plot <- "SBM_D1_ITS_FruitSite_order1.png"
 # Combined LBM plots
 SBM_expe_FruitType_combined <- 
   (SBM_16S_D1_FruitType + labs(tag = "A. Bacteria")) /
-  (SBM_ITS_expe_FruitType + labs(tag = "B. Fungi")) +
-  plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
+  (SBM_ITS_expe_FruitType + labs(tag = "B. Fungi")) + plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
 
-
-title_plot <- "SBM_NF_D1_FruitType_combined.png"
+title_plot <- "SBM_D1_FruitType_combined.png"
 
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_expe_FruitType_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200) 
  
@@ -294,9 +292,19 @@ SBM_expe_SampleType_combined <-
   (SBM_ITS_expe_SampleType + labs(tag = "B. Fungi")) +
   plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
 
-title_plot <- "SBM_NF_D1_SampleType_combined.png"
+title_plot <- "SBM_D1_SampleType_combined.png"
 
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_expe_SampleType_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)  
+ 
+
+SBM_expe_FruitSite_combined <- 
+  (SBM_16S_D1_FruitSite + labs(tag = "A. Bacteria")) /
+  (SBM_ITS_expe_FruitSite + labs(tag = "B. Fungi")) +
+  plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
+
+title_plot <- "SBM_D1_FruitSite_combined.png"
+
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_expe_FruitSite_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)  
 ```
 
 # alluvial plot 16S
