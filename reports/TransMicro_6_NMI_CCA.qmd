@@ -134,7 +134,7 @@ write.csv(results_table_ITS, file = file.path(here::here(), "data", "derived_dat
 ## D2 
 ### 16S
 ```{r}
-NPERM=10000#set quite low, so that permutations do not take too long, only for proof of principle, set to 10000 for serious comparisons
+NPERM=1000#set quite low, so that permutations do not take too long, only for proof of principle, set to 10000 for serious comparisons
 
 # Parallelized version
 plan(multisession, workers = parallel::detectCores() - 1)
@@ -151,11 +151,11 @@ graph.bin.2.16S.config <- future_lapply(seq_len(NPERM), future.seed=TRUE, sim_fu
 
 ```{r}
 # Factors
-FT_vect_D2_16S <- as.factor(mtd_D2_16S$FruitType[match(rownames(FB_D2_16S), rownames(mtd_D2_16S))])
+FT_vect_D2_16S <- as.factor(mtd_D2_16S$FruitType[match(rownames(FB_D2_16S), (mtd_D2_16S)$Sample)]) #not rownames of mtd here
 
-ST_vect_D2_16S <- as.factor(mtd_D2_16S$SampleType[match(rownames(FB_D2_16S), rownames(mtd_D2_16S))])
+ST_vect_D2_16S <- as.factor(mtd_D2_16S$SampleType[match(rownames(FB_D2_16S), (mtd_D2_16S)$Sample)])
 
-FS_vect_D2_16S <- as.factor(mtd_D2_16S$FruitSite[match(rownames(FB_D2_16S), rownames(mtd_D2_16S))])
+FS_vect_D2_16S <- as.factor(mtd_D2_16S$FruitSite[match(rownames(FB_D2_16S), (mtd_D2_16S)$Sample)])
 
 # Observed data
 nmi_obs_expe_16S_FruitType_2 <- compare(as.factor(memb_spl_obs_16S_D2), FT_vect_D2_16S, method = "nmi")
@@ -176,6 +176,8 @@ simulated_clustering_expe_2_16S %>%
   dplyr::summarise(., nmi_sim = compare(as.factor(Memberships), FT_vect_D2_16S, method = "nmi"))
 
 print(c("NMI =", nmi_obs_expe_16S_FruitType_2, "P-value = ", 1 - ecdf(simulated_nmi_expe_16S_FT_2$nmi_sim)(nmi_obs_expe_16S_FruitType_2)))
+pval_16S_FT_2 <- 1 - ecdf(simulated_nmi_expe_16S_FT_2$nmi_sim)(nmi_obs_expe_16S_FruitType_2)
+
 
 # Sample Type
 simulated_nmi_expe_16S_ST_2 <- 
@@ -185,6 +187,8 @@ simulated_clustering_expe_2_16S %>%
   dplyr::summarise(., nmi_sim = compare(as.factor(Memberships), ST_vect_D2_16S, method = "nmi"))
 
 print(c("NMI =", nmi_obs_expe_16S_SampleType_2, "P-value = ", 1 - ecdf(simulated_nmi_expe_16S_ST_2$nmi_sim)(nmi_obs_expe_16S_SampleType_2)))
+pval_16S_ST_2 <- 1 - ecdf(simulated_nmi_expe_16S_ST_2$nmi_sim)(nmi_obs_expe_16S_SampleType_2)
+
 
 # Fruit Site
 simulated_nmi_expe_16S_FS_2 <- 
@@ -194,6 +198,7 @@ simulated_clustering_expe_2_16S %>%
   dplyr::summarise(., nmi_sim = compare(as.factor(Memberships), FS_vect_D2_16S, method = "nmi"))
 
 print(c("NMI =", nmi_obs_expe_16S_FruitSite_2, "P-value = ", 1 - ecdf(simulated_nmi_expe_16S_FS_2$nmi_sim)(nmi_obs_expe_16S_FruitSite_2)))
+pval_16S_FS_2 <- 1 - ecdf(simulated_nmi_expe_16S_FS_2$nmi_sim)(nmi_obs_expe_16S_FruitSite_2)
 ```
 
 
@@ -216,11 +221,11 @@ graph.bin.2.ITS.config <- future_lapply(seq_len(NPERM), future.seed=TRUE, sim_fu
 
 ```{r}
 # Factors
-FT_vect_D2_ITS <- as.factor(mtd_D2_ITS$FruitType[match(rownames(FB_D2_ITS), rownames(mtd_D2_ITS))])
+FT_vect_D2_ITS <- as.factor(mtd_D2_ITS$FruitType[match(rownames(FB_D2_ITS), (mtd_D2_ITS)$Sample)])
 
-ST_vect_D2_ITS <- as.factor(mtd_D2_ITS$SampleType[match(rownames(FB_D2_ITS), rownames(mtd_D2_ITS))])
+ST_vect_D2_ITS <- as.factor(mtd_D2_ITS$SampleType[match(rownames(FB_D2_ITS), (mtd_D2_ITS)$Sample)])
 
-FS_vect_D2_ITS <- as.factor(mtd_D2_ITS$FruitSite[match(rownames(FB_D2_ITS), rownames(mtd_D2_ITS))])
+FS_vect_D2_ITS <- as.factor(mtd_D2_ITS$FruitSite[match(rownames(FB_D2_ITS), (mtd_D2_ITS)$Sample)])
 
 # Observed data
 nmi_obs_expe_ITS_FruitType_2 <- compare(as.factor(memb_spl_obs_ITS_D2), FT_vect_D2_ITS, method = "nmi")
@@ -241,6 +246,8 @@ simulated_clustering_expe_2_ITS %>%
   dplyr::summarise(., nmi_sim = compare(as.factor(Memberships), FT_vect_D2_ITS, method = "nmi"))
 
 print(c("NMI =", nmi_obs_expe_ITS_FruitType_2, "P-value = ", 1 - ecdf(simulated_nmi_expe_ITS_FT_2$nmi_sim)(nmi_obs_expe_ITS_FruitType_2)))
+pval_ITS_FT_2 <- 1 - ecdf(simulated_nmi_expe_ITS_FT_2$nmi_sim)(nmi_obs_expe_ITS_FruitType_2)
+
 
 # Sample Type
 simulated_nmi_expe_ITS_ST_2 <- 
@@ -250,6 +257,8 @@ simulated_clustering_expe_2_ITS %>%
   dplyr::summarise(., nmi_sim = compare(as.factor(Memberships), ST_vect_D2_ITS, method = "nmi"))
 
 print(c("NMI =", nmi_obs_expe_ITS_SampleType_2, "P-value = ", 1 - ecdf(simulated_nmi_expe_ITS_ST_2$nmi_sim)(nmi_obs_expe_ITS_SampleType_2)))
+pval_ITS_ST_2 <- 1 - ecdf(simulated_nmi_expe_ITS_ST_2$nmi_sim)(nmi_obs_expe_ITS_SampleType_2)
+
 
 # Fruit Site
 simulated_nmi_expe_ITS_FS_2 <- 
@@ -259,6 +268,19 @@ simulated_clustering_expe_2_ITS %>%
   dplyr::summarise(., nmi_sim = compare(as.factor(Memberships), FS_vect_D2_ITS, method = "nmi"))
 
 print(c("NMI =", nmi_obs_expe_ITS_FruitSite_2, "P-value = ", 1 - ecdf(simulated_nmi_expe_ITS_FS_2$nmi_sim)(nmi_obs_expe_ITS_FruitSite_2)))
+pval_ITS_FS_2 <- 1 - ecdf(simulated_nmi_expe_ITS_FS_2$nmi_sim)(nmi_obs_expe_ITS_FruitSite_2)
+
+
+# Compil & export in a table
+results_table_D2 <- data.frame(
+  Marker  = c("16S", "16S", "16S", "ITS", "ITS", "ITS"),
+  Factor  = c("FruitType", "SampleType", "FruitSite", "FruitType", "SampleType", "FruitSite"),
+  NMI     = c(nmi_obs_expe_16S_FruitType_2, nmi_obs_expe_16S_SampleType_2, nmi_obs_expe_16S_FruitSite_2, nmi_obs_expe_ITS_FruitType_2, nmi_obs_expe_ITS_SampleType_2, nmi_obs_expe_ITS_FruitSite_2),
+  p_value = c(pval_16S_FT_2, pval_16S_ST_2, pval_16S_FS_2, pval_ITS_FT_2, pval_ITS_ST_2, pval_ITS_FS_2),
+  Npermutation  = NPERM)
+
+write.csv(results_table_D2, file = file.path(here::here(), "data", "derived_data","6_NMI_CCA", "Dataset_2", "Results_NMI_D2.csv"), 
+          row.names = FALSE)
 ```
 
 
