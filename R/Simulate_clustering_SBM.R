@@ -48,121 +48,121 @@
 
 
 
-#' @title Compute simulated matrix with parallel simulations
+#' #' @title Compute simulated matrix with parallel simulations
+#' #'
+#' #' @param  NPERM number of permutations performed on the matrix
+#' #' @param FB matrix with samples in rows and taxa in columns
+#' #' @param name name of exported file
+#' #' @description
+#' #' This function is used to Compute clustering (memberships) on each simulated matrix with SBM algorithm.
+#' #'
+#' #' @return
+#' #' A table with the memberships of each sample (in rows) as a function of each permuted matrix (in columns).
+#' #' The number of columns corresponds to the number of permutations and the number of rows corresponds to the number of samples.
+#' #'
+#' #'
+#' #' @export
+#' Simulate_Clustering_SBM <- function(FB, NPERM, name) {
 #'
-#' @param  NPERM number of permutations performed on the matrix
-#' @param FB matrix with samples in rows and taxa in columns
-#' @param name name of exported file
-#' @description
-#' This function is used to Compute clustering (memberships) on each simulated matrix with SBM algorithm.
+#'   # ---- Worker functions FIRST ----
+#'   Sim_one <- function(i, FB) {
+#'     simulate(nullmodel(FB, "curveball"), nsim = 1)[,,1]
+#'   }
 #'
-#' @return
-#' A table with the memberships of each sample (in rows) as a function of each permuted matrix (in columns).
-#' The number of columns corresponds to the number of permutations and the number of rows corresponds to the number of samples.
+#'   SBM_one <- function(mat) {
+#'     fit <- estimateBipartiteSBM(
+#'       as.matrix(mat),
+#'       model = "bernoulli",
+#'       estimOptions = list(verbosity = 0, plot = FALSE)
+#'     )
+#'     fit$memberships$row
+#'   }
 #'
+#'   environment(Sim_one) <- baseenv()
+#'   environment(SBM_one) <- baseenv()
 #'
-#' @export
+#'   # ---- Now create large objects ----
+#'   FB_df <- as.data.frame(FB)
+#'
+#'   message("Running ", NPERM, " curveball permutations in parallel...")
+#'   perm_list <- future_lapply(
+#'     X = seq_len(NPERM),
+#'     FUN = Sim_one,
+#'     FB = FB_df,
+#'     future.seed = TRUE
+#'   )
+#'
+#'   message("Running ", NPERM, " SBM fits in parallel...")
+#'   cluster_list <- future_lapply(
+#'     X = perm_list,
+#'     FUN = SBM_one,
+#'     future.seed = TRUE
+#'   )
+#'
+#'   simulated_clustering <- as.data.frame(do.call(cbind, cluster_list))
+#'
+#'   out_file <- file.path(
+#'     here::here(), "data", "derived_data", "5_SBMclustering", name
+#'   )
+#'
+#'   write.table(
+#'     simulated_clustering,
+#'     file = out_file,
+#'     sep = "\t",
+#'     row.names = FALSE,
+#'     col.names = TRUE,
+#'     quote = FALSE
+#'   )
+#'
+#'   message("Saved simulated clustering to: ", out_file)
+#'   simulated_clustering
+#' }
+#'
+
+
+
 Simulate_Clustering_SBM <- function(FB, NPERM, name) {
 
-  # ---- Worker functions FIRST ----
-  Sim_one <- function(i, FB) {
+    # Convert FB once (avoid making many copies in memory)
+  FB_df <- as.data.frame(FB)
+
+  # ---- STEP 1: parallel simulation ----
+  Sim_one <- function(i, FB)
+  {
+    # One permutation only
     simulate(nullmodel(FB, "curveball"), nsim = 1)[,,1]
   }
 
-  SBM_one <- function(mat) {
+  message("Running ", NPERM, " curveball permutations in parallel...")
+  perm_list <- future_lapply(X = seq_len(NPERM), future.seed=TRUE, FUN = Sim_one, FB = FB_df)
+
+  # perm_list is a list of NPERM matrices
+  # Convert back to matrix 3D array if needed
+  # OR keep list (better for parallel SBM)
+
+  # ---- STEP 2: parallel SBM estimation ----
+  SBM_one <- function(mat)
+  {
     fit <- estimateBipartiteSBM(
       as.matrix(mat),
-      model = "bernoulli",
+      model = 'bernoulli',
       estimOptions = list(verbosity = 0, plot = FALSE)
     )
-    fit$memberships$row
+    return(fit$memberships$row)
   }
 
-  environment(Sim_one) <- baseenv()
-  environment(SBM_one) <- baseenv()
-
-  # ---- Now create large objects ----
-  FB_df <- as.data.frame(FB)
-
-  message("Running ", NPERM, " curveball permutations in parallel...")
-  perm_list <- future_lapply(
-    X = seq_len(NPERM),
-    FUN = Sim_one,
-    FB = FB_df,
-    future.seed = TRUE
-  )
-
   message("Running ", NPERM, " SBM fits in parallel...")
-  cluster_list <- future_lapply(
-    X = perm_list,
-    FUN = SBM_one,
-    future.seed = TRUE
-  )
+  cluster_list <- future_lapply(perm_list, future.seed=TRUE, SBM_one)
 
+  # ---- STEP 3: Combine into dataframe ----
   simulated_clustering <- as.data.frame(do.call(cbind, cluster_list))
 
-  out_file <- file.path(
-    here::here(), "data", "derived_data", "5_SBMclustering", name
-  )
+  # ---- STEP 4: Export ----
+  out_file <- file.path(here::here(),"data", "derived_data", "5_SBMclustering", name)
 
-  write.table(
-    simulated_clustering,
-    file = out_file,
-    sep = "\t",
-    row.names = FALSE,
-    col.names = TRUE,
-    quote = FALSE
-  )
+  write.table(simulated_clustering, file = out_file,sep = "\t", row.names = FALSE,col.names = TRUE, quote = FALSE)
 
   message("Saved simulated clustering to: ", out_file)
-  simulated_clustering
+
+  return(simulated_clustering)
 }
-
-
-
-
-# Simulate_Clustering_SBM <- function(FB, NPERM, name) {
-#
-#     # Convert FB once (avoid making many copies in memory)
-#   FB_df <- as.data.frame(FB)
-#
-#   # ---- STEP 1: parallel simulation ----
-#   Sim_one <- function(i, FB)
-#   {
-#     # One permutation only
-#     simulate(nullmodel(FB, "curveball"), nsim = 1)[,,1]
-#   }
-#
-#   message("Running ", NPERM, " curveball permutations in parallel...")
-#   perm_list <- future_lapply(X = seq_len(NPERM), future.seed=TRUE, FUN = Sim_one, FB = FB_df)
-#
-#   # perm_list is a list of NPERM matrices
-#   # Convert back to matrix 3D array if needed
-#   # OR keep list (better for parallel SBM)
-#
-#   # ---- STEP 2: parallel SBM estimation ----
-#   SBM_one <- function(mat)
-#   {
-#     fit <- estimateBipartiteSBM(
-#       as.matrix(mat),
-#       model = 'bernoulli',
-#       estimOptions = list(verbosity = 0, plot = FALSE)
-#     )
-#     return(fit$memberships$row)
-#   }
-#
-#   message("Running ", NPERM, " SBM fits in parallel...")
-#   cluster_list <- future_lapply(perm_list, future.seed=TRUE, SBM_one)
-#
-#   # ---- STEP 3: Combine into dataframe ----
-#   simulated_clustering <- as.data.frame(do.call(cbind, cluster_list))
-#
-#   # ---- STEP 4: Export ----
-#   out_file <- file.path(here::here(),"data", "derived_data", "5_SBMclustering", name)
-#
-#   write.table(simulated_clustering, file = out_file,sep = "\t", row.names = FALSE,col.names = TRUE, quote = FALSE)
-#
-#   message("Saved simulated clustering to: ", out_file)
-#
-#   return(simulated_clustering)
-# }

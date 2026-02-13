@@ -214,6 +214,9 @@ SBM_bernoulli_16S_D1 <-  as.matrix(FB_D1_16S) %>%
 memb_spl_obs_16S_D1 <- SBM_bernoulli_16S_D1$memberships$row
 memb_otu_obs_16S_D1 <- SBM_bernoulli_16S_D1$memberships$col
 
+save(memb_spl_obs_16S_D1, memb_otu_obs_16S_D1, file = "SBM_memberships_16S_D1.RData")
+
+
 SBM_bernoulli_16S_D1$storedModels %>% dplyr::arrange(ICL)
  
 #Plots

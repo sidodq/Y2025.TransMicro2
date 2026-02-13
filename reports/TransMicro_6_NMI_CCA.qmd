@@ -41,7 +41,7 @@ devtools::load_all()
 ### ITS
 
 ```{r}
-NPERM=10 #000#set quite low, so that permutations do not take too long, only for proof of principle, set to 10000 for serious comparisons
+NPERM=1000 #000#set quite low, so that permutations do not take too long, only for proof of principle, set to 10000 for serious comparisons
 
 # # Import simulated clustering MPC
 # netBin.config<-simulate(nullmodel(FB_D1_16S,"curveball"),nsim=NPERM)
@@ -56,6 +56,9 @@ sim_fun <- function(i, FB) {
 
 #Charge matrix
 FB_D1_ITS <- read.csv(file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "FB_D1_ITS.csv"),header=TRUE, sep=",", row.names = 1)
+
+load("SBM_memberships_16S_D1.RData")
+
 
 netBin.config.ITS <- future_lapply(seq_len(NPERM), future.seed=TRUE, sim_fun, FB = FB_D1_ITS)
 
@@ -91,6 +94,7 @@ simulated_clustering_expe_ITS %>%
   dplyr::summarise(., nmi_sim = compare(as.factor(Memberships), FT_vect_D1_ITS, method = "nmi"))
 
 print(c("NMI =", nmi_obs_expe_ITS_FruitType, "P-value = ", 1 - ecdf(simulated_nmi_expe_ITS_FT$nmi_sim)(nmi_obs_expe_ITS_FruitType)))
+pval_ITS_FT <- 1 - ecdf(simulated_nmi_expe_ITS_FT$nmi_sim)(nmi_obs_expe_ITS_FruitType)
 
 
 # Sample Type (Life Stage)
@@ -101,6 +105,7 @@ simulated_clustering_expe_ITS %>%
   dplyr::summarise(., nmi_sim = compare(as.factor(Memberships), ST_vect_D1_ITS, method = "nmi"))
 
 print(c("NMI =", nmi_obs_expe_ITS_SampleType, "P-value = ", 1 - ecdf(simulated_nmi_expe_ITS_ST$nmi_sim)(nmi_obs_expe_ITS_SampleType)))
+pval_ITS_ST <- 1 - ecdf(simulated_nmi_expe_ITS_ST$nmi_sim)(nmi_obs_expe_ITS_SampleType)
 
 
 # Fruit Site
@@ -110,7 +115,20 @@ simulated_clustering_expe_ITS %>%
   dplyr::group_by(Simulation) %>% 
   dplyr::summarise(., nmi_sim = compare(as.factor(Memberships), FS_vect_D1_ITS, method = "nmi"))
 
-print(c("NMI =", nmi_obs_expe_ITS_SampleType, "P-value = ", 1 - ecdf(simulated_nmi_expe_ITS_FS$nmi_sim)(nmi_obs_expe_ITS_SampleType)))
+print(c("NMI =", nmi_obs_expe_ITS_FruitSite, "P-value = ", 1 - ecdf(simulated_nmi_expe_ITS_FS$nmi_sim)(nmi_obs_expe_ITS_FruitSite)))
+pval_ITS_FS <- 1 - ecdf(simulated_nmi_expe_ITS_FS$nmi_sim)(nmi_obs_expe_ITS_FruitSite)
+
+
+# Compil & export in a table
+results_table_ITS <- data.frame(
+  Marker  = "ITS",
+  Factor  = c("FruitType", "SampleType", "FruitSite"),
+  NMI     = c(nmi_obs_expe_ITS_FruitType, nmi_obs_expe_ITS_SampleType, nmi_obs_expe_ITS_FruitSite),
+  p_value = c(pval_ITS_FT, pval_ITS_ST, pval_ITS_FS),
+  Npermutation  = NPERM)
+
+write.csv(results_table_ITS, file = file.path(here::here(), "data", "derived_data","6_NMI_CCA", "Dataset_1", "Results_NMI_ITS_D1.csv"), 
+          row.names = FALSE)
 ```
 
 ## D2 
