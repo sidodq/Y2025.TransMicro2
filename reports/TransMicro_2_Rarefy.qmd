@@ -88,6 +88,7 @@ otu_ITS <- atc_ITS_nocontrol %>%
   textshape::column_to_rownames("observation_name") %>% 
   dplyr::mutate(seed_sequence = NULL) 
 
+
 # Taxonomy tables
 tax_16S <- taxo_16S %>% 
   #dplyr::left_join(atc_16S_nocontrol %>% select(observation_name, seed_sequence) , by = "observation_name") %>%
@@ -99,7 +100,10 @@ tax_ITS <- taxo_ITS %>%
   textshape::column_to_rownames("observation_name")
 tax_ITS <- as.matrix(tax_ITS)
 
+
 # Metadata
+metadata$ID_pool <- sub("_[^_]+$", "", metadata$ID_pool) # Remove "16S" or "ITS" endings in sample names (ID_pool)
+
 mtd <- metadata %>%
   dplyr::mutate(ID_pool = sapply(ID_pool, Remove_last_two_chars_run)) %>% # Remove runs distinction (1, 2 or 3)
   dplyr::mutate(ID_pool_rowname = ID_pool) %>%
