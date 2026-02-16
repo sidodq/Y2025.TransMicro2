@@ -102,7 +102,8 @@ tax_ITS <- as.matrix(tax_ITS)
 
 
 # Metadata
-metadata$ID_pool <- sub("_[^_]+$", "", metadata$ID_pool) # Remove "16S" or "ITS" endings in sample names (ID_pool)
+metadata$ID_pool <- sub("_16S$", "", metadata$ID_pool)
+metadata$ID_pool <- sub("_ITS$", "", metadata$ID_pool)# Remove "16S" or "ITS" endings in sample names (ID_pool)
 
 mtd <- metadata %>%
   dplyr::mutate(ID_pool = sapply(ID_pool, Remove_last_two_chars_run)) %>% # Remove runs distinction (1, 2 or 3)
@@ -271,7 +272,7 @@ ps_ITSm_sq <- Charge_xl_to_ps("ps_ITSm_sq", file.path(here::here(), "data", "der
 
 # Filter samples by abundance (>0) and type (fruits and suzu at all stages from "Focal_Sites")
 ps_16S_cl_Dataset_1 <- subset_samples(ps_16Sm_sq, Sample_Category %in% c("All_stages_Focal_Sites", "All_stages_focal_Sites")) #exclude indiv. naturally infesting + naturally infested fruits, if want to include use -> grepl("Focal_Sites", Sample_Category))
-ps_16S_cl_Dataset_1 <- prune_taxa(taxa_sums(ps_16S_cl_Dataset_1)>0, ps_16S_cl_Dataset_1)
+ps_16S_cl_Dataset_1 <- prune_taxa(taxa_sums(ps_16S_cl_Dataset_1)>0, ps_16S_cl_Dataset_1) # remove zero-abundance taxa (absent in all samples)
 
 
 ps_ITS_cl_Dataset_1 <- subset_samples(ps_ITSm_sq, Sample_Category %in% c("All_stages_Focal_Sites", "All_stages_focal_Sites"))
