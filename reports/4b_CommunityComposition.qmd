@@ -19,7 +19,9 @@ devtools::load_all()
 ```
 
 # Compute frequency
+
 ## Load melted data
+
 ```{r}
 ##Issue with sample MS_204 (I guess there was an extra ";" in the text of one of the columns)
 data16S <- tidyr::as_tibble(read.table(file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "16S_melt_TM123.csv"), header=TRUE, sep=";"))|>
@@ -52,10 +54,13 @@ freq_data_perfruit <- data |>
   dplyr::mutate(Marker_OTU=paste(Marker, OTU, sep="_"))
 
 ```
-  
+
 # Fruit samples only
+
 ## Taxa across all three fruits
-### Select frequency across all three fruits 
+
+### Select frequency across all three fruits
+
 ```{r}
 
 ## Select only fruits
@@ -74,6 +79,7 @@ write.table(x=freq_data_70, file=file.path(here::here(), "data", "derived_data",
 ```
 
 ### Prevalence
+
 ```{r}
 prevalence_data <- freq_data_fruit |>
   dplyr::filter(Marker_OTU%in%freq_data_70$Marker_OTU)|>
@@ -89,6 +95,7 @@ write.table(x=prevalence_data_wide, file=file.path(here::here(), "data", "derive
 ```
 
 ### Make plot
+
 ```{r}
 p16S <- prevalence_data |>
   dplyr::filter(Marker=="16S")|>
@@ -112,7 +119,9 @@ ggsave(filename = "prevalence_allfruits_fruit_only.jpg", path = file.path(here::
 ```
 
 ## Taxa per sampletype/fruit
-### Select frequency per fruit 
+
+### Select frequency per fruit
+
 ```{r}
 ## Select only fruits
 freq_data_fruit <- freq_data_perfruit |>
@@ -128,8 +137,8 @@ freq_data_fruit70 <- freq_data_fruit |>
 write.table(x=freq_data_fruit70, file=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "freq_OTU_perfruit_fruit_only.csv"), sep=";", row.names=FALSE)
 ```
 
-
 ### Prevalence per fruit type
+
 ```{r}
 
 prevalence_data_fruit <- freq_data_fruit |>
@@ -153,6 +162,7 @@ write.table(x=prevalence_data_fruit_wide, file=file.path(here::here(), "data", "
 ```
 
 ### Make plot SampleType_Fruit
+
 ```{r}
 p16S <- prevalence_data_fruit |>
   dplyr::filter(Marker=="16S")|>
@@ -175,8 +185,8 @@ panel
 ggsave(filename = "prevalence_sampletype_perfruit_fruit_only.jpg", path = file.path(here::here(), "plots", "3_CommunityComposition"), width = 30, height = 20, units = "cm")
 ```
 
-
 ### Make plot Fruit_SampleType
+
 ```{r}
 p16S <- prevalence_data_fruit |>
   dplyr::filter(Marker=="16S")|>
@@ -202,8 +212,11 @@ ggsave(filename = "prevalence_fruit_sampletype_fruit_only_TM123.jpg", path = fil
 ```
 
 # 5 sites = samples with lifestages ("FIN_CH_CDP", "IST_ST_CIF", "LOM_CH_CDP", "MIL_ST_MDB", "VAR_BL_LOC")
+
 ## Taxa across all three fruits
-### Compute frequency across all three fruits 
+
+### Compute frequency across all three fruits
+
 ```{r}
 
 ## Compare only samples with life stages available
@@ -227,6 +240,7 @@ write.table(x=freq_data_70, file=file.path(here::here(), "data", "derived_data",
 ```
 
 ### Prevalence
+
 ```{r}
 prevalence_data <- freq_data |>
   dplyr::filter(Marker_OTU%in%freq_data_70$Marker_OTU)|>
@@ -242,6 +256,7 @@ write.table(x=prevalence_data_wide, file=file.path(here::here(), "data", "derive
 ```
 
 ### Make plot
+
 ```{r}
 p16S <- prevalence_data |>
   dplyr::filter(Marker=="16S")|>
@@ -266,7 +281,9 @@ ggsave(filename = "prevalence_allfruits_5sites.jpg", path = file.path(here::here
 ```
 
 ## Taxa per fruit
-### Compute frequency per fruit 
+
+### Compute frequency per fruit
+
 ```{r}
 
 ## Compare only samples with life stages available
@@ -290,8 +307,8 @@ write.table(x=freq_data_fruit70, file=file.path(here::here(), "data", "derived_d
 
 ```
 
-
 ### Prevalence per fruit type
+
 ```{r}
 
 prevalence_data_fruit <- freq_data_fruit |>
@@ -316,6 +333,7 @@ write.table(x=prevalence_data_fruit_wide, file=file.path(here::here(), "data", "
 ```
 
 ### Make plot SampleType_Fruit
+
 ```{r}
 p16S <- prevalence_data_fruit |>
   dplyr::filter(Marker=="16S")|>
@@ -339,7 +357,9 @@ ggsave(filename = "prevalence_sampletype_fruit_5sites.jpg", path = file.path(her
 ```
 
 ### Relevel Fruit_SampleType_Sample_size
+
 #### 16S
+
 ```{r}
 ## Order we want
 lev <- c("G0_Adults_0days","G0_Adults_Fruits_2days","Fruits_0days","Artific_Inf_Fruits_5_6days","G1_Larvae_Fruits","G1_Pupae_Fruits","G1_PupalCase_Fruits","G1_Adults_Fruits")
@@ -364,6 +384,7 @@ prevalence_data_fruit16S <- prevalence_data_fruit16S |>
 ```
 
 #### ITS
+
 ```{r}
 ## Order we want
 lev <- c("G0_Adults_0days","G0_Adults_Fruits_2days","Fruits_0days","Artific_Inf_Fruits_5_6days","G1_Larvae_Fruits","G1_Pupae_Fruits","G1_PupalCase_Fruits","G1_Adults_Fruits")
@@ -387,6 +408,7 @@ prevalence_data_fruitITS <- prevalence_data_fruitITS |>
 ```
 
 ### Make plot Fruit_SampleType
+
 ```{r}
 p16S <- prevalence_data_fruit16S |>
   ggplot(aes(Fruit_SampleType_Sample_size, OTUname, fill= Frequency)) + 
@@ -410,8 +432,11 @@ ggsave(filename = "prevalence_fruit_sampletype_5sites_TM123.jpg", path = file.pa
 ```
 
 # Medium controls
+
 ## Taxa per fruit
-### Compute frequency per fruit 
+
+### Compute frequency per fruit
+
 ```{r}
 
 ## Select only controls
@@ -429,8 +454,8 @@ write.table(x=freq_data_control70, file=file.path(here::here(), "data", "derived
 
 ```
 
-
 ### Prevalence per fruit type
+
 ```{r}
 
 prevalence_data_control <- freq_data_control |>
@@ -454,6 +479,7 @@ write.table(x=prevalence_data_control_wide, file=file.path(here::here(), "data",
 ```
 
 ### Make plot Fruit_SampleType
+
 ```{r}
 p16S <- prevalence_data_control |>
   dplyr::filter(Marker=="16S")|>
@@ -479,8 +505,11 @@ ggsave(filename = "prevalence_fruit_sampletype_medium_control.jpg", path = file.
 ```
 
 # Naturally infested/uninfested controls
+
 ## Taxa per fruit
-### Compute frequency per fruit 
+
+### Compute frequency per fruit
+
 ```{r}
 
 ## Select only controls
@@ -498,8 +527,8 @@ write.table(x=freq_data_control70, file=file.path(here::here(), "data", "derived
 
 ```
 
-
 ### Prevalence per fruit type
+
 ```{r}
 
 prevalence_data_control <- freq_data_control |>
@@ -523,6 +552,7 @@ write.table(x=prevalence_data_control_wide, file=file.path(here::here(), "data",
 ```
 
 ### Make plot Fruit_SampleType
+
 ```{r}
 p16S <- prevalence_data_control |>
   dplyr::filter(Marker=="16S")|>
