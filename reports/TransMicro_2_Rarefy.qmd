@@ -133,7 +133,10 @@ ps_16S <- phyloseq(OTU_16S, TAX_16S, sample_data(mtd))
 ps_ITS <- phyloseq(OTU_ITS, TAX_ITS, sample_data(mtd))
 
 ps_16S_raw <- merge_samples(ps_16S,group = "ID_pool",fun = sum)
+if(!taxa_are_rows(ps_16S_raw)){ps_16S_raw <- t(ps_16S_raw)}
+
 ps_ITS_raw <- merge_samples(ps_ITS,group = "ID_pool",fun = sum)
+if(!taxa_are_rows(ps_ITS_raw)){ps_ITS_raw <- t(ps_ITS_raw)}
 
 sample_data(ps_16S_raw) <- sample_data(ps_16S) %>%
   as.data.frame() %>%
