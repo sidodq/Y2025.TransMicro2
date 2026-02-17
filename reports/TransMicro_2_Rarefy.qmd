@@ -312,13 +312,13 @@ Save_ps_as_xls(ps_ITS_cl_Dataset_2, file.path(here::here(), "data", "derived_dat
 ps_16S_cl_Dataset_1 <- Charge_xl_to_ps("ps_16S_cl_Dataset_1", file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1"))
 ps_ITS_cl_Dataset_1 <- Charge_xl_to_ps("ps_ITS_cl_Dataset_1", file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1"))
 
-ps_16S_filt_Dataset_1 <- filter_phyloseq_prevalence(ps_16S_cl_Dataset_1, prevalence = 0.7)
-ps_ITS_filt_Dataset_1 <- filter_phyloseq_prevalence(ps_ITS_cl_Dataset_1, prevalence = 0.7)
+ps_16S_filt_Dataset_1 <- filter_phyloseq_prevalence(ps_16S_cl_Dataset_1, prevalence = 0.6)
+ps_ITS_filt_Dataset_1 <- filter_phyloseq_prevalence(ps_ITS_cl_Dataset_1, prevalence = 0.6)
 
 
 # Filter on ASVs prevalence per sample + samples with null abundance 
-sum_physeq_clean(ps_16S_cl_Dataset_1, ps_16S_filt_Dataset_1) # filtered : 5.41% of samples + 93.9% of ASVs + 16.5 % of reads
-sum_physeq_clean(ps_ITS_cl_Dataset_1, ps_ITS_filt_Dataset_1) # filtered : 0% of samples + 76.8% of ASVs + 10.1 % of reads
+sum_physeq_clean(ps_16S_cl_Dataset_1, ps_16S_filt_Dataset_1) # filtered : 3.38% of samples (5) + 93.1% of ASVs + 6.91 % of reads
+sum_physeq_clean(ps_ITS_cl_Dataset_1, ps_ITS_filt_Dataset_1) # filtered : 0% of samples + 75.5% of ASVs + 7.22 % of reads
 
 # Add the row names in 'ID_pool' column
 sample_data(ps_16S_filt_Dataset_1)$ID_pool <- sample_names(ps_16S_filt_Dataset_1)
@@ -335,11 +335,11 @@ Save_ps_as_xls(ps_ITS_filt_Dataset_1, file.path(here::here(), "data", "derived_d
 ps_16S_cl_Dataset_2 <- Charge_xl_to_ps("ps_16S_cl_Dataset_2", file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_2"))
 ps_ITS_cl_Dataset_2 <- Charge_xl_to_ps("ps_ITS_cl_Dataset_2", file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_2"))
 
-ps_16S_filt_Dataset_2 <- filter_phyloseq_prevalence(ps_16S_cl_Dataset_2, prevalence = 0.7)
-ps_ITS_filt_Dataset_2 <- filter_phyloseq_prevalence(ps_ITS_cl_Dataset_2, prevalence = 0.7)
+ps_16S_filt_Dataset_2 <- filter_phyloseq_prevalence(ps_16S_cl_Dataset_2, prevalence = 0.6)
+ps_ITS_filt_Dataset_2 <- filter_phyloseq_prevalence(ps_ITS_cl_Dataset_2, prevalence = 0.6)
 
-sum_physeq_clean(ps_16S_cl_Dataset_2, ps_16S_filt_Dataset_2) # filtered : 18.4% of samples + 98.8% of ASVs + 26.8 % of reads
-sum_physeq_clean(ps_ITS_cl_Dataset_2, ps_ITS_filt_Dataset_2) # filtered : 0% of samples + 89.1% of ASVs + 17.7 % of reads
+sum_physeq_clean(ps_16S_cl_Dataset_2, ps_16S_filt_Dataset_2) # filtered : 9.21% of samples (7) + 96.2% of ASVs + 11.5 % of reads
+sum_physeq_clean(ps_ITS_cl_Dataset_2, ps_ITS_filt_Dataset_2) # filtered : 0% of samples + 84.9% of ASVs + 8.84 % of reads
 
 # Add the row names in 'ID_pool' column
 sample_data(ps_16S_filt_Dataset_2)$ID_pool <- sample_names(ps_16S_filt_Dataset_2)
@@ -374,7 +374,7 @@ Rarefactioncurve_ITS_D1 <- phyloseq.extended::ggrare(ps_ITS_filt_Dataset_1, step
 
 title_plot <- "ITS_D1_Rarefactioncurve.png"
 
-  cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1", title_plot), Rarefactioncurve_ITS_D1, base_height = 35/cm(1),base_width = 60/cm(1), dpi = 1200)
+cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1", title_plot), Rarefactioncurve_ITS_D1, base_height = 35/cm(1),base_width = 60/cm(1), dpi = 1200)
 
     
 # Combined plot
@@ -403,7 +403,7 @@ Rarefactioncurve_ITS_D2 <- phyloseq.extended::ggrare(ps_ITS_filt_Dataset_2, step
 
 title_plot <- "ITS_D2_Rarefactioncurve.png"
 
-  cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_2", title_plot), Rarefactioncurve_ITS_D2, base_height = 35/cm(1),base_width = 60/cm(1), dpi = 1200)
+cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_2", title_plot), Rarefactioncurve_ITS_D2, base_height = 35/cm(1),base_width = 60/cm(1), dpi = 1200)
 
     
 # Combined plot
@@ -411,7 +411,7 @@ RarefactionCurves_D2 <- ggpubr::ggarrange(Rarefactioncurve_16S_D2, Rarefactioncu
 
 title_plot <- "RarefactionCurves_D2.png"
 
- cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_2", title_plot), RarefactionCurves_D2, base_height = 30/cm(1), base_width = 60/cm(1), dpi = 1200)
+cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_2", title_plot), RarefactionCurves_D2, base_height = 30/cm(1), base_width = 60/cm(1), dpi = 1200)
 ```
 
 # 8. Rarefy data

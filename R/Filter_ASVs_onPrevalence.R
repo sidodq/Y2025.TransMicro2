@@ -25,25 +25,17 @@ filter_phyloseq_prevalence <- function(physeq, group_cols = c("SampleType", "Fru
   otu_df$Sample <- rownames(otu_df)
 
   # Join metadata
-  otu_long <- dplyr::left_join(
-    otu_df,
-    sdata[, c("Sample", group_cols)],
-    by = "Sample"
-  )
+  otu_long <- dplyr::left_join(otu_df, sdata[, c("Sample", group_cols)], by = "Sample")
 
   # Presence / absence
   otu_long[, rownames(otu)] <- (otu_long[, rownames(otu)] > 0) * 1
 
   # Prevalence per group
   prev <- otu_long |>
-    tidyr::pivot_longer(
-      cols = rownames(otu),
-      names_to = "OTU",
-      values_to = "present"
-    ) |>
+    tidyr::pivot_longer(cols = rownames(otu), names_to = "OTU", values_to = "present" ) |>
     dplyr::group_by(dplyr::across(dplyr::all_of(group_cols)), OTU) |>
-    dplyr::summarise(prev = mean(present), .groups = "drop") |>
-    dplyr::filter(prev >= prevalence)
+    dplyr::summarise(prev = mean(present), n_present = sum(present), .groups = "drop") |>
+    dplyr::filter(prev >= prevalence, n_present >= 2)
 
   taxa_keep <- unique(prev$OTU)
 
