@@ -255,9 +255,14 @@ sum_physeq_clean(ps_ITS_contaRm, ps_ITSm_sq) # filtered : 3.36% of samples + 36.
 tax_table(ps_16Sm_sq)[ "Cluster_20", "Genus" ] <- "Acetobacter"
 tax_table(ps_16Sm_sq)[ "Cluster_5", "Genus" ] <- "Tatumella"
 tax_table(ps_16Sm_sq)[ "Cluster_6", "Genus" ] <- "Gluconobacter"
+tax_table(ps_16Sm_sq)[ "Cluster_6", "Species" ] <- "cerinus"
 tax_table(ps_16Sm_sq)[ "Cluster_7", "Genus" ] <- "Acetobacter"
 tax_table(ps_16Sm_sq)[ "Cluster_9", "Genus" ] <- "Acetobacter"
 tax_table(ps_16Sm_sq)[ "Cluster_337", "Genus" ] <- "Tatumella"
+
+tax_table(ps_16Sm_sq)[ "Cluster_16", "Family" ] <- "Erwiniaceae"
+
+
 
 # Export
 Save_ps_as_xls(ps_16Sm_sq, file.path(here::here(), "data", "derived_data", "2_RarefyData"))

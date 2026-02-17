@@ -310,38 +310,6 @@ title_plot <- "SBM_D1_FruitSite_combined.png"
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), SBM_expe_FruitSite_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)  
 ```
 
-# alluvial plot 16S
-
-```{r}
-## Extract rows (samples) and columns (OTUs) for the alluvial plot
-memb_spl_obs_16S_D1 <- SBM_bernoulli_16S_D1$memberships$row
-memb_otu_obs_16S_D1 <- SBM_bernoulli_16S_D1$memberships$col
-
-## Data for alluvial plot : Compute SampleSize, the number of samples for each FruitType, SampleType and OTU membership
-dataalluvial_16S_expe_FruitType_SampleType <- as.data.frame(table(sample_data(ps_rare_16S_expe_bin)$FruitType,
-      memb_spl_obs_16S_expe, sample_data(ps_rare_16S_expe_bin)$SampleType))
-
-colnames(dataalluvial_16S_expe_FruitType_SampleType) = c("FruitType", "Bacteria",  "SampleType", "SampleSize") # change column names
-
-# plot for fruits
-Alluvial_16S_expe_FruitType_SampleType <- dataalluvial_16S_expe_FruitType_SampleType |>
-  ggplot(aes(axis1 = FruitType,
-             axis2 = Bacteria,
-             axis3 = SampleType,
-             y = SampleSize)) +
-  ggalluvial::geom_alluvium(aes(fill = FruitType), alpha = 0.6) +
-  ggalluvial::geom_stratum(width = 0.4) +
-  geom_text(stat = "stratum",
-            aes(label = after_stat(stratum))) +
-  scale_x_discrete(limits = c("Fruit Type", "Bacteria", "Sample Type"), expand = c(.2, .05)) +
-  scale_fill_manual(values = c("BL" = "purple4", "CH" = "red4","na" = "grey",  "ST" = "red2"),guide = "none") +
-  theme_minimal()+
-  theme(axis.text.x = element_text(size = 12, color = "black", face = "bold"))
-
-title_plot <- "AlluvialPlot_Expe_FruitTYpe_SampleType_16S.jpg"
- cowplot::save_plot(file=here::here("plots", "5_LBM&co", title_plot), Alluvial_16S_expe_FruitType_SampleType, base_height = 30/cm(1), base_width = 50/cm(1), dpi = 1200)
- 
-```
 
 ## D2
 
