@@ -127,7 +127,7 @@ results_table_ITS <- data.frame(
   p_value = c(pval_ITS_FT, pval_ITS_ST, pval_ITS_FS),
   Npermutation  = NPERM)
 
-write.csv(results_table_ITS, file = file.path(here::here(), "data", "derived_data","6_NMI_CCA", "Dataset_1", "Results_NMI_ITS_D1.csv"), 
+write.csv(results_table_ITS, file = file.path(here::here(), "data", "derived_data","6_NMI_CCA", "Dataset_1", "Results_NMI_ITS_D1_60.csv"), 
           row.names = FALSE)
 ```
 
