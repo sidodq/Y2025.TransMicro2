@@ -35,7 +35,7 @@ devtools::load_all()
 
 # NETWORK ANALYSIS : NMI & CCA
 
-#3. NMI
+#1. NMI
 
 ## D1 
 ### ITS
@@ -167,6 +167,7 @@ nmi_obs_expe_16S_FruitSite_2 <- compare(as.factor(memb_spl_obs_16S_D2), FS_vect_
 # Simulated clustering
 simulated_clustering_expe_2_16S <- Simulate_Clustering_SBM(FB = FB_D2_16S, NPERM, name = "simulated_clustering_D2_16S.tsv")
 
+
 # Simulated NMI
 # FruitType
 simulated_nmi_expe_16S_FT_2 <- 
@@ -204,7 +205,7 @@ pval_16S_FS_2 <- 1 - ecdf(simulated_nmi_expe_16S_FS_2$nmi_sim)(nmi_obs_expe_16S_
 
 ### ITS
 ```{r}
-NPERM=10000#set quite low, so that permutations do not take too long, only for proof of principle, set to 10000 for serious comparisons
+NPERM=1000 #0 #set quite low, so that permutations do not take too long, only for proof of principle, set to 10000 for serious comparisons
 
 # Parallelized version
 plan(multisession, workers = parallel::detectCores() - 1)
