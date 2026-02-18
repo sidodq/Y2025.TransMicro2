@@ -412,6 +412,14 @@ RarefactionCurves_D2 <- ggpubr::ggarrange(Rarefactioncurve_16S_D2, Rarefactioncu
 title_plot <- "RarefactionCurves_D2.png"
 
 cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_2", title_plot), RarefactionCurves_D2, base_height = 30/cm(1), base_width = 60/cm(1), dpi = 1200)
+
+
+# Combined plot (D1 & D2)
+RarefactionCurves_AllIn <- ggpubr::ggarrange(RarefactionCurves_D1, RarefactionCurves_D2, ncol = 1, nrow = 2)
+
+title_plot <- "RarefactionCurves_AllIn.png"
+
+cowplot::save_plot(file =here::here("plots", "2_RarefyData", title_plot), RarefactionCurves_AllIn, base_height = 30/cm(1), base_width = 60/cm(1), dpi = 1200)
 ```
 
 # 8. Rarefy data

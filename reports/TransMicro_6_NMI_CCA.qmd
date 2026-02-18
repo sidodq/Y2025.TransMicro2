@@ -165,8 +165,9 @@ nmi_obs_expe_16S_SampleType_2 <- compare(as.factor(memb_spl_obs_16S_D2), ST_vect
 nmi_obs_expe_16S_FruitSite_2 <- compare(as.factor(memb_spl_obs_16S_D2), FS_vect_D2_16S, method = "nmi")
 
 # Simulated clustering
-simulated_clustering_expe_2_16S <- Simulate_Clustering_SBM(FB = FB_D2_16S, NPERM, name = "simulated_clustering_D2_16S.tsv")
+#simulated_clustering_expe_2_16S <- Simulate_Clustering_SBM(FB = FB_D2_16S, NPERM, name = "simulated_clustering_D2_16S.tsv")
 
+simulated_clustering_expe_2_16S <- read_tsv(file.path(here::here(), "data", "derived_data", "5_SBMclustering", "simulated_clustering_D2_16S.tsv"))
 
 # Simulated NMI
 # FruitType
@@ -237,6 +238,8 @@ nmi_obs_expe_ITS_FruitSite_2 <- compare(as.factor(memb_spl_obs_ITS_D2), FS_vect_
 
 # Simulated clustering
 simulated_clustering_expe_2_ITS <- Simulate_Clustering_SBM(FB = FB_D2_ITS, NPERM, name = "simulated_clustering_D2_ITS.tsv")
+
+simulated_clustering_expe_2_ITS <- read_tsv(file.path(here::here(), "data", "derived_data", "5_SBMclustering", "simulated_clustering_D2_ITS.tsv"))
 
 # Simulated NMI
 # FruitType
@@ -332,12 +335,12 @@ varp_ITS_D1$part
 #CCA with line randomization
 wholenetwork_cca_results_NULL_ITS_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_ITS), memb_obs=memb_spl_obs_ITS_D1, var1=cca_data_ITS_D1$FruitType, var2=cca_data_ITS_D1$SampleType, configs = NULL)
 
-write.xlsx(wholenetwork_cca_results_NULL_ITS_D1, file=here::here("plots", "5_SBM&co", "Dataset_1", "CCA_NULL_ITS_D1.xlsx"), rowNames = TRUE)
+write.xlsx(wholenetwork_cca_results_NULL_ITS_D1, file=here::here("data", "derived_data","6_NMI_CCA", "Dataset_1", "CCA_NULL_ITS_D1.xlsx"), rowNames = TRUE)
 
 #CCA with full randomization
 wholenetwork_cca_results_CONFIGS_ITS_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_ITS), memb_obs=memb_spl_obs_ITS_D1, var1=cca_data_ITS_D1$FruitType, var2=cca_data_ITS_D1$SampleType, configs = LBM.config)
 
-write.xlsx(wholenetwork_cca_results_CONFIGS_ITS_D1, file=here::here("plots", "5_SBM&co", "Dataset_1", "CCA_CONFIGS_ITS_D1.xlsx"), rowNames = TRUE)
+write.xlsx(wholenetwork_cca_results_CONFIGS_ITS_D1, file=here::here("data", "derived_data","6_NMI_CCA", "Dataset_1", "CCA_CONFIGS_ITS_D1.xlsx"), rowNames = TRUE)
 ```
 
 ## D2
@@ -386,12 +389,12 @@ varp_16S_D2$part
 #CCA with line randomization
 wholenetwork_cca_results_NULL_16S_D2 <- analysis.function.alt2(incid=as.data.frame(FB_D2_16S), memb_obs=memb_spl_obs_16S_D2, var1=cca_data_16S_D2$FruitType, var2=cca_data_16S_D2$FruitSite, configs = NULL)
 
-write.xlsx(wholenetwork_cca_results_NULL_16S_D2, file=here::here("plots", "5_SBM&co", "Dataset_2", "CCA_NULL_16S_D2.xlsx"), rowNames = TRUE)
+write.xlsx(wholenetwork_cca_results_NULL_16S_D2, file=here::here("data", "derived_data","6_NMI_CCA", "Dataset_2", "CCA_NULL_16S_D2.xlsx"), rowNames = TRUE)
 
 #CCA with full randomization
 wholenetwork_cca_results_CONFIGS_16S_D2 <- analysis.function.alt2(incid=as.data.frame(FB_D2_16S), memb_obs=memb_spl_obs_16S_D2, var1=cca_data_16S_D2$FruitType, var2=cca_data_16S_D2$FruitSite, configs = LBM.config)
 
-write.xlsx(wholenetwork_cca_results_CONFIGS_16S_D2, file=here::here("plots", "5_SBM&co", "Dataset_2", "CCA_CONFIGS_16S_D2.xlsx"), rowNames = TRUE)
+write.xlsx(wholenetwork_cca_results_CONFIGS_16S_D2, file=here::here("data", "derived_data","6_NMI_CCA", "Dataset_2", "CCA_CONFIGS_16S_D2.xlsx"), rowNames = TRUE)
 ```
 
 ### ITS
@@ -437,10 +440,10 @@ varp_ITS_D2$part
 #CCA with line randomization
 wholenetwork_cca_results_NULL_ITS_D2 <- analysis.function.alt2(incid=as.data.frame(FB_D2_ITS), memb_obs=memb_spl_obs_ITS_D2, var1=cca_data_ITS_D2$FruitType, var2=cca_data_ITS_D2$FruitSite, configs = NULL)
 
-write.xlsx(wholenetwork_cca_results_NULL_ITS_D2, file=here::here("plots", "5_SBM&co", "Dataset_2", "CCA_NULL_ITS_D2.xlsx"), rowNames = TRUE)
+write.xlsx(wholenetwork_cca_results_NULL_ITS_D2, file=here::here("data", "derived_data","6_NMI_CCA", "Dataset_2", "CCA_NULL_ITS_D2.xlsx"), rowNames = TRUE)
 
 #CCA with full randomization
 wholenetwork_cca_results_CONFIGS_ITS_D2 <- analysis.function.alt2(incid=as.data.frame(FB_D2_ITS), memb_obs=memb_spl_obs_ITS_D2, var1=cca_data_ITS_D2$FruitType, var2=cca_data_ITS_D2$FruitSite, configs = LBM.config)
 
-write.xlsx(wholenetwork_cca_results_CONFIGS_ITS_D2, file=here::here("plots", "5_SBM&co", "Dataset_2", "CCA_CONFIGS_ITS_D2.xlsx"), rowNames = TRUE)
+write.xlsx(wholenetwork_cca_results_CONFIGS_ITS_D2, file=here::here("data", "derived_data","6_NMI_CCA", "Dataset_2", "CCA_CONFIGS_ITS_D2.xlsx"), rowNames = TRUE)
 ```
