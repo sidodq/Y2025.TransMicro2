@@ -1,4 +1,4 @@
-"Marker","Factor","NMI","p_value","Npermutation"
-"ITS","FruitType",0.341270665876539,0.188,1000
-"ITS","SampleType",0.23556555321982,0.176,1000
-"ITS","FruitSite",0.474490351677458,0.165,1000
+Marker;Factor;NMI;p_value;Npermutation
+ITS;FruitType;0.341;0.203;1000
+ITS;SampleType;0.236;0.188;1000
+ITS;FruitSite;0.474;0.167;1000

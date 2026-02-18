@@ -309,6 +309,6 @@ barPlot_fruits_combined <-
   (plot_ITS_Family_SampleTypeFruitTypeSiteVariety + labs(tag = "B. Fungi")) +
   plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
 
-title_plot <- "Abundance_SampleType_FruitType_Site_Variety_combined_F70.png"
+title_plot <- "Abundance_SampleType_FruitType_Site_Variety_combined_F60.png"
  cowplot::save_plot(file =here::here("plots", "3_CommunityComposition", "Dataset_2", title_plot), barPlot_fruits_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)
 ```
