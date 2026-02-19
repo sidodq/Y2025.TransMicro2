@@ -30,6 +30,8 @@ library(patchwork)
 library(parallel)
 library(future)
 library(future.apply)
+library(readr)
+library(progressr)
 devtools::load_all()
 ```
 
@@ -134,7 +136,7 @@ write.csv(results_table_ITS, file = file.path(here::here(), "data", "derived_dat
 ## D2 
 ### 16S
 ```{r}
-NPERM=1000#set quite low, so that permutations do not take too long, only for proof of principle, set to 10000 for serious comparisons
+NPERM=1000 #set quite low, so that permutations do not take too long, only for proof of principle, set to 10000 for serious comparisons
 
 # Parallelized version
 plan(multisession, workers = parallel::detectCores() - 1)
@@ -165,7 +167,7 @@ nmi_obs_expe_16S_SampleType_2 <- compare(as.factor(memb_spl_obs_16S_D2), ST_vect
 nmi_obs_expe_16S_FruitSite_2 <- compare(as.factor(memb_spl_obs_16S_D2), FS_vect_D2_16S, method = "nmi")
 
 # Simulated clustering
-#simulated_clustering_expe_2_16S <- Simulate_Clustering_SBM(FB = FB_D2_16S, NPERM, name = "simulated_clustering_D2_16S.tsv")
+# simulated_clustering_expe_2_16S <- Simulate_Clustering_SBM(FB = FB_D2_16S, NPERM, name = "simulated_clustering_D2_16S.tsv")
 
 simulated_clustering_expe_2_16S <- read_tsv(file.path(here::here(), "data", "derived_data", "5_SBMclustering", "simulated_clustering_D2_16S.tsv"))
 
@@ -237,7 +239,7 @@ nmi_obs_expe_ITS_SampleType_2 <- compare(as.factor(memb_spl_obs_ITS_D2), ST_vect
 nmi_obs_expe_ITS_FruitSite_2 <- compare(as.factor(memb_spl_obs_ITS_D2), FS_vect_D2_ITS, method = "nmi")
 
 # Simulated clustering
-simulated_clustering_expe_2_ITS <- Simulate_Clustering_SBM(FB = FB_D2_ITS, NPERM, name = "simulated_clustering_D2_ITS.tsv")
+#simulated_clustering_expe_2_ITS <- Simulate_Clustering_SBM(FB = FB_D2_ITS, NPERM, name = "simulated_clustering_D2_ITS.tsv")
 
 simulated_clustering_expe_2_ITS <- read_tsv(file.path(here::here(), "data", "derived_data", "5_SBMclustering", "simulated_clustering_D2_ITS.tsv"))
 
@@ -288,14 +290,14 @@ write.csv(results_table_D2, file = file.path(here::here(), "data", "derived_data
 ```
 
 
-#4. CCA
+#2. CCA
 
 ## D1
 
 ### ITS
 
 ```{r}
-NPERM <- 10
+NPERM <- 100
 
 sim_list = list()
   
@@ -311,9 +313,32 @@ sim_list = list()
       FB_sim <- t(BF_sim)
       LBM_sim <-as.matrix(FB_sim) %>%
     sbm::estimateBipartiteSBM(model = 'bernoulli',
-                         estimOptions = list(plot = T))
+                         estimOptions = list(plot = F))
        memb_spl_sim <- LBM_sim$memberships$row ## Extract membership of the samples 
     })
+  
+  
+# parallelized version
+plan(multisession, workers = detectCores() - 1) # choose nb of cores
+
+# Fonction à paralléliser
+sim_one <- function(i) {
+  p()
+  BF_sim <- netBin.config[, , i]
+  FB_sim <- t(BF_sim)
+  LBM_sim <- sbm::estimateBipartiteSBM(as.matrix(FB_sim), model = 'bernoulli', estimOptions = list(plot = FALSE))
+  memb_spl_sim <- LBM_sim$memberships$row
+  return(memb_spl_sim)}
+
+# Lancer la simulation (à faire une seule fois avant la boucle)
+netBin.config <- simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
+
+# Paralléliser la boucle
+LBM.config <- with_progress({
+  p <- progressor(along = 1:NPERM)
+  future_sapply(1:NPERM, function(i) {
+    p()
+    sim_one(i)}) })
 ```
 
 ```{r}
@@ -348,25 +373,55 @@ write.xlsx(wholenetwork_cca_results_CONFIGS_ITS_D1, file=here::here("data", "der
 ### 16S
 
 ```{r}
-NPERM <- 10
+NPERM <- 1000
 
 sim_list = list()
   
 #for each rarefied matrix
   sim_mat <- BF_D2_16S
-  #produce NPERM simulated graphs
-  netBin.config <-
-    simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
+  # #produce NPERM simulated graphs
+  # netBin.config <-
+  #   simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
+  # 
+  # LBM.config <-
+  #   sapply(1:NPERM, function(i) {
+  #     BF_sim <- netBin.config[, , i]
+  #     FB_sim <- t(BF_sim)
+  #     LBM_sim <-as.matrix(FB_sim) %>%
+  #   sbm::estimateBipartiteSBM(model = 'bernoulli',
+  #                        estimOptions = list(plot = T))
+  #      memb_spl_sim <- LBM_sim$memberships$row ## Extract membership of the samples 
+  #   })
 
-  LBM.config <-
-    sapply(1:NPERM, function(i) {
-      BF_sim <- netBin.config[, , i]
-      FB_sim <- t(BF_sim)
-      LBM_sim <-as.matrix(FB_sim) %>%
-    sbm::estimateBipartiteSBM(model = 'bernoulli',
-                         estimOptions = list(plot = T))
-       memb_spl_sim <- LBM_sim$memberships$row ## Extract membership of the samples 
-    })
+
+# Activer le parallélisme
+plan(multisession, workers = detectCores() - 1)
+
+# Fonction à paralléliser (sans p())
+sim_one <- function(i) {
+  p()
+  BF_sim <- netBin.config[, , i]
+  FB_sim <- t(BF_sim)
+  LBM_sim <- sbm::estimateBipartiteSBM(
+    as.matrix(FB_sim),
+    model = 'poisson',
+    estimOptions = list(plot = FALSE, maxIter = 1000, nbBlocks = 4)
+  )
+  memb_spl_sim <- LBM_sim$memberships$row
+  return(memb_spl_sim)
+}
+
+# Lancer la simulation
+netBin.config <- simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
+
+# Paralléliser la boucle avec progression
+LBM.config <- with_progress({
+  p <- progressor(along = 1:NPERM)
+  future_sapply(1:NPERM, function(i) {
+    p()  # Ici, p() est appelé dans le processus principal
+    sim_one(i)
+  })
+})
 ```
 
 ```{r}
@@ -400,7 +455,7 @@ write.xlsx(wholenetwork_cca_results_CONFIGS_16S_D2, file=here::here("data", "der
 ### ITS
 
 ```{r}
-NPERM <- 10
+NPERM <- 100
 
 sim_list = list()
   

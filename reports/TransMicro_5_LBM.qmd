@@ -363,6 +363,7 @@ memb_otu_obs_ITS_D2 <- SBM_bernoulli_ITS_D2$memberships$col
 
 SBM_bernoulli_ITS_D2$storedModels %>% dplyr::arrange(ICL)
 
+
 #Plots
 SBM_ITS_D2_FruitType <- Order_Matrix_Plot5(SBMobject = SBM_bernoulli_ITS_D2, BF_mat = BF_D2_ITS, mtd = mtd_D2_ITS, variable_name = "FruitType", modality_string = c("BL", "CH", "ST"), color_string = c("purple4", "red4", "red2"), legend_name = "Fruit of Origin")
 
