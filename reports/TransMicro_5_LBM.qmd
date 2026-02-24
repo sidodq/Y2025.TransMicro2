@@ -77,6 +77,7 @@ colnames(BF_D1_16S) <- mtd_D1_16S$Sample[match(colnames(BF_D1_16S), mtd_D1_16S$S
 FB_D1_16S <- t(BF_D1_16S)
 ## Export
 write.csv(FB_D1_16S, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "FB_D1_16S.csv"), row.names = TRUE)
+write.csv(mtd_D1_16S, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "mtd_D1_16S.csv"), row.names = TRUE)
 ```
 
 
@@ -119,6 +120,7 @@ colnames(BF_D1_ITS) <- mtd_D1_ITS$Sample[match(colnames(BF_D1_ITS), mtd_D1_ITS$S
 FB_D1_ITS <- t(BF_D1_ITS)
 ## Export
 write.csv(FB_D1_ITS, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "FB_D1_ITS.csv"), row.names = TRUE)
+write.csv(mtd_D1_ITS, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "mtd_D1_ITS.csv"), row.names = TRUE)
 ```
 
 ## D2
@@ -158,6 +160,7 @@ colnames(BF_D2_16S) <- mtd_D2_16S$Sample[match(colnames(BF_D2_16S), mtd_D2_16S$S
 FB_D2_16S <- t(BF_D2_16S)
 ## Export
 write.csv(FB_D2_16S, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_2", "FB_D2_16S.csv"), row.names = TRUE)
+write.csv(mtd_D2_16S, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_2", "mtd_D2_16S.csv"), row.names = TRUE)
 ```
 
 
@@ -195,6 +198,7 @@ colnames(BF_D2_ITS) <- mtd_D2_ITS$Sample[match(colnames(BF_D2_ITS), mtd_D2_ITS$S
 FB_D2_ITS <- t(BF_D2_ITS)
 ##Export
 write.csv(FB_D2_ITS, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_2", "FB_D2_ITS.csv"), row.names = TRUE)
+write.csv(mtd_D2_ITS, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_2", "mtd_D2_ITS.csv"), row.names = TRUE)
 ```
 
 #2. LBM clustering
@@ -214,8 +218,7 @@ SBM_bernoulli_16S_D1 <-  as.matrix(FB_D1_16S) %>%
 memb_spl_obs_16S_D1 <- SBM_bernoulli_16S_D1$memberships$row
 memb_otu_obs_16S_D1 <- SBM_bernoulli_16S_D1$memberships$col
 
-save(memb_spl_obs_16S_D1, memb_otu_obs_16S_D1, file = "SBM_memberships_16S_D1.RData")
-
+save(memb_spl_obs_16S_D1, memb_otu_obs_16S_D1, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "membership_vectors_16S_D1.RData"))
 
 SBM_bernoulli_16S_D1$storedModels %>% dplyr::arrange(ICL)
  
@@ -253,6 +256,9 @@ SBM_bernoulli_ITS_D1 <-  as.matrix(FB_D1_ITS) %>%
 
 memb_spl_obs_ITS_D1 <- SBM_bernoulli_ITS_D1$memberships$row
 memb_otu_obs_ITS_D1 <- SBM_bernoulli_ITS_D1$memberships$col
+
+save(memb_spl_obs_ITS_D1, memb_otu_obs_ITS_D1, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "membership_vectors_ITS_D1.RData"))
+
 
 SBM_bernoulli_ITS_D1$storedModels %>% dplyr::arrange(ICL)
 
@@ -324,6 +330,8 @@ SBM_bernoulli_16S_D2 <-  as.matrix(FB_D2_16S) %>%
 memb_spl_obs_16S_D2 <- SBM_bernoulli_16S_D2$memberships$row
 memb_otu_obs_16S_D2 <- SBM_bernoulli_16S_D2$memberships$col
 
+save(memb_spl_obs_16S_D2, memb_otu_obs_16S_D2, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_2", "membership_vectors_16S_D2.RData"))
+
 SBM_bernoulli_16S_D2$storedModels %>% dplyr::arrange(ICL)
 
 #Plots
@@ -360,6 +368,8 @@ SBM_bernoulli_ITS_D2 <-  as.matrix(FB_D2_ITS) %>%
 
 memb_spl_obs_ITS_D2 <- SBM_bernoulli_ITS_D2$memberships$row
 memb_otu_obs_ITS_D2 <- SBM_bernoulli_ITS_D2$memberships$col
+
+save(memb_spl_obs_ITS_D2, memb_otu_obs_ITS_D2, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_2", "membership_vectors_ITS_D2.RData"))
 
 SBM_bernoulli_ITS_D2$storedModels %>% dplyr::arrange(ICL)
 
