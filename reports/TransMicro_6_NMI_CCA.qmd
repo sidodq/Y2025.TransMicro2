@@ -51,11 +51,14 @@ mtd_D1_16S <- read.csv(file = file.path(here::here(), "data", "derived_data","5_
 # Filter out Mothers_0days
 samples_to_remove <- which(mtd_D1_16S$SampleType == "Mothers_0days")
 
-memb_spl_obs_16S_D1_filtered <- memb_spl_obs_16S_D1[-samples_to_remove]
+memb_spl_obs_16S_D1_f <- memb_spl_obs_16S_D1[-samples_to_remove]
 
-FB_D1_16S_filtered <- as.matrix(FB_D1_16S[-samples_to_remove, ])
+FB_D1_16S_f <- as.matrix(FB_D1_16S[-samples_to_remove, ])
 
-nrow(FB_D1_16S_filtered) == length(memb_spl_obs_16S_D1_filtered) # check
+mtd_D1_16S_f <- as.matrix(mtd_D1_16S[-samples_to_remove, ])
+mtd_D1_16S_f <- as.data.frame(mtd_D1_16S_f, stringsAsFactors = FALSE)
+
+nrow(FB_D1_16S_f) == length(memb_spl_obs_16S_D1_f) # check
 ```
 
 
@@ -69,11 +72,14 @@ mtd_D1_ITS <- read.csv(file = file.path(here::here(), "data", "derived_data","5_
 # Filter out Mothers_0days
 samples_to_remove <- which(mtd_D1_ITS$SampleType == "Mothers_0days")
 
-memb_spl_obs_ITS_D1_filtered <- memb_spl_obs_ITS_D1[-samples_to_remove]
+memb_spl_obs_ITS_D1_f <- memb_spl_obs_ITS_D1[-samples_to_remove]
 
-FB_D1_ITS_filtered <- as.matrix(FB_D1_ITS[-samples_to_remove, ])
+FB_D1_ITS_f <- as.matrix(FB_D1_ITS[-samples_to_remove, ])
 
-nrow(FB_D1_ITS_filtered) == length(memb_spl_obs_ITS_D1_filtered) # check
+mtd_D1_ITS_f <- as.matrix(mtd_D1_ITS[-samples_to_remove, ])
+mtd_D1_ITS_f <- as.data.frame(mtd_D1_ITS_f, stringsAsFactors = FALSE)
+
+nrow(FB_D1_ITS_f) == length(memb_spl_obs_ITS_D1_f) # check
 ```
 
 ## D2
@@ -100,47 +106,35 @@ mtd_D2_ITS <- read.csv(file = file.path(here::here(), "data", "derived_data","5_
 ```{r}
 NPERM=1000 #000#set quite low, so that permutations do not take too long, only for proof of principle, set to 10000 for serious comparisons
 
-# # Import simulated clustering MPC
-# netBin.config<-simulate(nullmodel(FB_D1_16S,"curveball"),nsim=NPERM)
-# graph.bin.gut.config<-simulate(nullmodel(FB_D1_16S,"curveball"),nsim=NPERM)
-# 
-# graph.bin.bpk.config<-simulate(nullmodel(FB_D1_16S,"curveball"),nsim=NPERM)
-
 # Parallelized version
 plan(multisession, workers = parallel::detectCores() - 1)
 sim_fun <- function(i, FB) {
   simulate(nullmodel(FB, "curveball"), nsim = 1)}
 
-#Charge matrix
-FB_D1_ITS <- read.csv(file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "FB_D1_ITS.csv"),header=TRUE, sep=",", row.names = 1)
+netBin.config.ITS <- future_lapply(seq_len(NPERM), future.seed=TRUE, sim_fun, FB = FB_D1_ITS_f)
 
-load("SBM_memberships_16S_D1.RData")
-
-
-netBin.config.ITS <- future_lapply(seq_len(NPERM), future.seed=TRUE, sim_fun, FB = FB_D1_ITS)
-
-graph.bin.ITSe.config <- future_lapply(seq_len(NPERM), future.seed=TRUE, sim_fun,  FB = FB_D1_ITS)
+graph.bin.ITSe.config <- future_lapply(seq_len(NPERM), future.seed=TRUE, sim_fun,  FB = FB_D1_ITS_f)
 ```
 
 ```{r}
 # Factors
-FT_vect_D1_ITS <- as.factor(mtd_D1_ITS$FruitType[match(rownames(FB_D1_ITS), rownames(mtd_D1_ITS))])
+FT_vect_D1_ITS <- as.factor(mtd_D1_ITS_f$FruitType[match(rownames(FB_D1_ITS_f), rownames(mtd_D1_ITS_f))])
 
-ST_vect_D1_ITS <- as.factor(mtd_D1_ITS$SampleType[match(rownames(FB_D1_ITS), rownames(mtd_D1_ITS))])
+ST_vect_D1_ITS <- as.factor(mtd_D1_ITS_f$SampleType[match(rownames(FB_D1_ITS_f), rownames(mtd_D1_ITS_f))])
 
-FS_vect_D1_ITS <- as.factor(mtd_D1_ITS$FruitSite[match(rownames(FB_D1_ITS), rownames(mtd_D1_ITS))])
+FS_vect_D1_ITS <- as.factor(mtd_D1_ITS_f$FruitSite[match(rownames(FB_D1_ITS_f), rownames(mtd_D1_ITS_f))])
 
 # Observed (need to run LBM with dataset MotherLess)
-nmi_obs_expe_ITS_FruitType <- compare(as.factor(memb_spl_obs_ITS_D1), FT_vect_D1_ITS, method = "nmi")
+nmi_obs_expe_ITS_FruitType <- compare(as.factor(memb_spl_obs_ITS_D1_f), FT_vect_D1_ITS, method = "nmi")
 
-nmi_obs_expe_ITS_SampleType <- compare(as.factor(memb_spl_obs_ITS_D1), ST_vect_D1_ITS, method = "nmi")
+nmi_obs_expe_ITS_SampleType <- compare(as.factor(memb_spl_obs_ITS_D1_f), ST_vect_D1_ITS, method = "nmi")
 
-nmi_obs_expe_ITS_FruitSite <- compare(as.factor(memb_spl_obs_ITS_D1), FS_vect_D1_ITS, method = "nmi")
+nmi_obs_expe_ITS_FruitSite <- compare(as.factor(memb_spl_obs_ITS_D1_f), FS_vect_D1_ITS, method = "nmi")
 
 ## Simulated clustering
 plan(multisession, workers = parallel::detectCores() - 1)
 
-simulated_clustering_expe_ITS <- Simulate_Clustering_SBM(FB = FB_D1_ITS, NPERM, name = "simulated_clustering_D1_ITS.tsv")
+simulated_clustering_expe_ITS <- Simulate_Clustering_SBM(FB = FB_D1_ITS_f, NPERM, name = "simulated_clustering_D1_ITS_f.tsv")
 
 # Simulated NMI
 # Fruit Type
@@ -219,8 +213,7 @@ nmi_obs_expe_16S_SampleType_2 <- compare(as.factor(memb_spl_obs_16S_D2), ST_vect
 nmi_obs_expe_16S_FruitSite_2 <- compare(as.factor(memb_spl_obs_16S_D2), FS_vect_D2_16S, method = "nmi")
 
 # Simulated clustering
-# simulated_clustering_expe_2_16S <- Simulate_Clustering_SBM(FB = FB_D2_16S, NPERM, name = "simulated_clustering_D2_16S.tsv")
-
+#simulated_clustering_expe_2_16S <- Simulate_Clustering_SBM(FB = FB_D2_16S, NPERM, name = "simulated_clustering_D2_16S.tsv")
 simulated_clustering_expe_2_16S <- read_tsv(file.path(here::here(), "data", "derived_data", "5_SBMclustering", "simulated_clustering_D2_16S.tsv"))
 
 # Simulated NMI
@@ -288,8 +281,7 @@ nmi_obs_expe_ITS_SampleType_2 <- compare(as.factor(memb_spl_obs_ITS_D2), ST_vect
 nmi_obs_expe_ITS_FruitSite_2 <- compare(as.factor(memb_spl_obs_ITS_D2), FS_vect_D2_ITS, method = "nmi")
 
 # Simulated clustering
-#simulated_clustering_expe_2_ITS <- Simulate_Clustering_SBM(FB = FB_D2_ITS, NPERM, name = "simulated_clustering_D2_ITS.tsv")
-
+simulated_clustering_expe_2_ITS <- Simulate_Clustering_SBM(FB = FB_D2_ITS, NPERM, name = "simulated_clustering_D2_ITS.tsv")
 simulated_clustering_expe_2_ITS <- read_tsv(file.path(here::here(), "data", "derived_data", "5_SBMclustering", "simulated_clustering_D2_ITS.tsv"))
 
 # Simulated NMI
@@ -351,20 +343,21 @@ NPERM <- 1000
 sim_list = list()
   
 #for each rarefied matrix
-  sim_mat <- BF_D1_ITS
+BF_D1_ITS_f <- t(FB_D1_ITS_f)
+  sim_mat <- BF_D1_ITS_f
   #produce NPERM simulated graphs
-  netBin.config <-
-    simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
-
-  LBM.config <-
-    sapply(1:NPERM, function(i) {
-      BF_sim <- netBin.config[, , i]
-      FB_sim <- t(BF_sim)
-      LBM_sim <-as.matrix(FB_sim) %>%
-    sbm::estimateBipartiteSBM(model = 'bernoulli',
-                         estimOptions = list(plot = F))
-       memb_spl_sim <- LBM_sim$memberships$row ## Extract membership of the samples 
-    })
+  # netBin.config <-
+  #   simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
+  # 
+  # LBM.config <-
+  #   sapply(1:NPERM, function(i) {
+  #     BF_sim <- netBin.config[, , i]
+  #     FB_sim <- t(BF_sim)
+  #     LBM_sim <-as.matrix(FB_sim) %>%
+  #   sbm::estimateBipartiteSBM(model = 'bernoulli',
+  #                        estimOptions = list(plot = F))
+  #      memb_spl_sim <- LBM_sim$memberships$row ## Extract membership of the samples 
+  #   })
   
   
 # parallelized version
@@ -383,38 +376,34 @@ sim_one <- function(i) {
 netBin.config <- simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
 
 # Paralléliser la boucle
-LBM.config <- with_progress({
-  p <- progressor(along = 1:NPERM)
-  future_sapply(1:NPERM, function(i) {
-    p()
-    sim_one(i)}) })
+LBM.config <- future_sapply(1:NPERM,sim_one)
 ```
 
 ```{r}
 # Factors
-FruitType_vect_ITS_D1 <- as.factor(mtd_D1_ITS$FruitType[match(rownames(FB_D1_ITS), mtd_D1_ITS$Sample)])
-SampleType_vect_ITS_D1 <- as.factor(mtd_D1_ITS$SampleType[match(rownames(FB_D1_ITS), mtd_D1_ITS$Sample)])
+FruitType_vect_ITS_D1_f <- as.factor(mtd_D1_ITS_f$FruitType[match(rownames(FB_D1_ITS_f), mtd_D1_ITS_f$Sample)])
+SampleType_vect_ITS_D1_f <- as.factor(mtd_D1_ITS_f$SampleType[match(rownames(FB_D1_ITS_f), mtd_D1_ITS_f$Sample)])
 
 ## Create a matrix with samples as rows and group asigned by the latent block model as column
-dummyMod_ITS_D1 <- lme4::dummy(as.factor(memb_spl_obs_ITS_D1), levelsToKeep = levels(as.factor(memb_spl_obs_ITS_D1)))
+dummyMod_ITS_D1 <- lme4::dummy(as.factor(memb_spl_obs_ITS_D1_f), levelsToKeep = levels(as.factor(memb_spl_obs_ITS_D1_f)))
 
 ## Creates dataframe with the two variables of interest
-cca_data_ITS_D1 <- data.frame("FruitType" = as.factor(FruitType_vect_ITS_D1),
-    "SampleType" = as.factor(SampleType_vect_ITS_D1))
+cca_data_ITS_D1 <- data.frame("FruitType" = as.factor(FruitType_vect_ITS_D1_f),
+    "SampleType" = as.factor(SampleType_vect_ITS_D1_f))
 
 ## Partition the variation of the community matrix
 varp_ITS_D1 <- vegan::varpart(dummyMod_ITS_D1, cca_data_ITS_D1$FruitType, cca_data_ITS_D1$SampleType, chisquare = T)
 varp_ITS_D1$part
 
 #CCA with line randomization
-wholenetwork_cca_results_NULL_ITS_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_ITS), memb_obs=memb_spl_obs_ITS_D1, var1=cca_data_ITS_D1$FruitType, var2=cca_data_ITS_D1$SampleType, configs = NULL)
+wholenetwork_cca_results_NULL_ITS_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_ITS_f), memb_obs=memb_spl_obs_ITS_D1_f, var1=cca_data_ITS_D1$FruitType, var2=cca_data_ITS_D1$SampleType, configs = NULL)
 
-write.xlsx(wholenetwork_cca_results_NULL_ITS_D1, file=here::here("data", "derived_data","6_NMI_CCA", "Dataset_1", "CCA_NULL_ITS_D1.xlsx"), rowNames = TRUE)
+write.xlsx(wholenetwork_cca_results_NULL_ITS_D1, file=here::here("data", "derived_data","6_NMI_CCA", "Dataset_1", "CCA_NULL_ITS_D1_f.xlsx"), rowNames = TRUE)
 
 #CCA with full randomization
-wholenetwork_cca_results_CONFIGS_ITS_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_ITS), memb_obs=memb_spl_obs_ITS_D1, var1=cca_data_ITS_D1$FruitType, var2=cca_data_ITS_D1$SampleType, configs = LBM.config)
+wholenetwork_cca_results_CONFIGS_ITS_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_ITS_f), memb_obs=memb_spl_obs_ITS_D1_f, var1=cca_data_ITS_D1$FruitType, var2=cca_data_ITS_D1$SampleType, configs = LBM.config)
 
-write.xlsx(wholenetwork_cca_results_CONFIGS_ITS_D1, file=here::here("data", "derived_data","6_NMI_CCA", "Dataset_1", "CCA_CONFIGS_ITS_D1.xlsx"), rowNames = TRUE)
+write.xlsx(wholenetwork_cca_results_CONFIGS_ITS_D1, file=here::here("data", "derived_data","6_NMI_CCA", "Dataset_1", "CCA_CONFIGS_ITS_D1_f.xlsx"), rowNames = TRUE)
 ```
 
 ## D2
