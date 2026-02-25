@@ -12,6 +12,7 @@ editor: visual
 editor_options: 
   chunk_output_type: console
 ---
+# NETWORK ANALYSIS : NMI & CCA
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -35,30 +36,28 @@ library(progressr)
 devtools::load_all()
 ```
 
-# NETWORK ANALYSIS : NMI & CCA
-
 # 1. Prepare data
 
 ## D1
 
 ```{r}
-### 16S
-# Charge data
-load(file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "membership_vectors_16S_D1.RData"))
-FB_D1_16S <- read.csv(file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "FB_D1_16S.csv"),header=TRUE, sep=",", row.names = 1)
-mtd_D1_16S <- read.csv(file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "mtd_D1_16S.csv"),header=TRUE, sep=",", row.names = 1)
- 
-# Filter out Mothers_0days
-samples_to_remove <- which(mtd_D1_16S$SampleType == "Mothers_0days")
-
-memb_spl_obs_16S_D1_f <- memb_spl_obs_16S_D1[-samples_to_remove]
-
-FB_D1_16S_f <- as.matrix(FB_D1_16S[-samples_to_remove, ])
-
-mtd_D1_16S_f <- as.matrix(mtd_D1_16S[-samples_to_remove, ])
-mtd_D1_16S_f <- as.data.frame(mtd_D1_16S_f, stringsAsFactors = FALSE)
-
-nrow(FB_D1_16S_f) == length(memb_spl_obs_16S_D1_f) # check
+# ### 16S
+# # Charge data
+# load(file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "membership_vectors_16S_D1.RData"))
+# FB_D1_16S <- read.csv(file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "FB_D1_16S.csv"),header=TRUE, sep=",", row.names = 1)
+# mtd_D1_16S <- read.csv(file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "mtd_D1_16S.csv"),header=TRUE, sep=",", row.names = 1)
+#  
+# # Filter out Mothers_0days
+# samples_to_remove <- which(mtd_D1_16S$SampleType == "Mothers_0days")
+# 
+# memb_spl_obs_16S_D1_f <- memb_spl_obs_16S_D1[-samples_to_remove]
+# 
+# FB_D1_16S_f <- as.matrix(FB_D1_16S[-samples_to_remove, ])
+# 
+# mtd_D1_16S_f <- as.matrix(mtd_D1_16S[-samples_to_remove, ])
+# mtd_D1_16S_f <- as.data.frame(mtd_D1_16S_f, stringsAsFactors = FALSE)
+# 
+# nrow(FB_D1_16S_f) == length(memb_spl_obs_16S_D1_f) # check
 ```
 
 
@@ -87,14 +86,15 @@ nrow(FB_D1_ITS_f) == length(memb_spl_obs_ITS_D1_f) # check
 ```{r}
 ### 16S
 
-#Charge matrix & mtd
+#Charge matrix & mtd &memberships
 FB_D2_16S <- read.csv(file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_2", "FB_D2_16S.csv"),header=TRUE, sep=",", row.names = 1)
 mtd_D2_16S <- read.csv(file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_2", "mtd_D2_16S.csv"),header=TRUE, sep=",", row.names = 1)
+load(file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_2", "membership_vectors_16S_D2.RData"))
 
 ### ITS
-#Charge matrix & mtd
 FB_D2_ITS <- read.csv(file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_2", "FB_D2_ITS.csv"),header=TRUE, sep=",", row.names = 1)
 mtd_D2_ITS <- read.csv(file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_2", "mtd_D2_ITS.csv"),header=TRUE, sep=",", row.names = 1)
+load(file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_2", "membership_vectors_ITS_D2.RData"))
 ```
 
 
@@ -281,7 +281,7 @@ nmi_obs_expe_ITS_SampleType_2 <- compare(as.factor(memb_spl_obs_ITS_D2), ST_vect
 nmi_obs_expe_ITS_FruitSite_2 <- compare(as.factor(memb_spl_obs_ITS_D2), FS_vect_D2_ITS, method = "nmi")
 
 # Simulated clustering
-simulated_clustering_expe_2_ITS <- Simulate_Clustering_SBM(FB = FB_D2_ITS, NPERM, name = "simulated_clustering_D2_ITS.tsv")
+#simulated_clustering_expe_2_ITS <- Simulate_Clustering_SBM(FB = FB_D2_ITS, NPERM, name = "simulated_clustering_D2_ITS.tsv")
 simulated_clustering_expe_2_ITS <- read_tsv(file.path(here::here(), "data", "derived_data", "5_SBMclustering", "simulated_clustering_D2_ITS.tsv"))
 
 # Simulated NMI
@@ -365,7 +365,6 @@ plan(multisession, workers = detectCores() - 1) # choose nb of cores
 
 # Fonction à paralléliser
 sim_one <- function(i) {
-  p()
   BF_sim <- netBin.config[, , i]
   FB_sim <- t(BF_sim)
   LBM_sim <- sbm::estimateBipartiteSBM(as.matrix(FB_sim), model = 'bernoulli', estimOptions = list(plot = FALSE))
@@ -411,55 +410,29 @@ write.xlsx(wholenetwork_cca_results_CONFIGS_ITS_D1, file=here::here("data", "der
 ### 16S
 
 ```{r}
-NPERM <- 1000
+NPERM <- 5000
 
 sim_list = list()
-  
-#for each rarefied matrix
-  sim_mat <- BF_D2_16S
-  # #produce NPERM simulated graphs
-  # netBin.config <-
-  #   simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
-  # 
-  # LBM.config <-
-  #   sapply(1:NPERM, function(i) {
-  #     BF_sim <- netBin.config[, , i]
-  #     FB_sim <- t(BF_sim)
-  #     LBM_sim <-as.matrix(FB_sim) %>%
-  #   sbm::estimateBipartiteSBM(model = 'bernoulli',
-  #                        estimOptions = list(plot = T))
-  #      memb_spl_sim <- LBM_sim$memberships$row ## Extract membership of the samples 
-  #   })
 
+sim_mat <- BF_D2_16S
 
-# Activer le parallélisme
-plan(multisession, workers = detectCores() - 1)
+###
+# parallelized version
+plan(multisession, workers = detectCores() - 1) # choose nb of cores
 
-# Fonction à paralléliser (sans p())
+# Fonction à paralléliser
 sim_one <- function(i) {
-  p()
   BF_sim <- netBin.config[, , i]
   FB_sim <- t(BF_sim)
-  LBM_sim <- sbm::estimateBipartiteSBM(
-    as.matrix(FB_sim),
-    model = 'poisson',
-    estimOptions = list(plot = FALSE, maxIter = 1000, nbBlocks = 4)
-  )
+  LBM_sim <- sbm::estimateBipartiteSBM(as.matrix(FB_sim), model = 'bernoulli', estimOptions = list(plot = FALSE))
   memb_spl_sim <- LBM_sim$memberships$row
-  return(memb_spl_sim)
-}
+  return(memb_spl_sim)}
 
-# Lancer la simulation
-netBin.config <- simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
+# Lancer la simulation (à faire une seule fois avant la boucle)
+netBin.config.D216S <- simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
 
-# Paralléliser la boucle avec progression
-LBM.config <- with_progress({
-  p <- progressor(along = 1:NPERM)
-  future_sapply(1:NPERM, function(i) {
-    p()  # Ici, p() est appelé dans le processus principal
-    sim_one(i)
-  })
-})
+# Paralléliser la boucle
+LBM.config.D216S <- future_sapply(1:NPERM,sim_one)
 ```
 
 ```{r}
