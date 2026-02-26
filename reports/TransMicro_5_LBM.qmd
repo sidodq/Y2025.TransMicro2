@@ -80,6 +80,8 @@ FB_D1_16S <- t(BF_D1_16S)
 ## Export
 write.csv(FB_D1_16S, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "FB_D1_16S.csv"), row.names = TRUE)
 write.csv(mtd_D1_16S, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "mtd_D1_16S.csv"), row.names = TRUE)
+
+Save_ps_as_xls(ps_16S_rare_expe_D1, folder_path=file.path(here::here(), "data", "derived_data", "5_SBMclustering", "Dataset_1")) 
 ```
 
 
@@ -124,6 +126,7 @@ FB_D1_ITS <- t(BF_D1_ITS)
 ## Export
 write.csv(FB_D1_ITS, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "FB_D1_ITS.csv"), row.names = TRUE)
 write.csv(mtd_D1_ITS, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "mtd_D1_ITS.csv"), row.names = TRUE)
+Save_ps_as_xls(ps_ITS_rare_expe_D1, folder_path=file.path(here::here(), "data", "derived_data", "5_SBMclustering", "Dataset_1"))
 ```
 
 ## D2
@@ -165,6 +168,7 @@ FB_D2_16S <- t(BF_D2_16S)
 ## Export
 write.csv(FB_D2_16S, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_2", "FB_D2_16S.csv"), row.names = TRUE)
 write.csv(mtd_D2_16S, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_2", "mtd_D2_16S.csv"), row.names = TRUE)
+Save_ps_as_xls(ps_16S_rare_D2, folder_path=file.path(here::here(), "data", "derived_data", "5_SBMclustering", "Dataset_2"))
 ```
 
 
@@ -205,6 +209,7 @@ FB_D2_ITS <- t(BF_D2_ITS)
 ##Export
 write.csv(FB_D2_ITS, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_2", "FB_D2_ITS.csv"), row.names = TRUE)
 write.csv(mtd_D2_ITS, file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_2", "mtd_D2_ITS.csv"), row.names = TRUE)
+Save_ps_as_xls(ps_ITS_rare_D2, folder_path=file.path(here::here(), "data", "derived_data", "5_SBMclustering", "Dataset_2"))
 ```
 
 #2. LBM clustering
