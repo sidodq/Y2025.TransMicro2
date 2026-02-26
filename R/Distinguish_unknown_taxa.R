@@ -9,7 +9,7 @@
 #'
 #'
 #' @export
-fix_unknown_taxa <- function(phyloseq_object, ranks, outfile) {
+fix_unknown_taxa <- function(phyloseq_object, ranks) {
   tax <- as.data.frame(tax_table(phyloseq_object))
   otu_names <- rownames(tax)
 
@@ -19,8 +19,29 @@ fix_unknown_taxa <- function(phyloseq_object, ranks, outfile) {
 
   tax_table(phyloseq_object) <- as.matrix(tax)
 
-  write.table(tax_table(phyloseq_object), file = outfile, sep = "\t", row.names = FALSE, col.names = TRUE, quote = FALSE)
+  return(phyloseq_object)
+}
 
+
+
+fix_all_taxa <- function(phyloseq_object, ranks) {
+  # Extract the taxonomy table as a data frame
+  tax <- as.data.frame(tax_table(phyloseq_object))
+  otu_names <- rownames(tax)
+
+  # For each specified rank, append the OTU ID to the existing name
+  for (rank in ranks) {
+    tax[[rank]] <- ifelse(
+      !is.na(tax[[rank]]),
+      paste0(tax[[rank]], "_", sub("Cluster_|ASV_|OTU_", "", otu_names)),
+      as.character(tax[[rank]])
+    )
+  }
+
+  # Update the tax_table in the phyloseq object
+  tax_table(phyloseq_object) <- as.matrix(tax)
+
+  # Return the modified phyloseq object
   return(phyloseq_object)
 }
 
