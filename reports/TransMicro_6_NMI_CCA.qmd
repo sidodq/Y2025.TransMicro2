@@ -397,7 +397,7 @@ varp_ITS_D1$part
 #CCA with line randomization
 wholenetwork_cca_results_NULL_ITS_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_ITS_f), memb_obs=memb_spl_obs_ITS_D1_f, var1=cca_data_ITS_D1$FruitType, var2=cca_data_ITS_D1$SampleType, configs = NULL)
 
-write.xlsx(wholenetwork_cca_results_NULL_ITS_D1, file=here::here("data", "derived_data","6_NMI_CCA", "Dataset_1", "CCA_NULL_ITS_D1_f.xlsx"), rowNames = TRUE)
+write.xlsx(wholenetwork_cca_results_NULL_ITS_D1, file=here::here("data", "derived_data","6_NMI_CCA", "Dataset_1",  "CCA_NULL_ITS_D1_f.xlsx"), rowNames = TRUE)
 
 #CCA with full randomization
 wholenetwork_cca_results_CONFIGS_ITS_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_ITS_f), memb_obs=memb_spl_obs_ITS_D1_f, var1=cca_data_ITS_D1$FruitType, var2=cca_data_ITS_D1$SampleType, configs = LBM.config)
