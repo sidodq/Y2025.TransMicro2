@@ -193,7 +193,7 @@ Chao1_ST_FT_ITS$data$SampleType <- factor(Chao1_ST_FT_ITS$data$SampleType, level
 
 ## Figure 2 : combine + no InvSimp + color by Fruit
 F3_2_16S <- (ObsRich_ST_FT_16S + Chao1_ST_FT_16S + Sha_ST_FT_16S) +
-  plot_layout(ncol = 3, guides = "collect") + theme(axis.text.x = element_blank(), axis.title.x = element_blank(), axis.text.y = element_blank()) & theme(legend.position = "none")
+  plot_layout(ncol = 3, guides = "collect", axes = "collect_x", axis_titles = "collect_x") & theme(legend.position = "none")
 
 F3_2_ITS <- (ObsRich_ST_FT_ITS + Chao1_ST_FT_ITS + Sha_ST_FT_ITS) +
   plot_layout(ncol = 3, guides = "collect", axes = "collect_x", axis_titles = "collect_x") & theme(legend.position = "bottom")
@@ -274,8 +274,8 @@ Chao1_ST_FT_ITS$data$SampleType <- factor(Chao1_ST_FT_ITS$data$SampleType, level
 
 
 ## Figure 2 : combine + no InvSimp + color by Fruit
-F3_2_16S <- (ObsRich_ST_FT_16S + Chao1_ST_FT_16S + Sha_ST_FT_16S) +
-  plot_layout(ncol = 3, guides = "collect") & theme(axis.text.x = element_blank(), axis.title.x = element_blank(), axis.text.y = element_blank()) & theme(legend.position = "none")
+F3_2_16S <- (ObsRich_ST_FT_16S + Chao1_ST_FT_16S + Sha_ST_FT_16S) + 
+  plot_layout(ncol = 3, guides = "collect", axes = "collect_x", axis_titles = "collect_x") & theme(legend.position = "none")
 
 F3_2_ITS <- (ObsRich_ST_FT_ITS + Chao1_ST_FT_ITS + Sha_ST_FT_ITS) +
   plot_layout(ncol = 3, guides = "collect", axes = "collect_x", axis_titles = "collect_x") & theme(legend.position = "bottom")
