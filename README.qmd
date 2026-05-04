@@ -1,0 +1,65 @@
+---
+output: 
+  html_document:
+    keep_md: true
+---
+
+<!-- README.md is generated from README.qmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+## General information
+
+#### Description
+
+This research work analyses the bacterial and fungal communities of D. suzukii individuals over life stages and across host fruit types. The microbial data come from an experiment conducted on D. suzukii laboratory populations infesting fruits from the fields (blackberry, cherry and strawberry) and sampled over life stages. This work have been submitted : "Core Bacterial and Host Fruit-Specific Yeast Microbiota in a Polyphagous Fly Pest"
+Article DOI: 10.64898/2026.04.24.720762 [here](https://doi.org/10.64898/2026.04.24.720762)
+
+#### Author information and main investigator
+Corresponding Investigator and first author:
+		Name: Sido Dunis
+    Institution: CBGP, INRAE, France
+    Email: sido.dunis@protonmail.com
+    ORCID: 0009-0007-0114-2771
+
+Co-investigator and last author: 
+		Name: Nicolas Rode
+		Institution: CBGP, INRAE, France
+		Email: nicolas.rode@inrae.fr
+		ORCID: 0000-0002-1121-4202
+
+For the complete list of authors, see the manuscript. 
+
+#### Contents
+
+The [**R**](R/) directory contains the functions used in the analyses.
+
+The [**data**](data/) directory contains the data sets used in the analyses. 
+
+The [**man**](man/) directory contains the documentation for the functions.
+
+The [**plots**](plots/) directory contains the figures over the analyses. 
+  
+The [**reports**](reports/) directory contains the `.qmd` files used to build each part of the analyses.
+
+
+## How to run it ?
+
+This research work has been developed using the statistical programming language R. To work with the compendium, you will need
+installed on your computer the [R software](https://cloud.r-project.org/)
+itself and optionally [RStudio Desktop](https://rstudio.com/products/rstudio/download/).
+
+You can download the compendium by cloning this [repository](https://https://github.com/sidodq/Y2025.TransMicro2):
+  
+  - open the `.Rproj` file in RStudio
+
+  - open scripts `.qmd` in reports folder and run it to produce all the analyses and associated reports.
+  
+  - launch the [`README.html`](README.html) to be able to explore the contents on your web browser
+
