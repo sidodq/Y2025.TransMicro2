@@ -288,6 +288,21 @@ Save_ps_as_xls(ps_16S_cl_Dataset_1, file.path(here::here(), "data", "derived_dat
 Save_ps_as_xls(ps_ITS_cl_Dataset_1, file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1"))
 
 
+## Dataset 1bis : individuals Batch 1 + field individuals (control)
+
+# Filter samples by abundance (>0) and type (G1 suzu from lab & field) 
+ps_16S_cl_Dataset_1bis <- subset_samples(ps_16Sm_sq, SampleType %in% c("G1_Larvae_Fruits", "G1_Larvae_Nat_Inf_Fruits_5_6days", "G1_Pupae_Fruits", "G1_Pupae_Nat_Inf_Fruit_5_6days", "G1_Adults_Fruits","G1_Adults_Nat_Inf_Fruit_5_6days"))
+                      
+ps_16S_cl_Dataset_1bis <- prune_taxa(taxa_sums(ps_16S_cl_Dataset_1bis)>0, ps_16S_cl_Dataset_1bis) # remove zero-abundance taxa (absent in all samples)
+
+
+ps_ITS_cl_Dataset_1bis <- subset_samples(ps_ITSm_sq, SampleType %in% c("G1_Larvae_Fruits", "G1_Larvae_Nat_Inf_Fruits_5_6days", "G1_Pupae_Fruits", "G1_Pupae_Nat_Inf_Fruit_5_6days", "G1_Adults_Fruits","G1_Adults_Nat_Inf_Fruit_5_6days"))
+ps_ITS_cl_Dataset_1bis <- prune_taxa(taxa_sums(ps_ITS_cl_Dataset_1bis)>0, ps_ITS_cl_Dataset_1bis)
+
+# Export
+Save_ps_as_xls(ps_16S_cl_Dataset_1bis, file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1"))
+Save_ps_as_xls(ps_ITS_cl_Dataset_1bis, file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1"))
+
 
 ## Dataset 2 : fruits Batch 1 + fruits Batch 2 (supp. mat.)
 
@@ -328,6 +343,27 @@ sample_data(ps_ITS_filt_Dataset_1)$ID_pool <- sample_names(ps_ITS_filt_Dataset_1
 Save_ps_as_xls(ps_16S_filt_Dataset_1, file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1"))
 Save_ps_as_xls(ps_ITS_filt_Dataset_1, file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1"))
 
+
+# Dataset 1bis
+
+ps_16S_cl_Dataset_1bis <- Charge_xl_to_ps("ps_16S_cl_Dataset_1bis", file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1"))
+ps_ITS_cl_Dataset_1bis <- Charge_xl_to_ps("ps_ITS_cl_Dataset_1bis", file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1"))
+
+ps_16S_filt_Dataset_1bis <- filter_phyloseq_prevalence(ps_16S_cl_Dataset_1bis, prevalence = 0.6)
+ps_ITS_filt_Dataset_1bis <- filter_phyloseq_prevalence(ps_ITS_cl_Dataset_1bis, prevalence = 0.6)
+
+
+# Filter on ASVs prevalence per sample + samples with null abundance 
+sum_physeq_clean(ps_16S_cl_Dataset_1bis, ps_16S_filt_Dataset_1bis) # filtered : 2.67% of samples (2) + 90.1% of ASVs + 13.3 % of reads
+sum_physeq_clean(ps_ITS_cl_Dataset_1bis, ps_ITS_filt_Dataset_1bis) # filtered : 0% of samples + 72.6% of ASVs + 11.5 % of reads
+
+# Add the row names in 'ID_pool' column
+sample_data(ps_16S_filt_Dataset_1bis)$ID_pool <- sample_names(ps_16S_filt_Dataset_1bis)
+sample_data(ps_ITS_filt_Dataset_1bis)$ID_pool <- sample_names(ps_ITS_filt_Dataset_1bis)
+
+## Export
+Save_ps_as_xls(ps_16S_filt_Dataset_1bis, file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1"))
+Save_ps_as_xls(ps_ITS_filt_Dataset_1bis, file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1"))
 
 
 # Dataset 2
@@ -444,6 +480,28 @@ Save_ps_as_xls(ps_rare_ITS_D1, folder_path=file.path(here::here(), "data", "deri
 
 write.xlsx(phyloseq::psmelt(ps_rare_16S_D1), file = file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "melt_rare_16S_D1.xlsx")) 
 write.xlsx(phyloseq::psmelt(ps_rare_ITS_D1), file = file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "melt_rare_ITS_D1.xlsx")) 
+```
+
+```{r}
+#Dataset 1bis
+
+# Rarefy samples by discarding samples with fewer than 3.000 reads
+set.seed(1)                                         
+ps_rare_16S_D1bis <- rarefy_even_depth(ps_16S_filt_Dataset_1bis, sample.size = 3000) 
+
+set.seed(1)                                         
+ps_rare_ITS_D1bis <- rarefy_even_depth(ps_ITS_filt_Dataset_1bis, sample.size = 5000)
+
+# Infos on loss
+sum_physeq_clean(ps_16S_filt_Dataset_1bis, ps_rare_16S_D1bis) # filtered : 23.3% of samples (17) + 0% of ASVs + 58.15 % of reads
+sum_physeq_clean(ps_ITS_filt_Dataset_1, ps_rare_ITS_D1) # filtered : 6.86% of samples (12) + 0% of ASVs + 63.3 % of reads
+
+## Export
+Save_ps_as_xls(ps_rare_16S_D1bis, folder_path=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1")) 
+Save_ps_as_xls(ps_rare_ITS_D1bis, folder_path=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1")) 
+
+write.xlsx(phyloseq::psmelt(ps_rare_16S_D1bis), file = file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "melt_rare_16S_D1bis.xlsx")) 
+write.xlsx(phyloseq::psmelt(ps_rare_ITS_D1bis), file = file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "melt_rare_ITS_D1bis.xlsx")) 
 ```
 
 ```{r}
