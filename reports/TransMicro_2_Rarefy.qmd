@@ -487,7 +487,7 @@ write.xlsx(phyloseq::psmelt(ps_rare_ITS_D1), file = file.path(here::here(), "dat
 
 # Rarefy samples by discarding samples with fewer than 3.000 reads
 set.seed(1)                                         
-ps_rare_16S_D1bis <- rarefy_even_depth(ps_16S_filt_Dataset_1bis, sample.size = 3000) 
+ps_rare_16S_D1bis <- rarefy_even_depth(ps_16S_filt_Dataset_1bis, sample.size = 100) 
 
 set.seed(1)                                         
 ps_rare_ITS_D1bis <- rarefy_even_depth(ps_ITS_filt_Dataset_1bis, sample.size = 5000)

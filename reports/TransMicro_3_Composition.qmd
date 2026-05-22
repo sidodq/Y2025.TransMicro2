@@ -197,8 +197,10 @@ Save_ps_as_xls(ps_ITS_rare_expe_D1, folder_path=file.path(here::here(), "data", 
 ## D1bis (indiv lab + fied)
 
 ```{r}
-# 16S
-ps_rare_16S_D1bis <- Charge_xl_to_ps("ps_rare_16S_D1bis", folder_path = file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1"))
+# 16S (non rarefied data to observe all samples)
+# ps_rare_16S_D1bis <- Charge_xl_to_ps("ps_rare_16S_D1bis", folder_path = file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1"))
+
+ps_rare_16S_D1bis <- Charge_xl_to_ps("ps_16S_filt_Dataset_1bis", folder_path = file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1"))
 
 # Rename + reorder Sample Type
 sample_data(ps_rare_16S_D1bis)$SampleType <- factor(sample_data(ps_rare_16S_D1bis)$SampleType)
@@ -330,7 +332,7 @@ ps_rare_ITS_D1bis <- Charge_xl_to_ps("ps_rare_ITS_D1bis", folder_path=file.path(
 
 ## Bar plots : SampleType x FruitType x Site 
 # 16S (Family)
-plot_16S_CTindivField <- Make_composition_bar_plot_2(ps_rare_16S_D1bis, "Bacteria", "Family", 10, ~SampleType + FruitType+FruitSite, color_16S)
+plot_16S_CTindivField <- Make_composition_bar_plot_2(ps_rare_16S_D1bis, "Bacteria", "Family", 15, ~SampleType + FruitType+FruitSite, color_16S)
 
 plot_16S_CTindivField$data$SampleType <- factor(plot_16S_CTindivField$data$SampleType, levels = c("Larvae", "Larvae_field","Pupae", "Pupae_field","Daughters", "Daughters_field")) # reorder 
 
@@ -361,7 +363,7 @@ barPlot_combined <-
   (plot_ITS_CTindivField + labs(tag = "B. Fungi")) +
   plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
 
-title_plot <- "CTindivField_combined_F60.png"
+title_plot <- "CTindivField_combined_16Sfull_F60.png"
  cowplot::save_plot(file =here::here("plots", "3_CommunityComposition", "Dataset_1", title_plot), barPlot_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)
 ```
 
