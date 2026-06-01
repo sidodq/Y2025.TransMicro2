@@ -1,10 +1,10 @@
 #' @title Add the marker at the end of the sample ID to distinguish 16S replicates from ITS
 #'
 #' @description
-#'filter phyloseq object by suppressing ASVs with less than 70 % of prevalence per SampleType x Fruit
+#'filter phyloseq object by suppressing ASVs with less than 60 % of prevalence per SampleType x Fruit
 #'
 #' @param physeq phyloseq object
-#' @param prevalence = 0.7
+#' @param prevalence = 0.6
 #' @param group_cols = c("SampleType", "FruitType")
 #'
 #'

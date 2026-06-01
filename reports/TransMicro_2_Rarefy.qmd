@@ -349,7 +349,7 @@ Save_ps_as_xls(ps_ITS_filt_Dataset_1, file.path(here::here(), "data", "derived_d
 ps_16S_cl_Dataset_1bis <- Charge_xl_to_ps("ps_16S_cl_Dataset_1bis", file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1"))
 ps_ITS_cl_Dataset_1bis <- Charge_xl_to_ps("ps_ITS_cl_Dataset_1bis", file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1"))
 
-ps_16S_filt_Dataset_1bis <- filter_phyloseq_prevalence(ps_16S_cl_Dataset_1bis, prevalence = 0.6)
+ps_16S_filt_Dataset_1bis <- filter_phyloseq_prevalence(ps_16S_cl_Dataset_1bis, prevalence = 0.5)
 ps_ITS_filt_Dataset_1bis <- filter_phyloseq_prevalence(ps_ITS_cl_Dataset_1bis, prevalence = 0.6)
 
 
@@ -487,7 +487,7 @@ write.xlsx(phyloseq::psmelt(ps_rare_ITS_D1), file = file.path(here::here(), "dat
 
 # Rarefy samples by discarding samples with fewer than 3.000 reads
 set.seed(1)                                         
-ps_rare_16S_D1bis <- rarefy_even_depth(ps_16S_filt_Dataset_1bis, sample.size = 100) 
+ps_rare_16S_D1bis <- rarefy_even_depth(ps_16S_filt_Dataset_1bis, sample.size = 3000) 
 
 set.seed(1)                                         
 ps_rare_ITS_D1bis <- rarefy_even_depth(ps_ITS_filt_Dataset_1bis, sample.size = 5000)
