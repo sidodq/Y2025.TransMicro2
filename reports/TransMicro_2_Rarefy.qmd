@@ -166,16 +166,32 @@ saveRDS(ps_ITS_raw, file=file.path(here::here(), "data", "derived_data", "2_Rare
 Save_ps_as_xls(ps_16S_raw, folder_path=file.path(here::here(), "data", "derived_data", "2_RarefyData"))
 Save_ps_as_xls(ps_ITS_raw, folder_path=file.path(here::here(), "data", "derived_data", "2_RarefyData"))
 
-# # Plot tot. ASVs abundances per sample
-# df_16S <- data.frame(reads = taxa_sums(ps_16S_raw))
-# 
-# df_ITS <- data.frame(reads = taxa_sums(ps_ITS_raw))
-# 
-# ggplot(df_ITS, aes(x = reads)) +
-#   geom_histogram(bins = 50, fill = "white", color="black") +
-#   scale_x_log10() +
-#   theme_bw() +
-#   labs(x = "Tot. reads per ASV (log10)", y = "Count of ASVs")
+
+# Plot tot. ASVs abundances (reads) per sample before filtering
+df_16S_samples <- data.frame(reads = sample_sums(ps_16S_raw))
+
+plot1 <- ggplot(df_16S_samples, aes(x = reads)) +
+  geom_histogram(bins = 50, fill = "white", color = "black") +
+  theme_bw() +
+  labs(
+    x = "Total 16S reads per sample",
+    y = "Number of samples")
+
+title_plot <- "D1_16S_ReadsPerSample_beforeFiltering.png"
+
+cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1" , title_plot), plot1, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
+
+
+df_ITS_samples <- data.frame(reads2 = sample_sums(ps_ITS_raw))
+
+plot2 <- ggplot(df_ITS_samples, aes(x = reads2)) +
+  geom_histogram(bins = 50, fill = "white", color = "black") +
+  theme_bw() +
+  labs(x = "Total ITS reads per sample", y = "Number of samples")
+
+title_plot <- "D1_ITS_ReadsPerSample_beforeFiltering.png"
+
+cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1" , title_plot), plot2, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
 ```
 
 # 3. Remove conta.
@@ -230,10 +246,37 @@ sum_physeq_clean(ps_ITS_raw , ps_ITS_contaRm) # filtered : 0% of samples + 2.92%
 # Export
 Save_ps_as_xls(ps_16S_contaRm, folder_path=file.path(here::here(), "data", "derived_data", "2_RarefyData"))
 Save_ps_as_xls(ps_ITS_contaRm, folder_path=file.path(here::here(), "data", "derived_data", "2_RarefyData"))
+
+
+# Plot tot. ASVs abundances (reads) per sample after filtering
+df_16S_samples2 <- data.frame(reads3 = sample_sums(ps_16S_contaRm))
+
+plot3 <- ggplot(df_16S_samples2, aes(x = reads3)) +
+  geom_histogram(bins = 50, fill = "white", color = "black") +
+  theme_bw() +
+  labs(
+    x = "Total 16S reads per sample post-filtering",
+    y = "Number of samples")
+
+title_plot <- "D1_16S_ReadsPerSample_postFiltering.png"
+
+cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1" , title_plot), plot3, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
+
+
+df_ITS_samples2 <- data.frame(reads4 = sample_sums(ps_ITS_contaRm))
+
+plot4 <- ggplot(df_ITS_samples2, aes(x = reads4)) +
+  geom_histogram(bins = 50, fill = "white", color = "black") +
+  theme_bw() +
+  labs(x = "Total ITS reads per sample post-filtering", y = "Number of samples")
+
+title_plot <- "D1_ITS_ReadsPerSample_postFiltering.png"
+
+cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1" , title_plot), plot4, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
 ```
 
-
 # 4. Remove 0reads samples and absent ASVs
+
 ```{r}
 ps_16S_contaRm <- Charge_xl_to_ps("ps_16S_contaRm", folder_path=file.path(here::here(), "data", "derived_data", "2_RarefyData"))
 ps_ITS_contaRm <- Charge_xl_to_ps("ps_ITS_contaRm", folder_path=file.path(here::here(), "data", "derived_data", "2_RarefyData"))
@@ -354,7 +397,7 @@ ps_ITS_filt_Dataset_1bis <- filter_phyloseq_prevalence(ps_ITS_cl_Dataset_1bis, p
 
 
 # Filter on ASVs prevalence per sample + samples with null abundance 
-sum_physeq_clean(ps_16S_cl_Dataset_1bis, ps_16S_filt_Dataset_1bis) # filtered : 2.67% of samples (2) + 90.1% of ASVs + 13.3 % of reads
+sum_physeq_clean(ps_16S_cl_Dataset_1bis, ps_16S_filt_Dataset_1bis) # filtered : 1.33% of samples (1) + 89% of ASVs + 10.8 % of reads
 sum_physeq_clean(ps_ITS_cl_Dataset_1bis, ps_ITS_filt_Dataset_1bis) # filtered : 0% of samples + 72.6% of ASVs + 11.5 % of reads
 
 # Add the row names in 'ID_pool' column
@@ -387,6 +430,7 @@ Save_ps_as_xls(ps_ITS_filt_Dataset_2, file.path(here::here(), "data", "derived_d
 ```
 
 # 7. Rarefaction curves
+
 ```{r}
 ## Rarefaction curves
 
@@ -493,7 +537,7 @@ set.seed(1)
 ps_rare_ITS_D1bis <- rarefy_even_depth(ps_ITS_filt_Dataset_1bis, sample.size = 5000)
 
 # Infos on loss
-sum_physeq_clean(ps_16S_filt_Dataset_1bis, ps_rare_16S_D1bis) # filtered : 23.3% of samples (17) + 0% of ASVs + 58.15 % of reads
+sum_physeq_clean(ps_16S_filt_Dataset_1bis, ps_rare_16S_D1bis) # filtered : 18.9% of samples (14) + 0% of ASVs + 56.47 % of reads
 sum_physeq_clean(ps_ITS_filt_Dataset_1, ps_rare_ITS_D1) # filtered : 6.86% of samples (12) + 0% of ASVs + 63.3 % of reads
 
 ## Export
