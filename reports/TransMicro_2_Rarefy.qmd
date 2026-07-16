@@ -192,6 +192,13 @@ plot2 <- ggplot(df_ITS_samples, aes(x = reads2)) +
 title_plot <- "D1_ITS_ReadsPerSample_beforeFiltering.png"
 
 cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1" , title_plot), plot2, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
+
+# Combined plot
+ReadsPerSample_D1 <- ggpubr::ggarrange(plot1, plot2, labels = c("A. 16S Before filtering", "B. ITS Before filtering"), ncol = 2, nrow = 1, widths = c(1.4, 1.4), legend = "bottom", common.legend = TRUE,label.x = c(0.15, 0.15), label.y = c(0.99, 0.99),  font.label = list(size = 10, face = "bold"))
+
+title_plot <- "ReadsPerSample_D1.png"
+
+cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1", title_plot), ReadsPerSample_D1, base_height = 20/cm(1), base_width = 40/cm(1), dpi = 1200)
 ```
 
 # 3. Remove conta.
@@ -273,6 +280,21 @@ plot4 <- ggplot(df_ITS_samples2, aes(x = reads4)) +
 title_plot <- "D1_ITS_ReadsPerSample_postFiltering.png"
 
 cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1" , title_plot), plot4, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
+
+# Combined plot
+ReadsPerSample_postFiltering_D1 <- ggpubr::ggarrange(plot3, plot4, labels = c("A. 16S After filtering", "B. ITS After filtering"), ncol = 2, nrow = 1, widths = c(1.4, 1.4), legend = "bottom", common.legend = TRUE, label.x = c(0.15, 0.15), label.y = c(0.99, 0.99),  font.label = list(size = 10, face = "bold"))
+
+title_plot <- "ReadsPerSample_postFiltering_D1.png"
+
+cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1", title_plot), ReadsPerSample_postFiltering_D1, base_height = 20/cm(1), base_width = 40/cm(1), dpi = 1200)
+
+
+# Combined plot before and after filtering
+ReadsPerSample_beforepostFilt_D1 <- ggpubr::ggarrange(ReadsPerSample_D1, ReadsPerSample_postFiltering_D1, ncol = 1, nrow = 2)
+
+title_plot <- "ReadsPerSample_before&PostFiltering.png"
+
+cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1", title_plot), ReadsPerSample_beforepostFilt_D1, base_height = 40/cm(1), base_width = 40/cm(1), dpi = 1200)
 ```
 
 # 4. Remove 0reads samples and absent ASVs
