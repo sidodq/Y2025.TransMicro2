@@ -256,19 +256,40 @@ Save_ps_as_xls(ps_ITS_contaRm, folder_path=file.path(here::here(), "data", "deri
 
 
 # Plot tot. ASVs abundances (reads) per sample after filtering
-df_16S_samples2 <- data.frame(reads3 = sample_sums(ps_16S_contaRm))
-
 df_16S <- rbind(data.frame(reads = sample_sums(ps_16S_raw),  Filtering = "Before filtering"),
   data.frame(reads = sample_sums(ps_16S_contaRm), Filtering = "After filtering"))
 
 plot16S <- ggplot(df_16S, aes(x = reads, fill = Filtering)) +
   geom_histogram(bins = 50, position = "identity", alpha = 0.5, color = "black" ) +
-  scale_fill_manual(values = c("grey70", "steelblue")) +
+  scale_fill_manual(values = c("steelblue","grey70")) +
   theme_bw() +
   labs(x = "Total 16S reads per sample", y = "Number of samples")
 
+title_plot <- "D1_16S_ReadsPerSample_supperposed.png"
+
+cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1" , title_plot), plot16S, base_height = 20/cm(1), base_width = 30/cm(1), dpi = 1200)
 
 
+df_ITS <- rbind(data.frame(reads = sample_sums(ps_ITS_raw),  Filtering = "Before filtering"), data.frame(reads = sample_sums(ps_ITS_contaRm), Filtering = "After filtering"))
+
+plotITS <- ggplot(df_ITS, aes(x = reads, fill = Filtering)) +
+  geom_histogram(bins = 50, position = "identity", alpha = 0.5, color = "black" ) +
+  scale_fill_manual(values = c("steelblue","grey70")) +
+  theme_bw() +
+  labs(x = "Total ITS reads per sample", y = "Number of samples")
+
+title_plot <- "D1_ITS_ReadsPerSample_supperposed.png"
+
+cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1" , title_plot), plotITS, base_height = 20/cm(1), base_width = 30/cm(1), dpi = 1200)
+
+# Combined plot
+ReadsPerSample_D1 <- ggpubr::ggarrange(plot16S, plotITS, labels = c("A. 16S", "B. ITS"), ncol = 2, nrow = 1, widths = c(1.4, 1.4), legend = "bottom", common.legend = TRUE, label.x = c(0.15, 0.15), label.y = c(0.99, 0.99),  font.label = list(size = 10, face = "bold"))
+
+title_plot <- "ReadsPerSample_D1.png"
+
+cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1", title_plot), ReadsPerSample_D1, base_height = 20/cm(1), base_width = 60/cm(1), dpi = 1200)
+
+# df_16S_samples2 <- data.frame(reads3 = sample_sums(ps_16S_contaRm))
 # plot3 <- ggplot(df_16S_samples2, aes(x = reads3)) +
 #   geom_histogram(bins = 50, fill = "white", color = "black") +
 #   theme_bw() +
@@ -288,24 +309,24 @@ plot16S <- ggplot(df_16S, aes(x = reads, fill = Filtering)) +
 #   theme_bw() +
 #   labs(x = "Total ITS reads per sample post-filtering", y = "Number of samples")
 
-title_plot <- "D1_ITS_ReadsPerSample_postFiltering.png"
-
-cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1" , title_plot), plot4, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
-
-# Combined plot
-ReadsPerSample_postFiltering_D1 <- ggpubr::ggarrange(plot3, plot4, labels = c("A. 16S After filtering", "B. ITS After filtering"), ncol = 2, nrow = 1, widths = c(1.4, 1.4), legend = "bottom", common.legend = TRUE, label.x = c(0.15, 0.15), label.y = c(0.99, 0.99),  font.label = list(size = 10, face = "bold"))
-
-title_plot <- "ReadsPerSample_postFiltering_D1.png"
-
-cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1", title_plot), ReadsPerSample_postFiltering_D1, base_height = 20/cm(1), base_width = 40/cm(1), dpi = 1200)
-
-
-# Combined plot before and after filtering
-ReadsPerSample_beforepostFilt_D1 <- ggpubr::ggarrange(ReadsPerSample_D1, ReadsPerSample_postFiltering_D1, ncol = 1, nrow = 2)
-
-title_plot <- "ReadsPerSample_before&PostFiltering.png"
-
-cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1", title_plot), ReadsPerSample_beforepostFilt_D1, base_height = 40/cm(1), base_width = 40/cm(1), dpi = 1200)
+# title_plot <- "D1_ITS_ReadsPerSample_postFiltering.png"
+# 
+# cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1" , title_plot), plot4, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
+# 
+# # Combined plot
+# ReadsPerSample_postFiltering_D1 <- ggpubr::ggarrange(plot3, plot4, labels = c("A. 16S After filtering", "B. ITS After filtering"), ncol = 2, nrow = 1, widths = c(1.4, 1.4), legend = "bottom", common.legend = TRUE, label.x = c(0.15, 0.15), label.y = c(0.99, 0.99),  font.label = list(size = 10, face = "bold"))
+# 
+# title_plot <- "ReadsPerSample_postFiltering_D1.png"
+# 
+# cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1", title_plot), ReadsPerSample_postFiltering_D1, base_height = 20/cm(1), base_width = 40/cm(1), dpi = 1200)
+# 
+# 
+# # Combined plot before and after filtering
+# ReadsPerSample_beforepostFilt_D1 <- ggpubr::ggarrange(ReadsPerSample_D1, ReadsPerSample_postFiltering_D1, ncol = 1, nrow = 2)
+# 
+# title_plot <- "ReadsPerSample_before&PostFiltering.png"
+# 
+# cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1", title_plot), ReadsPerSample_beforepostFilt_D1, base_height = 40/cm(1), base_width = 40/cm(1), dpi = 1200)
 ```
 
 # 4. Remove 0reads samples and absent ASVs
@@ -420,6 +441,24 @@ Save_ps_as_xls(ps_16S_filt_Dataset_1, file.path(here::here(), "data", "derived_d
 Save_ps_as_xls(ps_ITS_filt_Dataset_1, file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1"))
 
 
+# Dataset 1, prev filtered at 20%
+
+ps_16S_filt20_Dataset_1 <- filter_phyloseq_prevalence(ps_16S_cl_Dataset_1, prevalence = 0.2)
+ps_ITS_filt20_Dataset_1 <- filter_phyloseq_prevalence(ps_ITS_cl_Dataset_1, prevalence = 0.2)
+
+# Filter on ASVs prevalence per sample + samples with null abundance 
+sum_physeq_clean(ps_16S_cl_Dataset_1, ps_16S_filt20_Dataset_1) # filtered : 3.38% of samples (5) + 93.1% of ASVs + 6.91 % of reads => 1.35% (2 samples), 70,9% (164 ASV), 0,45% of reads
+sum_physeq_clean(ps_ITS_cl_Dataset_1, ps_ITS_filt20_Dataset_1) # filtered : 0% of samples + 75.5% of ASVs + 7.22 % of reads => 0 samples, 53% ASV (252), 0,39% reads
+
+# Add the row names in 'ID_pool' column
+sample_data(ps_16S_filt20_Dataset_1)$ID_pool <- sample_names(ps_16S_filt20_Dataset_1)
+sample_data(ps_ITS_filt20_Dataset_1)$ID_pool <- sample_names(ps_ITS_filt20_Dataset_1)
+
+## Export
+Save_ps_as_xls(ps_16S_filt20_Dataset_1, file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1"))
+Save_ps_as_xls(ps_ITS_filt20_Dataset_1, file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1"))
+
+
 # Dataset 1bis
 
 ps_16S_cl_Dataset_1bis <- Charge_xl_to_ps("ps_16S_cl_Dataset_1bis", file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1"))
@@ -497,6 +536,40 @@ RarefactionCurves_D1 <- ggpubr::ggarrange(Rarefactioncurve_16S_D1, Rarefactioncu
 title_plot <- "RarefactionCurves_D1.png"
  cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1", title_plot), RarefactionCurves_D1, base_height = 30/cm(1), base_width = 60/cm(1), dpi = 1200)  
 ```
+
+```{r}
+## Rarefaction curves
+
+# Dataset 1 filtered at 20%
+ps_16S_filt20_Dataset_1 <- Charge_xl_to_ps("ps_16S_filt20_Dataset_1", file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1"))
+
+ps_ITS_filt20_Dataset_1 <- Charge_xl_to_ps("ps_ITS_filt20_Dataset_1", file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_1"))
+
+
+# Plots
+Rarefactioncurve_16S_D1_20 <- phyloseq.extended::ggrare(ps_16S_filt20_Dataset_1, step = 100, se = FALSE, color = "SampleType", label = "ID_pool") +
+  geom_vline(xintercept = 3000, linetype = "dashed") + scale_y_continuous(trans = "log10", name = "Species Richness (log10)") + xlim(0, 10000)  +  theme_bw()
+
+title_plot <- "16S_D1_20_Rarefactioncurve.png"
+
+cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1" , title_plot), Rarefactioncurve_16S_D1_20, base_height = 35/cm(1), base_width = 60/cm(1), dpi = 1200)
+
+
+Rarefactioncurve_ITS_D1_20 <- phyloseq.extended::ggrare(ps_ITS_filt20_Dataset_1, step = 100, se = FALSE, color = "SampleType", label = "ID_pool") +
+  geom_vline(xintercept = 5000, linetype = "dashed") + scale_y_continuous(trans = "log10", name = "Species Richness (log10)") +  xlim(0, 10000) +  theme_bw()
+
+title_plot <- "ITS_D1_20_Rarefactioncurve.png"
+
+cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1", title_plot), Rarefactioncurve_ITS_D1_20, base_height = 35/cm(1),base_width = 60/cm(1), dpi = 1200)
+
+    
+# Combined plot
+RarefactionCurves_D1_20 <- ggpubr::ggarrange(Rarefactioncurve_16S_D1_20, Rarefactioncurve_ITS_D1_20, labels = c("A. 16S", "B. ITS"), ncol = 2, nrow = 1, widths = c(1.4, 1.4), legend = "bottom", common.legend = TRUE)
+
+title_plot <- "RarefactionCurves_D1_20.png"
+ cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1", title_plot), RarefactionCurves_D1_20, base_height = 30/cm(1), base_width = 60/cm(1), dpi = 1200)  
+```
+
 
 ```{r}
 # Dataset 2
