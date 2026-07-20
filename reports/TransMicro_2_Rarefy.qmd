@@ -258,24 +258,35 @@ Save_ps_as_xls(ps_ITS_contaRm, folder_path=file.path(here::here(), "data", "deri
 # Plot tot. ASVs abundances (reads) per sample after filtering
 df_16S_samples2 <- data.frame(reads3 = sample_sums(ps_16S_contaRm))
 
-plot3 <- ggplot(df_16S_samples2, aes(x = reads3)) +
-  geom_histogram(bins = 50, fill = "white", color = "black") +
+df_16S <- rbind(data.frame(reads = sample_sums(ps_16S_raw),  Filtering = "Before filtering"),
+  data.frame(reads = sample_sums(ps_16S_contaRm), Filtering = "After filtering"))
+
+plot16S <- ggplot(df_16S, aes(x = reads, fill = Filtering)) +
+  geom_histogram(bins = 50, position = "identity", alpha = 0.5, color = "black" ) +
+  scale_fill_manual(values = c("grey70", "steelblue")) +
   theme_bw() +
-  labs(
-    x = "Total 16S reads per sample post-filtering",
-    y = "Number of samples")
-
-title_plot <- "D1_16S_ReadsPerSample_postFiltering.png"
-
-cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1" , title_plot), plot3, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
+  labs(x = "Total 16S reads per sample", y = "Number of samples")
 
 
-df_ITS_samples2 <- data.frame(reads4 = sample_sums(ps_ITS_contaRm))
 
-plot4 <- ggplot(df_ITS_samples2, aes(x = reads4)) +
-  geom_histogram(bins = 50, fill = "white", color = "black") +
-  theme_bw() +
-  labs(x = "Total ITS reads per sample post-filtering", y = "Number of samples")
+# plot3 <- ggplot(df_16S_samples2, aes(x = reads3)) +
+#   geom_histogram(bins = 50, fill = "white", color = "black") +
+#   theme_bw() +
+#   labs(
+#     x = "Total 16S reads per sample post-filtering",
+#     y = "Number of samples")
+# 
+# title_plot <- "D1_16S_ReadsPerSample_postFiltering.png"
+# 
+# cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_1" , title_plot), plot3, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
+# 
+# 
+# df_ITS_samples2 <- data.frame(reads4 = sample_sums(ps_ITS_contaRm))
+# 
+# plot4 <- ggplot(df_ITS_samples2, aes(x = reads4)) +
+#   geom_histogram(bins = 50, fill = "white", color = "black") +
+#   theme_bw() +
+#   labs(x = "Total ITS reads per sample post-filtering", y = "Number of samples")
 
 title_plot <- "D1_ITS_ReadsPerSample_postFiltering.png"
 
