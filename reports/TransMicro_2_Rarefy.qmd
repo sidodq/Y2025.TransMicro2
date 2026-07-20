@@ -633,6 +633,28 @@ write.xlsx(phyloseq::psmelt(ps_rare_ITS_D1), file = file.path(here::here(), "dat
 ```
 
 ```{r}
+#Dataset 1 filtered at 20
+
+# Rarefy samples by discarding samples with fewer than 3.000 reads
+set.seed(1)                                         
+ps_rare_16S_D1_20 <- rarefy_even_depth(ps_16S_filt20_Dataset_1, sample.size = 3000) 
+
+set.seed(1)                                         
+ps_rare_ITS_D1_20 <- rarefy_even_depth(ps_ITS_filt20_Dataset_1, sample.size = 5000)
+
+# Infos on loss
+sum_physeq_clean(ps_16S_filt_Dataset_1, ps_rare_16S_D1_20) # filtered : 22.9% of samples (32) + 7.14% of ASVs + 81.2 % of reads
+sum_physeq_clean(ps_ITS_filt_Dataset_1, ps_rare_ITS_D1_20) # filtered : 7.43% of samples (13) + 0% of ASVs + 62.4 % of reads
+
+## Export
+Save_ps_as_xls(ps_rare_16S_D1_20, folder_path=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1")) 
+Save_ps_as_xls(ps_rare_ITS_D1_20, folder_path=file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1")) 
+
+write.xlsx(phyloseq::psmelt(ps_rare_16S_D1), file = file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "melt_rare_16S_D1.xlsx")) 
+write.xlsx(phyloseq::psmelt(ps_rare_ITS_D1), file = file.path(here::here(), "data", "derived_data", "2_RarefyData", "Dataset_1", "melt_rare_ITS_D1.xlsx")) 
+```
+
+```{r}
 #Dataset 1bis
 
 # Rarefy samples by discarding samples with fewer than 3.000 reads
