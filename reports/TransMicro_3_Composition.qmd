@@ -384,7 +384,8 @@ tax_table(ps_16S_rare_expe_D1)[ "Cluster_16", "Family" ] <- "Erwiniaceae"
 # 16S (Family)
 plot_16S_Expe_SampleTypeFruitType <- Make_composition_bar_plot_2(ps_16S_rare_expe_D1, "Bacteria", "Family", 10, ~SampleType + FruitType, color_16S)
 
-plot_16S_Expe_SampleTypeFruitType$data$SampleType <- factor(plot_16S_Expe_SampleTypeFruitType$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "Daughters")) # reorder 
+plot_16S_Expe_SampleTypeFruitType$data$SampleType <- factor(plot_16S_Expe_SampleTypeFruitType$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "Daughters"),
+  labels = c("Fruits", "Fruits infested (5-6 days)", "Mothers", "Mothers (post-laying)", "Larvae", "Pupae", "G1 Adults"))# reorder + rename 
 
 plot_16S_Expe_SampleTypeFruitType$data <-
   plot_16S_Expe_SampleTypeFruitType$data %>%
@@ -401,26 +402,27 @@ tax_table(ps_ITS_rare_expe_D1)[ "Cluster_66", "Order" ] <- "Cladosporiales"
 tax_table(ps_ITS_rare_expe_D1)[ "Cluster_66", "Class" ] <- "Dothideomycetes"
 tax_table(ps_ITS_rare_expe_D1)[ "Cluster_66", "Phylum" ] <- "Ascomycota"
 
-plot_ITS_Expe_SampleTypeFruitTypeSite <- Make_composition_bar_plot_2(ps_ITS_rare_expe_D1, "Fungi", "Family", 15, ~SampleType + FruitType+FruitSite, color_ITS) 
+plot_ITS_Expe_SampleTypeFruitType <- Make_composition_bar_plot_2(ps_ITS_rare_expe_D1, "Fungi", "Family", 15, ~SampleType + FruitType, color_ITS) 
 
-plot_ITS_Expe_SampleTypeFruitTypeSite$data$SampleType <- factor(plot_ITS_Expe_SampleTypeFruitTypeSite$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "PupalCases","Daughters")) # reorder 
+plot_ITS_Expe_SampleTypeFruitType$data$SampleType <- factor(plot_ITS_Expe_SampleTypeFruitType$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "Daughters"),
+  labels = c("Fruits", "Fruits infested (5-6 days)", "Mothers", "Mothers (post-laying)", "Larvae", "Pupae", "G1 Adults")) # reorder 
 
-plot_ITS_Expe_SampleTypeFruitTypeSite$data <-
-  plot_ITS_Expe_SampleTypeFruitTypeSite$data %>%
+plot_ITS_Expe_SampleTypeFruitType$data <-
+  plot_ITS_Expe_SampleTypeFruitType$data %>%
   dplyr::group_by(Sample) %>%
   dplyr::mutate(Abundance = Abundance / sum(Abundance)) %>%
   dplyr::ungroup()
 
-ggsave(filename = "Y_Expe_SampleType_FruitType_Site_F60.jpg", plot = plot_ITS_Expe_SampleTypeFruitTypeSite, path = file.path(here::here(), "plots", "3_CommunityComposition", "Dataset_1"), width = 29.7, height = 21, units = "cm")
+ggsave(filename = "Y_Expe_SampleType_FruitType_F60.jpg", plot = plot_ITS_Expe_SampleTypeFruitType, path = file.path(here::here(), "plots", "3_CommunityComposition", "Dataset_1"), width = 29.7, height = 21, units = "cm")
 
 
 # Combined plot
 barPlot_combined <- 
-  (plot_16S_Expe_SampleTypeFruitTypeSite + labs(tag = "A. Bacteria")) /
-  (plot_ITS_Expe_SampleTypeFruitTypeSite + labs(tag = "B. Fungi")) +
+  (plot_16S_Expe_SampleTypeFruitType + labs(tag = "A. Bacteria")) /
+  (plot_ITS_Expe_SampleTypeFruitType + labs(tag = "B. Fungi")) +
   plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
 
-title_plot <- "Expe_SampleType_FruitType_Site_combined_F60.png"
+title_plot <- "Expe_SampleType_FruitType_combined_F60.png"
  cowplot::save_plot(file =here::here("plots", "3_CommunityComposition", "Dataset_1", title_plot), barPlot_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)
 ```
 
