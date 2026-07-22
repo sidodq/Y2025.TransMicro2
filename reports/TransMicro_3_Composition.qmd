@@ -385,7 +385,7 @@ tax_table(ps_16S_rare_expe_D1)[ "Cluster_16", "Family" ] <- "Erwiniaceae"
 plot_16S_Expe_SampleTypeFruitType <- Make_composition_bar_plot_2(ps_16S_rare_expe_D1, "Bacteria", "Family", 10, ~SampleType + FruitType, color_16S)
 
 plot_16S_Expe_SampleTypeFruitType$data$SampleType <- factor(plot_16S_Expe_SampleTypeFruitType$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "Daughters"),
-  labels = c("Fruits", "Fruits infested (5-6 days)", "Mothers", "Mothers (post-laying)", "Larvae", "Pupae", "G1 Adults"))# reorder + rename 
+  labels = c("Fruits", "Fruits infested (5-6 days)", "Mothers", "Mothers (post-laying)", "G1 Larvae", "G1 Pupae", "G1 Adults"))# reorder + rename 
 
 plot_16S_Expe_SampleTypeFruitType$data <-
   plot_16S_Expe_SampleTypeFruitType$data %>%
@@ -405,7 +405,7 @@ tax_table(ps_ITS_rare_expe_D1)[ "Cluster_66", "Phylum" ] <- "Ascomycota"
 plot_ITS_Expe_SampleTypeFruitType <- Make_composition_bar_plot_2(ps_ITS_rare_expe_D1, "Fungi", "Family", 15, ~SampleType + FruitType, color_ITS) 
 
 plot_ITS_Expe_SampleTypeFruitType$data$SampleType <- factor(plot_ITS_Expe_SampleTypeFruitType$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "Daughters"),
-  labels = c("Fruits", "Fruits infested (5-6 days)", "Mothers", "Mothers (post-laying)", "Larvae", "Pupae", "G1 Adults")) # reorder 
+  labels = c("Fruits", "Fruits infested (5-6 days)", "Mothers", "Mothers (post-laying)", "G1 Larvae", "G1 Pupae", "G1 Adults")) # reorder 
 
 plot_ITS_Expe_SampleTypeFruitType$data <-
   plot_ITS_Expe_SampleTypeFruitType$data %>%
