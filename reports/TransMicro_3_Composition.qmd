@@ -323,7 +323,24 @@ Save_ps_as_xls(ps_16S_rare_expe_D1_20, folder_path=file.path(here::here(), "data
 Save_ps_as_xls(ps_ITS_rare_expe_D1_20, folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1"))
 ```
 
-## D1bis (indiv lab + fied)
+## D2 (fruits batch 1 & 2)
+
+```{r}
+ps_rare_16S_D2 <- Charge_xl_to_ps("ps_rare_16S_D2", folder_path = file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2"))
+
+ps_rare_ITS_D2 <- Charge_xl_to_ps("ps_rare_ITS_D2", folder_path = file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2"))
+
+# Distinguish families & genus by numbering
+ps_rare_16S_Dataset_2 <- fix_unknown_taxa(phyloseq_object = ps_rare_16S_D2, ranks = c("Family", "Genus"))
+
+ps_rare_ITS_Dataset_2 <- fix_unknown_taxa(phyloseq_object = ps_rare_ITS_D2, ranks = c("Family", "Genus"))
+
+## Export
+Save_ps_as_xls(ps_rare_16S_Dataset_2, folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2")) 
+Save_ps_as_xls(ps_rare_ITS_Dataset_2, folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2")) 
+```
+
+## D3 (indiv lab + fied)
 
 ```{r}
 # 16S (non rarefied data to observe all samples)
@@ -379,22 +396,6 @@ Save_ps_as_xls(ps_rare_16S_D1bis, folder_path=file.path(here::here(), "data", "d
 Save_ps_as_xls(ps_rare_ITS_D1bis, folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1"))
 ```
 
-## D2 (fruits batch 1 & 2)
-
-```{r}
-ps_rare_16S_D2 <- Charge_xl_to_ps("ps_rare_16S_D2", folder_path = file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2"))
-
-ps_rare_ITS_D2 <- Charge_xl_to_ps("ps_rare_ITS_D2", folder_path = file.path(here::here(), "data", "derived_data", "2_RarefyData","Dataset_2"))
-
-# Distinguish families & genus by numbering
-ps_rare_16S_Dataset_2 <- fix_unknown_taxa(phyloseq_object = ps_rare_16S_D2, ranks = c("Family", "Genus"))
-
-ps_rare_ITS_Dataset_2 <- fix_unknown_taxa(phyloseq_object = ps_rare_ITS_D2, ranks = c("Family", "Genus"))
-
-## Export
-Save_ps_as_xls(ps_rare_16S_Dataset_2, folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2")) 
-Save_ps_as_xls(ps_rare_ITS_Dataset_2, folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_2")) 
-```
 
 #3. Bar plots (abundance)
 
@@ -541,52 +542,8 @@ barPlot_combinedGENUS <-
 
 title_plot <- "Expe_SampleType_FruitType_combined_F60GENUS.png"
  cowplot::save_plot(file =here::here("plots", "3_CommunityComposition", "Dataset_1", title_plot), barPlot_combinedGENUS, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)
-```
-
-## D1bis
-
-```{r}
-ps_rare_16S_D1bis <- Charge_xl_to_ps("ps_rare_16S_D1bis", folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1")) 
-ps_rare_ITS_D1bis <- Charge_xl_to_ps("ps_rare_ITS_D1bis", folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1")) 
-
-#filter out 2 samples
-ps_rare_16S_D1bis <- prune_samples(!(sample_names(ps_rare_16S_D1bis) %in% c("MS_086", "MS_096")), ps_rare_16S_D1bis)
-
-## Bar plots : SampleType x FruitType x Site 
-# 16S (Family)
-plot_16S_CTindivField <- Make_composition_bar_plot_2(ps_rare_16S_D1bis, "Bacteria", "Family", 15, ~SampleType + FruitType+FruitSite, color_16S)
-
-plot_16S_CTindivField$data$SampleType <- factor(plot_16S_CTindivField$data$SampleType, levels = c("Larvae", "Larvae_field","Pupae", "Pupae_field","Daughters", "Daughters_field")) # reorder 
-
-plot_16S_CTindivField$data <- plot_16S_CTindivField$data %>%
-  dplyr::group_by(Sample) %>%
-  dplyr::mutate(Abundance = Abundance / sum(Abundance)) %>%
-  dplyr::ungroup()
-
-ggsave(filename = "B_CTindivField_F60.jpg", plot = plot_16S_CTindivField, path = file.path(here::here(), "plots", "3_CommunityComposition", "Dataset_1"), width = 29.7, height = 21, units = "cm")
-
-
-# ITS (Family)
-plot_ITS_CTindivField <- Make_composition_bar_plot_2(ps_rare_ITS_D1bis, "Fungi", "Family", 15, ~SampleType + FruitType+FruitSite, color_ITS) 
-
-plot_ITS_CTindivField$data$SampleType <- factor(plot_ITS_CTindivField$data$SampleType, levels = c("Larvae", "Larvae_field","Pupae", "Pupae_field","Daughters", "Daughters_field"))
-
-plot_ITS_CTindivField$data <- plot_ITS_CTindivField$data %>%
-  dplyr::group_by(Sample) %>%
-  dplyr::mutate(Abundance = Abundance / sum(Abundance)) %>%
-  dplyr::ungroup()
-
-ggsave(filename = "Y_CTindivField_F60.jpg", plot = plot_ITS_CTindivField, path = file.path(here::here(), "plots", "3_CommunityComposition", "Dataset_1"), width = 29.7, height = 21, units = "cm")
-
-
-# Combined plot
-barPlot_combined <- 
-  (plot_16S_CTindivField + labs(tag = "A. Bacteria")) /
-  (plot_ITS_CTindivField + labs(tag = "B. Fungi")) +
-  plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
-
-title_plot <- "CTindivField_combined_F60.png"
- cowplot::save_plot(file =here::here("plots", "3_CommunityComposition", "Dataset_1", title_plot), barPlot_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)
+ 
+ggplotly(barPlot_combinedGENUS)
 ```
 
 ## D2
@@ -635,4 +592,51 @@ barPlot_fruits_combined <-
 
 title_plot <- "Abundance_SampleType_FruitType_Site_Variety_combined_F60.png"
  cowplot::save_plot(file =here::here("plots", "3_CommunityComposition", "Dataset_2", title_plot), barPlot_fruits_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)
+```
+
+
+## D3
+
+```{r}
+ps_rare_16S_D1bis <- Charge_xl_to_ps("ps_rare_16S_D1bis", folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1")) 
+ps_rare_ITS_D1bis <- Charge_xl_to_ps("ps_rare_ITS_D1bis", folder_path=file.path(here::here(), "data", "derived_data", "3_CommunityComposition", "Dataset_1")) 
+
+#filter out 2 samples
+ps_rare_16S_D1bis <- prune_samples(!(sample_names(ps_rare_16S_D1bis) %in% c("MS_086", "MS_096")), ps_rare_16S_D1bis)
+
+## Bar plots : SampleType x FruitType
+# 16S (Family)
+plot_16S_CTindivField <- Make_composition_bar_plot_2(ps_rare_16S_D1bis, "Bacteria", "Family", 15, ~SampleType + FruitType, color_16S)
+
+plot_16S_CTindivField$data$SampleType <- factor(plot_16S_CTindivField$data$SampleType, levels = c("Larvae", "Larvae_field","Pupae", "Pupae_field","Daughters", "Daughters_field"), labels = c("G1 Lab Larvae", "G1 Field Larvae", "G1 Lab Pupae","G1 Field Pupae", "G1 Lab Emerged Adults", "G1 FEA")) 
+
+plot_16S_CTindivField$data <- plot_16S_CTindivField$data %>%
+  dplyr::group_by(Sample) %>%
+  dplyr::mutate(Abundance = Abundance / sum(Abundance)) %>%
+  dplyr::ungroup()
+
+ggsave(filename = "B_CTindivField_F60.jpg", plot = plot_16S_CTindivField, path = file.path(here::here(), "plots", "3_CommunityComposition", "Dataset_1"), width = 29.7, height = 21, units = "cm")
+
+
+# ITS (Family)
+plot_ITS_CTindivField <- Make_composition_bar_plot_2(ps_rare_ITS_D1bis, "Fungi", "Family", 15, ~SampleType + FruitType, color_ITS) 
+
+plot_ITS_CTindivField$data$SampleType <- factor(plot_ITS_CTindivField$data$SampleType, levels = c("Larvae", "Larvae_field","Pupae", "Pupae_field","Daughters", "Daughters_field"), labels = c("G1 Lab Larvae", "G1 Field Larvae", "G1 Lab Pupae","G1 Field Pupae", "G1 Lab Emerged Adults", "G1 FEA"))
+
+plot_ITS_CTindivField$data <- plot_ITS_CTindivField$data %>%
+  dplyr::group_by(Sample) %>%
+  dplyr::mutate(Abundance = Abundance / sum(Abundance)) %>%
+  dplyr::ungroup()
+
+ggsave(filename = "Y_CTindivField_F60.jpg", plot = plot_ITS_CTindivField, path = file.path(here::here(), "plots", "3_CommunityComposition", "Dataset_1"), width = 29.7, height = 21, units = "cm")
+
+
+# Combined plot
+barPlot_combined <- 
+  (plot_16S_CTindivField + labs(tag = "A. Bacteria")) /
+  (plot_ITS_CTindivField + labs(tag = "B. Fungi")) +
+  plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
+
+title_plot <- "CTindivField_combined_F60.png"
+ cowplot::save_plot(file =here::here("plots", "3_CommunityComposition", "Dataset_1", title_plot), barPlot_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)
 ```
