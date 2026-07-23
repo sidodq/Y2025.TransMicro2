@@ -135,6 +135,80 @@ color_prev_B <- c(
    "Bacillaceae"  = "#bcbd22",
    "Pseudomonadaceae"  = "#ff9896", 
    "Sphingomonadaceae"="#c5b0d5")
+
+color_genus_16S <- c("Fructilactobacillus" = "#2ca02c", 
+"Gluconobacter" = "#1E90FF",     
+"Massilia"= "#98df8a",            
+"Levilactobacillus"  = "#32CD32", 
+"Unknown_16" = "grey80",        
+"Acetobacter" = "#17becf",      
+"Lysinibacillus"  = "#ba4e4e",   
+"Neokomagataea"   = "#e377c2",   
+"Tatumella" = "#aec7e8",           
+"Bacillus" = "#bcbd22",          
+"Unknown_87" = "grey70")
+
+ 
+
+color_genus_ITS <- c("Pichia" ="#FF69B4", 
+                     "Metschnikowia" = "#FFC0CB",
+                     "Dothiora" = "#008080",   
+                     "Wickerhamomyces" =  "#D2691E",
+                     "Vishniacozyma"  = "#008000",
+                     "Taphrina" = "#4682B4",
+                     "Cladosporium" = "#A0522D",
+                     "Stemphylium" = "#000080",
+                     "Rachicladosporium"="#B22222",
+                     "Cryptococcus" = "#FFD700",
+                     "Hanseniaspora" = "#F4A460", 
+                     "Penicillium" = "#40E0D0",
+                     "Lachnum" = "#800000",
+                     "Alternaria" = "#4B0082", 
+                     "Dioszegia" = "#00FFFF", 
+                     "Filobasidium" = "#6B8E23", 
+                     "Sporobolomyces"  =  "#FF6961",
+                     "Ramularia" = "#c206bf",  
+                     "Vuilleminia" = "#806000",
+                     "Podosphaera" = "#FFFF00",  
+                     "Mucor"  = "#FF00FF", 
+                     "Constantinomyces"  = "#00FF7F",
+                     "Aureobasidium"= "#7FFFD4",
+                     "Kurtzmaniella"  = "#FF1493", 
+                     "Unknown_4" = "grey70",
+                     "Unknown_6" = "grey90",
+                     "Unknown_51" = "grey65",
+                     "Unknown_66" = "grey80",
+                     "Unknown_34"  = "grey25", 
+                     "Unknown_51"= "grey85",  
+                     "Unknown_58" = "grey90",
+                     "Unknown_61" = "grey95",
+                     "Unknown_63" = "grey60",
+                     "Unknown_66" = "grey75",
+                     "Unknown_68" = "grey100",
+                     "Unknown_72"   = "grey55",
+                     "Unknown_83" = "grey",
+                     "Unknown_87" ="lightgrey",
+                     "Unknown_88" = "grey50" ,
+                     "Unknown_89" = "grey45",
+                     "Unknown_95"  = "grey40",
+"Unknown_105" = "grey35",
+"Unknown_113" = "grey30",
+"Unknown_158"= "grey80",  
+"Unknown_163" = "grey20",
+"Unknown_165" = "grey15",
+"Unknown_179" = "grey10",
+"Unknown_182" = "grey5",
+"Unknown_215" = "grey3",
+"Unknown_240" = "grey8",
+"Unknown_251" = "grey12",
+"Unknown_317" = "grey18",
+"Unknown_340" = "grey22",
+"Unknown_371" = "grey28",
+"Unknown_391" = "grey32",
+"Unknown_423" = "grey38",
+"Unknown_540" = "grey42",
+"Unknown_576" = "grey48",
+"Unknown_912" = "grey52")
 ```
 
 # 2. Data sets
@@ -385,7 +459,7 @@ tax_table(ps_16S_rare_expe_D1)[ "Cluster_16", "Family" ] <- "Erwiniaceae"
 plot_16S_Expe_SampleTypeFruitType <- Make_composition_bar_plot_2(ps_16S_rare_expe_D1, "Bacteria", "Family", 10, ~SampleType + FruitType, color_16S)
 
 plot_16S_Expe_SampleTypeFruitType$data$SampleType <- factor(plot_16S_Expe_SampleTypeFruitType$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "Daughters"),
-  labels = c("Fruits", "Fruits infested (5-6 days)", "Mothers", "Mothers (post-laying)", "G1 Larvae", "G1 Pupae", "G1 Adults"))# reorder + rename 
+  labels = c("Fruits", "Fruits infested (5-6 days)", "Mothers", "Mothers post-laying", "G1 Larvae", "G1 Pupae", "G1 Adults"))# reorder + rename 
 
 plot_16S_Expe_SampleTypeFruitType$data <-
   plot_16S_Expe_SampleTypeFruitType$data %>%
@@ -405,7 +479,7 @@ tax_table(ps_ITS_rare_expe_D1)[ "Cluster_66", "Phylum" ] <- "Ascomycota"
 plot_ITS_Expe_SampleTypeFruitType <- Make_composition_bar_plot_2(ps_ITS_rare_expe_D1, "Fungi", "Family", 15, ~SampleType + FruitType, color_ITS) 
 
 plot_ITS_Expe_SampleTypeFruitType$data$SampleType <- factor(plot_ITS_Expe_SampleTypeFruitType$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "Daughters"),
-  labels = c("Fruits", "Fruits infested (5-6 days)", "Mothers", "Mothers (post-laying)", "G1 Larvae", "G1 Pupae", "G1 Adults")) # reorder 
+  labels = c("Fruits", "Fruits infested (5-6 days)", "Mothers", "Mothers post-laying", "G1 Larvae", "G1 Pupae", "G1 Adults")) # reorder 
 
 plot_ITS_Expe_SampleTypeFruitType$data <-
   plot_ITS_Expe_SampleTypeFruitType$data %>%
@@ -424,6 +498,49 @@ barPlot_combined <-
 
 title_plot <- "Expe_SampleType_FruitType_combined_F60.png"
  cowplot::save_plot(file =here::here("plots", "3_CommunityComposition", "Dataset_1", title_plot), barPlot_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)
+ 
+ 
+ 
+## Bar plots : SampleType x FruitType GENUS LEVEL
+
+# 16S (Genus)
+plot_16S_Expe_SampleTypeFruitType_G <- Make_composition_bar_plot_2(ps_16S_rare_expe_D1, "Bacteria", "Genus", 15, ~SampleType + FruitType, color_genus_16S)
+
+plot_16S_Expe_SampleTypeFruitType_G$data$SampleType <- factor(plot_16S_Expe_SampleTypeFruitType_G$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "Daughters"),
+  labels = c("Fruits", "Fruits infested (5-6 days)", "Mothers", "Mothers post-laying", "G1 Larvae", "G1 Pupae", "G1 Adults"))# reorder + rename 
+
+plot_16S_Expe_SampleTypeFruitType_G$data <-
+  plot_16S_Expe_SampleTypeFruitType_G$data %>%
+  dplyr::group_by(Sample) %>%
+  dplyr::mutate(Abundance = Abundance / sum(Abundance)) %>%
+  dplyr::ungroup()
+
+ggsave(filename = "B_Expe_SampleType_FruitType_F60_GENUS.jpg", plot = plot_16S_Expe_SampleTypeFruitType_G, path = file.path(here::here(), "plots", "3_CommunityComposition", "Dataset_1"), width = 29.7, height = 21, units = "cm")
+
+
+# ITS (Family)
+plot_ITS_Expe_SampleTypeFruitType_G <- Make_composition_bar_plot_2(ps_ITS_rare_expe_D1, "Fungi", "Genus", 15, ~SampleType + FruitType, color_genus_ITS) 
+
+plot_ITS_Expe_SampleTypeFruitType_G$data$SampleType <- factor(plot_ITS_Expe_SampleTypeFruitType_G$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_0days", "Mothers_2days", "Larvae", "Pupae", "Daughters"),
+  labels = c("Fruits", "Fruits infested (5-6 days)", "Mothers", "Mothers post-laying", "G1 Larvae", "G1 Pupae", "G1 Adults")) # reorder 
+
+plot_ITS_Expe_SampleTypeFruitType_G$data <-
+  plot_ITS_Expe_SampleTypeFruitType_G$data %>%
+  dplyr::group_by(Sample) %>%
+  dplyr::mutate(Abundance = Abundance / sum(Abundance)) %>%
+  dplyr::ungroup()
+
+ggsave(filename = "Y_Expe_SampleType_FruitType_F60_GENUS.jpg", plot = plot_ITS_Expe_SampleTypeFruitType_G, path = file.path(here::here(), "plots", "3_CommunityComposition", "Dataset_1"), width = 29.7, height = 21, units = "cm")
+
+
+# Combined plot
+barPlot_combinedGENUS <- 
+  (plot_16S_Expe_SampleTypeFruitType_G + labs(tag = "A. Bacteria")) /
+  (plot_ITS_Expe_SampleTypeFruitType_G + labs(tag = "B. Fungi")) +
+  plot_layout(ncol = 1) & theme(legend.position = "right", plot.tag = element_text(size = 12, face = "bold"))
+
+title_plot <- "Expe_SampleType_FruitType_combined_F60GENUS.png"
+ cowplot::save_plot(file =here::here("plots", "3_CommunityComposition", "Dataset_1", title_plot), barPlot_combinedGENUS, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)
 ```
 
 ## D1bis
