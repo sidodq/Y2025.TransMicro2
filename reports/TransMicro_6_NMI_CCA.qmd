@@ -68,6 +68,10 @@ load(file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "D
 FB_D1_ITS <- read.csv(file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "FB_D1_ITS.csv"),header=TRUE, sep=",", row.names = 1)
 mtd_D1_ITS <- read.csv(file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "Dataset_1", "mtd_D1_ITS.csv"),header=TRUE, sep=",", row.names = 1)
  
+# Create factor FruitType2 : BL or CH+ST
+mtd_D1_ITS <- mtd_D1_ITS |> 
+  dplyr::mutate(FruitType2 = ifelse(FruitType %in% c("na", "BL"), FruitType, "CH + ST" ))
+
 # Filter out Mothers_0days
 samples_to_remove <- which(mtd_D1_ITS$SampleType == "Mothers_0days")
 
@@ -79,6 +83,8 @@ mtd_D1_ITS_f <- as.matrix(mtd_D1_ITS[-samples_to_remove, ])
 mtd_D1_ITS_f <- as.data.frame(mtd_D1_ITS_f, stringsAsFactors = FALSE)
 
 nrow(FB_D1_ITS_f) == length(memb_spl_obs_ITS_D1_f) # check
+
+
 ```
 
 ## D2
@@ -118,7 +124,7 @@ graph.bin.ITSe.config <- future_lapply(seq_len(NPERM), future.seed=TRUE, sim_fun
 
 ```{r}
 # Factors
-FT_vect_D1_ITS <- as.factor(mtd_D1_ITS_f$FruitType[match(rownames(FB_D1_ITS_f), rownames(mtd_D1_ITS_f))])
+FT_vect_D1_ITS <- as.factor(mtd_D1_ITS_f$FruitType2[match(rownames(FB_D1_ITS_f), rownames(mtd_D1_ITS_f))])
 
 ST_vect_D1_ITS <- as.factor(mtd_D1_ITS_f$SampleType[match(rownames(FB_D1_ITS_f), rownames(mtd_D1_ITS_f))])
 
@@ -137,7 +143,7 @@ plan(multisession, workers = parallel::detectCores() - 1)
 simulated_clustering_expe_ITS <- Simulate_Clustering_SBM(FB = FB_D1_ITS_f, NPERM, name = "simulated_clustering_D1_ITS_f.tsv")
 
 # Simulated NMI
-# Fruit Type
+# Fruit Type2
 simulated_nmi_expe_ITS_FT <- 
 simulated_clustering_expe_ITS %>% 
   tidyr::pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
@@ -181,6 +187,7 @@ results_table_ITS <- data.frame(
 write.csv(results_table_ITS, file = file.path(here::here(), "data", "derived_data","6_NMI_CCA", "Dataset_1", "Results_NMI_ITS_D1_60_10000.csv"), 
           row.names = FALSE)
 ```
+
 
 ## D2 
 ### 16S
