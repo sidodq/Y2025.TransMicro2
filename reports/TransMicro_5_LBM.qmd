@@ -438,3 +438,87 @@ title_plot <- "SBM_D2_FruitSite_combined_F60_n.png"
 
  cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_2", title_plot), SBM_D2_FruitSite_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)
 ```
+
+#3. Alluvial plot
+## D1
+### ITS
+```{r}
+# PREPARE DATA 
+
+# Filter out Mothers_0days & host fruits
+ps_ITS_rare_expe_D1 <- Subset_physeq(ps_ITS_rare_expe_D1, SampleType %in%  c("Mothers_2days", "Larvae","Pupae","Daughters"))
+
+# Create factor FruitType2 : BL or CH+ST
+sample_data(ps_ITS_rare_expe_D1)$FruitType2 <- ifelse(
+  sample_data(ps_ITS_rare_expe_D1)$FruitType %in% c("na", "BL"),
+  sample_data(ps_ITS_rare_expe_D1)$FruitType, "CH + ST")
+
+# counts -> presence/absence (binary table)
+ps_rare_ITS_D1_bin = phyloseq::transform_sample_counts(ps_ITS_rare_expe_D1, function(x) 1*(x>0)) 
+
+## Extract metadata
+mtd_D1_ITS <- data.frame(phyloseq::sample_data(ps_rare_ITS_D1_bin))
+mtd_D1_ITS <- mtd_D1_ITS %>%
+  dplyr::rename(Sample = ID_pool)
+
+## Extract taxonomy table
+df_taxo_D1_ITS = as.data.frame(tax_table(ps_rare_ITS_D1_bin))
+df_taxo_D1_ITS$tax_ID = rownames(df_taxo_D1_ITS)
+
+## Extract table with presence/absence
+df_reads_D1_ITS = as.data.frame(otu_table(ps_rare_ITS_D1_bin)) 
+df_reads_D1_ITS = as.data.frame(df_reads_D1_ITS)
+df_reads_D1_ITS$tax_ID = rownames(df_reads_D1_ITS)
+
+## Merge table with presence/absence and taxonomy
+df_wide_D1_ITS = dplyr::left_join(df_taxo_D1_ITS, df_reads_D1_ITS, by = "tax_ID") #merge the two (suppr "Species" column)
+df_wide_D1_ITS$Species <- NULL
+
+## Remove taxonomy other than Genus
+BF_D1_ITS <- df_wide_D1_ITS[, c(6,8:dim(df_wide_D1_ITS)[2])] #subset + genus as row names + sample names as column names
+BF_D1_ITS$Genus <- make.unique(BF_D1_ITS$Genus, sep = "_")
+rownames(BF_D1_ITS) <- BF_D1_ITS$Genus 
+BF_D1_ITS$Genus <- NULL
+colnames(BF_D1_ITS) <- mtd_D1_ITS$Sample[match(colnames(BF_D1_ITS), mtd_D1_ITS$Sample)]
+## Transpose matrix
+FB_D1_ITS <- t(BF_D1_ITS)
+
+# LBM calculation
+SBM_bernoulli_ITS_D1 <-  as.matrix(FB_D1_ITS) %>%
+    sbm::estimateBipartiteSBM(model = 'bernoulli')
+
+memb_spl_obs_ITS_D1 <- SBM_bernoulli_ITS_D1$memberships$row
+memb_otu_obs_ITS_D1 <- SBM_bernoulli_ITS_D1$memberships$col
+```
+
+```{r}
+# Cluster_Sample
+# data for alluvial plot (Freq = Number of samples associated with each line)
+dataalluvial_ITS_D1 <-
+  as.data.frame(table(
+      memb_spl_obs_ITS_D1,
+      sample_data(ps_ITS_rare_expe_D1_bin)$FruitType2))
+
+
+# change column names
+colnames(dataalluvial_ITS_D1) = c("Cluster_sample", "FruitType", "Freq")
+
+# eliminate lines with zero Freq
+w_D1_ITS_sample <- which(dataalluvial_ITS_D1$Freq != 0)
+dataalluvial_ITS_D1 <- dataalluvial_ITS_D1[w_D1_ITS_sample, ]
+
+# alluvial plot
+Alluvial_ITS_D1_FruitType_sample <- ggplot(data = dataalluvial_ITS_D1,
+       aes(axis1 = Cluster_sample, axis2 = FruitType, y = Freq)) +
+  scale_x_discrete(limits = c("Cluster_sample", "FruitType"), expand = c(.2, .05)) +
+  ggalluvial::geom_alluvium(aes(fill = FruitType), alpha = 0.6) +
+  ggalluvial::geom_stratum() +
+  geom_text(stat = "stratum", aes(label = after_stat(stratum))) +
+ scale_fill_manual(values = c("CH + ST" = "red4", "BL" = "purple4"), guide = "none") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(size = 12, color = "black", face = "bold"))
+
+title_plot <- "AlluvialPlot_D1_ITS_FruitType2.png"
+
+cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), Alluvial_ITS_D1_FruitType_sample, base_height = 20/cm(1),  base_width = 30/cm(1), dpi = 1200)
+```
