@@ -58,8 +58,8 @@ write.csv(mt_samples, file = file.path(here::here(), "data", "derived_data", "1_
 ### Import & Clean Multi-Affiliation Table
 
 ```{r}
-ma_16S <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "16S_TM123-[FROGS_BIOM_to_TSV__multi-affiliations.tsv].tsv"),sep="\t",header=TRUE)
-dim(ma_16S)# 181 347 lignes
+ma_16S <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "16S_TM123-[FROGS_BIOM_to_TSV__multi-affiliations.tsv]_withChimeraRemoval.tsv"),sep="\t",header=TRUE)
+dim(ma_16S)# 126 795 lines
 
 # Clean taxonomy of multi-affiliation table 
 taxo_16S_Multiaffiliation <- Define_multiaffiliation(multiaffiliation_table = ma_16S, thresh = 0.5) # filter the tax names with freq inf to 0,5 (within cluster) and assign a tax name (if 1 valid name) or multi/unknown (if multiple valid names)
@@ -71,7 +71,7 @@ write.table(taxo_16S_Multiaffiliation, file=file.path(here::here(), "data", "der
 ### Import & Clean Abundance Table
 
 ```{r}
-ab_16S <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "16S_TM123-[FROGS_BIOM_to_TSV__abundance.tsv].tsv"),sep="\t",header=TRUE)
+ab_16S <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "16S_TM123_[FROGS_BIOM_to_TSV__abundance.tsv]_withChimeraRemoval.tsv"),sep="\t",header=TRUE)
 data.table::setnames(ab_16S, old = names(ab_16S), new = gsub("-", "_", names(ab_16S)))
 dim(ab_16S)
 
@@ -81,7 +81,7 @@ colnames(ab_16S)[colnames(ab_16S) == "16S_MS_0125_rn1_A"] <- "16S_MS_125_rn1_A"
 colnames(ab_16S)[colnames(ab_16S) == "16S_MS_0221_rn1_A"] <- "16S_MS_221_rn1_A"
 
 # Clean taxonomy
-ab_16S <- Clean_ab_table(abundance_table = ab_16S, remove_col = NULL) #Expected 7 pieces. Missing pieces filled with `NA` in 91 rows 
+ab_16S <- Clean_ab_table(abundance_table = ab_16S, remove_col = NULL) #Expected 7 pieces. Missing pieces filled with `NA` in 87 rows 
 
 # Export
 write.table(ab_16S, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "TransMicro123_AbTable_cleaned.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
@@ -97,9 +97,9 @@ ab_16S <- data.table::fread(file=file.path(here::here(), "data", "derived_data",
 
 
 # New version of ab_16s : taxonomy with multi-affiliation and chimeras removed
-at_16S <- Combine_ab_multi_affi_tables_remove_chim(multi_affi_table = taxo_16S_Multiaffiliation, name = "TransMicro1-2-3_16S", abundance_table = ab_16S) # 2049 bimeras/6966 sequences, proportion = 0.29
+at_16S <- Combine_ab_multi_affi_tables_remove_chim(multi_affi_table = taxo_16S_Multiaffiliation, name = "TransMicro1-2-3_16S", abundance_table = ab_16S) # 1070 bimeras/4704 sequences, proportion = 0.23
 
-dim(at_16S) # 4917 clusters
+dim(at_16S) # 3634 clusters
 
 # Replaces the taxonomy not found with the taxonomy found manually in BLAST
 at_16S_no <- subset(at_16S, grepl("no;NA;NA;NA;NA;NA;NA", blast_taxonomy))# blast_taxonomy = "no;NA;NA;NA;NA;NA;NA" 
@@ -149,7 +149,7 @@ at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_698")] <- "Fungi
  
 at_16S$blast_taxonomy[which(at_16S$observation_name == "Cluster_755")] <- "Bacteria;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown"
 
-at_16S[at_16S$observation_name == "Cluster_984", "seed_sequence"] #Unknown
+at_16S[at_16S$observation_name == "Cluster_984", "seed_sequence"] #No significant similarity found (NCBI) -> Unknown
 
 # Rename the left clusters as "Unknown" (cluster nb sup. to 1000)
 at_16S <- at_16S %>%
