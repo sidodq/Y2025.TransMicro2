@@ -22,7 +22,7 @@ library(phyloseq.extended)
 library(dplyr)
 ```
 
-#PREPARE DATA = TO FINISH
+#PREPARE DATA
 
 # 1. Metadata
 
@@ -518,7 +518,6 @@ at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_964")] <-  "Chro
 at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_969")] <-"Fungi;Unknown;Unknown;Unknown;Unknown;Unknown;Unknown"
 at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_979")] <- "Fungi;Ascomycota;Saccharomycotina;Pichiomycetes;Serinales;Metschnikowiaceae;Clavispora;lusitaniae"
 
-#124 ; 148 ; 168 ; Unknown
 
 # blast_taxonomy of big clusters with unknown after Kingdom
 at_ITS$blast_taxonomy[which(at_ITS$observation_name == "Cluster_4")] <- "Fungi;Ascomycota;Leotiomycetes;Helotiales;Sclerotiniaceae;Unknown;Unknown"
@@ -589,7 +588,7 @@ ITS_prop <- ggplot(sample.size_ITS, aes(x = SampleType, y = prop_cov_depth, fill
     x = "Sample Type",
     y = "Proportion of coverage depth"
   ) + 
-  scale_fill_manual(values = c("Fungi" = "green3", "Plantae" = "green4", "Chromista" = "green", "no" = "grey" , "Unknown" = "grey")) +
+  scale_fill_manual(values = c("Fungi" = "green3", "Plantae" = "green4", "Viridiplantae" = "green4", "Chromista" = "green", "no" = "grey" , "Unknown" = "grey")) +
   theme_minimal() +
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1),
@@ -608,7 +607,7 @@ title_plot <- "ITS_TM123_CovDepth_Proportions.png"
 dim(at_ITS)
 # blast_taxonomy : Unknown in Kingdom rank
 at_ITS_Unknown <- at_ITS[at_ITS$Kingdom == "Unknown",]
-at_ITS_Unknown$observation_name # 0 clusters 
+at_ITS_Unknown$observation_name # 128 clusters 
 
 # blast_taxonomy : Multi-affiliation in Kingdom rank
 at_ITS_Multiaffiliation <- at_ITS[at_ITS$Kingdom == "Multi-affiliation",]
