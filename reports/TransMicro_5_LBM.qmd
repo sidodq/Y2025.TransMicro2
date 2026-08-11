@@ -497,11 +497,11 @@ memb_otu_obs_ITS_D1 <- SBM_bernoulli_ITS_D1$memberships$col
 dataalluvial_ITS_D1 <-
   as.data.frame(table(
       memb_spl_obs_ITS_D1,
-      sample_data(ps_ITS_rare_expe_D1_bin)$FruitType2))
+      sample_data(ps_rare_ITS_D1_bin)$FruitType2))
 
 
 # change column names
-colnames(dataalluvial_ITS_D1) = c("Cluster_sample", "FruitType", "Freq")
+colnames(dataalluvial_ITS_D1) = c("FungalCom", "FruitType", "Freq")
 
 # eliminate lines with zero Freq
 w_D1_ITS_sample <- which(dataalluvial_ITS_D1$Freq != 0)
@@ -509,8 +509,8 @@ dataalluvial_ITS_D1 <- dataalluvial_ITS_D1[w_D1_ITS_sample, ]
 
 # alluvial plot
 Alluvial_ITS_D1_FruitType_sample <- ggplot(data = dataalluvial_ITS_D1,
-       aes(axis1 = Cluster_sample, axis2 = FruitType, y = Freq)) +
-  scale_x_discrete(limits = c("Cluster_sample", "FruitType"), expand = c(.2, .05)) +
+       aes(axis1 = FungalCom, axis2 = FruitType, y = Freq)) +
+  scale_x_discrete(limits = c("Fungal Communities", "Fruit Type"), expand = c(.2, .05)) +
   ggalluvial::geom_alluvium(aes(fill = FruitType), alpha = 0.6) +
   ggalluvial::geom_stratum() +
   geom_text(stat = "stratum", aes(label = after_stat(stratum))) +
