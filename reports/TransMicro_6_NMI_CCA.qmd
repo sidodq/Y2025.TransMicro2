@@ -83,8 +83,6 @@ mtd_D1_ITS_f <- as.matrix(mtd_D1_ITS[-samples_to_remove, ])
 mtd_D1_ITS_f <- as.data.frame(mtd_D1_ITS_f, stringsAsFactors = FALSE)
 
 nrow(FB_D1_ITS_f) == length(memb_spl_obs_ITS_D1_f) # check
-
-
 ```
 
 ## D2
@@ -141,6 +139,7 @@ nmi_obs_expe_ITS_FruitSite <- compare(as.factor(memb_spl_obs_ITS_D1_f), FS_vect_
 plan(multisession, workers = parallel::detectCores() - 1)
 
 simulated_clustering_expe_ITS <- Simulate_Clustering_SBM(FB = FB_D1_ITS_f, NPERM, name = "simulated_clustering_D1_ITS_f.tsv")
+
 
 # Simulated NMI
 # Fruit Type2
