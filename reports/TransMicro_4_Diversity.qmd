@@ -45,7 +45,7 @@ color_FruitVariety <- c("CDP" = "indianred", "HED" ="indianred1", "SUM" = "india
 
 color_FruitSiteTypeVariety <- c("THU_BL_LOC" = "deepskyblue","THU_BL_UNK"="skyblue", "VAR_BL_LOC" = "dodgerblue", "THU_CH_HED"="indianred1", "THU_CH_SWE"= "firebrick1", "THU_ST_CIR"= "gold2", "THU_ST_MDB"= "yellow", "FIN_CH_CDP"= "indianred", "FIN_CH_SUM"="indianred4","LOM_CH_CDP"= "firebrick3", "LOM_CH_STA"="#CD2626","IST_ST_CIF"= "gold","IST_ST_DRE"= "lightgoldenrod3", "MIL_ST_INF"= "yellow2", "MIL_ST_MDB"= "khaki1")
 
-color_Expe <- c("Fruits_0days"="darkolivegreen3", "Mothers_2days"="red3", "Fruits_5_6days"="darkolivegreen", "Larvae"="#8B4500", "Pupae"= "darkorange2",           "Daughters"="goldenrod2")
+color_Expe <- c("Fruits"="darkolivegreen3", "Mothers post-laying"="red3", "Fruits infested (5-6 days)"="darkolivegreen", "G1 Larvae"="#8B4500", "G1 Pupae"= "darkorange2",  "G1 Adults"="goldenrod2")
 ```
 
 # 2. Load data
@@ -247,7 +247,7 @@ title_plot <- "AlphaDiv_Expe_SampleType_FruitType2_F60.png"
 ## Fruit Type x Sample Type NMDS
 ## Qualitative (Jaccard index)
 
-ordi_nmds_J_16S_expe_D1 <- phyloseq::ordinate(ps_16S_rare_expe_D1, method ="NMDS", distance ="jaccard") # stress = 0.1042477 
+ordi_nmds_J_16S_expe_D1 <- phyloseq::ordinate(ps_16S_rare_expe_D1, method ="NMDS", distance ="jaccard") # stress = 0.1042381
 
 # plot with ellipses
 NMDS_J_16S_expe_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_expe_D1, ordination = ordi_nmds_J_16S_expe_D1) + 
@@ -262,7 +262,7 @@ NMDS_J_16S_expe_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_expe_
     shape = guide_legend(title = "Fruit Type"), 
     color = "none")+ annotate("text", x = -3.8, y = 5.6, label = "A. Bacteria", hjust = 0, size = 6, fontface = "bold")
 
-NMDS_J_16S_expe_Ellipses$data$SampleType <- factor(NMDS_J_16S_expe_Ellipses$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days","Mothers_2days",  "Larvae", "Pupae", "Daughters"))
+NMDS_J_16S_expe_Ellipses$data$SampleType <- factor(NMDS_J_16S_expe_Ellipses$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_2days", "Larvae", "Pupae", "Daughters"), labels = c("Fruits", "Fruits infested (5-6 days)", "Mothers post-laying", "G1 Larvae", "G1 Pupae", "G1 Adults")) # reorder + rename 
 
 title_plot <- "NMDS_16S_Expe_D1_FruitType_F60.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", "Dataset_1", title_plot), NMDS_J_16S_expe_Ellipses, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
@@ -286,7 +286,7 @@ NMDS_J_ITS_SampleType_EllipsesByFruit <- phyloseq::plot_ordination(physeq = ps_I
     shape = guide_legend(title = "Fruit Type"),
     color = "none") + annotate("text", x = -3.6, y = 2.1, label = "B. Fungi", hjust = 0, size = 6, fontface = "bold")
 
-NMDS_J_ITS_SampleType_EllipsesByFruit$data$SampleType <- factor(NMDS_J_ITS_SampleType_EllipsesByFruit$data$SampleType, levels = c("Fruits_0days","Fruits_5_6days", "Mothers_2days",  "Larvae", "Pupae", "Daughters"))
+NMDS_J_ITS_SampleType_EllipsesByFruit$data$SampleType <- factor(NMDS_J_ITS_SampleType_EllipsesByFruit$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_2days", "Larvae", "Pupae", "Daughters"), labels = c("Fruits", "Fruits infested (5-6 days)", "Mothers post-laying", "G1 Larvae", "G1 Pupae", "G1 Adults")) # reorder + rename 
 
 title_plot <- "NMDS_ITS_Expe_D1_SampleType_EllipseByFruit_F60.png"
  cowplot::save_plot(file =here::here("plots", "4_diversities", "Dataset_1", title_plot), NMDS_J_ITS_SampleType_EllipsesByFruit, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
@@ -318,7 +318,7 @@ NMDS_BC_16S_expe_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_expe
     shape = guide_legend(title = "Fruit Type"),
     color = "none")+ annotate("text", x = -3.3, y = 4.2, label = "A. Bacteria", hjust = 0, size = 6, fontface = "bold")
 
-NMDS_BC_16S_expe_Ellipses$data$SampleType <- factor(NMDS_BC_16S_expe_Ellipses$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days","Mothers_2days",  "Larvae", "Pupae", "Daughters"))
+NMDS_BC_16S_expe_Ellipses$data$SampleType <- factor(NMDS_BC_16S_expe_Ellipses$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_2days", "Larvae", "Pupae", "Daughters"), labels = c("Fruits", "Fruits infested (5-6 days)", "Mothers post-laying", "G1 Larvae", "G1 Pupae", "G1 Adults")) # reorder + rename 
 
 title_plot <- "NMDS_BC_16S_Expe_D1_FruitType_F60.png"
  cowplot::save_plot(file =here::here("plots", "4_Diversities", "Dataset_1", title_plot), NMDS_BC_16S_expe_Ellipses, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
@@ -339,7 +339,7 @@ NMDS_B_ITS_SampleType_EllipsesByFruit <- phyloseq::plot_ordination(physeq = ps_I
     fill = guide_legend(override.aes = list(shape = 21, linetype = NULL, size = 5), title = "Sample Type", ncol = 1), shape = guide_legend(title = "Fruit Type"),
     color = "none") + annotate("text", x = -2.5, y = 1.8, label = "B. Fungi", hjust = 0, size = 6, fontface = "bold")
 
-NMDS_B_ITS_SampleType_EllipsesByFruit$data$SampleType <- factor(NMDS_B_ITS_SampleType_EllipsesByFruit$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_2days", "Larvae", "Pupae", "Daughters"))
+NMDS_B_ITS_SampleType_EllipsesByFruit$data$SampleType <- factor(NMDS_B_ITS_SampleType_EllipsesByFruit$data$SampleType, levels = c("Fruits_0days", "Fruits_5_6days", "Mothers_2days", "Larvae", "Pupae", "Daughters"), labels = c("Fruits", "Fruits infested (5-6 days)", "Mothers post-laying", "G1 Larvae", "G1 Pupae", "G1 Adults")) # reorder + rename 
 
 title_plot <- "NMDS_BC_ITS_Expe_SampleType_EllipseByFruit_F60.png"
  cowplot::save_plot(file =here::here("plots", "4_diversities", "Dataset_1", title_plot), NMDS_B_ITS_SampleType_EllipsesByFruit, base_height = 20/cm(1), base_width = 20/cm(1), dpi = 1200)
