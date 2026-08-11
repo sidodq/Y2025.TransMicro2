@@ -431,7 +431,7 @@ title_plot <- "NMDS_Expe_D1_SampleType_combined_F20.png"
 ps_16S_rare_D2_w <- Subset_physeq(ps_16S_rare_D2 , !(FruitType=="BL" & FruitVariety=="LOC")) 
 
 ##16S
-ordi_nmds_J_16S_D2_w <- phyloseq::ordinate(ps_16S_rare_D2_w , method ="NMDS", distance ="jaccard") # stress = 0.1601679 
+ordi_nmds_J_16S_D2_w <- phyloseq::ordinate(ps_16S_rare_D2_w , method ="NMDS", distance ="jaccard") # stress = 0.1601433
 
 # NMDS by FruitSiteVariety
 NMDS_J_16S_Fruits_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_D2_w, ordination = ordi_nmds_J_16S_D2_w) + 
@@ -483,7 +483,7 @@ title_plot <- "NMDS_D2_wSites_combined_F60.png"
 # BRAY-CURTIS
 ## Fruit Type x Variety NMDS
 
-ordi_nmds_B_16S_D2_w <- phyloseq::ordinate(ps_16S_rare_D2_w, method ="NMDS", distance ="bray") # stress = 0.1601433
+ordi_nmds_B_16S_D2_w <- phyloseq::ordinate(ps_16S_rare_D2_w, method ="NMDS", distance ="bray") # stress = 0.1601435 
 
 # NMDS by FruitSiteTypeVariety
 NMDS_B_16S_Fruits_Ellipses <- phyloseq::plot_ordination(physeq = ps_16S_rare_D2_w, ordination = ordi_nmds_B_16S_D2_w) + 
