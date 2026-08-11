@@ -30,21 +30,21 @@ library(stringr)
 ```{r}
 # Import 16S Abundance table
 atc_16S <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "16S_TM123_abundance.tsv"), sep="\t",header=TRUE) 
-dim(atc_16S) # 4615 720
+dim(atc_16S) # 4610 684 
 
 # Delete Controls and Undetermined
 atc_16S_nocontrol <- atc_16S %>% 
   dplyr::select(!(dplyr::contains("CT_") | 
                   dplyr::contains("NC_") |
                   dplyr::starts_with("Undetermined")))
-dim(atc_16S_nocontrol) # 4615 336
+dim(atc_16S_nocontrol) # 4610 300
 
 # Deletion of 16S- prefixes in sample names
 colnames(atc_16S_nocontrol) <- gsub("16S_", "", colnames(atc_16S_nocontrol))
 
 # Import ITS Abundance table
 atc_ITS <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "ITS_TM123_abundance.tsv"), sep="\t",header=TRUE)
-dim(atc_ITS) # 1303 553
+dim(atc_ITS) # 1246 553
 
 # Delete Controls and Undetermined
 atc_ITS_nocontrol <- atc_ITS %>% 

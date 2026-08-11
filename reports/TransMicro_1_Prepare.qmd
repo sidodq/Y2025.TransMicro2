@@ -58,7 +58,7 @@ write.csv(mt_samples, file = file.path(here::here(), "data", "derived_data", "1_
 ### Import & Clean Multi-Affiliation Table
 
 ```{r}
-ma_16S <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "16S_TM123-[FROGS_BIOM_to_TSV__multi-affiliations.tsv]_withChimeraRemoval.tsv"),sep="\t",header=TRUE)
+ma_16S <- data.table::fread(file=file.path(here::here(), "data", "raw_data","16S_TM123-[FROGS_BIOM_to_TSV__multi-affiliations.tsv]_withChimeraRemoval.tsv" ),sep="\t",header=TRUE) 
 dim(ma_16S)# 126 795 lines
 
 # Clean taxonomy of multi-affiliation table 
@@ -71,9 +71,9 @@ write.table(taxo_16S_Multiaffiliation, file=file.path(here::here(), "data", "der
 ### Import & Clean Abundance Table
 
 ```{r}
-ab_16S <- data.table::fread(file=file.path(here::here(), "data", "raw_data", "16S_TM123_[FROGS_BIOM_to_TSV__abundance.tsv]_withChimeraRemoval.tsv"),sep="\t",header=TRUE)
+ab_16S <- data.table::fread(file=file.path(here::here(), "data", "raw_data","16S_TM123_[FROGS_BIOM_to_TSV__abundance.tsv]_withChimeraRemoval.tsv"),sep="\t",header=TRUE)
 data.table::setnames(ab_16S, old = names(ab_16S), new = gsub("-", "_", names(ab_16S)))
-dim(ab_16S)
+dim(ab_16S) # 4704 2253
 
 # Correct errors on sample names
 colnames(ab_16S)[colnames(ab_16S) == "16S_MS_0100_rn1_A"] <- "16S_MS_100_rn1_A"
@@ -103,7 +103,7 @@ dim(at_16S) # 3634 clusters
 
 # Replaces the taxonomy not found with the taxonomy found manually in BLAST
 at_16S_no <- subset(at_16S, grepl("no;NA;NA;NA;NA;NA;NA", blast_taxonomy))# blast_taxonomy = "no;NA;NA;NA;NA;NA;NA" 
-at_16S_no$observation_name # 75 clusters
+at_16S_no$observation_name # 72 clusters
 
 # blast_taxonomy : no;NA;NA;NA;NA;NA;NA : add the taxonomy obtained by BLAST with NCBI (see 16S_TransMicro_Cluster_Blast.xlsx)
 at_16S[at_16S$observation_name == "Cluster_8", "seed_sequence"]
@@ -239,12 +239,11 @@ at_16S_Fungi$observation_name # 5 clusters
 at_16S_Plantae <-  at_16S[at_16S$Kingdom =="Plantae_Chl" |	at_16S$Kingdom =="Plantae_Mit",]
 at_16S_Plantae$observation_name # 302 clusters 
 
-# Delete these clusters
+# Delete fungal and plant clusters
 at_16S <- at_16S  %>%
   dplyr::slice(which(is.na(match(Kingdom, c("Plantae_Chl", "Plantae_Mit", "Fungi")))))# "Multi-affiliation", "Unknown"
 
 dim(at_16S) # 4610 clusters
-
 
 
 ### Replace "Multi-affiliation", "unidentified", "unknown species", "unknown genus", "unknown family", "unknown" by "Unknown" in the taxonomy
@@ -271,16 +270,17 @@ write.table(at_16S, file=file.path(here::here(), "data", "derived_data", "1_Prep
 
 ```{r}
 at_16S <- data.table::fread(file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "TransMicro123_TaxTable_cleaned2.tsv"), sep="\t", header=TRUE)
-
+dim(at_16S)
 # Select columns
 at_16S <- at_16S %>%
   dplyr::select(dplyr::starts_with("observation_name")|dplyr::starts_with("observation_sum")|dplyr::starts_with("seed_sequence")|dplyr::starts_with("Kingdom")|dplyr::starts_with("Phylum")|dplyr::starts_with("Class")|dplyr::starts_with("Order")|dplyr::starts_with("Family")|dplyr::starts_with("Genus")|dplyr::starts_with("Species")|dplyr::starts_with("16S_")|dplyr::starts_with("ITS_")|dplyr::starts_with("NC_")|dplyr::starts_with("Undetermined"))
+dim(at_16S)
 
 # Controls data in a separate table
 at_16S_Controls <- at_16S %>%
   dplyr::select(dplyr::starts_with("observation_name")|dplyr::starts_with("observation_sum")|dplyr::starts_with("seed_sequence")|dplyr::starts_with("Kingdom")|dplyr::starts_with("Phylum")|dplyr::starts_with("Class")|dplyr::starts_with("Order")|dplyr::starts_with("Family")|dplyr::starts_with("Genus")|dplyr::starts_with("Species")|dplyr::contains("CT_")|dplyr::contains("NC_")|dplyr::starts_with("Genus2"))
 
-dim(at_16S_Controls) # 478 columns per sample 
+dim(at_16S_Controls) # 489 columns 
 ```
 
 ### TCC : Filter abundances based on negative controls
@@ -288,7 +288,7 @@ dim(at_16S_Controls) # 478 columns per sample
 ```{r}
 at_16S_Controls_Negatives <- at_16S_Controls %>% 
   dplyr::select(contains("Genus2") |contains("_EXT_")|contains("_PCR_") | contains("NC_")| contains("INDEX_"))
-dim(at_16S_Controls_Negatives) #54 clusters
+dim(at_16S_Controls_Negatives) # 4610 469
 
 # Transform in long format to find the maximum coverage depth of each OTUs across all negative controls (Sort final dataset to sort OTUs in the right order)
 at_16S_Controls_Negatives <- at_16S_Controls_Negatives %>% 
@@ -344,6 +344,7 @@ data_16S <- data_16S %>%
   dplyr::group_by(observation_name, seed_sequence, Samples) %>% 
   dplyr::summarise(SumCount = ifelse(sum(count == 0)>=1, 0, round(sum(count)))) %>% 
   dplyr::ungroup()
+dim(data_16S)
 ```
 
 ### Merge run replicas (run 1, 2 or 3)
@@ -361,7 +362,7 @@ data_16S <- data_16S %>%
 # Transform from long to wide format
 data_16S <- data_16S %>% 
   tidyr::pivot_wider(names_from = Samples, values_from = SumCount)
-
+dim(data_16S)
 # Export
 write.table(data_16S, file=file.path(here::here(), "data", "derived_data", "1_PrepareData", "16S_TM123_abundance.tsv"), sep="\t", row.names=FALSE, col.names=TRUE, quote=FALSE)
 ```
