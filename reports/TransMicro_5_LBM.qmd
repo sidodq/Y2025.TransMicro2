@@ -492,7 +492,37 @@ memb_otu_obs_ITS_D1 <- SBM_bernoulli_ITS_D1$memberships$col
 ```
 
 ```{r}
-# Cluster_Sample
+# data for alluvial plot (Freq = Number of samples associated with each line)
+dataalluvial_ITS_D1 <-
+  as.data.frame(table(
+      memb_spl_obs_ITS_D1,
+      sample_data(ps_rare_ITS_D1_bin)$FruitType))
+
+
+# change column names
+colnames(dataalluvial_ITS_D1) = c("FungalCom", "FruitType", "Freq")
+
+# eliminate lines with zero Freq
+w_D1_ITS_sample <- which(dataalluvial_ITS_D1$Freq != 0)
+dataalluvial_ITS_D1 <- dataalluvial_ITS_D1[w_D1_ITS_sample, ]
+
+# alluvial plot
+Alluvial_ITS_D1_FruitType_sample <- ggplot(data = dataalluvial_ITS_D1,
+       aes(axis1 = FungalCom, axis2 = FruitType, y = Freq)) +
+  scale_x_discrete(limits = c("Fungal Communities", "Fruit Type"), expand = c(.2, .05)) +
+  ggalluvial::geom_alluvium(aes(fill = FruitType), alpha = 0.6) +
+  ggalluvial::geom_stratum() +
+  geom_text(stat = "stratum", aes(label = after_stat(stratum))) +
+ scale_fill_manual(values = c("CH" = "red4", "ST" ="red2",  "BL" = "purple4"), guide = "none") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(size = 12, color = "black", face = "bold"))
+
+title_plot <- "AlluvialPlot_D1_ITS_FruitType.png"
+
+cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), Alluvial_ITS_D1_FruitType_sample, base_height = 20/cm(1),  base_width = 30/cm(1), dpi = 1200)
+
+
+
 # data for alluvial plot (Freq = Number of samples associated with each line)
 dataalluvial_ITS_D1 <-
   as.data.frame(table(
