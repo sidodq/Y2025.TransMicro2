@@ -523,22 +523,22 @@ cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot
 
 
 
+
 # data for alluvial plot (Freq = Number of samples associated with each line)
-dataalluvial_ITS_D1 <-
+dataalluvial_ITS_D1_2 <-
   as.data.frame(table(
       memb_spl_obs_ITS_D1,
       sample_data(ps_rare_ITS_D1_bin)$FruitType2))
 
-
 # change column names
-colnames(dataalluvial_ITS_D1) = c("FungalCom", "FruitType", "Freq")
+colnames(dataalluvial_ITS_D1_2) = c("FungalCom", "FruitType", "Freq")
 
 # eliminate lines with zero Freq
 w_D1_ITS_sample <- which(dataalluvial_ITS_D1$Freq != 0)
-dataalluvial_ITS_D1 <- dataalluvial_ITS_D1[w_D1_ITS_sample, ]
+dataalluvial_ITS_D1_2 <- dataalluvial_ITS_D1[w_D1_ITS_sample, ]
 
 # alluvial plot
-Alluvial_ITS_D1_FruitType_sample <- ggplot(data = dataalluvial_ITS_D1,
+Alluvial_ITS_D1_FruitType2 <- ggplot(data = dataalluvial_ITS_D1_2,
        aes(axis1 = FungalCom, axis2 = FruitType, y = Freq)) +
   scale_x_discrete(limits = c("Fungal Communities", "Fruit Type"), expand = c(.2, .05)) +
   ggalluvial::geom_alluvium(aes(fill = FruitType), alpha = 0.6) +
@@ -550,5 +550,14 @@ Alluvial_ITS_D1_FruitType_sample <- ggplot(data = dataalluvial_ITS_D1,
 
 title_plot <- "AlluvialPlot_D1_ITS_FruitType2.png"
 
-cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), Alluvial_ITS_D1_FruitType_sample, base_height = 20/cm(1),  base_width = 30/cm(1), dpi = 1200)
+cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), Alluvial_ITS_D1_FruitType2, base_height = 20/cm(1),  base_width = 30/cm(1), dpi = 1200)
+
+# Combined plot
+AlluvPlot_combined <- 
+  (Alluvial_ITS_D1_FruitType_sample + labs(tag = "A. Initial Fruit Types")) /
+  (Alluvial_ITS_D1_FruitType2 + labs(tag = "B. Grouped Fruit Types")) +
+  plot_layout(ncol = 1) & theme(legend.position = "bottom", plot.tag = element_text(size = 12, face = "bold"))
+
+title_plot <- "AlluvialPlots_combined.png"
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), barPlot_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)
 ```
