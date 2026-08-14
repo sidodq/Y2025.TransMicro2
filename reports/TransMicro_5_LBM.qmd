@@ -559,5 +559,5 @@ AlluvPlot_combined <-
   plot_layout(ncol = 1) & theme(legend.position = "bottom", plot.tag = element_text(size = 12, face = "bold"))
 
 title_plot <- "AlluvialPlots_combined.png"
- cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), barPlot_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)
+ cowplot::save_plot(file =here::here("plots", "5_SBM&co", "Dataset_1", title_plot), AlluvPlot_combined, base_height = 26/cm(1),  base_width = 34.7/cm(1), dpi = 1200)
 ```
