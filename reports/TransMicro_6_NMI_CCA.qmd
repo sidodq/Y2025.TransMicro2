@@ -108,7 +108,7 @@ load(file = file.path(here::here(), "data", "derived_data","5_SBMclustering", "D
 ### ITS
 
 ```{r}
-NPERM=10000 #000#set quite low, so that permutations do not take too long, only for proof of principle, set to 10000 for serious comparisons
+NPERM=1000 #0 #000#set quite low, so that permutations do not take too long, only for proof of principle, set to 10000 for serious comparisons
 
 # Parallelized version
 plan(multisession, workers = parallel::detectCores() - 1)
@@ -122,7 +122,9 @@ graph.bin.ITSe.config <- future_lapply(seq_len(NPERM), future.seed=TRUE, sim_fun
 
 ```{r}
 # Factors
-FT_vect_D1_ITS <- as.factor(mtd_D1_ITS_f$FruitType2[match(rownames(FB_D1_ITS_f), rownames(mtd_D1_ITS_f))])
+FT_vect_D1_ITS <- as.factor(mtd_D1_ITS_f$FruitType[match(rownames(FB_D1_ITS_f), rownames(mtd_D1_ITS_f))])
+
+FT2_vect_D1_ITS <- as.factor(mtd_D1_ITS_f$FruitType2[match(rownames(FB_D1_ITS_f), rownames(mtd_D1_ITS_f))])
 
 ST_vect_D1_ITS <- as.factor(mtd_D1_ITS_f$SampleType[match(rownames(FB_D1_ITS_f), rownames(mtd_D1_ITS_f))])
 
@@ -130,6 +132,8 @@ FS_vect_D1_ITS <- as.factor(mtd_D1_ITS_f$FruitSite[match(rownames(FB_D1_ITS_f), 
 
 # Observed (need to run LBM with dataset MotherLess)
 nmi_obs_expe_ITS_FruitType <- compare(as.factor(memb_spl_obs_ITS_D1_f), FT_vect_D1_ITS, method = "nmi")
+
+nmi_obs_expe_ITS_FruitType2 <- compare(as.factor(memb_spl_obs_ITS_D1_f), FT2_vect_D1_ITS, method = "nmi")
 
 nmi_obs_expe_ITS_SampleType <- compare(as.factor(memb_spl_obs_ITS_D1_f), ST_vect_D1_ITS, method = "nmi")
 
@@ -142,7 +146,7 @@ simulated_clustering_expe_ITS <- Simulate_Clustering_SBM(FB = FB_D1_ITS_f, NPERM
 
 
 # Simulated NMI
-# Fruit Type2
+# Fruit Type
 simulated_nmi_expe_ITS_FT <- 
 simulated_clustering_expe_ITS %>% 
   tidyr::pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
@@ -152,6 +156,15 @@ simulated_clustering_expe_ITS %>%
 print(c("NMI =", nmi_obs_expe_ITS_FruitType, "P-value = ", 1 - ecdf(simulated_nmi_expe_ITS_FT$nmi_sim)(nmi_obs_expe_ITS_FruitType)))
 pval_ITS_FT <- 1 - ecdf(simulated_nmi_expe_ITS_FT$nmi_sim)(nmi_obs_expe_ITS_FruitType)
 
+# Fruit Type 2 (BL vs. CH+ST)
+simulated_nmi_expe_ITS_FT2 <- 
+simulated_clustering_expe_ITS %>% 
+  tidyr::pivot_longer(cols = everything(), names_to = "Simulation", values_to = "Memberships") %>%
+  dplyr::group_by(Simulation) %>% 
+  dplyr::summarise(., nmi_sim = compare(as.factor(Memberships), FT2_vect_D1_ITS, method = "nmi"))
+
+print(c("NMI =", nmi_obs_expe_ITS_FruitType2, "P-value = ", 1 - ecdf(simulated_nmi_expe_ITS_FT2$nmi_sim)(nmi_obs_expe_ITS_FruitType2)))
+pval_ITS_FT2 <- 1 - ecdf(simulated_nmi_expe_ITS_FT2$nmi_sim)(nmi_obs_expe_ITS_FruitType2)
 
 # Sample Type (Life Stage)
 simulated_nmi_expe_ITS_ST <- 
@@ -162,7 +175,6 @@ simulated_clustering_expe_ITS %>%
 
 print(c("NMI =", nmi_obs_expe_ITS_SampleType, "P-value = ", 1 - ecdf(simulated_nmi_expe_ITS_ST$nmi_sim)(nmi_obs_expe_ITS_SampleType)))
 pval_ITS_ST <- 1 - ecdf(simulated_nmi_expe_ITS_ST$nmi_sim)(nmi_obs_expe_ITS_SampleType)
-
 
 # Fruit Site
 simulated_nmi_expe_ITS_FS <- 
@@ -178,9 +190,9 @@ pval_ITS_FS <- 1 - ecdf(simulated_nmi_expe_ITS_FS$nmi_sim)(nmi_obs_expe_ITS_Frui
 # Compil & export in a table
 results_table_ITS <- data.frame(
   Marker  = "ITS",
-  Factor  = c("FruitType", "SampleType", "FruitSite"),
-  NMI     = c(nmi_obs_expe_ITS_FruitType, nmi_obs_expe_ITS_SampleType, nmi_obs_expe_ITS_FruitSite),
-  p_value = c(pval_ITS_FT, pval_ITS_ST, pval_ITS_FS),
+  Factor  = c("FruitType","FruitType2", "SampleType", "FruitSite"),
+  NMI     = c(nmi_obs_expe_ITS_FruitType, nmi_obs_expe_ITS_FruitType2, nmi_obs_expe_ITS_SampleType, nmi_obs_expe_ITS_FruitSite),
+  p_value = c(pval_ITS_FT, pval_ITS_FT2, pval_ITS_ST, pval_ITS_FS),
   Npermutation  = NPERM)
 
 write.csv(results_table_ITS, file = file.path(here::here(), "data", "derived_data","6_NMI_CCA", "Dataset_1", "Results_NMI_ITS_D1_60_10000.csv"), 
