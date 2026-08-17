@@ -435,6 +435,7 @@ NPERM <- 5000
 
 sim_list = list()
 
+BF_D2_16S <- t(BF_D2_16S)
 sim_mat <- BF_D2_16S
 
 ###
@@ -443,7 +444,7 @@ plan(multisession, workers = detectCores() - 1) # choose nb of cores
 
 # Fonction à paralléliser
 sim_one <- function(i) {
-  BF_sim <- netBin.config[, , i]
+  BF_sim <- netBin.config.D216S[, , i] #use the correct "netBin"
   FB_sim <- t(BF_sim)
   LBM_sim <- sbm::estimateBipartiteSBM(as.matrix(FB_sim), model = 'bernoulli', estimOptions = list(plot = FALSE))
   memb_spl_sim <- LBM_sim$memberships$row
@@ -479,7 +480,7 @@ wholenetwork_cca_results_NULL_16S_D2 <- analysis.function.alt2(incid=as.data.fra
 write.xlsx(wholenetwork_cca_results_NULL_16S_D2, file=here::here("data", "derived_data","6_NMI_CCA", "Dataset_2", "CCA_NULL_16S_D2.xlsx"), rowNames = TRUE)
 
 #CCA with full randomization
-wholenetwork_cca_results_CONFIGS_16S_D2 <- analysis.function.alt2(incid=as.data.frame(FB_D2_16S), memb_obs=memb_spl_obs_16S_D2, var1=cca_data_16S_D2$FruitType, var2=cca_data_16S_D2$FruitSite, configs = LBM.config)
+wholenetwork_cca_results_CONFIGS_16S_D2 <- analysis.function.alt2(incid=as.data.frame(FB_D2_16S), memb_obs=memb_spl_obs_16S_D2, var1=cca_data_16S_D2$FruitType, var2=cca_data_16S_D2$FruitSite, configs = LBM.config.D216S)
 
 write.xlsx(wholenetwork_cca_results_CONFIGS_16S_D2, file=here::here("data", "derived_data","6_NMI_CCA", "Dataset_2", "CCA_CONFIGS_16S_D2.xlsx"), rowNames = TRUE)
 ```
@@ -490,22 +491,28 @@ write.xlsx(wholenetwork_cca_results_CONFIGS_16S_D2, file=here::here("data", "der
 NPERM <- 5000
 
 sim_list = list()
-  
-#for each rarefied matrix
-  sim_mat <- BF_D2_ITS
-  #produce NPERM simulated graphs
-  netBin.config <-
-    simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
 
-  LBM.config <-
-    sapply(1:NPERM, function(i) {
-      BF_sim <- netBin.config[, , i]
-      FB_sim <- t(BF_sim)
-      LBM_sim <-as.matrix(FB_sim) %>%
-    sbm::estimateBipartiteSBM(model = 'bernoulli',
-                         estimOptions = list(plot = T))
-       memb_spl_sim <- LBM_sim$memberships$row ## Extract membership of the samples 
-    })
+BF_D2_ITS <- t(FB_D2_ITS)
+sim_mat <- BF_D2_ITS
+
+###
+# parallelized version
+plan(multisession, workers = detectCores() - 1) # choose nb of cores
+
+# Fonction à paralléliser
+sim_one <- function(i) {
+  BF_sim <- netBin.config.D2ITS[, , i] #use the correct "netBin"
+  FB_sim <- t(BF_sim)
+  LBM_sim <- sbm::estimateBipartiteSBM(as.matrix(FB_sim), model = 'bernoulli', estimOptions = list(plot = FALSE))
+  memb_spl_sim <- LBM_sim$memberships$row
+  return(memb_spl_sim)}
+
+# Lancer la simulation (à faire une seule fois avant la boucle)
+netBin.config.D2ITS <- simulate(vegan::nullmodel(as.data.frame(sim_mat), "curveball"), nsim = NPERM)
+
+# Paralléliser la boucle
+LBM.config.D2ITS <- future_sapply(1:NPERM,sim_one)
+dim(LBM.config.D2ITS)
 ```
 
 ```{r}
@@ -530,7 +537,7 @@ wholenetwork_cca_results_NULL_ITS_D2 <- analysis.function.alt2(incid=as.data.fra
 write.xlsx(wholenetwork_cca_results_NULL_ITS_D2, file=here::here("data", "derived_data","6_NMI_CCA", "Dataset_2", "CCA_NULL_ITS_D2.xlsx"), rowNames = TRUE)
 
 #CCA with full randomization
-wholenetwork_cca_results_CONFIGS_ITS_D2 <- analysis.function.alt2(incid=as.data.frame(FB_D2_ITS), memb_obs=memb_spl_obs_ITS_D2, var1=cca_data_ITS_D2$FruitType, var2=cca_data_ITS_D2$FruitSite, configs = LBM.config)
+wholenetwork_cca_results_CONFIGS_ITS_D2 <- analysis.function.alt2(incid=as.data.frame(FB_D2_ITS), memb_obs=memb_spl_obs_ITS_D2, var1=cca_data_ITS_D2$FruitType, var2=cca_data_ITS_D2$FruitSite, configs = LBM.config.D2ITS)
 
 write.xlsx(wholenetwork_cca_results_CONFIGS_ITS_D2, file=here::here("data", "derived_data","6_NMI_CCA", "Dataset_2", "CCA_CONFIGS_ITS_D2.xlsx"), rowNames = TRUE)
 ```
