@@ -192,33 +192,33 @@ df_AlphaDiv_ITS_d2 <- data.frame(phyloseq::sample_data(AlphaDiv_ITS_d2))
 ## 16S
 Sha_ST_FT_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S_d2, "SampleType",  c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days"), "Shannon", color_FruitType2, "FruitType")
 
-Sha_ST_FT_16S$data$SampleType <- factor(Sha_ST_FT_16S$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days")) # reorder 
+Sha_ST_FT_16S$data$SampleType <- factor(Sha_ST_FT_16S$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days"), labels = c("Fruits", "F. infested (5-6d)", "F. nat. inf. (5-6d)", "F. nat. uninf. (5-6d)")) # reorder & rename
 
 
 ObsRich_ST_FT_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S_d2, "SampleType",  c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days"), "ObservedRichness" ,color_FruitType2, "FruitType")
 
-ObsRich_ST_FT_16S$data$SampleType <- factor(ObsRich_ST_FT_16S$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days")) # reorder 
+ObsRich_ST_FT_16S$data$SampleType <- factor(ObsRich_ST_FT_16S$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days"), labels = c("Fruits", "F. infested (5-6d)", "F. nat. inf. (5-6d)", "F. nat. uninf. (5-6d)"))
 
 
 Chao1_ST_FT_16S <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_16S_d2, "SampleType",  c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days"), "Chao1" ,color_FruitType2, "FruitType")
 
-Chao1_ST_FT_16S$data$SampleType <- factor(Chao1_ST_FT_16S$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days")) # reorder 
+Chao1_ST_FT_16S$data$SampleType <- factor(Chao1_ST_FT_16S$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days"), labels = c("Fruits", "F. infested (5-6d)", "F. nat. inf. (5-6d)", "F. nat. uninf. (5-6d)"))
 
 
 ## ITS
 Sha_ST_FT_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS_d2, "SampleType",  c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days"), "Shannon" ,color_FruitType, "FruitType")
 
-Sha_ST_FT_ITS$data$SampleType <- factor(Sha_ST_FT_ITS$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days")) # reorder 
+Sha_ST_FT_ITS$data$SampleType <- factor(Sha_ST_FT_ITS$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days"), labels = c("Fruits", "F. infested (5-6d)", "F. nat. inf. (5-6d)", "F. nat. uninf. (5-6d)"))
 
 
 ObsRich_ST_FT_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS_d2, "SampleType",  c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days"), "ObservedRichness" ,color_FruitType, "FruitType")
 
-ObsRich_ST_FT_ITS$data$SampleType <- factor(ObsRich_ST_FT_ITS$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days")) # reorder 
+ObsRich_ST_FT_ITS$data$SampleType <- factor(ObsRich_ST_FT_ITS$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days"), labels = c("Fruits", "F. infested (5-6d)", "F. nat. inf. (5-6d)", "F. nat. uninf. (5-6d)"))
 
 
 Chao1_ST_FT_ITS <- plot_AlphaDiv_index_groups(metadata_AlphaDiv_ITS_d2, "SampleType",  c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days"), "Chao1" ,color_FruitType, "FruitType")
 
-Chao1_ST_FT_ITS$data$SampleType <- factor(Chao1_ST_FT_ITS$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days")) # reorder 
+Chao1_ST_FT_ITS$data$SampleType <- factor(Chao1_ST_FT_ITS$data$SampleType, levels = c("Fruits_0days", "Artific_Inf_Fruits_5_6days", "Nat_Inf_Fruits_5_6days", "Nat_Uninf_Fruits_5_6days"), labels = c("Fruits", "F. infested (5-6d)", "F. nat. inf. (5-6d)", "F. nat. uninf. (5-6d)"))
 
 
 
