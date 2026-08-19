@@ -608,7 +608,7 @@ ps_rare_16S_D1bis <- prune_samples(!(sample_names(ps_rare_16S_D1bis) %in% c("MS_
 # 16S (Family)
 plot_16S_CTindivField <- Make_composition_bar_plot_2(ps_rare_16S_D1bis, "Bacteria", "Family", 15, ~SampleType + FruitType, color_16S)
 
-plot_16S_CTindivField$data$SampleType <- factor(plot_16S_CTindivField$data$SampleType, levels = c("Larvae", "Larvae_field","Pupae", "Pupae_field","Daughters", "Daughters_field"), labels = c("G1 Lab Larvae", "G1 Wild Larvae", "G1 Lab Pupae","G1 Wild Pupae", "G1 Lab Emerged Adults", "G1 WEA")) 
+plot_16S_CTindivField$data$SampleType <- factor(plot_16S_CTindivField$data$SampleType, levels = c("Larvae", "Larvae_field","Pupae", "Pupae_field","Daughters", "Daughters_field"), labels = c("G1 Lab Larvae", "G1 Field Larvae", "G1 Lab Pupae","G1 Field Pupae", "G1 Lab Emerged Adults", "G1 FEA")) 
 
 plot_16S_CTindivField$data <- plot_16S_CTindivField$data %>%
   dplyr::group_by(Sample) %>%
@@ -621,7 +621,7 @@ ggsave(filename = "B_CTindivField_F60.jpg", plot = plot_16S_CTindivField, path =
 # ITS (Family)
 plot_ITS_CTindivField <- Make_composition_bar_plot_2(ps_rare_ITS_D1bis, "Fungi", "Family", 15, ~SampleType + FruitType, color_ITS) 
 
-plot_ITS_CTindivField$data$SampleType <- factor(plot_ITS_CTindivField$data$SampleType, levels = c("Larvae", "Larvae_field","Pupae", "Pupae_field","Daughters", "Daughters_field"), labels = c("G1 Lab Larvae", "G1 Wild Larvae", "G1 Lab Pupae","G1 Wild Pupae", "G1 Lab Emerged Adults", "G1 WEA")) 
+plot_ITS_CTindivField$data$SampleType <- factor(plot_ITS_CTindivField$data$SampleType, levels = c("Larvae", "Larvae_field","Pupae", "Pupae_field","Daughters", "Daughters_field"), labels = c("G1 Lab Larvae", "G1 Field Larvae", "G1 Lab Pupae","G1 Field Pupae", "G1 Lab Emerged Adults", "G1 FEA"))
 
 plot_ITS_CTindivField$data <- plot_ITS_CTindivField$data %>%
   dplyr::group_by(Sample) %>%

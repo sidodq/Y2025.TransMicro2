@@ -554,7 +554,7 @@ cowplot::save_plot(file =here::here("plots", "2_RarefyData", "Dataset_2", title_
 
     
 # Combined plot
-RarefactionCurves_D2 <- ggpubr::ggarrange(Rarefactioncurve_16S_D2, Rarefactioncurve_ITS_D2, labels = c("A. 16S", "B. ITS"), ncol = 2, nrow = 1, widths = c(1.4, 1.4), legend = "bottom", common.legend = TRUE)
+RarefactionCurves_D2 <- ggpubr::ggarrange(Rarefactioncurve_16S_D2, Rarefactioncurve_ITS_D2, labels = c("C. 16S", "D. ITS"), ncol = 2, nrow = 1, widths = c(1.4, 1.4), legend = "bottom", common.legend = TRUE)
 
 title_plot <- "RarefactionCurves_D2.png"
 
