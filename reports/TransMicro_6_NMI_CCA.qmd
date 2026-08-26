@@ -356,12 +356,12 @@ write.csv(results_table_D2, file = file.path(here::here(), "data", "derived_data
 ### ITS
 
 ```{r}
-NPERM <- 10000
+NPERM <- 5000
 
 sim_list = list()
   
 #for each rarefied matrix
-BF_D1_ITS_f <- t(FB_D1_ITS_f)
+BF_D1_ITS_f <- t(FB_D1_ITS_f) 
   sim_mat <- BF_D1_ITS_f
   #produce NPERM simulated graphs
   # netBin.config <-
@@ -398,32 +398,31 @@ LBM.config <- future_sapply(1:NPERM,sim_one)
 
 ```{r}
 # Factors
-FruitType_vect_ITS_D1_f <- as.factor(mtd_D1_ITS_f$FruitType[match(rownames(FB_D1_ITS_f), mtd_D1_ITS_f$Sample)])
-SampleType_vect_ITS_D1_f <- as.factor(mtd_D1_ITS_f$SampleType[match(rownames(FB_D1_ITS_f), mtd_D1_ITS_f$Sample)])
+FruitType2_vect_ITS_D1 <- as.factor(mtd_D1_ITS_f$FruitType2[match(rownames(FB_D1_ITS_f), mtd_D1_ITS_f$Sample)])
+SampleType_vect_ITS_D1 <- as.factor(mtd_D1_ITS_f$SampleType[match(rownames(FB_D1_ITS_f), mtd_D1_ITS_f$Sample)])
 
 ## Create a matrix with samples as rows and group asigned by the latent block model as column
 dummyMod_ITS_D1 <- lme4::dummy(as.factor(memb_spl_obs_ITS_D1_f), levelsToKeep = levels(as.factor(memb_spl_obs_ITS_D1_f)))
 
 ## Creates dataframe with the two variables of interest
-cca_data_ITS_D1 <- data.frame("FruitType" = as.factor(FruitType_vect_ITS_D1_f),
-    "SampleType" = as.factor(SampleType_vect_ITS_D1_f))
+cca_data_ITS_D1 <- data.frame("FruitType2" = as.factor(FruitType2_vect_ITS_D1),
+    "SampleType" = as.factor(SampleType_vect_ITS_D1))
 
 ## Partition the variation of the community matrix
 varp_ITS_D1 <- vegan::varpart(dummyMod_ITS_D1, cca_data_ITS_D1$FruitType, cca_data_ITS_D1$SampleType, chisquare = T)
 varp_ITS_D1$part
 
 #CCA with line randomization
-wholenetwork_cca_results_NULL_ITS_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_ITS_f), memb_obs=memb_spl_obs_ITS_D1_f, var1=cca_data_ITS_D1$FruitType, var2=cca_data_ITS_D1$SampleType, configs = NULL)
+wholenetwork_cca_results_NULL_ITS_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_ITS_f), memb_obs=memb_spl_obs_ITS_D1_f, var1=cca_data_ITS_D1$FruitType2, var2=cca_data_ITS_D1$SampleType, configs = NULL)
 
-write.xlsx(wholenetwork_cca_results_NULL_ITS_D1, file=here::here("data", "derived_data","6_NMI_CCA", "Dataset_1",  "CCA_NULL_ITS_D1_04.xlsx"), rowNames = TRUE)
+write.xlsx(wholenetwork_cca_results_NULL_ITS_D1, file=here::here("data", "derived_data","6_NMI_CCA", "Dataset_1",  "CCA_NULL_ITS_D1_FruitType2.xlsx"), rowNames = TRUE)
 
 
 
 #CCA with full randomization
-wholenetwork_cca_results_CONFIGS_ITS_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_ITS_f), memb_obs=memb_spl_obs_ITS_D1_f, var1=cca_data_ITS_D1$FruitType, var2=cca_data_ITS_D1$SampleType, configs = LBM.config)
+wholenetwork_cca_results_CONFIGS_ITS_D1 <- analysis.function.alt2(incid=as.data.frame(FB_D1_ITS_f), memb_obs=memb_spl_obs_ITS_D1_f, var1=cca_data_ITS_D1$FruitType2, var2=cca_data_ITS_D1$SampleType, configs = LBM.config)
 
-
-write.xlsx(wholenetwork_cca_results_CONFIGS_ITS_D1, file=here::here("data", "derived_data","6_NMI_CCA", "Dataset_1", "CCA_CONFIGS_ITS_D1_04.xlsx"), rowNames = TRUE)
+write.xlsx(wholenetwork_cca_results_CONFIGS_ITS_D1, file=here::here("data", "derived_data","6_NMI_CCA", "Dataset_1", "CCA_CONFIGS_ITS_D1_FruitType2.xlsx"), rowNames = TRUE)
 ```
 
 ## D2

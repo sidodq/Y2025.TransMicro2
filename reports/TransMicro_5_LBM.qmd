@@ -92,7 +92,7 @@ ps_ITS_rare_expe_D1 <- Charge_xl_to_ps("ps_ITS_rare_expe_D1", folder_path=file.p
 ps_ITS_rare_expe_D1 <- fix_all_taxa(phyloseq_object = ps_ITS_rare_expe_D1, ranks = c("Family", "Genus"))
 
 # Filter data (exclude host fruits)
-ps_ITS_rare_expe_D1 <- Subset_physeq(ps_ITS_rare_expe_D1, SampleType %in%  c("Mothers_0days", "Mothers_2days", "Larvae","Pupae","Daughters"))
+ps_ITS_rare_expe_D1 <- Subset_physeq(ps_ITS_rare_expe_D1, SampleType %in%  c("Mothers_0days", "Mothers_2days","Larvae","Pupae","Daughters"))
 
 # counts -> presence/absence (binary table)
 ps_rare_ITS_D1_bin <- phyloseq::transform_sample_counts(ps_ITS_rare_expe_D1, function(x) 1*(x>0)) 
